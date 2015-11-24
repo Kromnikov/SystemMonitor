@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 import core.branches.CoreBranch;
-import ui.*;
 
 public class MainForm extends JFrame {
 

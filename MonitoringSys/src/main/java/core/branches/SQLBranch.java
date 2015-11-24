@@ -1,14 +1,15 @@
 package core.branches;
 
-import core.agents.SQL.SQLAgent;
-import core.agents.SSH.Metric;
+import core.Models.Value;
+import core.agents.sql.SQLAgent;
+import core.Models.Metric;
 import core.configurations.SQLConfiguration;
 import core.configurations.SSHConfiguration;
 import core.hibernate.HibernateUtil2;
 import org.hibernate.Session;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class SQLBranch {
@@ -47,8 +48,14 @@ public class SQLBranch {
     }
 
     //values
-    public static void addValue(int host,int metric,double value) throws SQLException {
-        sqlAgent.addValue(host, metric, value);
+    public static void addValue(int host,int metric,double value,LocalDateTime dateTime) throws SQLException {
+        sqlAgent.addValue(host, metric, value , dateTime);
+    }
+    public static List<Double> getAllValue(int id) throws SQLException {
+        return sqlAgent.getAllValue(id);
+    }
+    public static List<Value> getValues(int metricId,int host_id) throws SQLException {
+        return sqlAgent.getValues(metricId, host_id);
     }
 
     //metrics
@@ -77,9 +84,6 @@ public class SQLBranch {
     }
     public static int getQuantityOfRow(int id) throws SQLException {
         return sqlAgent.getQuantityOfRow(id);
-    }
-    public static ResultSet getAllValue(int id) throws SQLException {
-        return sqlAgent.getAllValue(id);
     }
 
     public static void deleteHost(String login){

@@ -1,14 +1,16 @@
-package core.agents.SQL;
+package core.agents.sql;
 
 
-import com.sun.javafx.font.Metrics;
-import core.agents.SSH.Metric;
-import core.configurations.SQLConfiguration;
+import core.Models.Metric;
+import core.Models.Value;
 import core.configurations.SSHConfiguration;
+import org.jfree.data.Values;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,9 +36,34 @@ public class SQLAgent {
 //sql
 
     //values
-    public void addValue(int host, int metric, double value) throws SQLException {
-        String sql = "INSERT INTO \"VALUE_METRIC\"(host, metric, value)  VALUES ("+host+","+metric+","+value+")";
+    public void addValue(int host, int metric, double value,LocalDateTime dateTime) throws SQLException {
+        String sql = "INSERT INTO \"VALUE_METRIC\"(host, metric, value,date_time)  VALUES ("+host+","+metric+","+value+",(TIMESTAMP '"+dateTime+"'))";
         this.statement.executeUpdate(sql);
+    }
+    public List<Double> getAllValue(int id) throws SQLException {
+        List<Double> values = new ArrayList<>();
+        String sql = "select h.value from \"VALUE_METRIC\" as h join \"METRICS\" as m on h.metric=m.id where m.id=" + id;
+        ResultSet resultSet = statement.executeQuery(sql);
+        while (resultSet.next()) {
+            values.add(Double.parseDouble(resultSet.getString(1)));
+        }
+        return values;
+    }
+    public List<Value> getValues(int metricId,int host_id) throws SQLException {
+        List<Value> values = new ArrayList<>();
+        String sql = "select * from \"VALUE_METRIC\" where metric=" + metricId+" and host ="+host_id;
+        ResultSet resultSet = statement.executeQuery(sql);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+        while (resultSet.next()) {
+            values.add(
+                    new Value(Integer.parseInt(resultSet.getString(1)),
+                    Integer.parseInt(resultSet.getString(2)),
+                            Integer.parseInt(resultSet.getString(3)),
+                                Double.parseDouble(resultSet.getString(4)),
+                            LocalDateTime.parse((resultSet.getString(5)), formatter)
+                                    ));
+        }
+        return values;
     }
 
     //metrics
@@ -100,11 +127,6 @@ public class SQLAgent {
         resultSet.next();
         return Integer.parseInt(resultSet.getString(1));
     }
-    public ResultSet getAllValue(int id) throws SQLException {
 
-        String sql = "select h.value from \"VALUE_METRIC\" as h join \"METRICS\" as m on h.metric=m.id where m.id="+id;
-        ResultSet resultSet = statement.executeQuery(sql);
-        return resultSet;
-    }
     //
 }

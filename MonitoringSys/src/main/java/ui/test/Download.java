@@ -1,6 +1,6 @@
 package ui.test;
 
-import core.agents.SSH.Metric;
+import core.Models.Metric;
 
 import java.io.File;
 import java.io.FileNotFoundException;
