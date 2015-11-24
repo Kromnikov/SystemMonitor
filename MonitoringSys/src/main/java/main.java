@@ -31,7 +31,6 @@ public class main {
 
 
         CoreBranch.run();
-        SQLBranch.addHost("192.168.56.101", 22, "anton", "1111");
 
 
 //        Session session = HibernateUtil2.getSessionFactory().openSession();

@@ -1,5 +1,5 @@
-package ui;
-import core.agents.SQL.SQLAgent;
+package ui.form;
+import core.Models.Value;
 import core.branches.SQLBranch;
 import core.configurations.SQLConfiguration;
 import org.jfree.chart.ChartFactory;
@@ -12,12 +12,11 @@ import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.ui.ApplicationFrame;
 
 import javax.swing.*;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class Chart extends ApplicationFrame {
 
-    private static SQLAgent sqlAgent;
     public Chart(){
         super("");
         setDefaultCloseOperation(ApplicationFrame.HIDE_ON_CLOSE);
@@ -31,12 +30,16 @@ public class Chart extends ApplicationFrame {
         Hour hour = new Hour();
         Chart chart = new Chart();
         int typeOfMetric = chart.getTypeOfMetric(title);
-        ResultSet resultSet = chart.getData(typeOfMetric);
-        int j = chart.QuantyOfRows(typeOfMetric);
-        for (int i=1;i<j;i++){
-            resultSet.next();
-            value=Double.parseDouble(resultSet.getString(1));
-            series.add(new Minute(i, hour), value);
+//        ResultSet resultSet = chart.getData(typeOfMetric);
+//        int j = chart.QuantyOfRows(typeOfMetric);
+//        for (int i=1;i<j;i++){
+//            resultSet.next();
+//            value=Double.parseDouble(resultSet.getString(1));
+//            series.add(new Minute(i, hour), value);
+//        }
+        List<Value> values = SQLBranch.getValues(1, typeOfMetric);
+        for (Value val : values) {
+            series.add(new Minute(val.getId(), hour), val.getValue());
         }
         TimeSeriesCollection dataset = new TimeSeriesCollection();
         dataset.addSeries(series);
@@ -56,14 +59,8 @@ public class Chart extends ApplicationFrame {
         pack();
     }
 
-    public ResultSet getData(int id) throws SQLException {
-        ResultSet resultSet = null;
-        SQLConfiguration sql = new SQLConfiguration();
-        if(sql.load()) {
-            sqlAgent = new SQLAgent(sql.getStatement());
-            resultSet=sqlAgent.getAllValue(id);//1- id для получения значений загруженности СРU.
-        }
-        return resultSet;
+    public List<Double> getData(int id) throws SQLException {
+        return SQLBranch.getAllValue(id);
     }
     public int QuantyOfRows (int id1) throws SQLException {
         int id=id1;
