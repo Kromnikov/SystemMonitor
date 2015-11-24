@@ -1,5 +1,7 @@
 package ui.form;
 
+import core.branches.SQLBranch;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -56,6 +58,12 @@ public class ConForm extends JFrame {
                 String password = jTextPas.getText();
                 String IP =jTextIP.getText();
                 int port = Integer.parseInt(jTextPort.getText());
+                SQLBranch.addHost(IP,port,user,password);
+
+                JOptionPane.showMessageDialog( null,  "User has been connected!", "Message", JOptionPane.DEFAULT_OPTION );
+                jTextlogin.setText("");
+                jTextPas.setText("");
+
 //                SSHAgentOLD ssh = new SSHAgentOLD(new SSHConfiguration(IP, port, user, password));
 //                if (ssh.connect()){
 //                    Download d = new Download();

@@ -6,15 +6,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
+import core.branches.CoreBranch;
 import ui.*;
 
 public class MainForm extends JFrame {
 
     private JPanel MForm;
 
-    public MainForm() throws InterruptedException {
+    public MainForm() throws InterruptedException, SQLException {
         super("Monitoring");
-//        CoreBranch.run();
+        CoreBranch.run();
         createbut();
     }
 
@@ -139,6 +140,8 @@ public class MainForm extends JFrame {
                 try {
                     frame = new MainForm();
                 } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
                 frame.pack();

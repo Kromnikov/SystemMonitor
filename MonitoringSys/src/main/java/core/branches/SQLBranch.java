@@ -7,6 +7,7 @@ import core.configurations.SSHConfiguration;
 import core.hibernate.HibernateUtil2;
 import org.hibernate.Session;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class SQLBranch {
     }
 //sql
     //host
-    public static void addHost(String host,int port,String login,String password) {
+    public  static void addHost(String host,int port,String login,String password) {
         session.beginTransaction();
         session.save(new SSHConfiguration(host, port, login, password));
         session.getTransaction().commit();
@@ -74,5 +75,14 @@ public class SQLBranch {
     public static List<Metric> getMetricsByHostId(int hostId) throws SQLException {
         return sqlAgent.getMetricsByHostId(hostId);
     }
+    public static int getQuantityOfRow(int id) throws SQLException {
+        return sqlAgent.getQuantityOfRow(id);
+    }
+    public static ResultSet getAllValue(int id) throws SQLException {
+        return sqlAgent.getAllValue(id);
+    }
 
+    public static void deleteHost(String login){
+
+    }
 }

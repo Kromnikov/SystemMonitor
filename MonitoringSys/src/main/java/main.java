@@ -1,9 +1,14 @@
 import core.branches.CoreBranch;
 import core.branches.SQLBranch;
+import core.configurations.SSHConfiguration;
+import org.hibernate.Session;
+import org.hibernate.engine.spi.SessionDelegatorBaseImpl;
 import org.hsqldb.HsqlException;
 
 public class main {
+    private static Session session;
     public static void main(String args[]) throws Exception {
+
         try {
 
 
@@ -22,7 +27,11 @@ public class main {
 //            System.out.println(metric.getCommand());
 //        }
 
+
+
+
         CoreBranch.run();
+        SQLBranch.addHost("192.168.56.101", 22, "anton", "1111");
 
 
 //        Session session = HibernateUtil2.getSessionFactory().openSession();

@@ -94,5 +94,17 @@ public class SQLAgent {
         }
         return metrics;
     }
+    public int getQuantityOfRow(int id) throws SQLException {
+        String sql = "select count(*) from \"VALUE_METRIC\" where metric ="+id;
+        ResultSet resultSet = statement.executeQuery(sql);
+        resultSet.next();
+        return Integer.parseInt(resultSet.getString(1));
+    }
+    public ResultSet getAllValue(int id) throws SQLException {
+
+        String sql = "select h.value from \"VALUE_METRIC\" as h join \"METRICS\" as m on h.metric=m.id where m.id="+id;
+        ResultSet resultSet = statement.executeQuery(sql);
+        return resultSet;
+    }
     //
 }

@@ -1,5 +1,6 @@
 package ui;
 import core.agents.SQL.SQLAgent;
+import core.branches.SQLBranch;
 import core.configurations.SQLConfiguration;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -55,22 +56,21 @@ public class Chart extends ApplicationFrame {
         pack();
     }
 
-    public ResultSet getData(int id) throws SQLException {//TODO Допиши методы в sqlAgent и потом в SQLBranch и юзай из SQLBranch их
+    public ResultSet getData(int id) throws SQLException {
         ResultSet resultSet = null;
         SQLConfiguration sql = new SQLConfiguration();
         if(sql.load()) {
             sqlAgent = new SQLAgent(sql.getStatement());
-//            resultSet=sqlAgent.getAllValue(id);//1- id для получения значений загруженности СРU.
+            resultSet=sqlAgent.getAllValue(id);//1- id для получения значений загруженности СРU.
         }
         return resultSet;
     }
-    public int QuantyOfRows (int id1) throws SQLException {//TODO и убери sqlAgent'a из кода, он в SQLBranch будет =)
+    public int QuantyOfRows (int id1) throws SQLException {
         int id=id1;
         int j=10;
         SQLConfiguration sql = new SQLConfiguration();
         if(sql.load()) {
-            sqlAgent = new SQLAgent(sql.getStatement());
-//            j=sqlAgent.getQuantityOfRow(id);
+            j= SQLBranch.getQuantityOfRow(id);
         }
         return j;
     }
