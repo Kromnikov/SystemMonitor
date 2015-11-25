@@ -1,5 +1,5 @@
 package ui.form;
-import core.Models.Value;
+import core.models.Value;
 import core.branches.SQLBranch;
 import core.configurations.SQLConfiguration;
 import org.jfree.chart.ChartFactory;

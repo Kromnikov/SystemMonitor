@@ -1,8 +1,7 @@
 package core.branches;
 
-import core.Models.Value;
-import core.agents.sql.SQLAgent;
-import core.Models.Metric;
+import core.models.Value;
+import core.models.Metric;
 import core.configurations.SQLConfiguration;
 import core.configurations.SSHConfiguration;
 import core.hibernate.HibernateUtil2;
@@ -14,7 +13,7 @@ import java.util.List;
 
 public class SQLBranch {
 
-    private static SQLAgent sqlAgent;
+    private static core.agents.sql.SQLAgent sqlAgent;
 
     private static List<SSHConfiguration> hosts;
 
@@ -23,7 +22,7 @@ public class SQLBranch {
     public static void run() throws SQLException {
         SQLConfiguration sql = new SQLConfiguration();
         if(sql.load()) {
-            sqlAgent = new SQLAgent(sql.getStatement());
+            sqlAgent = new core.agents.sql.SQLAgent(sql.getStatement());
         }
         session = HibernateUtil2.getSessionFactory().openSession();
         hosts = session.createCriteria(SSHConfiguration.class).list();
@@ -48,7 +47,7 @@ public class SQLBranch {
     }
 
     //values
-    public static void addValue(int host,int metric,double value,LocalDateTime dateTime) throws SQLException {
+    public static void addValue(int host,int metric,double value,String dateTime) throws SQLException {
         sqlAgent.addValue(host, metric, value , dateTime);
     }
     public static List<Double> getAllValue(int id) throws SQLException {

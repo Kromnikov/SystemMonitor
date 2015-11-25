@@ -1,4 +1,4 @@
-package core.Models;
+package core.models;
 
 
 public class Metric {

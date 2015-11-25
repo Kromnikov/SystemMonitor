@@ -1,10 +1,9 @@
 package core.agents.sql;
 
 
-import core.Models.Metric;
-import core.Models.Value;
+import core.models.Metric;
+import core.models.Value;
 import core.configurations.SSHConfiguration;
-import org.jfree.data.Values;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,6 +16,8 @@ import java.util.List;
 public class SQLAgent {
 
     private Statement statement;
+
+    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public SQLAgent() {
 
@@ -36,7 +37,7 @@ public class SQLAgent {
 //sql
 
     //values
-    public void addValue(int host, int metric, double value,LocalDateTime dateTime) throws SQLException {
+    public void addValue(int host, int metric, double value,String dateTime) throws SQLException {
         String sql = "INSERT INTO \"VALUE_METRIC\"(host, metric, value,date_time)  VALUES ("+host+","+metric+","+value+",(TIMESTAMP '"+dateTime+"'))";
         this.statement.executeUpdate(sql);
     }
@@ -49,11 +50,10 @@ public class SQLAgent {
         }
         return values;
     }
-    public List<Value> getValues(int metricId,int host_id) throws SQLException {
+    public List<Value> getValues(int host_id,int metricId) throws SQLException {
         List<Value> values = new ArrayList<>();
         String sql = "select * from \"VALUE_METRIC\" where metric=" + metricId+" and host ="+host_id;
         ResultSet resultSet = statement.executeQuery(sql);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
         while (resultSet.next()) {
             values.add(
                     new Value(Integer.parseInt(resultSet.getString(1)),

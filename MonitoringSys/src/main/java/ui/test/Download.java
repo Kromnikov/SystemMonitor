@@ -1,6 +1,6 @@
 package ui.test;
 
-import core.Models.Metric;
+import core.models.Metric;
 
 import java.io.File;
 import java.io.FileNotFoundException;

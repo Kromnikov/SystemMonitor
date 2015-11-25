@@ -1,16 +1,17 @@
 package core.branches;
 
 import core.agents.ssh.SSHAgent;
-import core.Models.Metric;
+import core.models.Metric;
 import core.configurations.SSHConfiguration;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.TimerTask;
 
 public class ScheduledTask extends TimerTask {
     private static SSHAgent sshAgent;
-
+    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     @Override
     public void run() {
@@ -19,7 +20,7 @@ public class ScheduledTask extends TimerTask {
                 sshAgent = new SSHAgent(host);
                 if (sshAgent.connect()) {//Подключение к хосту
                     for (Metric metric : SQLBranch.getMetricsByHostId(host.getId())) {//По метрикам хоста
-                        SQLBranch.addValue(host.getId(), metric.getId(), sshAgent.getMetricValue(metric), LocalDateTime.now());
+                        SQLBranch.addValue(host.getId(), metric.getId(), sshAgent.getMetricValue(metric), LocalDateTime.now().format(formatter));
 //                    System.out.println(host.getId()+"////"+metric.getTitle()+":"+metric.getId()+"////"+sshAgent.getMetricValue(metric));
                     }
                     if (sshAgent != null) {
