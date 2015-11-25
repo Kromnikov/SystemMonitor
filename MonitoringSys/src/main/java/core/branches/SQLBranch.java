@@ -1,5 +1,7 @@
 package core.branches;
 
+import core.agents.sql.SQLAgent;
+import core.factory.SQLAgentFactory;
 import core.models.Value;
 import core.models.Metric;
 import core.configurations.SQLConfiguration;
@@ -8,12 +10,11 @@ import core.hibernate.HibernateUtil2;
 import org.hibernate.Session;
 
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class SQLBranch {
 
-    private static core.agents.sql.SQLAgent sqlAgent;
+    private static SQLAgentFactory sqlAgent;
 
     private static List<SSHConfiguration> hosts;
 
@@ -22,7 +23,8 @@ public class SQLBranch {
     public static void run() throws SQLException {
         SQLConfiguration sql = new SQLConfiguration();
         if(sql.load()) {
-            sqlAgent = new core.agents.sql.SQLAgent(sql.getStatement());
+            sqlAgent = new SQLAgentFactory(new SQLAgent(sql.getStatement()) );
+//            sqlAgent = new core.agents.sql.SQLAgent(sql.getStatement());
         }
         session = HibernateUtil2.getSessionFactory().openSession();
         hosts = session.createCriteria(SSHConfiguration.class).list();
@@ -50,8 +52,8 @@ public class SQLBranch {
     public static void addValue(int host,int metric,double value,String dateTime) throws SQLException {
         sqlAgent.addValue(host, metric, value , dateTime);
     }
-    public static List<Double> getAllValue(int id) throws SQLException {
-        return sqlAgent.getAllValue(id);
+    public static List<Double> getAllValueMetricOnHost(int id) throws SQLException {
+        return sqlAgent.getAllValueMetricOnHost(id);
     }
     public static List<Value> getValues(int metricId,int host_id) throws SQLException {
         return sqlAgent.getValues(metricId, host_id);

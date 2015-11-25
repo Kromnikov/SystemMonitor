@@ -1,6 +1,6 @@
 package core.configurations;
 
-import core.interfaces.SQLinterface;
+import core.interfaces.DBConnectInterface;
 
 import javax.swing.*;
 import java.io.FileInputStream;
@@ -9,7 +9,7 @@ import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
 
-public class HSQLDBConfiguration implements SQLinterface {
+public class HSQLDBConfiguration implements DBConnectInterface {
     private Connection connection = null;
     private Statement statement;
     Properties prop = new Properties();

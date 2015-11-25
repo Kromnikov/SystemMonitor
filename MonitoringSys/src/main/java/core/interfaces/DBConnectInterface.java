@@ -2,7 +2,7 @@ package core.interfaces;
 
 import java.sql.Statement;
 
-public interface SQLinterface {
+public interface DBConnectInterface {
 
     public boolean load();
 

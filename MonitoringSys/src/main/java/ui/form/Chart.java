@@ -30,13 +30,7 @@ public class Chart extends ApplicationFrame {
         Hour hour = new Hour();
         Chart chart = new Chart();
         int typeOfMetric = chart.getTypeOfMetric(title);
-//        ResultSet resultSet = chart.getData(typeOfMetric);
-//        int j = chart.QuantyOfRows(typeOfMetric);
-//        for (int i=1;i<j;i++){
-//            resultSet.next();
-//            value=Double.parseDouble(resultSet.getString(1));
-//            series.add(new Minute(i, hour), value);
-//        }
+
         List<Value> values = SQLBranch.getValues(1, typeOfMetric);
         for (Value val : values) {
             series.add(new Minute(val.getId(), hour), val.getValue());
@@ -60,7 +54,7 @@ public class Chart extends ApplicationFrame {
     }
 
     public List<Double> getData(int id) throws SQLException {
-        return SQLBranch.getAllValue(id);
+        return SQLBranch.getAllValueMetricOnHost(id);
     }
     public int QuantyOfRows (int id1) throws SQLException {
         int id=id1;

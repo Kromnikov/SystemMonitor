@@ -1,15 +1,14 @@
 package core.factory;
 
-import core.interfaces.SQLinterface;
+import core.interfaces.DBConnectInterface;
 
-import java.sql.SQLException;
 import java.sql.Statement;
 
 public class SQLFactory {
 
-    SQLinterface sql;
+    DBConnectInterface sql;
 
-    public SQLFactory(SQLinterface sql) {
+    public SQLFactory(DBConnectInterface sql) {
         this.sql = sql;
     }
 

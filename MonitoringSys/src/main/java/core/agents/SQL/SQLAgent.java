@@ -1,6 +1,7 @@
 package core.agents.sql;
 
 
+import core.interfaces.SQLAgentInterface;
 import core.models.Metric;
 import core.models.Value;
 import core.configurations.SSHConfiguration;
@@ -13,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SQLAgent {
+public class SQLAgent implements SQLAgentInterface{
 
     private Statement statement;
 
@@ -41,7 +42,7 @@ public class SQLAgent {
         String sql = "INSERT INTO \"VALUE_METRIC\"(host, metric, value,date_time)  VALUES ("+host+","+metric+","+value+",(TIMESTAMP '"+dateTime+"'))";
         this.statement.executeUpdate(sql);
     }
-    public List<Double> getAllValue(int id) throws SQLException {
+    public List<Double> getAllValueMetricOnHost(int id) throws SQLException {
         List<Double> values = new ArrayList<>();
         String sql = "select h.value from \"VALUE_METRIC\" as h join \"METRICS\" as m on h.metric=m.id where m.id=" + id;
         ResultSet resultSet = statement.executeQuery(sql);
