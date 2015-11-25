@@ -1,12 +1,13 @@
 package core.branches;
 
 import core.agents.sql.SQLAgent;
+import core.factory.DBConnectFactory;
 import core.factory.SQLAgentFactory;
 import core.models.Value;
 import core.models.Metric;
 import core.configurations.SQLConfiguration;
 import core.configurations.SSHConfiguration;
-import core.hibernate.HibernateUtil2;
+import core.hibernate.HibernateUtil;
 import org.hibernate.Session;
 
 import java.sql.SQLException;
@@ -21,12 +22,11 @@ public class SQLBranch {
     private static Session session;
 
     public static void run() throws SQLException {
-        SQLConfiguration sql = new SQLConfiguration();
+        DBConnectFactory sql = new DBConnectFactory(new SQLConfiguration());
         if(sql.load()) {
             sqlAgent = new SQLAgentFactory(new SQLAgent(sql.getStatement()) );
-//            sqlAgent = new core.agents.sql.SQLAgent(sql.getStatement());
         }
-        session = HibernateUtil2.getSessionFactory().openSession();
+        session = HibernateUtil.getSessionFactory().openSession();
         hosts = session.createCriteria(SSHConfiguration.class).list();
     }
 
@@ -35,7 +35,7 @@ public class SQLBranch {
     }
 
     public static void shutdown() {
-        HibernateUtil2.shutdown();
+        HibernateUtil.shutdown();
     }
 //sql
     //host
