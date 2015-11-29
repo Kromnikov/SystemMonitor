@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SQLAgent implements SQLAgentInterface{
+public  class SQLAgent implements SQLAgentInterface{
 
     private Statement statement;
 
@@ -51,17 +51,22 @@ public class SQLAgent implements SQLAgentInterface{
         }
         return values;
     }
+    public ResultSet getAllValueMetricOnHostResult(int id) throws SQLException {
+        String sql = "select h.value from \"VALUE_METRIC\" as h join \"METRICS\" as m on h.metric=m.id where m.id=" + id;
+        ResultSet resultSet = statement.executeQuery(sql);
+        return resultSet;
+    }
+
     public List<Value> getValues(int host_id,int metricId) throws SQLException {
         List<Value> values = new ArrayList<>();
-        String sql = "select * from \"VALUE_METRIC\" where metric=" + metricId+" and host ="+host_id;
+        String sql = "select host,metric,value,date_time from \"VALUE_METRIC\" where metric=" + metricId+" and host ="+host_id;
         ResultSet resultSet = statement.executeQuery(sql);
         while (resultSet.next()) {
             values.add(
                     new Value(Integer.parseInt(resultSet.getString(1)),
-                    Integer.parseInt(resultSet.getString(2)),
-                            Integer.parseInt(resultSet.getString(3)),
-                                Double.parseDouble(resultSet.getString(4)),
-                            LocalDateTime.parse((resultSet.getString(5)), formatter)
+                            Integer.parseInt(resultSet.getString(2)),
+                                Double.parseDouble(resultSet.getString(3)),
+                            LocalDateTime.parse((resultSet.getString(4)), formatter)
                                     ));
         }
         return values;
@@ -82,6 +87,25 @@ public class SQLAgent implements SQLAgentInterface{
             metric.setCommand(resultSet.getString(3));
         }
         return metric;
+    }
+
+    public List<Metric> geAllMetrics() throws SQLException {
+        List<Metric> metrics1 = new ArrayList<>();
+        String sql = "SELECT * from \"METRICS\"";
+        ResultSet resultSet = statement.executeQuery(sql);
+        while (resultSet.next()) {
+            metrics1.add(new Metric(Integer.parseInt(resultSet.getString(1)),resultSet.getString(2),resultSet.getString(3)));
+        }
+        return metrics1;
+    }
+
+    public Integer getMetricID(String title) throws SQLException {
+        Metric metric = new Metric();
+        String sql = "select id from \"METRICS\" where title='"+title+"'";
+        ResultSet resultSet = statement.executeQuery(sql);
+        resultSet.next();
+        int id = Integer.parseInt(resultSet.getString(1));
+        return id;
     }
     public Metric getMetric(String title) throws SQLException {
         Metric metric = new Metric();
@@ -127,6 +151,45 @@ public class SQLAgent implements SQLAgentInterface{
         ResultSet resultSet = statement.executeQuery(sql);
         resultSet.next();
         return Integer.parseInt(resultSet.getString(1));
+    }
+
+    public ResultSet getAllValue(int id) throws SQLException {
+        String sql = "select h.value from \"VALUE_METRIC\" as h join \"METRICS\" as m on h.metric=m.id where m.id=" + id;
+        ResultSet resultSet = statement.executeQuery(sql);
+        return resultSet;
+    }
+    public List<String> getListIP() throws SQLException {
+        List<String> list = new ArrayList<>();
+        String sql = "select host from \"sshconfigurationhibernate\"";
+        ResultSet resultSet = statement.executeQuery(sql);
+        while (resultSet.next()){
+            list.add(resultSet.getString(1));
+        }
+        return list;
+    }
+    public int getHostIDbyTitle(String title) throws SQLException {
+        String sql = "select sshconfigurationhibernate_id from \"sshconfigurationhibernate\" where host='"+title+"'";
+        ResultSet resultSet = statement.executeQuery(sql);
+        resultSet.next();
+        return Integer.parseInt(resultSet.getString(1));
+    }
+    public void addStandartMetrics(int id) throws SQLException {
+        String sql = "INSERT INTO \"HOST_METRIC\" VALUES ("+id+",1);";
+        statement.executeUpdate(sql);
+        String sql1 = "INSERT INTO \"HOST_METRIC\" VALUES ("+id+",2);";
+        statement.executeUpdate(sql1);
+        String sql2 = "INSERT INTO \"HOST_METRIC\" VALUES ("+id+",5);";
+        statement.executeUpdate(sql2);
+    }
+
+    //delete-запросы
+    public void delHost(String host) throws SQLException {
+        String sql ="delete from  \"sshconfigurationhibernate\" where host='"+host+"'";
+        this.statement.executeUpdate(sql);
+    }
+    public void delMetricFromHost(int id) throws SQLException {
+        String sql ="delete from  \"HOST_METRIC\" where metric_id="+id;
+        this.statement.executeUpdate(sql);
     }
 
     //

@@ -17,8 +17,7 @@ public class Value {
     public Value() {
     }
 
-    public Value(int id, int host_id, int metric_id, double value, LocalDateTime dateTime) {
-        this.id = id;
+    public Value(int host_id, int metric_id, double value, LocalDateTime dateTime) {
         this.host_id = host_id;
         this.metric_id = metric_id;
         this.value = value;

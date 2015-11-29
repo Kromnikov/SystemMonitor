@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class ConForm extends JFrame {
 
@@ -52,6 +53,11 @@ public class ConForm extends JFrame {
         button1.setBounds(120, 93, 100, 30);
         panel.add(button1);
 
+
+        JCheckBox checkBox = new JCheckBox("Add standart metrics",true);
+        checkBox.setBounds(10,125,150,15);
+        panel.add(checkBox);
+
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String user = jTextlogin.getText();
@@ -60,6 +66,11 @@ public class ConForm extends JFrame {
                 int port = Integer.parseInt(jTextPort.getText());
                 SQLBranch.addHost(IP,port,user,password);
 
+                try {
+                    ConForm.addStandartParametrs(IP);
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
                 JOptionPane.showMessageDialog( null,  "User has been connected!", "Message", JOptionPane.DEFAULT_OPTION );
                 jTextlogin.setText("");
                 jTextPas.setText("");
@@ -82,10 +93,14 @@ public class ConForm extends JFrame {
 
 
 
-        setPreferredSize(new Dimension(260, 160));
+        setPreferredSize(new Dimension(260, 180));
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+    public static void addStandartParametrs(String IP) throws SQLException {
+        int id = SQLBranch.getHostIDbyTitle(IP);
+        SQLBranch.addStandartMetrics(id);
     }
 
     public static void main(String[] args) {

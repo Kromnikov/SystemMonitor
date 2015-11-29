@@ -1,12 +1,18 @@
 package ui.form;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.*;
 
 import core.branches.CoreBranch;
+import core.branches.SQLBranch;
+import core.models.Metric;
 import org.jfree.ui.ApplicationFrame;
 
 public class MainForm extends JFrame {
@@ -16,7 +22,7 @@ public class MainForm extends JFrame {
     public MainForm() throws InterruptedException, SQLException {
         super("Monitoring");
         CoreBranch.run();
-        createbut();
+        createDesign();
     }
 
 
@@ -34,24 +40,25 @@ public class MainForm extends JFrame {
         JMenuItem conItem = new JMenuItem("Connect");
         conItem.setFont(font);
         fileMenu.add(conItem);
-
         conItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new ConForm().setVisible(true);
             }
         });
 
-        JMenuItem openItem = new JMenuItem("Open");
-        openItem.setFont(font);
-        fileMenu.add(openItem);
+        JMenuItem editItem = new JMenuItem("Edit Config");
+        editItem.setFont(font);
+        fileMenu.add(editItem);
+        editItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new HostRedactor().setVisible(true);
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
 
-        JMenuItem closeItem = new JMenuItem("Save");
-        closeItem.setFont(font);
-        fileMenu.add(closeItem);
-
-        JMenuItem closeAllItem = new JMenuItem("Close");
-        closeAllItem.setFont(font);
-        fileMenu.add(closeAllItem);
 
         fileMenu.addSeparator();
 
@@ -80,57 +87,90 @@ public class MainForm extends JFrame {
     }
 
 
-    public void createbut() {
+    public void createDesign() throws SQLException {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel panel = new JPanel();
         panel.setLayout(null);
-        JButton button1 = new JButton("CPU");
-        button1.setBounds(15, 25, 85, 30);
-        panel.add(button1);
 
-       button1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    new Chart("CPU").setVisible(true);
-                } catch (SQLException e1) {
-                    e1.printStackTrace();
-                }
-            }
-        });
+        JButton button4= new JButton("View chart");
+        button4.setBounds(0, 150, 250, 30);
+        panel.add(button4);
 
-        JButton button2 = new JButton("Memory");
-        button2.setBounds(15, 60, 85, 30);
-        panel.add(button2);
+        int i;
+        panel.setLayout(null);
+        final DefaultListModel listModel = new DefaultListModel();
+        java.util.List<String> hosts;
+        hosts= SQLBranch.getListIP(); //список хостов
+        for (String host:hosts) {
+            listModel.addElement(host);
+        }
+        final JList list = new JList(listModel);//получаем лист хостов
+        list.setSelectedIndex(0);
+        list.setFocusable(false);
+        //для каждого хоста выводим его метрики
+        //
+        //
+        final DefaultListModel listModelMetric = new DefaultListModel();
+        java.util.List<Metric> metrics;
+        i = list.getSelectedIndex();
+        String host = (String) listModel.get(i);
+        int id = SQLBranch.getHostIDbyTitle(host);
+        metrics=SQLBranch.getMetricsByHostId(id);
+        for (Metric metric: metrics){
+            listModelMetric.addElement(metric.getTitle());
+        }
+        final JList listmetric = new JList(listModelMetric);
+        listmetric.setSelectedIndex(0);
+        listmetric.setFocusable(false);
+        list.setBounds(0,0,125,150);
+        listmetric.setBounds(125,0,125,150);
 
-        button2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    new Chart("Memory").setVisible(true);
-                } catch (SQLException e1) {
-                    e1.printStackTrace();
-                }
-            }
-        });
-
-
-
-        JButton button3 = new JButton("Disc");
-        button3.setBounds(15, 95, 85, 30);
-        panel.add(button3);
-
-        button3.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    new Chart("Disc").setVisible(true);
-                } catch (SQLException e1) {
-                    e1.printStackTrace();
-                }
-            }
-        });
+        panel.add(list);
+        panel.add(listmetric);
 
         getContentPane().add(panel);
-        setPreferredSize(new Dimension(130, 200));
+        setPreferredSize(new Dimension(250, 235));
+
+        list.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                String host;
+                int id;
+                int i = list.getSelectedIndex();
+                host = (String) listModel.get(i);
+                java.util.List<Metric> metrics = null;
+                try {
+                    id = SQLBranch.getHostIDbyTitle(host);
+                    metrics=SQLBranch.getMetricsByHostId(id);
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+                listModelMetric.removeAllElements();
+                for (Metric metric: metrics){
+                    listModelMetric.addElement(metric.getTitle());
+                }
+                listmetric.setSelectedIndex(0);
+            }
+        });
+        button4.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    String title;
+                    int idhost;
+                    String host;
+                    int indexmetric=listmetric.getSelectedIndex();
+                    title = (String)listModelMetric.get(indexmetric);
+                    int indexhost=list.getSelectedIndex();
+                    host = (String) listModel.get(indexhost);
+                    idhost = SQLBranch.getHostIDbyTitle(host);
+                    new Chart(title,idhost).setVisible(true);
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+
     }
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -149,7 +189,7 @@ public class MainForm extends JFrame {
                 frame.setVisible(true);
                 createmenu(frame);
             }
-;        });
+            ;        });
     }
 }
 

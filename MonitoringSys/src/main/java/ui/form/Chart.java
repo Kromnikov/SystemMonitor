@@ -1,4 +1,5 @@
 package ui.form;
+import core.agents.sql.SQLAgent;
 import core.models.Value;
 import core.branches.SQLBranch;
 import core.configurations.SQLConfiguration;
@@ -12,28 +13,32 @@ import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.ui.ApplicationFrame;
 
 import javax.swing.*;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class Chart extends ApplicationFrame {
+public class Chart extends JFrame {
 
-    public Chart(){
+    private static SQLAgent sqlAgent;
+
+    public Chart() {
         super("");
-        setDefaultCloseOperation(ApplicationFrame.HIDE_ON_CLOSE);
+        set();
     }
 
-    public Chart(final String title) throws SQLException {
+    public Chart(final String title,int id) throws SQLException {
         super(title);
-        setDefaultCloseOperation(ApplicationFrame.HIDE_ON_CLOSE);
         double value;
         TimeSeries series = new TimeSeries(title, Minute.class);
         Hour hour = new Hour();
         Chart chart = new Chart();
         int typeOfMetric = chart.getTypeOfMetric(title);
-
-        List<Value> values = SQLBranch.getValues(1, typeOfMetric);
-        for (Value val : values) {
-            series.add(new Minute(val.getId(), hour), val.getValue());
+        ResultSet resultSet = chart.getData(typeOfMetric);
+        int j = chart.QuantyOfRows(typeOfMetric);
+        for (int i = 1; i < j; i++) {
+            resultSet.next();
+            value = Double.parseDouble(resultSet.getString(id));
+            series.add(new Minute(i, hour), value);
         }
         TimeSeriesCollection dataset = new TimeSeriesCollection();
         dataset.addSeries(series);
@@ -53,34 +58,57 @@ public class Chart extends ApplicationFrame {
         pack();
     }
 
-    public List<Double> getData(int id) throws SQLException {
-        return SQLBranch.getAllValueMetricOnHost(id);
-    }
-    public int QuantyOfRows (int id1) throws SQLException {
-        int id=id1;
-        int j=10;
+    public ResultSet getData(int id) throws SQLException {//TODO Допиши методы в sqlAgent и потом в SQLBranch и юзай из SQLBranch их
+        ResultSet resultSet = null;
         SQLConfiguration sql = new SQLConfiguration();
-        if(sql.load()) {
-            j= SQLBranch.getQuantityOfRow(id);
+        if (sql.load()) {
+            sqlAgent = new SQLAgent(sql.getStatement());
+            resultSet = sqlAgent.getAllValue(id);//1- id для получения значений загруженности СРU.
+        }
+        return resultSet;
+    }
+
+    public int QuantyOfRows(int id1) throws SQLException {//TODO и убери sqlAgent'a из кода, он в SQLBranch будет =)
+        int id = id1;
+        int j = 10;
+        SQLConfiguration sql = new SQLConfiguration();
+        if (sql.load()) {
+            sqlAgent = new SQLAgent(sql.getStatement());
+//            j=sqlAgent.getQuantityOfRow(id);
         }
         return j;
     }
-    public int getTypeOfMetric(String title){
-        int k=0;
-        switch (title){
-            case "CPU":k=1;break;
-            case "Disc":k=2;break;
-            case "Memory":k=5;break;
+
+    public int getTypeOfMetric(String title) {
+        int k = 0;
+        switch (title) {
+            case "getCPU":
+                k = 1;
+                break;
+            case "getFreeDiskMb":
+                k = 2;
+                break;
+            case "getUsedDiskMb":
+                k = 3;
+                break;
+            case "getTotalDiskMb":
+                k = 4;
+                break;
+            case "getFreeRAM":
+                k = 5;
+                break;
+            case "getUsedRAM":
+                k = 6;
+                break;
+            case "getTotalRAM":
+                k = 7;
+                break;
+
         }
         return k;
     }
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                ApplicationFrame.setDefaultLookAndFeelDecorated(true);
-                new Chart();
 
-            }
-        });
+    public void set() {
+        setDefaultCloseOperation(ApplicationFrame.HIDE_ON_CLOSE);
     }
 }

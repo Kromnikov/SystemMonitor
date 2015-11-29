@@ -10,6 +10,7 @@ import core.configurations.SSHConfiguration;
 import core.hibernate.HibernateUtil;
 import org.hibernate.Session;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -55,6 +56,7 @@ public class SQLBranch {
     public static List<Double> getAllValueMetricOnHost(int id) throws SQLException {
         return sqlAgent.getAllValueMetricOnHost(id);
     }
+
     public static List<Value> getValues(int metricId,int host_id) throws SQLException {
         return sqlAgent.getValues(metricId, host_id);
     }
@@ -71,7 +73,7 @@ public class SQLBranch {
     }
 
     //metrics-host
-    public void addMetricToHost(int host,int metric) throws SQLException {
+    public static void addMetricToHost(int host,int metric) throws SQLException {
         sqlAgent.addMetricToHost(host,metric);
     }
     public void addMetricToHost(SSHConfiguration host,Metric metric) throws SQLException {
@@ -86,8 +88,28 @@ public class SQLBranch {
     public static int getQuantityOfRow(int id) throws SQLException {
         return sqlAgent.getQuantityOfRow(id);
     }
-
-    public static void deleteHost(String login){
-
+    public static List<String> getListIP() throws SQLException {
+        return sqlAgent.getListIP();
     }
+
+    public static void delHost(String host) throws SQLException {
+        sqlAgent.delHost(host);
+    }
+    public static void delMetricFromHost(int id) throws SQLException {
+        sqlAgent.delMetricFromHost(id);
+    }
+    public static Integer getMetricID(String title) throws SQLException {
+        return sqlAgent.getMetricID(title);
+    }
+
+    public static int getHostIDbyTitle(String title) throws SQLException {
+        return sqlAgent.getHostIDbyTitle(title);
+    }
+    public static void addStandartMetrics(int id) throws SQLException {
+        sqlAgent.addStandartMetrics(id);
+    }
+    public static List<Metric> geAllMetrics() throws SQLException{
+        return sqlAgent.geAllMetrics();
+    }
+
 }

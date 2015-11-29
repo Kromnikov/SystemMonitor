@@ -5,6 +5,7 @@ import core.interfaces.SQLAgentInterface;
 import core.models.Metric;
 import core.models.Value;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
@@ -66,5 +67,38 @@ public class SQLAgentFactory {
     }
     public int getQuantityOfRow(int id) throws SQLException {
         return sql.getQuantityOfRow(id);
+    }
+
+    public List<String> getListIP() throws SQLException {
+        return sql.getListIP();
+    }
+
+    public ResultSet getAllValueMetricOnHostResult(int id)throws SQLException {
+        return sql.getAllValueMetricOnHostResult(id);
+    }
+
+    public void delHost(String host) throws SQLException {
+        sql.delHost(host);
+    }
+
+    public void delMetricFromHost(int id) throws SQLException{
+        sql.delMetricFromHost(id);
+    }
+
+    public Integer getMetricID(String title) throws SQLException {
+        return sql.getMetricID(title);
+    }
+
+    public int getHostIDbyTitle(String title) throws SQLException{
+        return sql.getHostIDbyTitle(title);
+    }
+
+
+    public void addStandartMetrics(int id) throws SQLException{
+        sql.addStandartMetrics(id);
+    }
+
+    public List<Metric> geAllMetrics() throws  SQLException{
+       return sql.geAllMetrics();
     }
 }

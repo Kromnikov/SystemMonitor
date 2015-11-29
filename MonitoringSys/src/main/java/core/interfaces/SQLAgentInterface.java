@@ -4,6 +4,7 @@ import core.configurations.SSHConfiguration;
 import core.models.Metric;
 import core.models.Value;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
@@ -34,4 +35,19 @@ public interface SQLAgentInterface {
     public List<Integer> getMetricIdByHostId(int hostId) throws SQLException ;
     public List<Metric> getMetricsByHostId(int hostId) throws SQLException;
     public int getQuantityOfRow(int id) throws SQLException;
+
+    public List<String> getListIP() throws SQLException;
+    public ResultSet getAllValueMetricOnHostResult(int id)throws SQLException;
+
+    public void delHost(String host)throws SQLException ;
+
+    public void delMetricFromHost(int id) throws SQLException;
+
+    public Integer getMetricID(String title) throws  SQLException;
+
+    public int getHostIDbyTitle(String title) throws SQLException;
+
+    public void addStandartMetrics(int id) throws SQLException;
+
+    List<Metric> geAllMetrics() throws SQLException;
 }

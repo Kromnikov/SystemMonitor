@@ -5,6 +5,9 @@ import org.hibernate.Session;
 import org.hibernate.engine.spi.SessionDelegatorBaseImpl;
 import org.hsqldb.HsqlException;
 
+
+import java.util.List;
+
 public class main {
     private static Session session;
     public static void main(String args[]) throws Exception {
@@ -27,10 +30,15 @@ public class main {
 //            System.out.println(metric.getCommand());
 //        }
 
+            int j = 0;
+            //List<SSHConfiguration> list;
+            //list = SQLBranch.getHosts();
+            //System.out.println(list.get(0));
+            CoreBranch.run();
+            //Chart chart = new Chart();
+            j = SQLBranch.getQuantityOfRow(1);
+            System.out.println(j);
 
-
-
-        CoreBranch.run();
 
 
 //        Session session = HibernateUtil2.getSessionFactory().openSession();
