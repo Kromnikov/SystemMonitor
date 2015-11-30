@@ -1,7 +1,7 @@
-package core.spring.remarks.services;
+package core.spring.services;
 
 import core.configurations.SSHConfiguration;
-import core.spring.remarks.dao.HostDao;
+import core.spring.dao.HostDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

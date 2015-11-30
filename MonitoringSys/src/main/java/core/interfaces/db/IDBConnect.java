@@ -1,8 +1,8 @@
-package core.interfaces;
+package core.interfaces.db;
 
 import java.sql.Statement;
 
-public interface DBConnectInterface {
+public interface IDBConnect {
 
     public boolean load();
 

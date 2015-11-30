@@ -1,7 +1,7 @@
-package core.factory;
+package core.factory.db;
 
 import core.configurations.SSHConfiguration;
-import core.interfaces.SQLAgentInterface;
+import core.interfaces.db.IMetricStorage;
 import core.models.Metric;
 import core.models.Value;
 
@@ -13,10 +13,10 @@ import java.util.List;
 /**
  * Created by Алексей on 25.11.2015.
  */
-public class SQLAgentFactory {
-    SQLAgentInterface sql ;
+public class FMetricStorage {
+    IMetricStorage sql ;
 
-    public SQLAgentFactory(SQLAgentInterface sql) {
+    public FMetricStorage(IMetricStorage sql) {
         this.sql = sql;
     }
 

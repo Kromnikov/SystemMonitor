@@ -1,8 +1,8 @@
 package core.branches;
 
 import core.MetricStorage;
-import core.factory.DBConnectFactory;
-import core.factory.SQLAgentFactory;
+import core.factory.db.FDBConnect;
+import core.factory.db.FMetricStorage;
 import core.models.Value;
 import core.models.Metric;
 import core.configurations.SQLConfiguration;
@@ -15,16 +15,16 @@ import java.util.List;
 
 public class SQLBranch {
 
-    private static SQLAgentFactory sqlAgent;
+    private static FMetricStorage sqlAgent;
 
     private static List<SSHConfiguration> hosts;
 
     private static Session session;
 
     public static void run() throws SQLException {
-        DBConnectFactory sql = new DBConnectFactory(new SQLConfiguration());
+        FDBConnect sql = new FDBConnect(new SQLConfiguration());
         if(sql.load()) {
-            sqlAgent = new SQLAgentFactory(new MetricStorage(sql.getStatement()) );
+            sqlAgent = new FMetricStorage(new MetricStorage(sql.getStatement()) );
         }
         session = HibernateUtil.getSessionFactory().openSession();
         hosts = session.createCriteria(SSHConfiguration.class).list();

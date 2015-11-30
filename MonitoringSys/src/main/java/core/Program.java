@@ -1,7 +1,7 @@
-package core.spring.remarks;
+package core;
 
 import core.configurations.SSHConfiguration;
-import core.spring.remarks.services.HostService;
+import core.spring.services.HostService;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

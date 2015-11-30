@@ -1,24 +1,27 @@
 package core;
 
 
-import core.interfaces.SQLAgentInterface;
+import core.interfaces.db.IMetricStorage;
 import core.models.Metric;
 import core.models.Value;
 import core.configurations.SSHConfiguration;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public  class MetricStorage implements SQLAgentInterface{
+public  class MetricStorage implements IMetricStorage {
 
     private Statement statement;
 
-    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public MetricStorage() {
 
@@ -59,14 +62,13 @@ public  class MetricStorage implements SQLAgentInterface{
 
     public List<Value> getValues(int host_id,int metricId) throws SQLException {
         List<Value> values = new ArrayList<>();
-        String sql = "select host,metric,value,date_time from \"VALUE_METRIC\" where metric=" + metricId+" and host ="+host_id;
+        String sql = "select value,date_time from \"VALUE_METRIC\" where metric=" + metricId+" and host ="+host_id;
         ResultSet resultSet = statement.executeQuery(sql);
         while (resultSet.next()) {
             values.add(
-                    new Value(Integer.parseInt(resultSet.getString(1)),
-                            Integer.parseInt(resultSet.getString(2)),
-                                Double.parseDouble(resultSet.getString(3)),
-                            LocalDateTime.parse((resultSet.getString(4)), formatter)
+                    new Value(
+                                Double.parseDouble(resultSet.getString(1)),
+                            Date.valueOf(resultSet.getString(2))
                                     ));
         }
         return values;

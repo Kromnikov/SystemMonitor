@@ -1,4 +1,4 @@
-package core.interfaces;
+package core.interfaces.db;
 
 import core.configurations.SSHConfiguration;
 import core.models.Metric;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by Алексей on 25.11.2015.
  */
-public interface SQLAgentInterface {
+public interface IMetricStorage {
 
     public Statement getStatement();
 

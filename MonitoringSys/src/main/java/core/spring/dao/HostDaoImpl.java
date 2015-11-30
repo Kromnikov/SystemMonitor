@@ -1,4 +1,4 @@
-package core.spring.remarks.dao;
+package core.spring.dao;
 
 import core.configurations.SSHConfiguration;
 import org.springframework.stereotype.Repository;

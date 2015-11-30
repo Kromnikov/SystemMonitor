@@ -30,14 +30,14 @@ public class main {
 //            System.out.println(metric.getCommand());
 //        }
 
-            int j = 0;
+//            int j = 0;
             //List<SSHConfiguration> list;
             //list = SQLBranch.getHosts();
             //System.out.println(list.get(0));
             CoreBranch.run();
             //Chart chart = new Chart();
-            j = SQLBranch.getQuantityOfRow(1);
-            System.out.println(j);
+//            j = SQLBranch.getQuantityOfRow(1);
+//            System.out.println(j);
 
 
 

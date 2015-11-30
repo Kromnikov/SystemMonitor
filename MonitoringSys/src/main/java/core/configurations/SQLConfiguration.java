@@ -1,7 +1,7 @@
 package core.configurations;
 
 
-import core.interfaces.DBConnectInterface;
+import core.interfaces.db.IDBConnect;
 
 import javax.swing.*;
 import java.io.FileInputStream;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-public class SQLConfiguration implements DBConnectInterface {
+public class SQLConfiguration implements IDBConnect {
     private Connection connection = null;
     private Statement statement;
     Properties prop = new Properties();

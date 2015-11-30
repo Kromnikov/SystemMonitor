@@ -1,16 +1,16 @@
-package core.factory;
+package core.factory.db;
 
-import core.interfaces.DBConnectInterface;
+import core.interfaces.db.IDBConnect;
 
 import java.sql.Statement;
 
 /**
  * Created by Алексей on 25.11.2015.
  */
-public class DBConnectFactory {
-    DBConnectInterface db;
+public class FDBConnect {
+    IDBConnect db;
 
-    public DBConnectFactory(DBConnectInterface db) {
+    public FDBConnect(IDBConnect db) {
         this.db = db;
     }
 

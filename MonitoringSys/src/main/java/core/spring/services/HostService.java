@@ -1,8 +1,7 @@
-package core.spring.remarks.services;
+package core.spring.services;
 
 
 import core.configurations.SSHConfiguration;
-import core.spring.remarks.models.Content;
 
 import java.util.List;
 
