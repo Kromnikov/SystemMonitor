@@ -1,5 +1,8 @@
 package core.branches;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import java.sql.SQLException;
 import java.util.Timer;
 

@@ -1,6 +1,6 @@
 package core.branches;
 
-import core.agents.sql.SQLAgent;
+import core.MetricStorage;
 import core.factory.DBConnectFactory;
 import core.factory.SQLAgentFactory;
 import core.models.Value;
@@ -10,7 +10,6 @@ import core.configurations.SSHConfiguration;
 import core.hibernate.HibernateUtil;
 import org.hibernate.Session;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -25,7 +24,7 @@ public class SQLBranch {
     public static void run() throws SQLException {
         DBConnectFactory sql = new DBConnectFactory(new SQLConfiguration());
         if(sql.load()) {
-            sqlAgent = new SQLAgentFactory(new SQLAgent(sql.getStatement()) );
+            sqlAgent = new SQLAgentFactory(new MetricStorage(sql.getStatement()) );
         }
         session = HibernateUtil.getSessionFactory().openSession();
         hosts = session.createCriteria(SSHConfiguration.class).list();

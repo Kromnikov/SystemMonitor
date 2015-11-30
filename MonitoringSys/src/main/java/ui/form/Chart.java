@@ -1,7 +1,5 @@
 package ui.form;
-import core.agents.sql.SQLAgent;
-import core.models.Value;
-import core.branches.SQLBranch;
+import core.MetricStorage;
 import core.configurations.SQLConfiguration;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -15,11 +13,10 @@ import org.jfree.ui.ApplicationFrame;
 import javax.swing.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 public class Chart extends JFrame {
 
-    private static SQLAgent sqlAgent;
+    private static MetricStorage metricStorage;
 
     public Chart() {
         super("");
@@ -62,8 +59,8 @@ public class Chart extends JFrame {
         ResultSet resultSet = null;
         SQLConfiguration sql = new SQLConfiguration();
         if (sql.load()) {
-            sqlAgent = new SQLAgent(sql.getStatement());
-            resultSet = sqlAgent.getAllValue(id);//1- id для получения значений загруженности СРU.
+            metricStorage = new MetricStorage(sql.getStatement());
+            resultSet = metricStorage.getAllValue(id);//1- id для получения значений загруженности СРU.
         }
         return resultSet;
     }
@@ -73,7 +70,7 @@ public class Chart extends JFrame {
         int j = 10;
         SQLConfiguration sql = new SQLConfiguration();
         if (sql.load()) {
-            sqlAgent = new SQLAgent(sql.getStatement());
+            metricStorage = new MetricStorage(sql.getStatement());
 //            j=sqlAgent.getQuantityOfRow(id);
         }
         return j;

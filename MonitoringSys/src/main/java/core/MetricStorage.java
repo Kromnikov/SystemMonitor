@@ -1,4 +1,4 @@
-package core.agents.sql;
+package core;
 
 
 import core.interfaces.SQLAgentInterface;
@@ -14,17 +14,17 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public  class SQLAgent implements SQLAgentInterface{
+public  class MetricStorage implements SQLAgentInterface{
 
     private Statement statement;
 
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    public SQLAgent() {
+    public MetricStorage() {
 
     }
 
-    public SQLAgent(Statement statement) {
+    public MetricStorage(Statement statement) {
         this.statement = statement;
     }
 
