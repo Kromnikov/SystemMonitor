@@ -1,4 +1,4 @@
-package core.spring.dao;
+package core.hibernate.dao;
 
 
 import core.configurations.SSHConfiguration;

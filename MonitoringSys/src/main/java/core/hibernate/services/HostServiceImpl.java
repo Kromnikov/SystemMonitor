@@ -1,7 +1,7 @@
-package core.spring.services;
+package core.hibernate.services;
 
 import core.configurations.SSHConfiguration;
-import core.spring.dao.HostDao;
+import core.hibernate.dao.HostDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

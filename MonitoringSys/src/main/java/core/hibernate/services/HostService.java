@@ -1,4 +1,4 @@
-package core.spring.services;
+package core.hibernate.services;
 
 
 import core.configurations.SSHConfiguration;
