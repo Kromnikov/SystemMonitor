@@ -20,6 +20,8 @@ public class SSHAgent {
 
     private SSHConfiguration configuration;
 
+    private InputStream in;
+
     public SSHAgent(SSHConfiguration configuration) {
         this.configuration = configuration;
     }
@@ -42,15 +44,14 @@ public class SSHAgent {
 
     public double getMetricValue(Metric metric) {
         try {
-
             this.channel = session.openChannel("exec");
             ((ChannelExec) channel).setCommand(metric.getCommand());
-            channel.setInputStream(null);
-            ((ChannelExec) channel).setErrStream(System.err);
-            InputStream in = channel.getInputStream();
+//            channel.setInputStream(null);
+//            ((ChannelExec) channel).setErrStream(System.err);
+            in = channel.getInputStream();
             channel.connect();
 
-            return getMetricValue(in);
+            return getMetricValue();
         } catch (JSchException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -66,7 +67,7 @@ public class SSHAgent {
         this.session.disconnect();
     }
 
-    public double getMetricValue(InputStream in) {
+    public double getMetricValue() {
         try {
             byte[] tmp = new byte[1024];
             double result = 0;

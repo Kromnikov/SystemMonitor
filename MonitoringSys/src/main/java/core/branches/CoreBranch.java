@@ -1,5 +1,6 @@
 package core.branches;
 
+import core.SpringService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -11,22 +12,10 @@ import java.util.Timer;
  */
 public class CoreBranch {
 
-//    public static void run() throws InterruptedException {
-//        Thread myThready = new Thread(new Runnable() {
-//            public void run() //���� ����� ����� ����������� � �������� ������
-//            {
-//                Timer time = new Timer();
-//                ScheduledTask st = new ScheduledTask();
-//                time.schedule(st, 0, 10000); // ������� ������ � ����������� ����� 10 ���.
-//            }
-//        });
-//        myThready.start();
-//    }
-
     public static void run() throws SQLException {
-        SQLBranch.run();
+        SpringService.run();
         Timer time = new Timer();
         ScheduledTask st = new ScheduledTask();
-        time.schedule(st, 0, 10000); // ������� ������ � ����������� ����� 10 ���.
+        time.schedule(st, 0, 10000);
     }
 }

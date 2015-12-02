@@ -1,18 +1,48 @@
+import core.agents.ssh.SSHAgent;
 import core.branches.CoreBranch;
-import core.branches.SQLBranch;
 import core.configurations.SSHConfiguration;
+import core.models.Metric;
 import org.hibernate.Session;
 import org.hibernate.engine.spi.SessionDelegatorBaseImpl;
 import org.hsqldb.HsqlException;
 
 
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class main {
     private static Session session;
+    private static SSHAgent sshAgent;
+    private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     public static void main(String args[]) throws Exception {
 
         try {
+
+            CoreBranch.run();
+
+//            SQLBranch.run();
+//            long start = System.currentTimeMillis();
+//
+//            for (int i = 0; i < 10; i++) {
+//                for (SSHConfiguration host : SQLBranch.getHosts()) {//�� ������
+//                    sshAgent = new SSHAgent(host);
+//                    if (sshAgent.connect()) {//����������� � �����
+//                        for (Metric metric : SQLBranch.getMetricsByHostId(host.getId())) {//�� �������� �����
+////                            SQLBranch.addValue(host.getId(), metric.getId(), sshAgent.getMetricValue(metric), dateFormat.format(new Date()));
+//                              System.out.println(host.getId()+"////"+metric.getTitle()+":"+metric.getId()+"////"+sshAgent.getMetricValue(metric));
+//                        }
+//                    }
+//                }
+//
+//            }
+//            start = System.currentTimeMillis() - start;
+//            System.out.println(start);
+//            System.exit(0);
+
+
 
 
 //        HSQLDBConfiguration SqlConfig = new HSQLDBConfiguration();
@@ -34,7 +64,6 @@ public class main {
             //List<SSHConfiguration> list;
             //list = SQLBranch.getHosts();
             //System.out.println(list.get(0));
-            CoreBranch.run();
             //Chart chart = new Chart();
 //            j = SQLBranch.getQuantityOfRow(1);
 //            System.out.println(j);
