@@ -33,7 +33,7 @@ public interface IMetricStorage {
     public List<Metric> getMetricsByHostId(int hostId) throws SQLException;
     public long getQuantityOfRow(int id) throws SQLException;
 //
-//    public List<String> getListIP() throws SQLException;
+   public List<String> getListIP() throws SQLException;
 //    public ResultSet getAllValueMetricOnHostResult(int id)throws SQLException;
 //
     public void delHost(String host)throws SQLException ;
@@ -42,9 +42,11 @@ public interface IMetricStorage {
 //
     public Integer getMetricID(String title) throws  SQLException;
 //
-//    public int getHostIDbyTitle(String title) throws SQLException;
+    public int getHostIDbyTitle(String title) throws SQLException;
 //
     public void addStandartMetrics(int id) throws SQLException;
 
     List<Metric> geAllMetrics() throws SQLException;
+
+
 }

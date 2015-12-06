@@ -1,7 +1,7 @@
 package core.branches;
 
 import core.SpringService;
-import core.agents.ssh.SSHAgent;
+import core.agents.SSHAgent;
 import core.configurations.SSHConfiguration;
 import core.hibernate.services.HostService;
 import core.interfaces.db.IMetricStorage;

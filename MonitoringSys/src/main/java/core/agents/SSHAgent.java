@@ -1,4 +1,4 @@
-package core.agents.ssh;
+package core.agents;
 
 
 import com.jcraft.jsch.*;

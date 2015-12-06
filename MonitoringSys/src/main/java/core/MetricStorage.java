@@ -145,6 +145,17 @@ public  class MetricStorage implements IMetricStorage {
         return metrics;
     }
     @Transactional
+    public List<String> getListIP() throws SQLException {
+        List<String> list = new ArrayList<>();
+        String sql = "select host from \"sshconfigurationhibernate\"";
+        List<Map<String,Object>> hosts = jdbcTemplateObject.queryForList(sql);
+        for (Map host : hosts) {
+            list.add((String)host.get("host"));
+        }
+       return list;
+    }
+
+    @Transactional
     public List<Metric> getMetricsByHostId(int hostId) throws SQLException {
         List<Metric> metrics = new ArrayList<>();
         String sql = "SELECT m.id,m.title, m.query  FROM \"METRICS\" as m left join \"HOST_METRIC\" as hm on hm.metric_id = m.id where hm.host_id ="+hostId;
@@ -163,23 +174,13 @@ public  class MetricStorage implements IMetricStorage {
         String sql = "select count(*) from \"VALUE_METRIC\" where metric ="+id;
         return (long)jdbcTemplateObject.queryForMap(sql).get("count");
     }
-//    @Transactional
-//    public List<String> getListIP() throws SQLException {
-//        List<String> list = new ArrayList<>();
-//        String sql = "select host from \"sshconfigurationhibernate\"";
-//        ResultSet resultSet = statement.executeQuery(sql);
-//        while (resultSet.next()){
-//            list.add(resultSet.getString(1));
-//        }
-//        return list;
-//    }
-//    @Transactional
-//    public int getHostIDbyTitle(String title) throws SQLException {
-//        String sql = "select sshconfigurationhibernate_id from \"sshconfigurationhibernate\" where host='"+title+"'";
-//        ResultSet resultSet = statement.executeQuery(sql);
-//        resultSet.next();
-//        return Integer.parseInt(resultSet.getString(1));
-//    }
+
+    @Transactional
+    public int getHostIDbyTitle(String title) throws SQLException {
+        String sql = "select sshconfigurationhibernate_id from \"sshconfigurationhibernate\" where host='"+title+"'";
+        return (int)jdbcTemplateObject.queryForMap(sql).get("sshconfigurationhibernate_id");
+    }
+
     @Transactional
     public void addStandartMetrics(int id) throws SQLException {
         String sql = "INSERT INTO \"HOST_METRIC\" VALUES ("+id+",1);";

@@ -22,4 +22,5 @@ public interface HostService {
      */
     public List<SSHConfiguration> getAll();
 
+
 }

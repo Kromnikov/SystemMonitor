@@ -1,17 +1,11 @@
-import core.agents.ssh.SSHAgent;
+import core.agents.SSHAgent;
 import core.branches.CoreBranch;
-import core.configurations.SSHConfiguration;
-import core.models.Metric;
 import org.hibernate.Session;
-import org.hibernate.engine.spi.SessionDelegatorBaseImpl;
 import org.hsqldb.HsqlException;
 
 
-import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
 public class main {
     private static Session session;
