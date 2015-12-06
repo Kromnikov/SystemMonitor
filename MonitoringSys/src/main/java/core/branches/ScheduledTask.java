@@ -2,17 +2,15 @@ package core.branches;
 
 import core.SpringService;
 import core.agents.ssh.SSHAgent;
+import core.configurations.SSHConfiguration;
 import core.hibernate.services.HostService;
 import core.interfaces.db.IMetricStorage;
 import core.models.Metric;
-import core.configurations.SSHConfiguration;
 import org.apache.log4j.Logger;
 
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.TimerTask;
 
@@ -24,8 +22,8 @@ public class ScheduledTask extends TimerTask {
     @Override
     public void run() {
         try {
-            IMetricStorage metricStorage =((IMetricStorage) SpringService.getContext().getBean("MetricStorage"));
-            HostService hosts = ((HostService) SpringService.getContext().getBean("HostService"));
+            IMetricStorage metricStorage =SpringService.getMetricStorage();
+            HostService hosts = SpringService.getHosts();
             SSHAgent sshAgent;
             for (SSHConfiguration host : hosts.getAll() ) {
                 sshAgent = new SSHAgent(host);

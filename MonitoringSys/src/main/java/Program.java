@@ -1,15 +1,11 @@
-import core.MetricStorage;
 import core.SpringService;
 import core.agents.ssh.SSHAgent;
 import core.configurations.SSHConfiguration;
 import core.hibernate.services.HostService;
 import core.interfaces.db.IMetricStorage;
 import core.models.Metric;
-import core.models.Value;
 
 import java.sql.SQLException;
-import java.util.Date;
-import java.util.List;
 
 public class Program {
 
@@ -20,13 +16,13 @@ public class Program {
 
 		SpringService.run();
 
-		IMetricStorage metricStorage =((IMetricStorage) SpringService.getContext().getBean("MetricStorage"));
-		HostService hosts = ((HostService) SpringService.getContext().getBean("HostService"));
+		IMetricStorage metricStorage =SpringService.getMetricStorage();
+		HostService hosts = SpringService.getHosts();
 		SSHAgent sshAgent;
 
 		long start = System.currentTimeMillis();
 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 2; i++) {
 			for (SSHConfiguration host : hosts.getAll()) {//где-то пол секунды
 				sshAgent = new SSHAgent(host);
 				if (sshAgent.connect()) {

@@ -12,20 +12,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
-import java.security.Timestamp;
-import java.sql.Date;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Repository
 @Service("MetricStorage")
 public  class MetricStorage implements IMetricStorage {
-    @Autowired
-    private DataSource dataSource;
+    //@Autowired
+    //private DataSource dataSource;
 
     private JdbcTemplate jdbcTemplateObject;
 
