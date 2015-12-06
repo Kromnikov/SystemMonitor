@@ -15,12 +15,11 @@ import java.sql.SQLException;
  * Created by ANTON on 06.12.2015.
  */
 public class ConForm extends JFrame {
-    private static IMetricStorage metricStorage = SpringService.getMetricStorage();
-    private static HostService hosts = SpringService.getHosts();
     private int i = 0;
 
     public ConForm() {
         super("Connection");
+        final HostService hosts = SpringService.getHosts();
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         JPanel panel = new JPanel();
         JLabel jLabel1 = new JLabel("Login");
@@ -99,6 +98,7 @@ public class ConForm extends JFrame {
         setVisible(true);
     }
     public static void addStandartParametrs(String IP) throws SQLException {
+        IMetricStorage metricStorage = SpringService.getMetricStorage();
         int id =  metricStorage.getHostIDbyTitle(IP);
         metricStorage.addStandartMetrics(id);
     }

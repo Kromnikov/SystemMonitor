@@ -1,11 +1,14 @@
+import core.SpringService;
 import core.agents.SSHAgent;
 import core.branches.CoreBranch;
+import core.interfaces.db.IMetricStorage;
 import org.hibernate.Session;
 import org.hsqldb.HsqlException;
 
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class main {
     private static Session session;
@@ -16,6 +19,11 @@ public class main {
         try {
 
             CoreBranch.run();
+            IMetricStorage metricStorage = SpringService.getMetricStorage();
+            List<String> hosts;
+            hosts = metricStorage.getListIP();
+            System.out.println(hosts.get(1));
+
 
 //            SQLBranch.run();
 //            long start = System.currentTimeMillis();

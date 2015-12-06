@@ -22,13 +22,12 @@ import java.util.List;
 public class MainForm extends JFrame {
 
     private JPanel MForm;
-    IMetricStorage metricStorage = SpringService.getMetricStorage();
-    HostService hostService = SpringService.getHosts();
 
     public MainForm() throws InterruptedException, SQLException {
         super("Monitoring");
         CoreBranch.run();
-        createDesign();
+        IMetricStorage metricStorage = SpringService.getMetricStorage();
+        createDesign(metricStorage);
     }
 
 
@@ -93,7 +92,7 @@ public class MainForm extends JFrame {
     }
 
 
-    public void createDesign() throws SQLException {
+    public void createDesign(final IMetricStorage metricStorage) throws SQLException {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         final JPanel panel = new JPanel();
         panel.setLayout(null);

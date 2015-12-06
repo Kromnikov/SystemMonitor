@@ -66,7 +66,7 @@ public  class MetricStorage implements IMetricStorage {
             values.add(
                     new Value(
                                 ((double)row.get("value")),
-                            new java.util.Date( ((java.sql.Timestamp)row.get("date_time")).getTime() )
+                            new java.util.Date( ((java.sql.Time)row.get("date_time")).getTime() )
                                     ));
         }
         return values;
@@ -186,9 +186,9 @@ public  class MetricStorage implements IMetricStorage {
         String sql = "INSERT INTO \"HOST_METRIC\" VALUES ("+id+",1);";
         jdbcTemplateObject.update(sql);
         String sql1 = "INSERT INTO \"HOST_METRIC\" VALUES ("+id+",2);";
-        jdbcTemplateObject.update(sql);
+        jdbcTemplateObject.update(sql1);
         String sql2 = "INSERT INTO \"HOST_METRIC\" VALUES ("+id+",5);";
-        jdbcTemplateObject.update(sql);
+        jdbcTemplateObject.update(sql2);
     }
 
     //delete-запросы
