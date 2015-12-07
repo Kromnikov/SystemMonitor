@@ -24,6 +24,8 @@ public class SSHConfiguration {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "state")
+    private boolean state;
 
     public SSHConfiguration() {
 
@@ -81,4 +83,11 @@ public class SSHConfiguration {
         this.password = pass;
     }
 
+    public boolean isState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
+    }
 }

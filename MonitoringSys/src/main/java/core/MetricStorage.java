@@ -81,7 +81,7 @@ public  class MetricStorage implements IMetricStorage {
     @Transactional
     public Metric getMetric(int id) throws SQLException {
         Metric metric = new Metric();
-        String sql = "select * from \"METRICS\" where id ="+id;
+        String sql = "select * FROM \"TEMPLATE_METRICS\" where id ="+id;
         List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
         for (Map row : rows) {
             metric.setId((int) row.get("id"));
@@ -93,7 +93,7 @@ public  class MetricStorage implements IMetricStorage {
     @Transactional
     public List<Metric> geAllMetrics() throws SQLException {
         List<Metric> metrics1 = new ArrayList<>();
-        String sql = "SELECT * from \"METRICS\"";
+        String sql = "SELECT * FROM \"TEMPLATE_METRICS\"";
         List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
         for (Map row : rows) {
             Metric metric = new Metric();
@@ -107,13 +107,13 @@ public  class MetricStorage implements IMetricStorage {
     @Transactional
     public Integer getMetricID(String title) throws SQLException {
         Metric metric = new Metric();
-        String sql = "select id from \"METRICS\" where title='"+title+"'";
+        String sql = "select id FROM \"TEMPLATE_METRICS\" where title='"+title+"'";
         return (int)jdbcTemplateObject.queryForMap(sql).get("id");
     }
     @Transactional
     public Metric getMetric(String title) throws SQLException {
         Metric metric = new Metric();
-        String sql = "select * from \"METRICS\" where title ='"+title+"'";
+        String sql = "select * FROM \"TEMPLATE_METRICS\" where title ='"+title+"'";
         List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
         for (Map row : rows) {
             metric.setId((int) row.get("id"));
@@ -158,7 +158,7 @@ public  class MetricStorage implements IMetricStorage {
     @Transactional
     public List<Metric> getMetricsByHostId(int hostId) throws SQLException {
         List<Metric> metrics = new ArrayList<>();
-        String sql = "SELECT m.id,m.title, m.query  FROM \"METRICS\" as m left join \"HOST_METRIC\" as hm on hm.metric_id = m.id where hm.host_id ="+hostId;
+        String sql = "SELECT m.id,m.title, m.query  FROM \"TEMPLATE_METRICS\" as m left join \"HOST_METRIC\" as hm on hm.metric_id = m.id where hm.host_id ="+hostId;
         List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
         for (Map row : rows) {
             Metric metric = new Metric();
