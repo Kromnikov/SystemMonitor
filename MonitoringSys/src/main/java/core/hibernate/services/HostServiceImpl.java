@@ -24,4 +24,10 @@ public class HostServiceImpl implements HostService {
     public List<SSHConfiguration> getAll() {
         return dao.getAll();
     }
+
+    @Transactional
+    public void remove(SSHConfiguration content)
+    {
+        dao.remove(content);
+    }
 }

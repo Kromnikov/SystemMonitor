@@ -36,27 +36,30 @@ public  class MetricStorage implements IMetricStorage {
 
 //sql
 
+    //hosts
+    @Transactional
+    public void getState(long hostId) {//Нужен запрос на вывод состояния хоста
+        String sql = "INSERT INTO \"HOST_STATE\"(start,state)  VALUES ()";
+        jdbcTemplateObject.update(sql);
+    }
+    @Transactional
+    public void setFalseStateHost(String startTime,int host) {
+        String sql = "INSERT INTO \"HOST_STATE\"(start,state,host)  VALUES ((TIMESTAMP '"+startTime+"'),false,"+host+")";
+        jdbcTemplateObject.update(sql);
+    }
+    @Transactional
+    public void setTrueStateHost(String endTime) {
+        String sql = "INSERT INTO \"HOST_STATE\"(end)  VALUES ((TIMESTAMP '"+endTime+"'))";
+        jdbcTemplateObject.update(sql);
+    }
+
+
     //values
     @Transactional
     public void addValue(int host, int metric, double value,String dateTime) throws SQLException {
         String sql = "INSERT INTO \"VALUE_METRIC\"(host, metric, value,date_time)  VALUES ("+host+","+metric+","+value+",(TIMESTAMP '"+dateTime+"'))";
         jdbcTemplateObject.update(sql);
     }
-//    @Transactional
-//    public List<Double> getAllValueMetricOnHost(int id) throws SQLException {
-//        List<Double> values = new ArrayList<>();
-//        String sql = "select h.value from \"VALUE_METRIC\" as h join \"METRICS\" as m on h.metric=m.id where m.id=" + id;
-//        ResultSet resultSet = statement.executeQuery(sql);
-//        while (resultSet.next()) {
-//            values.add(Double.parseDouble(resultSet.getString(1)));
-//        }
-//        return values;
-//    }
-//    @Transactional
-//    public ResultSet getAllValueMetricOnHostResult(int id) throws SQLException {
-//        String sql = "select h.value from \"VALUE_METRIC\" as h join \"METRICS\" as m on h.metric=m.id where m.id=" + id;
-//        return jdbcTemplateObject.queryForMap(sql);
-//    }
     @Transactional
     public List<Value> getValues(int host_id,int metricId) throws SQLException {
         List<Value> values = new ArrayList<>();
@@ -66,7 +69,7 @@ public  class MetricStorage implements IMetricStorage {
             values.add(
                     new Value(
                                 ((double)row.get("value")),
-                            new java.util.Date( ((java.sql.Time)row.get("date_time")).getTime() )
+                            new java.util.Date( ((java.sql.Timestamp)row.get("date_time")).getTime() )
                                     ));
         }
         return values;

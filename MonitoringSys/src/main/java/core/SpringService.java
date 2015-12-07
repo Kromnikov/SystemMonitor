@@ -1,5 +1,6 @@
 package core;
 
+import core.configurations.SSHConfiguration;
 import core.hibernate.services.HostService;
 import core.interfaces.db.IMetricStorage;
 import org.springframework.context.ApplicationContext;
@@ -32,5 +33,14 @@ public class SpringService {
 
     public static HostService getHosts() {
         return hosts;
+    }
+
+    public static void remove(SSHConfiguration content) {
+        hosts.remove(content);
+
+    }
+
+    public static void save(SSHConfiguration content) {
+        hosts.save(content);
     }
 }

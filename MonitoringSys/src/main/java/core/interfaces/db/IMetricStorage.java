@@ -14,7 +14,12 @@ import java.util.List;
  */
 public interface IMetricStorage {
 
-//sql
+    //sql
+    //host
+    public void getState(long hostId);
+    public void setFalseStateHost(String startTime,int host);
+    public void setTrueStateHost(String endTime);
+
 
     //values
     public void addValue(int host, int metric, double value,String dateTime) throws SQLException ;

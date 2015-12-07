@@ -11,4 +11,6 @@ public interface HostDao {
 
     public List<SSHConfiguration> getAll();
 
+    public void remove(SSHConfiguration content);
+
 }
