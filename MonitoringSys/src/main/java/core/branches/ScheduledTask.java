@@ -5,6 +5,7 @@ import core.agents.SSHAgent;
 import core.configurations.SSHConfiguration;
 import core.hibernate.services.HostService;
 import core.interfaces.db.IMetricStorage;
+import core.models.InstanceMetric;
 import core.models.TemplateMetric;
 import org.apache.log4j.Logger;
 
@@ -33,9 +34,9 @@ public class ScheduledTask extends TimerTask {
                     if(!hostState) {//Если хост последний раз был не доступен, то выставляем дату окончания данного статуса
                         metricStorage.setTrueStateHost(dateFormat.format(new Date()), host.getId());
                     }
-                    for (TemplateMetric templateMetric : metricStorage.getMetricsByHostId(host.getId())) {
-                        logger.info("Insert to db row: (" + host.getId() + "," + templateMetric.getId() + "," + sshAgent.getMetricValue(templateMetric) + "," + dateFormat.format(new Date()) + ")");
-                        metricStorage.addValue(host.getId(), templateMetric.getId(), sshAgent.getMetricValue(templateMetric), dateFormat.format(new Date()));
+                    for (InstanceMetric instanceMetric : metricStorage.getMetricsByHostId(host.getId())) {//TODO getMetricsByHostId - нету теперь
+                        logger.info("Insert to db row: (" + host.getId() + "," + instanceMetric.getId() + "," + sshAgent.getMetricValue(instanceMetric) + "," + dateFormat.format(new Date()) + ")");
+                        metricStorage.addValue(host.getId(), instanceMetric.getId(), sshAgent.getMetricValue(instanceMetric), dateFormat.format(new Date()));
                     }
                 } else {
                     if(hostState) {//Если хост последний раз был доступен
@@ -43,7 +44,8 @@ public class ScheduledTask extends TimerTask {
                     }
                 }
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         }
     }

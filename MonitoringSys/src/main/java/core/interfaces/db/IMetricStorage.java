@@ -1,6 +1,7 @@
 package core.interfaces.db;
 
 import core.configurations.SSHConfiguration;
+import core.models.InstanceMetric;
 import core.models.TemplateMetric;
 import core.models.Value;
 
@@ -28,12 +29,14 @@ public interface IMetricStorage {
     public void addTemplateMetric(String title, String query) throws SQLException;
     public TemplateMetric getTemplateMetric(int id) throws SQLException;
     public TemplateMetric getTemplatMetric(String title) throws SQLException;
-//
+
+    //
     //metrics-host
+    public void addMetricToHost(InstanceMetric instanceMetric) throws SQLException;
     public void addMetricToHost(int host,int metric) throws SQLException ;
     public void addMetricToHost(SSHConfiguration host,TemplateMetric templateMetric) throws SQLException ;
-    public List<Integer> getMetricIdByHostId(int hostId) throws SQLException ;
-    public List<TemplateMetric> getMetricsByHostId(int hostId) throws SQLException;
+//    public List<Integer> getMetricIdByHostId(int hostId) throws SQLException ;
+    public List<InstanceMetric> getMetricsByHostId(int hostId) throws SQLException;
     public long getQuantityOfRow(int id) throws SQLException;
 //
 //    public ResultSet getAllValueMetricOnHostResult(int id)throws SQLException;

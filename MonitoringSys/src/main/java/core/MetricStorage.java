@@ -3,6 +3,7 @@ package core;
 
 import core.configurations.SSHConfiguration;
 import core.interfaces.db.IMetricStorage;
+import core.models.InstanceMetric;
 import core.models.TemplateMetric;
 import core.models.Value;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -148,40 +149,50 @@ public  class MetricStorage implements IMetricStorage {
     }
     @Transactional
     public void addMetricToHost(SSHConfiguration host,TemplateMetric templateMetric) throws SQLException {
-        String sql = "INSERT INTO \"HOST_METRIC\"(host_id, metric_id) VALUES ("+host.getId()+","+ templateMetric.getId()+")";
+        String sql = "INSERT INTO \"INSTANCE_METRIC\"(host, templ_metric,min_value,max_value,title,query) VALUES (" + host.getId() + "," + templateMetric.getId() + ",0,0,'"+templateMetric.getTitle()+"',$q$"+templateMetric.getCommand()+"$q$)";
+        jdbcTemplateObject.update(sql);
+    }
+    public void addMetricToHost(InstanceMetric instanceMetric) throws SQLException {
+        String sql = "INSERT INTO \"INSTANCE_METRIC\"(host, templ_metric,min_value,max_value,title,query) VALUES (" + instanceMetric.getHostId() + "," + instanceMetric.getTempMetrcId() + ","+instanceMetric.getMinValue()+","+instanceMetric.getMaxValue()+",'"+instanceMetric.getTitle()+"',$q$"+instanceMetric.getCommand()+"$q$)";
         jdbcTemplateObject.update(sql);
     }
     @Transactional
-    public List<Integer> getMetricIdByHostId(int hostId) throws SQLException {
-        List<Integer> metrics = new ArrayList<>();
-        String sql = "SELECT metric_id  FROM \"HOST_METRIC\" where host_id = "+hostId;
+    public List<InstanceMetric> getMetricsByHostId(int hostId) throws SQLException {
+        List<InstanceMetric> instanceMetrics = new ArrayList<>();
+        String sql = "SELECT id, templ_metric, title, query, min_value, max_value, host  FROM \"INSTANCE_METRIC\" where host ="+hostId;
         List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
         for (Map row : rows) {
-            metrics.add((int)row.get("metric_id"));
+            InstanceMetric instanceMetric = new InstanceMetric();
+            instanceMetric.setId((int) row.get("id"));
+            instanceMetric.setHostId(hostId);
+            instanceMetric.setTempMetrcId((int) row.get("templ_metric"));
+            instanceMetric.setMinValue((double) row.get("min_value"));
+            instanceMetric.setMaxValue((double) row.get("max_value"));
+            instanceMetric.setCommand((String) row.get("query"));
+            instanceMetric.setTitle((String) row.get("title"));
+            instanceMetrics.add(instanceMetric);
         }
-        return metrics;
+        return instanceMetrics;
     }
-    @Transactional
-    public List<TemplateMetric> getMetricsByHostId(int hostId) throws SQLException {
-        List<TemplateMetric> templateMetrics = new ArrayList<>();
-        String sql = "SELECT m.id,m.title, m.query  FROM \"TEMPLATE_METRICS\" as m left join \"HOST_METRIC\" as hm on hm.metric_id = m.id where hm.host_id ="+hostId;
-        List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
-        for (Map row : rows) {
-            TemplateMetric templateMetric = new TemplateMetric();
-            templateMetric.setCommand((String) row.get("query"));
-            templateMetric.setTitle((String) row.get("title"));
-            templateMetric.setId((int) row.get("id"));
-            templateMetrics.add(templateMetric);
-        }
-        return templateMetrics;
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @Transactional
     public long getQuantityOfRow(int id) throws SQLException {
         String sql = "select count(*) from \"VALUE_METRIC\" where metric ="+id;
         return (long)jdbcTemplateObject.queryForMap(sql).get("count");
     }
-
-
 
     @Transactional
     public int getHostIDbyTitle(String title) throws SQLException {

@@ -1,9 +1,13 @@
 import core.SpringService;
+import core.configurations.SSHConfiguration;
+import core.hibernate.services.HostService;
 import core.interfaces.db.IMetricStorage;
+import core.models.InstanceMetric;
 
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class Program {
 
@@ -15,7 +19,14 @@ public class Program {
 
 		SpringService.run();
 		IMetricStorage metricStorage = SpringService.getMetricStorage();
-		metricStorage.addMetricToHost(1,1);
+		HostService hosts = SpringService.getHosts();
+		for (SSHConfiguration host : hosts.getAll()) {
+//			metricStorage.addMetricToHost(host,metricStorage.getTemplateMetric(1));
+		}
+		List<InstanceMetric> instanceMetricsList = metricStorage.getMetricsByHostId(1);
+		for (InstanceMetric instance : instanceMetricsList) {
+			System.out.println(instance.getTitle());
+		}
 
 
 		start = System.currentTimeMillis() - start;
