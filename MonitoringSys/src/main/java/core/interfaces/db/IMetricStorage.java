@@ -16,9 +16,9 @@ public interface IMetricStorage {
 
     //sql
     //host
-    public void getState(long hostId);
+    public boolean getState(long hostId);
     public void setFalseStateHost(String startTime,int host);
-    public void setTrueStateHost(String endTime);
+    public void setTrueStateHost(String endTime,int host);
 
 
     //values

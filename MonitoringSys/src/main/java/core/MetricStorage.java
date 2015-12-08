@@ -38,9 +38,18 @@ public  class MetricStorage implements IMetricStorage {
 
     //hosts
     @Transactional
-    public void getState(long hostId) {//Нужен запрос на вывод состояния хоста
-        String sql = "INSERT INTO \"HOST_STATE\"(start,state)  VALUES ()";
-        jdbcTemplateObject.update(sql);
+    public boolean getState(long hostId) {//Нужен запрос на вывод состояния хоста
+        String sql = "SELECT id, state, start, \"end\", host  FROM \"HOST_STATE\" where host = "+hostId+" and \"end\" is null";
+        boolean state =true;
+        List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
+        if (rows.isEmpty()) {
+            return state;
+        } else {
+            for (Map row : rows) {
+                state = (boolean) row.get("state");
+            }
+        }
+        return state;
     }
     @Transactional
     public void setFalseStateHost(String startTime,int host) {
@@ -48,8 +57,8 @@ public  class MetricStorage implements IMetricStorage {
         jdbcTemplateObject.update(sql);
     }
     @Transactional
-    public void setTrueStateHost(String endTime) {
-        String sql = "INSERT INTO \"HOST_STATE\"(end)  VALUES ((TIMESTAMP '"+endTime+"'))";
+    public void setTrueStateHost(String endTime,int host) {
+        String sql = "UPDATE \"HOST_STATE\" SET \"end\" = (TIMESTAMP '"+endTime+"')  where host ="+host+" and \"end\" is null";
         jdbcTemplateObject.update(sql);
     }
 

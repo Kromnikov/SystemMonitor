@@ -30,8 +30,10 @@ public class Program {
 		long start = System.currentTimeMillis();
 
 
-		metricStorage.setFalseStateHost(dateFormat.format(new Date()),1);
-
+//		metricStorage.setFalseStateHost(dateFormat.format(new Date()),1);
+		System.out.println(metricStorage.getState(1));
+		metricStorage.setTrueStateHost(dateFormat.format(new Date()), 1);
+		System.out.println(metricStorage.getState(1));
 
 
 
