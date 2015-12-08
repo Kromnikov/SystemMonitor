@@ -1,7 +1,7 @@
 package core.models;
 
 
-public class Metric {
+public class TemplateMetric {
 
     private int id;
 
@@ -9,10 +9,10 @@ public class Metric {
 
     private String command;
 
-    public Metric() {
+    public TemplateMetric() {
     }
 
-    public Metric(int id ,String title, String command) {
+    public TemplateMetric(int id, String title, String command) {
         this.id=id;
         this.title = title;
         this.command = command;

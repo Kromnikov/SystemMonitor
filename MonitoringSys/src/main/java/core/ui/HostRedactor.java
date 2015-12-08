@@ -3,7 +3,7 @@ package core.ui;
 import core.SpringService;
 import core.hibernate.services.HostService;
 import core.interfaces.db.IMetricStorage;
-import core.models.Metric;
+import core.models.TemplateMetric;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -35,10 +35,10 @@ public class HostRedactor extends JFrame {
         int i;
         final DefaultListModel listModel = new DefaultListModel();
         List<String> hosts;
-        hosts=metricStorage.getListIP(); //список хостов
-        for (String host:hosts) {
-            listModel.addElement(host);
-        }
+//        hosts=metricStorage.getListIP(); //список хостов
+//        for (String host:hosts) {
+//            listModel.addElement(host);
+//        }
         final JList list = new JList(listModel);//получаем лист хостов
         list.setSelectedIndex(0);
         list.setFocusable(false);
@@ -46,13 +46,13 @@ public class HostRedactor extends JFrame {
         //
         //
         final DefaultListModel listModelMetric = new DefaultListModel();
-        List<Metric> metrics;
+        List<TemplateMetric> templateMetrics;
         i = list.getSelectedIndex();
         String host = (String) listModel.get(i);
         int id = metricStorage.getHostIDbyTitle(host);
-        metrics=metricStorage.getMetricsByHostId(id);
-        for (Metric metric: metrics){
-            listModelMetric.addElement(metric.getTitle());
+        templateMetrics =metricStorage.getMetricsByHostId(id);
+        for (TemplateMetric templateMetric : templateMetrics){
+            listModelMetric.addElement(templateMetric.getTitle());
         }
         final JList listmetric = new JList(listModelMetric);
         listmetric.setSelectedIndex(0);
@@ -63,10 +63,10 @@ public class HostRedactor extends JFrame {
         //
         //
         final DefaultListModel listModelToAddMetrics = new DefaultListModel();
-        List<Metric> metricsAdd;
-        metricsAdd=metricStorage.geAllMetrics();
-        for (Metric metric: metricsAdd){
-            listModelToAddMetrics.addElement(metric.getTitle());
+        List<TemplateMetric> metricsAdd;
+        metricsAdd=metricStorage.geAllTemplatMetrics();
+        for (TemplateMetric templateMetric : metricsAdd){
+            listModelToAddMetrics.addElement(templateMetric.getTitle());
         }
         final JList listAllMetric = new JList(listModelToAddMetrics);
         listAllMetric.setSelectedIndex(0);
@@ -99,27 +99,27 @@ public class HostRedactor extends JFrame {
 
 
         //Listners
-        removeButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String host;
-                int i=list.getSelectedIndex();
-                host = (String) listModel.get(i);
-                try {
-                    metricStorage.delHost(host);
-                } catch (SQLException e1) {
-                    e1.printStackTrace();
-                    JOptionPane.showMessageDialog( mainPanel, "This host has not been added");
-                }
-                listModel.remove(list.getSelectedIndex());
-            }
-        });
+//        removeButton.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                String host;
+//                int i=list.getSelectedIndex();
+//                host = (String) listModel.get(i);
+//                try {
+//                    metricStorage.delHost(host);
+//                } catch (SQLException e1) {
+//                    e1.printStackTrace();
+//                    JOptionPane.showMessageDialog( mainPanel, "This host has not been added");
+//                }
+//                listModel.remove(list.getSelectedIndex());
+//            }
+//        });
         removeMetricButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String metric;
                 int i=listmetric.getSelectedIndex();
                 metric = (String) listModelMetric.get(i);
                 try {
-                    int id =metricStorage.getMetricID(metric);
+                    int id =metricStorage.getTemplatMetricID(metric);
                     metricStorage.delMetricFromHost(id);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
@@ -137,7 +137,7 @@ public class HostRedactor extends JFrame {
                 metric = (String) listModelToAddMetrics.get(i);
                 host = (String) listModel.get(j);
                 try {
-                    int metricID = metricStorage.getMetricID(metric);
+                    int metricID = metricStorage.getTemplatMetricID(metric);
                     int hostID = metricStorage.getHostIDbyTitle(host);
                     metricStorage.addMetricToHost(hostID,metricID);
 
@@ -156,16 +156,16 @@ public class HostRedactor extends JFrame {
                 int id;
                 int i = list.getSelectedIndex();
                 host = (String) listModel.get(i);
-                List<Metric> metrics = null;
+                List<TemplateMetric> templateMetrics = null;
                 try {
                     id = metricStorage.getHostIDbyTitle(host);
-                    metrics= metricStorage.getMetricsByHostId(id);
+                    templateMetrics = metricStorage.getMetricsByHostId(id);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
                 listModelMetric.removeAllElements();
-                for (Metric metric: metrics){
-                    listModelMetric.addElement(metric.getTitle());
+                for (TemplateMetric templateMetric : templateMetrics){
+                    listModelMetric.addElement(templateMetric.getTitle());
                 }
                 listmetric.setSelectedIndex(0);
             }

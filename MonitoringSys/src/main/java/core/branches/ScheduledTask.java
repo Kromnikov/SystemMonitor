@@ -5,7 +5,7 @@ import core.agents.SSHAgent;
 import core.configurations.SSHConfiguration;
 import core.hibernate.services.HostService;
 import core.interfaces.db.IMetricStorage;
-import core.models.Metric;
+import core.models.TemplateMetric;
 import org.apache.log4j.Logger;
 
 import java.sql.SQLException;
@@ -30,16 +30,15 @@ public class ScheduledTask extends TimerTask {
                 sshAgent = new SSHAgent(host);
                 hostState=metricStorage.getState(host.getId());
                 if (sshAgent.connect()) {
-                    if(!hostState) {
+                    if(!hostState) {//Если хост последний раз был не доступен, то выставляем дату окончания данного статуса
                         metricStorage.setTrueStateHost(dateFormat.format(new Date()), host.getId());
                     }
-                    for (Metric metric : metricStorage.getMetricsByHostId(host.getId())) {
-//                        System.out.println(host.getId() + "////" + metric.getTitle() + ":" + metric.getId() + "////" + sshAgent.getMetricValue(metric));
-                        logger.info("Insert to db row: (" + host.getId() + "," + metric.getId() + "," + sshAgent.getMetricValue(metric) + "," + dateFormat.format(new Date()) + ")");
-                        metricStorage.addValue(host.getId(), metric.getId(), sshAgent.getMetricValue(metric), dateFormat.format(new Date()));
+                    for (TemplateMetric templateMetric : metricStorage.getMetricsByHostId(host.getId())) {
+                        logger.info("Insert to db row: (" + host.getId() + "," + templateMetric.getId() + "," + sshAgent.getMetricValue(templateMetric) + "," + dateFormat.format(new Date()) + ")");
+                        metricStorage.addValue(host.getId(), templateMetric.getId(), sshAgent.getMetricValue(templateMetric), dateFormat.format(new Date()));
                     }
                 } else {
-                    if(hostState) {
+                    if(hostState) {//Если хост последний раз был доступен
                         metricStorage.setFalseStateHost(dateFormat.format(new Date()), host.getId());
                     }
                 }

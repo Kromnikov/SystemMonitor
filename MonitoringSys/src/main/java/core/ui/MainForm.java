@@ -2,10 +2,8 @@ package core.ui;
 
 import core.SpringService;
 import core.branches.CoreBranch;
-import core.configurations.SSHConfiguration;
-import core.hibernate.services.HostService;
 import core.interfaces.db.IMetricStorage;
-import core.models.Metric;
+import core.models.TemplateMetric;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -13,7 +11,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.*;
 import java.util.List;
 
 /**
@@ -105,10 +102,10 @@ public class MainForm extends JFrame {
         panel.setLayout(null);
         final DefaultListModel listModel = new DefaultListModel();
         List<String> hosts;
-        hosts = metricStorage.getListIP();//список хостов
-        for (String host:hosts) {
-            listModel.addElement(host);
-        }
+//        hosts = metricStorage.getListIP();//список хостов
+//        for (String host:hosts) {
+//            listModel.addElement(host);
+//        }
         final JList list = new JList(listModel);//получаем лист хостов
         list.setSelectedIndex(0);
         list.setFocusable(false);
@@ -116,13 +113,13 @@ public class MainForm extends JFrame {
         //
         //
         final DefaultListModel listModelMetric = new DefaultListModel();
-        java.util.List<Metric> metrics;
+        java.util.List<TemplateMetric> templateMetrics;
         i = list.getSelectedIndex();
         String host = (String) listModel.get(i);
         int id = metricStorage.getHostIDbyTitle(host);
-        metrics=metricStorage.getMetricsByHostId(id);
-        for (Metric metric: metrics){
-            listModelMetric.addElement(metric.getTitle());
+        templateMetrics =metricStorage.getMetricsByHostId(id);
+        for (TemplateMetric templateMetric : templateMetrics){
+            listModelMetric.addElement(templateMetric.getTitle());
         }
         final JList listmetric = new JList(listModelMetric);
         listmetric.setSelectedIndex(0);
@@ -142,16 +139,16 @@ public class MainForm extends JFrame {
                 int id;
                 int i = list.getSelectedIndex();
                 host = (String) listModel.get(i);
-                java.util.List<Metric> metrics = null;
+                java.util.List<TemplateMetric> templateMetrics = null;
                 try {
                     id = metricStorage.getHostIDbyTitle(host);
-                    metrics=metricStorage.getMetricsByHostId(id);
+                    templateMetrics =metricStorage.getMetricsByHostId(id);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
                 listModelMetric.removeAllElements();
-                for (Metric metric: metrics){
-                    listModelMetric.addElement(metric.getTitle());
+                for (TemplateMetric templateMetric : templateMetrics){
+                    listModelMetric.addElement(templateMetric.getTitle());
                 }
                 listmetric.setSelectedIndex(0);
             }

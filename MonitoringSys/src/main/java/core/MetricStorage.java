@@ -3,7 +3,7 @@ package core;
 
 import core.configurations.SSHConfiguration;
 import core.interfaces.db.IMetricStorage;
-import core.models.Metric;
+import core.models.TemplateMetric;
 import core.models.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -36,7 +36,7 @@ public  class MetricStorage implements IMetricStorage {
 
 //sql
 
-    //hosts
+    //host-state
     @Transactional
     public boolean getState(long hostId) {//Нужен запрос на вывод состояния хоста
         String sql = "SELECT id, state, start, \"end\", host  FROM \"HOST_STATE\" where host = "+hostId+" and \"end\" is null";
@@ -84,66 +84,71 @@ public  class MetricStorage implements IMetricStorage {
         return values;
     }
 
+
+
     //metrics
     @Transactional
-    public void addMetric(String title,String query) throws SQLException {
-        String sql = "INSERT INTO \"METRICS\"(title, query) VALUES ("+title+","+query+")";
+    public void addTemplateMetric(String title, String query) throws SQLException {
+        String sql = "INSERT INTO \"TEMPLATE_METRICS\"(title, query) VALUES ("+title+","+query+")";
         jdbcTemplateObject.update(sql);
     }
     @Transactional
-    public Metric getMetric(int id) throws SQLException {
-        Metric metric = new Metric();
+    public TemplateMetric getTemplateMetric(int id) throws SQLException {
+        TemplateMetric templateMetric = new TemplateMetric();
         String sql = "select * FROM \"TEMPLATE_METRICS\" where id ="+id;
         List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
         for (Map row : rows) {
-            metric.setId((int) row.get("id"));
-            metric.setTitle((String) row.get("title"));
-            metric.setCommand((String) row.get("query"));
+            templateMetric.setId((int) row.get("id"));
+            templateMetric.setTitle((String) row.get("title"));
+            templateMetric.setCommand((String) row.get("query"));
         }
-        return metric;
+        return templateMetric;
     }
     @Transactional
-    public List<Metric> geAllMetrics() throws SQLException {
-        List<Metric> metrics1 = new ArrayList<>();
+    public List<TemplateMetric> geAllTemplatMetrics() throws SQLException {
+        List<TemplateMetric> metrics1 = new ArrayList<>();
         String sql = "SELECT * FROM \"TEMPLATE_METRICS\"";
         List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
         for (Map row : rows) {
-            Metric metric = new Metric();
-            metric.setId((int) row.get("id"));
-            metric.setTitle((String) row.get("title"));
-            metric.setCommand((String) row.get("query"));
-            metrics1.add(metric);
+            TemplateMetric templateMetric = new TemplateMetric();
+            templateMetric.setId((int) row.get("id"));
+            templateMetric.setTitle((String) row.get("title"));
+            templateMetric.setCommand((String) row.get("query"));
+            metrics1.add(templateMetric);
         }
         return metrics1;
     }
     @Transactional
-    public Integer getMetricID(String title) throws SQLException {
-        Metric metric = new Metric();
+    public Integer getTemplatMetricID(String title) throws SQLException {
+        TemplateMetric templateMetric = new TemplateMetric();
         String sql = "select id FROM \"TEMPLATE_METRICS\" where title='"+title+"'";
         return (int)jdbcTemplateObject.queryForMap(sql).get("id");
     }
     @Transactional
-    public Metric getMetric(String title) throws SQLException {
-        Metric metric = new Metric();
+    public TemplateMetric getTemplatMetric(String title) throws SQLException {
+        TemplateMetric templateMetric = new TemplateMetric();
         String sql = "select * FROM \"TEMPLATE_METRICS\" where title ='"+title+"'";
         List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
         for (Map row : rows) {
-            metric.setId((int) row.get("id"));
-            metric.setTitle((String) row.get("title"));
-            metric.setCommand((String) row.get("query"));
+            templateMetric.setId((int) row.get("id"));
+            templateMetric.setTitle((String) row.get("title"));
+            templateMetric.setCommand((String) row.get("query"));
         }
-        return metric;
+        return templateMetric;
     }
+
+
 
     //metrics-host
     @Transactional
     public void addMetricToHost(int host,int metric) throws SQLException {
-        String sql = "INSERT INTO \"HOST_METRIC\"(host_id, metric_id) VALUES ("+host+","+metric+")";
+        TemplateMetric templateMetric = getTemplateMetric(metric);
+        String sql = "INSERT INTO \"INSTANCE_METRIC\"(host, templ_metric,min_value,max_value,title,query) VALUES (" + host + "," + metric + ",0,0,'"+templateMetric.getTitle()+"',$q$"+templateMetric.getCommand()+"$q$)";
         jdbcTemplateObject.update(sql);
     }
     @Transactional
-    public void addMetricToHost(SSHConfiguration host,Metric metric) throws SQLException {
-        String sql = "INSERT INTO \"HOST_METRIC\"(host_id, metric_id) VALUES ("+host.getId()+","+metric.getId()+")";
+    public void addMetricToHost(SSHConfiguration host,TemplateMetric templateMetric) throws SQLException {
+        String sql = "INSERT INTO \"HOST_METRIC\"(host_id, metric_id) VALUES ("+host.getId()+","+ templateMetric.getId()+")";
         jdbcTemplateObject.update(sql);
     }
     @Transactional
@@ -157,35 +162,26 @@ public  class MetricStorage implements IMetricStorage {
         return metrics;
     }
     @Transactional
-    public List<String> getListIP() throws SQLException {
-        List<String> list = new ArrayList<>();
-        String sql = "select host from \"sshconfigurationhibernate\"";
-        List<Map<String,Object>> hosts = jdbcTemplateObject.queryForList(sql);
-        for (Map host : hosts) {
-            list.add((String)host.get("host"));
-        }
-       return list;
-    }
-
-    @Transactional
-    public List<Metric> getMetricsByHostId(int hostId) throws SQLException {
-        List<Metric> metrics = new ArrayList<>();
+    public List<TemplateMetric> getMetricsByHostId(int hostId) throws SQLException {
+        List<TemplateMetric> templateMetrics = new ArrayList<>();
         String sql = "SELECT m.id,m.title, m.query  FROM \"TEMPLATE_METRICS\" as m left join \"HOST_METRIC\" as hm on hm.metric_id = m.id where hm.host_id ="+hostId;
         List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
         for (Map row : rows) {
-            Metric metric = new Metric();
-            metric.setCommand((String) row.get("query"));
-            metric.setTitle((String) row.get("title"));
-            metric.setId((int) row.get("id"));
-            metrics.add(metric);
+            TemplateMetric templateMetric = new TemplateMetric();
+            templateMetric.setCommand((String) row.get("query"));
+            templateMetric.setTitle((String) row.get("title"));
+            templateMetric.setId((int) row.get("id"));
+            templateMetrics.add(templateMetric);
         }
-        return metrics;
+        return templateMetrics;
     }
     @Transactional
     public long getQuantityOfRow(int id) throws SQLException {
         String sql = "select count(*) from \"VALUE_METRIC\" where metric ="+id;
         return (long)jdbcTemplateObject.queryForMap(sql).get("count");
     }
+
+
 
     @Transactional
     public int getHostIDbyTitle(String title) throws SQLException {
@@ -204,11 +200,11 @@ public  class MetricStorage implements IMetricStorage {
     }
 
     //delete-запросы
-    @Transactional
-    public void delHost(String host) throws SQLException {
-        String sql ="delete from  \"sshconfigurationhibernate\" where host='"+host+"'";
-        jdbcTemplateObject.update(sql);
-    }
+//    @Transactional TODO удаление хостов должно быть через hibernate
+//    public void delHost(String host) throws SQLException {
+//        String sql ="delete from  \"sshconfigurationhibernate\" where host='"+host+"'";
+//        jdbcTemplateObject.update(sql);
+//    }
     @Transactional
     public void delMetricFromHost(int id) throws SQLException {
         String sql ="delete from  \"HOST_METRIC\" where metric_id="+id;

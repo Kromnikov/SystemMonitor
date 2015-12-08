@@ -1,12 +1,10 @@
 package core.interfaces.db;
 
 import core.configurations.SSHConfiguration;
-import core.models.Metric;
+import core.models.TemplateMetric;
 import core.models.Value;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
 /**
@@ -27,31 +25,28 @@ public interface IMetricStorage {
     public List<Value> getValues(int host_id,int metricId) throws SQLException ;
 //
 //    //metrics
-    public void addMetric(String title,String query) throws SQLException;
-    public Metric getMetric(int id) throws SQLException;
-    public Metric getMetric(String title) throws SQLException;
+    public void addTemplateMetric(String title, String query) throws SQLException;
+    public TemplateMetric getTemplateMetric(int id) throws SQLException;
+    public TemplateMetric getTemplatMetric(String title) throws SQLException;
 //
     //metrics-host
     public void addMetricToHost(int host,int metric) throws SQLException ;
-    public void addMetricToHost(SSHConfiguration host,Metric metric) throws SQLException ;
+    public void addMetricToHost(SSHConfiguration host,TemplateMetric templateMetric) throws SQLException ;
     public List<Integer> getMetricIdByHostId(int hostId) throws SQLException ;
-    public List<Metric> getMetricsByHostId(int hostId) throws SQLException;
+    public List<TemplateMetric> getMetricsByHostId(int hostId) throws SQLException;
     public long getQuantityOfRow(int id) throws SQLException;
 //
-   public List<String> getListIP() throws SQLException;
 //    public ResultSet getAllValueMetricOnHostResult(int id)throws SQLException;
-//
-    public void delHost(String host)throws SQLException ;
 //
     public void delMetricFromHost(int id) throws SQLException;
 //
-    public Integer getMetricID(String title) throws  SQLException;
+    public Integer getTemplatMetricID(String title) throws  SQLException;
 //
     public int getHostIDbyTitle(String title) throws SQLException;
 //
     public void addStandartMetrics(int id) throws SQLException;
 
-    List<Metric> geAllMetrics() throws SQLException;
+    List<TemplateMetric> geAllTemplatMetrics() throws SQLException;
 
 
 }

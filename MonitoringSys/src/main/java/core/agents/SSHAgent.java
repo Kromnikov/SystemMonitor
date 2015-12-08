@@ -2,7 +2,7 @@ package core.agents;
 
 
 import com.jcraft.jsch.*;
-import core.models.Metric;
+import core.models.TemplateMetric;
 import core.configurations.SSHConfiguration;
 
 import java.io.IOException;
@@ -42,10 +42,10 @@ public class SSHAgent {
         return true;
     }
 
-    public double getMetricValue(Metric metric) {
+    public double getMetricValue(TemplateMetric templateMetric) {
         try {
             this.channel = session.openChannel("exec");
-            ((ChannelExec) channel).setCommand(metric.getCommand());
+            ((ChannelExec) channel).setCommand(templateMetric.getCommand());
 //            channel.setInputStream(null);
 //            ((ChannelExec) channel).setErrStream(System.err);
             in = channel.getInputStream();
