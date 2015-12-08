@@ -1,6 +1,7 @@
 package core.ui;
 
 import core.SpringService;
+import core.configurations.SSHConfiguration;
 import core.hibernate.services.HostService;
 import core.interfaces.db.IMetricStorage;
 import core.models.Metric;
@@ -20,7 +21,7 @@ import java.util.List;
 public class HostRedactor extends JFrame {
     Object[] res = new Object[5];
     IMetricStorage metricStorage = SpringService.getMetricStorage();
-    HostService hosts = SpringService.getHosts();
+    HostService hostsser = SpringService.getHosts();
 
     public HostRedactor() throws SQLException {
         super("Host Redactor");
@@ -34,10 +35,10 @@ public class HostRedactor extends JFrame {
         mainPanel.setLayout(null);
         int i;
         final DefaultListModel listModel = new DefaultListModel();
-        List<String> hosts;
-        hosts=metricStorage.getListIP(); //список хостов
-        for (String host:hosts) {
-            listModel.addElement(host);
+        List<SSHConfiguration> hosts;
+        hosts=hostsser.getAll(); //список хостов
+        for (SSHConfiguration host:hosts) {
+            listModel.addElement(host.getHost());
         }
         final JList list = new JList(listModel);//получаем лист хостов
         list.setSelectedIndex(0);
@@ -57,8 +58,6 @@ public class HostRedactor extends JFrame {
         final JList listmetric = new JList(listModelMetric);
         listmetric.setSelectedIndex(0);
         listmetric.setFocusable(false);
-        list.setBounds(1,1,125,200);
-        listmetric.setBounds(126,1,125,200);
         //список всех метрик на добавление
         //
         //
@@ -71,27 +70,49 @@ public class HostRedactor extends JFrame {
         final JList listAllMetric = new JList(listModelToAddMetrics);
         listAllMetric.setSelectedIndex(0);
         listAllMetric.setFocusable(false);
-        listAllMetric.setBounds(250,1,125,200);
+
+
+
+
+        final JButton removeButton = new JButton("-");
+        removeButton.setFocusable(false);
+        final JButton addHostButton = new JButton("+");
+        removeButton.setFocusable(false);
+        final JButton updateButton = new JButton("Update");
+        final JButton removeMetricButton = new JButton(">");
+        removeMetricButton.setFocusable(false);
+        final JButton addButton = new JButton("<");
+        removeButton.setFocusable(false);
+        JLabel labelListOfHosts = new JLabel("Hosts");
+        JLabel labelMetricHosts = new JLabel("Host's Metrics");
+        JLabel labelMetricsToAdd = new JLabel("Metrics to add");
+
+// Расположение всех элементов и наполнение ими формы
+        labelListOfHosts.setBounds(5,1,60,20);
+        list.setBounds(1,20,125,200);
+        labelMetricHosts.setBounds(130,1,120,20);
+        listmetric.setBounds(130,20,125,200);
+        labelMetricsToAdd.setBounds(305,1,100,20);
+        listAllMetric.setBounds(305,20,150,200);
+        removeButton.setBounds(0,220,60,30);
+        addHostButton.setBounds(70,220,60,30);
+        updateButton.setBounds(135,220,100,30);
+        removeMetricButton.setBounds(255,90,50,25);
+        addButton.setBounds(255,130,50,25);
         mainPanel.add(list);
         mainPanel.add(listmetric);
         mainPanel.add(listAllMetric);
-
-
-        final JButton removeButton = new JButton("Delete");
-        removeButton.setFocusable(false);
-        final JButton removeMetricButton = new JButton("Delete");
-        removeMetricButton.setFocusable(false);
-        final JButton addButton = new JButton("Add");
-        removeButton.setFocusable(false);
-        removeButton.setBounds(0,200,125,30);
-        removeMetricButton.setBounds(125,200,125,30);
-        addButton.setBounds(250,200,125,30);
         mainPanel.add(removeButton);
         mainPanel.add(removeMetricButton);
         mainPanel.add(addButton);
+        mainPanel.add(addHostButton);
+        mainPanel.add(labelListOfHosts);
+        mainPanel.add(labelMetricHosts);
+        mainPanel.add(labelMetricsToAdd);
+        //mainPanel.add(updateButton);
         getContentPane().add(mainPanel);
 
-        setPreferredSize(new Dimension(375, 265));
+        setPreferredSize(new Dimension(470, 285));
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
@@ -99,6 +120,11 @@ public class HostRedactor extends JFrame {
 
 
         //Listners
+        addHostButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new ConForm().setVisible(true);
+            }
+        });
         removeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String host;
@@ -120,7 +146,9 @@ public class HostRedactor extends JFrame {
                 metric = (String) listModelMetric.get(i);
                 try {
                     int id =metricStorage.getMetricID(metric);
-                    metricStorage.delMetricFromHost(id);
+                    String hostname = (String) listModel.get(i);
+                    int host = metricStorage.getHostIDbyTitle(hostname);
+                    metricStorage.delMetricFromHost(host,id);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                     JOptionPane.showMessageDialog( mainPanel, "This metric has not been deleted");
@@ -140,12 +168,20 @@ public class HostRedactor extends JFrame {
                     int metricID = metricStorage.getMetricID(metric);
                     int hostID = metricStorage.getHostIDbyTitle(host);
                     metricStorage.addMetricToHost(hostID,metricID);
+                    JOptionPane.showMessageDialog( mainPanel, "This metric has been added!");
 
                 } catch (SQLException e1) {
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog( mainPanel, "This metric has not been added");
+                    JOptionPane.showMessageDialog( mainPanel, "This metric has not been added!");
                 }
                 listModelMetric.addElement(metric);
+
+            }
+        });
+
+        updateButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
 
             }
         });

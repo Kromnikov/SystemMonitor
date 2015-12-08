@@ -64,6 +64,19 @@ public class MainForm extends JFrame {
             }
         });
 
+        JMenuItem metricItem = new JMenuItem("Edit Metric");
+        metricItem.setFont(font);
+        fileMenu.add(metricItem);
+        metricItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new MetricRedactor().setVisible(true);
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+
 
         fileMenu.addSeparator();
 
@@ -133,8 +146,12 @@ public class MainForm extends JFrame {
         panel.add(list);
         panel.add(listmetric);
 
+        JLabel labelInfo = new JLabel("Information");
+        labelInfo.setBounds(350,0,100,20);
+        panel.add(labelInfo);
+//-----------------------Listners
         getContentPane().add(panel);
-        setPreferredSize(new Dimension(250, 235));
+        setPreferredSize(new Dimension(500, 235));
 
         list.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {

@@ -38,7 +38,7 @@ public interface IMetricStorage {
 //
     public void delHost(String host)throws SQLException ;
 //
-    public void delMetricFromHost(int id) throws SQLException;
+    public void delMetricFromHost(int host,int id) throws SQLException;
 //
     public Integer getMetricID(String title) throws  SQLException;
 //
@@ -47,6 +47,8 @@ public interface IMetricStorage {
     public void addStandartMetrics(int id) throws SQLException;
 
     List<Metric> geAllMetrics() throws SQLException;
+
+    public void delMetric(String title) throws SQLException;
 
 
 }
