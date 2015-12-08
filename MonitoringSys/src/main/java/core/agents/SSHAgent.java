@@ -34,7 +34,7 @@ public class SSHAgent {
             session = jsch.getSession(configuration.getLogin(), configuration.getHost(), configuration.getPort());
             session.setPassword(configuration.getPassword());
             session.setConfig(config);
-            session.connect();
+                session.connect();
         } catch (Exception e) {
             e.printStackTrace();
             return false;

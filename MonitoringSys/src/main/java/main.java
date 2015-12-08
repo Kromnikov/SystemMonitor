@@ -19,10 +19,10 @@ public class main {
         try {
 
             CoreBranch.run();
-            IMetricStorage metricStorage = SpringService.getMetricStorage();
-            List<String> hosts;
-            hosts = metricStorage.getListIP();
-            System.out.println(hosts.get(1));
+//            IMetricStorage metricStorage = SpringService.getMetricStorage();
+//            List<String> hosts;
+//            hosts = metricStorage.getListIP();
+//            System.out.println(hosts.get(1));
 
 
 //            SQLBranch.run();

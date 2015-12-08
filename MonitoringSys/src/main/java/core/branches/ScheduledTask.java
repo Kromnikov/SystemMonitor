@@ -18,20 +18,29 @@ public class ScheduledTask extends TimerTask {
     private static SSHAgent sshAgent;
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private static final Logger logger = Logger.getLogger(ScheduledTask.class);
+    private static boolean hostState;
 
     @Override
     public void run() {
         try {
-            IMetricStorage metricStorage =SpringService.getMetricStorage();
+            IMetricStorage metricStorage = SpringService.getMetricStorage();
             HostService hosts = SpringService.getHosts();
             SSHAgent sshAgent;
-            for (SSHConfiguration host : hosts.getAll() ) {
+            for (SSHConfiguration host : hosts.getAll()) {
                 sshAgent = new SSHAgent(host);
+                hostState=metricStorage.getState(host.getId());
                 if (sshAgent.connect()) {
-                    for (Metric metric :metricStorage.getMetricsByHostId(host.getId())) {
+                    if(!hostState) {
+                        metricStorage.setTrueStateHost(dateFormat.format(new Date()), host.getId());
+                    }
+                    for (Metric metric : metricStorage.getMetricsByHostId(host.getId())) {
 //                        System.out.println(host.getId() + "////" + metric.getTitle() + ":" + metric.getId() + "////" + sshAgent.getMetricValue(metric));
-                        logger.info("Insert to db row: ("+host.getId()+","+ metric.getId()+","+ sshAgent.getMetricValue(metric)+","+ dateFormat.format(new Date())+")");
+                        logger.info("Insert to db row: (" + host.getId() + "," + metric.getId() + "," + sshAgent.getMetricValue(metric) + "," + dateFormat.format(new Date()) + ")");
                         metricStorage.addValue(host.getId(), metric.getId(), sshAgent.getMetricValue(metric), dateFormat.format(new Date()));
+                    }
+                } else {
+                    if(hostState) {
+                        metricStorage.setFalseStateHost(dateFormat.format(new Date()), host.getId());
                     }
                 }
             }

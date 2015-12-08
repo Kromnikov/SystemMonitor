@@ -1,5 +1,6 @@
 import core.SpringService;
 import core.agents.SSHAgent;
+import core.branches.CoreBranch;
 import core.configurations.SSHConfiguration;
 import core.hibernate.services.HostService;
 import core.interfaces.db.IMetricStorage;
@@ -21,7 +22,7 @@ public class Program {
     public static void main(String[] args) throws SQLException {
 
 
-		SpringService.run();
+//		SpringService.run();
 
 		IMetricStorage metricStorage =SpringService.getMetricStorage();
 //		HostService hosts = SpringService.getHosts();
@@ -29,11 +30,12 @@ public class Program {
 
 		long start = System.currentTimeMillis();
 
+		CoreBranch.run();
 
 //		metricStorage.setFalseStateHost(dateFormat.format(new Date()),1);
-		System.out.println(metricStorage.getState(1));
-		metricStorage.setTrueStateHost(dateFormat.format(new Date()), 1);
-		System.out.println(metricStorage.getState(1));
+//		System.out.println(metricStorage.getState(1));
+//		metricStorage.setTrueStateHost(dateFormat.format(new Date()), 1);
+//		System.out.println(metricStorage.getState(1));
 
 
 
