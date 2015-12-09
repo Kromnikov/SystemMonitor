@@ -6,6 +6,16 @@ import core.configurations.SSHConfiguration;
 import core.hibernate.services.HostService;
 import core.interfaces.db.IMetricStorage;
 import core.models.Metric;
+import core.models.Value;
+import core.ui.tools.TypeOfMetric;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.time.Hour;
+import org.jfree.data.time.Minute;
+import org.jfree.data.time.TimeSeries;
+import org.jfree.data.time.TimeSeriesCollection;
+
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -26,8 +36,10 @@ public class MainForm extends JFrame {
     public MainForm() throws InterruptedException, SQLException {
         super("Monitoring");
         CoreBranch.run();
+        final JPanel panel = new JPanel();
         IMetricStorage metricStorage = SpringService.getMetricStorage();
-        createDesign(metricStorage);
+        createDesign(metricStorage,panel);
+
     }
 
 
@@ -105,14 +117,20 @@ public class MainForm extends JFrame {
     }
 
 
-    public void createDesign(final IMetricStorage metricStorage) throws SQLException {
+    public void createDesign(final IMetricStorage metricStorage,final JPanel panel) throws SQLException {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        final JPanel panel = new JPanel();
         panel.setLayout(null);
 
         JButton button4= new JButton("View chart");
-        button4.setBounds(0, 150, 250, 30);
+        button4.setBounds(0, 320, 180, 30);
         panel.add(button4);
+
+        JLabel label1 = new JLabel("Hosts");
+        JLabel label2 =new JLabel("Metrics");
+        label1.setBounds(0,0,100,20);
+        label2.setBounds(0,160,100,20);
+        panel.add(label1);
+        panel.add(label2);
 
         int i;
         panel.setLayout(null);
@@ -129,7 +147,7 @@ public class MainForm extends JFrame {
         //
         //
         final DefaultListModel listModelMetric = new DefaultListModel();
-        java.util.List<Metric> metrics;
+        final java.util.List<Metric> metrics;
         i = list.getSelectedIndex();
         String host = (String) listModel.get(i);
         int id = metricStorage.getHostIDbyTitle(host);
@@ -140,18 +158,44 @@ public class MainForm extends JFrame {
         final JList listmetric = new JList(listModelMetric);
         listmetric.setSelectedIndex(0);
         listmetric.setFocusable(false);
-        list.setBounds(0,0,125,150);
-        listmetric.setBounds(125,0,125,150);
+        list.setBounds(0,20,180,140);
+        listmetric.setBounds(0,180,180,140);
 
         panel.add(list);
         panel.add(listmetric);
 
-        JLabel labelInfo = new JLabel("Information");
-        labelInfo.setBounds(350,0,100,20);
+        JLabel labelInfo = new JLabel("INFORMATION");
+        labelInfo.setBounds(300,0,100,40);
         panel.add(labelInfo);
+        panel.add(MainForm.drawChar(metricStorage,1));
+//-----------------------раздел Information
+        Icon iconOK = UIManager.getIcon("OptionPane.informationIcon");
+        Icon iconWrong = UIManager.getIcon("OptionPane.errorIcon");
+        Icon iconCheck = UIManager.getIcon("OptionPane.questionIcon");
+        JLabel label3 = new JLabel();
+        label3.setForeground(Color.GREEN);
+        label3.setText("Host's status information");
+        label3.setIcon(iconOK);
+
+        JLabel label4 = new JLabel();
+        label4.setForeground(Color.GREEN);
+        label4.setText("Metric's status information");
+        label4.setIcon(iconCheck);
+
+        JLabel label5 = new JLabel();
+        label5.setForeground(Color.ORANGE);
+        label5.setText("Metric's state information");
+        label5.setIcon(iconWrong);
+        label3.setBounds(220,40,200,30);
+        label4.setBounds(220,70,200,30);
+        label5.setBounds(220,100,200,30);
+        panel.add(label3);
+        panel.add(label4);
+        panel.add(label5);
+
 //-----------------------Listners
         getContentPane().add(panel);
-        setPreferredSize(new Dimension(500, 235));
+        setPreferredSize(new Dimension(500, 405));
 
         list.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
@@ -173,6 +217,25 @@ public class MainForm extends JFrame {
                 listmetric.setSelectedIndex(0);
             }
         });
+
+       /* listmetric.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                String metric;
+                int id;
+                int i = listmetric.getSelectedIndex();
+                metric = (String) listModelMetric.get(i);
+                int metricID = TypeOfMetric.getTypeOfMetric(metric);
+                try {
+                    panel.add(MainForm.drawChar(metricStorage,metricID));
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+
+
+            }
+        });*/
+
+
         button4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -194,6 +257,34 @@ public class MainForm extends JFrame {
 
     }
 
+    public static ChartPanel drawChar(IMetricStorage metricStorage,int metricID) throws SQLException {
+        double value;
+        TimeSeries series = new TimeSeries("Metric", Minute.class);
+        Hour hour = new Hour();
+        Chart chart = new Chart();
+        List<Value> values;
+        values = metricStorage.getValues(1,metricID);
+        for (int i = 1; i < 10; i++) {
+            value = values.get(i).getValue();
+            series.add(new Minute(i, hour), value);
+        }
+        TimeSeriesCollection dataset = new TimeSeriesCollection();
+        dataset.addSeries(series);
+
+        final JFreeChart freeChart = ChartFactory.createTimeSeriesChart(
+                "Metric",
+                "Time",
+                "Load",
+                dataset,
+                true,
+                true,
+                false
+        );
+        final ChartPanel chartPanel = new ChartPanel(freeChart);
+        chartPanel.setBounds(180,160,310,215);
+        return chartPanel;
+
+    }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {

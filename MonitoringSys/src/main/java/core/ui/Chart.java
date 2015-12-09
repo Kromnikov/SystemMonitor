@@ -4,6 +4,7 @@ import core.SpringService;
 import core.hibernate.services.HostService;
 import core.interfaces.db.IMetricStorage;
 import core.models.Value;
+import core.ui.tools.TypeOfMetric;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -36,7 +37,7 @@ public class Chart extends JFrame {
         TimeSeries series = new TimeSeries(title, Minute.class);
         Hour hour = new Hour();
         Chart chart = new Chart();
-        int typeOfMetric = chart.getTypeOfMetric(title);
+        int typeOfMetric = TypeOfMetric.getTypeOfMetric(title);
         int j = chart.QuantyOfRows(typeOfMetric);
         List<Value> values;
         values = metricStorage.getValues(id,typeOfMetric);
@@ -71,34 +72,7 @@ public class Chart extends JFrame {
         return j;
     }
 
-    public int getTypeOfMetric(String title) {
-        int k = 0;
-        switch (title) {
-            case "getCPU":
-                k = 1;
-                break;
-            case "getFreeDiskMb":
-                k = 2;
-                break;
-            case "getUsedDiskMb":
-                k = 3;
-                break;
-            case "getTotalDiskMb":
-                k = 4;
-                break;
-            case "getFreeRAM":
-                k = 5;
-                break;
-            case "getUsedRAM":
-                k = 6;
-                break;
-            case "getTotalRAM":
-                k = 7;
-                break;
 
-        }
-        return k;
-    }
 
     public void set() {
         setDefaultCloseOperation(ApplicationFrame.HIDE_ON_CLOSE);
