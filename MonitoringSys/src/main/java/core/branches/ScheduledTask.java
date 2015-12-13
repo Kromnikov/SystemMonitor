@@ -19,7 +19,7 @@ public class ScheduledTask extends TimerTask {
     private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private final Logger logger = Logger.getLogger(ScheduledTask.class);
 
-    @Scheduled(fixedDelay =10000)
+    @Scheduled(fixedDelay = 10000)
     @Override
     public void run() {//TODO назвать методы нормально, доделать спринг, etricStorage как autowired и тд
         try {
