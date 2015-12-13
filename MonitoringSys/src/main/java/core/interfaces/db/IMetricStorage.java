@@ -14,10 +14,14 @@ import java.util.List;
 public interface IMetricStorage {
 
     //sql
-    //host
-    public boolean getState(long hostId);
-    public void setFalseStateHost(String startTime,int host);
-    public void setTrueStateHost(String endTime,int host);
+    //metric-state
+    public void setFalseStateMetric(String startTime,int instMetric);
+
+
+    //host-state
+    public boolean available(long hostId);
+    public void notAvailableHost(String startTime, int host);
+    public void availableHost(String endTime, int host);
 
 
     //values
@@ -32,11 +36,11 @@ public interface IMetricStorage {
 
     //
     //metrics-host
-    public void addMetricToHost(InstanceMetric instanceMetric) throws SQLException;
-    public void addMetricToHost(int host,int metric) throws SQLException ;
-    public void addMetricToHost(SSHConfiguration host,TemplateMetric templateMetric) throws SQLException ;
+    public void addInstMetric(InstanceMetric instanceMetric) throws SQLException;
+    public void addInstMetric(int host, int metric) throws SQLException ;
+    public void addInstMetric(SSHConfiguration host, TemplateMetric templateMetric) throws SQLException ;
 //    public List<Integer> getMetricIdByHostId(int hostId) throws SQLException ;
-    public List<InstanceMetric> getMetricsByHostId(int hostId) throws SQLException;
+    public List<InstanceMetric> getInstMetrics(int hostId) throws SQLException;
     public long getQuantityOfRow(int id) throws SQLException;
 //
 //    public ResultSet getAllValueMetricOnHostResult(int id)throws SQLException;
@@ -49,7 +53,7 @@ public interface IMetricStorage {
 //
     public void addStandartMetrics(int id) throws SQLException;
 
-    List<TemplateMetric> geAllTemplatMetrics() throws SQLException;
+    List<TemplateMetric> getTemplatMetrics() throws SQLException;
 
 
 }

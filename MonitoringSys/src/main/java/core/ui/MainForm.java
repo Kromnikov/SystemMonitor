@@ -117,10 +117,6 @@ public class MainForm extends JFrame {
         i = list.getSelectedIndex();
         String host = (String) listModel.get(i);
         int id = metricStorage.getHostIDbyTitle(host);
-//        templateMetrics =metricStorage.getMetricsByHostId(id);
-//        for (TemplateMetric templateMetric : templateMetrics){
-//            listModelMetric.addElement(templateMetric.getTitle());
-//        }
         final JList listmetric = new JList(listModelMetric);
         listmetric.setSelectedIndex(0);
         listmetric.setFocusable(false);
@@ -142,7 +138,6 @@ public class MainForm extends JFrame {
                 java.util.List<TemplateMetric> templateMetrics = null;
                 try {
                     id = metricStorage.getHostIDbyTitle(host);
-//                    templateMetrics =metricStorage.getMetricsByHostId(id);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }

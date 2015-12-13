@@ -21,9 +21,9 @@ public class Program {
 		IMetricStorage metricStorage = SpringService.getMetricStorage();
 		HostService hosts = SpringService.getHosts();
 		for (SSHConfiguration host : hosts.getAll()) {
-//			metricStorage.addMetricToHost(host,metricStorage.getTemplateMetric(1));
+			metricStorage.addInstMetric(host, metricStorage.getTemplateMetric(8));
 		}
-		List<InstanceMetric> instanceMetricsList = metricStorage.getMetricsByHostId(1);
+		List<InstanceMetric> instanceMetricsList = metricStorage.getInstMetrics(1);
 		for (InstanceMetric instance : instanceMetricsList) {
 			System.out.println(instance.getTitle());
 		}

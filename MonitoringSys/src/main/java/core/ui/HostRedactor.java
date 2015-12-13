@@ -50,10 +50,6 @@ public class HostRedactor extends JFrame {
         i = list.getSelectedIndex();
         String host = (String) listModel.get(i);
         int id = metricStorage.getHostIDbyTitle(host);
-//        templateMetrics =metricStorage.getMetricsByHostId(id);
-//        for (TemplateMetric templateMetric : templateMetrics){
-//            listModelMetric.addElement(templateMetric.getTitle());
-//        }
         final JList listmetric = new JList(listModelMetric);
         listmetric.setSelectedIndex(0);
         listmetric.setFocusable(false);
@@ -64,7 +60,7 @@ public class HostRedactor extends JFrame {
         //
         final DefaultListModel listModelToAddMetrics = new DefaultListModel();
         List<TemplateMetric> metricsAdd;
-        metricsAdd=metricStorage.geAllTemplatMetrics();
+        metricsAdd=metricStorage.getTemplatMetrics();
         for (TemplateMetric templateMetric : metricsAdd){
             listModelToAddMetrics.addElement(templateMetric.getTitle());
         }
@@ -139,7 +135,7 @@ public class HostRedactor extends JFrame {
                 try {
                     int metricID = metricStorage.getTemplatMetricID(metric);
                     int hostID = metricStorage.getHostIDbyTitle(host);
-                    metricStorage.addMetricToHost(hostID,metricID);
+                    metricStorage.addInstMetric(hostID, metricID);
 
                 } catch (SQLException e1) {
                     e1.printStackTrace();
@@ -159,7 +155,6 @@ public class HostRedactor extends JFrame {
                 List<TemplateMetric> templateMetrics = null;
                 try {
                     id = metricStorage.getHostIDbyTitle(host);
-//                    templateMetrics = metricStorage.getMetricsByHostId(id);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }

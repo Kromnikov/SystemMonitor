@@ -36,10 +36,17 @@ public  class MetricStorage implements IMetricStorage {
     }
 
 //sql
+    //metric-state
+    @Transactional
+    public void setFalseStateMetric(String startTime,int instMetric) {
+        String sql = "INSERT INTO \"METRIC_STATE\"(start,state,inst_metric)  VALUES ((TIMESTAMP '" + startTime + "'),false," + instMetric + ")";
+        jdbcTemplateObject.update(sql);
+    }
+
 
     //host-state
     @Transactional
-    public boolean getState(long hostId) {//Нужен запрос на вывод состояния хоста
+    public boolean available(long hostId) {//Нужен запрос на вывод состояния хоста
         String sql = "SELECT id, state, start, \"end\", host  FROM \"HOST_STATE\" where host = "+hostId+" and \"end\" is null";
         boolean state =true;
         List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
@@ -53,12 +60,12 @@ public  class MetricStorage implements IMetricStorage {
         return state;
     }
     @Transactional
-    public void setFalseStateHost(String startTime,int host) {
+    public void notAvailableHost(String startTime, int host) {
         String sql = "INSERT INTO \"HOST_STATE\"(start,state,host)  VALUES ((TIMESTAMP '"+startTime+"'),false,"+host+")";
         jdbcTemplateObject.update(sql);
     }
     @Transactional
-    public void setTrueStateHost(String endTime,int host) {
+    public void availableHost(String endTime, int host) {
         String sql = "UPDATE \"HOST_STATE\" SET \"end\" = (TIMESTAMP '"+endTime+"')  where host ="+host+" and \"end\" is null";
         jdbcTemplateObject.update(sql);
     }
@@ -106,7 +113,7 @@ public  class MetricStorage implements IMetricStorage {
         return templateMetric;
     }
     @Transactional
-    public List<TemplateMetric> geAllTemplatMetrics() throws SQLException {
+    public List<TemplateMetric> getTemplatMetrics() throws SQLException {
         List<TemplateMetric> metrics1 = new ArrayList<>();
         String sql = "SELECT * FROM \"TEMPLATE_METRICS\"";
         List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
@@ -142,22 +149,23 @@ public  class MetricStorage implements IMetricStorage {
 
     //metrics-host
     @Transactional
-    public void addMetricToHost(int host,int metric) throws SQLException {
+    public void addInstMetric(int host, int metric) throws SQLException {
         TemplateMetric templateMetric = getTemplateMetric(metric);
         String sql = "INSERT INTO \"INSTANCE_METRIC\"(host, templ_metric,min_value,max_value,title,query) VALUES (" + host + "," + metric + ",0,0,'"+templateMetric.getTitle()+"',$q$"+templateMetric.getCommand()+"$q$)";
         jdbcTemplateObject.update(sql);
     }
     @Transactional
-    public void addMetricToHost(SSHConfiguration host,TemplateMetric templateMetric) throws SQLException {
+    public void addInstMetric(SSHConfiguration host, TemplateMetric templateMetric) throws SQLException {
         String sql = "INSERT INTO \"INSTANCE_METRIC\"(host, templ_metric,min_value,max_value,title,query) VALUES (" + host.getId() + "," + templateMetric.getId() + ",0,0,'"+templateMetric.getTitle()+"',$q$"+templateMetric.getCommand()+"$q$)";
         jdbcTemplateObject.update(sql);
     }
-    public void addMetricToHost(InstanceMetric instanceMetric) throws SQLException {
+    @Transactional
+    public void addInstMetric(InstanceMetric instanceMetric) throws SQLException {
         String sql = "INSERT INTO \"INSTANCE_METRIC\"(host, templ_metric,min_value,max_value,title,query) VALUES (" + instanceMetric.getHostId() + "," + instanceMetric.getTempMetrcId() + ","+instanceMetric.getMinValue()+","+instanceMetric.getMaxValue()+",'"+instanceMetric.getTitle()+"',$q$"+instanceMetric.getCommand()+"$q$)";
         jdbcTemplateObject.update(sql);
     }
     @Transactional
-    public List<InstanceMetric> getMetricsByHostId(int hostId) throws SQLException {
+    public List<InstanceMetric> getInstMetrics(int hostId) throws SQLException {
         List<InstanceMetric> instanceMetrics = new ArrayList<>();
         String sql = "SELECT id, templ_metric, title, query, min_value, max_value, host  FROM \"INSTANCE_METRIC\" where host ="+hostId;
         List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
