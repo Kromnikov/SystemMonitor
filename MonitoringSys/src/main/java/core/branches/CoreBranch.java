@@ -11,8 +11,5 @@ public class CoreBranch {
 
     public static void run() throws SQLException {
         SpringService.run();
-//        Timer time = new Timer();
-//        ScheduledTask st = new ScheduledTask();
-//        time.schedule(st, 0, 10000);
     }
 }

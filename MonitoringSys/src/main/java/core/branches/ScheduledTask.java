@@ -7,6 +7,7 @@ import core.hibernate.services.HostService;
 import core.interfaces.db.IMetricStorage;
 import core.models.InstanceMetric;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import java.sql.SQLException;
@@ -19,13 +20,20 @@ public class ScheduledTask extends TimerTask {
     private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private final Logger logger = Logger.getLogger(ScheduledTask.class);
 
+    private IMetricStorage metricStorage;
+
+    private HostService hosts;
+
+    @Autowired
+    public ScheduledTask(IMetricStorage metricStorage,HostService hosts) {
+        this.hosts=hosts;
+        this.metricStorage=metricStorage;
+    }
+
     @Scheduled(fixedDelay = 10000)
     @Override
-    public void run() {//TODO назвать методы нормально, доделать спринг, etricStorage как autowired и тд
+    public void run() {
         try {
-            IMetricStorage metricStorage = SpringService.getMetricStorage();
-            HostService hosts = SpringService.getHosts();
-
             for (SSHConfiguration host : hosts.getAll()) {
                 SSHAgent sshAgent = new SSHAgent(host);
                 boolean available=metricStorage.available(host.getId());

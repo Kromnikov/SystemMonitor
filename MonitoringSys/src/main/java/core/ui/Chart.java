@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class Chart extends JFrame {
 
-    IMetricStorage metricStorage = SpringService.getMetricStorage();
+    IMetricStorage metricStorage ;
 
     public Chart() {
         super("");

@@ -19,8 +19,8 @@ import java.util.List;
  */
 public class HostRedactor extends JFrame {
     Object[] res = new Object[5];
-    IMetricStorage metricStorage = SpringService.getMetricStorage();
-    HostService hosts = SpringService.getHosts();
+    private  IMetricStorage metricStorage ;
+    private HostService hosts ;
 
     public HostRedactor() throws SQLException {
         super("Host Redactor");

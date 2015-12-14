@@ -19,11 +19,11 @@ import java.util.List;
 public class MainForm extends JFrame {
 
     private JPanel MForm;
+    private IMetricStorage metricStorage ;
 
     public MainForm() throws InterruptedException, SQLException {
         super("Monitoring");
         CoreBranch.run();
-        IMetricStorage metricStorage = SpringService.getMetricStorage();
         createDesign(metricStorage);
     }
 
