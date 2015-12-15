@@ -15,13 +15,13 @@ public interface IMetricStorage {
 
     //sql
     //metric-state
-    public void setFalseStateMetric(String startTime,int instMetric);
+    public void setErrStateMetric(String startTime,int instMetric);
 
 
     //host-state
     public boolean available(long hostId);
     public void notAvailableHost(String startTime, int host);
-    public void availableHost(String endTime, int host);
+    public void setAvailableHost(String endTime, int host);
 
 
     //values

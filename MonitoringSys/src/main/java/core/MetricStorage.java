@@ -4,6 +4,7 @@ package core;
 import core.configurations.SSHConfiguration;
 import core.interfaces.db.IMetricStorage;
 import core.models.InstanceMetric;
+import core.models.MetricState;
 import core.models.TemplateMetric;
 import core.models.Value;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,6 @@ import java.util.Map;
 @Repository
 @Service("MetricStorage")
 public  class MetricStorage implements IMetricStorage {
-    //@Autowired
-    //private DataSource dataSource;
 
     private JdbcTemplate jdbcTemplateObject;
 
@@ -38,7 +37,17 @@ public  class MetricStorage implements IMetricStorage {
 //sql
     //metric-state
     @Transactional
-    public void setFalseStateMetric(String startTime,int instMetric) {
+    public MetricState ololololo(long instMetric) {
+        MetricState metricState = new MetricState();
+        String sql = "select * FROM \"METRIC_STATE\" where id ="+instMetric;
+        List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
+        for (Map row : rows) {
+            metricState.setId((int) row.get("id"));
+        }
+        return metricState;
+}
+    @Transactional
+    public void setErrStateMetric(String startTime,int instMetric) {
         String sql = "INSERT INTO \"METRIC_STATE\"(start,state,inst_metric)  VALUES ((TIMESTAMP '" + startTime + "'),false," + instMetric + ")";
         jdbcTemplateObject.update(sql);
     }
@@ -47,25 +56,25 @@ public  class MetricStorage implements IMetricStorage {
     //host-state
     @Transactional
     public boolean available(long hostId) {//Нужен запрос на вывод состояния хоста
-        String sql = "SELECT id, state, start, \"end\", host  FROM \"HOST_STATE\" where host = "+hostId+" and \"end\" is null";
+        String sql = "SELECT id, resolved, start, \"end\", host  FROM \"HOST_STATE\" where host = "+hostId+" and \"end\" is null";
         boolean state =true;
         List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
         if (rows.isEmpty()) {
             return state;
         } else {
             for (Map row : rows) {
-                state = (boolean) row.get("state");
+                state = (boolean) row.get("resolved");
             }
         }
         return state;
     }
     @Transactional
     public void notAvailableHost(String startTime, int host) {
-        String sql = "INSERT INTO \"HOST_STATE\"(start,state,host)  VALUES ((TIMESTAMP '"+startTime+"'),false,"+host+")";
+        String sql = "INSERT INTO \"HOST_STATE\"(start,resolved,host)  VALUES ((TIMESTAMP '"+startTime+"'),false,"+host+")";
         jdbcTemplateObject.update(sql);
     }
     @Transactional
-    public void availableHost(String endTime, int host) {
+    public void setAvailableHost(String endTime, int host) {
         String sql = "UPDATE \"HOST_STATE\" SET \"end\" = (TIMESTAMP '"+endTime+"')  where host ="+host+" and \"end\" is null";
         jdbcTemplateObject.update(sql);
     }

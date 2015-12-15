@@ -1,6 +1,5 @@
 package core.branches;
 
-import core.SpringService;
 import core.agents.SSHAgent;
 import core.configurations.SSHConfiguration;
 import core.hibernate.services.HostService;
@@ -17,7 +16,9 @@ import java.util.Date;
 import java.util.TimerTask;
 
 public class ScheduledTask extends TimerTask {
+
     private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
     private final Logger logger = Logger.getLogger(ScheduledTask.class);
 
     private IMetricStorage metricStorage;
@@ -33,13 +34,14 @@ public class ScheduledTask extends TimerTask {
     @Scheduled(fixedDelay = 10000)
     @Override
     public void run() {
+        System.out.println("ScheduledTask");
         try {
             for (SSHConfiguration host : hosts.getAll()) {
                 SSHAgent sshAgent = new SSHAgent(host);
                 boolean available=metricStorage.available(host.getId());
                 if (sshAgent.connect()) {
                     if(!available) {//Если хост последний раз был не доступен, то выставляем дату окончания данного статуса
-                        metricStorage.availableHost(dateFormat.format(new Date()), host.getId());
+                        metricStorage.setAvailableHost(dateFormat.format(new Date()), host.getId());
                     }
                     for (InstanceMetric instanceMetric : metricStorage.getInstMetrics(host.getId())) {
                         double valueMetric = sshAgent.getMetricValue(instanceMetric);
@@ -49,7 +51,7 @@ public class ScheduledTask extends TimerTask {
                         }
                         else {
                             //статус метрики err
-
+                            metricStorage.setErrStateMetric(dateFormat.format(new Date()),instanceMetric.getId());
                         }
                     }
                 } else {
