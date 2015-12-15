@@ -38,25 +38,40 @@ public class ScheduledTask extends TimerTask {
         try {
             for (SSHConfiguration host : hosts.getAll()) {
                 SSHAgent sshAgent = new SSHAgent(host);
-                boolean available=metricStorage.available(host.getId());
+                boolean available=metricStorage.availableHost(host.getId());
                 if (sshAgent.connect()) {
                     if(!available) {//Если хост последний раз был не доступен, то выставляем дату окончания данного статуса
                         metricStorage.setAvailableHost(dateFormat.format(new Date()), host.getId());
                     }
-                    for (InstanceMetric instanceMetric : metricStorage.getInstMetrics(host.getId())) {
-                        double valueMetric = sshAgent.getMetricValue(instanceMetric);
+                    for (final InstanceMetric instanceMetric : metricStorage.getInstMetrics(host.getId())) {
+                        final String date = dateFormat.format(new Date());
+                        final double valueMetric = sshAgent.getMetricValue(instanceMetric);
+
                         if(valueMetric!=(Integer.MIN_VALUE)) {
-                            //logger.info("Insert to db row: (" + host.getId() + "," + instanceMetric.getId() + "," + valueMetric + "," + dateFormat.format(new Date()) + ")");
-                            metricStorage.addValue(host.getId(), instanceMetric.getId(), valueMetric, dateFormat.format(new Date()));
+                            System.out.println("oK!");
+                            Thread myThready = new Thread(new Runnable()
+                            {
+                                public void run()
+                                {
+                                    rageValue(valueMetric, instanceMetric, date);//min max
+                                }
+                            });
+                            myThready.start();
+
+                            if(!metricStorage.correctlyMetric(instanceMetric.getId()))                 //статус метрики OK
+                                metricStorage.setCorrectlyMetric(date, instanceMetric.getId());
+
+                            metricStorage.addValue(host.getId(), instanceMetric.getId(), valueMetric, date);
                         }
                         else {
-                            //статус метрики err
-                            metricStorage.setErrStateMetric(dateFormat.format(new Date()),instanceMetric.getId());
+                            System.out.println("unknow!");
+                            if(metricStorage.correctlyMetric(instanceMetric.getId()))              //статус метрики ERR
+                                metricStorage.setIncorrectlyMetric(date, instanceMetric.getId());
                         }
                     }
                 } else {
                     if(available) {//Если хост последний раз был доступен
-                        metricStorage.notAvailableHost(dateFormat.format(new Date()), host.getId());
+                        metricStorage.setNotAvailableHost(dateFormat.format(new Date()), host.getId());
                     }
                 }
             }
@@ -65,4 +80,28 @@ public class ScheduledTask extends TimerTask {
             e.printStackTrace();
         }
     }
+
+
+    private void rageValue(double valueMetric,InstanceMetric instanceMetric,String date) {
+        if (valueMetric > instanceMetric.getMaxValue()) {//MAX
+            if (metricStorage.overMaxValue(instanceMetric.getId())){
+                metricStorage.setOverMaxValue(date, instanceMetric.getId());
+                System.out.println("overMax");
+            }
+        }
+
+        if (valueMetric < instanceMetric.getMinValue()) {//MIN
+            if (metricStorage.lessMinValue(instanceMetric.getId())) {
+                metricStorage.setLessMinValue(date, instanceMetric.getId());
+                System.out.println("lessMin");
+            }
+        }
+
+        else//allowable
+        {
+            metricStorage.setAllowableValueMetric(date, instanceMetric.getId());
+            System.out.println("Allowable");
+        }
+    }
+
 }

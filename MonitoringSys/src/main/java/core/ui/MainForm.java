@@ -162,7 +162,7 @@ public class MainForm extends JFrame {
                     new Chart(title,idhost).setVisible(true);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog( panel, "Chart is not available");
+//                    JOptionPane.showMessageDialog( panel, "Chart is not adailable");
                 }
             }
         });

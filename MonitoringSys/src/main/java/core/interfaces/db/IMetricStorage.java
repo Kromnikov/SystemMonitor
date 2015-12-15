@@ -15,12 +15,22 @@ public interface IMetricStorage {
 
     //sql
     //metric-state
-    public void setErrStateMetric(String startTime,int instMetric);
+    public void setAllowableValueMetric(String endTime, int instMetric);
+
+    public boolean overMaxValue(long instMetric);
+    public void setOverMaxValue(String startTime, int instMetric);
+
+    public boolean lessMinValue(long instMetric);
+    public void setLessMinValue(String startTime, int instMetric);
+
+    public boolean correctlyMetric(long instMetric);
+    public void setCorrectlyMetric(String endTime, int instMetric);
+    public void setIncorrectlyMetric(String startTime, int instMetric);
 
 
     //host-state
-    public boolean available(long hostId);
-    public void notAvailableHost(String startTime, int host);
+    public boolean availableHost(long hostId);
+    public void setNotAvailableHost(String startTime, int host);
     public void setAvailableHost(String endTime, int host);
 
 
