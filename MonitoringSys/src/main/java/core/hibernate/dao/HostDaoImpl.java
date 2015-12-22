@@ -22,4 +22,9 @@ public class HostDaoImpl implements HostDao {
     public List<SSHConfiguration> getAll() {
         return em.createQuery("from SSHConfiguration", SSHConfiguration.class).getResultList();
     }
+
+    @Override
+    public void remove(SSHConfiguration content) {
+        em.remove(content);
+    }
 }

@@ -2,8 +2,8 @@ package core.agents;
 
 
 import com.jcraft.jsch.*;
-import core.models.Metric;
 import core.configurations.SSHConfiguration;
+import core.models.InstanceMetric;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,7 +34,7 @@ public class SSHAgent {
             session = jsch.getSession(configuration.getLogin(), configuration.getHost(), configuration.getPort());
             session.setPassword(configuration.getPassword());
             session.setConfig(config);
-            session.connect();
+                session.connect();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -42,11 +42,11 @@ public class SSHAgent {
         return true;
     }
 
-    public double getMetricValue(Metric metric) {
+    public double getMetricValue(InstanceMetric instanceMetric) {
         try {
             this.channel = session.openChannel("exec");
-            ((ChannelExec) channel).setCommand(metric.getCommand());
-//            channel.setInputStream(null);
+            ((ChannelExec) channel).setCommand(instanceMetric.getCommand());
+            channel.setInputStream(null);
 //            ((ChannelExec) channel).setErrStream(System.err);
             in = channel.getInputStream();
             channel.connect();
@@ -54,7 +54,8 @@ public class SSHAgent {
             return getMetricValue();
         } catch (JSchException e) {
             e.printStackTrace();
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
         return 0;
@@ -72,11 +73,10 @@ public class SSHAgent {
             byte[] tmp = new byte[1024];
             double result = 0;
             while (true) {
-                while (in.available() > 0) {
                     int i = in.read(tmp, 0, 1024);
-                    if (i < 0) return 0;
+                    if (i < 0) return Integer.MIN_VALUE;
                     return summRows(Arrays.copyOfRange(tmp, 0, i));
-                }
+//                }
             }
         } catch (Exception ee) {
             System.out.println("???????? ?????? = null");

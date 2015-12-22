@@ -1,12 +1,13 @@
 package core.branches;
 
-import core.SpringService;
 import core.agents.SSHAgent;
 import core.configurations.SSHConfiguration;
 import core.hibernate.services.HostService;
 import core.interfaces.db.IMetricStorage;
-import core.models.Metric;
+import core.models.InstanceMetric;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -15,28 +16,92 @@ import java.util.Date;
 import java.util.TimerTask;
 
 public class ScheduledTask extends TimerTask {
-    private static SSHAgent sshAgent;
-    private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    private static final Logger logger = Logger.getLogger(ScheduledTask.class);
 
+    private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+    private final Logger logger = Logger.getLogger(ScheduledTask.class);
+
+    private IMetricStorage metricStorage;
+
+    private HostService hosts;
+
+    @Autowired
+    public ScheduledTask(IMetricStorage metricStorage,HostService hosts) {
+        this.hosts=hosts;
+        this.metricStorage=metricStorage;
+    }
+
+    @Scheduled(fixedDelay = 10000)
     @Override
     public void run() {
+        System.out.println("ScheduledTask");
         try {
-            IMetricStorage metricStorage =SpringService.getMetricStorage();
-            HostService hosts = SpringService.getHosts();
-            SSHAgent sshAgent;
-            for (SSHConfiguration host : hosts.getAll() ) {
-                sshAgent = new SSHAgent(host);
+            for (SSHConfiguration host : hosts.getAll()) {
+                SSHAgent sshAgent = new SSHAgent(host);
+                boolean available=metricStorage.availableHost(host.getId());
                 if (sshAgent.connect()) {
-                    for (Metric metric :metricStorage.getMetricsByHostId(host.getId())) {
-//                        System.out.println(host.getId() + "////" + metric.getTitle() + ":" + metric.getId() + "////" + sshAgent.getMetricValue(metric));
-                        logger.info("Insert to db row: ("+host.getId()+","+ metric.getId()+","+ sshAgent.getMetricValue(metric)+","+ dateFormat.format(new Date())+")");
-                        metricStorage.addValue(host.getId(), metric.getId(), sshAgent.getMetricValue(metric), dateFormat.format(new Date()));
+                    if(!available) {//Если хост последний раз был не доступен, то выставляем дату окончания данного статуса
+                        metricStorage.setAvailableHost(dateFormat.format(new Date()), host.getId());
+                    }
+                    for (final InstanceMetric instanceMetric : metricStorage.getInstMetrics(host.getId())) {
+                        final String date = dateFormat.format(new Date());
+                        final double valueMetric = sshAgent.getMetricValue(instanceMetric);
+
+                        if(valueMetric!=(Integer.MIN_VALUE)) {
+                            System.out.println("oK!");
+                            Thread myThready = new Thread(new Runnable()
+                            {
+                                public void run()
+                                {
+                                    rageValue(valueMetric, instanceMetric, date);//min max
+                                }
+                            });
+                            myThready.start();
+
+                            if(!metricStorage.correctlyMetric(instanceMetric.getId()))                 //статус метрики OK
+                                metricStorage.setCorrectlyMetric(date, instanceMetric.getId());
+
+                            metricStorage.addValue(host.getId(), instanceMetric.getId(), valueMetric, date);
+                        }
+                        else {
+                            System.out.println("unknow!");
+                            if(metricStorage.correctlyMetric(instanceMetric.getId()))              //статус метрики ERR
+                                metricStorage.setIncorrectlyMetric(date, instanceMetric.getId());
+                        }
+                    }
+                } else {
+                    if(available) {//Если хост последний раз был доступен
+                        metricStorage.setNotAvailableHost(dateFormat.format(new Date()), host.getId());
                     }
                 }
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+
+    private void rageValue(double valueMetric,InstanceMetric instanceMetric,String date) {
+        if (valueMetric > instanceMetric.getMaxValue()) {//MAX
+            if (metricStorage.overMaxValue(instanceMetric.getId())){
+                metricStorage.setOverMaxValue(date, instanceMetric.getId());
+                System.out.println("overMax");
+            }
+        }
+
+        if (valueMetric < instanceMetric.getMinValue()) {//MIN
+            if (metricStorage.lessMinValue(instanceMetric.getId())) {
+                metricStorage.setLessMinValue(date, instanceMetric.getId());
+                System.out.println("lessMin");
+            }
+        }
+
+        else//allowable
+        {
+            metricStorage.setAllowableValueMetric(date, instanceMetric.getId());
+            System.out.println("Allowable");
+        }
+    }
+
 }

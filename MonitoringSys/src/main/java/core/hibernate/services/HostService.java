@@ -22,5 +22,6 @@ public interface HostService {
      */
     public List<SSHConfiguration> getAll();
 
+    public void remove(SSHConfiguration content);
 
 }

@@ -1,13 +1,14 @@
-package core.ui;
+package ui;
 
+import core.MetricStorage;
 import core.SpringService;
 import core.branches.CoreBranch;
 import core.configurations.SSHConfiguration;
 import core.hibernate.services.HostService;
+import core.hibernate.services.HostServiceImpl;
 import core.interfaces.db.IMetricStorage;
-import core.models.Metric;
+import core.models.InstanceMetric;
 import core.models.Value;
-import core.ui.tools.TypeOfMetric;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -15,7 +16,10 @@ import org.jfree.data.time.Hour;
 import org.jfree.data.time.Minute;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.activation.DataSource;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -23,7 +27,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.*;
 import java.util.List;
 
 /**
@@ -32,13 +35,13 @@ import java.util.List;
 public class MainForm extends JFrame {
 
     private JPanel MForm;
-
+    @Autowired
+    MetricStorage metricStorage;
     public MainForm() throws InterruptedException, SQLException {
         super("Monitoring");
         CoreBranch.run();
         final JPanel panel = new JPanel();
-        IMetricStorage metricStorage = SpringService.getMetricStorage();
-        createDesign(metricStorage,panel);
+        createDesign(panel);
 
     }
 
@@ -117,7 +120,7 @@ public class MainForm extends JFrame {
     }
 
 
-    public void createDesign(final IMetricStorage metricStorage,final JPanel panel) throws SQLException {
+    public void createDesign(final JPanel panel) throws SQLException {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel.setLayout(null);
 
@@ -135,9 +138,12 @@ public class MainForm extends JFrame {
         int i;
         panel.setLayout(null);
         final DefaultListModel listModel = new DefaultListModel();
-        List<String> hosts;
-        hosts = metricStorage.getListIP();//список хостов
-        for (String host:hosts) {
+        //HostService hostsser = SpringService.getHosts();
+        HostServiceImpl hostService = new HostServiceImpl();
+        List<SSHConfiguration> hosts;
+        hosts=hostService.getAll(); //список хостов
+
+        for (SSHConfiguration host:hosts) {
             listModel.addElement(host);
         }
         final JList list = new JList(listModel);//получаем лист хостов
@@ -147,12 +153,12 @@ public class MainForm extends JFrame {
         //
         //
         final DefaultListModel listModelMetric = new DefaultListModel();
-        final java.util.List<Metric> metrics;
+        final List<InstanceMetric> metrics;
         i = list.getSelectedIndex();
         String host = (String) listModel.get(i);
         int id = metricStorage.getHostIDbyTitle(host);
-        metrics=metricStorage.getMetricsByHostId(id);
-        for (Metric metric: metrics){
+        metrics=metricStorage.getInstMetrics(id);
+        for (InstanceMetric metric: metrics){
             listModelMetric.addElement(metric.getTitle());
         }
         final JList listmetric = new JList(listModelMetric);
@@ -203,15 +209,15 @@ public class MainForm extends JFrame {
                 int id;
                 int i = list.getSelectedIndex();
                 host = (String) listModel.get(i);
-                java.util.List<Metric> metrics = null;
+                List<InstanceMetric> metrics = null;
                 try {
                     id = metricStorage.getHostIDbyTitle(host);
-                    metrics=metricStorage.getMetricsByHostId(id);
+                    metrics=metricStorage.getInstMetrics(id);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
                 listModelMetric.removeAllElements();
-                for (Metric metric: metrics){
+                for (InstanceMetric metric: metrics){
                     listModelMetric.addElement(metric.getTitle());
                 }
                 listmetric.setSelectedIndex(0);
@@ -257,7 +263,7 @@ public class MainForm extends JFrame {
 
     }
 
-    public static ChartPanel drawChar(IMetricStorage metricStorage,int metricID) throws SQLException {
+    public static ChartPanel drawChar(IMetricStorage metricStorage, int metricID) throws SQLException {
         double value;
         TimeSeries series = new TimeSeries("Metric", Minute.class);
         Hour hour = new Hour();

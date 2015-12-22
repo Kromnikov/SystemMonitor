@@ -1,9 +1,12 @@
-package core.ui;
+package ui;
 
+import core.MetricStorage;
 import core.SpringService;
 import core.configurations.SSHConfiguration;
 import core.hibernate.services.HostService;
+import core.hibernate.services.HostServiceImpl;
 import core.interfaces.db.IMetricStorage;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,10 +19,11 @@ import java.sql.SQLException;
  */
 public class ConForm extends JFrame {
     private int i = 0;
-
+    @Autowired
+    MetricStorage metricStorage;
     public ConForm() {
         super("Connection");
-        final HostService hosts = SpringService.getHosts();
+        final HostServiceImpl hosts = new HostServiceImpl();
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         JPanel panel = new JPanel();
         JLabel jLabel1 = new JLabel("Login");
@@ -74,7 +78,8 @@ public class ConForm extends JFrame {
 
                 try {
                     hosts.save(sshconfig);
-                    ConForm.addStandartParametrs(IP);
+                    int id =  metricStorage.getHostIDbyTitle(IP);
+                    metricStorage.addStandartMetrics(id);
                 } catch (SQLException e1) {
                     JOptionPane.showMessageDialog( null, "User has not been connected!");
                     e1.printStackTrace();
@@ -97,11 +102,7 @@ public class ConForm extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
     }
-    public static void addStandartParametrs(String IP) throws SQLException {
-        IMetricStorage metricStorage = SpringService.getMetricStorage();
-        int id =  metricStorage.getHostIDbyTitle(IP);
-        metricStorage.addStandartMetrics(id);
-    }
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {

@@ -24,7 +24,6 @@ public class SSHConfiguration {
     @Column(name = "password")
     private String password;
 
-
     public SSHConfiguration() {
 
     }
@@ -80,5 +79,4 @@ public class SSHConfiguration {
     public void setPassword(String pass) {
         this.password = pass;
     }
-
 }

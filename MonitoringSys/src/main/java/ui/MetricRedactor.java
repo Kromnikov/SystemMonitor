@@ -1,17 +1,20 @@
-package core.ui;
+package ui;
 
+import core.MetricStorage;
 import core.SpringService;
-import core.configurations.SSHConfiguration;
 import core.hibernate.services.HostService;
+import core.hibernate.services.HostServiceImpl;
 import core.interfaces.db.IMetricStorage;
-import core.models.Metric;
+import core.models.InstanceMetric;
+import core.models.TemplateMetric;
+import org.springframework.beans.factory.annotation.Autowired;
+
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.*;
 import java.util.List;
 
 /**
@@ -19,30 +22,31 @@ import java.util.List;
  */
 public class MetricRedactor extends JFrame {
     private int i = 0;
-    IMetricStorage metricStorage = SpringService.getMetricStorage();
-    HostService hostsser = SpringService.getHosts();
-
+    @Autowired
+    MetricStorage metricStorage;
     public MetricRedactor() throws SQLException {
         super("Metric's redactor");
-        final HostService hosts = SpringService.getHosts();
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        createGUI();
+    }
 
-//--------Кнопки и текстбоксы для ввода информации
+    //--------Кнопки и текстбоксы для ввода информации
+    public void createGUI() throws SQLException {
         final JPanel panel = new JPanel();
         JLabel jLabel1 = new JLabel("Command");
-        jLabel1.setBounds(10,10,100,20);
+        jLabel1.setBounds(10, 10, 100, 20);
         panel.add(jLabel1);
         final JTextField jTextMetricCommand = new JTextField();
-        jTextMetricCommand.setBounds(80,10,140,20);
+        jTextMetricCommand.setBounds(80, 10, 140, 20);
         panel.add(jTextMetricCommand);
         panel.setLayout(null);
 
 
         JLabel jLabel2 = new JLabel("Title");
-        jLabel2.setBounds(10,35,100,20);
+        jLabel2.setBounds(10, 35, 100, 20);
         panel.add(jLabel2);
         final JTextField jTextMetricTitle = new JTextField();
-        jTextMetricTitle.setBounds(80,35,140,20);
+        jTextMetricTitle.setBounds(80, 35, 140, 20);
         panel.add(jTextMetricTitle);
         panel.setLayout(null);
 
@@ -55,34 +59,34 @@ public class MetricRedactor extends JFrame {
 
         JLabel label1 = new JLabel("Title");
         JLabel label2 = new JLabel("Command");
-        label1.setBounds(10,100,100,20);
-        label2.setBounds(120,100,100,20);
+        label1.setBounds(10, 100, 100, 20);
+        label2.setBounds(120, 100, 100, 20);
         panel.add(label1);
         panel.add(label2);
 //--------Список названий метрик
         final DefaultListModel listModel = new DefaultListModel();
-        List<Metric> metricList;
-        metricList = metricStorage.geAllMetrics();
-        for (Metric m:metricList) {
+        List<TemplateMetric> metricList;
+        metricList = metricStorage.getTemplatMetrics();
+        for (TemplateMetric m : metricList) {
             listModel.addElement(m.getTitle());
         }
         final JList list = new JList(listModel);
         list.setSelectedIndex(0);
         list.setFocusable(false);
-        list.setBounds(10,120,100,200);
+        list.setBounds(10, 120, 100, 200);
         panel.add(list);
 
 
         final DefaultListModel listModel1 = new DefaultListModel();
-        List<Metric> metricList1;
-        metricList = metricStorage.geAllMetrics();
-        for (Metric m:metricList) {
+        List<TemplateMetric> metricList1;
+        metricList = metricStorage.getTemplatMetrics();
+        for (TemplateMetric m : metricList) {
             listModel1.addElement(m.getCommand());
         }
         final JList list1 = new JList(listModel1);
         list.setSelectedIndex(0);
         list.setFocusable(false);
-        list1.setBounds(120,120,100,200);
+        list1.setBounds(120, 120, 100, 200);
         panel.add(list1);
         getContentPane().add(panel);
 
@@ -101,7 +105,7 @@ public class MetricRedactor extends JFrame {
                 try {
                     comTitle = jTextMetricTitle.getText();
                     comCommand = jTextMetricCommand.getText();
-                    metricStorage.addMetric(comTitle, comCommand);
+                    metricStorage.addTemplateMetric(comTitle, comCommand);
                     listModel.addElement(comTitle);
                     listModel1.addElement(comCommand);
 
@@ -116,13 +120,14 @@ public class MetricRedactor extends JFrame {
         button2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String title;
-                int i=list.getSelectedIndex();
+                int i = list.getSelectedIndex();
                 title = (String) listModel.get(i);
                 try {
-                    metricStorage.delMetric(title);
+                    int id = metricStorage.getTemplatMetricID(title);
+                    metricStorage.delMetricFromHost(id);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog( panel, "This host has not been added");
+                    JOptionPane.showMessageDialog(panel, "This host has not been added");
                 }
                 int j = list.getSelectedIndex();
                 listModel.remove(j);

@@ -1,10 +1,11 @@
-package core.ui;
+package ui;
 
+import core.MetricStorage;
 import core.SpringService;
-import core.hibernate.services.HostService;
 import core.interfaces.db.IMetricStorage;
 import core.models.Value;
-import core.ui.tools.TypeOfMetric;
+import org.springframework.beans.factory.annotation.Autowired;
+import ui.tools.TypeOfMetric;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -15,7 +16,6 @@ import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.ui.ApplicationFrame;
 
 import javax.swing.*;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -23,9 +23,8 @@ import java.util.List;
  * Created by ANTON on 06.12.2015.
  */
 public class Chart extends JFrame {
-
-    IMetricStorage metricStorage = SpringService.getMetricStorage();
-
+    @Autowired
+    MetricStorage metricStorage;
     public Chart() {
         super("");
         set();

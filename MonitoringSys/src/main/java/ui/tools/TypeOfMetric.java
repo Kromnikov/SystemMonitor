@@ -1,4 +1,4 @@
-package core.ui.tools;
+package ui.tools;
 
 /**
  * Created by ANTON on 09.12.2015.
