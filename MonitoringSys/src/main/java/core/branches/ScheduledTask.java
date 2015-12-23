@@ -48,7 +48,6 @@ public class ScheduledTask extends TimerTask {
                         final double valueMetric = sshAgent.getMetricValue(instanceMetric);
 
                         if(valueMetric!=(Integer.MIN_VALUE)) {
-                            System.out.println("oK!");
                             Thread myThready = new Thread(new Runnable()
                             {
                                 public void run()
@@ -64,7 +63,7 @@ public class ScheduledTask extends TimerTask {
                             metricStorage.addValue(host.getId(), instanceMetric.getId(), valueMetric, date);
                         }
                         else {
-                            System.out.println("unknow!");
+                            System.out.println(instanceMetric.getTitle()+"-->unknow!");
                             if(metricStorage.correctlyMetric(instanceMetric.getId()))              //статус метрики ERR
                                 metricStorage.setIncorrectlyMetric(date, instanceMetric.getId());
                         }
@@ -83,25 +82,34 @@ public class ScheduledTask extends TimerTask {
 
 
     private void rageValue(double valueMetric,InstanceMetric instanceMetric,String date) {
+        boolean allowable=true;
         if (valueMetric > instanceMetric.getMaxValue()) {//MAX
-            if (metricStorage.overMaxValue(instanceMetric.getId())){
+            allowable = false;
+            if (metricStorage.overMaxValue(instanceMetric.getId())) {
                 metricStorage.setOverMaxValue(date, instanceMetric.getId());
-                System.out.println("overMax");
+                System.out.println(instanceMetric.getTitle() + "-->overMax");
             }
+        } else {//allowable max value
+            if (!metricStorage.overMaxValue(instanceMetric.getId()))
+                metricStorage.setAllowableMaxValue(date, instanceMetric.getId());
         }
 
         if (valueMetric < instanceMetric.getMinValue()) {//MIN
+            allowable = false;
             if (metricStorage.lessMinValue(instanceMetric.getId())) {
                 metricStorage.setLessMinValue(date, instanceMetric.getId());
-                System.out.println("lessMin");
+                System.out.println(instanceMetric.getTitle() + "-->lessMin");
             }
+        } else {//allowable min value
+            if (!metricStorage.lessMinValue(instanceMetric.getId()))
+                metricStorage.setAllowableMinValue(date, instanceMetric.getId());
         }
 
-        else//allowable
-        {
-            metricStorage.setAllowableValueMetric(date, instanceMetric.getId());
-            System.out.println("Allowable");
-        }
+//        if(allowable)//allowable
+//        {
+//            metricStorage.setAllowableValueMetric(date, instanceMetric.getId());
+//            System.out.println(instanceMetric.getTitle()+"-->Allowable");
+//        }
     }
 
 }

@@ -4,7 +4,6 @@ package core;
 import core.configurations.SSHConfiguration;
 import core.interfaces.db.IMetricStorage;
 import core.models.InstanceMetric;
-import core.models.MetricState;
 import core.models.TemplateMetric;
 import core.models.Value;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +23,7 @@ import java.util.Map;
 @Repository
 @Service("MetricStorage")
 public  class MetricStorage implements IMetricStorage {
+//SELECT id, host, metric, value, date_time FROM "VALUE_METRIC" where date_time between  '2015-12-17 21:44:00' and '2015-12-17 21:44:59' and metric = 3
 
     private JdbcTemplate jdbcTemplateObject;
 
@@ -36,15 +36,15 @@ public  class MetricStorage implements IMetricStorage {
 
     //sql
     //metric-state
-    @Transactional
-    public void setAllowableValueMetric(String endTime, int instMetric) {
-        String sql = "UPDATE \"METRIC_STATE\" SET \"end\" = (TIMESTAMP '"+endTime+"')  where (state='overMaxValue' or state='lessMinValue') and  inst_metric ="+instMetric+" and \"end\" is null";
-        jdbcTemplateObject.update(sql);
-    }
+//    @Transactional
+//    public void setAllowableValueMetric(String endTime, int instMetric) {
+//        String sql = "UPDATE \"METRIC_STATE\" SET \"end_datetime\" = (TIMESTAMP '"+endTime+"')  where (state='overMaxValue' or state='lessMinValue') and  inst_metric ="+instMetric+" and \"end_datetime\" is null";
+//        jdbcTemplateObject.update(sql);
+//    }
 
     @Transactional //MAX
     public boolean overMaxValue(long instMetric) {
-        String sql = "SELECT id, state, start, \"end\", inst_metric  FROM \"METRIC_STATE\" where state='overMaxValue' and inst_metric =" + instMetric + " and \"end\" is null";
+        String sql = "SELECT id, state, start_datetime, \"end_datetime\", inst_metric  FROM \"METRIC_STATE\" where state='overMaxValue' and inst_metric =" + instMetric + " and \"end_datetime\" is null";
         boolean state = true;
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         if (rows.isEmpty()) {
@@ -53,17 +53,20 @@ public  class MetricStorage implements IMetricStorage {
             return false;
         }
     }
-
     @Transactional
     public void setOverMaxValue(String startTime, int instMetric) {
-        String sql = "INSERT INTO \"METRIC_STATE\"(start,state,inst_metric,resolved)  VALUES ((TIMESTAMP '" + startTime + "'),'overMaxValue'," + instMetric + ",false)";
+        String sql = "INSERT INTO \"METRIC_STATE\"(start_datetime,state,inst_metric,resolved)  VALUES ((TIMESTAMP '" + startTime + "'),'overMaxValue'," + instMetric + ",false)";
+        jdbcTemplateObject.update(sql);
+    }
+    @Transactional
+    public void setAllowableMaxValue(String endTime, int instMetric) {
+        String sql = "UPDATE \"METRIC_STATE\" SET \"end_datetime\" = (TIMESTAMP '"+endTime+"')  where (state='overMaxValue') and  inst_metric ="+instMetric+" and \"end_datetime\" is null";
         jdbcTemplateObject.update(sql);
     }
 
-
     @Transactional //MIN
     public boolean lessMinValue(long instMetric) {
-        String sql = "SELECT id, state, start, \"end\", inst_metric  FROM \"METRIC_STATE\" where state='lessMinValue' and inst_metric =" + instMetric + " and \"end\" is null";
+        String sql = "SELECT id, state, start_datetime, \"end_datetime\", inst_metric  FROM \"METRIC_STATE\" where state='lessMinValue' and inst_metric =" + instMetric + " and \"end_datetime\" is null";
         boolean state = true;
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         if (rows.isEmpty()) {
@@ -74,13 +77,19 @@ public  class MetricStorage implements IMetricStorage {
     }
     @Transactional  //MIN
     public void setLessMinValue(String startTime, int instMetric) {
-        String sql = "INSERT INTO \"METRIC_STATE\"(start,state,inst_metric,resolved)  VALUES ((TIMESTAMP '" + startTime + "'),'lessMinValue'," + instMetric + ",false)";
+        String sql = "INSERT INTO \"METRIC_STATE\"(start_datetime,state,inst_metric,resolved)  VALUES ((TIMESTAMP '" + startTime + "'),'lessMinValue'," + instMetric + ",false)";
+        jdbcTemplateObject.update(sql);
+    }
+    @Transactional
+    public void setAllowableMinValue(String endTime, int instMetric) {
+        String sql = "UPDATE \"METRIC_STATE\" SET \"end_datetime\" = (TIMESTAMP '"+endTime+"')  where (state='lessMinValue') and  inst_metric ="+instMetric+" and \"end_datetime\" is null";
         jdbcTemplateObject.update(sql);
     }
 
+
     @Transactional
     public boolean correctlyMetric(long instMetric) {
-        String sql = "SELECT id, state, start, \"end\", inst_metric  FROM \"METRIC_STATE\" where state='unknow' and inst_metric ="+instMetric+" and \"end\" is null";
+        String sql = "SELECT id, state, start_datetime, \"end_datetime\", inst_metric  FROM \"METRIC_STATE\" where state='unknow' and inst_metric ="+instMetric+" and \"end_datetime\" is null";
         boolean state =true;
         List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
         if (rows.isEmpty()) {
@@ -91,12 +100,12 @@ public  class MetricStorage implements IMetricStorage {
 }
     @Transactional
     public void setCorrectlyMetric(String endTime, int instMetric) {
-        String sql = "UPDATE \"METRIC_STATE\" SET \"end\" = (TIMESTAMP '"+endTime+"')  where state='unknow' and  inst_metric ="+instMetric+" and \"end\" is null";
+        String sql = "UPDATE \"METRIC_STATE\" SET \"end_datetime\" = (TIMESTAMP '"+endTime+"')  where state='unknow' and  inst_metric ="+instMetric+" and \"end_datetime\" is null";
         jdbcTemplateObject.update(sql);
     }
     @Transactional
     public void setIncorrectlyMetric(String startTime, int instMetric) {
-        String sql = "INSERT INTO \"METRIC_STATE\"(start,state,inst_metric,resolved)  VALUES ((TIMESTAMP '" + startTime + "'),'unknow'," + instMetric + ",false)";
+        String sql = "INSERT INTO \"METRIC_STATE\"(start_datetime,state,inst_metric,resolved)  VALUES ((TIMESTAMP '" + startTime + "'),'unknow'," + instMetric + ",false)";
         jdbcTemplateObject.update(sql);
     }
 
@@ -104,7 +113,7 @@ public  class MetricStorage implements IMetricStorage {
     //host-state
     @Transactional
     public boolean availableHost(long hostId) {//Нужен запрос на вывод состояния хоста
-        String sql = "SELECT id, resolved, start, \"end\", host  FROM \"HOST_STATE\" where host = "+hostId+" and \"end\" is null";
+        String sql = "SELECT id, resolved, start_datetime, \"end_datetime\", host  FROM \"HOST_STATE\" where host = "+hostId+" and \"end_datetime\" is null";
         boolean state =true;
         List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
         if (rows.isEmpty()) {
@@ -118,12 +127,12 @@ public  class MetricStorage implements IMetricStorage {
     }
     @Transactional
     public void setNotAvailableHost(String startTime, int host) {
-        String sql = "INSERT INTO \"HOST_STATE\"(start,resolved,host)  VALUES ((TIMESTAMP '"+startTime+"'),false,"+host+")";
+        String sql = "INSERT INTO \"HOST_STATE\"(start_datetime,resolved,host)  VALUES ((TIMESTAMP '"+startTime+"'),false,"+host+")";
         jdbcTemplateObject.update(sql);
     }
     @Transactional
     public void setAvailableHost(String endTime, int host) {
-        String sql = "UPDATE \"HOST_STATE\" SET \"end\" = (TIMESTAMP '"+endTime+"')  where host ="+host+" and \"end\" is null";
+        String sql = "UPDATE \"HOST_STATE\" SET \"end_datetime\" = (TIMESTAMP '"+endTime+"')  where host ="+host+" and \"end_datetime\" is null";
         jdbcTemplateObject.update(sql);
     }
 
