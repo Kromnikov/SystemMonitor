@@ -1,14 +1,10 @@
-import core.SpringService;
-import core.agents.SSHAgent;
-import core.branches.CoreBranch;
-import core.interfaces.db.IMetricStorage;
+import com.core.SpringService;
+import com.core.agents.SSHAgent;
 import org.hibernate.Session;
 import org.hsqldb.HsqlException;
 
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.List;
 
 public class main {
     private static Session session;
@@ -17,7 +13,7 @@ public class main {
     public static void main(String args[]) throws Exception {
 
         try {
-            CoreBranch.run();
+            SpringService.run();
         }catch (HsqlException sqlerr) {
             return;
         }
