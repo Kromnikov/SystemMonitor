@@ -33,7 +33,7 @@ public class ScheduledTask extends TimerTask {
         this.metricStorage=metricStorage;
     }
 
-    @Scheduled(fixedDelay = 10000)
+//    @Scheduled(fixedDelay = 10000)
     @Override
     public void run() {
         System.out.println("ScheduledTask");
@@ -48,7 +48,6 @@ public class ScheduledTask extends TimerTask {
                     for (final InstanceMetric instanceMetric : metricStorage.getInstMetrics(host.getId())) {
                         final String date = dateFormat.format(new Date());
                         final double valueMetric = sshAgent.getMetricValue(instanceMetric);
-
                         if(valueMetric!=(Integer.MIN_VALUE)) {
                             System.out.println("oK!");
                             Thread myThready = new Thread(new Runnable()

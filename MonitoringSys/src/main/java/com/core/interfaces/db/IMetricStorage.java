@@ -4,6 +4,7 @@ import core.configurations.SSHConfiguration;
 import com.core.models.InstanceMetric;
 import com.core.models.TemplateMetric;
 import com.core.models.Value;
+import java.util.Date;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -38,6 +39,7 @@ public interface IMetricStorage {
     public void addValue(int host, int metric, double value,String dateTime) throws SQLException ;
 //    public List<Double> getAllValueMetricOnHost(int id) throws SQLException;
     public List<Value> getValues(int host_id,int metricId) throws SQLException ;
+    public List<Value> getValuesLastHour(int host_id, int metricId, Date dateTime);
 //
 //    //metrics
     public void addTemplateMetric(String title, String query) throws SQLException;

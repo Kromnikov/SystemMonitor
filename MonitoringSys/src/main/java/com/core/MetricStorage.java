@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -32,8 +33,6 @@ public  class MetricStorage implements IMetricStorage {
     public MetricStorage(DataSource dataSource) {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
-
-
 
 
     //sql
@@ -149,6 +148,39 @@ public  class MetricStorage implements IMetricStorage {
                                     ));
         }
         return values;
+    }
+    @Transactional
+    public List<Value> getValuesLastHour(int host_id,int metricId,Date dateTime) {
+        List<Value> values = new ArrayList<>();
+        Date nDate = (Date)dateTime.clone();
+        nDate.setHours(dateTime.getHours()-1);
+        String sql = "SELECT avg(value),date_time FROM \"VALUE_METRIC\"  where date_time between  '"+dateFormat.format(nDate)+"' and '"+dateFormat.format(dateTime)+"' and metric = "+metricId+" and host = "+host_id+"  GROUP BY  date_time  order by date_time ";
+        List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
+        for (Map row : rows) {
+            values.add(
+                    new Value(
+                            ((double)row.get("avg")),
+                            new java.util.Date( ((java.sql.Timestamp)row.get("date_time")).getTime() )
+                    ));
+        }
+        double sumValues = 0,countValues = 0;
+        sumValues += values.get(0).getValue();
+        countValues++;
+        for (int i = 1; i < values.size(); i++) {
+            if ((values.get(i).getDateTime().getHours() == values.get(i - 1).getDateTime().getHours()) & (values.get(i).getDateTime().getMinutes() == values.get(i - 1).getDateTime().getMinutes())) {
+//                if (values.get(i).getDateTime().getMinutes() == values.get(i - 1).getDateTime().getMinutes()) {
+                sumValues += values.get(i).getValue();
+                countValues++;
+//                }
+            } else {
+
+            }
+        }
+
+
+
+
+        return  values;
     }
 
 

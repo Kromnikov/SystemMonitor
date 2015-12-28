@@ -43,37 +43,73 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="UIRunner.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/UIRunner.java">
+      <file leaf-file-name="IMetricStorage.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/core/interfaces/db/IMetricStorage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="219" max-vertical-offset="765">
-              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1326">
+              <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainForm.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/ui/MainForm.java">
+      <file leaf-file-name="MetricStorage.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/core/MetricStorage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4590" max-vertical-offset="5423">
-              <caret line="274" column="0" selection-start-line="274" selection-start-column="0" selection-end-line="274" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.405436" vertical-offset="900" max-vertical-offset="4097">
+              <caret line="170" column="31" selection-start-line="170" selection-start-column="31" selection-end-line="170" selection-end-column="31" />
               <folding>
-                <element signature="e#2648#2649#0" expanded="false" />
-                <element signature="e#2710#2711#0" expanded="false" />
-                <element signature="e#3896#3897#0" expanded="false" />
-                <element signature="e#3942#3943#0" expanded="false" />
+                <element signature="e#716#727#0" expanded="false" />
+                <element signature="method#setAllowableValueMetric#0;class#MetricStorage#0" expanded="false" />
+                <element signature="method#overMaxValue#0;class#MetricStorage#0" expanded="false" />
+                <element signature="method#setOverMaxValue#0;class#MetricStorage#0" expanded="false" />
+                <element signature="method#lessMinValue#0;class#MetricStorage#0" expanded="false" />
+                <element signature="method#setLessMinValue#0;class#MetricStorage#0" expanded="false" />
+                <element signature="method#correctlyMetric#0;class#MetricStorage#0" expanded="false" />
+                <element signature="method#setCorrectlyMetric#0;class#MetricStorage#0" expanded="false" />
+                <element signature="method#setIncorrectlyMetric#0;class#MetricStorage#0" expanded="false" />
+                <element signature="method#availableHost#0;class#MetricStorage#0" expanded="false" />
+                <element signature="method#setNotAvailableHost#0;class#MetricStorage#0" expanded="false" />
+                <element signature="method#setAvailableHost#0;class#MetricStorage#0" expanded="false" />
+                <element signature="method#addValue#0;class#MetricStorage#0" expanded="false" />
+                <element signature="method#getValues#0;class#MetricStorage#0" expanded="false" />
+                <element signature="method#delHost#0;class#MetricStorage#0" expanded="false" />
+                <marker date="1451313018599" expanded="false" signature="1227:1415" placeholder="UPDATE \&quot;MET..." />
+                <marker date="1451313018599" expanded="false" signature="1563:1741" placeholder="SELECT id, s..METRIC_STATE..." />
+                <marker date="1451313018599" expanded="false" signature="2078:2231" placeholder="INSERT INTO ..." />
+                <marker date="1451313018599" expanded="false" signature="2380:2558" placeholder="SELECT id, s..METRIC_STATE..." />
+                <marker date="1451313018599" expanded="false" signature="2901:3054" placeholder="INSERT INTO ..." />
+                <marker date="1451313018599" expanded="false" signature="3199:3367" placeholder="SELECT id, s..METRIC_STATE..." />
+                <marker date="1451313018599" expanded="false" signature="3698:3854" placeholder="UPDATE \&quot;MET..." />
+                <marker date="1451313018599" expanded="false" signature="4017:4164" placeholder="INSERT INTO ..." />
+                <marker date="1451313018599" expanded="false" signature="4360:4493" placeholder="SELECT id, r..HOST_STATE..." />
+                <marker date="1451313018599" expanded="false" signature="4925:5034" placeholder="INSERT INTO ..." />
+                <marker date="1451313018599" expanded="false" signature="5185:5306" placeholder="UPDATE \&quot;HOS..." />
+                <marker date="1451313018599" expanded="false" signature="5510:5636" placeholder="INSERT INTO ..." />
+                <marker date="1451313018599" expanded="false" signature="5855:5938" placeholder="select value..VALUE_METRIC..." />
+                <marker date="1451313018599" expanded="true" signature="6619:6696" placeholder="SELECT avg(v..VALUE_METRIC..." />
+                <marker date="1451313018599" expanded="true" signature="6619:6731" placeholder="SELECT avg(v..VALUE_METRIC..." />
+                <marker date="1451313018599" expanded="true" signature="6619:6776" placeholder="SELECT avg(v..VALUE_METRIC..." />
+                <marker date="1451313018599" expanded="true" signature="6619:6777" placeholder="SELECT avg(v..VALUE_METRIC..." />
+                <marker date="1451313018599" expanded="true" signature="6619:6853" placeholder="SELECT avg(v..VALUE_METRIC..." />
+                <marker date="1451313018599" expanded="true" signature="6619:6854" placeholder="SELECT AVG(v..VALUE_METRIC..." />
+                <marker date="1451313018599" expanded="false" signature="8019:8094" placeholder="INSERT INTO ..." />
+                <marker date="1451313018599" expanded="false" signature="8320:8365" placeholder="select * FRO..TEMPLATE_METRICS..." />
+                <marker date="1451313018599" expanded="false" signature="8886:8920" placeholder="SELECT * FRO..TEMPLATE_METRICS..." />
+                <marker date="1451313018599" expanded="false" signature="9543:9602" placeholder="select id FR..TEMPLATE_METRICS..." />
+                <marker date="1451313018599" expanded="false" signature="9860:9919" placeholder="select * FRO..TEMPLATE_METRICS..." />
+                <marker date="1451313018599" expanded="false" signature="10467:10661" placeholder="INSERT INTO ..." />
+                <marker date="1451313018599" expanded="false" signature="10857:11075" placeholder="INSERT INTO ..." />
+                <marker date="1451313018599" expanded="false" signature="11248:11551" placeholder="INSERT INTO ..." />
+                <marker date="1451313018599" expanded="false" signature="11788:11892" placeholder="SELECT id, t..INSTANCE_METRIC..." />
+                <marker date="1451313018599" expanded="false" signature="12739:12791" placeholder="select count..VALUE_METRIC..." />
+                <marker date="1451313018599" expanded="false" signature="13070:13163" placeholder="select sshco..sshconfigurationhibernate..." />
+                <marker date="1451313018599" expanded="false" signature="13372:13417" placeholder="INSERT INTO ..." />
+                <marker date="1451313018599" expanded="false" signature="13484:13529" placeholder="INSERT INTO ..." />
+                <marker date="1451313018599" expanded="false" signature="13597:13642" placeholder="INSERT INTO ..." />
+                <marker date="1451313018599" expanded="false" signature="14099:14169" placeholder="delete from ..." />
+                <marker date="1451313018599" expanded="false" signature="14303:14367" placeholder="delete from ..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Chart.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/ui/Chart.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3181818" vertical-offset="351" max-vertical-offset="1207">
-              <caret line="40" column="58" selection-start-line="40" selection-start-column="58" selection-end-line="40" selection-end-column="58" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -81,11 +117,10 @@
       <file leaf-file-name="ScheduledTask.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/core/branches/ScheduledTask.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="680" max-vertical-offset="1921">
-              <caret line="40" column="33" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="1887">
+              <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="80" />
               <folding>
-                <element signature="e#2251#2252#0" expanded="false" />
-                <element signature="e#2376#2377#0" expanded="false" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -94,8 +129,8 @@
       <file leaf-file-name="SpringService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/core/SpringService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="459">
-              <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="118" max-vertical-offset="646">
+              <caret line="30" column="61" selection-start-line="30" selection-start-column="61" selection-end-line="30" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -106,7 +141,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/core/spring/runSpring.java" />
         <option value="$PROJECT_DIR$/src/main/resources/persistence.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/beans.xml" />
         <option value="$PROJECT_DIR$/src/main/java/core/hibernate/HibernateUtil.java" />
@@ -134,11 +168,9 @@
         <option value="$PROJECT_DIR$/src/main/java/ui/form/HostRedactor.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/models/Metric.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/agents/ssh/SSHAgent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Program.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/MetricStorage.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/branches/CoreBranch.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/branches/ScheduledTask.java" />
-        <option value="$PROJECT_DIR$/src/main/java/main.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/SpringService.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/MainForm.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/ui/MainForm.java" />
@@ -148,15 +180,18 @@
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/beans.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/core/configurations/SSHConfiguration.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/core/branches/ScheduledTask.java" />
         <option value="$PROJECT_DIR$/src/main/java/ui/ConForm.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/core/MetricStorage.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/SSHConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/lol.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/core/SpringService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/UIRunner.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ui/MainForm.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ui/Chart.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Program.java" />
+        <option value="$PROJECT_DIR$/src/main/java/main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/UIRunner.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/core/interfaces/db/IMetricStorage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/core/branches/ScheduledTask.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/core/SpringService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/core/MetricStorage.java" />
       </list>
     </option>
   </component>
@@ -173,8 +208,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -220,8 +255,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -347,6 +382,104 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MonitoringSys" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MonitoringSys" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MonitoringSys" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MonitoringSys" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MonitoringSys" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MonitoringSys" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="db" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -781,14 +914,16 @@
       <workItem from="1451131735369" duration="6239000" />
       <workItem from="1451206177361" duration="2885000" />
       <workItem from="1451211882972" duration="210000" />
+      <workItem from="1451287059213" duration="4196000" />
+      <workItem from="1451294839466" duration="4456000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55027000" />
+    <option name="totallyTimeSpent" value="63679000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -802,18 +937,18 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39863715" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3982684" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3270869" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32683983" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.44293016" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4426407" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2473525" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24733475" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -848,13 +983,13 @@
           <properties />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/ui/Chart.java</url>
-          <line>40</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/core/MetricStorage.java</url>
+          <line>182</line>
           <properties />
-          <option name="timeStamp" value="32" />
+          <option name="timeStamp" value="36" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="33" />
+      <option name="time" value="37" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -863,6 +998,40 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/core/SpringService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ui/Chart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1207">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/core/branches/ScheduledTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="1683">
+          <caret line="40" column="33" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/core/SpringService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="425">
+          <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final.jar!/javax/persistence/EntityManager.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.13662457" vertical-offset="0" max-vertical-offset="1955">
@@ -961,13 +1130,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/core/models/Value.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2845982" vertical-offset="0" max-vertical-offset="896">
-          <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.51699466" vertical-offset="0" max-vertical-offset="559">
@@ -1004,20 +1166,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Program.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45617172" vertical-offset="0" max-vertical-offset="559">
-          <caret line="19" column="51" selection-start-line="19" selection-start-column="51" selection-end-line="19" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.0.5.RELEASE/spring-aop-4.0.5.RELEASE.jar!/org/springframework/aop/framework/JdkDynamicAopProxy.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.8" vertical-offset="959" max-vertical-offset="2771">
-          <caret line="86" column="18" selection-start-line="86" selection-start-column="18" selection-end-line="86" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.0.5.RELEASE/spring-context-4.0.5.RELEASE.jar!/org/springframework/scheduling/support/ScheduledMethodRunnable.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36" vertical-offset="300" max-vertical-offset="714">
@@ -1039,25 +1187,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.0.5.RELEASE/spring-aop-4.0.5.RELEASE.jar!/org/springframework/aop/support/AopUtils.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36236933" vertical-offset="2293" max-vertical-offset="2720">
-          <caret line="171" column="25" selection-start-line="171" selection-start-column="25" selection-end-line="171" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/core/branches/CoreBranch.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3041145" vertical-offset="0" max-vertical-offset="559">
           <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_60/src.zip!/javax/swing/JFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334" vertical-offset="2351" max-vertical-offset="15011">
-          <caret line="187" column="11" selection-start-line="187" selection-start-column="11" selection-end-line="187" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1073,13 +1206,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36398467" vertical-offset="7538" max-vertical-offset="18632">
           <caret line="538" column="0" selection-start-line="538" selection-start-column="0" selection-end-line="538" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_60/src.zip!/java/lang/Class.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33110368" vertical-offset="4661" max-vertical-offset="60231">
-          <caret line="347" column="0" selection-start-line="347" selection-start-column="0" selection-end-line="347" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1118,13 +1244,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/core/l1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15205725" vertical-offset="0" max-vertical-offset="559">
-          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/jfree/jfreechart/1.0.13/jfreechart-1.0.13.jar!/org/jfree/data/time/TimeSeries.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.19577736" vertical-offset="0" max-vertical-offset="8585">
@@ -1153,45 +1272,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="374">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_60/src.zip!/javax/swing/DefaultListModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33273703" vertical-offset="290" max-vertical-offset="8296">
-          <caret line="54" column="13" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/core/interfaces/db/IMetricStorage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3323077" vertical-offset="453" max-vertical-offset="1190">
-          <caret line="39" column="32" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/UIRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="219" max-vertical-offset="765">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/core/MetricStorage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21470019" vertical-offset="2235" max-vertical-offset="5202">
-          <caret line="140" column="47" selection-start-line="140" selection-start-column="47" selection-end-line="140" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/beans.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334" vertical-offset="328" max-vertical-offset="952">
@@ -1200,21 +1280,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/core/branches/ScheduledTask.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ui/Chart.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="1904">
-          <caret line="40" column="33" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="33" />
-          <folding>
-            <element signature="e#2251#2252#0" expanded="false" />
-            <element signature="e#2376#2377#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/core/SpringService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
-          <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="84" max-vertical-offset="1207">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1223,20 +1292,140 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1124" max-vertical-offset="5253">
           <caret line="274" column="0" selection-start-line="274" selection-start-column="0" selection-end-line="274" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Program.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
+          <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17075893" vertical-offset="0" max-vertical-offset="896">
+          <caret line="16" column="32" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/UIRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34151787" vertical-offset="0" max-vertical-offset="896">
+          <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/core/models/Value.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.07597536" vertical-offset="31" max-vertical-offset="646">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/core/interfaces/db/IMetricStorage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1326">
+          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.0.5.RELEASE/spring-aop-4.0.5.RELEASE.jar!/org/springframework/aop/framework/JdkDynamicAopProxy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35918367" vertical-offset="878" max-vertical-offset="2771">
+          <caret line="86" column="18" selection-start-line="86" selection-start-column="18" selection-end-line="86" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/core/branches/ScheduledTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="1887">
+          <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="80" />
           <folding>
-            <element signature="e#2648#2649#0" expanded="false" />
-            <element signature="e#2710#2711#0" expanded="false" />
-            <element signature="e#3896#3897#0" expanded="false" />
-            <element signature="e#3942#3943#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ui/Chart.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/core/SpringService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3181818" vertical-offset="351" max-vertical-offset="1207">
-          <caret line="40" column="58" selection-start-line="40" selection-start-column="58" selection-end-line="40" selection-end-column="58" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="118" max-vertical-offset="646">
+          <caret line="30" column="61" selection-start-line="30" selection-start-column="61" selection-end-line="30" selection-end-column="61" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.0.5.RELEASE/spring-aop-4.0.5.RELEASE.jar!/org/springframework/aop/support/AopUtils.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4075547" vertical-offset="2192" max-vertical-offset="2720">
+          <caret line="171" column="25" selection-start-line="171" selection-start-column="25" selection-end-line="171" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/core/MetricStorage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.405436" vertical-offset="900" max-vertical-offset="4097">
+          <caret line="170" column="31" selection-start-line="170" selection-start-column="31" selection-end-line="170" selection-end-column="31" />
+          <folding>
+            <element signature="e#716#727#0" expanded="false" />
+            <element signature="method#setAllowableValueMetric#0;class#MetricStorage#0" expanded="false" />
+            <element signature="method#overMaxValue#0;class#MetricStorage#0" expanded="false" />
+            <element signature="method#setOverMaxValue#0;class#MetricStorage#0" expanded="false" />
+            <element signature="method#lessMinValue#0;class#MetricStorage#0" expanded="false" />
+            <element signature="method#setLessMinValue#0;class#MetricStorage#0" expanded="false" />
+            <element signature="method#correctlyMetric#0;class#MetricStorage#0" expanded="false" />
+            <element signature="method#setCorrectlyMetric#0;class#MetricStorage#0" expanded="false" />
+            <element signature="method#setIncorrectlyMetric#0;class#MetricStorage#0" expanded="false" />
+            <element signature="method#availableHost#0;class#MetricStorage#0" expanded="false" />
+            <element signature="method#setNotAvailableHost#0;class#MetricStorage#0" expanded="false" />
+            <element signature="method#setAvailableHost#0;class#MetricStorage#0" expanded="false" />
+            <element signature="method#addValue#0;class#MetricStorage#0" expanded="false" />
+            <element signature="method#getValues#0;class#MetricStorage#0" expanded="false" />
+            <element signature="method#delHost#0;class#MetricStorage#0" expanded="false" />
+            <marker date="1451313018599" expanded="false" signature="1227:1415" placeholder="UPDATE \&quot;MET..." />
+            <marker date="1451313018599" expanded="false" signature="1563:1741" placeholder="SELECT id, s..METRIC_STATE..." />
+            <marker date="1451313018599" expanded="false" signature="2078:2231" placeholder="INSERT INTO ..." />
+            <marker date="1451313018599" expanded="false" signature="2380:2558" placeholder="SELECT id, s..METRIC_STATE..." />
+            <marker date="1451313018599" expanded="false" signature="2901:3054" placeholder="INSERT INTO ..." />
+            <marker date="1451313018599" expanded="false" signature="3199:3367" placeholder="SELECT id, s..METRIC_STATE..." />
+            <marker date="1451313018599" expanded="false" signature="3698:3854" placeholder="UPDATE \&quot;MET..." />
+            <marker date="1451313018599" expanded="false" signature="4017:4164" placeholder="INSERT INTO ..." />
+            <marker date="1451313018599" expanded="false" signature="4360:4493" placeholder="SELECT id, r..HOST_STATE..." />
+            <marker date="1451313018599" expanded="false" signature="4925:5034" placeholder="INSERT INTO ..." />
+            <marker date="1451313018599" expanded="false" signature="5185:5306" placeholder="UPDATE \&quot;HOS..." />
+            <marker date="1451313018599" expanded="false" signature="5510:5636" placeholder="INSERT INTO ..." />
+            <marker date="1451313018599" expanded="false" signature="5855:5938" placeholder="select value..VALUE_METRIC..." />
+            <marker date="1451313018599" expanded="true" signature="6619:6696" placeholder="SELECT avg(v..VALUE_METRIC..." />
+            <marker date="1451313018599" expanded="true" signature="6619:6731" placeholder="SELECT avg(v..VALUE_METRIC..." />
+            <marker date="1451313018599" expanded="true" signature="6619:6776" placeholder="SELECT avg(v..VALUE_METRIC..." />
+            <marker date="1451313018599" expanded="true" signature="6619:6777" placeholder="SELECT avg(v..VALUE_METRIC..." />
+            <marker date="1451313018599" expanded="true" signature="6619:6853" placeholder="SELECT avg(v..VALUE_METRIC..." />
+            <marker date="1451313018599" expanded="true" signature="6619:6854" placeholder="SELECT AVG(v..VALUE_METRIC..." />
+            <marker date="1451313018599" expanded="false" signature="8019:8094" placeholder="INSERT INTO ..." />
+            <marker date="1451313018599" expanded="false" signature="8320:8365" placeholder="select * FRO..TEMPLATE_METRICS..." />
+            <marker date="1451313018599" expanded="false" signature="8886:8920" placeholder="SELECT * FRO..TEMPLATE_METRICS..." />
+            <marker date="1451313018599" expanded="false" signature="9543:9602" placeholder="select id FR..TEMPLATE_METRICS..." />
+            <marker date="1451313018599" expanded="false" signature="9860:9919" placeholder="select * FRO..TEMPLATE_METRICS..." />
+            <marker date="1451313018599" expanded="false" signature="10467:10661" placeholder="INSERT INTO ..." />
+            <marker date="1451313018599" expanded="false" signature="10857:11075" placeholder="INSERT INTO ..." />
+            <marker date="1451313018599" expanded="false" signature="11248:11551" placeholder="INSERT INTO ..." />
+            <marker date="1451313018599" expanded="false" signature="11788:11892" placeholder="SELECT id, t..INSTANCE_METRIC..." />
+            <marker date="1451313018599" expanded="false" signature="12739:12791" placeholder="select count..VALUE_METRIC..." />
+            <marker date="1451313018599" expanded="false" signature="13070:13163" placeholder="select sshco..sshconfigurationhibernate..." />
+            <marker date="1451313018599" expanded="false" signature="13372:13417" placeholder="INSERT INTO ..." />
+            <marker date="1451313018599" expanded="false" signature="13484:13529" placeholder="INSERT INTO ..." />
+            <marker date="1451313018599" expanded="false" signature="13597:13642" placeholder="INSERT INTO ..." />
+            <marker date="1451313018599" expanded="false" signature="14099:14169" placeholder="delete from ..." />
+            <marker date="1451313018599" expanded="false" signature="14303:14367" placeholder="delete from ..." />
+          </folding>
         </state>
       </provider>
     </entry>

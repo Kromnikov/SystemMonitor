@@ -1,0 +1,21 @@
+SELECT AVG(value),(DATE_PART('minute',date_time)) FROM "VALUE_METRIC" 
+where date_time between  '2015-12-15 16:00:00' and '2015-12-15 17:59:59' and metric = 11 and host = 1 
+GROUP BY  DATE_PART('minute',date_time)
+order by DATE_PART('minute',date_time)
+
+
+SELECT AVG(value),(DATE_PART('minute',date_time)) FROM "VALUE_METRIC" 
+where date_time between  '2015-12-15 16:00:00' and '2015-12-15 17:59:59' and metric = 11 and host = 1 
+GROUP BY  date_time
+order by date_time
+
+
+Select DATE_PART('minute',date_time) from (
+SELECT AVG(value),date_time,(DATE_PART('minute',date_time))
+ FROM "VALUE_METRIC" 
+ where date_time between  '2015-12-15 16:00:00' and '2015-12-15 17:59:59' and metric = 11 and host = 1
+  GROUP BY  date_time
+  order by date_time 
+  ) as val
+  --GROUP by DATE_PART('minute',date_time)  
+  --order by DATE_PART('minute',date_time)
