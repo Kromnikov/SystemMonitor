@@ -1,6 +1,5 @@
 package com.core;
 
-import com.UIRunner;
 import com.core.interfaces.db.IMetricStorage;
 import com.core.models.Value;
 import org.springframework.context.ApplicationContext;
@@ -28,7 +27,7 @@ public class SpringService {
         final String date = dateFormat.format(new Date());
         Date dateTime = new Date();
         try {
-            dateTime = (dateFormat.parse("2015-12-15 17:30:59"));
+            dateTime = (dateFormat.parse("2015-12-17 21:45:56"));
         } catch (ParseException e) {
             e.printStackTrace();
         }

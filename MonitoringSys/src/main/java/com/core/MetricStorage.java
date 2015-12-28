@@ -152,34 +152,34 @@ public  class MetricStorage implements IMetricStorage {
     @Transactional
     public List<Value> getValuesLastHour(int host_id,int metricId,Date dateTime) {
         List<Value> values = new ArrayList<>();
-        Date nDate = (Date)dateTime.clone();
+        Date nDate = (Date)dateTime.clone();//,pDate = new Date();
         nDate.setHours(dateTime.getHours()-1);
-        String sql = "SELECT avg(value),date_time FROM \"VALUE_METRIC\"  where date_time between  '"+dateFormat.format(nDate)+"' and '"+dateFormat.format(dateTime)+"' and metric = "+metricId+" and host = "+host_id+"  GROUP BY  date_time  order by date_time ";
+        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\"  where date_time between  '"+dateFormat.format(nDate)+"' and '"+dateFormat.format(dateTime)+"' and metric = "+metricId+" and host = "+host_id+"   order by date_time ";
         List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
-        for (Map row : rows) {
-            values.add(
-                    new Value(
-                            ((double)row.get("avg")),
-                            new java.util.Date( ((java.sql.Timestamp)row.get("date_time")).getTime() )
-                    ));
-        }
-        double sumValues = 0,countValues = 0;
-        sumValues += values.get(0).getValue();
-        countValues++;
-        for (int i = 1; i < values.size(); i++) {
-            if ((values.get(i).getDateTime().getHours() == values.get(i - 1).getDateTime().getHours()) & (values.get(i).getDateTime().getMinutes() == values.get(i - 1).getDateTime().getMinutes())) {
-//                if (values.get(i).getDateTime().getMinutes() == values.get(i - 1).getDateTime().getMinutes()) {
-                sumValues += values.get(i).getValue();
-                countValues++;
-//                }
-            } else {
 
+        if(rows.size()>0) {
+            double sumValues = 0, countValues = 0;
+            Date pDate = new java.util.Date(((java.sql.Timestamp) rows.get(0).get("date_time")).getTime());
+            for (int i = 0; i < rows.size(); i++) {
+                if ((new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getHours() == pDate.getHours()) & (new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getMinutes() == pDate.getMinutes())) {
+                    sumValues += (double) rows.get(i).get("value");
+                    countValues++;
+                    continue;
+                }
+                values.add(new Value(
+                        (sumValues / countValues),
+                        (pDate)
+                ));
+                sumValues = 0;
+                countValues = 0;
+                pDate = new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
+                i--;
             }
+            values.add(new Value(
+                    (sumValues / countValues),
+                    (pDate)
+            ));
         }
-
-
-
-
         return  values;
     }
 
