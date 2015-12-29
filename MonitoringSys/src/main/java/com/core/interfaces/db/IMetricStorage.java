@@ -39,8 +39,13 @@ public interface IMetricStorage {
     public void addValue(int host, int metric, double value,String dateTime) throws SQLException ;
 //    public List<Double> getAllValueMetricOnHost(int id) throws SQLException;
     public List<Value> getValues(int host_id,int metricId) throws SQLException ;
+    public List<Value> getValuesLastYear(int host_id, int metricId, Date dateTime);
+    public List<Value> getValuesLastMonth(int host_id, int metricId, Date dateTime);
+    public List<Value> getValuesLastWeak(int host_id, int metricId, Date dateTime);
+    public List<Value> getValuesLastDay(int host_id, int metricId, Date dateTime);
     public List<Value> getValuesLastHour(int host_id, int metricId, Date dateTime);
-//
+    public List<Value> getValuesLastMinets(int host_id, int metricId, Date dateTime);
+    //
 //    //metrics
     public void addTemplateMetric(String title, String query) throws SQLException;
     public TemplateMetric getTemplateMetric(int id) throws SQLException;

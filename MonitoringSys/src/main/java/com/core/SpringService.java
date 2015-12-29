@@ -27,11 +27,11 @@ public class SpringService {
         final String date = dateFormat.format(new Date());
         Date dateTime = new Date();
         try {
-            dateTime = (dateFormat.parse("2015-12-17 21:45:56"));
+            dateTime = (dateFormat.parse("2015-12-17 21:44:56"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        List<Value> values = metricStorage.getValuesLastHour(1, 11, dateTime);
+        List<Value> values = metricStorage.getValuesLastMinets(1, 11, dateTime);
         for (Value val : values) {
             System.out.println(val.getValue());
         }
