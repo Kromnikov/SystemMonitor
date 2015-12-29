@@ -13,8 +13,8 @@ Class-Path: lib/hibernate-commons-annotations-4.0.4.Final.jar lib/jbos
  E.jar lib/spring-tx-4.0.5.RELEASE.jar lib/spring-orm-4.0.5.RELEASE.ja
  r lib/postgresql-9.1-901.jdbc4.jar lib/commons-dbcp-1.4.jar lib/commo
  ns-pool-1.6.jar lib/commons-collections-3.2.1.jar lib/guava-15.0.jar 
- lib/log4j-1.2.17.jar lib/jsch-0.1.53.jar lib/jfreechart-1.0.13.jar li
- b/jcommon-1.0.16.jar
+ lib/log4j-1.2.17.jar lib/xchart-1.2.1.jar lib/jsch-0.1.53.jar lib/jfr
+ eechart-1.0.13.jar lib/jcommon-1.0.16.jar
 Created-By: IntelliJ IDEA
 Build-Jdk: 1.8.0_45
 Main-Class: main
