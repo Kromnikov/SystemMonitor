@@ -35,6 +35,8 @@ public  class MetricStorage implements IMetricStorage {
     }
 
 
+
+
     //sql
     //metric-state
     @Transactional
@@ -54,7 +56,6 @@ public  class MetricStorage implements IMetricStorage {
             return false;
         }
     }
-
     @Transactional
     public void setOverMaxValue(String startTime, int instMetric) {
         String sql = "INSERT INTO \"METRIC_STATE\"(start_datetime,state,inst_metric,resolved)  VALUES ((TIMESTAMP '" + startTime + "'),'overMaxValue'," + instMetric + ",false)";
@@ -138,7 +139,7 @@ public  class MetricStorage implements IMetricStorage {
     @Transactional
     public List<Value> getValues(int host_id,int metricId) throws SQLException {
         List<Value> values = new ArrayList<>();
-        String sql = "select value,date_time from \"VALUE_METRIC\" where metric=" + metricId+" and host ="+host_id;
+        String sql = "select value, date_time from \"VALUE_METRIC\" where metric=" + metricId+" and host ="+host_id;
         List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
         for (Map row : rows) {
             values.add(
@@ -149,59 +150,6 @@ public  class MetricStorage implements IMetricStorage {
         }
         return values;
     }
-    @Transactional
-    private List<Value> getValues(String between,int host_id,int metricId,Date dateTime) {
-        List<Value> values = new ArrayList<>();
-        Date nDate = (Date)dateTime.clone();
-        switch (between) {
-            case "Year":
-                nDate.setYear(dateTime.getYear() - 1);
-                break;
-            case "Month":
-                nDate.setMonth(dateTime.getMonth() - 1);
-                break;
-            case "Weak":
-                nDate.setHours(dateTime.getHours() - 168);
-                break;
-            case "Day":
-                nDate.setHours(dateTime.getHours() - 24);
-                break;
-            case "Hour":
-                nDate.setHours(dateTime.getHours() - 1);
-                break;
-            case "Minets":
-                nDate.setMinutes(dateTime.getMinutes() - 1);
-                break;
-        }
-        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\"  where date_time between  '"+dateFormat.format(nDate)+"' and '"+dateFormat.format(dateTime)+"' and metric = "+metricId+" and host = "+host_id+"   order by date_time ";
-        List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
-
-        if(rows.size()>0) {
-            double sumValues = 0, countValues = 0;
-            Date pDate = new java.util.Date(((java.sql.Timestamp) rows.get(0).get("date_time")).getTime());
-            for (int i = 0; i < rows.size(); i++) {
-                if ((new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getSeconds() == pDate.getSeconds()) & (new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getMinutes() == pDate.getMinutes())) {
-                    sumValues += (double) rows.get(i).get("value");
-                    countValues++;
-                    continue;
-                }
-                values.add(new Value(
-                        (sumValues / countValues),
-                        (pDate)
-                ));
-                sumValues = 0;
-                countValues = 0;
-                pDate = new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
-                i--;
-            }
-            values.add(new Value(
-                    (sumValues / countValues),
-                    (pDate)
-            ));
-        }
-        return  values;
-    }
-
     @Transactional
     public List<Value> getValuesLastYear(int host_id,int metricId,Date dateTime) {
         List<Value> values = new ArrayList<>();
@@ -271,7 +219,7 @@ public  class MetricStorage implements IMetricStorage {
         return  values;
     }
     @Transactional
-    public List<Value> getValuesLastWeak(int host_id,int metricId,Date dateTime) {
+    public List<Value> getValuesLastWeek(int host_id, int metricId, Date dateTime) {
         List<Value> values = new ArrayList<>();
         Date nDate = (Date)dateTime.clone();
         nDate.setHours(dateTime.getHours() - 168);
@@ -285,7 +233,7 @@ public  class MetricStorage implements IMetricStorage {
                 if ((new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getDay() == pDate.getDay())
                         &(new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getDay()+7 > pDate.getDay())
                         &(new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getDay() < pDate.getDay()+7)
-                         &(new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getYear() == pDate.getYear())
+                        &(new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getYear() == pDate.getYear())
                         ) {
                     sumValues += (double) rows.get(i).get("value");
                     countValues++;
@@ -310,7 +258,7 @@ public  class MetricStorage implements IMetricStorage {
     @Transactional
     public List<Value> getValuesLastDay(int host_id,int metricId,Date dateTime) {List<Value> values = new ArrayList<>();
         Date nDate = (Date)dateTime.clone();
-                nDate.setHours(dateTime.getHours() - 24);
+        nDate.setHours(dateTime.getHours() - 24);
         String sql = "SELECT value,date_time FROM \"VALUE_METRIC\"  where date_time between  '"+dateFormat.format(nDate)+"' and '"+dateFormat.format(dateTime)+"' and metric = "+metricId+" and host = "+host_id+"   order by date_time ";
         List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
 
@@ -342,7 +290,7 @@ public  class MetricStorage implements IMetricStorage {
     @Transactional
     public List<Value> getValuesLastHour(int host_id,int metricId,Date dateTime) {List<Value> values = new ArrayList<>();
         Date nDate = (Date)dateTime.clone();
-                nDate.setHours(dateTime.getHours() - 1);
+        nDate.setHours(dateTime.getHours() - 1);
         String sql = "SELECT value,date_time FROM \"VALUE_METRIC\"  where date_time between  '"+dateFormat.format(nDate)+"' and '"+dateFormat.format(dateTime)+"' and metric = "+metricId+" and host = "+host_id+"   order by date_time ";
         List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
 
@@ -375,7 +323,7 @@ public  class MetricStorage implements IMetricStorage {
     public List<Value> getValuesLastMinets(int host_id,int metricId,Date dateTime) {
         List<Value> values = new ArrayList<>();
         Date nDate = (Date)dateTime.clone();
-                nDate.setMinutes(dateTime.getMinutes() - 1);
+        nDate.setMinutes(dateTime.getMinutes() - 1);
         String sql = "SELECT value,date_time FROM \"VALUE_METRIC\"  where date_time between  '"+dateFormat.format(nDate)+"' and '"+dateFormat.format(dateTime)+"' and metric = "+metricId+" and host = "+host_id+"   order by date_time ";
         List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
 
@@ -389,6 +337,23 @@ public  class MetricStorage implements IMetricStorage {
         }
         return  values;
     }
+    @Transactional
+    public List<Value> getValuesLastTwentyRec(int host_id,int metricId) {
+        List<Value> values = new ArrayList<>();
+        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where metric = "+metricId+" and host = "+host_id+"   order by date_time DESC limit 20";
+        List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
+
+        if(rows.size()>0) {
+            for (int i = 0; i < rows.size(); i++) {
+                values.add(new Value(
+                        ((double) rows.get(i).get("value")),
+                        (new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()))
+                ));
+            }
+        }
+        return  values;
+    }
+
 
 
     //metrics
@@ -479,6 +444,22 @@ public  class MetricStorage implements IMetricStorage {
         }
         return instanceMetrics;
     }
+    @Transactional
+    public InstanceMetric getInstMetric(int hostId,String title) throws SQLException {
+        InstanceMetric instanceMetric = new InstanceMetric();
+        String sql = "SELECT id, templ_metric, title, query, min_value, max_value, host  FROM \"INSTANCE_METRIC\" where host ="+hostId+" and title = '"+ title+"'";
+        List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
+        for (Map row : rows) {
+            instanceMetric.setId((int) row.get("id"));
+            instanceMetric.setHostId(hostId);
+            instanceMetric.setTempMetrcId((int) row.get("templ_metric"));
+            instanceMetric.setMinValue((double) row.get("min_value"));
+            instanceMetric.setMaxValue((double) row.get("max_value"));
+            instanceMetric.setCommand((String) row.get("query"));
+            instanceMetric.setTitle((String) row.get("title"));
+        }
+        return instanceMetric;
+    }
 
 
 
@@ -512,11 +493,11 @@ public  class MetricStorage implements IMetricStorage {
 
     @Transactional
     public void addStandartMetrics(int id) throws SQLException {
-        String sql = "INSERT INTO \"HOST_METRIC\" VALUES ("+id+",1);";
+        String sql = "INSERT INTO \"INSTANCE_METRIC\" (TEMPL_METRIC,HOST) VALUES (1,"+id+");";
         jdbcTemplateObject.update(sql);
-        String sql1 = "INSERT INTO \"HOST_METRIC\" VALUES ("+id+",2);";
+        String sql1 = "INSERT INTO \"INSTANCE_METRIC\" (TEMPL_METRIC,HOST) VALUES (2,"+id+");";
         jdbcTemplateObject.update(sql1);
-        String sql2 = "INSERT INTO \"HOST_METRIC\" VALUES ("+id+",5);";
+        String sql2 = "INSERT INTO \"INSTANCE_METRIC\" (TEMPL_METRIC,HOST) VALUES (5,"+id+");";
         jdbcTemplateObject.update(sql2);
     }
 

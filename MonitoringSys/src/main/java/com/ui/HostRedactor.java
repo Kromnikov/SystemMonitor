@@ -1,6 +1,8 @@
 package com.ui;
 
 import com.core.MetricStorage;
+import com.core.hibernate.services.HostService;
+import com.core.interfaces.db.IMetricStorage;
 import core.configurations.SSHConfiguration;
 import com.core.hibernate.services.HostServiceImpl;
 import com.core.models.InstanceMetric;
@@ -22,13 +24,16 @@ import java.util.List;
  */
 public class HostRedactor extends JFrame {
     Object[] res = new Object[5];
-    @Autowired
-    MetricStorage metricStorage;
-    @Autowired
-    HostServiceImpl hostsser;
 
-    public HostRedactor() throws SQLException {
+    private IMetricStorage metricStorage;
+
+    private HostService hosts;
+
+    @Autowired
+    public HostRedactor(IMetricStorage metricStorage,HostService hosts) throws SQLException {
         super("Host Redactor");
+        this.hosts = hosts;
+        this.metricStorage = metricStorage;
         createGUI();
     }
 
@@ -39,10 +44,10 @@ public class HostRedactor extends JFrame {
         mainPanel.setLayout(null);
         int i;
         final DefaultListModel listModel = new DefaultListModel();
-        List<SSHConfiguration> hosts;
-        hosts=hostsser.getAll(); //список хостов
-        for (SSHConfiguration host:hosts) {
-            listModel.addElement(host.getHost());
+        List<SSHConfiguration> host;
+        host=hosts.getAll(); //список хостов
+        for (SSHConfiguration h:host) {
+            listModel.addElement(h.getHost());
         }
         final JList list = new JList(listModel);//получаем лист хостов
         list.setSelectedIndex(0);
@@ -51,10 +56,10 @@ public class HostRedactor extends JFrame {
         //
         //
         final DefaultListModel listModelMetric = new DefaultListModel();
-        List<InstanceMetric> metrics;
+        final List<InstanceMetric> metrics;
         i = list.getSelectedIndex();
-        String host = (String) listModel.get(i);
-        int id = metricStorage.getHostIDbyTitle(host);
+        String h = (String) listModel.get(i);
+        int id = metricStorage.getHostIDbyTitle(h);
         metrics=metricStorage.getInstMetrics(id);
         for (InstanceMetric metric: metrics){
             listModelMetric.addElement(metric.getTitle());
@@ -126,7 +131,7 @@ public class HostRedactor extends JFrame {
         //Listners
         addHostButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new ConForm().setVisible(true);
+                new ConForm(metricStorage, hosts).setVisible(true);
             }
         });
         removeButton.addActionListener(new ActionListener() {

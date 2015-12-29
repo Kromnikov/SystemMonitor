@@ -1,6 +1,8 @@
 package com.ui;
 
 import com.core.MetricStorage;
+import com.core.hibernate.services.HostService;
+import com.core.interfaces.db.IMetricStorage;
 import core.configurations.SSHConfiguration;
 import com.core.hibernate.services.HostServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +17,14 @@ import java.sql.SQLException;
  * Created by ANTON on 06.12.2015.
  */
 public class ConForm extends JFrame {
+    private IMetricStorage metricStorage;
+    private HostService hosts;
     private int i = 0;
     @Autowired
-    MetricStorage metricStorage;
-    public ConForm() {
+    public ConForm(final IMetricStorage metricStorage, final HostService hosts) {
         super("Connection");
-        final HostServiceImpl hosts = new HostServiceImpl();
+        this.hosts = hosts;
+        this.metricStorage = metricStorage;
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         JPanel panel = new JPanel();
         JLabel jLabel1 = new JLabel("Login");
@@ -99,16 +103,6 @@ public class ConForm extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
     }
-
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                JFrame.setDefaultLookAndFeelDecorated(true);
-                new ConForm();
-
-            }
-        });
-    }}
+}
 
 

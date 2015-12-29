@@ -12,7 +12,6 @@ import org.jfree.data.time.Hour;
 import org.jfree.data.time.Minute;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -24,8 +23,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 
-//@Service("MainForm")
 public class MainForm extends JFrame {
+
 
     private JPanel MForm;
 
@@ -34,7 +33,6 @@ public class MainForm extends JFrame {
     private HostService hosts;
 
 
-    @Autowired
     public MainForm(IMetricStorage metricStorage,HostService hosts) throws SQLException {
         super("Monitoring");
         this.hosts = hosts;
@@ -42,37 +40,7 @@ public class MainForm extends JFrame {
         final JPanel panel = new JPanel();
         createDesign(panel);
     }
-
-//    public MainForm() throws InterruptedException, SQLException {
-//        super("Monitoring");
-//        final JPanel panel = new JPanel();
-//        createDesign(panel);
-//    }
-
-
-
-
-//    public static void main(String[] args) {
-//        SwingUtilities.invokeLater(new Runnable() {
-//            public void run() {
-//                JFrame.setDefaultLookAndFeelDecorated(true);
-//                MainForm frame = null;
-//                try {
-//                    frame = new MainForm();
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                } catch (SQLException e) {
-//                    e.printStackTrace();
-//                }
-//                frame.pack();
-//                frame.setLocationRelativeTo(null);
-//                frame.setVisible(true);
-//                createmenu(frame);
-//            }
-//            ;        });
-//    }
-
-    public static void createmenu(MainForm frame) {
+    public void createmenu(MainForm frame) {
 
         Font font = new Font("Times New Roman", Font.PLAIN, 14);
         JMenuBar menuBar = new JMenuBar();
@@ -85,7 +53,7 @@ public class MainForm extends JFrame {
         fileMenu.add(conItem);
         conItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new ConForm().setVisible(true);
+                new ConForm(metricStorage,hosts).setVisible(true);
             }
         });
 
@@ -95,20 +63,20 @@ public class MainForm extends JFrame {
         editItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    new HostRedactor().setVisible(true);
+                    new HostRedactor(metricStorage,hosts).setVisible(true);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
             }
         });
 
-        JMenuItem metricItem = new JMenuItem("Edit Metric");
+        final JMenuItem metricItem = new JMenuItem("Edit Metric");
         metricItem.setFont(font);
         fileMenu.add(metricItem);
         metricItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    new MetricRedactor().setVisible(true);
+                    new MetricRedactor(metricStorage).setVisible(true);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
@@ -243,22 +211,6 @@ public class MainForm extends JFrame {
             }
         });
 
-       /* listmetric.addListSelectionListener(new ListSelectionListener() {
-            public void valueChanged(ListSelectionEvent e) {
-                String metric;
-                int id;
-                int i = listmetric.getSelectedIndex();
-                metric = (String) listModelMetric.get(i);
-                int metricID = TypeOfMetric.getTypeOfMetric(metric);
-                try {
-                    panel.add(MainForm.drawChar(metricStorage,metricID));
-                } catch (SQLException e1) {
-                    e1.printStackTrace();
-                }
-
-
-            }
-        });*/
 
 
         button4.addActionListener(new ActionListener() {
@@ -272,7 +224,7 @@ public class MainForm extends JFrame {
                     int indexhost=list.getSelectedIndex();
                     host = (String) listModel.get(indexhost);
                     idhost = metricStorage.getHostIDbyTitle(host);
-                    new Chart(title,idhost,metricStorage).setVisible(true);
+                    new ChartMetric(title,idhost,metricStorage).setVisible(true);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                     JOptionPane.showMessageDialog( panel, "Chart is not available");
@@ -286,7 +238,7 @@ public class MainForm extends JFrame {
         double value;
         TimeSeries series = new TimeSeries("Metric", Minute.class);
         Hour hour = new Hour();
-        Chart chart = new Chart();
+        ChartMetric chart = new ChartMetric(metricStorage);
         List<Value> values;
         values = metricStorage.getValues(1,metricID);
         if(values.size() >0) {

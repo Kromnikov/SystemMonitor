@@ -1,6 +1,8 @@
 package com.ui;
 
 import com.core.MetricStorage;
+import com.core.hibernate.services.HostService;
+import com.core.interfaces.db.IMetricStorage;
 import com.core.models.TemplateMetric;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,10 +19,12 @@ import java.util.List;
  */
 public class MetricRedactor extends JFrame {
     private int i = 0;
+    private IMetricStorage metricStorage;
+
     @Autowired
-    MetricStorage metricStorage;
-    public MetricRedactor() throws SQLException {
+    public MetricRedactor(IMetricStorage metricStorage) throws SQLException {
         super("Metric's redactor");
+        this.metricStorage = metricStorage;
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         createGUI();
     }
@@ -130,22 +134,6 @@ public class MetricRedactor extends JFrame {
             }
         });
     }
-
-
-
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                JFrame.setDefaultLookAndFeelDecorated(true);
-                try {
-                    new MetricRedactor();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
-    }}
+}
 
 

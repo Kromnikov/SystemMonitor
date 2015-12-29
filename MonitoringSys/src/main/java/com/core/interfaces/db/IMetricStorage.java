@@ -4,9 +4,9 @@ import core.configurations.SSHConfiguration;
 import com.core.models.InstanceMetric;
 import com.core.models.TemplateMetric;
 import com.core.models.Value;
-import java.util.Date;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,11 +41,12 @@ public interface IMetricStorage {
     public List<Value> getValues(int host_id,int metricId) throws SQLException ;
     public List<Value> getValuesLastYear(int host_id, int metricId, Date dateTime);
     public List<Value> getValuesLastMonth(int host_id, int metricId, Date dateTime);
-    public List<Value> getValuesLastWeak(int host_id, int metricId, Date dateTime);
+    public List<Value> getValuesLastWeek(int host_id, int metricId, Date dateTime);
     public List<Value> getValuesLastDay(int host_id, int metricId, Date dateTime);
     public List<Value> getValuesLastHour(int host_id, int metricId, Date dateTime);
     public List<Value> getValuesLastMinets(int host_id, int metricId, Date dateTime);
-    //
+    public List<Value> getValuesLastTwentyRec(int host_id, int metricId);
+//
 //    //metrics
     public void addTemplateMetric(String title, String query) throws SQLException;
     public TemplateMetric getTemplateMetric(int id) throws SQLException;
@@ -56,8 +57,9 @@ public interface IMetricStorage {
     public void addInstMetric(InstanceMetric instanceMetric) throws SQLException;
     public void addInstMetric(int host, int metric) throws SQLException ;
     public void addInstMetric(SSHConfiguration host, TemplateMetric templateMetric) throws SQLException ;
-//    public List<Integer> getMetricIdByHostId(int hostId) throws SQLException ;
     public List<InstanceMetric> getInstMetrics(int hostId) throws SQLException;
+    public InstanceMetric getInstMetric(int hostId, String title) throws SQLException;
+
     public long getQuantityOfRow(int id) throws SQLException;
 //
 //    public ResultSet getAllValueMetricOnHostResult(int id)throws SQLException;
@@ -72,6 +74,7 @@ public interface IMetricStorage {
 
     List<TemplateMetric> getTemplatMetrics() throws SQLException;
 
+    void delHost(String host)throws SQLException;
 
-
+    void delMetricFromHost(int host, int id)throws SQLException;
 }
