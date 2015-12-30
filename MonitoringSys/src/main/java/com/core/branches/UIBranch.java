@@ -1,4 +1,4 @@
-package com;
+package com.core.branches;
 
 import com.core.hibernate.services.HostService;
 import com.core.interfaces.db.IMetricStorage;
@@ -10,19 +10,19 @@ import javax.annotation.PostConstruct;
 import java.sql.SQLException;
 
 @Service("UIRunner")
-public class UIRunner {
+public class UIBranch {
 
     private IMetricStorage metricStorage;
 
     private HostService hosts;
 
     @Autowired
-    public UIRunner(final IMetricStorage metricStorage, final HostService hosts) {
+    public UIBranch(final IMetricStorage metricStorage, final HostService hosts) {
         this.hosts=hosts;
         this.metricStorage=metricStorage;
     }
 
-    public UIRunner() {
+    public UIBranch() {
     }
     @PostConstruct
     public void run() {

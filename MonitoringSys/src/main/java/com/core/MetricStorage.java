@@ -1,6 +1,7 @@
 package com.core;
 
 
+import com.core.models.TableModel;
 import core.configurations.SSHConfiguration;
 import com.core.interfaces.db.IMetricStorage;
 import com.core.models.InstanceMetric;
@@ -103,6 +104,48 @@ public  class MetricStorage implements IMetricStorage {
     }
 
 
+    @Transactional
+    public TableModel getMetricTableModel() {
+        TableModel metricsTableModel = new TableModel();
+        String sql = "SELECT id, state, start_datetime, end_datetime, inst_metric, resolved  FROM \"METRIC_STATE\" where resolved = false";
+        List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
+        if (rows.isEmpty()) {
+            return metricsTableModel;
+        } else {
+            String[] header = {"id","Статус","Дата начала","Дата окончания","Метрика","Разрешено"};
+            String[][] data = new String[rows.size()][6];
+            int i = 0;
+            for (Map row : rows) {
+                data[i][0] = row.get("id").toString();
+                data[i][1] = row.get("state").toString();
+                data[i][2] = row.get("start_datetime").toString();
+                if(row.get("end_datetime")!=null) {
+                    data[i][3] = row.get("end_datetime").toString();
+                }else{
+                    data[i][3] =" ";
+                }
+                data[i][4] = row.get("inst_metric").toString();
+                data[i][5] = row.get("resolved").toString();
+                i++;
+            }
+            metricsTableModel = new TableModel(header,data);
+        }
+        return metricsTableModel;
+    }
+    @Transactional
+    public void setResolvedMetric(int id) {
+        String sql = "UPDATE \"METRIC_STATE\" set resolved = true WHERE id ="+id+" and \"end_datetime\" is not null";
+        jdbcTemplateObject.update(sql);
+    }
+    @Transactional
+    public long getMetricNotResolvedLength() {
+        String sql = "SELECT COUNT(*)  FROM \"METRIC_STATE\" where resolved = false";
+        return (long)jdbcTemplateObject.queryForMap(sql).get("COUNT");
+    }
+
+
+
+
     //host-state
     @Transactional
     public boolean availableHost(long hostId) {//Нужен запрос на вывод состояния хоста
@@ -127,6 +170,43 @@ public  class MetricStorage implements IMetricStorage {
     public void setAvailableHost(String endTime, int host) {
         String sql = "UPDATE \"HOST_STATE\" SET \"end_datetime\" = (TIMESTAMP '"+endTime+"')  where host ="+host+" and \"end_datetime\" is null";
         jdbcTemplateObject.update(sql);
+    }
+    @Transactional
+    public TableModel getHostTableModel() {
+        TableModel metricsTableModel = new TableModel();
+        String sql = "SELECT id, resolved, start_datetime, end_datetime, host  FROM \"HOST_STATE\" where resolved = false";
+        List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
+        if (rows.isEmpty()) {
+            return metricsTableModel;
+        } else {
+            String[] header = {"id","Разрешено","Дата начала","Дата окончания","Хост"};
+            String[][] data = new String[rows.size()][5];
+            int i = 0;
+            for (Map row : rows) {
+                data[i][0] = row.get("id").toString();
+                data[i][1] = row.get("resolved").toString();
+                data[i][2] = row.get("start_datetime").toString();
+                if(row.get("end_datetime")!=null) {
+                    data[i][3] = row.get("end_datetime").toString();
+                }else{
+                    data[i][3] =" ";
+                }
+                data[i][4] = row.get("host").toString();
+                i++;
+            }
+            metricsTableModel = new TableModel(header,data);
+        }
+        return metricsTableModel;
+    }
+    @Transactional
+    public void setResolvedHost(int id) {
+        String sql = "UPDATE \"HOST_STATE\" set resolved = true WHERE id ="+id+" and \"end_datetime\" is not null";
+        jdbcTemplateObject.update(sql);
+    }
+    @Transactional
+    public long getHostNotResolvedLength() {
+        String sql = "SELECT COUNT(*)  FROM \"HOST_STATE\" where resolved = false";
+        return (long)jdbcTemplateObject.queryForMap(sql).get("COUNT");
     }
 
 
@@ -460,9 +540,6 @@ public  class MetricStorage implements IMetricStorage {
         }
         return instanceMetric;
     }
-
-
-
 
 
 

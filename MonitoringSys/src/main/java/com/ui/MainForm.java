@@ -19,6 +19,8 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -166,13 +168,13 @@ public class MainForm extends JFrame {
         Icon iconWrong = UIManager.getIcon("OptionPane.errorIcon");
         Icon iconCheck = UIManager.getIcon("OptionPane.questionIcon");
         JLabel label3 = new JLabel();
-        label3.setForeground(Color.GREEN);
-        label3.setText("Host's status information");
+        label3.setForeground(Color.ORANGE);
+        label3.setText("Host's status information: "+metricStorage.getHostNotResolvedLength());
         label3.setIcon(iconOK);
 
         JLabel label4 = new JLabel();
-        label4.setForeground(Color.GREEN);
-        label4.setText("Metric's status information");
+        label4.setForeground(Color.ORANGE);
+        label4.setText("Metric's status information: " + metricStorage.getMetricNotResolvedLength());
         label4.setIcon(iconCheck);
 
         JLabel label5 = new JLabel();
@@ -189,6 +191,59 @@ public class MainForm extends JFrame {
 //-----------------------Listners
         getContentPane().add(panel);
         setPreferredSize(new Dimension(500, 405));
+
+        label3.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                new HostsTables(metricStorage).setVisible(true);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+        label4.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                new MetricTables(metricStorage).setVisible(true);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
 
         list.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {

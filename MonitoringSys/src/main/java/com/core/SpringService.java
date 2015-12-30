@@ -1,6 +1,5 @@
 package com.core;
 
-import com.UIRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

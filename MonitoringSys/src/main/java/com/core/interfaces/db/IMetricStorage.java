@@ -1,5 +1,6 @@
 package com.core.interfaces.db;
 
+import com.core.models.TableModel;
 import core.configurations.SSHConfiguration;
 import com.core.models.InstanceMetric;
 import com.core.models.TemplateMetric;
@@ -28,11 +29,17 @@ public interface IMetricStorage {
     public void setCorrectlyMetric(String endTime, int instMetric);
     public void setIncorrectlyMetric(String startTime, int instMetric);
 
+    public TableModel getMetricTableModel();
+    public void setResolvedMetric(int id);
+    public long getMetricNotResolvedLength();
 
     //host-state
     public boolean availableHost(long hostId);
     public void setNotAvailableHost(String startTime, int host);
     public void setAvailableHost(String endTime, int host);
+    public TableModel getHostTableModel();
+    public void setResolvedHost(int host);
+    public long getHostNotResolvedLength();
 
 
     //values
