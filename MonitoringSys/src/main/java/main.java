@@ -14,6 +14,7 @@ public class main {
 
         try {
             SpringService.run();
+            //SpringApplication.run(IndexController.class, args);
         }catch (HsqlException sqlerr) {
             return;
         }

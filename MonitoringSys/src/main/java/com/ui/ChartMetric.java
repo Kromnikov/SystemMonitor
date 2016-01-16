@@ -3,31 +3,14 @@ package com.ui;
 import com.core.interfaces.db.IMetricStorage;
 import com.core.models.InstanceMetric;
 import com.core.models.Value;
-import com.xeiam.xchart.*;
-
-
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.*;
-import org.jfree.chart.labels.StandardXYItemLabelGenerator;
-import org.jfree.chart.labels.StandardXYToolTipGenerator;
-import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.CategoryLabelPositions;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.StackedXYBarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.data.general.PieDataset;
-import org.jfree.data.time.*;
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.ui.ApplicationFrame;
-import org.jfree.ui.RectangleEdge;
-import org.jfree.ui.RectangleInsets;
-import org.jfree.ui.VerticalAlignment;
-import org.jfree.util.Rotation;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,10 +18,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.text.DateFormat;
-import java.text.DecimalFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
 import java.util.List;
 
 public class ChartMetric extends JFrame {
@@ -78,8 +59,8 @@ public class ChartMetric extends JFrame {
                     for (int i = 0; i < values.size(); i++) {
                         dataset.addValue(values.get(i).getValue(), "Last20Rows", dateFormat.format(values.get(i).getDateTime()));
                     }
-                    break;
                 }
+                break;
             case "LastMinute":
                 appeningTitle=" (LastMinute)";
                 values = metricStorage.getValuesLastMinets(hostId, instanceMetric.getId(), new Date());
@@ -87,8 +68,8 @@ public class ChartMetric extends JFrame {
                     for (int i = 0; i < values.size(); i++) {
                         dataset.addValue(values.get(i).getValue(), "LastMinute", values.get(i).getDateTime().getMinutes()+":"+values.get(i).getDateTime().getSeconds());
                     }
-                    break;
                 }
+                break;
             case "LastHour":
                 appeningTitle=" (LastHour)";
                 values = metricStorage.getValuesLastHour(hostId, instanceMetric.getId(), new Date());
@@ -98,8 +79,8 @@ public class ChartMetric extends JFrame {
                     for (int i = 0; i < values.size(); i++) {
                         dataset.addValue(values.get(i).getValue(), "LastHour", values.get(i).getDateTime().getHours()+":"+values.get(i).getDateTime().getMinutes());
                     }
-                    break;
                 }
+                break;
             case "LastDay":
                 appeningTitle=" (LastDay)";
                 values = metricStorage.getValuesLastDay(hostId, instanceMetric.getId(), new Date());
@@ -109,8 +90,8 @@ public class ChartMetric extends JFrame {
                     for (int i = 0; i < values.size(); i++) {
                         dataset.addValue(values.get(i).getValue(), "LastDay", values.get(i).getDateTime().getDay()+" "+values.get(i).getDateTime().getHours()+":"+values.get(i).getDateTime().getMinutes());
                     }
-                    break;
                 }
+                break;
             case "LastWeek":
                 appeningTitle=" (LastWeek)";
                 values = metricStorage.getValuesLastWeek(hostId, instanceMetric.getId(), new Date());
@@ -120,8 +101,8 @@ public class ChartMetric extends JFrame {
                     for (int i = 0; i < values.size(); i++) {
                         dataset.addValue(values.get(i).getValue(), "LastWeek", dateFormat.format(values.get(i).getDateTime()));
                     }
-                    break;
                 }
+                break;
             case "LastMonth":
                 appeningTitle=" (LastMonth)";
                 values = metricStorage.getValuesLastMonth(hostId, instanceMetric.getId(), new Date());
@@ -131,8 +112,8 @@ public class ChartMetric extends JFrame {
                     for (int i = 0; i < values.size(); i++) {
                         dataset.addValue(values.get(i).getValue(), "LastMonth", values.get(i).getDateTime().getMonth()+"."+values.get(i).getDateTime().getDay());
                     }
-                    break;
                 }
+                break;
             case "LastYear":
                 appeningTitle=" (LastYear)";
                 values = metricStorage.getValuesLastYear(hostId, instanceMetric.getId(), new Date());
@@ -142,8 +123,8 @@ public class ChartMetric extends JFrame {
                     for (int i = 0; i < values.size(); i++) {
                         dataset.addValue(values.get(i).getValue(), "LastYear", values.get(i).getDateTime().getYear()+"."+values.get(i).getDateTime().getMonth());
                     }
-                    break;
                 }
+                break;
         }
         JFreeChart freeChart = ChartFactory.createLineChart(
                 title+appeningTitle,
