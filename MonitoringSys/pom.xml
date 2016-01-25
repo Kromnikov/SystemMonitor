@@ -81,6 +81,9 @@ http://www.w3.org/2001/XMLSchema-instance ">
     </dependencies>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <start-class>net.web.Application</start-class>
+
         <org.springframework.version>4.0.5.RELEASE</org.springframework.version>
         <org.hibernate.version>4.3.5.Final</org.hibernate.version>
         <java.version>1.8</java.version>
