@@ -1,7 +1,7 @@
 package net.core.branches;
 
-import net.core.configurations.SSHConfiguration;
 import net.core.agents.SSHAgent;
+import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;
 import net.core.hibernate.services.HostService;
 import net.core.models.InstanceMetric;
@@ -9,7 +9,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -17,7 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimerTask;
 
-@Service("ScheduledTask")
+//@Service("ScheduledTask")
 @Component
 public class ScheduledTask extends TimerTask {
 
@@ -35,7 +34,7 @@ public class ScheduledTask extends TimerTask {
         this.metricStorage=metricStorage;
     }
 
-    @Scheduled(fixedDelay = 10000)
+    @Scheduled(initialDelay = 1000,fixedDelay = 10000)
     @Override
     public void run() {
         System.out.println("ScheduledTask");
