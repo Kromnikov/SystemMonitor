@@ -1,13 +1,14 @@
 package net.core.branches;
 
+import net.core.configurations.SSHConfiguration;
 import net.core.agents.SSHAgent;
-import net.core.hibernate.services.HostService;
 import net.core.db.IMetricStorage;
+import net.core.hibernate.services.HostService;
 import net.core.models.InstanceMetric;
-import core.configurations.SSHConfiguration;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
@@ -17,6 +18,7 @@ import java.util.Date;
 import java.util.TimerTask;
 
 @Service("ScheduledTask")
+@Component
 public class ScheduledTask extends TimerTask {
 
     private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

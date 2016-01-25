@@ -2,7 +2,7 @@ package net.core.agents;
 
 
 import com.jcraft.jsch.*;
-import core.configurations.SSHConfiguration;
+import net.core.configurations.SSHConfiguration;
 import net.core.models.InstanceMetric;
 
 import java.io.IOException;

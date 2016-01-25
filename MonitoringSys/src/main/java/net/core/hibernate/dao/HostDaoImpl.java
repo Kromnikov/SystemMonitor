@@ -1,6 +1,6 @@
 package net.core.hibernate.dao;
 
-import core.configurations.SSHConfiguration;
+import net.core.configurations.SSHConfiguration;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

@@ -1,4 +1,4 @@
-package core.configurations;
+package net.core.configurations;
 
 import javax.persistence.*;
 

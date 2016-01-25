@@ -1,6 +1,6 @@
 package net.core.hibernate.services;
 
-import core.configurations.SSHConfiguration;
+import net.core.configurations.SSHConfiguration;
 import net.core.hibernate.dao.HostDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

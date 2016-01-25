@@ -2,7 +2,7 @@ package net.core;
 
 
 import net.core.models.TableModel;
-import core.configurations.SSHConfiguration;
+import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;
 import net.core.models.InstanceMetric;
 import net.core.models.TemplateMetric;

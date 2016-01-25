@@ -1,7 +1,7 @@
 package net.core.db;
 
 import net.core.models.TableModel;
-import core.configurations.SSHConfiguration;
+import net.core.configurations.SSHConfiguration;
 import net.core.models.InstanceMetric;
 import net.core.models.TemplateMetric;
 import net.core.models.Value;
@@ -10,10 +10,8 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Алексей on 25.11.2015.
- */
-public interface IMetricStorage {
+
+public interface IMetricStorage{
 
     //sql
     //metric-state

@@ -1,7 +1,7 @@
 package net.core.hibernate.services;
 
 
-import core.configurations.SSHConfiguration;
+import net.core.configurations.SSHConfiguration;
 
 import java.util.List;
 

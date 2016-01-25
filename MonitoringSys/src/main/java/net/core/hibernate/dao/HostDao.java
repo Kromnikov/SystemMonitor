@@ -1,7 +1,7 @@
 package net.core.hibernate.dao;
 
 
-import core.configurations.SSHConfiguration;
+import net.core.configurations.SSHConfiguration;
 
 import java.util.List;
 
