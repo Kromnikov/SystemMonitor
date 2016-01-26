@@ -7,8 +7,14 @@ import net.core.hibernate.services.HostService;
 import net.core.models.InstanceMetric;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.scheduling.annotation.SchedulingConfigurer;
+import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -16,8 +22,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimerTask;
 
-//@Service("ScheduledTask")
-@Component
+@Service("ScheduledTask")
+//@Component
+//@ComponentScan
+//@Service
+//@Configuration
+@EnableScheduling
 public class ScheduledTask extends TimerTask {
 
     private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -28,13 +38,16 @@ public class ScheduledTask extends TimerTask {
 
     private HostService hosts;
 
+    public ScheduledTask() {
+    }
+
     @Autowired
     public ScheduledTask(IMetricStorage metricStorage,HostService hosts) {
         this.hosts=hosts;
         this.metricStorage=metricStorage;
     }
 
-    @Scheduled(initialDelay = 1000,fixedDelay = 10000)
+    @Scheduled(fixedDelay = 10000)
     @Override
     public void run() {
         System.out.println("ScheduledTask");
