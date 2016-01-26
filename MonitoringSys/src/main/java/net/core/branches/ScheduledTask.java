@@ -23,11 +23,6 @@ import java.util.Date;
 import java.util.TimerTask;
 
 @Service("ScheduledTask")
-//@Component
-//@ComponentScan
-//@Service
-//@Configuration
-@EnableScheduling
 public class ScheduledTask extends TimerTask {
 
     private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
