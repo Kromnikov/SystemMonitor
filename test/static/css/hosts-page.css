@@ -1,0 +1,50 @@
+.hosts-servisec-contener{
+	margin-left:5%;
+	margin-top:40px;
+	box-shadow: 10px 1px 5px 1px rgba(0, 0, 0, .2);
+	margin-right:10%;
+	padding:0;
+}
+.hosts-servisec-contener-bottom{
+		bottom:0;
+}
+.hosts-contener{	
+	background-color:red;
+	width:50%;
+}
+.servisec-contener{
+	background-color:yellow;
+	margin-left:50%;
+	width:50%;
+}
+.hosts-list {
+    padding: 0;
+}
+.hosts-list li {
+     display: block;
+	 margin-top:23px;
+	 margin-bottom:23px;
+ }
+.hosts-list li a {
+    cursor: pointer;
+    padding: 17px 23px;
+    text-decoration: none;
+    border-radius: 4px 4px 0 0;
+	
+    -webkit-transition: all 0.2s ease-in-out 0s;
+    -moz-transition: all 0.2s ease-in-out 0s;
+    -o-transition: all 0.2s ease-in-out 0s;
+    -ms-transition: all 0.2s ease-in-out 0s;
+    transition: all 0.5s ease-in-out 0s;
+}
+.hosts-list li a:hover {background-color:red;
+ }
+ 
+ button[type=submit] {
+    padding:5px 15px; 
+    background:#red; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+}

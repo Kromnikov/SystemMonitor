@@ -3,10 +3,8 @@ package net.web.controller;
 
 import net.core.db.IMetricStorage;
 import net.core.hibernate.services.HostService;
-import net.core.models.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,17 +26,27 @@ public class HostsController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/processForm" , method= RequestMethod.POST)
-    public ModelAndView processForm1(@ModelAttribute(value="foo") Value value) {
+//    @RequestMapping(value = "/hosts" , method= RequestMethod.POST)
+//    public ModelAndView processForm1(@ModelAttribute ArrayList<SSHConfiguration> Values) {
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("hosts");
+//        modelAndView.addObject("Values", Values);
+//        return modelAndView;
+//    }
+
+    @RequestMapping(value="/hosts", params={"de"},method = RequestMethod.POST)
+    public ModelAndView lol() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("hosts");
-        modelAndView.addObject("Values", hosts.getAll().toArray());
+        modelAndView.addObject("Values", null);
+        return modelAndView;
+    }
+    @RequestMapping(value="/hosts", params={"de1"},method = RequestMethod.POST)
+    public ModelAndView lol1() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("hosts");
+        modelAndView.addObject("Values", null);
         return modelAndView;
     }
 
-//    @RequestMapping(value = "/processForm", method= RequestMethod.POST)
-//    public String processForm(@ModelAttribute(value="foo") Value value) {
-//
-//        return "hosts";
-//    }
 }

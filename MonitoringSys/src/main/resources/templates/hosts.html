@@ -76,9 +76,20 @@
                 <li> <a>192.168.1.2</a>	</li>
             </ul>
 
-            <form action="#" th:action="@{/processForm}" th:object="${foo}" method="post">
-                <input type="submit" />
+
+
+
+
+
+
+
+            <form action="#" th:action="@{/hosts}" th:object="${Values}" method="post">
+                <button type="submit" name="de">save</button>
+                <button type="submit" name="de1">не save</button>
             </form>
+
+
+
 
 
         </div>
