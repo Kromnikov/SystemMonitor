@@ -18,10 +18,8 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class DatabaseConfig {
 
-    /**
-     * DataSource definition for database connection. Settings are read from
-     * the application.properties file (using the env object).
-     */
+
+
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();

@@ -89,9 +89,38 @@ http://www.w3.org/2001/XMLSchema-instance ">
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
+
+
+
+
+
+
+        <!--<dependency>-->
+            <!--<groupId>org.thymeleaf.extras</groupId>-->
+            <!--<artifactId>thymeleaf-extras-springsecurity3</artifactId>-->
+            <!--<version>1.0.0-beta1</version>-->
+        <!--</dependency>-->
+
+
+        <!--<dependency>-->
+            <!--<groupId>org.thymeleaf</groupId>-->
+            <!--<artifactId>thymeleaf-spring4</artifactId>-->
+            <!--<optional>true</optional>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>nz.net.ultraq.thymeleaf</groupId>-->
+            <!--<artifactId>thymeleaf-layout-dialect</artifactId>-->
+            <!--<optional>true</optional>-->
+        <!--</dependency>-->
+
+
+
     </dependencies>
 
     <properties>
+
+        <springsecurity.version>4.0.0.RELEASE</springsecurity.version>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <start-class>net.web.Application</start-class>
 

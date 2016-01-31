@@ -4,12 +4,6 @@
     <title>Monitoring system</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
-    <!--<link type="text/css" href="../static/css/index.css" rel="stylesheet" />-->
-    <!--<link rel="stylesheet" type="text/css" media="all"  th:href="@{/css/syncServer.css}"  href="static/css/index.css" />-->
-    <!--<link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"-->
-          <!--th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"-->
-          <!--rel="stylesheet" media="screen" />-->
-
     <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
             th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
 
@@ -22,19 +16,20 @@
 
     <link href="../../src/main/resources/static/css/index.css"
           th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
+    <link href="../static/css/hosts-page.css"
+          th:href="@{css/hosts-page.css}" rel="stylesheet" media="screen"/>
 
-</head>
-<body>
+</head><body>
 <div class="container">
 
     <div class="header">
 
         <div class="header-left">
-		<!--
-		<p class="host-name"><p th:text="'Host name ' + ${Values.value} + '!'" /></p>
-		-->
+            <!--
+            <p class="host-name"><p th:text="'Host name ' + ${Values.value} + '!'" /></p>
+            -->
             <!--<img src="../static/img/spring.jpg" width="200" height="30"-->
-                 <!--th:src="@{img/spring.jpg}"/>-->
+            <!--th:src="@{img/spring.jpg}"/>-->
         </div>
 
         <div class="header-right">
@@ -42,9 +37,6 @@
                 <li>
                     <a th:href="hosts">Hosts</a>
                 </li>
-                <!--<li>-->
-                    <!--<a>Templated services</a>-->
-                <!--</li>-->
                 <li>
                     <a>Problems</a>
                 </li>
@@ -66,21 +58,32 @@
             <li>
                 <a>Services</a>
             </li>
-			
-            <!--<li>-->
-                <!--<a>Configuration</a>-->
-            <!--</li>-->
-            <!--<li th:each="val: ${Values}">-->
-                <!--<a th:text="${val.value}+'lol'"></a>-->
-            <!--</li>-->
         </ul>
     </div>
 
 
     <div class="content">
-        <!--<li th:each="val : ${Values}" th:text="${val.value}">En las Orillas del Sar</li>-->
-        awfafw
+
+        <!--<li th:each="val: ${Values}">-->
+            <!--<a th:text="${val.value}"></a>-->
+        <!--</li>-->
+
+        <div class="hosts-contener">
+            <ul class="hosts-list">
+                <li th:action="lol">
+                    <a th:each="val : ${Values}" th:text="${val.getHost()}">En las Orillas del Sar</a>
+                </li>
+                <li> <a>192.168.1.2</a>	</li>
+            </ul>
+
+            <form action="#" th:action="@{/processForm}" th:object="${foo}" method="post">
+                <input type="submit" />
+            </form>
+
+
+        </div>
         <div class="bottom"> </div>
+        <!--<a th:text="${userJSP.value}" />-->
     </div>
 
 </div>

@@ -1,7 +1,6 @@
 package net.web;
 
 
-import net.core.branches.CoreBranch;
 import net.web.config.DatabaseConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

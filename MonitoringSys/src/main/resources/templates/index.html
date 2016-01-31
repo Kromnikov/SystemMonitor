@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
-    <title>Spring Framework Guru</title>
+    <title>Monitoring system</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <!--<link type="text/css" href="../static/css/index.css" rel="stylesheet" />-->
@@ -30,8 +30,9 @@
     <div class="header">
 
         <div class="header-left">
-		
-		<p class="host-name">Host name *****</p>
+		<!--
+		<p class="host-name"><p th:text="'Host name ' + ${Values.value} + '!'" /></p>
+		-->
             <!--<img src="../static/img/spring.jpg" width="200" height="30"-->
                  <!--th:src="@{img/spring.jpg}"/>-->
         </div>
@@ -39,11 +40,11 @@
         <div class="header-right">
             <ul class="header-menu">
                 <li>
-                    <a>Hosts</a>
+                    <a th:href="hosts">Hosts</a>
                 </li>
-                <li>
-                    <a>Templated services</a>
-                </li>
+                <!--<li>-->
+                    <!--<a>Templated services</a>-->
+                <!--</li>-->
                 <li>
                     <a>Problems</a>
                 </li>
@@ -66,79 +67,20 @@
                 <a>Services</a>
             </li>
 			
-            <li>
-                <a>Configuration</a>
-            </li>
+            <!--<li>-->
+                <!--<a>Configuration</a>-->
+            <!--</li>-->
+            <!--<li th:each="val: ${Values}">-->
+                <!--<a th:text="${val.value}+'lol'"></a>-->
+            <!--</li>-->
         </ul>
     </div>
 
 
     <div class="content">
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
-        wf<br/>
+        <!--<li th:each="val : ${Values}" th:text="${val.value}">En las Orillas del Sar</li>-->
+        awfafw
+        <div class="bottom"> </div>
     </div>
 
 </div>
