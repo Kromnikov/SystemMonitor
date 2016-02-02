@@ -22,7 +22,7 @@ public class HostsController {
     public ModelAndView getHosts() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("hosts");
-        modelAndView.addObject("Values", hosts.getAll().toArray());
+        modelAndView.addObject("Values", null);//hosts.getAll().toArray()
         return modelAndView;
     }
 
@@ -34,14 +34,14 @@ public class HostsController {
 //        return modelAndView;
 //    }
 
-    @RequestMapping(value="/hosts", params={"de"},method = RequestMethod.POST)
+    @RequestMapping(value="/hosts", params={"hostAction"},method = RequestMethod.POST)
     public ModelAndView lol() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("hosts");
         modelAndView.addObject("Values", null);
         return modelAndView;
     }
-    @RequestMapping(value="/hosts", params={"de1"},method = RequestMethod.POST)
+    @RequestMapping(value="/hosts", params={"de"},method = RequestMethod.POST)
     public ModelAndView lol1() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("hosts");

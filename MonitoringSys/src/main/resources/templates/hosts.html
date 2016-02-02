@@ -62,39 +62,60 @@
     </div>
 
 
+    <!--<form action="#" th:action="@{/hosts}" th:object="${Values}" method="post">-->
+    <!--<button type="submit" name="hostAction">save</button>-->
+
+    <!--<button type="submit" name="de1">не save</button>-->
+    <!--</form>-->
+
+
     <div class="content">
 
-        <!--<li th:each="val: ${Values}">-->
-            <!--<a th:text="${val.value}"></a>-->
-        <!--</li>-->
-
-        <div class="hosts-contener">
-            <ul class="hosts-list">
-                <li th:action="lol">
-                    <a th:each="val : ${Values}" th:text="${val.getHost()}">En las Orillas del Sar</a>
-                </li>
-                <li> <a>192.168.1.2</a>	</li>
-            </ul>
-
-
-
-
-
-
-
+        <div class="hosts-servisec-contener">
 
             <form action="#" th:action="@{/hosts}" th:object="${Values}" method="post">
-                <button type="submit" name="de">save</button>
-                <button type="submit" name="de1">не save</button>
+                <table>
+
+                    <tr>
+                        <td>
+                            <div class="hosts-contener">
+                                <div class="contener-head">hosts</div>
+                                <div class="row-contener"><button type="submit" name="de">192.168.11.21</button></div>
+                                <div class="row-contener"><button type="submit" name="de">192.168.11.21</button></div>
+                                <div class="row-contener"><button type="submit" name="de">192.168.11.21</button></div>
+                                <div class="row-contener"><button type="submit" name="de">192.168.11.21</button></div>
+                            </div>
+                        </td>
+
+
+
+                        <td>
+                            <div class="servisec-contener">
+                                <div class="contener-head">services</div>
+                                <div class="row-contener"><button type="submit" name="de">CPU</button></div>
+                                <div class="row-contener"><button type="submit" name="de">RAM</button></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="bottom-container">
+                        <td>
+                            <button type="submit" name="de">Добавить</button>
+                            <button type="submit" name="de">Удалить</button>
+                            <button type="submit" name="de">Редактировать</button>
+                        </td>
+                        <td>
+                            <button type="submit" name="de">Редактировать</button>
+                            <button type="submit" name="de">Сохранить</button>
+                        </td>
+                    </tr>
+                </table>
+
             </form>
-
-
 
 
 
         </div>
         <div class="bottom"> </div>
-        <!--<a th:text="${userJSP.value}" />-->
     </div>
 
 </div>

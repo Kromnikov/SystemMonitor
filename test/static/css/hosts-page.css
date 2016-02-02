@@ -80,8 +80,9 @@ vertical-align:top;
 }
 .row-contener button[type=submit]:hover{
 	background:#BCBCBC;
-	padding-bottom:15px;
-	padding-top:15px;
+	font-weight:bold;
+	/*padding-bottom:15px;
+	padding-top:15px;*/
 
 }
 button[type=submit] {
