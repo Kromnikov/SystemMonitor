@@ -34,7 +34,4 @@ public class IndexController {
 
         return modelAndView; //после уйдем на представление, указанное чуть выше, если оно будет найдено.
     }
-
-
-//        @RequestMaw
 }

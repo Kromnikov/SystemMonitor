@@ -41,7 +41,7 @@
                     <a>Problems</a>
                 </li>
                 <li>
-                    <a>Home</a>
+                    <a href="/">Home</a>
                 </li>
             </ul>
         </div>
@@ -73,17 +73,25 @@
 
         <div class="hosts-servisec-contener">
 
-            <form action="#" th:action="@{/hosts}" th:object="${Values}" method="post">
+
+            <!--<div th:each="host: ${getHosts}">-->
+                <!--<a th:text="${host.host}"></a>-->
+            <!--</div>-->
+            <!--<form action="#" th:action="@{/hosts}" th:object="${Values}" method="post">-->
+                <!--<button type="submit" name="setServices">CPU</button>-->
+            <!--</form>-->
+            <form action="#" th:action="@{/hosts}" th:object="${getHosts}" method="post">
                 <table>
 
                     <tr>
                         <td>
                             <div class="hosts-contener">
                                 <div class="contener-head">hosts</div>
-                                <div class="row-contener"><button type="submit" name="de">192.168.11.21</button></div>
-                                <div class="row-contener"><button type="submit" name="de">192.168.11.21</button></div>
-                                <div class="row-contener"><button type="submit" name="de">192.168.11.21</button></div>
-                                <div class="row-contener"><button type="submit" name="de">192.168.11.21</button></div>
+                                <div th:each="host: ${getHosts}">
+                                    <a  th:href="@{'/hosts/'+${host.host}}" th:text="${host.host}"></a>
+                                    <!--<button type="submit" name="setServices1" th:text="${host.host}" value="id" th:value="${host.id}" ></button>-->
+                                    <!--<div class="row-contener"><button type="submit" name="setServices" th:text="${host.host}" th:attr="hostName=${host.host}" ></button></div>-->
+                                </div>
                             </div>
                         </td>
 
@@ -109,8 +117,8 @@
                         </td>
                     </tr>
                 </table>
-
             </form>
+
 
 
 
