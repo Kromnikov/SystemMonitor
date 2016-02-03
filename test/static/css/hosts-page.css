@@ -69,8 +69,15 @@ vertical-align:top;
 
 
  
-.row-contener button[type=submit] {
-    padding:5px 15px; 
+
+.row-contener a:hover{
+	background:#BCBCBC;
+	font-weight:bold;
+
+}
+.row-contener button[type=submit],.row-contener a {
+	display:block;
+    padding:5px 0px; 
 	width:100%;
     background:#E8E8E8; 
     border:0 none;

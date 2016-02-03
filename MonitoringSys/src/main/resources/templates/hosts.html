@@ -80,7 +80,7 @@
             <!--<form action="#" th:action="@{/hosts}" th:object="${Values}" method="post">-->
                 <!--<button type="submit" name="setServices">CPU</button>-->
             <!--</form>-->
-            <form action="#" th:action="@{/hosts}" th:object="${getHosts}" method="post">
+            <form action="#" th:action="@{/hosts}" th:object="${id}" method="post">
                 <table>
 
                     <tr>
@@ -88,8 +88,43 @@
                             <div class="hosts-contener">
                                 <div class="contener-head">hosts</div>
                                 <div th:each="host: ${getHosts}">
-                                    <a  th:href="@{'/hosts/'+${host.host}}" th:text="${host.host}"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    <div class="row-contener"><a  th:href="@{'host='+${host.host}}" name="setServices1" th:text="${host.host}"></a></div>
                                     <!--<button type="submit" name="setServices1" th:text="${host.host}" value="id" th:value="${host.id}" ></button>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                     <!--<div class="row-contener"><button type="submit" name="setServices" th:text="${host.host}" th:attr="hostName=${host.host}" ></button></div>-->
                                 </div>
                             </div>
