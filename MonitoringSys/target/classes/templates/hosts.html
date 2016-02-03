@@ -88,44 +88,7 @@
                             <div class="hosts-contener">
                                 <div class="contener-head">hosts</div>
                                 <div th:each="host: ${getHosts}">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                    <div class="row-contener"><a  th:href="@{'host='+${host.host}}" name="setServices1" th:text="${host.host}"></a></div>
-                                    <!--<button type="submit" name="setServices1" th:text="${host.host}" value="id" th:value="${host.id}" ></button>-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                    <!--<div class="row-contener"><button type="submit" name="setServices" th:text="${host.host}" th:attr="hostName=${host.host}" ></button></div>-->
+                                    <div class="row-contener"><a  th:href="@{'host='+${host.id}}" name="setServices1" th:text="${host.host}"></a></div>
                                 </div>
                             </div>
                         </td>
@@ -135,8 +98,16 @@
                         <td>
                             <div class="servisec-contener">
                                 <div class="contener-head">services</div>
-                                <div class="row-contener"><button type="submit" name="de">CPU</button></div>
-                                <div class="row-contener"><button type="submit" name="de">RAM</button></div>
+                                <div th:if="${getMetrics != null}">
+                                    <!--<div th:text="(${#lists.size(getMetrics)} &lt; 1)?'33':'55'"></div>-->
+                                    <div th:each="metric: ${getMetrics}">
+                                        <!--<div class="row-contener"><button type="submit" name="de">CPU</button></div>-->
+                                        <div class="row-contener"><a  th:href="@{'metric='+${metric.title}}" name="setServices1" th:text="(${metric}=='null')? 'lol' : ${metric.title} "></a></div>
+                                    </div>
+                                    <div th:text="(${#lists.size(getMetrics)} &lt; 1)?'На данном осте нету метрик':''"></div>
+                                </div>
+                                <div th:if="${getMetrics == null}">Выберите хост</div>
+
                             </div>
                         </td>
                     </tr>

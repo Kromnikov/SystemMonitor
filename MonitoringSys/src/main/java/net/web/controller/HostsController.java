@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Controller
@@ -42,10 +43,9 @@ public class HostsController {
         return this.hosts.getAll();
     }
 
-//    @RequestMapping(value="hosts/{id}", method = RequestMethod.GET)
-//    public String deleteUser1 (@PathVariable String id) {
-//        System.out.println(id);
-//        return "hosts";
+//    @ModelAttribute("getMetrics")
+//    public List<InstanceMetric> getMetrics() {
+//        return this.instanceMetric;
 //    }
 
     @RequestMapping(value="/hosts", params={"setServices1"},method = RequestMethod.POST)
@@ -55,11 +55,18 @@ public class HostsController {
 
     @RequestMapping(method = RequestMethod.GET, value="host={id}")
     public ModelAndView removeEmp(@PathVariable String id) {
-        System.out.println(id);
         ModelAndView modelAndView = new ModelAndView();
+        try {
+            instanceMetric = metricStorage.getInstMetrics(Integer.parseInt(id));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         modelAndView.setViewName("hosts");
+        modelAndView.addObject("getMetrics", this.instanceMetric);
         return modelAndView;
     }
+
+
 
 //    @RequestMapping(value="/hosts", params={"setServices"},method = RequestMethod.POST)
 //    public ModelAndView setServices(@ModelAttribute("getHosts")List<SSHConfiguration> hosts) {
