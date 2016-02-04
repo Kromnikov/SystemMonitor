@@ -26,7 +26,7 @@
           th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
 
 </head>
-<body>
+<body onload="onLoad()">
 <div class="container">
 
     <div class="header">
@@ -83,14 +83,14 @@
 	
 	<tr>
 		<td>
-			<div class="hosts-contener">
+			<div class="hosts-contener">	
 				<div class="contener-head">hosts</div>
-				<div class="row-contener"><a th:href="@{'host='+${host.host}}" name="setServices1" th:text="${host.host}">awfwafawfawfaawfawfawfawf</a></div>
-				<div class="row-contener"><button type="submit" name="de">192.168.11.21</button></div>
-				<div class="row-contener"><button type="submit" name="de">192.168.11.21</button></div>
-				<div class="row-contener"><button type="submit" name="de">192.168.11.21</button></div>
-				<div class="row-contener"><button type="submit" name="de">192.168.11.21</button></div>
-				<div class="row-contener"><button type="submit" name="de">192.168.11.21</button></div>
+				<div class="row-contener host"><a th:href="@{'host='+${host.host}}" name="setServices1" th:text="${host.host}">192.168.11.211</a></div>
+				<div class="row-contener host"><a th:href="@{'host='+${host.host}}" name="setServices1" th:text="${host.host}">192.168.1awf1.21</a></div>
+				<div class="row-contener host"><a th:href="@{'host='+${host.host}}" name="setServices1" th:text="${host.host}">192.168.1121.21</a></div>
+				<div class="row-contener host"><a th:href="@{'host='+${host.host}}" name="setServices1" th:text="${host.host}">192.168.11.211</a></div>
+				<div class="row-contener host"><a th:href="@{'host='+${host.host}}" name="setServices1" th:text="${host.host}">192.168.11.21</a></div>
+				<div class="row-contener host"><button type="submit" name="de">192.168.11.21</button></div>
 			</div>
 		</td>
 		
@@ -99,8 +99,8 @@
 		<td>
 			<div class="servisec-contener">
 				<div class="contener-head">services</div>
-				<div class="row-contener"><button type="submit" name="de">CPU</button></div>
-				<div class="row-contener"><button type="submit" name="de">RAM</button></div>
+				<div class="row-contener metric"><button type="submit" name="de">CPU</button></div>
+				<div class="row-contener metric"><button type="submit" name="de">RAM</button></div>
 			</div>
 		</td>
 	</tr>

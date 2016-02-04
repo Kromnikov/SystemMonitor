@@ -7,7 +7,6 @@ import net.core.hibernate.services.HostService;
 import net.core.models.InstanceMetric;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,6 +23,8 @@ public class HostsController {
 
     private List<InstanceMetric> instanceMetric;
 
+    private int hostId = Integer.MIN_VALUE;
+
 
 //    @RequestMapping(value = "/hosts")
 //    public ModelAndView hostPage() {
@@ -33,7 +34,7 @@ public class HostsController {
 //        return modelAndView;
 //    }
 
-    @RequestMapping(value = "/hosts", method=RequestMethod.GET)
+    @RequestMapping(value = "/hosts", method = RequestMethod.GET)
     public String hostPage() {
         return "hosts";
     }
@@ -43,21 +44,23 @@ public class HostsController {
         return this.hosts.getAll();
     }
 
-//    @ModelAttribute("getMetrics")
-//    public List<InstanceMetric> getMetrics() {
-//        return this.instanceMetric;
-//    }
-
-    @RequestMapping(value="/hosts", params={"setServices1"},method = RequestMethod.POST)
-    public String greeting(@RequestParam(value="id", required=true) String id, Model model) {
-        return "hosts";
+    @ModelAttribute("getMetrics")
+    public List<InstanceMetric> getMetrics() {
+        return this.instanceMetric;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="host={id}")
-    public ModelAndView removeEmp(@PathVariable String id) {
+    @ModelAttribute("getHostId")
+    public int gethostId() {
+        return this.hostId;
+    }
+
+
+    @RequestMapping(method = RequestMethod.GET, value = "host={id}")
+    public @ResponseBody ModelAndView setHostId(@PathVariable String id) {
+        this.hostId = Integer.parseInt(id);
         ModelAndView modelAndView = new ModelAndView();
         try {
-            instanceMetric = metricStorage.getInstMetrics(Integer.parseInt(id));
+            instanceMetric = metricStorage.getInstMetrics(this.hostId);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -66,23 +69,37 @@ public class HostsController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/hosts", params = {"delHost"}, method = RequestMethod.POST)
+    public ModelAndView delHost() {
+        ModelAndView modelAndView = new ModelAndView();
+        if (hostId != Integer.MIN_VALUE) {
+
+        this.instanceMetric = null;
+
+        SSHConfiguration sshConfiguration = getHosts().stream().filter(x -> x.getId() == this.hostId).findFirst().get();
+        hosts.remove(sshConfiguration);
+
+        modelAndView.setViewName("hosts");
+        modelAndView.addObject("getMetrics", this.instanceMetric);
+        modelAndView.addObject("getHosts", getHosts());
+        }
+        hostId = Integer.MIN_VALUE;
+        return modelAndView;
+    }
 
 
-//    @RequestMapping(value="/hosts", params={"setServices"},method = RequestMethod.POST)
-//    public ModelAndView setServices(@ModelAttribute("getHosts")List<SSHConfiguration> hosts) {
-////        try {
-////            instanceMetric = metricStorage.getInstMetrics(host.getId());
-////        } catch (SQLException e) {
-////            e.printStackTrace();
-////        }
-//
-//
+//    @RequestMapping(value="/hosts", params={"setServices1"},method = RequestMethod.POST)
+//    public ModelAndView greeting(@RequestParam(value="id", required=false) String id, Model model) {
 //        ModelAndView modelAndView = new ModelAndView();
+//        try {
+//            instanceMetric = metricStorage.getInstMetrics(Integer.parseInt(id));
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
 //        modelAndView.setViewName("hosts");
-//        modelAndView.addObject("Values", null);
+//        modelAndView.addObject("getMetrics", this.instanceMetric);
 //        return modelAndView;
 //    }
-
 
 
 }

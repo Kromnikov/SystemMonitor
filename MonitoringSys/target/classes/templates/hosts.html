@@ -6,9 +6,14 @@
 
     <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
             th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"
+            th:src="@{/webjars/jquery-ui/1.9.2/js/jquery-ui-1.9.2.custom.js}"></script>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/smoothness/jquery-ui.css"
+          th:href="@{/webjars/jquery-ui/1.9.2/css/smoothness/jquery-ui-1.9.2.custom.css}"
+          rel="stylesheet" />
 
-    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
-            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+    <!--<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"-->
+            <!--th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>-->
 
 
     <script src="../../src/main/resources/static/js/index.js"
@@ -19,7 +24,10 @@
     <link href="../static/css/hosts-page.css"
           th:href="@{css/hosts-page.css}" rel="stylesheet" media="screen"/>
 
-</head><body>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"/>
+    <script src="webjars/jquery/2.0.3/jquery.min.js"></script>
+
+</head><body onload="onLoad()">
 <div class="container">
 
     <div class="header">
@@ -80,7 +88,11 @@
             <!--<form action="#" th:action="@{/hosts}" th:object="${Values}" method="post">-->
                 <!--<button type="submit" name="setServices">CPU</button>-->
             <!--</form>-->
-            <form action="#" th:action="@{/hosts}" th:object="${id}" method="post">
+            <!--<div class="row-contener host"><a>id=1</a></div>-->
+            <!--<div class="row-contener host"><a  th:href="@{'hosts'}" >awfawf</a></div>-->
+            <form action="#" th:action="@{/hosts}" th:object="${getMetrics}" method="post">
+                <!--<div class="row-contener host"><button type="submit" name="setServices1">CPU</button></div>-->
+                <!--<div class="row-contener host"><button type="submit" name="setServices1">CPU</button></div>-->
                 <table>
 
                     <tr>
@@ -88,7 +100,7 @@
                             <div class="hosts-contener">
                                 <div class="contener-head">hosts</div>
                                 <div th:each="host: ${getHosts}">
-                                    <div class="row-contener"><a  th:href="@{'host='+${host.id}}" name="setServices1" th:text="${host.host}"></a></div>
+                                    <div class="row-contener host"><a  th:href="@{'host='+${host.id}}" name="setServices1" th:text="${host.host}"></a></div>
                                 </div>
                             </div>
                         </td>
@@ -102,9 +114,9 @@
                                     <!--<div th:text="(${#lists.size(getMetrics)} &lt; 1)?'33':'55'"></div>-->
                                     <div th:each="metric: ${getMetrics}">
                                         <!--<div class="row-contener"><button type="submit" name="de">CPU</button></div>-->
-                                        <div class="row-contener"><a  th:href="@{'metric='+${metric.title}}" name="setServices1" th:text="(${metric}=='null')? 'lol' : ${metric.title} "></a></div>
+                                        <div class="row-contener metric"><a  th:href="@{'metric='+${metric.title}}" name="setServices1" th:text="(${metric}=='null')? 'lol' : ${metric.title} "></a></div>
                                     </div>
-                                    <div th:text="(${#lists.size(getMetrics)} &lt; 1)?'На данном осте нету метрик':''"></div>
+                                    <div th:text="(${#lists.size(getMetrics)} &lt; 1)?'На данном хосте нету метрик':''"></div>
                                 </div>
                                 <div th:if="${getMetrics == null}">Выберите хост</div>
 
@@ -113,13 +125,14 @@
                     </tr>
                     <tr class="bottom-container">
                         <td>
-                            <button type="submit" name="de">Добавить</button>
-                            <button type="submit" name="de">Удалить</button>
-                            <button type="submit" name="de">Редактировать</button>
+                            <button type="submit" name="addHost">Добавить</button>
+                            <button type="submit" name="delHost">Удалить</button>
+                            <button type="submit" name="editHost">Редактировать</button>
                         </td>
                         <td>
-                            <button type="submit" name="de">Редактировать</button>
-                            <button type="submit" name="de">Сохранить</button>
+                            <button type="submit" name="editInstMetric">Редактировать</button>
+                            <button type="submit" name="addInstMetric">Добавить</button>
+                            <button type="submit" name="dellInstMetric">Добавить</button>
                         </td>
                     </tr>
                 </table>

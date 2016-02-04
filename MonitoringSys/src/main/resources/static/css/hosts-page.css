@@ -70,11 +70,6 @@ table tr td{
 
 
 
-.row-contener a:hover{
-    background:#BCBCBC;
-    font-weight:bold;
-
-}
 .row-contener button[type=submit],.row-contener a {
     display:block;
     padding:5px 0px;
@@ -88,13 +83,29 @@ table tr td{
     -webkit-border-radius: 1px;
     border-radius: 1px;
 }
-.row-contener button[type=submit]:hover{
+
+.row-contener button[type=submit]:hover,.row-contener a:hover{
     background:#BCBCBC;
     font-weight:bold;
-    /*padding-bottom:15px;
-    padding-top:15px;*/
-
+    /*padding-bottom:15px;*/
+    /*padding-top:15px;*/
 }
+
+
+.row-contener button[type=submit]:after,.row-contener a:after{
+    background:red;
+}
+
+
+
+.row-contener-select button[type=submit],.row-contener-select a {
+    background:#BCBCBC;
+    font-weight:bold;
+    padding:7px 0px;
+}
+
+
+
 button[type=submit] {
     padding:5px 20px;
     border:0 none;

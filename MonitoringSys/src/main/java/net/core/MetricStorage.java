@@ -593,6 +593,10 @@ public  class MetricStorage implements IMetricStorage {
         String sql ="delete from  \"sshconfigurationhibernate\" where host='"+host+"'";
         jdbcTemplateObject.update(sql);
     }
+    public void delHost(int hostId) throws SQLException {
+        String sql ="delete from  \"sshconfigurationhibernate\" where id='"+hostId+"'";
+        jdbcTemplateObject.update(sql);
+    }
 
     //
 }

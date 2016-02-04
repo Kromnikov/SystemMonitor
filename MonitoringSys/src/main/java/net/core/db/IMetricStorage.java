@@ -80,6 +80,7 @@ public interface IMetricStorage{
     List<TemplateMetric> getTemplatMetrics() throws SQLException;
 
     void delHost(String host)throws SQLException;
+    void delHost(int hostId)throws SQLException;
 
     void delMetricFromHost(int host, int id)throws SQLException;
 }
