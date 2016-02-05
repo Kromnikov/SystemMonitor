@@ -79,7 +79,12 @@
             <!--</form>-->
             <!--<div class="row-contener host"><a>id=1</a></div>-->
             <!--<div class="row-contener host"><a  th:href="@{'hosts'}" >awfawf</a></div>-->
+
+
             <form action="#" th:action="@{/hosts}" th:object="${getMetrics}" method="post">
+                <!--<div class="row-contener host"><button type="submit" name="setInstMetricId" th:text="'awf'"></button></div>-->
+                <!--<div class="row-contener host"><button type="submit"  th:text="'awf'"></button></div>-->
+                <!--<div class="row-contener host"><button type="submit"  th:text="'awf'"></button></div>-->
                 <!--<div class="row-contener host"><button type="submit" name="setServices1">CPU</button></div>-->
                 <!--<div class="row-contener host"><button type="submit" name="setServices1">CPU</button></div>-->
                 <table>
@@ -100,10 +105,12 @@
                             <div class="servisec-contener">
                                 <div class="contener-head">services</div>
                                 <div th:if="${getMetrics != null}">
-                                    <!--<div th:text="(${#lists.size(getMetrics)} &lt; 1)?'33':'55'"></div>-->
                                     <div th:each="metric: ${getMetrics}">
-                                        <!--<div class="row-contener"><button type="submit" name="de">CPU</button></div>-->
-                                        <div class="row-contener metric"><a  th:href="@{'metric='+${metric.title}}" name="setServices1" th:text="(${metric}=='null')? 'lol' : ${metric.title} "></a></div>
+                                        <!--<div class="row-contener metric"><a  th:href="@{'metric='+${metric.title}}" name="setServices1" th:text="${metric.title}"></a></div>-->
+                                        <div class="row-contener metric">
+                                            <!--<input  type="text" th:type="hidden"   name="instMetricId" placeholder="Имя хоста" th:value="${metric.title}"/>-->
+                                            <button type="submit" name="setInstMetricId" th:text="${metric.title}"></button>
+                                        </div>
                                     </div>
                                     <div th:text="(${#lists.size(getMetrics)} &lt; 1)?'На данном хосте нету метрик':''"></div>
                                 </div>
@@ -116,12 +123,12 @@
                         <td>
                             <button type="submit" name="addHost">Добавить</button>
                             <button type="submit" name="delHost">Удалить</button>
-                            <button type="submit" name="editHost">Редактировать</button>
+                            <!--<button type="submit" name="editHost">Редактировать</button>-->
                         </td>
                         <td>
-                            <button type="submit" name="editInstMetric">Редактировать</button>
+                            <!--<button type="submit" name="editInstMetric">Редактировать</button>-->
                             <button type="submit" name="addInstMetric">Добавить</button>
-                            <button type="submit" name="dellInstMetric">Добавить</button>
+                            <button type="submit" name="dellInstMetric">Удалить</button>
                         </td>
                     </tr>
                 </table>

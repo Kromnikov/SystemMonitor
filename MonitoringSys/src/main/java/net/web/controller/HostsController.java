@@ -25,6 +25,8 @@ public class HostsController {
 
     private int hostId = Integer.MIN_VALUE;
 
+    private int instMetricId = Integer.MIN_VALUE;
+
     private String hostName;
 
 
@@ -118,10 +120,6 @@ public class HostsController {
         return modelAndView;
     }
 
-
-
-
-
     @RequestMapping(value = "/hosts", params = {"returnHosts"}, method = RequestMethod.POST)
     public ModelAndView returnHosts() {
         ModelAndView modelAndView = new ModelAndView();
@@ -129,6 +127,40 @@ public class HostsController {
         modelAndView.setViewName("hosts");
         modelAndView.addObject("getHosts", getHosts());
         hostId = Integer.MIN_VALUE;
+        return modelAndView;
+    }
+
+
+    //Inst metric
+    @RequestMapping(value = "/hosts", params = {"setInstMetricId"}, method = RequestMethod.POST)
+    public ModelAndView setInstMetricId(String instMetricId) {
+//        this.instMetricId = Integer.parseInt(instMetricId);
+        ModelAndView modelAndView = new ModelAndView();
+//        try {
+//            instanceMetric = metricStorage.getInstMetrics(this.hostId);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+        modelAndView.setViewName("hosts");
+//        modelAndView.addObject("getMetrics", this.instanceMetric);
+        return modelAndView;
+    }
+
+
+    @RequestMapping(value = "/hosts", params = {"dellInstMetric"}, method = RequestMethod.POST)
+    public ModelAndView dellInstMetric() {
+        ModelAndView modelAndView = new ModelAndView();
+        if(instMetricId!=Integer.MIN_VALUE) {
+            try {
+                metricStorage.delMetricFromHost(hostId,instMetricId);
+                instanceMetric = metricStorage.getInstMetrics(this.hostId);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            modelAndView.addObject("getMetrics", this.instanceMetric);
+        }
+        modelAndView.setViewName("hosts");
+        modelAndView.addObject("getHosts", getHosts());
         return modelAndView;
     }
 
@@ -143,20 +175,6 @@ public class HostsController {
 
 
 
-
-
-//    @RequestMapping(value="/hosts", params={"setServices1"},method = RequestMethod.POST)
-//    public ModelAndView greeting(@RequestParam(value="id", required=false) String id, Model model) {
-//        ModelAndView modelAndView = new ModelAndView();
-//        try {
-//            instanceMetric = metricStorage.getInstMetrics(Integer.parseInt(id));
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        modelAndView.setViewName("hosts");
-//        modelAndView.addObject("getMetrics", this.instanceMetric);
-//        return modelAndView;
-//    }
 
 
 }
