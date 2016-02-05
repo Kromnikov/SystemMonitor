@@ -91,13 +91,6 @@ table tr td{
     /*padding-top:15px;*/
 }
 
-
-.row-contener button[type=submit]:after,.row-contener a:after{
-    background:red;
-}
-
-
-
 .row-contener-select button[type=submit],.row-contener-select a {
     background:#BCBCBC;
     font-weight:bold;
@@ -119,3 +112,28 @@ button[type=submit] {
 button[type=submit]:hover{
     background:#BCBCBC;
 }
+
+
+/*addHost*/
+
+.hosts-servisec-contener input[type=text]
+{
+    display:block;
+    padding:3px 4px;
+    margin-top:5px;
+    margin-bottom:20px;
+}
+H3 {
+    font-size: 30px;
+    font-weight: normal;
+    cursor: pointer;
+    text-shadow: 0 0 0 #333;
+    color: transparent;
+    transition: all 1s;
+}
+H3:hover {
+    text-shadow: 0 0 15px #999;
+}
+
+
+

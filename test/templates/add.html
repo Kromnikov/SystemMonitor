@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Spring Framework Guru</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <!--<link type="text/css" href="../static/css/index.css" rel="stylesheet" />-->
+    <!--<link rel="stylesheet" type="text/css" media="all"  th:href="@{/css/syncServer.css}"  href="static/css/index.css" />-->
+    <!--<link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"-->
+          <!--th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"-->
+          <!--rel="stylesheet" media="screen" />-->
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+
+    <script src="../static/js/index.js"
+            th:src="@{js/index.js}"></script>
+
+    <link href="../static/css/index.css"
+          th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
+    <link href="../static/css/hosts-page.css"
+          th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
+
+</head>
+<body onload="onLoad()">
+<div class="container">
+
+    <div class="header">
+
+        <div class="header-left">
+		
+		<p class="host-name">Host name *****</p>
+            <!--<img src="../static/img/spring.jpg" width="200" height="30"-->
+                 <!--th:src="@{img/spring.jpg}"/>-->
+        </div>
+
+        <div class="header-right">
+            <ul class="header-menu">
+                <li>
+                    <a>Hosts</a>
+                </li>
+                <li>
+                    <a>Templated services</a>
+                </li>
+                <li>
+                    <a>Problems</a>
+                </li>
+                <li>
+                    <a>Home</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <div class="left-context">
+        <ul class="left-menu">
+            <li>
+                <a>Problems <div class="left-menu-counter">10</div></a>
+            </li>
+
+            <li>
+                <a>Services</a>
+            </li>
+			
+            <li>
+                <a>Configuration</a>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="content">
+	
+	<div class="hosts-servisec-contener" align="center">
+	
+    <form action="#" th:action="@{/hosts}" th:object="${getMetrics}" method="post"> 
+	<h3>Добавить хост</h3>
+                        <input type="text" th:field="${host.host}" placeholder="host"/>
+                        <input type="text" th:field="${host.port}" placeholder="port"/>
+                        <input type="text" th:field="${host.login}" placeholder="login"/>
+                        <input type="text" th:field="${host.password}" placeholder="password"/>
+						<button type="submit" name="de">Сохранить</button>
+						<button type="submit" name="de">Отменить</button></br> &nbsp;
+	</form>
+	
+   
+   
+   
+	</div>
+		<div class="bottom"> </div>
+    </div>
+
+</div>
+</body>
+</html>

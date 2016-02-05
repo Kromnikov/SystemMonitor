@@ -25,12 +25,14 @@ public class HostsController {
 
     private int hostId = Integer.MIN_VALUE;
 
+    private String hostName;
+
 
 //    @RequestMapping(value = "/hosts")
 //    public ModelAndView hostPage() {
 //        ModelAndView modelAndView = new ModelAndView();
 //        modelAndView.setViewName("hosts");
-//        modelAndView.addObject("LOL", hosts.getAll().toArray());//hosts.getAll().toArray()
+//        modelAndView.addObject("getHosts", getHosts());
 //        return modelAndView;
 //    }
 
@@ -56,7 +58,9 @@ public class HostsController {
 
 
     @RequestMapping(method = RequestMethod.GET, value = "host={id}")
-    public @ResponseBody ModelAndView setHostId(@PathVariable String id) {
+    public
+    @ResponseBody
+    ModelAndView setHostId(@PathVariable String id) {
         this.hostId = Integer.parseInt(id);
         ModelAndView modelAndView = new ModelAndView();
         try {
@@ -74,18 +78,71 @@ public class HostsController {
         ModelAndView modelAndView = new ModelAndView();
         if (hostId != Integer.MIN_VALUE) {
 
-        this.instanceMetric = null;
+            this.instanceMetric = null;
 
-        SSHConfiguration sshConfiguration = getHosts().stream().filter(x -> x.getId() == this.hostId).findFirst().get();
-        hosts.remove(sshConfiguration);
+            SSHConfiguration sshConfiguration = getHosts().stream().filter(x -> x.getId() == this.hostId).findFirst().get();
+            hosts.remove(sshConfiguration);
 
-        modelAndView.setViewName("hosts");
-        modelAndView.addObject("getMetrics", this.instanceMetric);
-        modelAndView.addObject("getHosts", getHosts());
+            modelAndView.setViewName("hosts");
+            modelAndView.addObject("getMetrics", this.instanceMetric);
+            modelAndView.addObject("getHosts", getHosts());
         }
         hostId = Integer.MIN_VALUE;
         return modelAndView;
     }
+
+
+
+
+
+//add
+    @RequestMapping(value = "/hosts", params = {"addHost"}, method = RequestMethod.POST)
+    public ModelAndView addHost() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("addHost");
+        return modelAndView;
+    }
+
+
+    @RequestMapping(value = "/hosts", params = {"saveHost"}, method = RequestMethod.POST)
+    public ModelAndView saveHost(String hostName,String port,String login,String password) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (hostName != "" & port != "" & login != "" & password != "") {
+            SSHConfiguration sshConfiguration = new SSHConfiguration(hostName, Integer.parseInt(port), login, password);
+            hosts.save(sshConfiguration);
+            modelAndView.addObject("getHosts", getHosts());
+            modelAndView.setViewName("hosts");
+        } else {
+            modelAndView.setViewName("addHost");
+        }
+        return modelAndView;
+    }
+
+
+
+
+
+    @RequestMapping(value = "/hosts", params = {"returnHosts"}, method = RequestMethod.POST)
+    public ModelAndView returnHosts() {
+        ModelAndView modelAndView = new ModelAndView();
+        this.instanceMetric = null;
+        modelAndView.setViewName("hosts");
+        modelAndView.addObject("getHosts", getHosts());
+        hostId = Integer.MIN_VALUE;
+        return modelAndView;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //    @RequestMapping(value="/hosts", params={"setServices1"},method = RequestMethod.POST)
