@@ -40,7 +40,7 @@
         <div class="header-right">
             <ul class="header-menu">
                 <li>
-                    <a th:href="hosts">Hosts</a>
+                    <a class="header-menu-black" th:href="hosts" >Hosts</a>
                 </li>
                 <li>
                     <a>Problems</a>
@@ -71,22 +71,8 @@
         <div class="hosts-servisec-contener">
 
 
-            <!--<div th:each="host: ${getHosts}">-->
-                <!--<a th:text="${host.host}"></a>-->
-            <!--</div>-->
-            <!--<form action="#" th:action="@{/hosts}" th:object="${Values}" method="post">-->
-                <!--<button type="submit" name="setServices">CPU</button>-->
-            <!--</form>-->
-            <!--<div class="row-contener host"><a>id=1</a></div>-->
-            <!--<div class="row-contener host"><a  th:href="@{'hosts'}" >awfawf</a></div>-->
-
 
             <form action="#" th:action="@{/hosts}" th:object="${getMetrics}" method="post">
-                <!--<div class="row-contener host"><button type="submit" name="setInstMetricId" th:text="'awf'"></button></div>-->
-                <!--<div class="row-contener host"><button type="submit"  th:text="'awf'"></button></div>-->
-                <!--<div class="row-contener host"><button type="submit"  th:text="'awf'"></button></div>-->
-                <!--<div class="row-contener host"><button type="submit" name="setServices1">CPU</button></div>-->
-                <!--<div class="row-contener host"><button type="submit" name="setServices1">CPU</button></div>-->
                 <table>
 
                     <tr>
@@ -94,7 +80,7 @@
                             <div class="hosts-contener">
                                 <div class="contener-head">hosts</div>
                                 <div th:each="host: ${getHosts}">
-                                    <div class="row-contener host"><a  th:href="@{'host='+${host.id}}" name="setServices1" th:text="${host.host}"></a></div>
+                                    <div class="row-contener host"><a  th:href="@{'host='+${host.id}}" th:text="${host.host}"></a></div>
                                 </div>
                             </div>
                         </td>
@@ -106,11 +92,7 @@
                                 <div class="contener-head">services</div>
                                 <div th:if="${getMetrics != null}">
                                     <div th:each="metric: ${getMetrics}">
-                                        <!--<div class="row-contener metric"><a  th:href="@{'metric='+${metric.title}}" name="setServices1" th:text="${metric.title}"></a></div>-->
-                                        <div class="row-contener metric">
-                                            <!--<input  type="text" th:type="hidden"   name="instMetricId" placeholder="Имя хоста" th:value="${metric.title}"/>-->
-                                            <button type="submit" name="setInstMetricId" th:text="${metric.title}"></button>
-                                        </div>
+                                        <div class="row-contener metric"><a  th:href="@{'instMetric='+${metric.id}}" th:text="${metric.title}"></a></div>
                                     </div>
                                     <div th:text="(${#lists.size(getMetrics)} &lt; 1)?'На данном хосте нету метрик':''"></div>
                                 </div>
@@ -126,9 +108,8 @@
                             <!--<button type="submit" name="editHost">Редактировать</button>-->
                         </td>
                         <td>
-                            <!--<button type="submit" name="editInstMetric">Редактировать</button>-->
-                            <button type="submit" name="addInstMetric">Добавить</button>
-                            <button type="submit" name="dellInstMetric">Удалить</button>
+                            <button type="submit" name="addEditInstMetric">Редактировать</button>
+                            <!--<button type="submit" name="dellInstMetric">Удалить</button>-->
                         </td>
                     </tr>
                 </table>

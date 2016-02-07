@@ -64,6 +64,7 @@ public interface IMetricStorage{
     public void addInstMetric(SSHConfiguration host, TemplateMetric templateMetric) throws SQLException ;
     public List<InstanceMetric> getInstMetrics(int hostId) throws SQLException;
     public InstanceMetric getInstMetric(int hostId, String title) throws SQLException;
+    public void delInstMetric(int metricId) throws SQLException;
 
     public long getQuantityOfRow(int id) throws SQLException;
 //
@@ -79,8 +80,6 @@ public interface IMetricStorage{
 
     List<TemplateMetric> getTemplatMetrics() throws SQLException;
 
-    void delHost(String host)throws SQLException;
-    void delHost(int hostId)throws SQLException;
 
     void delMetricFromHost(int host, int id)throws SQLException;
 }

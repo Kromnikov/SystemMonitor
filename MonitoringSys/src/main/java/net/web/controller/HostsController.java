@@ -5,6 +5,7 @@ import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;
 import net.core.hibernate.services.HostService;
 import net.core.models.InstanceMetric;
+import net.core.models.TemplateMetric;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -23,25 +24,37 @@ public class HostsController {
 
     private List<InstanceMetric> instanceMetric;
 
+    List<TemplateMetric> templatMetrics;
+
     private int hostId = Integer.MIN_VALUE;
 
     private int instMetricId = Integer.MIN_VALUE;
 
+    private int templMetricId = Integer.MIN_VALUE;
+
     private String hostName;
 
 
-//    @RequestMapping(value = "/hosts")
-//    public ModelAndView hostPage() {
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("hosts");
-//        modelAndView.addObject("getHosts", getHosts());
-//        return modelAndView;
-//    }
-
-    @RequestMapping(value = "/hosts", method = RequestMethod.GET)
-    public String hostPage() {
-        return "hosts";
+    @RequestMapping(value = "/hosts")
+    public ModelAndView hostPage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("hosts");
+        this.instanceMetric = null;
+        instMetricId = Integer.MIN_VALUE;
+        hostId = Integer.MIN_VALUE;
+        modelAndView.addObject("getHosts", getHosts());
+        modelAndView.addObject("getMetrics", getMetrics());
+        return modelAndView;
     }
+
+//    @RequestMapping(value = "/hosts", method = RequestMethod.GET)
+//    public String hostPage() {
+//        this.instanceMetric = null;
+//        this.templatMetrics = null;
+//        instMetricId = Integer.MIN_VALUE;
+//        hostId = Integer.MIN_VALUE;
+//        return "hosts";
+//    }
 
     @ModelAttribute("getHosts")
     public List<SSHConfiguration> getHosts() {
@@ -60,9 +73,7 @@ public class HostsController {
 
 
     @RequestMapping(method = RequestMethod.GET, value = "host={id}")
-    public
-    @ResponseBody
-    ModelAndView setHostId(@PathVariable String id) {
+    public @ResponseBody ModelAndView setHostId(@PathVariable String id) {
         this.hostId = Integer.parseInt(id);
         ModelAndView modelAndView = new ModelAndView();
         try {
@@ -132,17 +143,11 @@ public class HostsController {
 
 
     //Inst metric
-    @RequestMapping(value = "/hosts", params = {"setInstMetricId"}, method = RequestMethod.POST)
-    public ModelAndView setInstMetricId(String instMetricId) {
-//        this.instMetricId = Integer.parseInt(instMetricId);
+    @RequestMapping(method = RequestMethod.GET, value = "instMetric={id}")
+    public @ResponseBody ModelAndView setInstMetricId(@PathVariable int id) {
+        this.instMetricId = id;
         ModelAndView modelAndView = new ModelAndView();
-//        try {
-//            instanceMetric = metricStorage.getInstMetrics(this.hostId);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
         modelAndView.setViewName("hosts");
-//        modelAndView.addObject("getMetrics", this.instanceMetric);
         return modelAndView;
     }
 
@@ -152,15 +157,64 @@ public class HostsController {
         ModelAndView modelAndView = new ModelAndView();
         if(instMetricId!=Integer.MIN_VALUE) {
             try {
-                metricStorage.delMetricFromHost(hostId,instMetricId);
+                metricStorage.delInstMetric(this.instMetricId);
                 instanceMetric = metricStorage.getInstMetrics(this.hostId);
+                instMetricId=Integer.MIN_VALUE;
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            modelAndView.addObject("getMetrics", this.instanceMetric);
+            //modelAndView.addObject("getMetrics", this.instanceMetric);
         }
-        modelAndView.setViewName("hosts");
-        modelAndView.addObject("getHosts", getHosts());
+        modelAndView.setViewName("addInstMetric");
+        modelAndView.addObject("getTemplatMetrics", this.templatMetrics);
+        modelAndView.addObject("getMetrics", this.instanceMetric);
+        //modelAndView.addObject("getHosts", getHosts());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/hosts", params = {"addEditInstMetric"}, method = RequestMethod.POST)
+    public ModelAndView addEditInstMetric() throws SQLException {
+        ModelAndView modelAndView = new ModelAndView();
+        templatMetrics= metricStorage.getTemplatMetrics();
+        if(this.hostId!=Integer.MIN_VALUE) {
+            modelAndView.setViewName("addInstMetric");
+            modelAndView.addObject("getMetrics", this.instanceMetric);
+            modelAndView.addObject("getTemplatMetrics", this.templatMetrics);
+        }else {
+            hostPage();
+        }
+        return modelAndView;
+    }
+    @RequestMapping(method = RequestMethod.GET, value = "selectInstMetric={id}")
+    public @ResponseBody ModelAndView selectInstMetricId(@PathVariable int id ) throws SQLException {
+        this.instMetricId = id;
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("addInstMetric");
+        modelAndView.addObject("getMetrics", this.instanceMetric);
+        modelAndView.addObject("getTemplatMetrics", this.templatMetrics);
+        return modelAndView;
+    }
+    @RequestMapping(method = RequestMethod.GET, value = "templatMetric={id}")
+        public @ResponseBody ModelAndView selectTemplMetricId(@PathVariable int id ) throws SQLException {
+        this.templMetricId = id;
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("addInstMetric");
+        modelAndView.addObject("getMetrics", this.instanceMetric);
+        modelAndView.addObject("getTemplatMetrics", this.templatMetrics);
+        return modelAndView;
+    }
+    @RequestMapping(value = "/hosts", params = {"addInstMetric"}, method = RequestMethod.POST)
+    public ModelAndView addInstMetric() throws SQLException {
+        ModelAndView modelAndView = new ModelAndView();
+
+        metricStorage.addInstMetric(this.hostId,this.templMetricId);
+        instanceMetric = metricStorage.getInstMetrics(this.hostId);
+
+
+        templatMetrics= metricStorage.getTemplatMetrics();
+        modelAndView.setViewName("addInstMetric");
+        modelAndView.addObject("getMetrics", this.instanceMetric);
+        modelAndView.addObject("getTemplatMetrics", this.templatMetrics);
         return modelAndView;
     }
 

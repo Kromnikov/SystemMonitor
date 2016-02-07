@@ -25,8 +25,6 @@
     <link href="../static/css/hosts-page.css"
           th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
 
-    <link href="../static/css/divs.css"
-          th:href="@{css/divs.css}" rel="stylesheet" media="screen"/>
 </head>
 <body onload="onLoad()">
 <div class="container">
@@ -35,7 +33,7 @@
 
         <div class="header-left">
 		
-		<p class="host-name">=</p>
+		<p class="host-name">Host name *****</p>
             <!--<img src="../static/img/spring.jpg" width="200" height="30"-->
                  <!--th:src="@{img/spring.jpg}"/>-->
         </div>
@@ -43,7 +41,7 @@
         <div class="header-right">
             <ul class="header-menu">
                 <li>
-                    <a href="add.html">Hosts</a>
+                    <a>Hosts</a>
                 </li>
                 <li>
                     <a>Templated services</a>
@@ -52,7 +50,7 @@
                     <a>Problems</a>
                 </li>
                 <li>
-                    <a class="header-menu-black">Home</a>
+                    <a>Home</a>
                 </li>
             </ul>
         </div>
@@ -61,10 +59,9 @@
 
 
     <div class="left-context">
-			<!--<div class="line-in-left-menu"></div>-->
         <ul class="left-menu">
-            <li> 
-			<a>Problems <div class="left-menu-counter">10</div></a>
+            <li>
+                <a>Problems <div class="left-menu-counter">10</div></a>
             </li>
 
             <li>
@@ -81,27 +78,19 @@
     <div class="content">
 	
 	<div class="hosts-servisec-contener">
- <!--<div class="show">a-->
-                            <!--<div class="float-div">-->
-                                <!--<div class="row-contener host"><a th:href="@{'host='+${host.host}}" name="setServices1" th:text="${host.host}">192.168.11.211</a></div>-->
-                                <!--<div class="row-contener host"><a th:href="@{'host='+${host.host}}" name="setServices1" th:text="${host.host}">192.168.1awf1.21</a></div>-->
-                                <!--<div class="row-contener host"><a th:href="@{'host='+${host.host}}" name="setServices1" th:text="${host.host}">192.168.1121.21</a></div>-->
-                                <!--<div class="row-contener host"><a th:href="@{'host='+${host.host}}" name="setServices1" th:text="${host.host}">192.168.11.211</a></div>-->
-                                <!--<div class="row-contener host"><a th:href="@{'host='+${host.host}}" name="setServices1" th:text="${host.host}">192.168.11.21</a></div>-->
-                            <!--</div>-->
-                        <!--</div>-->
+	
 	<table>
 	
 	<tr>
 		<td>
 			<div class="hosts-contener">	
-				 <div class="contener-head"><b4>РҐРѕСЃС‚С‹</b4></div>
+				<div class="contener-head">Instances</div>
 				<div class="row-contener host"><a th:href="@{'host='+${host.host}}" name="setServices1" th:text="${host.host}">192.168.11.211</a></div>
 				<div class="row-contener host"><a th:href="@{'host='+${host.host}}" name="setServices1" th:text="${host.host}">192.168.1awf1.21</a></div>
 				<div class="row-contener host"><a th:href="@{'host='+${host.host}}" name="setServices1" th:text="${host.host}">192.168.1121.21</a></div>
 				<div class="row-contener host"><a th:href="@{'host='+${host.host}}" name="setServices1" th:text="${host.host}">192.168.11.211</a></div>
 				<div class="row-contener host"><a th:href="@{'host='+${host.host}}" name="setServices1" th:text="${host.host}">192.168.11.21</a></div>
-				<div class="row-contener host"><a th:href="@{'host='+${host.host}}" name="setServices1" th:text="${host.host}">192.168.11.211</a></div>
+				<div class="row-contener host"><button type="submit" name="de">192.168.11.21</button></div>
 			</div>
 		</td>
 		
@@ -109,21 +98,21 @@
 		
 		<td>
 			<div class="servisec-contener">
-				<div class="contener-head"><b4>РњРµС‚СЂРёРєРё</b4></div>
-				<div class="row-contener metric"><a th:href="@{'host='+${host.host}}" name="setServices1" th:text="${host.host}">192.168.11.211</a></div>
-				<div class="row-contener metric"><a th:href="@{'host='+${host.host}}" name="setServices1" th:text="${host.host}">192.168.11.211</a></div>
+				<div class="contener-head">Templated</div>
+				<div class="row-contener metric"><button type="submit" name="de">CPU</button></div>
+				<div class="row-contener metric"><button type="submit" name="de">RAM</button></div>
 			</div>
 		</td>
 	</tr>
-	<tr class="bottom-container" align="center">
+	<tr class="bottom-container">
 					<td>
-						<button type="submit" name="de">Р”РѕР±Р°РІРёС‚СЊ</button>
-						<button type="submit" name="de">РЈРґР°Р»РёС‚СЊ</button>
-						<button type="submit" name="de">Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ</button>
+						<button type="submit" name="de">Добавить</button>
+						<button type="submit" name="de">Удалить</button>
+						<button type="submit" name="de">Редактировать</button>
 					</td>
 					<td>
-						<button type="submit" name="de">Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ</button>
-						<button type="submit" name="de">РЎРѕС…СЂР°РЅРёС‚СЊ</button>
+						<button type="submit" name="de">Редактировать</button>
+						<button type="submit" name="de">Сохранить</button>
 					</td>
 	</tr>
 	</table>

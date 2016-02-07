@@ -540,6 +540,11 @@ public  class MetricStorage implements IMetricStorage {
         }
         return instanceMetric;
     }
+    @Transactional
+    public void delInstMetric(int metricId) throws SQLException{
+        String sql ="DELETE FROM \"INSTANCE_METRIC\" WHERE id="+metricId;
+        jdbcTemplateObject.update(sql);
+    }
 
 
 
@@ -578,23 +583,10 @@ public  class MetricStorage implements IMetricStorage {
         jdbcTemplateObject.update(sql2);
     }
 
-    //delete-запросы
-//    @Transactional TODO удаление хостов должно быть через hibernate
-//    public void delHost(String host) throws SQLException {
-//        String sql ="delete from  \"sshconfigurationhibernate\" where host='"+host+"'";
-//        jdbcTemplateObject.update(sql);
-//    }
+
     @Transactional
     public void delMetricFromHost(int host,int id) throws SQLException {
-        String sql ="delete from  \"HOST_METRIC\" where where metric_id="+id+" and host_id="+host;
-        jdbcTemplateObject.update(sql);
-    }
-    public void delHost(String host) throws SQLException {
-        String sql ="delete from  \"sshconfigurationhibernate\" where host='"+host+"'";
-        jdbcTemplateObject.update(sql);
-    }
-    public void delHost(int hostId) throws SQLException {
-        String sql ="delete from  \"sshconfigurationhibernate\" where id='"+hostId+"'";
+        String sql ="delete from  \"HOST_METRIC\" where metric_id="+id+" and host_id="+host;
         jdbcTemplateObject.update(sql);
     }
 

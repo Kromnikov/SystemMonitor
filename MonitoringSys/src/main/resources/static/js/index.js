@@ -9,8 +9,6 @@ function onLoad() {
             window.localStorage.removeItem('metricSelect' + i);
         }});
     //window.localStorage.clear();//.removeItem(key);
-
-
     $( ".row-contener.host" ).click(selectRowHost);
     $( ".row-contener.metric" ).click(selectRowMetric);
 }
@@ -18,22 +16,10 @@ function onLoad() {
 function selectRowHost(){
     $( ".row-contener.host" ).removeClass("row-contener-select");
     $( this ).addClass( "row-contener-select" );
-
-
-    //var hostSelect = $(this).addClass( "row-contener-select" );
-    //localStorage.setItem('hostSelect', hostSelect);
-    //window.localStorage.setItem('hostSelect',$(this).addClass('row-contener-select'));
-
     window.localStorage.clear();
     var $item = $(this).closest('.row-contener.host');
     var index = $('.row-contener.host').index($item);
     localStorage.setItem('hostSelect' + index, 'favorites');
-
-
-
-
-
-    
 }
 function selectRowMetric(){
     $( ".row-contener.metric" ).removeClass("row-contener-select");

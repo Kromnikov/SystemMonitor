@@ -91,8 +91,18 @@ body{
     color:red;
     float:right;
 }
+.left-menu-select{
+    background-color: #35B3CC;
+    color: white !important;
+    padding-top:15px;
+    padding-bottom:15px
+}
 
 
+.header-menu-black {
+    background-color: #FFFFFF;
+    color: black !important;
+}
 .header-menu {
     padding: 0;
 }
@@ -117,13 +127,9 @@ body{
     color: black;
 }
 
-.header-menu-black{
-    color: white;
-}
 
-.header-menu-white {
-    background-color: #FFFFFF;
-    color: black;
+.header-menu-white{
+    color:white;
 }
 
 
