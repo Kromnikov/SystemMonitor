@@ -1,19 +1,15 @@
 function onLoad() {
-    $('li a').click(function()
+    $('a').click(function()
     {
-        //alert("window.localStorage.clear()");
-       window.localStorage.clear();
-    });
-    $('td button').click(function()
-    {
-        //alert("window.localStorage.clear()");
-        window.localStorage.clear();
+        // alert("window.localStorage.clear()");
+        // window.localStorage.clear();
     });
 
     $(".row-contener.left").each(function(i, el) {
-    if (localStorage['leftSelect' + i] == 'favorites') {
-        $(this).addClass('row-contener-select');
-   }});
+        if (localStorage['leftSelect' + i] == 'favorites') {
+            $(this).addClass('row-contener-select');
+            window.localStorage.removeItem('leftSelect'+i);
+        }});
     $(".row-contener.right").each(function(i, el) {
         if (localStorage['rightSelect' + i] == 'favorites') {
             $(this).addClass('row-contener-select');
@@ -27,7 +23,6 @@ function onLoad() {
 function selectRowleft(){
     $( ".row-contener.left" ).removeClass("row-contener-select");
     $( this ).addClass( "row-contener-select" );
-    window.localStorage.clear();
     var $item = $(this).closest('.row-contener.left');
     var index = $('.row-contener.left').index($item);
     localStorage.setItem('leftSelect' + index, 'favorites');

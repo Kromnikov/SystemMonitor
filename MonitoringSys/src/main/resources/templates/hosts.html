@@ -19,6 +19,8 @@
           th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
     <link href="../static/css/hosts-page.css"
           th:href="@{css/hosts-page.css}" rel="stylesheet" media="screen"/>
+    <script src="../../src/main/resources/static/js/index.js"
+            th:src="@{js/localStorage.js}"></script>
 
     <script src="http://code.jquery.com/jquery-1.10.2.js"/>
     <script src="webjars/jquery/2.0.3/jquery.min.js"></script>
@@ -68,7 +70,7 @@
 
     <div class="content">
 
-        <div class="hosts-servisec-contener">
+        <div class="left-right-contener">
 
 
 
@@ -77,10 +79,10 @@
 
                     <tr>
                         <td>
-                            <div class="hosts-contener">
-                                <div class="contener-head">hosts</div>
+                            <div class="left-contener">
+                                <div class="contener-head"><b4>Hosts</b4></div>
                                 <div th:each="host: ${getHosts}">
-                                    <div class="row-contener host"><a  th:href="@{'host='+${host.id}}" th:text="${host.host}"></a></div>
+                                    <div class="row-contener left"><a  th:href="@{'host='+${host.id}}" th:text="${host.host}"></a></div>
                                 </div>
                             </div>
                         </td>
@@ -88,11 +90,11 @@
 
 
                         <td>
-                            <div class="servisec-contener">
-                                <div class="contener-head">services</div>
+                            <div class="right-contener">
+                                <div class="contener-head"><b4>Services</b4></div>
                                 <div th:if="${getMetrics != null}">
                                     <div th:each="metric: ${getMetrics}">
-                                        <div class="row-contener metric"><a  th:href="@{'instMetric='+${metric.id}}" th:text="${metric.title}"></a></div>
+                                        <div class="row-contener right"><a  th:href="@{'instMetric='+${metric.id}}" th:text="${metric.title}"></a></div>
                                     </div>
                                     <div th:text="(${#lists.size(getMetrics)} &lt; 1)?'На данном хосте нету метрик':''"></div>
                                 </div>

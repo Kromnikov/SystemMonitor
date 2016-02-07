@@ -1,23 +1,24 @@
-.hosts-servisec-contener{
+.left-right-contener{
+    background-color:white;
     margin-left:5%;
     margin-top:40px;
-    box-shadow: 10px 11px 51px 1px rgba(0, 0, 0, .2);
+    box-shadow: 10px 20px 50px 10px rgba(0, 0, 0, .3);
     margin-right:10%;
     padding:0;
 }
-.hosts-servisec-contener table
+.left-right-contener table
 {
     width:100%;
 }
 
-.hosts-servisec-contener table tr td
+.left-right-contener table tr td
 {
     width:50%;
 }
-.hosts-servisec-contener-bottom{
+.left-right-contener-bottom{
     bottom:0;
 }
-.hosts-contener{
+.left-contener{
     /*background-color:red;*/
     width:100%;
 }
@@ -26,12 +27,23 @@
     font-weight: bolder;
     font-size:1.2em;
     top:0;
-    background-color:#666666;
+    background-color:#35B3CC;
     height:30px;
     color:white;
 }
+b4 {
+    font-size: 20px;
+    font-weight: normal;
+    cursor: pointer;
+    text-shadow: 0 0 0 white;
+    color: transparent;
+    transition: all 1s;
+}
+b4:hover {
+    text-shadow: 0 0 15px #999;
+}
 
-.servisec-contener{
+.right-contener{
     /*background-color:yellow;*/
     width:100%;
 }
@@ -58,17 +70,6 @@ table tr td{
     -ms-transition: all 0.5s ease-in-out 0s;
     transition: all 0.5s ease-in-out 0s;
 }
-.row-contener:hover {
-}
-
-
-
-
-
-
-
-
-
 
 .row-contener button[type=submit],.row-contener a {
     display:block;
@@ -77,8 +78,8 @@ table tr td{
     text-align: center;
     width:100%;
     text-decoration: none;
-    background:#E8E8E8;
-    border:0 none;
+    background:#E6E6E6;
+    /*border: 1px dashed #000000;*/
     cursor:pointer;
     -webkit-border-radius: 1px;
     border-radius: 1px;
@@ -100,12 +101,14 @@ table tr td{
 
 
 button[type=submit] {
-    padding:5px 20px;
+    margin-top:20px;
+    padding:8px 20px;
     border:0 none;
     cursor:pointer;
-    background:#E8E8E8;
+    color:white;
+    background:#35B3CC;
     -webkit-border-radius: 5px;
-    border-radius: 3px;
+    border-radius: 8px;
     -webkit-transition-duration: 0.2s; /* Safari */
     transition-duration: 0.2s;
 }
@@ -116,7 +119,7 @@ button[type=submit]:hover{
 
 /*addHost*/
 
-.hosts-servisec-contener input[type=text]
+.left-right-contener input[type=text]
 {
     display:block;
     padding:3px 4px;
@@ -134,6 +137,7 @@ H3 {
 H3:hover {
     text-shadow: 0 0 15px #999;
 }
+
 
 
 
