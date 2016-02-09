@@ -82,7 +82,7 @@
                             <div class="left-contener">
                                 <div class="contener-head"><b4>Hosts</b4></div>
                                 <div th:each="host: ${getHosts}">
-                                    <div class="row-contener left"><a  th:href="@{'host='+${host.id}}" th:text="${host.host}"></a></div>
+                                    <div class="row-contener left"><a  th:href="@{'hosts(id='+${host.id}}+')'" th:text="${host.host}"></a></div>
                                 </div>
                             </div>
                         </td>
@@ -105,12 +105,17 @@
                     </tr>
                     <tr class="bottom-container">
                         <td>
-                            <button type="submit" name="addHost">Добавить</button>
-                            <button type="submit" name="delHost">Удалить</button>
-                            <!--<button type="submit" name="editHost">Редактировать</button>-->
+                            <buttons>
+                                <a  th:href="@{'addHostPage'}">Добавить</a>
+                                <!--<a  th:href="@{'delHost'}">Удалить</a>-->
+                                <button type="submit" name="delHost">Удалить</button>
+                            </buttons>
                         </td>
                         <td>
-                            <button type="submit" name="addEditInstMetric">Редактировать</button>
+                            <buttons>
+                                <a  th:href="@{'addEditInstMetric'}">Редактировать</a>
+                            </buttons>
+                            <!--<button type="submit" name="addEditInstMetric">Редактировать</button>-->
                             <!--<button type="submit" name="dellInstMetric">Удалить</button>-->
                         </td>
                     </tr>

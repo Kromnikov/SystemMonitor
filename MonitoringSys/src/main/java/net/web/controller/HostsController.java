@@ -72,9 +72,9 @@ public class HostsController {
     }
 
 
-    @RequestMapping(method = RequestMethod.GET, value = "host={id}")
+    @RequestMapping(method = RequestMethod.GET, value = "hosts(id={id})")
     public @ResponseBody ModelAndView setHostId(@PathVariable String id) {
-        this.hostId = Integer.parseInt(id);
+            this.hostId = Integer.parseInt(id);
         ModelAndView modelAndView = new ModelAndView();
         try {
             instanceMetric = metricStorage.getInstMetrics(this.hostId);
@@ -87,6 +87,7 @@ public class HostsController {
     }
 
     @RequestMapping(value = "/hosts", params = {"delHost"}, method = RequestMethod.POST)
+//    @RequestMapping(method = RequestMethod.GET, value = "delHost")
     public ModelAndView delHost() {
         ModelAndView modelAndView = new ModelAndView();
         if (hostId != Integer.MIN_VALUE) {
@@ -101,6 +102,8 @@ public class HostsController {
             modelAndView.addObject("getHosts", getHosts());
         }
         hostId = Integer.MIN_VALUE;
+        modelAndView.setViewName("hosts");
+        modelAndView.addObject("getHosts", getHosts());
         return modelAndView;
     }
 
@@ -109,13 +112,13 @@ public class HostsController {
 
 
 //add
-    @RequestMapping(value = "/hosts", params = {"addHost"}, method = RequestMethod.POST)
-    public ModelAndView addHost() {
+//    @RequestMapping(value = "/hosts", params = {"addHost"}, method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.GET, value = "addHostPage")
+    public ModelAndView addHostPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("addHost");
         return modelAndView;
     }
-
 
     @RequestMapping(value = "/hosts", params = {"saveHost"}, method = RequestMethod.POST)
     public ModelAndView saveHost(String hostName,String port,String login,String password) {
@@ -151,7 +154,6 @@ public class HostsController {
         return modelAndView;
     }
 
-
     @RequestMapping(value = "/hosts", params = {"dellInstMetric"}, method = RequestMethod.POST)
     public ModelAndView dellInstMetric() {
         ModelAndView modelAndView = new ModelAndView();
@@ -172,7 +174,8 @@ public class HostsController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/hosts", params = {"addEditInstMetric"}, method = RequestMethod.POST)
+//    @RequestMapping(value = "/hosts", params = {"addEditInstMetric"}, method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.GET, value = "addEditInstMetric")
     public ModelAndView addEditInstMetric() throws SQLException {
         ModelAndView modelAndView = new ModelAndView();
         templatMetrics= metricStorage.getTemplatMetrics();
@@ -181,10 +184,11 @@ public class HostsController {
             modelAndView.addObject("getMetrics", this.instanceMetric);
             modelAndView.addObject("getTemplatMetrics", this.templatMetrics);
         }else {
-            hostPage();
+            return hostPage();
         }
         return modelAndView;
     }
+
     @RequestMapping(method = RequestMethod.GET, value = "selectInstMetric={id}")
     public @ResponseBody ModelAndView selectInstMetricId(@PathVariable int id ) throws SQLException {
         this.instMetricId = id;
@@ -194,8 +198,9 @@ public class HostsController {
         modelAndView.addObject("getTemplatMetrics", this.templatMetrics);
         return modelAndView;
     }
+
     @RequestMapping(method = RequestMethod.GET, value = "templatMetric={id}")
-        public @ResponseBody ModelAndView selectTemplMetricId(@PathVariable int id ) throws SQLException {
+    public @ResponseBody ModelAndView selectTemplMetricId(@PathVariable int id ) throws SQLException {
         this.templMetricId = id;
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("addInstMetric");
@@ -203,6 +208,7 @@ public class HostsController {
         modelAndView.addObject("getTemplatMetrics", this.templatMetrics);
         return modelAndView;
     }
+
     @RequestMapping(value = "/hosts", params = {"addInstMetric"}, method = RequestMethod.POST)
     public ModelAndView addInstMetric() throws SQLException {
         ModelAndView modelAndView = new ModelAndView();

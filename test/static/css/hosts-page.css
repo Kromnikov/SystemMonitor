@@ -1,24 +1,36 @@
-.hosts-servisec-contener{
-	background-color:white;
+.left-right-contener{
+    background-color:white;
     margin-left:5%;
+    max-width:90%;
     margin-top:40px;
     box-shadow: 10px 20px 50px 10px rgba(0, 0, 0, .3);
     margin-right:10%;
     padding:0;
 }
-.hosts-servisec-contener table
+
+.center-contener{
+    background-color:white;
+    margin-left:25%;
+    max-width:50%;
+    margin-top:40px;
+    box-shadow: 10px 20px 50px 10px rgba(0, 0, 0, .3);
+    margin-right:10%;
+    padding:0;
+}
+
+.left-right-contener table
 {
     width:100%;
 }
 
-.hosts-servisec-contener table tr td
+.left-right-contener table tr td
 {
     width:50%;
 }
-.hosts-servisec-contener-bottom{
+.left-right-contener-bottom{
     bottom:0;
 }
-.hosts-contener{
+.left-contener{
     /*background-color:red;*/
     width:100%;
 }
@@ -32,18 +44,18 @@
     color:white;
 }
 b4 {
-  font-size: 20px;
-  font-weight: normal;
-  cursor: pointer;
+    font-size: 20px;
+    font-weight: normal;
+    cursor: pointer;
     text-shadow: 0 0 0 white;
-  color: transparent;
-  transition: all 1s;
-  }
-  b4:hover {
-  text-shadow: 0 0 15px #999;
-    }
+    color: transparent;
+    transition: all 1s;
+}
+b4:hover {
+    text-shadow: 0 0 15px #999;
+}
 
-.servisec-contener{
+.right-contener{
     /*background-color:yellow;*/
     width:100%;
 }
@@ -101,11 +113,11 @@ table tr td{
 
 
 button[type=submit] {
-	margin-top:20px;
+    margin-top:20px;
     padding:8px 20px;
     border:0 none;
     cursor:pointer;
-	color:white;
+    color:white;
     background:#35B3CC;
     -webkit-border-radius: 5px;
     border-radius: 8px;
@@ -119,25 +131,41 @@ button[type=submit]:hover{
 
 /*addHost*/
 
-.hosts-servisec-contener input[type=text]
+.left-right-contener input[type=text]
 {
-	display:block;
-	padding:3px 4px;
-	margin-top:5px;
-	margin-bottom:20px;
+    display:block;
+    padding:3px 4px;
+    margin-top:5px;
+    margin-bottom:20px;
 }
 H3 {
-  font-size: 30px;
-  font-weight: normal;
-  cursor: pointer;
+    font-size: 30px;
+    font-weight: normal;
+    cursor: pointer;
     text-shadow: 0 0 0 #333;
-  color: transparent;
-  transition: all 1s;
-  }
-  H3:hover {
-  text-shadow: 0 0 15px #999;
-    }
+    color: transparent;
+    transition: all 1s;
+}
+H3:hover {
+    text-shadow: 0 0 15px #999;
+}
 
-
+buttons a{
+    display:inline-block;
+    text-decoration: none;
+    margin-top:20px;
+    padding:6px 20px;
+    border:0 none;
+    cursor:pointer;
+    color:white;
+    background:#35B3CC;
+    -webkit-border-radius: 5px;
+    border-radius: 8px;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
+}
+buttons a:hover{
+    background:#BCBCBC;
+}
 
 

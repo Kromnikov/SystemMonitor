@@ -1,6 +1,7 @@
 .left-right-contener{
     background-color:white;
     margin-left:5%;
+    max-width:90%;
     margin-top:40px;
     box-shadow: 10px 20px 50px 10px rgba(0, 0, 0, .3);
     margin-right:10%;
@@ -138,6 +139,22 @@ H3:hover {
     text-shadow: 0 0 15px #999;
 }
 
-
+buttons a{
+    display:inline-block;
+    text-decoration: none;
+    margin-top:20px;
+    padding:6px 20px;
+    border:0 none;
+    cursor:pointer;
+    color:white;
+    background:#35B3CC;
+    -webkit-border-radius: 5px;
+    border-radius: 8px;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
+}
+buttons a:hover{
+    background:#BCBCBC;
+}
 
 
