@@ -23,36 +23,33 @@
     <link href="../static/css/index.css"
           th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
     <link href="../static/css/hosts-page.css"
-          th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
+          th:href="@{css/hosts-page.css}" rel="stylesheet" media="screen"/>
 
     <link href="../static/css/host.css"
           th:href="@{css/host.css}" rel="stylesheet" media="screen"/>
+		  
+		  
+
 </head>
 <body onload="onLoad()">
 <div class="container">
 
-    <div class="header">
+	<div class="header">
 
-        <div class="header-left">
-		
-		<p class="host-name"></p>
-        </div>
-
-        <div class="header-right">
-            <ul class="header-menu">
-                <li>
-                    <a href="add.html">Hosts</a>
-                </li>
-                <li>
-                    <a>Problems</a>
-                </li>
-                <li>
-                    <a class="header-menu-black">Home</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
+		<div class="header-right">
+			<ul class="header-menu">
+				<li>
+					<a class="header-menu-black" th:href="hosts" >Hosts</a>
+				</li>
+				<li>
+					<a>Problems</a>
+				</li>
+				<li>
+					<a href="/">Home</a>
+				</li>
+			</ul>
+		</div>
+	</div>
 
 
 
@@ -64,26 +61,47 @@
 					<ul class="contener-menu">
 					
 					<li>
-						<a class="contener-menu-select">Main</a>
+						<a    th:href="@{'selectedHost'}">Main</a>
 					</li>
-					<li> 
-						<a href="problem.html">Problems <div class="left-menu-counter">10</div></a>
+					<li>
+						<a  th:href="@{'problem'}">Problems <div class="left-menu-counter">10</div></a>
 					</li>
 
 					<li>
-						<a  href="metrics.html">Services</a>
+						<a class="contener-menu-select">Services</a>
 					</li>
 					<li>
-						<a href="addIntsMetric.html">Edit services</a>
+						<a th:href="editIntsMetrics">Edit services</a>
 					</li>
 					</ul>
 				</div>
-				
+				<div class="services-container">
+					<div class="services-left">
+						<ul class="services-left-menu">
+							<div th:each="instMetric: ${getMetrics}">
+								<li><a  th:href="@{'selectInstMetric='+${instMetric.id}}" th:text="${instMetric.title}"></a></li>
+							</div>
+							<!--<li>-->
+								<!--<a>CPU</a>-->
+							<!--</li>-->
+							<!--<li>-->
+								<!--<a>RAM</a>-->
+							<!--</li>-->
+							<!--<li>-->
+								<!--<a>ROM</a>-->
+							<!--</li>-->
+						</ul>
+					</div>
+					
+					<div class="services-drow-menu">
+						
 				<div class="inProcess">
 					<p>in process...</p>
 				</div>
+					</div>
+				
+				</div>
 		
-	
    
    
    

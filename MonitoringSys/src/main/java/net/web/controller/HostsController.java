@@ -47,14 +47,6 @@ public class HostsController {
         return modelAndView;
     }
 
-//    @RequestMapping(value = "/hosts", method = RequestMethod.GET)
-//    public String hostPage() {
-//        this.instanceMetric = null;
-//        this.templatMetrics = null;
-//        instMetricId = Integer.MIN_VALUE;
-//        hostId = Integer.MIN_VALUE;
-//        return "hosts";
-//    }
 
     @ModelAttribute("getHosts")
     public List<SSHConfiguration> getHosts() {
@@ -145,6 +137,56 @@ public class HostsController {
     }
 
 
+
+
+
+
+//host
+@RequestMapping(method = RequestMethod.GET, value = "selectedHost")
+public @ResponseBody ModelAndView selectedHostPage() {
+    ModelAndView modelAndView = new ModelAndView();
+    if (this.hostId != Integer.MIN_VALUE) {
+        modelAndView.setViewName("hosts/host");
+    }
+    else{
+        return hostPage();
+    }
+    return modelAndView;
+}
+    @RequestMapping(method = RequestMethod.GET, value = "problem")
+ public @ResponseBody ModelAndView selectedHostProblems() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("problem");
+        return modelAndView;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "intsMetrics")
+    public @ResponseBody ModelAndView selectedHostIntsMetrics() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("getMetrics", this.instanceMetric);
+        modelAndView.setViewName("metrics");
+        return modelAndView;
+    }
+
+
+    @RequestMapping(method = RequestMethod.GET, value = "editIntsMetrics")
+    public @ResponseBody ModelAndView selectedHostEditIntsMetrics() throws SQLException {
+        ModelAndView modelAndView = new ModelAndView();
+        templatMetrics= metricStorage.getTemplatMetrics();
+        modelAndView.addObject("getTemplatMetrics", this.templatMetrics);
+        modelAndView.addObject("getMetrics", this.instanceMetric);
+        modelAndView.setViewName("addIntsMetric");
+        return modelAndView;
+    }
+
+
+
+
+
+
+
+
+
     //Inst metric
     @RequestMapping(method = RequestMethod.GET, value = "instMetric={id}")
     public @ResponseBody ModelAndView setInstMetricId(@PathVariable int id) {
@@ -167,7 +209,7 @@ public class HostsController {
             }
             //modelAndView.addObject("getMetrics", this.instanceMetric);
         }
-        modelAndView.setViewName("addInstMetric");
+        modelAndView.setViewName("addIntsMetric");
         modelAndView.addObject("getTemplatMetrics", this.templatMetrics);
         modelAndView.addObject("getMetrics", this.instanceMetric);
         //modelAndView.addObject("getHosts", getHosts());
@@ -180,7 +222,7 @@ public class HostsController {
         ModelAndView modelAndView = new ModelAndView();
         templatMetrics= metricStorage.getTemplatMetrics();
         if(this.hostId!=Integer.MIN_VALUE) {
-            modelAndView.setViewName("addInstMetric");
+            modelAndView.setViewName("addIntsMetric");
             modelAndView.addObject("getMetrics", this.instanceMetric);
             modelAndView.addObject("getTemplatMetrics", this.templatMetrics);
         }else {
@@ -193,7 +235,7 @@ public class HostsController {
     public @ResponseBody ModelAndView selectInstMetricId(@PathVariable int id ) throws SQLException {
         this.instMetricId = id;
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("addInstMetric");
+        modelAndView.setViewName("addIntsMetric");
         modelAndView.addObject("getMetrics", this.instanceMetric);
         modelAndView.addObject("getTemplatMetrics", this.templatMetrics);
         return modelAndView;
@@ -203,7 +245,7 @@ public class HostsController {
     public @ResponseBody ModelAndView selectTemplMetricId(@PathVariable int id ) throws SQLException {
         this.templMetricId = id;
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("addInstMetric");
+        modelAndView.setViewName("addIntsMetric");
         modelAndView.addObject("getMetrics", this.instanceMetric);
         modelAndView.addObject("getTemplatMetrics", this.templatMetrics);
         return modelAndView;
@@ -218,7 +260,7 @@ public class HostsController {
 
 
         templatMetrics= metricStorage.getTemplatMetrics();
-        modelAndView.setViewName("addInstMetric");
+        modelAndView.setViewName("addIntsMetric");
         modelAndView.addObject("getMetrics", this.instanceMetric);
         modelAndView.addObject("getTemplatMetrics", this.templatMetrics);
         return modelAndView;

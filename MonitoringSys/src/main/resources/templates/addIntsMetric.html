@@ -15,8 +15,13 @@
     <script src="../../src/main/resources/static/js/addMetric.js"
             th:src="@{js/addMetric.js}"></script>
 
-    <link href="../../src/main/resources/static/css/index.css"
+    <link href="../static/css/index.css"
           th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
+    <link href="../static/css/hosts-page.css"
+          th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
+
+    <link href="../static/css/host.css"
+          th:href="@{css/host.css}" rel="stylesheet" media="screen"/>
     <link href="../static/css/hosts-page.css"
           th:href="@{css/hosts-page.css}" rel="stylesheet" media="screen"/>
     <script src="../../src/main/resources/static/js/localStorage.js"
@@ -30,14 +35,6 @@
 <div class="container">
 
     <div class="header">
-
-        <div class="header-left">
-            <!--
-            <p class="host-name"><p th:text="'Host name ' + ${Values.value} + '!'" /></p>
-            -->
-            <!--<img src="../static/img/spring.jpg" width="200" height="30"-->
-            <!--th:src="@{img/spring.jpg}"/>-->
-        </div>
 
         <div class="header-right">
             <ul class="header-menu">
@@ -55,31 +52,39 @@
     </div>
 
 
-
-    <div class="left-context">
-        <ul class="left-menu">
-            <li>
-                <a>Problems <div class="left-menu-counter">10</div></a>
-            </li>
-
-            <li>
-                <a  class="left-menu-select">Services</a>
-            </li>
-        </ul>
-    </div>
-
     <div class="content">
+	<div class="center-contener">
+				
+				<div class="contener-head">
+					<ul class="contener-menu">
+					
+					<li>
+                        <a    th:href="@{'selectedHost'}">Main</a>
+					</li>
+					<li>
+                        <a  th:href="@{'problem'}">Problems <div class="left-menu-counter">10</div></a>
+					</li>
 
-        <div class="left-right-contener">
-
-
-
+					<li>
+                        <a  th:href="intsMetrics">Services</a>
+					</li>
+					<li>
+						<a class="contener-menu-select" href="addMetric.html">Edit services</a>
+					</li>
+					</ul>
+				</div>
+				
+				
+				
+				
+				
+			        <div class="left-right-contener">
             <form action="#" th:action="@{/hosts}" th:object="${getMetrics}" method="post">
                 <table>
                     <tr>
                         <td>
                             <div class="left-contener">
-                                <div class="contener-head">Inst</div>
+                                <div class="contener-head-1">Inst</div>
                                 <div th:each="instMetric: ${getMetrics}">
                                     <div class="row-contener left"><a  th:href="@{'selectInstMetric='+${instMetric.id}}" th:text="${instMetric.title}"></a></div>
                                 </div>
@@ -90,7 +95,7 @@
 
                         <td>
                             <div class="right-contener">
-                                <div class="contener-head">Templ</div>
+                                <div class="contener-head-1">Templ</div>
                                 <div th:each="templMetric: ${getTemplatMetrics}">
                                         <div class="row-contener right"><a  th:href="@{'templatMetric='+${templMetric.id}}" th:text="${templMetric.title}"></a></div>
                                 </div>
@@ -110,13 +115,15 @@
                 </table>
             </form>
 
-
-
-
-        </div>
         <div class="bottom"> </div>
     </div>
+		
+   
+	</div>
 
+
+
+    </div>
 </div>
 </body>
 </html>

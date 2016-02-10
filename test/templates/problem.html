@@ -25,6 +25,8 @@
     <link href="../static/css/hosts-page.css"
           th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
 
+    <link href="../static/css/host.css"
+          th:href="@{css/host.css}" rel="stylesheet" media="screen"/>
 </head>
 <body onload="onLoad()">
 <div class="container">
@@ -33,24 +35,19 @@
 
         <div class="header-left">
 		
-		<p class="host-name">Host name *****</p>
-            <!--<img src="../static/img/spring.jpg" width="200" height="30"-->
-                 <!--th:src="@{img/spring.jpg}"/>-->
+		<p class="host-name"></p>
         </div>
 
         <div class="header-right">
             <ul class="header-menu">
                 <li>
-                    <a class="header-menu-black">Hosts</a>
-                </li>
-                <li>
-                    <a>Templated services</a>
+                    <a href="add.html">Hosts</a>
                 </li>
                 <li>
                     <a>Problems</a>
                 </li>
                 <li>
-                    <a href="index.html">Home</a>
+                    <a class="header-menu-black">Home</a>
                 </li>
             </ul>
         </div>
@@ -58,39 +55,34 @@
 
 
 
-    <div class="left-context">
-        <ul class="left-menu">
-            <li>
-                <a>Problems <div class="left-menu-counter">10</div></a>
-            </li>
-
-            <li>
-                <a>Services</a>
-            </li>
-			
-            <li>
-                <a>Configuration</a>
-            </li>
-        </ul>
-    </div>
-
 
     <div class="content">
 	
-	<div class="center-contener" align="center">
-	
-    <form action="#" th:action="@{/hosts}" th:object="${getMetrics}" method="post"> 
-						<h3>Добавить хост</h3>
-                        <input type="text" th:field="${host.host}" placeholder="host"/>
-                        <input type="text" th:field="${host.port}" placeholder="port"/>
-                        <input type="text" th:field="${host.login}" placeholder="login"/>
-                        <input type="text" th:field="${host.password}" placeholder="password"/>
-						<button type="submit" name="de">Сохранить</button>
-						<button type="submit" name="de">Отменить</button></br> &nbsp;
-	</form>
-	
-   
-   
+	<div class="center-contener">
+				
+				<div class="contener-head">
+					<ul class="contener-menu">
+					
+					<li>
+						<a   href="host.html">Main</a>
+					</li>
+					<li> 
+						<a class="contener-menu-select">Problems <div class="left-menu-counter">10</div></a>
+					</li>
+
+					<li>
+						<a  href="metrics.html">Services</a>
+					</li>
+					<li>
+						<a href="addIntsMetric.html">Edit services</a>
+					</li>
+					</ul>
+				</div>
+				
+				<div class="inProcess">
+					<p>in process...</p>
+				</div>
+		
    
 	</div>
 		<div class="bottom"> </div>
