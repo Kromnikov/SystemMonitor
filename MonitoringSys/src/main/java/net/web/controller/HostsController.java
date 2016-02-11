@@ -34,19 +34,7 @@ public class HostsController {
 
     private String hostName;
 
-
-    @RequestMapping(value = "/hosts")
-    public ModelAndView hostPage() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("hosts");
-        this.instanceMetric = null;
-        instMetricId = Integer.MIN_VALUE;
-        hostId = Integer.MIN_VALUE;
-        modelAndView.addObject("getHosts", getHosts());
-        modelAndView.addObject("getMetrics", getMetrics());
-        return modelAndView;
-    }
-
+    private int problemsCount = Integer.MIN_VALUE;
 
     @ModelAttribute("getHosts")
     public List<SSHConfiguration> getHosts() {
@@ -62,6 +50,27 @@ public class HostsController {
     public int gethostId() {
         return this.hostId;
     }
+
+    @ModelAttribute("getProblemCount")
+    public int getProblemsCount() throws SQLException {
+        this.problemsCount = (int)metricStorage.getMetricNotResolvedLength(this.hostId);
+        return this.problemsCount;
+    }
+
+
+
+    @RequestMapping(value = "/hosts")
+    public ModelAndView hostPage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("hosts");
+        this.instanceMetric = null;
+        instMetricId = Integer.MIN_VALUE;
+        hostId = Integer.MIN_VALUE;
+//        modelAndView.addObject("getHosts", getHosts());
+//        modelAndView.addObject("getMetrics", getMetrics());
+        return modelAndView;
+    }
+
 
 
     @RequestMapping(method = RequestMethod.GET, value = "hosts(id={id})")
@@ -88,18 +97,15 @@ public class HostsController {
 
             SSHConfiguration sshConfiguration = getHosts().stream().filter(x -> x.getId() == this.hostId).findFirst().get();
             hosts.remove(sshConfiguration);
-
-            modelAndView.setViewName("hosts");
-            modelAndView.addObject("getMetrics", this.instanceMetric);
-            modelAndView.addObject("getHosts", getHosts());
+//            modelAndView.setViewName("hosts");
+            return hostPage();
+//            modelAndView.addObject("getHosts", getHosts());
         }
         hostId = Integer.MIN_VALUE;
         modelAndView.setViewName("hosts");
         modelAndView.addObject("getHosts", getHosts());
         return modelAndView;
     }
-
-
 
 
 
@@ -113,16 +119,28 @@ public class HostsController {
     }
 
     @RequestMapping(value = "/hosts", params = {"saveHost"}, method = RequestMethod.POST)
+//    public ModelAndView saveHost(String hostName,String port,String login,String password) {
+//        ModelAndView modelAndView = new ModelAndView();
+//        if (hostName != "" & port != "" & login != "" & password != "") {
+//            SSHConfiguration sshConfiguration = new SSHConfiguration(hostName, Integer.parseInt(port), login, password);
+//            hosts.save(sshConfiguration);
+////            modelAndView.addObject("getHosts", getHosts());
+////            modelAndView.setViewName("hosts");
+//            return hostPage();
+//        } else {
+//            modelAndView.setViewName("addHost");
+//        }
+//        return modelAndView;
+//    }
     public ModelAndView saveHost(String hostName,String port,String login,String password) {
         ModelAndView modelAndView = new ModelAndView();
-        if (hostName != "" & port != "" & login != "" & password != "") {
-            SSHConfiguration sshConfiguration = new SSHConfiguration(hostName, Integer.parseInt(port), login, password);
-            hosts.save(sshConfiguration);
-            modelAndView.addObject("getHosts", getHosts());
-            modelAndView.setViewName("hosts");
-        } else {
-            modelAndView.setViewName("addHost");
-        }
+        hosts.save( new SSHConfiguration(hostName, Integer.parseInt(port), login, password));
+        modelAndView.setViewName("hosts");
+        this.instanceMetric = null;
+        instMetricId = Integer.MIN_VALUE;
+        hostId = Integer.MIN_VALUE;
+//        modelAndView.addObject("getHosts", getHosts());
+//        modelAndView.addObject("getMetrics", getMetrics());
         return modelAndView;
     }
 

@@ -48,7 +48,7 @@ public  class MetricStorage implements IMetricStorage {
 
     @Transactional //MAX
     public boolean overMaxValue(long instMetric) {
-        String sql = "SELECT id, state, start_datetime, \"end_datetime\", inst_metric  FROM \"METRIC_STATE\" where state='overMaxValue' and inst_metric =" + instMetric + " and \"end_datetime\" is null";
+        String sql = "SELECT id, state, start_datetime, \"end_datetime\", inst_metric,host_id  FROM \"METRIC_STATE\" where state='overMaxValue' and inst_metric =" + instMetric + " and \"end_datetime\" is null ";
         boolean state = true;
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         if (rows.isEmpty()) {
@@ -58,8 +58,8 @@ public  class MetricStorage implements IMetricStorage {
         }
     }
     @Transactional
-    public void setOverMaxValue(String startTime, int instMetric) {
-        String sql = "INSERT INTO \"METRIC_STATE\"(start_datetime,state,inst_metric,resolved)  VALUES ((TIMESTAMP '" + startTime + "'),'overMaxValue'," + instMetric + ",false)";
+    public void setOverMaxValue(String startTime, int instMetric,int hostId) {
+        String sql = "INSERT INTO \"METRIC_STATE\"(start_datetime,state,inst_metric,resolved,host_id)  VALUES ((TIMESTAMP '" + startTime + "'),'overMaxValue'," + instMetric + ",false,"+hostId+")";
         jdbcTemplateObject.update(sql);
     }
 
@@ -76,8 +76,8 @@ public  class MetricStorage implements IMetricStorage {
         }
     }
     @Transactional  //MIN
-    public void setLessMinValue(String startTime, int instMetric) {
-        String sql = "INSERT INTO \"METRIC_STATE\"(start_datetime,state,inst_metric,resolved)  VALUES ((TIMESTAMP '" + startTime + "'),'lessMinValue'," + instMetric + ",false)";
+    public void setLessMinValue(String startTime, int instMetric,int hostId) {
+        String sql = "INSERT INTO \"METRIC_STATE\"(start_datetime,state,inst_metric,resolved,host_id)  VALUES ((TIMESTAMP '" + startTime + "'),'lessMinValue'," + instMetric + ",false,"+hostId+")";
         jdbcTemplateObject.update(sql);
     }
 
@@ -140,6 +140,11 @@ public  class MetricStorage implements IMetricStorage {
     @Transactional
     public long getMetricNotResolvedLength() {
         String sql = "SELECT COUNT(*)  FROM \"METRIC_STATE\" where resolved = false";
+        return (long)jdbcTemplateObject.queryForMap(sql).get("COUNT");
+    }
+    @Transactional
+    public long getMetricNotResolvedLength(int hostId) throws SQLException {
+        String sql = "SELECT COUNT(*)  FROM \"METRIC_STATE\" where resolved = false and host_id ="+hostId;
         return (long)jdbcTemplateObject.queryForMap(sql).get("COUNT");
     }
 

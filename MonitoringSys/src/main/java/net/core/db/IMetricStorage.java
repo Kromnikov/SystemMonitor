@@ -18,10 +18,10 @@ public interface IMetricStorage{
     public void setAllowableValueMetric(String endTime, int instMetric);
 
     public boolean overMaxValue(long instMetric);
-    public void setOverMaxValue(String startTime, int instMetric);
+    public void setOverMaxValue(String startTime, int instMetric,int hostId);
 
     public boolean lessMinValue(long instMetric);
-    public void setLessMinValue(String startTime, int instMetric);
+    public void setLessMinValue(String startTime, int instMetric,int hostId);
 
     public boolean correctlyMetric(long instMetric);
     public void setCorrectlyMetric(String endTime, int instMetric);
@@ -30,6 +30,7 @@ public interface IMetricStorage{
     public TableModel getMetricTableModel();
     public void setResolvedMetric(int id);
     public long getMetricNotResolvedLength();
+    public long getMetricNotResolvedLength(int hostId) throws SQLException;
 
     //host-state
     public boolean availableHost(long hostId);

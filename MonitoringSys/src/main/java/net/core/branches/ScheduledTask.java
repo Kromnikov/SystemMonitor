@@ -7,13 +7,7 @@ import net.core.hibernate.services.HostService;
 import net.core.models.InstanceMetric;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.scheduling.annotation.SchedulingConfigurer;
-import org.springframework.scheduling.config.ScheduledTaskRegistrar;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
@@ -64,7 +58,7 @@ public class ScheduledTask extends TimerTask {
                             {
                                 public void run()
                                 {
-                                    rageValue(valueMetric, instanceMetric, date);//min max
+                                    rageValue(valueMetric, instanceMetric, date ,host.getId());//min max
                                 }
                             });
                             myThready.start();
@@ -94,17 +88,17 @@ public class ScheduledTask extends TimerTask {
     }
 
 
-    private void rageValue(double valueMetric,InstanceMetric instanceMetric,String date) {
+    private void rageValue(double valueMetric,InstanceMetric instanceMetric,String date,int hostId) {
         if (valueMetric > instanceMetric.getMaxValue()) {//MAX
             if (metricStorage.overMaxValue(instanceMetric.getId())){
-                metricStorage.setOverMaxValue(date, instanceMetric.getId());
+                metricStorage.setOverMaxValue(date, instanceMetric.getId(),hostId);
                 System.out.println("overMax");
             }
         }
 
         if (valueMetric < instanceMetric.getMinValue()) {//MIN
             if (metricStorage.lessMinValue(instanceMetric.getId())) {
-                metricStorage.setLessMinValue(date, instanceMetric.getId());
+                metricStorage.setLessMinValue(date, instanceMetric.getId(),hostId);
                 System.out.println("lessMin");
             }
         }
