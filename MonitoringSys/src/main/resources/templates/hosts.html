@@ -46,7 +46,7 @@
                     <a class="header-menu-black" th:href="hosts" >Hosts</a>
                 </li>
                 <li>
-                    <a>Problems</a>
+                    <a>Problems<div class="left-menu-counter" th:text="${getProblemsCount}"></div></a>
                 </li>
                 <li>
                     <a href="/">Home</a>
@@ -60,7 +60,7 @@
     <div class="content">
 
 
-        <div class="center-contener">
+        <div class="center-contener-60">
 
             <form action="#" th:action="@{/hosts}" th:object="${getMetrics}" method="post">
             <div class="contener-head"><b4>Хосты</b4></div>
@@ -73,8 +73,8 @@
                 <buttons>
                     <a  th:href="@{'addHostPage'}">Добавить</a>
                     <button type="submit" name="delHost">Удалить</button>
-                    <a>Редактировать(InProcess...)</a>
-                    <a  th:href="@{'selectedHost'}">Промотр</a>
+                    <a th:href="@{'editHostPage'}">Редактировать</a>
+                    <a  th:href="@{host}">Промотр</a>
                 </buttons>
             </tr>
             </form>

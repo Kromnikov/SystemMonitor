@@ -1,12 +1,10 @@
 package net.core.db;
 
-import net.core.models.TableModel;
+import net.core.models.*;
 import net.core.configurations.SSHConfiguration;
-import net.core.models.InstanceMetric;
-import net.core.models.TemplateMetric;
-import net.core.models.Value;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -31,6 +29,9 @@ public interface IMetricStorage{
     public void setResolvedMetric(int id);
     public long getMetricNotResolvedLength();
     public long getMetricNotResolvedLength(int hostId) throws SQLException;
+    public List<MetricState> getMetricProblems(int hostId) throws SQLException, ParseException;
+
+    public int getProblemsLength();
 
     //host-state
     public boolean availableHost(long hostId);

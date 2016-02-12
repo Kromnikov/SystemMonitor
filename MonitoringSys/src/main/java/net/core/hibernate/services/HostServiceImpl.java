@@ -30,4 +30,11 @@ public class HostServiceImpl implements HostService {
     {
         dao.remove(content);
     }
+
+    @Transactional
+    public void update(SSHConfiguration content)
+    {
+        dao.update(content);
+    }
+
 }

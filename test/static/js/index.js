@@ -7,7 +7,6 @@ function onLoad() {
 	
     $(".row-contener.right").each(function(i, el) {
         if (localStorage['rightSelect' + i] == 'favorites') {
-			alert('rightSelect');
             $(this).addClass('row-contener-select');
             window.localStorage.removeItem('rightSelect' + i);
         }});
@@ -55,4 +54,10 @@ function selectServicesLeftMenu(){
     i++;
     if (i > text.length) i = 0;
     setTimeout("animateText('" + id + "','" + text + "'," + i + ")", 100);
+  }
+  
+  function resizeTo(){
+	$(".center-contener").show().animate({opacity:0}, 0);
+	$(".center-contener").show().animate({width:'40%'}, 0).fadeOut(1);
+	$(".center-contener").show().animate({opacity:1,  marginLeft: '+=20%'}, 0).fadeIn(500);
   }

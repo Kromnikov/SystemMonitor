@@ -27,4 +27,11 @@ public class HostDaoImpl implements HostDao {
     public void remove(SSHConfiguration content) {
         em.remove(content);
     }
+
+    @Override
+    public void update(SSHConfiguration content) {
+        em.find(SSHConfiguration.class, content.getId());
+        em.merge(content);
+    }
+
 }

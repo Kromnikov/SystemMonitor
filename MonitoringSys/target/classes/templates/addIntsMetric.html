@@ -59,17 +59,17 @@
 					<ul class="contener-menu">
 					
 					<li>
-                        <a    th:href="@{'selectedHost'}">Main</a>
+                        <a    th:href="@{'host'}">Main</a>
 					</li>
 					<li>
-                        <a  th:href="@{'problem'}">Problems <div class="left-menu-counter">10</div></a>
+                        <a  th:href="@{'problem'}">Problems <div class="left-menu-counter" th:text="${getProblemsCount}"></div></a>
 					</li>
 
 					<li>
                         <a  th:href="intsMetrics">Services</a>
 					</li>
 					<li>
-						<a class="contener-menu-select" href="addMetric.html">Edit services</a>
+						<a class="contener-menu-select">Edit services</a>
 					</li>
 					</ul>
 				</div>
@@ -105,7 +105,7 @@
                     <tr class="bottom-container">
                         <td>
                             <button type="submit" name="dellInstMetric">Удалить</button>
-                            <button type="submit" name="EditInstMetric">Редактировать</button>
+                            <button type="submit" name="EditInstMetric">Редактировать(InProcess...)</button>
                         </td>
                         <td>
                             <!--<button type="submit" name="editInstMetric">Редактировать</button>-->

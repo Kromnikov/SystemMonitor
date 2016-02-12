@@ -1,4 +1,5 @@
 function onLoad() {
+
     $('li a').click(function()
     {
         //alert("window.localStorage.clear()");
@@ -39,4 +40,9 @@ function selectRowright(){
     var index = $('.row-contener.right').index($item);
     localStorage.setItem('rightSelect' + index, 'favorites');
 
+}
+function resizeTo(){
+    $(".center-contener-60").show().animate({opacity:0}, 0);
+    $(".center-contener-60").show().animate({width:'40%'}, 0).fadeOut(1);
+    $(".center-contener-60").show().animate({opacity:1,  marginLeft: '+=20%'}, 0).fadeIn(500);
 }

@@ -19,6 +19,18 @@
     padding:0;
 }
 
+.center-contener-60{
+    background-color:white;
+    margin-left:30%;
+    max-width:40%;
+    /*margin-left:10%;*/
+    /*max-width:80%;*/
+    margin-top:40px;
+    box-shadow: 10px 20px 50px 10px rgba(0, 0, 0, .3);
+    margin-right:10%;
+    padding:0;
+}
+
 .left-right-contener table
 {
     width:100%;
@@ -124,6 +136,14 @@ button[type=submit]:hover{
 
 /*addHost*/
 .center-contener input[type=text]
+{
+
+    display:block;
+    padding:3px 4px;
+    margin-top:5px;
+    margin-bottom:20px;
+}
+.center-contener-60 input[type=text]
 {
 
     display:block;

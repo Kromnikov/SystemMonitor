@@ -61,10 +61,10 @@
 					<ul class="contener-menu">
 					
 					<li>
-						<a    th:href="@{'selectedHost'}">Main</a>
+						<a    th:href="@{'host'}">Main</a>
 					</li>
 					<li>
-						<a  th:href="@{'problem'}">Problems <div class="left-menu-counter">10</div></a>
+						<a  th:href="@{'problem'}">Problems <div class="left-menu-counter" th:text="${getProblemsCount}"></div></a>
 					</li>
 
 					<li>

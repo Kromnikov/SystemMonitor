@@ -1,12 +1,10 @@
 package net.core;
 
 
-import net.core.models.TableModel;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import net.core.models.*;
 import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;
-import net.core.models.InstanceMetric;
-import net.core.models.TemplateMetric;
-import net.core.models.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -16,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -133,6 +132,36 @@ public  class MetricStorage implements IMetricStorage {
         return metricsTableModel;
     }
     @Transactional
+    public List<MetricState> getMetricProblems(int hostId) throws SQLException, ParseException {
+        List<MetricState> metricStateList = new ArrayList<>();
+        String sql = "SELECT id, state, start_datetime, end_datetime, inst_metric, resolved  FROM \"METRIC_STATE\" where resolved = false and host_id="+hostId;
+        List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
+        if (rows.isEmpty()) {
+            return metricStateList;
+        } else {
+//            String[] header = {"id","Статус","Дата начала","Дата окончания","Метрика","Разрешено"};
+//            String[][] data = new String[rows.size()][6];
+            int i = 0;
+            for (Map row : rows) {
+                MetricState metricStateTmp = new MetricState();
+                metricStateTmp.setId(Integer.parseInt(row.get("id").toString()));
+                metricStateTmp.setState(row.get("state").toString());
+                metricStateTmp.setStart(dateFormat.parse(row.get("start_datetime").toString()));
+                if (row.get("end_datetime") != null) {
+                    metricStateTmp.setEnd(dateFormat.parse(row.get("end_datetime").toString()));
+                } else {
+//                    data[i][3] = " ";
+                }
+                metricStateTmp.setInstMetric(Integer.parseInt(row.get("inst_metric").toString()));
+                metricStateTmp.setResolved(Boolean.parseBoolean(row.get("resolved").toString()));
+                i++;
+                metricStateList.add(metricStateTmp);
+            }
+//            metricsTableModel = new TableModel(header,data);
+        }
+        return metricStateList;
+    }
+    @Transactional
     public void setResolvedMetric(int id) {
         String sql = "UPDATE \"METRIC_STATE\" set resolved = true WHERE id ="+id+" and \"end_datetime\" is not null";
         jdbcTemplateObject.update(sql);
@@ -148,7 +177,10 @@ public  class MetricStorage implements IMetricStorage {
         return (long)jdbcTemplateObject.queryForMap(sql).get("COUNT");
     }
 
-
+    @Transactional
+    public int getProblemsLength() {
+        return (int)(getHostNotResolvedLength() + getMetricNotResolvedLength());
+    }
 
 
     //host-state

@@ -79,10 +79,54 @@
 					</ul>
 				</div>
 				
-				<div class="inProcess">
-					<p>in process...</p>
-				</div>
-		
+			 <table width="100%" border="1px" cellspacing="0px" cellpadding="4px" align="center" >
+
+                <td class="tablehead">id</td>
+                <td class="tablehead">stat</td>
+                <td class="tablehead">start</td>
+                <td class="tablehead">end</td>
+                <td class="tablehead">instMetric</td>
+                <td class="tablehead">resolved</td>
+                <td class="tablehead">+</td>
+                <div th:each="problem: ${getMetricProblems}">
+                    <tr>
+                <td>id</td>
+                <td >stat</td>
+                <td>start</td>
+                <td >end</td>
+                <td >instMetric</td>
+                <td >resolved</td>
+                        <td class="check"><a th:text="'+'"  th:href="@{'setResolvedMetric(id='+${problem.id}}+')'">=</a></td>
+                    </tr>
+                    <tr>
+                <td>id</td>
+                <td >stat</td>
+                <td>start</td>
+                <td >end</td>
+                <td >instMetric</td>
+                <td >resolved</td>
+                        <td><a th:text="'+'"  th:href="@{'setResolvedMetric(id='+${problem.id}}+')'">=</a></td>
+                    </tr>
+                    <tr>
+                <td>id</td>
+                <td >stat</td>
+                <td>start</td>
+                <td >end</td>
+                <td >instMetric</td>
+                <td >resolved</td>
+                        <td><a th:text="'+'"  th:href="@{'setResolvedMetric(id='+${problem.id}}+')'">=</a></td>
+                    </tr>
+                    <tr>
+                <td>id</td>
+                <td >stat</td>
+                <td>start</td>
+                <td >end</td>
+                <td >instMetric</td>
+                <td >resolved</td>
+                        <td><a th:text="'+'"  th:href="@{'setResolvedMetric(id='+${problem.id}}+')'">+</a></td>
+                    </tr>
+                </div>
+            </table>
    
 	</div>
 		<div class="bottom"> </div>

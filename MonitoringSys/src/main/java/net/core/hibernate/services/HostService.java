@@ -24,4 +24,6 @@ public interface HostService {
 
     public void remove(SSHConfiguration content);
 
+    public void update(SSHConfiguration content);
+
 }

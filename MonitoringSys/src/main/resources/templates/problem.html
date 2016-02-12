@@ -64,10 +64,10 @@
 					<ul class="contener-menu">
 					
 					<li>
-						<a    th:href="@{'selectedHost'}">Main</a>
+						<a    th:href="@{'host'}">Main</a>
 					</li>
 					<li> 
-						<a class="contener-menu-select">Problems <div class="left-menu-counter">10</div></a>
+						<a class="contener-menu-select">Problems <div class="left-menu-counter" th:text="${getProblemsCount}"></div></a>
 					</li>
 
 					<li>
@@ -78,10 +78,30 @@
 					</li>
 					</ul>
 				</div>
-				
-				<div class="inProcess">
-					<p>in process...</p>
-				</div>
+            <table width="100%" border="1px" cellspacing="0px" cellpadding="4px" align="center" >
+
+                <td class="tablehead">id</td>
+                <td class="tablehead">stat</td>
+                <td class="tablehead">start</td>
+                <td class="tablehead">end</td>
+                <td class="tablehead">instMetric</td>
+                <td class="tablehead">resolved</td>
+                <td class="tablehead"> </td>
+                <div th:each="problem: ${getMetricProblems}">
+                    <tr>
+                        <td th:field="*{id}"  type="hidden" th:text="${problem.id}"></td>
+                        <td th:field="*{state}" th:text="${problem.state}"></td>
+                        <td th:field="*{start}" th:text="${problem.start}"></td>
+                        <td th:field="*{end}" th:text="${problem.end}"></td>
+                        <td th:field="*{instMetric}" th:text="${problem.instMetric}"></td>
+                        <td th:field="*{resolved}" th:text="${problem.resolved}"></td>
+                        <!--<td><input type="checkbox"  th:value="${problem.id}"></input></td>-->
+                        <td><a th:text="'resolve'"  th:href="@{'setResolvedMetric(id='+${problem.id}}+')'"></a></td>
+
+                    </tr>
+                </div>
+            </table>
+            <!--<div class="row-contener left"><a  th:href="@{'selectInstMetric='+${problem.id}}" th:text="${problem.state}"></a></div>-->
 		
    
 	</div>

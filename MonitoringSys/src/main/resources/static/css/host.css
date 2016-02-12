@@ -3,6 +3,16 @@
 	width:100%;
 	background-color:red;
 }
+.tablehead {
+	 background-color:#ABABAB;
+	 color:white;
+	 font-size:1.1em;
+	 font-weight:bold;
+ }
+td.check{
+	background: url("../img/check.png") no-repeat;
+	background-size: 30px 30px;
+}
 
 /*services*/
 .services-container{
@@ -42,7 +52,8 @@
 	box-shadow: 5px 0px 0px 0px #575555 inset; 
 }
 .services-left-menu  li a:hover {
-	box-shadow: 200px 0px 0px 0px #575555 inset; 
+	box-shadow: 1000px 0px 0px 0px #575555 inset;
+	/*background-color:#575555;*/
 	color:white;
 }
 .services-left-menu-select{

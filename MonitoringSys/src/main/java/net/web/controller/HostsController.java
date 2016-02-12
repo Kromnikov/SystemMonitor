@@ -5,6 +5,7 @@ import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;
 import net.core.hibernate.services.HostService;
 import net.core.models.InstanceMetric;
+import net.core.models.MetricState;
 import net.core.models.TemplateMetric;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 
 @Controller
@@ -32,6 +34,8 @@ public class HostsController {
 
     private int templMetricId = Integer.MIN_VALUE;
 
+    private List<MetricState> metricStateList;
+
     private String hostName;
 
     private int problemsCount = Integer.MIN_VALUE;
@@ -51,10 +55,22 @@ public class HostsController {
         return this.hostId;
     }
 
+
+//    @ModelAttribute("getAllProblemsCount")
+//    public int getAllProblemsCount() throws SQLException {
+//        this.problemsCount = (int)metricStorage.getMetricNotResolvedLength(this.hostId);
+//        return this.problemsCount;
+//    }
+
     @ModelAttribute("getProblemCount")
     public int getProblemsCount() throws SQLException {
         this.problemsCount = (int)metricStorage.getMetricNotResolvedLength(this.hostId);
         return this.problemsCount;
+    }
+    @ModelAttribute("getMetricProblems")
+    public List<MetricState> getMetricProblems() throws SQLException, ParseException {
+        this.metricStateList = metricStorage.getMetricProblems(this.hostId);
+        return this.metricStateList;
     }
 
 
@@ -66,7 +82,7 @@ public class HostsController {
         this.instanceMetric = null;
         instMetricId = Integer.MIN_VALUE;
         hostId = Integer.MIN_VALUE;
-//        modelAndView.addObject("getHosts", getHosts());
+        modelAndView.addObject("getHosts", getHosts());
 //        modelAndView.addObject("getMetrics", getMetrics());
         return modelAndView;
     }
@@ -75,7 +91,7 @@ public class HostsController {
 
     @RequestMapping(method = RequestMethod.GET, value = "hosts(id={id})")
     public @ResponseBody ModelAndView setHostId(@PathVariable String id) {
-            this.hostId = Integer.parseInt(id);
+        this.hostId = Integer.parseInt(id);
         ModelAndView modelAndView = new ModelAndView();
         try {
             instanceMetric = metricStorage.getInstMetrics(this.hostId);
@@ -88,29 +104,19 @@ public class HostsController {
     }
 
     @RequestMapping(value = "/hosts", params = {"delHost"}, method = RequestMethod.POST)
-//    @RequestMapping(method = RequestMethod.GET, value = "delHost")
     public ModelAndView delHost() {
-        ModelAndView modelAndView = new ModelAndView();
         if (hostId != Integer.MIN_VALUE) {
-
             this.instanceMetric = null;
-
             SSHConfiguration sshConfiguration = getHosts().stream().filter(x -> x.getId() == this.hostId).findFirst().get();
             hosts.remove(sshConfiguration);
-//            modelAndView.setViewName("hosts");
             return hostPage();
-//            modelAndView.addObject("getHosts", getHosts());
         }
-        hostId = Integer.MIN_VALUE;
-        modelAndView.setViewName("hosts");
-        modelAndView.addObject("getHosts", getHosts());
-        return modelAndView;
+        return hostPage();
     }
 
 
 
-//add
-//    @RequestMapping(value = "/hosts", params = {"addHost"}, method = RequestMethod.POST)
+//add host
     @RequestMapping(method = RequestMethod.GET, value = "addHostPage")
     public ModelAndView addHostPage() {
         ModelAndView modelAndView = new ModelAndView();
@@ -119,29 +125,9 @@ public class HostsController {
     }
 
     @RequestMapping(value = "/hosts", params = {"saveHost"}, method = RequestMethod.POST)
-//    public ModelAndView saveHost(String hostName,String port,String login,String password) {
-//        ModelAndView modelAndView = new ModelAndView();
-//        if (hostName != "" & port != "" & login != "" & password != "") {
-//            SSHConfiguration sshConfiguration = new SSHConfiguration(hostName, Integer.parseInt(port), login, password);
-//            hosts.save(sshConfiguration);
-////            modelAndView.addObject("getHosts", getHosts());
-////            modelAndView.setViewName("hosts");
-//            return hostPage();
-//        } else {
-//            modelAndView.setViewName("addHost");
-//        }
-//        return modelAndView;
-//    }
     public ModelAndView saveHost(String hostName,String port,String login,String password) {
-        ModelAndView modelAndView = new ModelAndView();
-        hosts.save( new SSHConfiguration(hostName, Integer.parseInt(port), login, password));
-        modelAndView.setViewName("hosts");
-        this.instanceMetric = null;
-        instMetricId = Integer.MIN_VALUE;
-        hostId = Integer.MIN_VALUE;
-//        modelAndView.addObject("getHosts", getHosts());
-//        modelAndView.addObject("getMetrics", getMetrics());
-        return modelAndView;
+        hosts.save(new SSHConfiguration(hostName, Integer.parseInt(port), login, password));
+        return hostPage();
     }
 
     @RequestMapping(value = "/hosts", params = {"returnHosts"}, method = RequestMethod.POST)
@@ -153,17 +139,38 @@ public class HostsController {
         hostId = Integer.MIN_VALUE;
         return modelAndView;
     }
+//edit host
+    @RequestMapping(method = RequestMethod.GET, value = "editHostPage")
+    public ModelAndView editHostPage() {
+        ModelAndView modelAndView = new ModelAndView();
+        if(this.hostId!=Integer.MIN_VALUE) {
+            modelAndView.setViewName("editHost");
+            SSHConfiguration sshConfiguration = getHosts().stream().filter(x -> x.getId() == this.hostId).findFirst().get();
+            modelAndView.addObject("getHost", sshConfiguration);
+        }
+        else
+            return hostPage();
+        return modelAndView;
+    }
 
+    @RequestMapping(value = "/hosts", params = {"editHost"}, method = RequestMethod.POST)
+    public ModelAndView editHost(int id,String host,String port,String login,String password) {
+        SSHConfiguration sshConfiguration = new SSHConfiguration(host, Integer.parseInt(port), login, password);
+        sshConfiguration.setId(id);
+        hosts.update(sshConfiguration);
 
+        return hostPage();
+    }
 
 
 
 
 //host
-@RequestMapping(method = RequestMethod.GET, value = "selectedHost")
-public @ResponseBody ModelAndView selectedHostPage() {
+@RequestMapping(method = RequestMethod.GET, value = "host")
+public @ResponseBody ModelAndView selectedHostPage() throws SQLException {
     ModelAndView modelAndView = new ModelAndView();
     if (this.hostId != Integer.MIN_VALUE) {
+        modelAndView.addObject("getProblemsCount", getProblemsCount());
         modelAndView.setViewName("hosts/host");
     }
     else{
@@ -171,16 +178,34 @@ public @ResponseBody ModelAndView selectedHostPage() {
     }
     return modelAndView;
 }
+
+    //Problem-host
     @RequestMapping(method = RequestMethod.GET, value = "problem")
- public @ResponseBody ModelAndView selectedHostProblems() {
+         public @ResponseBody ModelAndView selectedHostProblems() throws SQLException, ParseException {
         ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("getProblemsCount", getProblemsCount());
+        modelAndView.addObject("getMetricProblems", getMetricProblems());
+        modelAndView.setViewName("problem");
+        return modelAndView;
+    }
+    @RequestMapping(method = RequestMethod.GET, value = "setResolvedMetric(id={id})")
+    public ModelAndView setResolvedMetric(@PathVariable String id) throws SQLException, ParseException {
+        ModelAndView modelAndView = new ModelAndView();
+//        metricStorage.setResolvedMetric(Integer.parseInt(id));
+        modelAndView.addObject("getProblemsCount", getProblemsCount());
+        modelAndView.addObject("getMetricProblems", getMetricProblems());
         modelAndView.setViewName("problem");
         return modelAndView;
     }
 
+
+
+
+
     @RequestMapping(method = RequestMethod.GET, value = "intsMetrics")
-    public @ResponseBody ModelAndView selectedHostIntsMetrics() {
+    public @ResponseBody ModelAndView selectedHostIntsMetrics() throws SQLException {
         ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("getProblemsCount", getProblemsCount());
         modelAndView.addObject("getMetrics", this.instanceMetric);
         modelAndView.setViewName("metrics");
         return modelAndView;
@@ -192,6 +217,7 @@ public @ResponseBody ModelAndView selectedHostPage() {
         ModelAndView modelAndView = new ModelAndView();
         templatMetrics= metricStorage.getTemplatMetrics();
         modelAndView.addObject("getTemplatMetrics", this.templatMetrics);
+        modelAndView.addObject("getProblemsCount", getProblemsCount());
         modelAndView.addObject("getMetrics", this.instanceMetric);
         modelAndView.setViewName("addIntsMetric");
         return modelAndView;

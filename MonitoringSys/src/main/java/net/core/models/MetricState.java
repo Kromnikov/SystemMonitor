@@ -14,15 +14,18 @@ public class MetricState {
 
     private int instMetric;
 
+    private boolean resolved;
+
     public MetricState() {
     }
 
-    public MetricState(int id, String state, Date start, Date end, int instMetric) {
+    public MetricState(int id, String state, Date start, Date end, int instMetric,boolean resolved) {
         this.id = id;
         this.state = state;
         this.start = start;
         this.end = end;
         this.instMetric = instMetric;
+        this.resolved = resolved;
     }
 
     public int getId() {
@@ -63,5 +66,13 @@ public class MetricState {
 
     public void setInstMetric(int instMetric) {
         this.instMetric = instMetric;
+    }
+
+    public boolean isResolved() {
+        return resolved;
+    }
+
+    public void setResolved(boolean resolved) {
+        this.resolved = resolved;
     }
 }
