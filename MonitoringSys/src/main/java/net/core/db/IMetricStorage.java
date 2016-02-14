@@ -30,6 +30,7 @@ public interface IMetricStorage{
     public long getMetricNotResolvedLength();
     public long getMetricNotResolvedLength(int hostId) throws SQLException;
     public List<MetricState> getMetricProblems(int hostId) throws SQLException, ParseException;
+    public List<MetricState> getMetricProblems() throws SQLException, ParseException;
 
     public int getProblemsLength();
 
@@ -38,6 +39,7 @@ public interface IMetricStorage{
     public void setNotAvailableHost(String startTime, int host);
     public void setAvailableHost(String endTime, int host);
     public TableModel getHostTableModel();
+    public List<HostsState> getHostsProblems() throws SQLException, ParseException;
     public void setResolvedHost(int host);
     public long getHostNotResolvedLength();
 

@@ -46,7 +46,7 @@
                     <a class="header-menu-black" th:href="hosts" >Hosts</a>
                 </li>
                 <li>
-                    <a>Problems<div class="left-menu-counter" th:text="${getProblemsCount}"></div></a>
+                    <a th:href="@{'problems'}">Problems<div class="left-menu-counter" th:text="${getAllProblemsCount}"></div></a>
                 </li>
                 <li>
                     <a href="/">Home</a>
@@ -54,7 +54,6 @@
             </ul>
         </div>
     </div>
-
 
 
     <div class="content">
@@ -66,6 +65,7 @@
             <div class="contener-head"><b4>Хосты</b4></div>
                 <div th:each="host: ${getHosts}">
                     <div class="row-contener left"><a  th:href="@{'hosts(id='+${host.id}}+')'" th:text="${host.host}"></a></div>
+                    <!--<div class="row-contener left"><a  th:href="@{/viewCourse/id=} + ${host.id}" th:text="${host.host}+'test'"></a></div>-->
                 </div>
 
 

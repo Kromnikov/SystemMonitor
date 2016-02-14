@@ -42,7 +42,7 @@
                     <a class="header-menu-black" th:href="hosts">Hosts</a>
                 </li>
                 <li>
-                    <a>Problems</a>
+                    <a th:href="@{'problems'}">Problems<div class="left-menu-counter" th:text="${getAllProblemsCount}"></div></a>
                 </li>
                 <li>
                     <a href="/">Home</a>

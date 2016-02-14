@@ -7,8 +7,8 @@
     <!--<link type="text/css" href="../static/css/index.css" rel="stylesheet" />-->
     <!--<link rel="stylesheet" type="text/css" media="all"  th:href="@{/css/syncServer.css}"  href="static/css/index.css" />-->
     <!--<link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"-->
-          <!--th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"-->
-          <!--rel="stylesheet" media="screen" />-->
+    <!--th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"-->
+    <!--rel="stylesheet" media="screen" />-->
 
     <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
             th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
@@ -34,17 +34,17 @@
     <div class="header">
 
         <div class="header-left">
-		
-		<p class="host-name"></p>
+
+            <p class="host-name"></p>
         </div>
 
         <div class="header-right">
             <ul class="header-menu">
                 <li>
-                    <a th:href="hosts"  class="header-menu-black">Hosts</a>
+                    <a th:href="hosts">Hosts</a>
                 </li>
                 <li>
-                    <a th:href="@{'problems'}">Problems<div class="left-menu-counter" th:text="${getAllProblemsCount}"></div></a>
+                    <a  class="header-menu-black">Problems<div class="left-menu-counter" th:text="${getAllProblemsCount}"></div></a>
                 </li>
                 <li>
                     <a  href="/">Home</a>
@@ -57,27 +57,12 @@
 
 
     <div class="content">
-	
-	<div class="center-contener">
-				
-				<div class="contener-head">
-					<ul class="contener-menu">
-					
-					<li>
-						<a    th:href="@{'host'}">Main</a>
-					</li>
-					<li> 
-						<a class="contener-menu-select">Problems <div class="left-menu-counter" th:text="${getProblemsCount}"></div></a>
-					</li>
 
-					<li>
-						<a  th:href="intsMetrics">Services</a>
-					</li>
-					<li>
-						<a th:href="editIntsMetrics">Edit services</a>
-					</li>
-					</ul>
-				</div>
+        <div class="center-contener">
+
+            <div class="contener-head">
+               Metrics problems<div th:text="${getProblemsCount}"  class="left-menu-counter"></div>
+            </div>
             <table width="100%" border="1px" cellspacing="0px" cellpadding="4px" align="center" >
 
                 <td class="tablehead">id</td>
@@ -96,16 +81,52 @@
                         <td th:field="*{instMetric}" th:text="${problem.instMetric}"></td>
                         <td th:field="*{resolved}" th:text="${problem.resolved}"></td>
                         <!--<td><input type="checkbox"  th:value="${problem.id}"></input></td>-->
-                        <td><a th:text="'resolve'"  th:href="@{'setResolvedMetric(id='+${problem.id}}+')'"></a></td>
+                        <td><a th:text="'resolve'"  th:href="@{'setResolvedMetric1(id='+${problem.id}}+')'"></a></td>
 
                     </tr>
                 </div>
             </table>
             <!--<div class="row-contener left"><a  th:href="@{'selectInstMetric='+${problem.id}}" th:text="${problem.state}"></a></div>-->
-		
-   
-	</div>
-		<div class="bottom"> </div>
+
+
+        </div>
+
+
+        <div class="center-contener">
+
+            <div class="contener-head">
+                Hosts problems<div th:text="${getHostsProblemsCount}"  class="left-menu-counter"></div>
+            </div>
+            <table width="100%" border="1px" cellspacing="0px" cellpadding="4px" align="center" >
+
+                <td class="tablehead">id</td>
+                <td class="tablehead">host</td>
+                <td class="tablehead">start</td>
+                <td class="tablehead">end</td>
+                <td class="tablehead">resolved</td>
+                <td class="tablehead"> </td>
+                <div th:each="problem: ${getHostsProblems}">
+                    <tr>
+                        <td th:field="*{id}"  type="hidden" th:text="${problem.id}"></td>
+                        <td th:field="*{hostId}" th:text="${problem.hostId}"></td>
+                        <td th:field="*{start}" th:text="${problem.start}"></td>
+                        <td th:field="*{end}" th:text="${problem.end}"></td>
+                        <td th:field="*{resolved}" th:text="${problem.resolved}"></td>
+                        <!--<td><input type="checkbox"  th:value="${problem.id}"></input></td>-->
+                        <td><a th:text="'resolve'"  th:href="@{'setResolvedHost(id='+${problem.id}}+')'"></a></td>
+
+                    </tr>
+                </div>
+            </table>
+            <!--<div class="row-contener left"><a  th:href="@{'selectInstMetric='+${problem.id}}" th:text="${problem.state}"></a></div>-->
+
+
+        </div>
+
+
+
+
+        <div class="bottom"> </div>
     </div>
 
 </div>

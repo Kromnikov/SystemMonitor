@@ -1,10 +1,9 @@
 package net.core;
 
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import net.core.models.*;
 import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;
+import net.core.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -162,6 +161,36 @@ public  class MetricStorage implements IMetricStorage {
         return metricStateList;
     }
     @Transactional
+    public List<MetricState> getMetricProblems() throws SQLException, ParseException {
+        List<MetricState> metricStateList = new ArrayList<>();
+        String sql = "SELECT id, state, start_datetime, end_datetime, inst_metric, resolved  FROM \"METRIC_STATE\" where resolved = false";
+        List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
+        if (rows.isEmpty()) {
+            return metricStateList;
+        } else {
+//            String[] header = {"id","Статус","Дата начала","Дата окончания","Метрика","Разрешено"};
+//            String[][] data = new String[rows.size()][6];
+            int i = 0;
+            for (Map row : rows) {
+                MetricState metricStateTmp = new MetricState();
+                metricStateTmp.setId(Integer.parseInt(row.get("id").toString()));
+                metricStateTmp.setState(row.get("state").toString());
+                metricStateTmp.setStart(dateFormat.parse(row.get("start_datetime").toString()));
+                if (row.get("end_datetime") != null) {
+                    metricStateTmp.setEnd(dateFormat.parse(row.get("end_datetime").toString()));
+                } else {
+//                    data[i][3] = " ";
+                }
+                metricStateTmp.setInstMetric(Integer.parseInt(row.get("inst_metric").toString()));
+                metricStateTmp.setResolved(Boolean.parseBoolean(row.get("resolved").toString()));
+                i++;
+                metricStateList.add(metricStateTmp);
+            }
+//            metricsTableModel = new TableModel(header,data);
+        }
+        return metricStateList;
+    }
+    @Transactional
     public void setResolvedMetric(int id) {
         String sql = "UPDATE \"METRIC_STATE\" set resolved = true WHERE id ="+id+" and \"end_datetime\" is not null";
         jdbcTemplateObject.update(sql);
@@ -234,6 +263,35 @@ public  class MetricStorage implements IMetricStorage {
             metricsTableModel = new TableModel(header,data);
         }
         return metricsTableModel;
+    }
+    @Transactional
+    public List<HostsState> getHostsProblems() throws SQLException, ParseException {
+        List<HostsState> hostsStateList = new ArrayList<>();
+        String sql = "SELECT id, resolved, start_datetime, end_datetime, host  FROM \"HOST_STATE\" where resolved = false";
+        List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
+        if (rows.isEmpty()) {
+            return hostsStateList;
+        } else {
+            int i = 0;
+            for (Map row : rows) {
+                HostsState hostStateTmp = new HostsState();
+                hostStateTmp.setId(Integer.parseInt(row.get("id").toString()));
+//                hostStateTmp.setState(row.get("state").toString());
+                hostStateTmp.setStart(dateFormat.parse(row.get("start_datetime").toString()));
+                if (row.get("end_datetime") != null) {
+                    hostStateTmp.setEnd(dateFormat.parse(row.get("end_datetime").toString()));
+                } else {
+//                    data[i][3] = " ";
+                }
+//                hostStateTmp.setInstMetric(Integer.parseInt(row.get("inst_metric").toString()));
+                hostStateTmp.setResolved(Boolean.parseBoolean(row.get("resolved").toString()));
+                hostStateTmp.setHostId(Integer.parseInt(row.get("host").toString()));
+                i++;
+                hostsStateList.add(hostStateTmp);
+            }
+//            metricsTableModel = new TableModel(header,data);
+        }
+        return hostsStateList;
     }
     @Transactional
     public void setResolvedHost(int id) {
