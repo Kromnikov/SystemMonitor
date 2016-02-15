@@ -10,20 +10,11 @@
           <!--th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"-->
           <!--rel="stylesheet" media="screen" />-->
 
-    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
-            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
 
-    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
-            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+    <script th:src="@{js/index.js}"></script>
+    <script th:src="@{js/localStorage.js}"></script>
 
-
-    <script src="../../src/main/resources/static/js/index.js"
-            th:src="@{js/index.js}"></script>
-    <script src="../../src/main/resources/static/js/index.js"
-            th:src="@{js/localStorage.js}"></script>
-
-    <link href="../../src/main/resources/static/css/index.css"
-          th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
+    <link th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
 
 </head>
 <body onload="cleanlocalStorage()">
