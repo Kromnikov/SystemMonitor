@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Monitoring system</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"
+            th:src="@{/webjars/jquery-ui/1.9.2/js/jquery-ui-1.9.2.custom.js}"></script>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/smoothness/jquery-ui.css"
+          th:href="@{/webjars/jquery-ui/1.9.2/css/smoothness/jquery-ui-1.9.2.custom.css}"
+          rel="stylesheet" />
+
+    <script src="../../src/main/resources/static/js/index.js"
+            th:src="@{js/index.js}"></script>
+
+    <link href="../../src/main/resources/static/css/index.css"
+          th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
+    <link href="../static/css/hosts-page.css"
+          th:href="@{css/hosts-page.css}" rel="stylesheet" media="screen"/>
+
+    <script src="../../src/main/resources/static/js/index.js"
+            th:src="@{js/localStorage.js}"></script>
+
+    <script src="http://code.jquery.com/jquery-1.10.2.js"/>
+    <script src="webjars/jquery/2.0.3/jquery.min.js"></script>
+
+</head>
+<body onload="onLoad()">
+    <div class="container">
+
+    <div class="header">
+
+        <div class="header-left">
+            <!--
+            <p class="host-name"><p th:text="'Host name ' + ${Values.value} + '!'" /></p>
+            -->
+            <!--<img src="../static/img/spring.jpg" width="200" height="30"-->
+            <!--th:src="@{img/spring.jpg}"/>-->
+        </div>
+
+        <div class="header-right">
+            <ul class="header-menu">
+                <li>
+                    <a class="header-menu-black" th:href="hosts" >Hosts</a>
+                </li>
+                <li>
+                    <a th:href="@{'problems'}">Problems<div class="left-menu-counter" th:text="${getAllProblemsCount}"></div></a>
+                </li>
+                <li>
+                    <a href="/">Home</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="content">
+
+
+        <div class="center-contener-60">
+
+            <form action="#" th:action="@{/hosts}" th:object="${getMetrics}" method="post">
+            <div class="contener-head"><b4>Хосты</b4></div>
+                <div th:each="host: ${getHosts}">
+                    <div class="row-contener left"><a  th:href="@{'hosts(id='+${host.id}}+')'" th:text="${host.host}"></a></div>
+                    <!--<div class="row-contener left"><a  th:href="@{/viewCourse/id=} + ${host.id}" th:text="${host.host}+'test'"></a></div>-->
+                </div>
+
+
+            <tr class="bottom-container" align="center">
+                <buttons>
+                    <a  th:href="@{'addHostPage'}">Добавить</a>
+                    <button type="submit" name="delHost">Удалить</button>
+                    <a th:href="@{'editHostPage'}">Редактировать</a>
+                    <a  th:href="@{host}">Промотр</a>
+                </buttons>
+            </tr>
+            </form>
+
+
+
+        </div>
+        <div class="bottom"> </div>
+
+
+
+
+        <!--<div class="left-right-contener">-->
+
+
+
+            <!--<form action="#" th:action="@{/hosts}" th:object="${getMetrics}" method="post">-->
+                <!--<table>-->
+
+                    <!--<tr>-->
+                        <!--<td>-->
+                            <!--<div class="left-contener">-->
+                                <!--<div class="contener-head"><b4>Hosts</b4></div>-->
+                                <!--<div th:each="host: ${getHosts}">-->
+                                    <!--<div class="row-contener left"><a  th:href="@{'hosts(id='+${host.id}}+')'" th:text="${host.host}"></a></div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</td>-->
+
+
+
+                        <!--<td>-->
+                            <!--<div class="right-contener">-->
+                                <!--<div class="contener-head"><b4>Services</b4></div>-->
+                                <!--<div th:if="${getMetrics != null}">-->
+                                    <!--<div th:each="metric: ${getMetrics}">-->
+                                        <!--<div class="row-contener right"><a  th:href="@{'instMetric='+${metric.id}}" th:text="${metric.title}"></a></div>-->
+                                    <!--</div>-->
+                                    <!--<div th:text="(${#lists.size(getMetrics)} &lt; 1)?'На данном хосте нету метрик':''"></div>-->
+                                <!--</div>-->
+                                <!--<div th:if="${getMetrics == null}">Выберите хост</div>-->
+
+                            <!--</div>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr class="bottom-container">-->
+                        <!--<td>-->
+                            <!--<buttons>-->
+                                <!--<a  th:href="@{'addHostPage'}">Добавить</a>-->
+                                <!--&lt;!&ndash;<a  th:href="@{'delHost'}">Удалить</a>&ndash;&gt;-->
+                                <!--<button type="submit" name="delHost">Удалить</button>-->
+                            <!--</buttons>-->
+                        <!--</td>-->
+                        <!--<td>-->
+                            <!--<buttons>-->
+                                <!--<a  th:href="@{'addEditInstMetric'}">Редактировать</a>-->
+                            <!--</buttons>-->
+                            <!--&lt;!&ndash;<button type="submit" name="addEditInstMetric">Редактировать</button>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<button type="submit" name="dellInstMetric">Удалить</button>&ndash;&gt;-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                <!--</table>-->
+            <!--</form>-->
+
+
+
+
+        <!--</div>-->
+
+    </div>
+
+</div>
+</body>
+</html>
