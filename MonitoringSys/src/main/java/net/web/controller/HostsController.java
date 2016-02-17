@@ -237,7 +237,7 @@ public @ResponseBody ModelAndView selectedHostPage() throws SQLException {
     if (this.hostId != Integer.MIN_VALUE) {
         modelAndView.addObject("getProblemsCount", getProblemsCount());
         modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
-        modelAndView.setViewName("host");
+        modelAndView.setViewName("hosts/host");
     }
     else{
         return hostPage();
@@ -247,7 +247,7 @@ public @ResponseBody ModelAndView selectedHostPage() throws SQLException {
 
     //Problem-host
     @RequestMapping(method = RequestMethod.GET, value = "problem")
-    public @ResponseBody ModelAndView selectedHostProblems() throws SQLException, ParseException {
+         public @ResponseBody ModelAndView selectedHostProblems() throws SQLException, ParseException {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("getProblemsCount", getProblemsCount());
         modelAndView.addObject("getMetricProblems", getMetricProblems(this.hostId));
@@ -270,13 +270,6 @@ public @ResponseBody ModelAndView selectedHostPage() throws SQLException {
 
 
 
-
-
-
-
-
-
-    //Inst metric
     @RequestMapping(method = RequestMethod.GET, value = "intsMetrics")
     public @ResponseBody ModelAndView selectedHostIntsMetrics() throws SQLException {
         ModelAndView modelAndView = new ModelAndView();
@@ -287,6 +280,7 @@ public @ResponseBody ModelAndView selectedHostPage() throws SQLException {
         return modelAndView;
     }
 
+
     @RequestMapping(method = RequestMethod.GET, value = "editIntsMetrics")
     public @ResponseBody ModelAndView selectedHostEditIntsMetrics() throws SQLException {
         ModelAndView modelAndView = new ModelAndView();
@@ -295,7 +289,21 @@ public @ResponseBody ModelAndView selectedHostPage() throws SQLException {
         modelAndView.addObject("getProblemsCount", getProblemsCount());
         modelAndView.addObject("getMetrics", this.instanceMetric);
         modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
-        modelAndView.setViewName("instMetric");
+        modelAndView.setViewName("addIntsMetric");
+        return modelAndView;
+    }
+
+
+
+
+
+
+    //Inst metric
+    @RequestMapping(method = RequestMethod.GET, value = "instMetric={id}")
+    public @ResponseBody ModelAndView setInstMetricId(@PathVariable int id) {
+        this.instMetricId = id;
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("hosts");
         return modelAndView;
     }
 
@@ -312,7 +320,7 @@ public @ResponseBody ModelAndView selectedHostPage() throws SQLException {
             }
             //modelAndView.addObject("getMetrics", this.instanceMetric);
         }
-        modelAndView.setViewName("instMetric");
+        modelAndView.setViewName("addIntsMetric");
         modelAndView.addObject("getTemplatMetrics", this.templatMetrics);
         modelAndView.addObject("getMetrics", this.instanceMetric);
         modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
@@ -320,11 +328,27 @@ public @ResponseBody ModelAndView selectedHostPage() throws SQLException {
         return modelAndView;
     }
 
+//    @RequestMapping(value = "/hosts", params = {"addEditInstMetric"}, method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.GET, value = "addEditInstMetric")
+    public ModelAndView addEditInstMetric() throws SQLException {
+        ModelAndView modelAndView = new ModelAndView();
+        templatMetrics= metricStorage.getTemplatMetrics();
+        if(this.hostId!=Integer.MIN_VALUE) {
+            modelAndView.setViewName("addIntsMetric");
+            modelAndView.addObject("getMetrics", this.instanceMetric);
+            modelAndView.addObject("getTemplatMetrics", this.templatMetrics);
+            modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
+        }else {
+            return hostPage();
+        }
+        return modelAndView;
+    }
+
     @RequestMapping(method = RequestMethod.GET, value = "selectInstMetric={id}")
     public @ResponseBody ModelAndView selectInstMetricId(@PathVariable int id ) throws SQLException {
         this.instMetricId = id;
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("instMetric");
+        modelAndView.setViewName("addIntsMetric");
         modelAndView.addObject("getMetrics", this.instanceMetric);
         modelAndView.addObject("getTemplatMetrics", this.templatMetrics);
         modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
@@ -335,7 +359,7 @@ public @ResponseBody ModelAndView selectedHostPage() throws SQLException {
     public @ResponseBody ModelAndView selectTemplMetricId(@PathVariable int id ) throws SQLException {
         this.templMetricId = id;
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("instMetric");
+        modelAndView.setViewName("addIntsMetric");
         modelAndView.addObject("getMetrics", this.instanceMetric);
         modelAndView.addObject("getTemplatMetrics", this.templatMetrics);
         modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
@@ -351,7 +375,7 @@ public @ResponseBody ModelAndView selectedHostPage() throws SQLException {
 
 
         templatMetrics= metricStorage.getTemplatMetrics();
-        modelAndView.setViewName("instMetric");
+        modelAndView.setViewName("addIntsMetric");
         modelAndView.addObject("getMetrics", this.instanceMetric);
         modelAndView.addObject("getTemplatMetrics", this.templatMetrics);
         modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
