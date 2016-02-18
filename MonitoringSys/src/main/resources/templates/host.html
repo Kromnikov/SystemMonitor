@@ -55,8 +55,8 @@
 					<li>
 						<a class="contener-menu-select">Main</a>
 					</li>
-					<li> 
-						<a  th:href="@{'problem'}">Problems <div class="left-menu-counter" th:text="${getProblemsCount}"></div></a>
+					<li>
+						<a  th:href="@{'problems(hostId='+${hostId}+')'}">Problems <div class="left-menu-counter" th:text="${getProblemsCount}"></div></a>
 					</li>
 
 					<li>

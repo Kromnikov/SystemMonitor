@@ -67,7 +67,7 @@
 					<ul class="contener-menu">
 					
 					<li>
-						<a    th:href="@{'host'}">Main</a>
+						<a th:href="@{'hosts(hostId='+${hostId}+')'}">Main</a>
 					</li>
 					<li> 
 						<a class="contener-menu-select">Problems <div class="left-menu-counter" th:text="${getProblemsCount}"></div></a>
@@ -99,7 +99,7 @@
                         <td th:field="*{instMetric}" th:text="${problem.instMetric}"></td>
                         <td th:field="*{resolved}" th:text="${problem.resolved}"></td>
                         <!--<td><input type="checkbox"  th:value="${problem.id}"></input></td>-->
-                        <td><a th:text="'resolve'"  th:href="@{'setResolvedMetric(id='+${problem.id}}+')'"></a></td>
+                        <td><a th:text="'resolve'" th:href="@{problems(hostId=${hostId},resMetrId=${problem.id})}"></a></td>
 
                     </tr>
                 </div>
