@@ -6,11 +6,14 @@ import net.core.hibernate.services.HostService;
 import net.core.models.HostsState;
 import net.core.models.InstanceMetric;
 import net.core.models.MetricState;
+import net.core.models.Value;
+import net.core.tools.Converter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -271,6 +274,19 @@ public class HostController {
         modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
         modelAndView.addObject("hostId", hostId);
         modelAndView.setViewName("addIntsMetric");
+        return modelAndView;
+    }
+
+
+
+
+    //TODO: chart
+    @RequestMapping(value = "/chart")
+    public ModelAndView chart() throws IOException {
+        List<Value> values = metricStorage.getValuesLastTwentyRec(1, 12);
+        Converter.toJSON(values);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("index");
         return modelAndView;
     }
 }

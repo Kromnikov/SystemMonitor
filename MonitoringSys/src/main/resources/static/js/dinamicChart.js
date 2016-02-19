@@ -3,6 +3,13 @@ $(document).ready(function() {
 });
 
 function loadChart() {
+    var jqxhr = $.getJSON('ajax/value.json')
+        .success(function() { alert("Успешное выполнение"); })
+        .error(function() { alert("Ошибка выполнения"); });
+
+
+    $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=usdeur.json&callback=?', function (json) {
+
     Highcharts.setOptions({
         global: {
             useUTC: false
@@ -36,7 +43,7 @@ function loadChart() {
         },
         xAxis: {
             type: 'datetime',
-            tickPixelInterval: 15
+            tickPixelInterval: 100
         },
         yAxis: [{
             title: {
@@ -72,7 +79,7 @@ function loadChart() {
             enabled: true
         },
         series: [{
-            name: 'CPU1',
+            name: 'data',
             data: (function() {
                 // generate an array of random data
                 var data = [],
@@ -105,5 +112,6 @@ function loadChart() {
                     return data;
                 })()
             }]
+    });
     });
 }
