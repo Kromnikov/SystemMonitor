@@ -16,6 +16,8 @@ public class HostsState {
 
     private int hostId;
 
+    private String hostName;
+
     public HostsState() {
     }
 
@@ -27,12 +29,13 @@ public class HostsState {
         this.start = start;
     }
 
-    public HostsState(int id, boolean resolved, String state, Date start, Date end, int hostId) {
+    public HostsState(int id, boolean resolved, String state, Date start, Date end, int hostId,String hostName) {
         this.id = id;
         this.resolved = resolved;
         this.state = state;
         this.start = start;
         this.end = end;
+        this.hostId = hostId;
         this.hostId = hostId;
     }
 
@@ -82,5 +85,13 @@ public class HostsState {
 
     public void setHostId(int hostId) {
         this.hostId = hostId;
+    }
+
+    public String getHostName() {
+        return hostName;
+    }
+
+    public void setHostName(String hostName) {
+        this.hostName = hostName;
     }
 }

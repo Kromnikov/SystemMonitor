@@ -6,7 +6,11 @@ public class MetricState {
 
     private int id;
 
-    private String state;
+    private double minValue;
+
+    private double value;
+
+    private double maxValue;
 
     private Date start;
 
@@ -19,9 +23,11 @@ public class MetricState {
     public MetricState() {
     }
 
-    public MetricState(int id, String state, Date start, Date end, int instMetric,boolean resolved) {
+    public MetricState(int id, double minValue, double value, double maxValue, Date start, Date end, int instMetric, boolean resolved) {
         this.id = id;
-        this.state = state;
+        this.minValue = minValue;
+        this.value = value;
+        this.maxValue = maxValue;
         this.start = start;
         this.end = end;
         this.instMetric = instMetric;
@@ -36,12 +42,12 @@ public class MetricState {
         this.id = id;
     }
 
-    public String getState() {
-        return state;
+    public double getValue() {
+        return value;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setValue(double state) {
+        this.value = state;
     }
 
     public Date getStart() {
@@ -74,5 +80,21 @@ public class MetricState {
 
     public void setResolved(boolean resolved) {
         this.resolved = resolved;
+    }
+
+    public double getMinValue() {
+        return minValue;
+    }
+
+    public void setMinValue(double minValue) {
+        this.minValue = minValue;
+    }
+
+    public double getMaxValue() {
+        return maxValue;
+    }
+
+    public void setMaxValue(double maxValue) {
+        this.maxValue = maxValue;
     }
 }

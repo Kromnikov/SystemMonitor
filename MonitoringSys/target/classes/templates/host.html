@@ -53,17 +53,17 @@
 					<ul class="contener-menu">
 					
 					<li>
-						<a class="contener-menu-select">Main</a>
+						<a th:href="@{host(hostId=${hostId})}" class="contener-menu-select">Main</a>
 					</li>
 					<li>
-						<a  th:href="@{'problems(hostId='+${hostId}+')'}">Problems <div class="left-menu-counter" th:text="${getProblemsCount}"></div></a>
+						<a th:href="@{problem(hostId=${hostId})}">Problems <div class="left-menu-counter" th:text="${getProblemsCount}"></div></a>
 					</li>
 
 					<li>
-						<a  th:href="intsMetrics">Services</a>
+						<a  th:href="@{intsMetrics(hostId=${hostId})}">Services</a>
 					</li>
 					<li>
-						<a th:href="editIntsMetrics">Edit services</a>
+						<a th:href="@{editIntsMetrics(hostId=${hostId})}">Edit services</a>
 					</li>
 					</ul>
 				</div>

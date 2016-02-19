@@ -67,39 +67,41 @@
 					<ul class="contener-menu">
 					
 					<li>
-						<a th:href="@{'hosts(hostId='+${hostId}+')'}">Main</a>
+						<a th:href="@{host(hostId=${hostId})}">Main</a>
 					</li>
 					<li> 
-						<a class="contener-menu-select">Problems <div class="left-menu-counter" th:text="${getProblemsCount}"></div></a>
+						<a th:href="@{problem(hostId=${hostId})}" class="contener-menu-select">Problems <div class="left-menu-counter" th:text="${getProblemsCount}"></div></a>
 					</li>
 
 					<li>
-						<a  th:href="intsMetrics">Services</a>
+						<a  th:href="@{intsMetrics(hostId=${hostId})}">Services</a>
 					</li>
 					<li>
-						<a th:href="editIntsMetrics">Edit services</a>
+						<a  th:href="@{editIntsMetrics(hostId=${hostId})}">Edit services</a>
 					</li>
 					</ul>
 				</div>
             <table width="100%" border="1px" cellspacing="0px" cellpadding="4px" align="center" >
 
                 <td class="tablehead">id</td>
-                <td class="tablehead">stat</td>
+                <td class="tablehead">min value</td>
+                <td class="tablehead">value</td>
+                <td class="tablehead">max value</td>
                 <td class="tablehead">start</td>
                 <td class="tablehead">end</td>
                 <td class="tablehead">instMetric</td>
                 <td class="tablehead">resolved</td>
-                <td class="tablehead"> </td>
                 <div th:each="problem: ${getMetricProblems}">
                     <tr>
                         <td th:field="*{id}"  type="hidden" th:text="${problem.id}"></td>
-                        <td th:field="*{state}" th:text="${problem.state}"></td>
+                        <td th:field="*{minValue}" th:text="${problem.minValue}"></td>
+                        <td th:field="*{value}" th:text="${problem.value}"></td>
+                        <td th:field="*{maxValue}" th:text="${problem.maxValue}"></td>
                         <td th:field="*{start}" th:text="${problem.start}"></td>
                         <td th:field="*{end}" th:text="${problem.end}"></td>
                         <td th:field="*{instMetric}" th:text="${problem.instMetric}"></td>
-                        <td th:field="*{resolved}" th:text="${problem.resolved}"></td>
                         <!--<td><input type="checkbox"  th:value="${problem.id}"></input></td>-->
-                        <td><a th:text="'resolve'" th:href="@{problems(hostId=${hostId},resMetrId=${problem.id})}"></a></td>
+                        <td><a th:text="'resolve'" th:href="@{problem/resolve(hostId=${hostId},resMetrId=${problem.id})}"></a></td>
 
                     </tr>
                 </div>

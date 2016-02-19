@@ -67,7 +67,7 @@
             <form action="#" th:action="@{/hosts}" th:object="${getMetrics}" method="post">
             <div class="contener-head"><b4>Хосты</b4></div>
                 <div th:each="host: ${getHosts}">
-                    <div class="row-contener left"><a  th:href="@{'hosts(hostId='+${host.id}+')'}" th:text="${host.host}"></a></div>
+                    <div class="row-contener left"><a  th:href="@{host(hostId=${host.id})}" th:text="${host.host}"></a></div>
                     <!--<div class="row-contener left"><a  th:href="@{/viewCourse/id=} + ${host.id}" th:text="${host.host}+'test'"></a></div>-->
                 </div>
 
@@ -76,7 +76,7 @@
                 <buttons>
                     <a  th:href="@{'addHostPage'}">Добавить</a>
                     <!--<button type="submit" name="delHost">Удалить</button>-->
-                    <!--<a th:href="@{'editHostPage'}">Редактировать</a>-->
+                    <!--<a th:href="@{editHostPage(hostId=${hostId})}">Редактировать</a>-->
                     <a  th:href="@{host}">Промотр</a>
                 </buttons>
             </tr>

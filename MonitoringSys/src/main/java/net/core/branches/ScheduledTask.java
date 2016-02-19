@@ -53,7 +53,7 @@ public class ScheduledTask extends TimerTask {
                         final double valueMetric = sshAgent.getMetricValue(instanceMetric);
 
                         if(valueMetric!=(Integer.MIN_VALUE)) {
-                            System.out.println("oK!");
+//                            System.out.println("oK!");
                             Thread myThready = new Thread(new Runnable()
                             {
                                 public void run()
@@ -69,15 +69,15 @@ public class ScheduledTask extends TimerTask {
                             metricStorage.addValue(host.getId(), instanceMetric.getId(), valueMetric, date);
                         }
                         else {
-                            System.out.println("unknow!");
+//                            System.out.println("unknow!");
                             if(metricStorage.correctlyMetric(instanceMetric.getId()))              //статус метрики ERR
                                 metricStorage.setIncorrectlyMetric(date, instanceMetric.getId());
                         }
                     }
                 } else {
-                    System.out.println("not connect");
+//                    System.out.println("not connect");
                     if(available) {//Если хост последний раз был доступен
-                        metricStorage.setNotAvailableHost(dateFormat.format(new Date()), host.getId());
+                        metricStorage.setNotAvailableHost(dateFormat.format(new Date()), host.getId(),host.getHost());
                     }
                 }
             }
@@ -91,22 +91,22 @@ public class ScheduledTask extends TimerTask {
     private void rageValue(double valueMetric,InstanceMetric instanceMetric,String date,int hostId) {
         if (valueMetric > instanceMetric.getMaxValue()) {//MAX
             if (metricStorage.overMaxValue(instanceMetric.getId())){
-                metricStorage.setOverMaxValue(date, instanceMetric.getId(),hostId);
-                System.out.println("overMax");
+                metricStorage.setOverMaxValue(date, instanceMetric,hostId,valueMetric);
+//                System.out.println("overMax");
             }
         }
-
+        else
         if (valueMetric < instanceMetric.getMinValue()) {//MIN
             if (metricStorage.lessMinValue(instanceMetric.getId())) {
-                metricStorage.setLessMinValue(date, instanceMetric.getId(),hostId);
-                System.out.println("lessMin");
+                metricStorage.setLessMinValue(date, instanceMetric,hostId,valueMetric);
+//                System.out.println("lessMin");
             }
         }
 
         else//allowable
         {
             metricStorage.setAllowableValueMetric(date, instanceMetric.getId());
-            System.out.println("Allowable");
+//            System.out.println("Allowable");
         }
     }
 

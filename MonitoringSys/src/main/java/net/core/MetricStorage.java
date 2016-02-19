@@ -40,13 +40,13 @@ public  class MetricStorage implements IMetricStorage {
     //metric-state
     @Transactional
     public void setAllowableValueMetric(String endTime, int instMetric) {
-        String sql = "UPDATE \"METRIC_STATE\" SET \"end_datetime\" = (TIMESTAMP '"+endTime+"')  where (state='overMaxValue' or state='lessMinValue') and  inst_metric ="+instMetric+" and \"end_datetime\" is null";
+        String sql = "UPDATE \"METRIC_STATE\" SET \"end_datetime\" = (TIMESTAMP '"+endTime+"')  where  inst_metric ="+instMetric+" and \"end_datetime\" is null";
         jdbcTemplateObject.update(sql);
     }
 
     @Transactional //MAX
     public boolean overMaxValue(long instMetric) {
-        String sql = "SELECT id, state, start_datetime, \"end_datetime\", inst_metric,host_id  FROM \"METRIC_STATE\" where state='overMaxValue' and inst_metric =" + instMetric + " and \"end_datetime\" is null ";
+        String sql = "SELECT id, state, start_datetime, \"end_datetime\", inst_metric,host_id  FROM \"METRIC_STATE\" where  inst_metric =" + instMetric + " and \"end_datetime\" is null ";
         boolean state = true;
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         if (rows.isEmpty()) {
@@ -56,15 +56,16 @@ public  class MetricStorage implements IMetricStorage {
         }
     }
     @Transactional
-    public void setOverMaxValue(String startTime, int instMetric,int hostId) {
-        String sql = "INSERT INTO \"METRIC_STATE\"(start_datetime,state,inst_metric,resolved,host_id)  VALUES ((TIMESTAMP '" + startTime + "'),'overMaxValue'," + instMetric + ",false,"+hostId+")";
+    public void setOverMaxValue(String startTime, InstanceMetric instanceMetric,int hostId,double valueMetric) {
+        String sql = "INSERT INTO \"METRIC_STATE\"(start_datetime,state,inst_metric,resolved,host_id,min_value,max_value) " +
+                " VALUES ((TIMESTAMP '" + startTime + "'),"+valueMetric+"," + instanceMetric.getId() + ",false,"+hostId+","+instanceMetric.getMinValue()+","+instanceMetric.getMaxValue()+")";
         jdbcTemplateObject.update(sql);
     }
 
 
     @Transactional //MIN
     public boolean lessMinValue(long instMetric) {
-        String sql = "SELECT id, state, start_datetime, \"end_datetime\", inst_metric  FROM \"METRIC_STATE\" where state='lessMinValue' and inst_metric =" + instMetric + " and \"end_datetime\" is null";
+        String sql = "SELECT id, state, start_datetime, \"end_datetime\", inst_metric  FROM \"METRIC_STATE\" where  inst_metric =" + instMetric + " and \"end_datetime\" is null";
         boolean state = true;
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         if (rows.isEmpty()) {
@@ -74,8 +75,9 @@ public  class MetricStorage implements IMetricStorage {
         }
     }
     @Transactional  //MIN
-    public void setLessMinValue(String startTime, int instMetric,int hostId) {
-        String sql = "INSERT INTO \"METRIC_STATE\"(start_datetime,state,inst_metric,resolved,host_id)  VALUES ((TIMESTAMP '" + startTime + "'),'lessMinValue'," + instMetric + ",false,"+hostId+")";
+    public void setLessMinValue(String startTime, InstanceMetric instanceMetric,int hostId,double valueMetric) {
+        String sql = "INSERT INTO \"METRIC_STATE\"(start_datetime,state,inst_metric,resolved,host_id,min_value,max_value) " +
+                " VALUES ((TIMESTAMP '" + startTime + "'),"+valueMetric+"," + instanceMetric.getId() + ",false,"+hostId+","+instanceMetric.getMinValue()+","+instanceMetric.getMaxValue()+")";
         jdbcTemplateObject.update(sql);
     }
 
@@ -133,7 +135,7 @@ public  class MetricStorage implements IMetricStorage {
     @Transactional
     public List<MetricState> getMetricProblems(int hostId) throws SQLException, ParseException {
         List<MetricState> metricStateList = new ArrayList<>();
-        String sql = "SELECT id, state, start_datetime, end_datetime, inst_metric, resolved  FROM \"METRIC_STATE\" where resolved = false and host_id="+hostId;
+        String sql = "SELECT id, state, start_datetime, end_datetime, inst_metric, resolved,min_value,max_value  FROM \"METRIC_STATE\" where resolved = false and host_id="+hostId;
         List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
         if (rows.isEmpty()) {
             return metricStateList;
@@ -144,7 +146,13 @@ public  class MetricStorage implements IMetricStorage {
             for (Map row : rows) {
                 MetricState metricStateTmp = new MetricState();
                 metricStateTmp.setId(Integer.parseInt(row.get("id").toString()));
-                metricStateTmp.setState(row.get("state").toString());
+                metricStateTmp.setValue(Double.parseDouble(row.get("state").toString()));
+                if (row.get("min_value") != null) {
+                    metricStateTmp.setMinValue(Double.parseDouble(row.get("min_value").toString()));
+                }
+                if (row.get("max_value") != null) {
+                    metricStateTmp.setMaxValue(Double.parseDouble(row.get("max_value").toString()));
+                }
                 metricStateTmp.setStart(dateFormat.parse(row.get("start_datetime").toString()));
                 if (row.get("end_datetime") != null) {
                     metricStateTmp.setEnd(dateFormat.parse(row.get("end_datetime").toString()));
@@ -163,7 +171,7 @@ public  class MetricStorage implements IMetricStorage {
     @Transactional
     public List<MetricState> getMetricProblems() throws SQLException, ParseException {
         List<MetricState> metricStateList = new ArrayList<>();
-        String sql = "SELECT id, state, start_datetime, end_datetime, inst_metric, resolved  FROM \"METRIC_STATE\" where resolved = false";
+        String sql = "SELECT id, state, start_datetime, end_datetime, inst_metric, resolved,min_value,max_value  FROM \"METRIC_STATE\" where resolved = false";
         List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
         if (rows.isEmpty()) {
             return metricStateList;
@@ -174,7 +182,13 @@ public  class MetricStorage implements IMetricStorage {
             for (Map row : rows) {
                 MetricState metricStateTmp = new MetricState();
                 metricStateTmp.setId(Integer.parseInt(row.get("id").toString()));
-                metricStateTmp.setState(row.get("state").toString());
+                metricStateTmp.setValue(Double.parseDouble(row.get("state").toString()));
+                if (row.get("min_value") != null) {
+                    metricStateTmp.setMinValue(Double.parseDouble(row.get("min_value").toString()));
+                }
+                if (row.get("max_value") != null) {
+                    metricStateTmp.setMaxValue(Double.parseDouble(row.get("max_value").toString()));
+                }
                 metricStateTmp.setStart(dateFormat.parse(row.get("start_datetime").toString()));
                 if (row.get("end_datetime") != null) {
                     metricStateTmp.setEnd(dateFormat.parse(row.get("end_datetime").toString()));
@@ -228,8 +242,8 @@ public  class MetricStorage implements IMetricStorage {
         return state;
     }
     @Transactional
-    public void setNotAvailableHost(String startTime, int host) {
-        String sql = "INSERT INTO \"HOST_STATE\"(start_datetime,resolved,host)  VALUES ((TIMESTAMP '"+startTime+"'),false,"+host+")";
+    public void setNotAvailableHost(String startTime, int host,String hostName) {
+        String sql = "INSERT INTO \"HOST_STATE\"(start_datetime,resolved,host,host_name)  VALUES ((TIMESTAMP '"+startTime+"'),false,"+host+",'"+hostName+"')";
         jdbcTemplateObject.update(sql);
     }
     @Transactional
@@ -267,7 +281,7 @@ public  class MetricStorage implements IMetricStorage {
     @Transactional
     public List<HostsState> getHostsProblems() throws SQLException, ParseException {
         List<HostsState> hostsStateList = new ArrayList<>();
-        String sql = "SELECT id, resolved, start_datetime, end_datetime, host  FROM \"HOST_STATE\" where resolved = false";
+        String sql = "SELECT id, resolved, start_datetime, end_datetime, host,host_name  FROM \"HOST_STATE\" where resolved = false";
         List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
         if (rows.isEmpty()) {
             return hostsStateList;
@@ -286,6 +300,7 @@ public  class MetricStorage implements IMetricStorage {
 //                hostStateTmp.setInstMetric(Integer.parseInt(row.get("inst_metric").toString()));
                 hostStateTmp.setResolved(Boolean.parseBoolean(row.get("resolved").toString()));
                 hostStateTmp.setHostId(Integer.parseInt(row.get("host").toString()));
+                hostStateTmp.setHostName(row.get("host_name").toString());
                 i++;
                 hostsStateList.add(hostStateTmp);
             }

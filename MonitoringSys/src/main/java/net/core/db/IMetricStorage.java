@@ -16,10 +16,10 @@ public interface IMetricStorage{
     public void setAllowableValueMetric(String endTime, int instMetric);
 
     public boolean overMaxValue(long instMetric);
-    public void setOverMaxValue(String startTime, int instMetric,int hostId);
+    public void setOverMaxValue(String startTime, InstanceMetric instanceMetric,int hostId,double valueMetric);
 
     public boolean lessMinValue(long instMetric);
-    public void setLessMinValue(String startTime, int instMetric,int hostId);
+    public void setLessMinValue(String startTime, InstanceMetric instanceMetric,int hostId,double valueMetric);
 
     public boolean correctlyMetric(long instMetric);
     public void setCorrectlyMetric(String endTime, int instMetric);
@@ -36,7 +36,7 @@ public interface IMetricStorage{
 
     //host-state
     public boolean availableHost(long hostId);
-    public void setNotAvailableHost(String startTime, int host);
+    public void setNotAvailableHost(String startTime, int host,String hostName);
     public void setAvailableHost(String endTime, int host);
     public TableModel getHostTableModel();
     public List<HostsState> getHostsProblems() throws SQLException, ParseException;
