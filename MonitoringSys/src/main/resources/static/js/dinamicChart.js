@@ -32,11 +32,11 @@ function loadChart() {
             }
         },
         title: {
-            text: 'Live random data'
+            text: 'CPU'
         },
         xAxis: {
             type: 'datetime',
-            tickPixelInterval: 150
+            tickPixelInterval: 15
         },
         yAxis: [{
             title: {
@@ -66,13 +66,13 @@ function loadChart() {
             }
         },
         legend: {
-            enabled: false
+            enabled: true
         },
         exporting: {
-            enabled: false
+            enabled: true
         },
         series: [{
-            name: 'Random data',
+            name: 'CPU1',
             data: (function() {
                 // generate an array of random data
                 var data = [],
@@ -89,7 +89,7 @@ function loadChart() {
             })()
         },
             {
-                name: 'Random data',
+                name: 'CPU2',
                 data: (function() {
                     // generate an array of random data
                     var data = [],
