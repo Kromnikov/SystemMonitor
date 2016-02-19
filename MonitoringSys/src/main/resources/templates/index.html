@@ -3,30 +3,31 @@
 <head lang="en">
     <title>Monitoring system</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
-    <!--<link type="text/css" href="../static/css/index.css" rel="stylesheet" />-->
-    <!--<link rel="stylesheet" type="text/css" media="all"  th:href="@{/css/syncServer.css}"  href="static/css/index.css" />-->
-    <!--<link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"-->
-          <!--th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"-->
-          <!--rel="stylesheet" media="screen" />-->
-
     <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
             th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
 
-    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
-            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
-
-
-    <script src="../../src/main/resources/static/js/index.js"
-            th:src="@{js/index.js}"></script>
-    <script src="../../src/main/resources/static/js/index.js"
+    <script src="../static/js/localStorage.js"
             th:src="@{js/localStorage.js}"></script>
 
-    <link href="../../src/main/resources/static/css/index.css"
+    <link href="../static/css/index.css"
           th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
 
+
+
+    <!--<script src="http://code.highcharts.com/highcharts.js"></script>-->
+    <!--<script src="http://code.highcharts.com/modules/exporting.js"></script>-->
+    <script src="../static/js/highcharts.js"
+            th:src="@{js/highcharts.js}"></script>
+    <script src="../static/js/exporting.js"
+            th:src="@{js/exporting.js}"></script>
+    <script src="../static/js/chart.js"
+            th:src="@{js/chart.js}"></script>
+
+
+
+
 </head>
-<body onload="cleanlocalStorage()">
+<body onload="loadChart()">
 <div class="container">
 
     <div class="header">
@@ -64,9 +65,8 @@
 
 
     <div class="content">
-        <div class="inProcess">
-            <p>in process...</p>
-        </div>
+        <div class="divChart"></div>
+        <div id="chart_1"></div>
         <div class="bottom"> </div>
     </div>
 
