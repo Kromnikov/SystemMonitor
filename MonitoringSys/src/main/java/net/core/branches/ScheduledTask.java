@@ -1,5 +1,6 @@
 package net.core.branches;
 
+import net.core.agents.MailAgent;
 import net.core.agents.SSHAgent;
 import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;
@@ -72,12 +73,16 @@ public class ScheduledTask extends TimerTask {
 //                            System.out.println("unknow!");
                             if(metricStorage.correctlyMetric(instanceMetric.getId()))              //статус метрики ERR
                                 metricStorage.setIncorrectlyMetric(date, instanceMetric.getId());
+                            MailAgent mailAgent = new MailAgent();
+                            mailAgent.standartSender("Метрика "+instanceMetric.getId()+ " вышла за допустимы диапазон!","anton130794@ya.ru");
                         }
                     }
                 } else {
 //                    System.out.println("not connect");
                     if(available) {//Если хост последний раз был доступен
                         metricStorage.setNotAvailableHost(dateFormat.format(new Date()), host.getId(),host.getHost());
+                        MailAgent mailAgent = new MailAgent();
+                        mailAgent.standartSender("Cоединение с хостом "+host.getHost()+ " было потеряно!","anton130794@ya.ru");
                     }
                 }
             }

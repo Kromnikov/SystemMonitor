@@ -82,6 +82,13 @@ http://www.w3.org/2001/XMLSchema-instance ">
             <version>0.1.53</version>
         </dependency>
 
+        <!--mail-->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.7</version>
+        </dependency>
+
         <!--Other Libs-->
         <dependency>
             <groupId>com.google.guava</groupId>

@@ -295,7 +295,7 @@ public class HostController {
     @RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
     @ResponseBody
     public  Map<Long, Double> ajaxTest() throws JsonProcessingException {
-        Map<Long, Double> values = metricStorage.getValuesLast(1, 12);
+        Map<Long, Double> values = metricStorage.getValuesLast(1, 1);
         Map<Integer, Double> map = new HashMap<>();
         for (int i = 0; i < 10; i++) {
             map.put(i, (double) i);
