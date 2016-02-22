@@ -15,10 +15,7 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 @Service("MetricStorage")
@@ -528,7 +525,7 @@ public  class MetricStorage implements IMetricStorage {
         return  values;
     }
     @Transactional
-    public List<Value> getValuesLastTwentyRec(int host_id,int metricId) {
+        public List<Value> getValuesLastTwentyRec(int host_id,int metricId) {
         List<Value> values = new ArrayList<>();
         String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where metric = "+metricId+" and host = "+host_id+"   order by date_time DESC limit 20";
         List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
@@ -542,6 +539,22 @@ public  class MetricStorage implements IMetricStorage {
             }
         }
         return  values;
+    }
+
+    @Transactional
+    public Map<Long, Double> getValuesLast(int host_id,int metricId) {
+        Map<Long, Double> map = new HashMap<>();
+        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where metric = "+metricId+" and host = "+host_id+" order by date_time  ";
+        List<Map<String,Object>> rows = jdbcTemplateObject.queryForList(sql);
+
+        if(rows.size()>0) {
+            for (int i = 0; i < rows.size(); i++) {
+                map.put((long)(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()), (double) rows.get(i).get("value"));
+//                Date estTime = new Date((long)(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()) + TimeZone.getTimeZone("EST").getRawOffset());
+//                System.out.println((new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime())));
+            }
+        }
+        return  new TreeMap<Long, Double>(map);
     }
 
 

@@ -1,23 +1,25 @@
 package net.web.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;
 import net.core.hibernate.services.HostService;
-import net.core.models.HostsState;
-import net.core.models.InstanceMetric;
-import net.core.models.MetricState;
-import net.core.models.Value;
+import net.core.models.*;
 import net.core.tools.Converter;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class HostController {
@@ -283,10 +285,23 @@ public class HostController {
     //TODO: chart
     @RequestMapping(value = "/chart")
     public ModelAndView chart() throws IOException {
-        List<Value> values = metricStorage.getValuesLastTwentyRec(1, 12);
-        Converter.toJSON(values);
+//        List<Value> values = metricStorage.getValuesLastTwentyRec(1, 12);
+//        Converter.toJSON(values);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index");
         return modelAndView;
     }
+
+    @RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
+    @ResponseBody
+    public  Map<Long, Double> ajaxTest() throws JsonProcessingException {
+        Map<Long, Double> values = metricStorage.getValuesLast(1, 12);
+        Map<Integer, Double> map = new HashMap<>();
+        for (int i = 0; i < 10; i++) {
+            map.put(i, (double) i);
+        }
+        return values;
+
+    }
+
 }

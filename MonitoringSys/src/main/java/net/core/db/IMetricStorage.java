@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 
 public interface IMetricStorage{
@@ -55,6 +56,8 @@ public interface IMetricStorage{
     public List<Value> getValuesLastHour(int host_id, int metricId, Date dateTime);
     public List<Value> getValuesLastMinets(int host_id, int metricId, Date dateTime);
     public List<Value> getValuesLastTwentyRec(int host_id, int metricId);
+    public Map<Long, Double> getValuesLast(int host_id, int metricId);
+
 //
 //    //metrics
     public void addTemplateMetric(String title, String query) throws SQLException;
