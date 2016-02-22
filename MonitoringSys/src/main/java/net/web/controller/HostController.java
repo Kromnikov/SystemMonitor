@@ -310,8 +310,8 @@ public class HostController {
 
     @RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
     @ResponseBody
-    public  Map<Long, Double> ajaxTest() throws JsonProcessingException {
-        Map<Long, Double> values = metricStorage.getValuesLast(1, 12);
+    public  Map<Long, Double> ajaxTest(@RequestParam("hostId") int hostId,@RequestParam("instMetricId") int instMetricId) throws JsonProcessingException {
+        Map<Long, Double> values = metricStorage.getValuesLast(hostId, instMetricId);
         return values;
 
     }

@@ -3,9 +3,9 @@ function hello() {
 }
 
 
-function loadChart3(href,title) {
-    $.getJSON(href,function(data,status){
-        //alert(test);
+function loadChart3(hostId,instMetricId,title) {
+		//alert(title+'->>'+hostId+'->>'+instMetricId);
+    $.getJSON('/ajaxtest?hostId='+hostId+'&instMetricId='+instMetricId,function(data,status){
         chart2(data,title);
     }).success(function() {
         //alert("success");

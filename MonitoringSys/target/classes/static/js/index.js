@@ -65,8 +65,8 @@ function metricsMenu() {
     //        $(this).addClass('row-contener-select');
     //        window.localStorage.removeItem('rightSelect' + i);
     //    }});
-    $(".services-left-menu").click(function() {
-        alert("services-left-menu");
+    $(".services-left-menu  li a").click(function() {
+        selectMetricsMenuItem();
     });
 }
 function selectMetricsMenuItem(){

@@ -32,8 +32,11 @@
 
 	<script th:inline="javascript">
 		var title = [[${title}]];
+		var hostId = [[${hostId}]];
+		var instMetricId = [[${instMetricId}]];
+//		alert(title+'->'+hostId+'->'+instMetricId);
 		if(title!='title')
-			loadChart3('/ajaxtest',title);
+			loadChart3(hostId,instMetricId,title);
 	</script>
 </head>
 <body onclick="metricsMenu()">
@@ -89,15 +92,6 @@
 							<div th:each="instMetric: ${getMetrics}">
 								<li ><a th:href="@{intsMetric(hostId=${hostId},instMetricId=${instMetric.id},title=${instMetric.title})}" th:text="${instMetric.title}" ></a></li>
 							</div>
-							<!--<li>-->
-								<!--<a>CPU</a>-->
-							<!--</li>-->
-							<!--<li>-->
-								<!--<a>RAM</a>-->
-							<!--</li>-->
-							<!--<li>-->
-								<!--<a>ROM</a>-->
-							<!--</li>-->
 						</ul>
 					</div>
 					<div class="services-drow-menu">
