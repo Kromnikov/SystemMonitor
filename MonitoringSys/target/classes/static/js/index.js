@@ -66,7 +66,7 @@ function metricsMenu() {
     //        window.localStorage.removeItem('rightSelect' + i);
     //    }});
     $(".services-left-menu  li a").click(function() {
-        selectMetricsMenuItem();
+        //selectMetricsMenuItem();
     });
 }
 function selectMetricsMenuItem(){

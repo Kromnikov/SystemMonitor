@@ -44,6 +44,7 @@ public interface IMetricStorage{
     public void setResolvedHost(int host);
     public long getHostNotResolvedLength();
 
+    public Problem getProblem(int problemId) throws SQLException;
 
     //values
     public void addValue(int host, int metric, double value,String dateTime) throws SQLException ;

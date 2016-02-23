@@ -162,7 +162,11 @@ public class HostController {
         metricStorage.setResolvedMetric(resMetrId);
         return "redirect:/problems";
     }
-
+    @RequestMapping(value="/problem/metric" , method = RequestMethod.GET)
+    public String redirectToMetric(@RequestParam("problemId") int problemId) throws SQLException {
+        Problem problem = metricStorage.getProblem(problemId);
+        return "redirect:/intsMetric?hostId="+problem.getHostId()+"&instMetricId="+problem.getInstMetricId()+"&title="+problem.getInstMetric();
+    }
 
 
 

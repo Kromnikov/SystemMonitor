@@ -10,6 +10,9 @@ public class SSHConfiguration {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "host")
     private String host;
 
@@ -33,6 +36,14 @@ public class SSHConfiguration {
         this.password = password;
     }
 
+    public SSHConfiguration(String name, String host, int port, String login, String password) {
+        this.name = name;
+        this.host = host;
+        this.port = port;
+        this.login = login;
+        this.password = password;
+    }
+
     public SSHConfiguration(String host) {
         this.id = id;
         this.host = host;
@@ -44,6 +55,14 @@ public class SSHConfiguration {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getHost() {
