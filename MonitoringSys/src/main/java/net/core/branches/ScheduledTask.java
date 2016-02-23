@@ -83,6 +83,9 @@ public class ScheduledTask extends TimerTask {
                         metricStorage.setNotAvailableHost(dateFormat.format(new Date()), host.getId(),host.getHost());
                         MailAgent mailAgent = new MailAgent();
                         mailAgent.standartSender("Cоединение с хостом "+host.getHost()+ " было потеряно!","anton130794@ya.ru");
+
+//                      metricStorage.setNotAvailableHost(dateFormat.format(new Date()), host.getId(),host.getName());
+
                     }
                 }
             }
@@ -94,24 +97,28 @@ public class ScheduledTask extends TimerTask {
 
 
     private void rageValue(double valueMetric,InstanceMetric instanceMetric,String date,int hostId) {
+        //TODO Сейчас может быть только больше или меньше, сразу два выхода не будет, можно это исправить
         if (valueMetric > instanceMetric.getMaxValue()) {//MAX
-            if (metricStorage.overMaxValue(instanceMetric.getId())){
-                metricStorage.setOverMaxValue(date, instanceMetric,hostId,valueMetric);
-//                System.out.println("overMax");
+            if (metricStorage.overMaxValue(instanceMetric.getId())) {
+                if (!metricStorage.lessMinValue(instanceMetric.getId())) {
+                    metricStorage.setAllowableValueMetric(date, instanceMetric.getId());
+                }
+                metricStorage.setOverMaxValue(date, instanceMetric, hostId, valueMetric);
             }
         }
         else
         if (valueMetric < instanceMetric.getMinValue()) {//MIN
             if (metricStorage.lessMinValue(instanceMetric.getId())) {
-                metricStorage.setLessMinValue(date, instanceMetric,hostId,valueMetric);
-//                System.out.println("lessMin");
+                if (!metricStorage.overMaxValue(instanceMetric.getId())){
+                    metricStorage.setAllowableValueMetric(date, instanceMetric.getId());
+                }
+                metricStorage.setLessMinValue(date, instanceMetric, hostId, valueMetric);
             }
         }
 
         else//allowable
         {
             metricStorage.setAllowableValueMetric(date, instanceMetric.getId());
-//            System.out.println("Allowable");
         }
     }
 

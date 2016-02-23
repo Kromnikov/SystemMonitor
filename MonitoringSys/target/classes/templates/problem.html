@@ -19,6 +19,8 @@
 
     <script src="../static/js/index.js"
             th:src="@{js/index.js}"></script>
+    <script src="../static/js/redirects.js"
+            th:src="@{js/redirects.js}"></script>
 
     <link href="../static/css/index.css"
           th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
@@ -84,23 +86,18 @@
             <table width="100%" border="1px" cellspacing="0px" cellpadding="4px" align="center" >
 
                 <td class="tablehead">id</td>
-                <td class="tablehead">min value</td>
                 <td class="tablehead">value</td>
-                <td class="tablehead">max value</td>
                 <td class="tablehead">start</td>
                 <td class="tablehead">end</td>
                 <td class="tablehead">instMetric</td>
                 <td class="tablehead">resolved</td>
                 <div th:each="problem: ${getMetricProblems}">
-                    <tr>
+                    <tr class="select_row_host_metric"  th:onclick="'javascript:redirectToMetric(\'' + ${problem.id} + '\');'" >
                         <td th:field="*{id}"  type="hidden" th:text="${problem.id}"></td>
-                        <td th:field="*{minValue}" th:text="${problem.minValue}"></td>
                         <td th:field="*{value}" th:text="${problem.value}"></td>
-                        <td th:field="*{maxValue}" th:text="${problem.maxValue}"></td>
                         <td th:field="*{start}" th:text="${problem.start}"></td>
                         <td th:field="*{end}" th:text="${problem.end}"></td>
                         <td th:field="*{instMetric}" th:text="${problem.instMetric}"></td>
-                        <!--<td><input type="checkbox"  th:value="${problem.id}"></input></td>-->
                         <td><a th:text="'resolve'" th:href="@{problem/resolve(hostId=${hostId},resMetrId=${problem.id})}"></a></td>
 
                     </tr>

@@ -162,7 +162,11 @@ public class HostController {
         metricStorage.setResolvedMetric(resMetrId);
         return "redirect:/problems";
     }
-
+    @RequestMapping(value="/problem/metric" , method = RequestMethod.GET)
+    public String redirectToMetric(@RequestParam("problemId") int problemId) throws SQLException {
+        Problem problem = metricStorage.getProblem(problemId);
+        return "redirect:/intsMetric?hostId="+problem.getHostId()+"&instMetricId="+problem.getInstMetricId()+"&title="+problem.getInstMetric();
+    }
 
 
 
@@ -248,6 +252,22 @@ public class HostController {
         modelAndView.addObject("getMetrics", getMetrics(hostId));
         modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
         modelAndView.addObject("hostId", hostId);
+        modelAndView.addObject("title", "title");
+        modelAndView.setViewName("metrics");
+        return modelAndView;
+    }
+    @RequestMapping(value="/intsMetric")
+    @ResponseBody
+    public ModelAndView instMetricSelect(@RequestParam("hostId") int hostId,@RequestParam("instMetricId") int instMetricId,@RequestParam(required=false, defaultValue = "title") String title) throws SQLException, ParseException {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("getProblemsCount", getProblemsCount(hostId));
+        modelAndView.addObject("getMetrics", getMetrics(hostId));
+        modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
+        modelAndView.addObject("hostId", hostId);
+        modelAndView.addObject("instMetricId", instMetricId);
+        if(!title.equals("title")) {
+            modelAndView.addObject("title", title);
+        }
         modelAndView.setViewName("metrics");
         return modelAndView;
     }
@@ -294,12 +314,8 @@ public class HostController {
 
     @RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
     @ResponseBody
-    public  Map<Long, Double> ajaxTest() throws JsonProcessingException {
-        Map<Long, Double> values = metricStorage.getValuesLast(1, 1);
-        Map<Integer, Double> map = new HashMap<>();
-        for (int i = 0; i < 10; i++) {
-            map.put(i, (double) i);
-        }
+    public  Map<Long, Double> ajaxTest(@RequestParam("hostId") int hostId,@RequestParam("instMetricId") int instMetricId) throws JsonProcessingException {
+        Map<Long, Double> values = metricStorage.getValuesLast(hostId, instMetricId);
         return values;
 
     }

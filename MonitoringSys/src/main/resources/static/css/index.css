@@ -92,10 +92,26 @@
 
 
 
+.select_row_host_metric {
+    -webkit-transition: all 0.2s ease-in-out 0s;
+    -moz-transition: all 0.2s ease-in-out 0s;
+    -o-transition: all 0.2s ease-in-out 0s;
+    -ms-transition: all 0.2s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+}
+.select_row_host_metric td a {
+    text-decoration: none;
+    color: #000000;
+}
+.select_row_host_metric td a:hover {
+    color: #ffffff;
+}
 
-
-
-
+.select_row_host_metric:hover {
+    cursor: pointer;
+    background-color: #ABABAB;
+    color: #ffffff;
+}
 
 
 

@@ -1,21 +1,27 @@
+function hello() {
+    alert("hello");
+}
 
 
-function loadChart3() {
-    $.getJSON('/ajaxtest',function(data,status){
-        //alert("Data: " + data + "\nStatus: " + status);
-        chart2(data);
-
+function loadChart3(hostId,instMetricId,title) {
+		//alert(title+'->>'+hostId+'->>'+instMetricId);
+    $.getJSON('/ajaxtest?hostId='+hostId+'&instMetricId='+instMetricId,function(data,status){
+        chart2(data,title);
     }).success(function() {
         //alert("success");
     })
     //    .error(function() {
     //    alert("error")
     //});
+
+    //$('#button').click(function() {
+    //    chart.series[0].addPoint({marker:{fillColor:'#659355'}, y: Math.random() * 100, color:'#659355'}, true, true);
+    //});
 }
 
 
 
-function chart2(jsonData) {
+function chart2(jsonData,title) {
     Highcharts.setOptions({
         global: {
             useUTC: false
@@ -28,10 +34,10 @@ function chart2(jsonData) {
             type: 'spline'
         },
         title: {
-            text: 'CPU'
+            text: title
         },
         rangeSelector: {
-            selected: 2
+            selected: 1
         },
 
         yAxis: {
@@ -61,13 +67,17 @@ function chart2(jsonData) {
 
         series:[{
             name: 'data',
-
+            marker : {
+                enabled : true,
+                radius : 1
+            },
     data: (function() {
         var data = [];
         $.each(jsonData, function(key, value) {
             data.push({
                 x: key*+1,
-                y: value
+                y: value,
+                marker:{ fillColor:'black' }
             });
         });
         return data;

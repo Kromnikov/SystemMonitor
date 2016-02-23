@@ -46,3 +46,35 @@ function resizeTo(){
     $(".center-contener-60").show().animate({width:'40%'}, 0).fadeOut(1);
     $(".center-contener-60").show().animate({opacity:1,  marginLeft: '+=20%'}, 0).fadeIn(500);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+function metricsMenu() {
+    //$(".row-contener.right").each(function(i, el) {
+    //    if (localStorage['rightSelect' + i] == 'favorites') {
+    //        $(this).addClass('row-contener-select');
+    //        window.localStorage.removeItem('rightSelect' + i);
+    //    }});
+    $(".services-left-menu  li a").click(function() {
+        //selectMetricsMenuItem();
+    });
+}
+function selectMetricsMenuItem(){
+    alert("alert");
+    $( ".services-left-menu li" ).removeClass("services-left-menu-select");
+    $( this ).addClass( "services-left-menu-select" );
+    window.localStorage.clear();
+    var $item = $(this).closest('.services-left-menu li');
+    var index = $('.services-left-menu li').index($item);
+    localStorage.setItem('servicesSelect' + index, 'favorites');
+}
