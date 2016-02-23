@@ -34,4 +34,8 @@ public class HostDaoImpl implements HostDao {
         em.merge(content);
     }
 
+    public SSHConfiguration get(int id) {
+        return em.getReference(SSHConfiguration.class, id);
+    }
+
 }

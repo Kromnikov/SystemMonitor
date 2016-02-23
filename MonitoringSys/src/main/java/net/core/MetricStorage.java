@@ -3,6 +3,7 @@ package net.core;
 
 import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;
+import net.core.hibernate.services.HostService;
 import net.core.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -22,6 +23,9 @@ import java.util.*;
 public  class MetricStorage implements IMetricStorage {
 
     private JdbcTemplate jdbcTemplateObject;
+
+    @Autowired
+    private HostService hosts;
 
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -278,7 +282,8 @@ public  class MetricStorage implements IMetricStorage {
 //                hostStateTmp.setInstMetric(Integer.parseInt(row.get("inst_metric").toString()));
                 hostStateTmp.setResolved(Boolean.parseBoolean(row.get("resolved").toString()));
                 hostStateTmp.setHostId(Integer.parseInt(row.get("host").toString()));
-                hostStateTmp.setHostName(row.get("host_name").toString());
+
+                hostStateTmp.setHostName(hosts.get(hostStateTmp.getHostId()).getName());
                 i++;
                 hostsStateList.add(hostStateTmp);
             }

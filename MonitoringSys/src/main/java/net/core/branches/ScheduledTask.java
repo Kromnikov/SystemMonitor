@@ -84,8 +84,6 @@ public class ScheduledTask extends TimerTask {
                         MailAgent mailAgent = new MailAgent();
                         mailAgent.standartSender("Cоединение с хостом "+host.getHost()+ " было потеряно!","anton130794@ya.ru");
 
-//                      metricStorage.setNotAvailableHost(dateFormat.format(new Date()), host.getId(),host.getName());
-
                     }
                 }
             }

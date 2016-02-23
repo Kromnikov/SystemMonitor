@@ -302,15 +302,14 @@ public class HostController {
 
 
 
-    //TODO: chart
-    @RequestMapping(value = "/chart")
-    public ModelAndView chart() throws IOException {
-//        List<Value> values = metricStorage.getValuesLastTwentyRec(1, 12);
-//        Converter.toJSON(values);
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("index");
-        return modelAndView;
-    }
+
+
+
+
+
+
+
+
 
     @RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
     @ResponseBody
