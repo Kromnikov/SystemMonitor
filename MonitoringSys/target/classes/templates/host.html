@@ -36,7 +36,10 @@
                     <a th:href="@{'problems'}">Problems<div class="left-menu-counter" th:text="${getAllProblemsCount}"></div></a>
                 </li>
                 <li>
-                    <a href="/">Home</a>
+                    <a  href="/accaunts">Accaunts</a>
+                </li>
+                <li>
+                    <a th:action="@{/logout}" method="post" href="/login">Log Out</a>
                 </li>
             </ul>
         </div>

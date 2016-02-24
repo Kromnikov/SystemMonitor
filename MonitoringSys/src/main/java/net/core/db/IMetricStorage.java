@@ -90,4 +90,6 @@ public interface IMetricStorage{
 
 
     void delMetricFromHost(int host, int id)throws SQLException;
+
+    List<User> getAllUsers();
 }
