@@ -44,6 +44,9 @@
                     <a  href="/">Home</a>
                 </li>
                 <li>
+                    <a  href="/accaunts">Accaunts</a>
+                </li>
+                <li>
                     <a th:action="@{/logout}" method="post" href="/login">Log Out</a>
                 </li>
             </ul>
@@ -84,6 +87,8 @@
 
 
         </div>
+		
+			<a class="resolve-all" th:href="@{problems/resolve/metric/all}">Resolve all</a>
 
 
         <div class="center-contener">
@@ -110,8 +115,8 @@
                 </div>
             </table>
 
-
         </div>
+			<a class="resolve-all"  th:href="@{problems/resolve/hosts/all}">Resolve all</a>
 
 
 

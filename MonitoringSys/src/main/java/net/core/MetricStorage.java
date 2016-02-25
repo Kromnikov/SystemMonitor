@@ -192,6 +192,11 @@ public  class MetricStorage implements IMetricStorage {
         jdbcTemplateObject.update(sql);
     }
     @Transactional
+    public void setResolvedMetric() {
+        String sql = "UPDATE \"METRIC_STATE\" set resolved = true WHERE \"end_datetime\" is not null";
+        jdbcTemplateObject.update(sql);
+    }
+    @Transactional
     public long getMetricNotResolvedLength() {
         String sql = "SELECT COUNT(*)  FROM \"METRIC_STATE\" where resolved = false";
         return (long)jdbcTemplateObject.queryForMap(sql).get("COUNT");
@@ -294,6 +299,11 @@ public  class MetricStorage implements IMetricStorage {
     @Transactional
     public void setResolvedHost(int id) {
         String sql = "UPDATE \"HOST_STATE\" set resolved = true WHERE id ="+id+" and \"end_datetime\" is not null";
+        jdbcTemplateObject.update(sql);
+    }
+    @Transactional
+    public void setResolvedHost() {
+        String sql = "UPDATE \"HOST_STATE\" set resolved = true WHERE \"end_datetime\" is not null";
         jdbcTemplateObject.update(sql);
     }
     @Transactional
@@ -686,7 +696,23 @@ public  class MetricStorage implements IMetricStorage {
         return problem;
     }
 
+    @Transactional
+    public List<User> getAllUsers()
+    {
+        List<User> usersList = new ArrayList<>();
+        String sql = "SELECT u.id, u.username , u.password, r.role FROM \"Users\" as u, \"Roles\" as r where u.id=r.id";
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
 
+        for (Map row : rows) {
+            User user = new User();
+            user.setId((int)row.get("id"));
+            user.setUsername((String)row.get("username"));
+            user.setPassword((String)row.get("password"));
+            user.setRole((String)row.get("role"));
+            usersList.add(user);
+        }
+        return usersList;
+    }
 
 
 
