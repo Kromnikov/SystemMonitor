@@ -28,6 +28,7 @@ public interface IMetricStorage{
 
     public TableModel getMetricTableModel();
     public void setResolvedMetric(int id);
+    public void setResolvedMetric();
     public long getMetricNotResolvedLength();
     public long getMetricNotResolvedLength(int hostId) throws SQLException;
     public List<MetricState> getMetricProblems(int hostId) throws SQLException, ParseException;
@@ -42,6 +43,7 @@ public interface IMetricStorage{
     public TableModel getHostTableModel();
     public List<HostsState> getHostsProblems() throws SQLException, ParseException;
     public void setResolvedHost(int host);
+    public void setResolvedHost();
     public long getHostNotResolvedLength();
 
     public Problem getProblem(int problemId) throws SQLException;
