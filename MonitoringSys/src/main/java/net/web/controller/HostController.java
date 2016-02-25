@@ -1,25 +1,25 @@
 package net.web.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;
 import net.core.hibernate.services.HostService;
-import net.core.models.*;
-import net.core.tools.Converter;
-import org.json.JSONException;
-import org.json.JSONObject;
+import net.core.models.HostsState;
+import net.core.models.InstanceMetric;
+import net.core.models.MetricState;
+import net.core.models.Problem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.File;
-import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class HostController {
@@ -157,9 +157,19 @@ public class HostController {
         metricStorage.setResolvedHost(hostId);
         return "redirect:/problems";
     }
+    @RequestMapping(value="/problems/resolve/hosts/all" , method = RequestMethod.GET)
+    public String resolveHostAll(){
+        metricStorage.setResolvedHost();
+        return "redirect:/problems";
+    }
     @RequestMapping(value="/problems/resolve/metric" , method = RequestMethod.GET)
     public String resolveMetric(@RequestParam("resMetrId") int resMetrId){
         metricStorage.setResolvedMetric(resMetrId);
+        return "redirect:/problems";
+    }
+    @RequestMapping(value="/problems/resolve/metric/all" , method = RequestMethod.GET)
+     public String resolveMetric(){
+        metricStorage.setResolvedMetric();
         return "redirect:/problems";
     }
     @RequestMapping(value="/problem/metric" , method = RequestMethod.GET)
