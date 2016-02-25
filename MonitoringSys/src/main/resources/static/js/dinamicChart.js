@@ -6,6 +6,24 @@ function hello() {
 function loadChart3(hostId,instMetricId,title) {
 		//alert(title+'->>'+hostId+'->>'+instMetricId);
     $.getJSON('/ajaxtest?hostId='+hostId+'&instMetricId='+instMetricId,function(data,status){
+        document.onkeydown = function(e) {
+            e = e || window.event;
+            if (e.shiftKey && e.keyCode == 189) {
+                console.log('Shift + (-)');
+            }else
+            if (e.shiftKey && e.keyCode == 187) {
+                console.log('Shift + (+)');
+            }
+            return true;
+        }
+
+        //$('body').keydown(function(eventObject){
+        //    //if(eventObject.which==189 || eventObject.which==187)
+        //    {
+        //        console.log('Клавиша клавиатуры приведена в нажатое состояние. Код вводимого символа - ' + eventObject.which);
+        //        chart2(data,eventObject.which);
+        //    }
+        //});
         chart2(data,title);
     }).success(function() {
         //alert("success");
@@ -31,7 +49,12 @@ function chart2(jsonData,title) {
     $('#chart_1').highcharts('StockChart',{
 
         chart: {
-            type: 'spline'
+            type: 'spline',
+            events: {
+                keydown: function() {
+                    alert("error");
+                }
+            }
         },
         title: {
             text: title
