@@ -74,9 +74,8 @@ function chart2(jsonData,title) {
     data: (function() {
         var data = [];
         $.each(jsonData, function(key, value) {
-
             data.push({
-                x: key+1,
+                x: key*+1,
                 y: value,
                 marker:{ fillColor:'black' }
             });
