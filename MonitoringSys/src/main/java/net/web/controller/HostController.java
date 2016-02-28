@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -253,6 +254,36 @@ public class HostController {
 
 
 
+
+
+
+
+
+
+
+
+
+
+    //TODO:page edit inst metrics
+    @RequestMapping(value="/editIntsMetrics")
+    @ResponseBody
+    public ModelAndView editInstMetricPage(@RequestParam("hostId") int hostId) throws SQLException, ParseException {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("getTemplatMetrics", metricStorage.getTemplatMetrics());
+        modelAndView.addObject("getProblemsCount", getProblemsCount(hostId));
+        modelAndView.addObject("getMetrics", metricStorage.getInstMetrics(hostId));
+        modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
+        modelAndView.addObject("hostId", hostId);
+        modelAndView.setViewName("addIntsMetric");
+        return modelAndView;
+    }
+
+
+
+
+
+
+
     //TODO:page inst metrics
     @RequestMapping(value="/intsMetrics")
     @ResponseBody
@@ -291,40 +322,10 @@ public class HostController {
 
 
 
-
-
-
-
-    //TODO:page edit inst metrics
-    @RequestMapping(value="/editIntsMetrics")
-    @ResponseBody
-    public ModelAndView editInstMetricPage(@RequestParam("hostId") int hostId) throws SQLException, ParseException {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("getTemplatMetrics", metricStorage.getTemplatMetrics());
-        modelAndView.addObject("getProblemsCount", getProblemsCount(hostId));
-        modelAndView.addObject("getMetrics", metricStorage.getInstMetrics(hostId));
-        modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
-        modelAndView.addObject("hostId", hostId);
-        modelAndView.setViewName("addIntsMetric");
-        return modelAndView;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
     @RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
     @ResponseBody
-    public  Map<Long, Double> ajaxTest(@RequestParam("hostId") int hostId,@RequestParam("instMetricId") int instMetricId) throws JsonProcessingException {
-        Map<Long, Double> values = metricStorage.getValuesLast(hostId, instMetricId);
+    public  Map<Long, Double> ajaxTest(@RequestParam("hostId") int hostId,@RequestParam("instMetricId") int instMetricId,@RequestParam("zoom") int zoom) throws JsonProcessingException {
+        Map<Long, Double> values = metricStorage.getValuesLast(hostId, instMetricId,zoom,new Date());
         return values;
 
     }

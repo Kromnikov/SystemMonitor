@@ -10,7 +10,7 @@
           <!--th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"-->
           <!--rel="stylesheet" media="screen" />-->
 
-	<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+	<script src="../static/js/jquery-2.2.0.min.js"
 			th:src="@{js/jquery-2.2.0.min.js}"></script>
     <script src="../static/js/index.js"
             th:src="@{js/index.js}"></script>
@@ -34,7 +34,7 @@
 		var title = [[${title}]];
 		var hostId = [[${hostId}]];
 		var instMetricId = [[${instMetricId}]];
-//		alert(title+'->'+hostId+'->'+instMetricId);
+//		alert(title+'->'+hostId+'->'+instMetricId+"->"+index);
 		if(title!='title')
 			loadChart3(hostId,instMetricId,title);
 	</script>

@@ -2,20 +2,14 @@ function hello() {
     alert("hello");
 }
 
+var zoom= 0;
+function loadChart3(hostId, instMetricId, title) {
+    //alert(title+'->>'+hostId+'->>'+instMetricId);
+    $.getJSON('/ajaxtest?hostId=' + hostId + '&instMetricId=' + instMetricId+'&zoom='+zoom, function (data, status) {
 
-function loadChart3(hostId,instMetricId,title) {
-		//alert(title+'->>'+hostId+'->>'+instMetricId);
-    $.getJSON('/ajaxtest?hostId='+hostId+'&instMetricId='+instMetricId,function(data,status){
-        document.onkeydown = function(e) {
-            e = e || window.event;
-            if (e.shiftKey && e.keyCode == 189) {
-                console.log('Shift + (-)');
-            }else
-            if (e.shiftKey && e.keyCode == 187) {
-                console.log('Shift + (+)');
-            }
-            return true;
-        }
+        onWheel();
+        keyEvent();
+        chart2(data, title);
 
         //$('body').keydown(function(eventObject){
         //    //if(eventObject.which==189 || eventObject.which==187)
@@ -24,8 +18,7 @@ function loadChart3(hostId,instMetricId,title) {
         //        chart2(data,eventObject.which);
         //    }
         //});
-        chart2(data,title);
-    }).success(function() {
+    }).success(function () {
         //alert("success");
     })
     //    .error(function() {
@@ -37,21 +30,65 @@ function loadChart3(hostId,instMetricId,title) {
     //});
 }
 
+function onWheel() {
+    console.log('onWheel');
+    document.onwheel = function (e) {
+
+        e = e || window.event;
+
+        // wheelDelta не дает возможность узнать количество пикселей
+        var delta = e.deltaY || e.detail || e.wheelDelta;
 
 
-function chart2(jsonData,title) {
+        //var info = document.getElementById('delta');
+
+        console.log(delta);
+        //info.innerHTML = +info.innerHTML + delta;
+
+        e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+    };
+}
+function keyEvent() {
+
+    console.log('keyEvent');
+    document.onkeydown = function (e) {
+        e = e || window.event;
+        if (e.shiftKey && e.keyCode == 189) {
+            console.log('Shift + (min)');
+            zoom = zoom-1;
+            //window.location.href = "/intsMetric?hostId="+hostId+"&instMetricId="+instMetricId+"&title="+title+"&zoom="+tmp;
+
+
+            $.getJSON('/ajaxtest?hostId=' + hostId + '&instMetricId=' + instMetricId+'&zoom='+zoom, function (data, status) {
+                chart2(data, title);
+            });
+        } else if (e.shiftKey && e.keyCode == 187) {
+            console.log('Shift + (plus)');
+            zoom = zoom+1;
+            //window.location.href = "/intsMetric?hostId="+hostId+"&instMetricId="+instMetricId+"&title="+title+"&zoom="+tmp;
+
+            $.getJSON('/ajaxtest?hostId=' + hostId + '&instMetricId=' + instMetricId+'&zoom='+zoom, function (data, status) {
+                chart2(data, title);
+            });
+        }
+        return true;
+    }
+}
+
+
+function chart2(jsonData, title) {
     Highcharts.setOptions({
         global: {
             useUTC: false
         }
     });
     var chart;
-    $('#chart_1').highcharts('StockChart',{
+    $('#chart_1').highcharts('StockChart', {
 
         chart: {
             type: 'spline',
             events: {
-                keydown: function() {
+                keydown: function () {
                     alert("error");
                 }
             }
@@ -88,33 +125,28 @@ function chart2(jsonData,title) {
         },
 
 
-        series:[{
+        series: [{
             name: 'data',
-            marker : {
-                enabled : true,
-                radius : 1
+            marker: {
+                enabled: true,
+                radius: 1
             },
-    data: (function() {
-        var data = [];
-        $.each(jsonData, function(key, value) {
+            data: (function () {
+                var data = [];
+                $.each(jsonData, function (key, value) {
 
-            data.push({
-                x: key*+1,
-                y: value,
-                marker:{ fillColor:'black' }
-            });
-        });
-        return data;
-    })()
+                    data.push({
+                        x: key * +1,
+                        y: value,
+                        marker: {fillColor: 'black'}
+                    });
+                });
+                return data;
+            })()
 
         }]
     });
 }
-
-
-
-
-
 
 
 function chart(jsonData) {
@@ -126,7 +158,7 @@ function chart(jsonData) {
     });
 
     var chart;
-    $('#chart_1').highcharts('StockChart',{
+    $('#chart_1').highcharts('StockChart', {
 
         chart: {
             type: 'spline',
@@ -176,9 +208,9 @@ function chart(jsonData) {
                 }]
             }],
         tooltip: {
-            formatter: function() {
-                return '<b>'+ this.series.name +'</b><br/>'+
-                    Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) +'<br/>'+
+            formatter: function () {
+                return '<b>' + this.series.name + '</b><br/>' +
+                    Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
                     Highcharts.numberFormat(this.y, 2);
             }
         },
@@ -222,28 +254,28 @@ function chart(jsonData) {
         //            return data;
         //        })()
         //    }]
-        series:[{
+        series: [{
             name: 'data',
-                data: (function() {
-                    var data = [];//,
-                        //time = (1455802176000),
-                        //i;
+            data: (function () {
+                var data = [];//,
+                //time = (1455802176000),
+                //i;
 
-                    //for (i = -19; i <= 0; i++) {
-                    //    data.push({
-                    //        x: time + i * 1000,
-                    //        y: Math.random()
-                    //    });
-                    //}
-                    $.each(jsonData, function(key, value) {
-                        //alert(key + ' -> ' + value);
-                        data.push({
-                            x: key,
-                            y: value
-                        });
+                //for (i = -19; i <= 0; i++) {
+                //    data.push({
+                //        x: time + i * 1000,
+                //        y: Math.random()
+                //    });
+                //}
+                $.each(jsonData, function (key, value) {
+                    //alert(key + ' -> ' + value);
+                    data.push({
+                        x: key,
+                        y: value
                     });
-                    return data;
-                })()
+                });
+                return data;
+            })()
             //data: (function() {
             //    var data = [],
             //        time = (new Date()).getTime(),
