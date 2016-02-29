@@ -32,11 +32,11 @@
       <file leaf-file-name="dinamicChart.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/dinamicChart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.85379463" vertical-offset="561" max-vertical-offset="5117">
-              <caret line="78" column="40" selection-start-line="78" selection-start-column="40" selection-end-line="78" selection-end-column="40" />
+            <state vertical-scroll-proportion="1.59375" vertical-offset="0" max-vertical-offset="5763">
+              <caret line="84" column="23" selection-start-line="84" selection-start-column="23" selection-end-line="84" selection-end-column="23" />
               <folding>
                 <element signature="n#!!block;n#chart2#0" expanded="false" />
-                <marker date="1456775948656" expanded="true" signature="4618:4638" placeholder="..." />
+                <marker date="1456776924882" expanded="true" signature="6534:6554" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -920,12 +920,12 @@
       <workItem from="1456313694133" duration="146000" />
       <workItem from="1456313980440" duration="3533000" />
       <workItem from="1456397506994" duration="5988000" />
-      <workItem from="1456680198786" duration="12593000" />
+      <workItem from="1456680198786" duration="13506000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="291528000" />
+    <option name="totallyTimeSpent" value="292441000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1514,11 +1514,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/dinamicChart.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.85379463" vertical-offset="561" max-vertical-offset="5117">
-          <caret line="78" column="40" selection-start-line="78" selection-start-column="40" selection-end-line="78" selection-end-column="40" />
+        <state vertical-scroll-proportion="1.59375" vertical-offset="0" max-vertical-offset="5763">
+          <caret line="84" column="23" selection-start-line="84" selection-start-column="23" selection-end-line="84" selection-end-column="23" />
           <folding>
             <element signature="n#!!block;n#chart2#0" expanded="false" />
-            <marker date="1456775948656" expanded="true" signature="4618:4638" placeholder="..." />
+            <marker date="1456776924882" expanded="true" signature="6534:6554" placeholder="..." />
           </folding>
         </state>
       </provider>
