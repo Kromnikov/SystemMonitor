@@ -94,4 +94,9 @@ public interface IMetricStorage{
     void delMetricFromHost(int host, int id)throws SQLException;
 
     List<User> getAllUsers();
+
+    double getMinValueTemplateMetric(int id) throws SQLException;
+    double getMaxValueTemplateMetric(int id) throws SQLException;
+
+    void updateMinMaxValueTemplateMetric(double min_value, double max_value, int save) throws SQLException;
 }

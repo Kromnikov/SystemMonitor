@@ -604,8 +604,21 @@ public  class MetricStorage implements IMetricStorage {
         }
         return templateMetric;
     }
+    @Transactional
+    public double getMinValueTemplateMetric(int id) throws SQLException {
+        String sql = "select min_value FROM \"TEMPLATE_METRICS\" where id ="+id;
+        return (double)jdbcTemplateObject.queryForMap(sql).get("min_value");
+    }
+    public double getMaxValueTemplateMetric(int id) throws SQLException {
+        String sql = "select max_value FROM \"TEMPLATE_METRICS\" where id ="+id;
+        return (double)jdbcTemplateObject.queryForMap(sql).get("max_value");
+    }
 
-
+    @Transactional
+    public void updateMinMaxValueTemplateMetric(double min_value,double max_value,int id) throws SQLException {
+        String sql = "UPDATE \"TEMPLATE_METRICS\" SET min_value="+min_value+",max_value="+max_value+"WHERE id="+id;
+        jdbcTemplateObject.update(sql);
+    }
 
     //metrics-host
     @Transactional
