@@ -338,5 +338,23 @@ public class HostController {
         return values;
 
     }
+    @RequestMapping(value = "/chartClickHour", method = RequestMethod.GET)
+    @ResponseBody
+    public  Map<Long, Double> chartClickHour(@RequestParam("hostId") int hostId,@RequestParam("instMetricId") int instMetricId,@RequestParam("zoom") int zoom,@RequestParam(required=false, defaultValue = "0") long date) throws JsonProcessingException {
+        return metricStorage.getValuesLastHour(hostId, instMetricId, zoom, new Date(date));
+
+    }
+
+    @RequestMapping(value = "/chartClickMinutes", method = RequestMethod.GET)
+       @ResponseBody
+       public  Map<Long, Double> chartClick(@RequestParam("hostId") int hostId,@RequestParam("instMetricId") int instMetricId,@RequestParam("zoom") int zoom,@RequestParam(required=false, defaultValue = "0") long date) throws JsonProcessingException {
+        return metricStorage.getValuesMinutes(hostId, instMetricId, zoom, new Date(date));
+
+    }
+    @RequestMapping(value = "/chartClickSec", method = RequestMethod.GET)
+    @ResponseBody
+    public  Map<Long, Double> chartClickSec(@RequestParam("hostId") int hostId,@RequestParam("instMetricId") int instMetricId,@RequestParam("zoom") int zoom,@RequestParam(required=false, defaultValue = "0") long date) throws JsonProcessingException {
+        return metricStorage.getValuesSec(hostId, instMetricId, zoom, new Date(date));
+    }
 
 }

@@ -1,5 +1,7 @@
 var zoom = -5;
 var datetime = 0;
+var flagClick = 0;
+var clickCount = 0;
 function loadChart3(hostId, instMetricId, title) {
     datetime = 0;
     $.getJSON('/ajaxtest?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom, function (data, status) {
@@ -34,18 +36,20 @@ function onWheel() {
 function keyEvent() {
     console.log('keyEvent');
     document.onkeydown = function (e) {
+        flagClick = 0;
+        clickCount = 0;
         e = e || window.event;
         if (e.shiftKey && e.keyCode == 189) {
             console.log('Shift + (min)');
             zoom = zoom - 5;
             if (datetime == 0) {
                 $.getJSON('/ajaxtest?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom, function (data, status) {
-                    console.log('Без перехода на точку = '+datetime);
+                    console.log('Без перехода на точку = ' + datetime);
                     chart2(data, title);
                 });
             } else {
                 $.getJSON('/ajaxtest?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
-                    console.log('Переход на точку = '+datetime);
+                    console.log('Переход на точку = ' + datetime);
                     chart2(data, title);
                 });
             }
@@ -55,12 +59,12 @@ function keyEvent() {
             zoom = zoom + 5;
             if (datetime == 0) {
                 $.getJSON('/ajaxtest?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom, function (data, status) {
-                    console.log('Без перехода на точку = '+datetime);
+                    console.log('Без перехода на точку = ' + datetime);
                     chart2(data, title);
                 });
             } else {
                 $.getJSON('/ajaxtest?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
-                    console.log('Переход на точку = '+datetime);
+                    console.log('Переход на точку = ' + datetime);
                     chart2(data, title);
                 });
             }
@@ -69,11 +73,28 @@ function keyEvent() {
     }
 }
 function clickEvent() {
-    console.log('click');
-    zoom = -5;
-    $.getJSON('/ajaxtest?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
-        chart2(data, title);
-    });
+    if (flagClick == 1) {
+        if (clickCount < 2) {
+            console.log('-1 +1 min');
+            clickCount = clickCount + 1;
+            $.getJSON('/chartClickMinutes?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
+                chart2(data, title);
+            });
+        }else
+        {
+            console.log('1 min');
+            $.getJSON('/chartClickSec?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
+                chart2(data, title);
+            });
+        }
+    } else {
+        console.log('ajaxtest flagClick=0');
+        clickCount = clickCount + 1;
+        flagClick = 1;
+        $.getJSON('/chartClickHour?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
+            chart2(data, title);
+        });
+    }
 }
 
 function chart2(jsonData, title) {

@@ -88,8 +88,22 @@ public interface IMetricStorage {
 //    public Map<Long, Double> getValuesLast(int host_id, int metricId);
 
 
+
+
+
+
     public Date getLastDate(int hostId, int metricId);
+
     public Map<Long, Double> getValuesLast(int host_id, int metricId, int zoom, Date dateTime);
+
+    public Map<Long, Double> getValuesLastHour(int host_id, int metricId, int zoom, Date dateTime);
+
+    public Map<Long, Double> getValuesMinutes(int host_id, int metricId, int zoom, Date dateTime);
+
+    public Map<Long, Double> getValuesSec(int host_id, int metricId, int zoom, Date dateTime);
+
+
+
 
     //
 //    //metrics
