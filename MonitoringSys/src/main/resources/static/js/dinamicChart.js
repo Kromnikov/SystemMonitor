@@ -1,29 +1,12 @@
-function hello() {
-    alert("hello");
-}
-
-var zoom= 0;
+var zoom = -5;
+var datetime = 0;
 function loadChart3(hostId, instMetricId, title) {
-    //alert(title+'->>'+hostId+'->>'+instMetricId);
-    $.getJSON('/ajaxtest?hostId=' + hostId + '&instMetricId=' + instMetricId+'&zoom='+zoom, function (data, status) {
-
+    datetime = 0;
+    $.getJSON('/ajaxtest?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom, function (data, status) {
         onWheel();
         keyEvent();
         chart2(data, title);
-
-        //$('body').keydown(function(eventObject){
-        //    //if(eventObject.which==189 || eventObject.which==187)
-        //    {
-        //        console.log('Клавиша клавиатуры приведена в нажатое состояние. Код вводимого символа - ' + eventObject.which);
-        //        chart2(data,eventObject.which);
-        //    }
-        //});
-    }).success(function () {
-        //alert("success");
     })
-    //    .error(function() {
-    //    alert("error")
-    //});
 
     //$('#button').click(function() {
     //    chart.series[0].addPoint({marker:{fillColor:'#659355'}, y: Math.random() * 100, color:'#659355'}, true, true);
@@ -49,32 +32,49 @@ function onWheel() {
     };
 }
 function keyEvent() {
-
     console.log('keyEvent');
     document.onkeydown = function (e) {
         e = e || window.event;
         if (e.shiftKey && e.keyCode == 189) {
             console.log('Shift + (min)');
-            zoom = zoom-1;
-            //window.location.href = "/intsMetric?hostId="+hostId+"&instMetricId="+instMetricId+"&title="+title+"&zoom="+tmp;
+            zoom = zoom - 5;
+            if (datetime == 0) {
+                $.getJSON('/ajaxtest?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom, function (data, status) {
+                    console.log('Без перехода на точку = '+datetime);
+                    chart2(data, title);
+                });
+            } else {
+                $.getJSON('/ajaxtest?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
+                    console.log('Переход на точку = '+datetime);
+                    chart2(data, title);
+                });
+            }
 
-
-            $.getJSON('/ajaxtest?hostId=' + hostId + '&instMetricId=' + instMetricId+'&zoom='+zoom, function (data, status) {
-                chart2(data, title);
-            });
         } else if (e.shiftKey && e.keyCode == 187) {
             console.log('Shift + (plus)');
-            zoom = zoom+1;
-            //window.location.href = "/intsMetric?hostId="+hostId+"&instMetricId="+instMetricId+"&title="+title+"&zoom="+tmp;
-
-            $.getJSON('/ajaxtest?hostId=' + hostId + '&instMetricId=' + instMetricId+'&zoom='+zoom, function (data, status) {
-                chart2(data, title);
-            });
+            zoom = zoom + 5;
+            if (datetime == 0) {
+                $.getJSON('/ajaxtest?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom, function (data, status) {
+                    console.log('Без перехода на точку = '+datetime);
+                    chart2(data, title);
+                });
+            } else {
+                $.getJSON('/ajaxtest?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
+                    console.log('Переход на точку = '+datetime);
+                    chart2(data, title);
+                });
+            }
         }
         return true;
     }
 }
-
+function clickEvent() {
+    console.log('click');
+    zoom = -5;
+    $.getJSON('/ajaxtest?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
+        chart2(data, title);
+    });
+}
 
 function chart2(jsonData, title) {
     Highcharts.setOptions({
@@ -86,7 +86,7 @@ function chart2(jsonData, title) {
     $('#chart_1').highcharts('StockChart', {
 
         chart: {
-            type: 'spline',
+            type: 'line',
             events: {
                 keydown: function () {
                     alert("error");
@@ -126,6 +126,16 @@ function chart2(jsonData, title) {
 
 
         series: [{
+            cursor: 'pointer',
+            point: {
+                events: {
+                    click: function () {
+                        //alert('Category: ' + this.category + ', value: ' + this.y);
+                        datetime = this.category;
+                        clickEvent();
+                    }
+                }
+            },
             name: 'data',
             marker: {
                 enabled: true,

@@ -324,8 +324,17 @@ public class HostController {
 
     @RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
     @ResponseBody
-    public  Map<Long, Double> ajaxTest(@RequestParam("hostId") int hostId,@RequestParam("instMetricId") int instMetricId,@RequestParam("zoom") int zoom) throws JsonProcessingException {
-        Map<Long, Double> values = metricStorage.getValuesLast(hostId, instMetricId,zoom,new Date());
+    public  Map<Long, Double> ajaxTest(@RequestParam("hostId") int hostId,@RequestParam("instMetricId") int instMetricId,@RequestParam("zoom") int zoom,@RequestParam(required=false, defaultValue = "0") long date) throws JsonProcessingException {
+        Map<Long, Double> values = null;
+        if(date==0) {
+            values = metricStorage.getValuesLast(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
+        }
+        else
+        {
+            values = metricStorage.getValuesLast(hostId, instMetricId, zoom, new Date(date));
+        }
+
+
         return values;
 
     }

@@ -1,6 +1,7 @@
 package net.core;
 
 
+import com.fasterxml.jackson.core.sym.NameN;
 import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;
 import net.core.hibernate.services.HostService;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -335,251 +338,255 @@ public class MetricStorage implements IMetricStorage {
         jdbcTemplateObject.update(sql);
     }
 
-    @Transactional
-    public List<Value> getValues(int host_id, int metricId) throws SQLException {
-        List<Value> values = new ArrayList<>();
-        String sql = "select value, date_time from \"VALUE_METRIC\" where metric=" + metricId + " and host =" + host_id;
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-        for (Map row : rows) {
-            values.add(
-                    new Value(
-                            ((double) row.get("value")),
-                            new java.util.Date(((java.sql.Timestamp) row.get("date_time")).getTime())
-                    ));
-        }
-        return values;
-    }
+//    @Transactional
+//    public List<Value> getValues(int host_id, int metricId) throws SQLException {
+//        List<Value> values = new ArrayList<>();
+//        String sql = "select value, date_time from \"VALUE_METRIC\" where metric=" + metricId + " and host =" + host_id;
+//        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+//        for (Map row : rows) {
+//            values.add(
+//                    new Value(
+//                            ((double) row.get("value")),
+//                            new java.util.Date(((java.sql.Timestamp) row.get("date_time")).getTime())
+//                    ));
+//        }
+//        return values;
+//    }
+//
+//    @Transactional
+//    public List<Value> getValuesLastYear(int host_id, int metricId, Date dateTime) {
+//        List<Value> values = new ArrayList<>();
+//        Date nDate = (Date) dateTime.clone();
+//        nDate.setYear(dateTime.getYear() - 1);
+//        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\"  where date_time between  '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + "   order by date_time ";
+//        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+//
+//        if (rows.size() > 0) {
+//            double sumValues = 0, countValues = 0;
+//            Date pDate = new java.util.Date(((java.sql.Timestamp) rows.get(0).get("date_time")).getTime());
+//            for (int i = 0; i < rows.size(); i++) {
+//                if (
+//                        (new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getYear() == pDate.getYear())) {
+//                    sumValues += (double) rows.get(i).get("value");
+//                    countValues++;
+//                    continue;
+//                }
+//                values.add(new Value(
+//                        (sumValues / countValues),
+//                        (pDate)
+//                ));
+//                sumValues = 0;
+//                countValues = 0;
+//                pDate = new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
+//                i--;
+//            }
+//            values.add(new Value(
+//                    (sumValues / countValues),
+//                    (pDate)
+//            ));
+//        }
+//        return values;
+//    }
+//
+//    @Transactional
+//    public List<Value> getValuesLastMonth(int host_id, int metricId, Date dateTime) {
+//        List<Value> values = new ArrayList<>();
+//        Date nDate = (Date) dateTime.clone();
+//        nDate.setMonth(dateTime.getMonth() - 1);
+//        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\"  where date_time between  '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + "   order by date_time ";
+//        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+//
+//        if (rows.size() > 0) {
+//            double sumValues = 0, countValues = 0;
+//            Date pDate = new java.util.Date(((java.sql.Timestamp) rows.get(0).get("date_time")).getTime());
+//            for (int i = 0; i < rows.size(); i++) {
+//                if ((new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getMonth() == pDate.getMonth())
+//                        & (new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getYear() == pDate.getYear())) {
+//                    sumValues += (double) rows.get(i).get("value");
+//                    countValues++;
+//                    continue;
+//                }
+//                values.add(new Value(
+//                        (sumValues / countValues),
+//                        (pDate)
+//                ));
+//                sumValues = 0;
+//                countValues = 0;
+//                pDate = new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
+//                i--;
+//            }
+//            values.add(new Value(
+//                    (sumValues / countValues),
+//                    (pDate)
+//            ));
+//        }
+//        return values;
+//    }
+//
+//    @Transactional
+//    public List<Value> getValuesLastWeek(int host_id, int metricId, Date dateTime) {
+//        List<Value> values = new ArrayList<>();
+//        Date nDate = (Date) dateTime.clone();
+//        nDate.setHours(dateTime.getHours() - 168);
+//        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\"  where date_time between  '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + "   order by date_time ";
+//        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+//
+//        if (rows.size() > 0) {
+//            double sumValues = 0, countValues = 0;
+//            Date pDate = new java.util.Date(((java.sql.Timestamp) rows.get(0).get("date_time")).getTime());
+//            for (int i = 0; i < rows.size(); i++) {
+//                if ((new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getDay() == pDate.getDay())
+//                        & (new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getDay() + 7 > pDate.getDay())
+//                        & (new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getDay() < pDate.getDay() + 7)
+//                        & (new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getYear() == pDate.getYear())
+//                        ) {
+//                    sumValues += (double) rows.get(i).get("value");
+//                    countValues++;
+//                    continue;
+//                }
+//                values.add(new Value(
+//                        (sumValues / countValues),
+//                        (pDate)
+//                ));
+//                sumValues = 0;
+//                countValues = 0;
+//                pDate = new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
+//                i--;
+//            }
+//            values.add(new Value(
+//                    (sumValues / countValues),
+//                    (pDate)
+//            ));
+//        }
+//        return values;
+//    }
+//
+//    @Transactional
+//    public List<Value> getValuesLastDay(int host_id, int metricId, Date dateTime) {
+//        List<Value> values = new ArrayList<>();
+//        Date nDate = (Date) dateTime.clone();
+//        nDate.setHours(dateTime.getHours() - 24);
+//        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\"  where date_time between  '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + "   order by date_time ";
+//        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+//
+//        if (rows.size() > 0) {
+//            double sumValues = 0, countValues = 0;
+//            Date pDate = new java.util.Date(((java.sql.Timestamp) rows.get(0).get("date_time")).getTime());
+//            for (int i = 0; i < rows.size(); i++) {
+//                if ((new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getDay() == pDate.getDay()) & (new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getHours() == pDate.getHours())) {
+//                    sumValues += (double) rows.get(i).get("value");
+//                    countValues++;
+//                    continue;
+//                }
+//                values.add(new Value(
+//                        (sumValues / countValues),
+//                        (pDate)
+//                ));
+//                sumValues = 0;
+//                countValues = 0;
+//                pDate = new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
+//                i--;
+//            }
+//            values.add(new Value(
+//                    (sumValues / countValues),
+//                    (pDate)
+//            ));
+//        }
+//        return values;
+//    }
+//
+//    @Transactional
+//    public List<Value> getValuesLastHour(int host_id, int metricId, Date dateTime) {
+//        List<Value> values = new ArrayList<>();
+//        Date nDate = (Date) dateTime.clone();
+//        nDate.setHours(dateTime.getHours() - 1);
+//        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\"  where date_time between  '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + "   order by date_time ";
+//        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+//
+//        if (rows.size() > 0) {
+//            double sumValues = 0, countValues = 0;
+//            Date pDate = new java.util.Date(((java.sql.Timestamp) rows.get(0).get("date_time")).getTime());
+//            for (int i = 0; i < rows.size(); i++) {
+//                if ((new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getHours() == pDate.getHours()) & (new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getMinutes() == pDate.getMinutes())) {
+//                    sumValues += (double) rows.get(i).get("value");
+//                    countValues++;
+//                    continue;
+//                }
+//                values.add(new Value(
+//                        (sumValues / countValues),
+//                        (pDate)
+//                ));
+//                sumValues = 0;
+//                countValues = 0;
+//                pDate = new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
+//                i--;
+//            }
+//            values.add(new Value(
+//                    (sumValues / countValues),
+//                    (pDate)
+//            ));
+//        }
+//        return values;
+//    }
+//
+//    @Transactional
+//    public List<Value> getValuesLastMinets(int host_id, int metricId, Date dateTime) {
+//        List<Value> values = new ArrayList<>();
+//        Date nDate = (Date) dateTime.clone();
+//        nDate.setMinutes(dateTime.getMinutes() - 1);
+//        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\"  where date_time between  '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + "   order by date_time ";
+//        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+//
+//        if (rows.size() > 0) {
+//            for (int i = 0; i < rows.size(); i++) {
+//                values.add(new Value(
+//                        ((double) rows.get(i).get("value")),
+//                        (new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()))
+//                ));
+//            }
+//        }
+//        return values;
+//    }
+//
+//    @Transactional
+//    public List<Value> getValuesLastTwentyRec(int host_id, int metricId) {
+//        List<Value> values = new ArrayList<>();
+//        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where metric = " + metricId + " and host = " + host_id + "   order by date_time DESC limit 20";
+//        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+//
+//        if (rows.size() > 0) {
+//            for (int i = 0; i < rows.size(); i++) {
+//                values.add(new Value(
+//                        ((double) rows.get(i).get("value")),
+//                        (new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()))
+//                ));
+//            }
+//        }
+//        return values;
+//    }
+//
+//    @Transactional
+//    public Map<Long, Double> getValuesLast(int host_id, int metricId) {
+//        Map<Long, Double> map = new HashMap<>();
+//        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where metric = " + metricId + " and host = " + host_id + " order by date_time  ";
+//        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+//
+//        if (rows.size() > 0) {
+//            for (int i = 0; i < rows.size(); i++) {
+//                map.put((long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()), (double) rows.get(i).get("value"));
+////                Date estTime = new Date((long)(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()) + TimeZone.getTimeZone("EST").getRawOffset());
+////                System.out.println((new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime())));
+//            }
+//        }
+//        return new TreeMap<Long, Double>(map);
+//    }
+
 
     @Transactional
-    public List<Value> getValuesLastYear(int host_id, int metricId, Date dateTime) {
-        List<Value> values = new ArrayList<>();
-        Date nDate = (Date) dateTime.clone();
-        nDate.setYear(dateTime.getYear() - 1);
-        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\"  where date_time between  '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + "   order by date_time ";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-
-        if (rows.size() > 0) {
-            double sumValues = 0, countValues = 0;
-            Date pDate = new java.util.Date(((java.sql.Timestamp) rows.get(0).get("date_time")).getTime());
-            for (int i = 0; i < rows.size(); i++) {
-                if (
-                        (new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getYear() == pDate.getYear())) {
-                    sumValues += (double) rows.get(i).get("value");
-                    countValues++;
-                    continue;
-                }
-                values.add(new Value(
-                        (sumValues / countValues),
-                        (pDate)
-                ));
-                sumValues = 0;
-                countValues = 0;
-                pDate = new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
-                i--;
-            }
-            values.add(new Value(
-                    (sumValues / countValues),
-                    (pDate)
-            ));
-        }
-        return values;
+    public Date getLastDate(int hostId, int metricId) {
+        String sql = "SELECT MAX(date_time) FROM \"VALUE_METRIC\" where metric = "+metricId+" and host ="+hostId;
+        return (Date) jdbcTemplateObject.queryForMap(sql).get("MAX");
     }
-
-    @Transactional
-    public List<Value> getValuesLastMonth(int host_id, int metricId, Date dateTime) {
-        List<Value> values = new ArrayList<>();
-        Date nDate = (Date) dateTime.clone();
-        nDate.setMonth(dateTime.getMonth() - 1);
-        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\"  where date_time between  '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + "   order by date_time ";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-
-        if (rows.size() > 0) {
-            double sumValues = 0, countValues = 0;
-            Date pDate = new java.util.Date(((java.sql.Timestamp) rows.get(0).get("date_time")).getTime());
-            for (int i = 0; i < rows.size(); i++) {
-                if ((new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getMonth() == pDate.getMonth())
-                        & (new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getYear() == pDate.getYear())) {
-                    sumValues += (double) rows.get(i).get("value");
-                    countValues++;
-                    continue;
-                }
-                values.add(new Value(
-                        (sumValues / countValues),
-                        (pDate)
-                ));
-                sumValues = 0;
-                countValues = 0;
-                pDate = new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
-                i--;
-            }
-            values.add(new Value(
-                    (sumValues / countValues),
-                    (pDate)
-            ));
-        }
-        return values;
-    }
-
-    @Transactional
-    public List<Value> getValuesLastWeek(int host_id, int metricId, Date dateTime) {
-        List<Value> values = new ArrayList<>();
-        Date nDate = (Date) dateTime.clone();
-        nDate.setHours(dateTime.getHours() - 168);
-        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\"  where date_time between  '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + "   order by date_time ";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-
-        if (rows.size() > 0) {
-            double sumValues = 0, countValues = 0;
-            Date pDate = new java.util.Date(((java.sql.Timestamp) rows.get(0).get("date_time")).getTime());
-            for (int i = 0; i < rows.size(); i++) {
-                if ((new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getDay() == pDate.getDay())
-                        & (new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getDay() + 7 > pDate.getDay())
-                        & (new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getDay() < pDate.getDay() + 7)
-                        & (new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getYear() == pDate.getYear())
-                        ) {
-                    sumValues += (double) rows.get(i).get("value");
-                    countValues++;
-                    continue;
-                }
-                values.add(new Value(
-                        (sumValues / countValues),
-                        (pDate)
-                ));
-                sumValues = 0;
-                countValues = 0;
-                pDate = new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
-                i--;
-            }
-            values.add(new Value(
-                    (sumValues / countValues),
-                    (pDate)
-            ));
-        }
-        return values;
-    }
-
-    @Transactional
-    public List<Value> getValuesLastDay(int host_id, int metricId, Date dateTime) {
-        List<Value> values = new ArrayList<>();
-        Date nDate = (Date) dateTime.clone();
-        nDate.setHours(dateTime.getHours() - 24);
-        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\"  where date_time between  '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + "   order by date_time ";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-
-        if (rows.size() > 0) {
-            double sumValues = 0, countValues = 0;
-            Date pDate = new java.util.Date(((java.sql.Timestamp) rows.get(0).get("date_time")).getTime());
-            for (int i = 0; i < rows.size(); i++) {
-                if ((new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getDay() == pDate.getDay()) & (new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getHours() == pDate.getHours())) {
-                    sumValues += (double) rows.get(i).get("value");
-                    countValues++;
-                    continue;
-                }
-                values.add(new Value(
-                        (sumValues / countValues),
-                        (pDate)
-                ));
-                sumValues = 0;
-                countValues = 0;
-                pDate = new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
-                i--;
-            }
-            values.add(new Value(
-                    (sumValues / countValues),
-                    (pDate)
-            ));
-        }
-        return values;
-    }
-
-    @Transactional
-    public List<Value> getValuesLastHour(int host_id, int metricId, Date dateTime) {
-        List<Value> values = new ArrayList<>();
-        Date nDate = (Date) dateTime.clone();
-        nDate.setHours(dateTime.getHours() - 1);
-        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\"  where date_time between  '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + "   order by date_time ";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-
-        if (rows.size() > 0) {
-            double sumValues = 0, countValues = 0;
-            Date pDate = new java.util.Date(((java.sql.Timestamp) rows.get(0).get("date_time")).getTime());
-            for (int i = 0; i < rows.size(); i++) {
-                if ((new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getHours() == pDate.getHours()) & (new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()).getMinutes() == pDate.getMinutes())) {
-                    sumValues += (double) rows.get(i).get("value");
-                    countValues++;
-                    continue;
-                }
-                values.add(new Value(
-                        (sumValues / countValues),
-                        (pDate)
-                ));
-                sumValues = 0;
-                countValues = 0;
-                pDate = new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
-                i--;
-            }
-            values.add(new Value(
-                    (sumValues / countValues),
-                    (pDate)
-            ));
-        }
-        return values;
-    }
-
-    @Transactional
-    public List<Value> getValuesLastMinets(int host_id, int metricId, Date dateTime) {
-        List<Value> values = new ArrayList<>();
-        Date nDate = (Date) dateTime.clone();
-        nDate.setMinutes(dateTime.getMinutes() - 1);
-        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\"  where date_time between  '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + "   order by date_time ";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-
-        if (rows.size() > 0) {
-            for (int i = 0; i < rows.size(); i++) {
-                values.add(new Value(
-                        ((double) rows.get(i).get("value")),
-                        (new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()))
-                ));
-            }
-        }
-        return values;
-    }
-
-    @Transactional
-    public List<Value> getValuesLastTwentyRec(int host_id, int metricId) {
-        List<Value> values = new ArrayList<>();
-        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where metric = " + metricId + " and host = " + host_id + "   order by date_time DESC limit 20";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-
-        if (rows.size() > 0) {
-            for (int i = 0; i < rows.size(); i++) {
-                values.add(new Value(
-                        ((double) rows.get(i).get("value")),
-                        (new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()))
-                ));
-            }
-        }
-        return values;
-    }
-
-    @Transactional
-    public Map<Long, Double> getValuesLast(int host_id, int metricId) {
-        Map<Long, Double> map = new HashMap<>();
-        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where metric = " + metricId + " and host = " + host_id + " order by date_time  ";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-
-        if (rows.size() > 0) {
-            for (int i = 0; i < rows.size(); i++) {
-                map.put((long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()), (double) rows.get(i).get("value"));
-//                Date estTime = new Date((long)(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()) + TimeZone.getTimeZone("EST").getRawOffset());
-//                System.out.println((new java.util.Date(((java.sql.Timestamp) rows.get(i).get("date_time")).getTime())));
-            }
-        }
-        return new TreeMap<Long, Double>(map);
-    }
-
-
-
     @Transactional
     public Map<Long, Double> getValuesLast(int host_id, int metricId, int zoom, Date dateTime) {
         Map<Long, Double> map = new HashMap<>();
@@ -591,42 +598,46 @@ public class MetricStorage implements IMetricStorage {
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
 
         long date = 0;
-        double sumValues = 0;
-        if (zoom == 0) {
-            zoom--;
-        }
-        int COUNT_POINTS = 50
-                , countValues = 0,countPoint=0,i=0
+        double sumValues = 0,roundVar=0;
+        int COUNT_POINTS = 20
+                , countValues = 0,countPoint=0,i=1
                 ,rowSize = rows.size()
-                ,merger = (int)Math.floor(rowSize/(COUNT_POINTS* zoom));
+                ,merger = (int)Math.floor(rowSize/(COUNT_POINTS));
         if (rowSize > 0) {
-//            if (rowSize <= COUNT_POINTS) {
+            if (rowSize <= COUNT_POINTS) {
                 for (i = 0; i < rowSize; i++) {
                     map.put((long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()), (double) rows.get(i).get("value"));
                 }
-//            }
-//            else {
-//                while (countPoint!=COUNT_POINTS){
-//                    while (merger != countValues) {
-//                        sumValues += (double) rows.get(i).get("value");
-//                        date = (long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
-//                        countValues++;
-//                        i++;
-//                    }
-//                        map.put(date, sumValues/merger);
-//                        sumValues = 0;
-//                        countValues = 0;
-//                        countPoint++;
-//
-//                }
-//                while (i != rowSize) {
-//                    sumValues += (double) rows.get(i).get("value");
-//                    date = (long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
-//                    countValues++;
-//                    i++;
-//                }
-//                map.put(date, sumValues/countValues);
-//            }
+            }
+            else {
+                map.put((long) (((java.sql.Timestamp) rows.get(0).get("date_time")).getTime()), (double) rows.get(0).get("value"));
+                while (countPoint!=COUNT_POINTS){
+                    while (merger != countValues) {
+                        if(i < rowSize) {
+                            sumValues += (double) rows.get(i).get("value");
+                            date = (long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
+                            countValues++;
+                            i++;
+                        }
+                    }
+                    roundVar = new BigDecimal(sumValues / merger).setScale(3, RoundingMode.UP).doubleValue();
+                        map.put(date,roundVar);
+                        sumValues = 0;
+                        countValues = 0;
+                        countPoint++;
+
+                }
+                if(i != rowSize) {
+                    while (i != rowSize) {
+                        sumValues += (double) rows.get(i).get("value");
+                        date = (long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
+                        countValues++;
+                        i++;
+                    }
+                    roundVar = new BigDecimal(sumValues / countValues).setScale(3, RoundingMode.UP).doubleValue();
+                    map.put(date, roundVar);
+                }
+            }
         }
         return new TreeMap<Long, Double>(map);
     }

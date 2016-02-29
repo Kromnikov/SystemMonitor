@@ -69,24 +69,26 @@ public interface IMetricStorage {
     public void addValue(int host, int metric, double value, String dateTime) throws SQLException;
 
     //    public List<Double> getAllValueMetricOnHost(int id) throws SQLException;
-    public List<Value> getValues(int host_id, int metricId) throws SQLException;
+//    public List<Value> getValues(int host_id, int metricId) throws SQLException;
+//
+//    public List<Value> getValuesLastYear(int host_id, int metricId, Date dateTime);
+//
+//    public List<Value> getValuesLastMonth(int host_id, int metricId, Date dateTime);
+//
+//    public List<Value> getValuesLastWeek(int host_id, int metricId, Date dateTime);
+//
+//    public List<Value> getValuesLastDay(int host_id, int metricId, Date dateTime);
+//
+//    public List<Value> getValuesLastHour(int host_id, int metricId, Date dateTime);
+//
+//    public List<Value> getValuesLastMinets(int host_id, int metricId, Date dateTime);
+//
+//    public List<Value> getValuesLastTwentyRec(int host_id, int metricId);
+//
+//    public Map<Long, Double> getValuesLast(int host_id, int metricId);
 
-    public List<Value> getValuesLastYear(int host_id, int metricId, Date dateTime);
 
-    public List<Value> getValuesLastMonth(int host_id, int metricId, Date dateTime);
-
-    public List<Value> getValuesLastWeek(int host_id, int metricId, Date dateTime);
-
-    public List<Value> getValuesLastDay(int host_id, int metricId, Date dateTime);
-
-    public List<Value> getValuesLastHour(int host_id, int metricId, Date dateTime);
-
-    public List<Value> getValuesLastMinets(int host_id, int metricId, Date dateTime);
-
-    public List<Value> getValuesLastTwentyRec(int host_id, int metricId);
-
-    public Map<Long, Double> getValuesLast(int host_id, int metricId);
-
+    public Date getLastDate(int hostId, int metricId);
     public Map<Long, Double> getValuesLast(int host_id, int metricId, int zoom, Date dateTime);
 
     //
