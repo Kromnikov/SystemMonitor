@@ -26,16 +26,37 @@ function onWheel() {
 
         //var info = document.getElementById('delta');
         if (e.shiftKey) {
-            if (delta < 0) {
-                zoom = zoom - 1;
-                console.log("delta= " + delta + "  zoom=" + zoom);
+            if (delta < 0) {// - /////////
+                console.log('scroll min');
+                if (zoom == -3) {
+                    console.log('3 min');
+                    zoom = zoom -1;
+                    zoomCount = 2;
+                    $.getJSON('/chartClickMinutes?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
+                        chart2(data, title);
+                    });
+                }else if (zoom== -4) {
+                    console.log('1 hour');
+                    zoom = zoom -1;
+                    zoomCount = 1;
+                    $.getJSON('/chartClickHour?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
+                        chart2(data, title);
+                    });
 
-            } else {
-                //if (zoom <= -5) {
-                //    zoom = zoom + 1;
-                //    console.log("delta= " + delta + "  zoom=" + zoom);
+                }else {
+                    zoom = zoom - 5;
+                    console.log("flag  = 0   "+datetime+"   zoom="+zoom);
+                    zoomCount = 0;
+                    flag=0;
+                    $.getJSON('/ajaxtest?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom, function (data, status) {
+                        chart2(data, title);
+                    });
+                }
+
+            } else {// + ////////
+                console.log('scroll plus');
                 if (zoom == -5) {
-                    console.log("zoom=" + zoom);
+                    console.log('1 hour');
                     zoom = zoom + 1;
                     zoomCount = 1;
                     flag = 1;
@@ -43,14 +64,14 @@ function onWheel() {
                         chart2(data, title);
                     });
                 } else if (zoom == -4) {
-                    console.log("zoom=" + zoom);
+                    console.log('3 min');
                     zoom = zoom + 1;
                     zoomCount = 2;
                     $.getJSON('/chartClickMinutes?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
                         chart2(data, title);
                     });
                 } else if (zoom == -3) {
-                    console.log("zoom=" + zoom);
+                    console.log('1 min');
                     zoomCount = 3;
                     $.getJSON('/chartClickSec?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
                         chart2(data, title);
@@ -58,7 +79,11 @@ function onWheel() {
                 }
 
                 else {
-                    zoom = zoom + 1;
+                    zoom = zoom + 5;
+                    console.log("flag  = 0   "+datetime+"   zoom="+zoom);
+                    $.getJSON('/ajaxtest?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom, function (data, status) {
+                        chart2(data, title);
+                    });
                 }
             }
         }
@@ -72,16 +97,16 @@ function keyEvent() {
     document.onkeydown = function (e) {
         e = e || window.event;
         if (e.shiftKey && e.keyCode == 189) {
-            console.log('Shift + (min)');
+            console.log('Shift min');
             if (flag > 0) {
                 if (zoomCount == 3) {
                     zoomCount = 2;
-                    console.log('zoomCount==3 --> 2');
+                    console.log('3 min');
                     $.getJSON('/chartClickMinutes?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
                         chart2(data, title);
                     });
                 } else if (zoomCount == 2) {
-                    console.log('zoomCount==2 --> 1');
+                    console.log('1 hour');
                     zoomCount = 1;
                     $.getJSON('/chartClickHour?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
                         chart2(data, title);
@@ -96,29 +121,23 @@ function keyEvent() {
             }
             else {
                 zoom = zoom - 5;
-                if (datetime == 0) {
                     $.getJSON('/ajaxtest?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom, function (data, status) {
-                        console.log('Без перехода на точку = ' + datetime);
+                        console.log("flag  = 0   "+datetime+"   zoom="+zoom);
                         chart2(data, title);
                     });
-                } else {
-                    $.getJSON('/ajaxtest?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
-                        console.log('Переход на точку = ' + datetime);
-                        chart2(data, title);
-                    });
-                }
+
             }
         } else if (e.shiftKey && e.keyCode == 187) {
-            console.log('Shift + (plus)');
+            console.log('Shift plus');
             if (flag > 0) {
                 if (zoomCount == 1) {
                     zoomCount = 2;
-                    console.log('zoomCount==1 --> 2');
+                    console.log('3 min');
                     $.getJSON('/chartClickMinutes?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
                         chart2(data, title);
                     });
                 } else if (zoomCount == 2) {
-                    console.log('zoomCount==2 --> 3');
+                    console.log('1 min');
                     zoomCount = 3;
                     $.getJSON('/chartClickSec?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
                         chart2(data, title);
@@ -128,39 +147,36 @@ function keyEvent() {
             }
             else {
                 zoom = zoom + 5;
-                if (datetime == 0) {
                     $.getJSON('/ajaxtest?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom, function (data, status) {
-                        console.log('Без перехода на точку = ' + datetime);
+                        console.log("flag  = 0   "+datetime+"   zoom="+zoom);
                         chart2(data, title);
                     });
-                } else {
-                    $.getJSON('/ajaxtest?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
-                        console.log('Переход на точку = ' + datetime);
-                        chart2(data, title);
-                    });
-                }
             }
         }
         return true;
     }
 }
 function clickEvent() {
+    console.log('click plus');
     if (flag == 1) {
         if (zoomCount < 2) {
-            console.log('-1 +1 min');
+            console.log('3 min');
+            zoom = zoom +1;
             zoomCount = 2;
             $.getJSON('/chartClickMinutes?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
                 chart2(data, title);
             });
         } else {
             console.log('1 min');
+            zoom = zoom +1;
             zoomCount = 3;
             $.getJSON('/chartClickSec?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
                 chart2(data, title);
             });
         }
     } else {
-        console.log('ajaxtest flag=0');
+        console.log('1 hour');
+        zoom = zoom +1;
         zoomCount = 1;
         flag = 1;
         $.getJSON('/chartClickHour?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {

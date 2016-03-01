@@ -32,12 +32,11 @@
       <file leaf-file-name="dinamicChart.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/dinamicChart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6666667" vertical-offset="442" max-vertical-offset="5049">
-              <caret line="60" column="36" selection-start-line="60" selection-start-column="36" selection-end-line="60" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.6666667" vertical-offset="1972" max-vertical-offset="6613">
+              <caret line="150" column="77" selection-start-line="150" selection-start-column="77" selection-end-line="150" selection-end-column="77" />
               <folding>
-                <element signature="n#!!block;n#keyEvent#0" expanded="false" />
                 <element signature="n#!!block;n#chart2#0" expanded="false" />
-                <marker date="1456812413996" expanded="true" signature="7970:7990" placeholder="..." />
+                <marker date="1456819020865" expanded="true" signature="8578:8598" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -56,8 +55,8 @@
       <file leaf-file-name="HostController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/HostController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2738" max-vertical-offset="3706">
-              <caret line="340" column="44" selection-start-line="340" selection-start-column="30" selection-end-line="340" selection-end-column="44" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="3316" max-vertical-offset="4199">
+              <caret line="375" column="0" selection-start-line="375" selection-start-column="0" selection-end-line="375" selection-end-column="0" />
               <folding>
                 <element signature="method#getAllProblemsCount#0;class#HostController#0" expanded="false" />
                 <element signature="method#getProblemsCount#0;class#HostController#0" expanded="false" />
@@ -107,8 +106,8 @@
       <file leaf-file-name="MetricStorage.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/core/MetricStorage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1823" max-vertical-offset="4114">
-              <caret line="592" column="0" selection-start-line="591" selection-start-column="0" selection-end-line="592" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2469" max-vertical-offset="4930">
+              <caret line="650" column="0" selection-start-line="650" selection-start-column="0" selection-end-line="650" selection-end-column="0" />
               <folding>
                 <element signature="e#737#748#0" expanded="false" />
                 <element signature="method#setAllowableValueMetric#0;class#MetricStorage#0" expanded="false" />
@@ -137,7 +136,6 @@
                 <element signature="method#addValue#0;class#MetricStorage#0" expanded="false" />
                 <element signature="e#15020#15040#0" expanded="false" />
                 <element signature="method#getLastDate#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#getValuesLastHour#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#getValuesMinutes#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#getValuesSec#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#addTemplateMetric#0;class#MetricStorage#0" expanded="false" />
@@ -925,12 +923,12 @@
       <workItem from="1456313694133" duration="146000" />
       <workItem from="1456313980440" duration="3533000" />
       <workItem from="1456397506994" duration="5988000" />
-      <workItem from="1456680198786" duration="17270000" />
+      <workItem from="1456680198786" duration="21519000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="296205000" />
+    <option name="totallyTimeSpent" value="300454000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
@@ -1005,7 +1003,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="175" />
+      <option name="time" value="176" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -1367,57 +1365,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/HostController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2738" max-vertical-offset="3706">
-          <caret line="340" column="44" selection-start-line="340" selection-start-column="30" selection-end-line="340" selection-end-column="44" />
-          <folding>
-            <element signature="method#getAllProblemsCount#0;class#HostController#0" expanded="false" />
-            <element signature="method#getProblemsCount#0;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricProblems#0;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricProblems#1;class#HostController#0" expanded="false" />
-            <element signature="method#getAllMetricProblemsCount#0;class#HostController#0" expanded="false" />
-            <element signature="method#getMetrics#0;class#HostController#0" expanded="false" />
-            <element signature="method#getHostsProblemsCount#0;class#HostController#0" expanded="false" />
-            <element signature="method#getHostsProblems#0;class#HostController#0" expanded="false" />
-            <element signature="method#hostsPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#addHostPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#saveHost#0;class#HostController#0" expanded="false" />
-            <element signature="method#returnHosts#0;class#HostController#0" expanded="false" />
-            <element signature="e#3505#3525#0" expanded="false" />
-            <element signature="e#5029#5063#0" expanded="false" />
-            <element signature="method#problemsPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveHost#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveHostAll#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveMetric#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveMetric#1;class#HostController#0" expanded="false" />
-            <element signature="method#redirectToMetric#0;class#HostController#0" expanded="false" />
-            <element signature="e#7020#7050#0" expanded="false" />
-            <element signature="method#hostPage#0;class#HostController#0" expanded="false" />
-            <element signature="e#7559#7592#0" expanded="false" />
-            <element signature="method#problemsHostPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveInstMetric#0;class#HostController#0" expanded="false" />
-            <element signature="e#8511#8552#0" expanded="false" />
-            <element signature="method#editInstMetricPage#0;class#HostController#0" expanded="false" />
-            <element signature="e#9248#9285#0" expanded="false" />
-            <element signature="method#instMetricPage#0;class#HostController#0" expanded="false" />
-            <element signature="e#9879#9915#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/metrics.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.26923" vertical-offset="1190" max-vertical-offset="2091">
-          <caret line="101" column="32" selection-start-line="101" selection-start-column="25" selection-end-line="101" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/core/MetricStorage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1823" max-vertical-offset="4114">
-          <caret line="592" column="0" selection-start-line="591" selection-start-column="0" selection-end-line="592" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2469" max-vertical-offset="4930">
+          <caret line="650" column="0" selection-start-line="650" selection-start-column="0" selection-end-line="650" selection-end-column="0" />
           <folding>
             <element signature="e#737#748#0" expanded="false" />
             <element signature="method#setAllowableValueMetric#0;class#MetricStorage#0" expanded="false" />
@@ -1446,7 +1397,6 @@
             <element signature="method#addValue#0;class#MetricStorage#0" expanded="false" />
             <element signature="e#15020#15040#0" expanded="false" />
             <element signature="method#getLastDate#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#getValuesLastHour#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getValuesMinutes#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getValuesSec#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#addTemplateMetric#0;class#MetricStorage#0" expanded="false" />
@@ -1521,14 +1471,60 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/metrics.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.26923" vertical-offset="1190" max-vertical-offset="2091">
+          <caret line="101" column="32" selection-start-line="101" selection-start-column="25" selection-end-line="101" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/HostController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3316" max-vertical-offset="4199">
+          <caret line="375" column="0" selection-start-line="375" selection-start-column="0" selection-end-line="375" selection-end-column="0" />
+          <folding>
+            <element signature="method#getAllProblemsCount#0;class#HostController#0" expanded="false" />
+            <element signature="method#getProblemsCount#0;class#HostController#0" expanded="false" />
+            <element signature="method#getMetricProblems#0;class#HostController#0" expanded="false" />
+            <element signature="method#getMetricProblems#1;class#HostController#0" expanded="false" />
+            <element signature="method#getAllMetricProblemsCount#0;class#HostController#0" expanded="false" />
+            <element signature="method#getMetrics#0;class#HostController#0" expanded="false" />
+            <element signature="method#getHostsProblemsCount#0;class#HostController#0" expanded="false" />
+            <element signature="method#getHostsProblems#0;class#HostController#0" expanded="false" />
+            <element signature="method#hostsPage#0;class#HostController#0" expanded="false" />
+            <element signature="method#addHostPage#0;class#HostController#0" expanded="false" />
+            <element signature="method#saveHost#0;class#HostController#0" expanded="false" />
+            <element signature="method#returnHosts#0;class#HostController#0" expanded="false" />
+            <element signature="e#3505#3525#0" expanded="false" />
+            <element signature="e#5029#5063#0" expanded="false" />
+            <element signature="method#problemsPage#0;class#HostController#0" expanded="false" />
+            <element signature="method#resolveHost#0;class#HostController#0" expanded="false" />
+            <element signature="method#resolveHostAll#0;class#HostController#0" expanded="false" />
+            <element signature="method#resolveMetric#0;class#HostController#0" expanded="false" />
+            <element signature="method#resolveMetric#1;class#HostController#0" expanded="false" />
+            <element signature="method#redirectToMetric#0;class#HostController#0" expanded="false" />
+            <element signature="e#7020#7050#0" expanded="false" />
+            <element signature="method#hostPage#0;class#HostController#0" expanded="false" />
+            <element signature="e#7559#7592#0" expanded="false" />
+            <element signature="method#problemsHostPage#0;class#HostController#0" expanded="false" />
+            <element signature="method#resolveInstMetric#0;class#HostController#0" expanded="false" />
+            <element signature="e#8511#8552#0" expanded="false" />
+            <element signature="method#editInstMetricPage#0;class#HostController#0" expanded="false" />
+            <element signature="e#9248#9285#0" expanded="false" />
+            <element signature="method#instMetricPage#0;class#HostController#0" expanded="false" />
+            <element signature="e#9879#9915#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/dinamicChart.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6666667" vertical-offset="442" max-vertical-offset="5049">
-          <caret line="60" column="36" selection-start-line="60" selection-start-column="36" selection-end-line="60" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.6666667" vertical-offset="1972" max-vertical-offset="6613">
+          <caret line="150" column="77" selection-start-line="150" selection-start-column="77" selection-end-line="150" selection-end-column="77" />
           <folding>
-            <element signature="n#!!block;n#keyEvent#0" expanded="false" />
             <element signature="n#!!block;n#chart2#0" expanded="false" />
-            <marker date="1456812413996" expanded="true" signature="7970:7990" placeholder="..." />
+            <marker date="1456819020865" expanded="true" signature="8578:8598" placeholder="..." />
           </folding>
         </state>
       </provider>

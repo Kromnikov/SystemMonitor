@@ -341,20 +341,49 @@ public class HostController {
     @RequestMapping(value = "/chartClickHour", method = RequestMethod.GET)
     @ResponseBody
     public  Map<Long, Double> chartClickHour(@RequestParam("hostId") int hostId,@RequestParam("instMetricId") int instMetricId,@RequestParam("zoom") int zoom,@RequestParam(required=false, defaultValue = "0") long date) throws JsonProcessingException {
-        return metricStorage.getValuesLastHour(hostId, instMetricId, zoom, new Date(date));
+        Map<Long, Double> values = null;
+        if(date==0) {
+            values = metricStorage.getValuesLastHour(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
+        }
+        else
+        {
+            values = metricStorage.getValuesLastHour(hostId, instMetricId, zoom, new Date(date));
+        }
+
+        return values;
 
     }
 
     @RequestMapping(value = "/chartClickMinutes", method = RequestMethod.GET)
        @ResponseBody
        public  Map<Long, Double> chartClick(@RequestParam("hostId") int hostId,@RequestParam("instMetricId") int instMetricId,@RequestParam("zoom") int zoom,@RequestParam(required=false, defaultValue = "0") long date) throws JsonProcessingException {
-        return metricStorage.getValuesMinutes(hostId, instMetricId, zoom, new Date(date));
+
+        Map<Long, Double> values = null;
+        if(date==0) {
+            values = metricStorage.getValuesMinutes(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
+        }
+        else
+        {
+            values = metricStorage.getValuesMinutes(hostId, instMetricId, zoom, new Date(date));
+        }
+
+        return values;
 
     }
     @RequestMapping(value = "/chartClickSec", method = RequestMethod.GET)
     @ResponseBody
     public  Map<Long, Double> chartClickSec(@RequestParam("hostId") int hostId,@RequestParam("instMetricId") int instMetricId,@RequestParam("zoom") int zoom,@RequestParam(required=false, defaultValue = "0") long date) throws JsonProcessingException {
-        return metricStorage.getValuesSec(hostId, instMetricId, zoom, new Date(date));
+
+        Map<Long, Double> values = null;
+        if(date==0) {
+            values = metricStorage.getValuesSec(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
+        }
+        else
+        {
+            values = metricStorage.getValuesSec(hostId, instMetricId, zoom, new Date(date));
+        }
+
+        return values;
     }
 
 }
