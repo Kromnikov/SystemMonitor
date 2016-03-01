@@ -97,6 +97,9 @@ public interface IMetricStorage{
 
     double getMinValueTemplateMetric(int id) throws SQLException;
     double getMaxValueTemplateMetric(int id) throws SQLException;
-
     void updateMinMaxValueTemplateMetric(double min_value, double max_value, int save) throws SQLException;
+
+    double getMinValueInstanceMetric(int id) throws SQLException;
+    double getMaxValueInstanceMetric(int id) throws SQLException;
+    void updateMinMaxValueInstanceMetric(double min_value, double max_value, int save) throws SQLException;
 }

@@ -620,6 +620,22 @@ public  class MetricStorage implements IMetricStorage {
         jdbcTemplateObject.update(sql);
     }
 
+    @Transactional
+    public double getMinValueInstanceMetric(int id) throws SQLException {
+        String sql = "select min_value FROM \"INSTANCE_METRIC\" where id ="+id;
+        return (double)jdbcTemplateObject.queryForMap(sql).get("min_value");
+    }
+    public double getMaxValueInstanceMetric(int id) throws SQLException {
+        String sql = "select max_value FROM \"INSTANCE_METRIC\" where id ="+id;
+        return (double)jdbcTemplateObject.queryForMap(sql).get("max_value");
+    }
+
+    @Transactional
+    public void updateMinMaxValueInstanceMetric(double min_value,double max_value,int id) throws SQLException {
+        String sql = "UPDATE \"INSTANCE_METRIC\" SET min_value="+min_value+",max_value="+max_value+"WHERE id="+id;
+        jdbcTemplateObject.update(sql);
+    }
+
     //metrics-host
     @Transactional
     public void addInstMetric(int host, int metric) throws SQLException {

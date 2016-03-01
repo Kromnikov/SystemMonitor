@@ -63,14 +63,16 @@
                     <li>
                         <a  class="contener-menu-select">Templet Metrics <div class="left-menu-counter"></div></a>
                     </li>
-
+                    <li>
+                        <a  href="/optionsInstance">Instance Metrics <div class="left-menu-counter"></div></a>
+                    </li>
                 </ul>
             </div>
 
 
 
             <div class="left-right-contener">
-                <form action="#" th:action="@{/options}" th:object="${templMetric}" method="get">
+                <form action="#"  th:object="${templMetric}" method="get">
                     <table>
                         <tr>
                             <td>
