@@ -1,7 +1,7 @@
 var zoom = -5;
 var datetime = 0;
-var flagClick = 0;
-var clickCount = 0;
+var flag = 0;
+var zoomCount = 0;
 function loadChart3(hostId, instMetricId, title) {
     datetime = 0;
     $.getJSON('/ajaxtest?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom, function (data, status) {
@@ -21,16 +21,50 @@ function onWheel() {
 
         e = e || window.event;
 
-        // wheelDelta не дает возможность узнать количество пикселей
         var delta = e.deltaY || e.detail || e.wheelDelta;
 
 
         //var info = document.getElementById('delta');
+        if (e.shiftKey) {
+            if (delta < 0) {
+                zoom = zoom - 1;
+                console.log("delta= " + delta + "  zoom=" + zoom);
 
-        console.log(delta);
+            } else {
+                //if (zoom <= -5) {
+                //    zoom = zoom + 1;
+                //    console.log("delta= " + delta + "  zoom=" + zoom);
+                if (zoom == -5) {
+                    console.log("zoom=" + zoom);
+                    zoom = zoom + 1;
+                    zoomCount = 1;
+                    flag = 1;
+                    $.getJSON('/chartClickHour?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
+                        chart2(data, title);
+                    });
+                } else if (zoom == -4) {
+                    console.log("zoom=" + zoom);
+                    zoom = zoom + 1;
+                    zoomCount = 2;
+                    $.getJSON('/chartClickMinutes?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
+                        chart2(data, title);
+                    });
+                } else if (zoom == -3) {
+                    console.log("zoom=" + zoom);
+                    zoomCount = 3;
+                    $.getJSON('/chartClickSec?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
+                        chart2(data, title);
+                    });
+                }
+
+                else {
+
+                }
+            }
+        }
         //info.innerHTML = +info.innerHTML + delta;
 
-        e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+        //e.preventDefault ? e.preventDefault() : (e.returnValue = false);
     };
 }
 function keyEvent() {
@@ -39,24 +73,24 @@ function keyEvent() {
         e = e || window.event;
         if (e.shiftKey && e.keyCode == 189) {
             console.log('Shift + (min)');
-            if (flagClick > 0) {
-                if (clickCount == 3) {
-                    clickCount = 2;
-                    console.log('clickCount==3 --> 2');
+            if (flag > 0) {
+                if (zoomCount == 3) {
+                    zoomCount = 2;
+                    console.log('zoomCount==3 --> 2');
                     $.getJSON('/chartClickMinutes?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
                         chart2(data, title);
                     });
-                } else if (clickCount == 2) {
-                    console.log('clickCount==2 --> 1');
-                    clickCount = 1;
+                } else if (zoomCount == 2) {
+                    console.log('zoomCount==2 --> 1');
+                    zoomCount = 1;
                     $.getJSON('/chartClickHour?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
                         chart2(data, title);
                     });
 
                 } else {
-                    console.log('clickCount==1 --> 0');
-                    clickCount = 0;
-                    flagClick = 0;
+                    console.log('zoomCount==1 --> 0');
+                    zoomCount = 0;
+                    flag = 0;
 
                 }
             }
@@ -76,16 +110,16 @@ function keyEvent() {
             }
         } else if (e.shiftKey && e.keyCode == 187) {
             console.log('Shift + (plus)');
-            if (flagClick > 0) {
-                if (clickCount == 1) {
-                    clickCount = 2;
-                    console.log('clickCount==1 --> 2');
+            if (flag > 0) {
+                if (zoomCount == 1) {
+                    zoomCount = 2;
+                    console.log('zoomCount==1 --> 2');
                     $.getJSON('/chartClickMinutes?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
                         chart2(data, title);
                     });
-                } else if (clickCount == 2) {
-                    console.log('clickCount==2 --> 3');
-                    clickCount = 3;
+                } else if (zoomCount == 2) {
+                    console.log('zoomCount==2 --> 3');
+                    zoomCount = 3;
                     $.getJSON('/chartClickSec?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
                         chart2(data, title);
                     });
@@ -111,24 +145,24 @@ function keyEvent() {
     }
 }
 function clickEvent() {
-    if (flagClick == 1) {
-        if (clickCount < 2) {
+    if (flag == 1) {
+        if (zoomCount < 2) {
             console.log('-1 +1 min');
-            clickCount = clickCount + 1;
+            zoomCount = 2;
             $.getJSON('/chartClickMinutes?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
                 chart2(data, title);
             });
         } else {
             console.log('1 min');
-            clickCount = clickCount + 1;
+            zoomCount = 3;
             $.getJSON('/chartClickSec?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
                 chart2(data, title);
             });
         }
     } else {
-        console.log('ajaxtest flagClick=0');
-        clickCount = clickCount + 1;
-        flagClick = 1;
+        console.log('ajaxtest flag=0');
+        zoomCount = 1;
+        flag = 1;
         $.getJSON('/chartClickHour?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
             chart2(data, title);
         });
