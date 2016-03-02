@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
+    <script language="JavaScript">
+
+    </script>
     <link href="../static/css/index.css"
           th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
     <link href="../static/css/hosts-page.css"
@@ -9,6 +12,15 @@
     <link href="../static/css/host.css"
           th:href="@{css/host.css}" rel="stylesheet" media="screen"/>
     <title>Accaunts</title>
+    <script>
+        function rolesFunction() {
+            var mySelect = document.form1.usersRole;
+            if (mySelect.options[0] == "ADMIN") {
+                mySelect.options[mySelect.options.length] = new Option("USER", "USER");
+            }
+            else mySelect.options[mySelect.options.length] = new Option("ADMIN", "ADMIN");
+        }
+    </script>
 </head>
 <body>
 <div class="header">
@@ -21,6 +33,9 @@
     <div class="header-right">
         <ul class="header-menu">
             <li>
+                <a  class="header-menu-black">Options<div class="left-menu-counter"></div></a>
+            </li>
+            <li>
                 <a th:href="hosts">Hosts</a>
             </li>
             <li>
@@ -30,36 +45,55 @@
                 <a  href="/">Home</a>
             </li>
             <li>
-                <a  class="header-menu-black">Accaunts<div class="left-menu-counter"></div></a>
-            </li>
-            <li>
                 <a th:action="@{/logout}" method="post" href="/login">Log Out</a>
             </li>
         </ul>
     </div>
 </div>
 <div class="content">
+    <div class="center-contener">
 
+        <div class="contener-head">
+            <ul class="contener-menu">
+                <li>
+                    <a  href ="/options">Templat Metrics <div class="left-menu-counter"></div></a>
+                </li>
+                <li>
+                    <a  href="/optionsInstance">Instance Metrics <div class="left-menu-counter"></div></a>
+                </li>
+                <li>
+                    <a  class="contener-menu-select">Accaunts <div class="left-menu-counter"></div></a>
+                </li>
+            </ul>
+        </div>
+    </div>
     <div class="center-contener">
 
         <div class="contener-head">
             Accaunt's Editor
         </div>
-        <table width="100%" border="1px" cellspacing="0px" cellpadding="4px" align="center" >
+        <form action="#" name="form1" th:object="${getAllUsers}" method="get">
+        <table width="100%" border="1px" cellspacing="0px" cellpadding="4px" align="center" id="tb" >
 
             <td class="tablehead">id</td>
             <td class="tablehead">username</td>
             <td class="tablehead">password</td>
             <td class="tablehead">role</td>
             <div th:each="user: ${getAllUsers}">
-                <tr >
-                    <td th:field="*{id}"  type="hidden" th:text="${user.id}"></td>
-                    <td th:field="*{username}" th:text="${user.username}"></td>
-                    <td th:field="*{password}" th:text="${user.password}"></td>
-                    <td th:field="*{role}" th:text="${user.role}"></td>
+                <tr>
+                    <td  type="hidden" th:text="${user.id}"></td>
+                    <td  th:text="${user.username}"></td>
+                    <td  th:text="${user.password}"></td>
+                    <td>
+                    <select  name="usersRole" onload="rolesFunction()">
+                        <option th:text="${user.role}" th:name="${user.role}"></option>
+                    </select>
+                    </td>
                 </tr>
             </div>
         </table>
+            <button type="submit" name="save">Save</button>
+        </form>
         <!--<div class="row-contener left"><a  th:href="@{'selectInstMetric='+${problem.id}}" th:text="${problem.state}"></a></div>-->
 
 
