@@ -14,11 +14,11 @@
     <title>Accaunts</title>
     <script>
         function rolesFunction() {
-            var mySelect = document.form1.1;
+            var mySelect = document.form1.usersRole;
             if (mySelect.options[0] == "ADMIN") {
-                mySelect.options[mySelect.options.length] = new Option("USER", "USER");
+                mySelect.options[mySelect.options.length] = new Option("USER");
             }
-            else mySelect.options[mySelect.options.length] = new Option("ADMIN", "ADMIN");
+            else mySelect.options[mySelect.options.length] = new Option("ADMIN");
         }
     </script>
 </head>
@@ -73,7 +73,7 @@
             Accaunt's Editor
         </div>
         <form action="#" name="form1" th:object="${getAllUsers}" method="get">
-        <table width="100%" border="1px" cellspacing="0px" cellpadding="4px" align="center" id="tb"  onload="rolesFunction()">
+        <table width="100%" border="1px" cellspacing="0px" cellpadding="4px" align="center" id="tb" >
 
             <td class="tablehead">id</td>
             <td class="tablehead">username</td>
@@ -85,7 +85,7 @@
                     <td  th:text="${user.username}"></td>
                     <td  th:text="${user.password}"></td>
                     <td>
-                    <select  th:name="${user.id}">
+                    <select  name="usersRole" onload="rolesFunction()">
                         <option th:text="${user.role}" th:name="${user.role}"></option>
                     </select>
                     </td>

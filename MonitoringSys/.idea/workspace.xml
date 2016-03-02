@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f58fc8e3-a3e6-4b2f-9966-2e50adcf7fb3" name="Default" comment="" />
+    <list default="true" id="f58fc8e3-a3e6-4b2f-9966-2e50adcf7fb3" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/accaunts.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/accaunts.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/addHost.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/addHost.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" />
+    </list>
     <ignored path="MonitoringSys.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -29,7 +33,7 @@
       <file leaf-file-name="templetMetrics.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/templetMetrics.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="20.115385">
+            <state vertical-scroll-proportion="-0.65384614">
               <caret line="47" column="21" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
               <folding />
             </state>
@@ -39,18 +43,8 @@
       <file leaf-file-name="instanceMetricsOption.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/instanceMetricsOption.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.807693">
-              <caret line="47" column="21" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.153846">
-              <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+            <state vertical-scroll-proportion="-0.65384614">
+              <caret line="30" column="21" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -59,8 +53,28 @@
       <file leaf-file-name="accaunts.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/accaunts.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.59115046">
-              <caret line="87" column="42" selection-start-line="87" selection-start-column="42" selection-end-line="87" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.4283186">
+              <caret line="85" column="48" selection-start-line="85" selection-start-column="48" selection-end-line="85" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="host.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/host.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.8461537">
+              <caret line="33" column="21" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hosts.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/hosts.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.9230769">
+              <caret line="46" column="21" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -69,122 +83,49 @@
       <file leaf-file-name="instMetric.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/instMetric.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.615385">
-              <caret line="109" column="27" selection-start-line="109" selection-start-column="27" selection-end-line="109" selection-end-column="88" />
+            <state vertical-scroll-proportion="-13.730769">
+              <caret line="42" column="21" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OptionsController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/OptionsController.java">
+      <file leaf-file-name="metrics.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/metrics.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="88" column="102" selection-start-line="88" selection-start-column="87" selection-end-line="88" selection-end-column="102" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="-4.4905663">
+              <caret line="50" column="21" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RegistrationController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/RegistrationController.java">
+      <file leaf-file-name="problem.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/problem.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="58" column="2" selection-start-line="58" selection-start-column="2" selection-end-line="58" selection-end-column="2" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#616#617#0" expanded="false" />
-                <element signature="e#686#687#0" expanded="false" />
-                <marker date="1456313731030" expanded="true" signature="2143:2210" placeholder="INSERT INTO \&quot;Users\&quot;... " />
-                <marker date="1456313731030" expanded="true" signature="2240:2307" placeholder="INSERT INTO \&quot;Roles\&quot;... " />
-              </folding>
+            <state vertical-scroll-proportion="-7.1923075">
+              <caret line="46" column="21" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MetricStorage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/core/MetricStorage.java">
+      <file leaf-file-name="problems.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/problems.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="634" column="46" selection-start-line="634" selection-start-column="46" selection-end-line="634" selection-end-column="46" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#972#973#0" expanded="false" />
-                <element signature="e#1042#1043#0" expanded="false" />
-                <element signature="e#9690#9691#0" expanded="false" />
-                <element signature="e#9777#9778#0" expanded="false" />
-                <element signature="method#getQuantityOfRow#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#delMetricFromHost#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#getHostIDbyTitle#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#addStandartMetrics#0;class#MetricStorage#0" expanded="false" />
-                <marker date="1456848983996" expanded="true" signature="1192:1329" placeholder="UPDATE \&quot;MET... " />
-                <marker date="1456848983996" expanded="true" signature="1477:1668" placeholder="SELECT id, s... METRIC_STATE" />
-                <marker date="1456848983996" expanded="true" signature="2164:2372" placeholder="INSERT INTO \&quot;METRIC_STATE\&quot;... " />
-                <marker date="1456848983996" expanded="true" signature="2521:2699" placeholder="SELECT id, s... METRIC_STATE" />
-                <marker date="1456848983996" expanded="true" signature="3199:3399" placeholder="INSERT INTO \&quot;METRIC_STATE\&quot;... " />
-                <marker date="1456848983996" expanded="true" signature="3544:3712" placeholder="SELECT id, s... METRIC_STATE" />
-                <marker date="1456848983996" expanded="true" signature="4043:4199" placeholder="UPDATE \&quot;MET... " />
-                <marker date="1456848983996" expanded="true" signature="4362:4509" placeholder="INSERT INTO \&quot;METRIC_STATE\&quot;... " />
-                <marker date="1456848983996" expanded="true" signature="4704:4819" placeholder="SELECT id, s... METRIC_STATE" />
-                <marker date="1456848983996" expanded="true" signature="6052:6179" placeholder="SELECT id, s... METRIC_STATE" />
-                <marker date="1456848983996" expanded="true" signature="7531:7646" placeholder="SELECT id, s... METRIC_STATE" />
-                <marker date="1456848983996" expanded="true" signature="8778:8871" placeholder="UPDATE \&quot;MET... " />
-                <marker date="1456848983996" expanded="true" signature="8999:9077" placeholder="UPDATE \&quot;MET... " />
-                <marker date="1456848983996" expanded="true" signature="9214:9275" placeholder="SELECT COUNT... METRIC_STATE" />
-                <marker date="1456848983996" expanded="true" signature="9473:9548" placeholder="SELECT COUNT... METRIC_STATE" />
-                <marker date="1456848983996" expanded="true" signature="9926:10059" placeholder="SELECT id, r... HOST_STATE" />
-                <marker date="1456848983996" expanded="true" signature="10507:10641" placeholder="INSERT INTO \&quot;HOST_STATE\&quot;... " />
-                <marker date="1456848983996" expanded="true" signature="10792:10913" placeholder="UPDATE \&quot;HOS... " />
-                <marker date="1456848983996" expanded="true" signature="11104:11203" placeholder="SELECT id, r... HOST_STATE" />
-                <marker date="1456848983996" expanded="true" signature="12345:12454" placeholder="SELECT id, r... HOST_STATE" />
-                <marker date="1456848983996" expanded="true" signature="13862:13953" placeholder="UPDATE \&quot;HOS... " />
-                <marker date="1456848983996" expanded="true" signature="14079:14155" placeholder="UPDATE \&quot;HOS... " />
-                <marker date="1456848983996" expanded="true" signature="14290:14349" placeholder="SELECT COUNT... HOST_STATE" />
-                <marker date="1456848983996" expanded="true" signature="14584:14710" placeholder="INSERT INTO \&quot;VALUE_METRIC\&quot;... " />
-                <marker date="1456848983996" expanded="true" signature="14929:15013" placeholder="select value... VALUE_METRIC" />
-                <marker date="1456848983996" expanded="true" signature="15694:15903" placeholder="SELECT value... VALUE_METRIC" />
-                <marker date="1456848983996" expanded="true" signature="17316:17525" placeholder="SELECT value... VALUE_METRIC" />
-                <marker date="1456848983996" expanded="true" signature="19056:19265" placeholder="SELECT value... VALUE_METRIC" />
-                <marker date="1456848983996" expanded="true" signature="21078:21287" placeholder="SELECT value... VALUE_METRIC" />
-                <marker date="1456848983996" expanded="true" signature="22780:22989" placeholder="SELECT value... VALUE_METRIC" />
-                <marker date="1456848983996" expanded="true" signature="24505:24714" placeholder="SELECT value... VALUE_METRIC" />
-                <marker date="1456848983996" expanded="true" signature="25321:25451" placeholder="SELECT value... VALUE_METRIC" />
-                <marker date="1456848983996" expanded="true" signature="26055:26169" placeholder="SELECT value... VALUE_METRIC" />
-                <marker date="1456848983996" expanded="true" signature="26966:27041" placeholder="INSERT INTO \&quot;TEMPLATE_METRICS\&quot;... " />
-                <marker date="1456848983996" expanded="true" signature="27267:27312" placeholder="select * FRO... TEMPLATE_METRICS" />
-                <marker date="1456848983996" expanded="true" signature="27833:27867" placeholder="SELECT * FRO... TEMPLATE_METRICS" />
-                <marker date="1456848983996" expanded="true" signature="28490:28549" placeholder="select id FR... TEMPLATE_METRICS" />
-                <marker date="1456848983996" expanded="true" signature="28807:28866" placeholder="select * FRO... TEMPLATE_METRICS" />
-                <marker date="1456848983996" expanded="true" signature="29325:29378" placeholder="select * FRO... TEMPLATE_METRICS" />
-                <marker date="1456848983996" expanded="true" signature="29563:29616" placeholder="select min_v... TEMPLATE_METRICS" />
-                <marker date="1456848983996" expanded="true" signature="29859:29886" placeholder="UPDATE \&quot;TEM... " />
-                <marker date="1456848983996" expanded="true" signature="29859:29890" placeholder="UPDATE \&quot;TEM... " />
-                <marker date="1456848983996" expanded="true" signature="29859:29901" placeholder="UPDATE \&quot;TEM... " />
-                <marker date="1456848983996" expanded="true" signature="29859:29915" placeholder="UPDATE \&quot;TEM... " />
-                <marker date="1456848983996" expanded="true" signature="29859:29925" placeholder="UPDATE \&quot;TEM... " />
-                <marker date="1456848983996" expanded="true" signature="29859:29947" placeholder="UPDATE \&quot;TEM... " />
-                <marker date="1456848983996" expanded="true" signature="29865:29886" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-                <marker date="1456848983996" expanded="true" signature="30115:30167" placeholder="select min_v... TEMPLATE_METRICS" />
-                <marker date="1456848983996" expanded="true" signature="30352:30404" placeholder="select max_v... TEMPLATE_METRICS" />
-                <marker date="1456848983996" expanded="true" signature="30647:30734" placeholder="UPDATE \&quot;TEM... " />
-                <marker date="1456848983996" expanded="true" signature="30988:31182" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-                <marker date="1456848983996" expanded="true" signature="31378:31596" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-                <marker date="1456848983996" expanded="true" signature="31769:32072" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-                <marker date="1456848983996" expanded="true" signature="32309:32413" placeholder="SELECT id, t... INSTANCE_METRIC" />
-                <marker date="1456848983996" expanded="true" signature="33332:33471" placeholder="SELECT id, t... INSTANCE_METRIC" />
-                <marker date="1456848983996" expanded="true" signature="34260:34362" placeholder="SELECT id, t... INSTANCE_METRIC" />
-                <marker date="1456848983996" expanded="true" signature="35101:35142" placeholder="DELETE FROM " />
-                <marker date="1456848983996" expanded="true" signature="35399:35546" placeholder="SELECT i.tit... METRIC_STATE" />
-                <marker date="1456848983996" expanded="true" signature="36017:36113" placeholder="SELECT u.id,... Users" />
-                <marker date="1456848983996" expanded="true" signature="36659:36711" placeholder="select count... VALUE_METRIC" />
-                <marker date="1456848983996" expanded="true" signature="36990:37083" placeholder="select sshco... sshconfigurationhibernate" />
-                <marker date="1456848983996" expanded="true" signature="37292:37361" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-                <marker date="1456848983996" expanded="true" signature="37428:37497" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-                <marker date="1456848983996" expanded="true" signature="37565:37634" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-                <marker date="1456848983996" expanded="true" signature="37800:37864" placeholder="delete from " />
-              </folding>
+            <state vertical-scroll-proportion="-10.615385">
+              <caret line="38" column="21" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="registration.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/registration.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-15.692307">
+              <caret line="24" column="10" selection-start-line="13" selection-start-column="4" selection-end-line="24" selection-end-column="10" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -242,25 +183,25 @@
         <option value="$PROJECT_DIR$/src/main/java/net/core/accauntDb.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/web/controller/AccauntEditorController.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/core/AccauntDb.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/addHost.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/addIntsMetric.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/hosts/host.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/editHost.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/host.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/hosts.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/instMetric.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/metrics.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/problems.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/problem.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/dinamicChart.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/css/templetMetrics.css" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/options/templetMetrics.html" />
         <option value="$PROJECT_DIR$/src/main/java/net/core/db/IMetricStorage.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/core/MetricStorage.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/web/controller/OptionsController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/templetMetrics.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/instanceMetricsOption.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/addHost.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/addIntsMetric.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/editHost.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/host.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/hosts.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/instMetric.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/metrics.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/problem.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/problems.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/accaunts.html" />
       </list>
     </option>
@@ -311,9 +252,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -610,6 +548,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1158,15 +1099,16 @@
       <workItem from="1456808381729" duration="319000" />
       <workItem from="1456821777012" duration="7235000" />
       <workItem from="1456857281140" duration="26000" />
-      <workItem from="1456900804605" duration="6416000" />
+      <workItem from="1456900804605" duration="7349000" />
+      <workItem from="1456927292526" duration="2172000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="313662000" />
+    <option name="totallyTimeSpent" value="316767000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1366" height="728" extended-state="1" />
+    <frame x="0" y="0" width="1366" height="728" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1182,7 +1124,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879046" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21633889" sideWeight="0.5008518" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25111112" sideWeight="0.49914822" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25037038" sideWeight="0.49914822" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1366,52 +1308,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/editHost.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="21" selection-start-line="57" selection-start-column="21" selection-end-line="57" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/web/Application.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.265625">
           <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/problem.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42988506">
-          <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/hosts.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="58" column="21" selection-start-line="58" selection-start-column="21" selection-end-line="58" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/problems.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="51" column="17" selection-start-line="51" selection-start-column="17" selection-end-line="51" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/host.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="40" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/metrics.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="62" column="21" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -1471,38 +1371,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/addHost.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="53" column="53" selection-start-line="53" selection-start-column="53" selection-end-line="53" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/registration.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="10" selection-start-line="13" selection-start-column="4" selection-end-line="24" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/templetMetrics.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.06017699">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/addIntsMetric.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="50" column="53" selection-start-line="50" selection-start-column="53" selection-end-line="50" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="44" selection-start-line="45" selection-start-column="44" selection-end-line="45" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -1532,9 +1404,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="58" column="2" selection-start-line="58" selection-start-column="2" selection-end-line="58" selection-end-column="2" />
           <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#616#617#0" expanded="false" />
-            <element signature="e#686#687#0" expanded="false" />
             <marker date="1456313731030" expanded="true" signature="2143:2210" placeholder="INSERT INTO \&quot;Users\&quot;... " />
             <marker date="1456313731030" expanded="true" signature="2240:2307" placeholder="INSERT INTO \&quot;Roles\&quot;... " />
           </folding>
@@ -1546,11 +1415,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="634" column="46" selection-start-line="634" selection-start-column="46" selection-end-line="634" selection-end-column="46" />
           <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#972#973#0" expanded="false" />
-            <element signature="e#1042#1043#0" expanded="false" />
-            <element signature="e#9690#9691#0" expanded="false" />
-            <element signature="e#9777#9778#0" expanded="false" />
             <element signature="method#getQuantityOfRow#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#delMetricFromHost#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getHostIDbyTitle#0;class#MetricStorage#0" expanded="false" />
@@ -1626,7 +1490,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.153846">
+        <state vertical-scroll-proportion="0.0">
           <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
           <folding />
         </state>
@@ -1636,10 +1500,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="146" column="31" selection-start-line="146" selection-start-column="31" selection-end-line="146" selection-end-column="31" />
-          <folding>
-            <element signature="e#4796#4797#0" expanded="false" />
-            <element signature="e#4823#4824#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1647,7 +1507,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.8460237">
           <caret line="169" column="77" selection-start-line="169" selection-start-column="77" selection-end-line="169" selection-end-column="77" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1661,25 +1520,105 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/instMetric.html">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.615385">
-          <caret line="109" column="27" selection-start-line="109" selection-start-column="27" selection-end-line="109" selection-end-column="88" />
+        <state vertical-scroll-proportion="-1.9615384">
+          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="46" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/templetMetrics.html">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/addHost.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="20.115385">
-          <caret line="47" column="21" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
+        <state vertical-scroll-proportion="-4.576923">
+          <caret line="45" column="21" selection-start-line="45" selection-start-column="21" selection-end-line="45" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/addIntsMetric.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.8461537">
+          <caret line="42" column="21" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/editHost.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.384615">
+          <caret line="56" column="21" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/host.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.8461537">
+          <caret line="33" column="21" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/hosts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.9230769">
+          <caret line="46" column="21" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/instanceMetricsOption.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.807693">
+        <state vertical-scroll-proportion="-0.65384614">
+          <caret line="30" column="21" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/instMetric.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.730769">
+          <caret line="42" column="21" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/metrics.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.4905663">
+          <caret line="50" column="21" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/problem.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.1923075">
+          <caret line="46" column="21" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/problems.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.615385">
+          <caret line="38" column="21" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/registration.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.692307">
+          <caret line="24" column="10" selection-start-line="13" selection-start-column="4" selection-end-line="24" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/templetMetrics.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.65384614">
           <caret line="47" column="21" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
           <folding />
         </state>
@@ -1687,8 +1626,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/accaunts.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59115046">
-          <caret line="87" column="42" selection-start-line="87" selection-start-column="42" selection-end-line="87" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.4283186">
+          <caret line="85" column="48" selection-start-line="85" selection-start-column="48" selection-end-line="85" selection-end-column="48" />
           <folding />
         </state>
       </provider>

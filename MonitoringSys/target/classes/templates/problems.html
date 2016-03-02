@@ -35,6 +35,9 @@
         <div class="header-right">
             <ul class="header-menu">
                 <li>
+                    <a th:href="@{'options'}">Options</a>
+                </li>
+                <li>
                     <a th:href="hosts">Hosts</a>
                 </li>
                 <li>
@@ -42,9 +45,6 @@
                 </li>
                 <li>
                     <a  href="/">Home</a>
-                </li>
-                <li>
-                    <a  href="/accaunts">Accaunts</a>
                 </li>
                 <li>
                     <a th:action="@{/logout}" method="post" href="/login">Log Out</a>
