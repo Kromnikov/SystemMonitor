@@ -729,12 +729,11 @@ public  class MetricStorage implements IMetricStorage {
     public List<User> getAllUsers()
     {
         List<User> usersList = new ArrayList<>();
-        String sql = "SELECT u.id, u.username , u.password, r.role FROM \"Users\" as u, \"Roles\" as r where u.id=r.id";
+        String sql = "SELECT u.username , u.password, r.role FROM \"Users\" as u, \"Roles\" as r where u.roleid=r.roleid";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
 
         for (Map row : rows) {
             User user = new User();
-            user.setId((int)row.get("id"));
             user.setUsername((String)row.get("username"));
             user.setPassword((String)row.get("password"));
             user.setRole((String)row.get("role"));

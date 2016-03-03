@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head lang="en">
     <script language="JavaScript">
 
@@ -33,7 +34,7 @@
     <div class="header-right">
         <ul class="header-menu">
             <li>
-                <a  class="header-menu-black">Options<div class="left-menu-counter"></div></a>
+                <a  sec:authorize="hasRole('ROLE_ADMIN')" class="header-menu-black">Options<div class="left-menu-counter"></div></a>
             </li>
             <li>
                 <a th:href="hosts">Hosts</a>
@@ -45,7 +46,7 @@
                 <a  href="/">Home</a>
             </li>
             <li>
-                <a th:action="@{/logout}" method="post" href="/login">Log Out</a>
+                <a th:href="@{/logout}">Log Out</a>
             </li>
         </ul>
     </div>
@@ -74,14 +75,11 @@
         </div>
         <form action="#" name="form1" th:object="${getAllUsers}" method="get">
         <table width="100%" border="1px" cellspacing="0px" cellpadding="4px" align="center" id="tb" >
-
-            <td class="tablehead">id</td>
             <td class="tablehead">username</td>
             <td class="tablehead">password</td>
             <td class="tablehead">role</td>
             <div th:each="user: ${getAllUsers}">
                 <tr>
-                    <td  type="hidden" th:text="${user.id}"></td>
                     <td  th:text="${user.username}"></td>
                     <td  th:text="${user.password}"></td>
                     <td>

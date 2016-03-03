@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head lang="en">
     <title>Monitoring system</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -43,7 +44,7 @@
         <div class="header-right">
             <ul class="header-menu">
                 <li>
-                    <a th:href="@{'options'}">Options</a>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{'options'}">Options</a>
                 </li>
                 <li>
                     <a th:href="hosts" onclick="cleanlocalStorage()">Hosts</a>
@@ -59,7 +60,7 @@
                     <a class="header-menu-black">Home</a>
                 </li>
                 <li>
-                    <a th:action="@{/logout}" method="post" href="/login">Log Out</a>
+                    <a th:href="@{/logout}">Log Out</a>
                 </li>
             </ul>
         </div>
