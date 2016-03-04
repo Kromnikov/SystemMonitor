@@ -1,13 +1,12 @@
 package net.core.db;
 
-import net.core.models.*;
 import net.core.configurations.SSHConfiguration;
+import net.core.models.*;
 
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 
 public interface IMetricStorage {
@@ -116,6 +115,15 @@ public interface IMetricStorage {
     public chartValues getValuesLastDay(int host_id, int metricId, int zoom, Date dateTime);
 
     public chartValues getValuesDay(int host_id, int metricId, int zoom, Date dateTime);
+
+    public chartValues getValuesTheeDays(int host_id, int metricId, int zoom, Date dateTime);
+
+    public chartValues getValuesMonth(int host_id, int metricId, int zoom, Date dateTime);
+
+    public chartValues getValuesSixMonth(int host_id, int metricId, int zoom, Date dateTime);
+
+    public chartValues getValuesYear(int host_id, int metricId, int zoom, Date dateTime);
+
 
     public chartValues getValuesByZoom(int host_id, int metricId, int zoom);
 

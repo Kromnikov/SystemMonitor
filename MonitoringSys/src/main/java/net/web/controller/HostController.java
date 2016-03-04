@@ -17,7 +17,6 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class HostController {
@@ -288,6 +287,66 @@ public class HostController {
         return values;
 
     }
+    @RequestMapping(value = "/getValuesTheeDays", method = RequestMethod.GET)
+    @ResponseBody
+    public chartValues getValuesTheeDays(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
+        chartValues values = null;
+        if (date == 0) {
+            values = metricStorage.getValuesTheeDays(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
+        } else {
+            values = metricStorage.getValuesTheeDays(hostId, instMetricId, zoom, new Date(date));
+        }
+
+
+        return values;
+
+    }
+    @RequestMapping(value = "/getValuesMonth", method = RequestMethod.GET)
+    @ResponseBody
+    public chartValues getValuesMonth(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
+        chartValues values = null;
+        if (date == 0) {
+            values = metricStorage.getValuesMonth(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
+        } else {
+            values = metricStorage.getValuesMonth(hostId, instMetricId, zoom, new Date(date));
+        }
+
+
+        return values;
+
+    }
+    @RequestMapping(value = "/getValuesSixMonth", method = RequestMethod.GET)
+    @ResponseBody
+    public chartValues getValuesSixMonth(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
+        chartValues values = null;
+        if (date == 0) {
+            values = metricStorage.getValuesSixMonth(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
+        } else {
+            values = metricStorage.getValuesSixMonth(hostId, instMetricId, zoom, new Date(date));
+        }
+
+
+        return values;
+
+    }
+    @RequestMapping(value = "/getValuesYear", method = RequestMethod.GET)
+    @ResponseBody
+    public chartValues getValuesYear(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
+        chartValues values = null;
+        if (date == 0) {
+            values = metricStorage.getValuesYear(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
+        } else {
+            values = metricStorage.getValuesYear(hostId, instMetricId, zoom, new Date(date));
+        }
+
+
+        return values;
+
+    }
+
+
+
+
 
     @RequestMapping(value = "/getValuesByZoom", method = RequestMethod.GET)
     @ResponseBody

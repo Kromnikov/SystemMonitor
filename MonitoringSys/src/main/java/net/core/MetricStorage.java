@@ -1,7 +1,6 @@
 package net.core;
 
 
-import com.fasterxml.jackson.core.sym.NameN;
 import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;
 import net.core.hibernate.services.HostService;
@@ -657,6 +656,48 @@ public class MetricStorage implements IMetricStorage {
 
         return averaging(jdbcTemplateObject.queryForList(sql));
     }
+    @Transactional
+    public chartValues getValuesTheeDays(int host_id, int metricId, int zoom, Date dateTime) {
+        Date nDate = (Date) dateTime.clone();
+        nDate.setHours(dateTime.getHours() -60);
+        dateTime.setHours(dateTime.getHours() +60);
+        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
+
+        return averaging(jdbcTemplateObject.queryForList(sql));
+    }
+    @Transactional
+    public chartValues getValuesMonth(int host_id, int metricId, int zoom, Date dateTime) {
+        Date nDate = (Date) dateTime.clone();
+        nDate.setHours(dateTime.getHours() - 360);
+        dateTime.setHours(dateTime.getHours() +360);
+        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
+
+        return averaging(jdbcTemplateObject.queryForList(sql));
+    }
+    @Transactional
+    public chartValues getValuesSixMonth(int host_id, int metricId, int zoom, Date dateTime) {
+        Date nDate = (Date) dateTime.clone();
+        nDate.setMonth(dateTime.getMonth() - 3);
+        dateTime.setMonth(dateTime.getMonth() + 3);
+        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
+
+        return averaging(jdbcTemplateObject.queryForList(sql));
+    }
+    @Transactional
+    public chartValues getValuesYear(int host_id, int metricId, int zoom, Date dateTime) {
+        Date nDate = (Date) dateTime.clone();
+        nDate.setMonth(dateTime.getMonth() - 6);
+        dateTime.setMonth(dateTime.getMonth() + 6);
+        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
+
+        return averaging(jdbcTemplateObject.queryForList(sql));
+    }
+
+
+
+
+
+
     @Transactional
     public chartValues getValuesByZoom(int host_id, int metricId, int zoom) {
         String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time < '"+getLastDate(host_id,metricId)+"'  and  metric = " + metricId + " and host = " + host_id + " order by date_time DESC limit "+zoom;
