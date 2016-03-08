@@ -2,7 +2,7 @@ var zoom = -5;
 var datetime = 0;
 var flag = 0;
 var zoomCount = 0;
-var dataJson ;
+var dataJson;
 var countPoint;
 function loadChart3(hostId, instMetricId, title) {
     datetime = 0;
@@ -10,7 +10,7 @@ function loadChart3(hostId, instMetricId, title) {
         onWheel();
         keyEvent();
         buttons();
-        dataJson=data;
+        dataJson = data;
         chart2(data, title);
     });
 
@@ -22,6 +22,7 @@ function loadChart3(hostId, instMetricId, title) {
 
 function buttons() {
     console.log('buttons');
+
     $('#all').click(function () {
         $.getJSON('/getAll?hostId=' + hostId + '&instMetricId=' + instMetricId, function (data, status) {
             chart2(data, title);
@@ -33,58 +34,60 @@ function buttons() {
     $('#plus').click(function () {
         plus();
     });
+
 }
 function min() {
     //if (zoomCount != 0) {
-        if (zoomCount == 1) {
-            console.log('1 hour --> day');
-            zoomCount = 0;
-            $.getJSON('/getValuesDay?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint+20) + "&date=" + datetime, function (data, status) {
-                chart2(data, title);
-            });
-        } else if (zoomCount == 2){
-            console.log('3 min --> 1 hour');
-            zoomCount = 1;
-            $.getJSON('/chartClickHour?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
-                chart2(data, title);
-            });
-        } else if (zoomCount == 3){
-            console.log('1 min --> 3 min');
-            zoomCount = 2;
-            $.getJSON('/chartClickMinutes?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
-                chart2(data, title);
-            });
-        }else if(zoomCount==0) {
-            console.log('1 day --> 3 days');
-            zoomCount=-1;
-            $.getJSON('/getValuesTheeDays?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint+20) + "&date=" + datetime, function (data, status) {
-                chart2(data, title);
-            });
-        }else if(zoomCount==-1) {
-            zoomCount=-2;
-            console.log('3 days --> 1 month');
-            $.getJSON('/getValuesMonth?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint+20) + "&date=" + datetime, function (data, status) {
-                chart2(data, title);
-            });
-        }else if(zoomCount==-2) {
-            zoomCount=-3;
-            console.log('1 month --> 6 months');
-            $.getJSON('/getValuesSixMonth?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint+20) + "&date=" + datetime, function (data, status) {
-                chart2(data, title);
-            });
-        }else if(zoomCount==-3) {
-            zoomCount=-4;
-            console.log('6 months --> 1 Year');
-            $.getJSON('/getValuesYear?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint+20) + "&date=" + datetime, function (data, status) {
-                chart2(data, title);
-            });
-        }else if(zoomCount==-4) {
-            zoomCount=-5;
-            console.log('1 Year --> All');
-            $.getJSON('/getValuesYear?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint+20) + "&date=" + datetime, function (data, status) {
-                chart2(data, title);
-            });
-        }
+    if (zoomCount == 3) {
+        console.log('1 min --> 3 min');
+        zoomCount = 2;
+        $.getJSON('/chartClickTheeMinutes?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
+            chart2(data, title);
+        });
+
+    } else if (zoomCount == 2) {
+        console.log('3 min --> 1 hour');
+        zoomCount = 1;
+        $.getJSON('/chartClickHour?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
+            chart2(data, title);
+        });
+    } else if (zoomCount == 1) {
+        console.log('1 hour --> day');
+        zoomCount = 0;
+        $.getJSON('/getValuesDay?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint + 20) + "&date=" + datetime, function (data, status) {
+            chart2(data, title);
+        });
+    } else if (zoomCount == 0) {
+        console.log('1 day --> 3 days');
+        zoomCount = -1;
+        $.getJSON('/getValuesTheeDays?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint + 20) + "&date=" + datetime, function (data, status) {
+            chart2(data, title);
+        });
+    } else if (zoomCount == -1) {
+        zoomCount = -2;
+        console.log('3 days --> 1 month');
+        $.getJSON('/getValuesMonth?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint + 20) + "&date=" + datetime, function (data, status) {
+            chart2(data, title);
+        });
+    } else if (zoomCount == -2) {
+        zoomCount = -3;
+        console.log('1 month --> 6 months');
+        $.getJSON('/getValuesSixMonth?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint + 20) + "&date=" + datetime, function (data, status) {
+            chart2(data, title);
+        });
+    } else if (zoomCount == -3) {
+        zoomCount = -4;
+        console.log('6 months --> 1 Year');
+        $.getJSON('/getValuesYear?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint + 20) + "&date=" + datetime, function (data, status) {
+            chart2(data, title);
+        });
+    } else if (zoomCount == -4) {
+        zoomCount = -5;
+        console.log('1 Year --> All');
+        $.getJSON('/getAll?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint + 20) + "&date=" + datetime, function (data, status) {
+            chart2(data, title);
+        });
+    }
     //}else {
     //    console.log('zoom = '+(countPoint)+' --> zoom = '+(countPoint+20));
     //    $.getJSON('/getValuesByZoom?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint+20)+ "&date=" + datetime, function (data, status) {
@@ -94,48 +97,110 @@ function min() {
 
 }
 function plus() {
-    if (zoomCount != 0) {
-        if (zoomCount == 1) {
-            console.log('1 hour --> 3 min');
-            zoomCount = 2;
-            $.getJSON('/chartClickMinutes?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
-                chart2(data, title);
-            });
-        } else if (zoomCount == 2){
-            console.log('3 min --> 1 min');
-            zoomCount = 3;
-            $.getJSON('/chartClickSec?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
-                chart2(data, title);
-            });
-        }
-    }
-
-    else {
-        console.log('zoom = '+(countPoint)+' --> zoom = '+(countPoint-20));
-        $.getJSON('/getValuesByZoom?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint-20)+ "&date=" + datetime, function (data, status)  {
+    if (zoomCount == -5) {
+        zoomCount = -4;
+        console.log('All --> 1 Year');
+        $.getJSON('/getValuesYear?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint + 20) + "&date=" + datetime, function (data, status) {
+            chart2(data, title);
+        });
+    } else if (zoomCount == -4) {
+        zoomCount = -3;
+        console.log('1 Year --> 6 months');
+        $.getJSON('/getValuesSixMonth?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint + 20) + "&date=" + datetime, function (data, status) {
+            chart2(data, title);
+        });
+    } else if (zoomCount == -3) {
+        zoomCount = -2;
+        console.log('6 months --> 1 month');
+        $.getJSON('/getValuesMonth?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint + 20) + "&date=" + datetime, function (data, status) {
+            chart2(data, title);
+        });
+    } else if (zoomCount == -2) {
+        console.log('1 month --> 3 days');
+        zoomCount = -1;
+        $.getJSON('/getValuesTheeDays?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint + 20) + "&date=" + datetime, function (data, status) {
+            chart2(data, title);
+        });
+    } else if (zoomCount == -1) {
+        console.log('3 days --> day');
+        zoomCount = 0;
+        $.getJSON('/getValuesDay?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint + 20) + "&date=" + datetime, function (data, status) {
+            chart2(data, title);
+        });
+    } else if (zoomCount == 0) {
+        console.log('day --> 1 hour');
+        zoomCount = 1;
+        $.getJSON('/chartClickHour?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
+            chart2(data, title);
+        });
+    } else if (zoomCount == 1) {
+        console.log('1 hour --> 3 min');
+        zoomCount = 2;
+        $.getJSON('/chartClickTheeMinutes?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
+            chart2(data, title);
+        });
+    } else if (zoomCount == 2) {
+        console.log('3 min --> 1 min');
+        zoomCount = 3;
+        $.getJSON('/chartClickOneMinutes?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
             chart2(data, title);
         });
     }
 }
 function onWheel() {
     console.log('onWheel');
+
+    $('#chart_1').mouseenter(function () {
+        weelIn();
+    });
+    $('#chart_1').mouseleave(function () {
+        weelOut();
+    });
+
+
+
+    //document.onwheel = function (e) {
+    //
+    //
+    //
+    //    //var info = document.getElementById('delta');
+    //    $('#chart_1').mouseover(function(){
+    //        e = e || window.event;
+    //        var delta = e.deltaY || e.detail || e.wheelDelta;
+    //        console.log(delta);
+    //        //if (delta < 0) {// - /////////
+    //        //    min();
+    //        //} else {// + ////////
+    //        //    plus();
+    //        //}
+    //        e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+    //    });
+    //    //if (e.shiftKey) {
+    //    //    if (delta < 0) {// - /////////
+    //    //        min();
+    //    //    } else {// + ////////
+    //    //        plus();
+    //    //    }
+    //    //}
+    //    //info.innerHTML = +info.innerHTML + delta;
+    //    //e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+    //};
+}
+function weelIn() {
+    document.onwheel = function (e) {
+        e = e || window.event;
+        var delta = e.deltaY || e.detail || e.wheelDelta;
+        if (delta < 0) {// - /////////
+            min();
+        } else {// + ////////
+            plus();
+        }
+        e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+    };
+}
+function weelOut() {
     document.onwheel = function (e) {
 
-        e = e || window.event;
-
-        var delta = e.deltaY || e.detail || e.wheelDelta;
-
-
-        //var info = document.getElementById('delta');
-        if (e.shiftKey) {
-            if (delta < 0) {// - /////////
-                min();
-            } else {// + ////////
-                plus();
-            }
-        }
-        //info.innerHTML = +info.innerHTML + delta;
-        //e.preventDefault ? e.preventDefault() : (e.returnValue = false);
     };
 }
 function keyEvent() {
@@ -158,17 +223,17 @@ function clickEvent() {
         if (zoomCount == 1) {
             console.log('1 hour --> 3 min');
             zoomCount = 2;
-            $.getJSON('/chartClickMinutes?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
+            $.getJSON('/chartClickTheeMinutes?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
                 chart2(data, title);
             });
-        } else if (zoomCount == 2){
+        } else if (zoomCount == 2) {
             console.log('3 min --> 1 min');
-            $.getJSON('/chartClickSec?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
+            $.getJSON('/chartClickOneMinutes?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
                 chart2(data, title);
             });
         }
     } else {
-        console.log('zoom = '+(countPoint)+' --> 1 hour');
+        console.log('zoom = ' + (countPoint) + ' --> 1 hour');
         zoomCount = 1;
         $.getJSON('/chartClickHour?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom + "&date=" + datetime, function (data, status) {
             chart2(data, title);

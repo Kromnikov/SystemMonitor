@@ -252,14 +252,35 @@ public class HostController {
 
 
     //TODO ajax charts
-    @RequestMapping(value = "/lastDay", method = RequestMethod.GET)
-         @ResponseBody
-    public chartValues ajaxTest(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
+//    @RequestMapping(value = "/lastDay", method = RequestMethod.GET)
+//         @ResponseBody
+//    public chartValues ajaxTest(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
+//        chartValues values = null;
+//        if (date == 0) {
+//            values = metricStorage.getValuesLastDay(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
+//        } else {
+//            values = metricStorage.getValuesLastDay(hostId, instMetricId, zoom, new Date(date));
+//        }
+//
+//
+//        return values;
+//
+//    }
+
+    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
+    @ResponseBody
+    public chartValues getAll(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId) throws JsonProcessingException {
+        return metricStorage.getAllValues(hostId,instMetricId);
+    }
+
+    @RequestMapping(value = "/getValuesYear", method = RequestMethod.GET)
+    @ResponseBody
+    public chartValues getValuesYear(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
         chartValues values = null;
         if (date == 0) {
-            values = metricStorage.getValuesLastDay(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
+            values = metricStorage.getValuesYear(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
         } else {
-            values = metricStorage.getValuesLastDay(hostId, instMetricId, zoom, new Date(date));
+            values = metricStorage.getValuesYear(hostId, instMetricId, zoom, new Date(date));
         }
 
 
@@ -267,10 +288,49 @@ public class HostController {
 
     }
 
-    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
+    @RequestMapping(value = "/getValuesSixMonth", method = RequestMethod.GET)
     @ResponseBody
-    public chartValues getAll(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId) throws JsonProcessingException {
-        return metricStorage.getAllValues(hostId,instMetricId);
+    public chartValues getValuesSixMonth(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
+        chartValues values = null;
+        if (date == 0) {
+            values = metricStorage.getValuesSixMonth(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
+        } else {
+            values = metricStorage.getValuesSixMonth(hostId, instMetricId, zoom, new Date(date));
+        }
+
+
+        return values;
+
+    }
+
+    @RequestMapping(value = "/getValuesMonth", method = RequestMethod.GET)
+    @ResponseBody
+    public chartValues getValuesMonth(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
+        chartValues values = null;
+        if (date == 0) {
+            values = metricStorage.getValuesMonth(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
+        } else {
+            values = metricStorage.getValuesMonth(hostId, instMetricId, zoom, new Date(date));
+        }
+
+
+        return values;
+
+    }
+
+    @RequestMapping(value = "/getValuesTheeDays", method = RequestMethod.GET)
+    @ResponseBody
+    public chartValues getValuesTheeDays(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
+        chartValues values = null;
+        if (date == 0) {
+            values = metricStorage.getValuesTheeDays(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
+        } else {
+            values = metricStorage.getValuesTheeDays(hostId, instMetricId, zoom, new Date(date));
+        }
+
+
+        return values;
+
     }
 
     @RequestMapping(value = "/getValuesDay", method = RequestMethod.GET)
@@ -287,75 +347,15 @@ public class HostController {
         return values;
 
     }
-    @RequestMapping(value = "/getValuesTheeDays", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/lastDay", method = RequestMethod.GET)
     @ResponseBody
-    public chartValues getValuesTheeDays(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
+    public chartValues lastDay(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
         chartValues values = null;
         if (date == 0) {
-            values = metricStorage.getValuesTheeDays(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
+            values = metricStorage.getValuesLastDay(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
         } else {
-            values = metricStorage.getValuesTheeDays(hostId, instMetricId, zoom, new Date(date));
-        }
-
-
-        return values;
-
-    }
-    @RequestMapping(value = "/getValuesMonth", method = RequestMethod.GET)
-    @ResponseBody
-    public chartValues getValuesMonth(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
-        chartValues values = null;
-        if (date == 0) {
-            values = metricStorage.getValuesMonth(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
-        } else {
-            values = metricStorage.getValuesMonth(hostId, instMetricId, zoom, new Date(date));
-        }
-
-
-        return values;
-
-    }
-    @RequestMapping(value = "/getValuesSixMonth", method = RequestMethod.GET)
-    @ResponseBody
-    public chartValues getValuesSixMonth(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
-        chartValues values = null;
-        if (date == 0) {
-            values = metricStorage.getValuesSixMonth(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
-        } else {
-            values = metricStorage.getValuesSixMonth(hostId, instMetricId, zoom, new Date(date));
-        }
-
-
-        return values;
-
-    }
-    @RequestMapping(value = "/getValuesYear", method = RequestMethod.GET)
-    @ResponseBody
-    public chartValues getValuesYear(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
-        chartValues values = null;
-        if (date == 0) {
-            values = metricStorage.getValuesYear(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
-        } else {
-            values = metricStorage.getValuesYear(hostId, instMetricId, zoom, new Date(date));
-        }
-
-
-        return values;
-
-    }
-
-
-
-
-
-    @RequestMapping(value = "/getValuesByZoom", method = RequestMethod.GET)
-    @ResponseBody
-    public chartValues getValuesByZoom(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
-        chartValues values = null;
-        if (date == 0) {
-            values = metricStorage.getValuesByZoom(hostId, instMetricId, zoom);
-        } else {
-            values = metricStorage.getValuesByZoom(hostId, instMetricId, zoom, new Date(date));
+            values = metricStorage.getValuesLastDay(hostId, instMetricId, zoom, new Date(date));
         }
 
 
@@ -377,7 +377,7 @@ public class HostController {
 
     }
 
-    @RequestMapping(value = "/chartClickMinutes", method = RequestMethod.GET)
+    @RequestMapping(value = "/chartClickTheeMinutes", method = RequestMethod.GET)
     @ResponseBody
     public chartValues chartClick(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
 
@@ -392,18 +392,37 @@ public class HostController {
 
     }
 
-    @RequestMapping(value = "/chartClickSec", method = RequestMethod.GET)
+    @RequestMapping(value = "/chartClickOneMinutes", method = RequestMethod.GET)
     @ResponseBody
-    public chartValues chartClickSec(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
+    public chartValues chartClickOneMinutes(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
 
         chartValues values = null;
         if (date == 0) {
-            values = metricStorage.getValuesSec(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
+            values = metricStorage.getValuesOneMinutes(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
         } else {
-            values = metricStorage.getValuesSec(hostId, instMetricId, zoom, new Date(date));
+            values = metricStorage.getValuesOneMinutes(hostId, instMetricId, zoom, new Date(date));
         }
 
         return values;
+
     }
+
+
+
+
+//    @RequestMapping(value = "/getValuesByZoom", method = RequestMethod.GET)
+//    @ResponseBody
+//    public chartValues getValuesByZoom(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
+//        chartValues values = null;
+//        if (date == 0) {
+//            values = metricStorage.getValuesByZoom(hostId, instMetricId, zoom);
+//        } else {
+//            values = metricStorage.getValuesByZoom(hostId, instMetricId, zoom, new Date(date));
+//        }
+//
+//
+//        return values;
+//
+//    }
 
 }

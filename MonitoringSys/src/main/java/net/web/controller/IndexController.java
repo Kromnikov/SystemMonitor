@@ -19,5 +19,11 @@ public class IndexController {
         modelAndView.setViewName("index");
         return modelAndView;
     }
+    @RequestMapping(value = "/test")
+    public ModelAndView test(@ModelAttribute("Values") ArrayList<Value> values) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("TEST");
+        return modelAndView;
+    }
 
 }

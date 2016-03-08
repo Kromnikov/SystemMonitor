@@ -29,18 +29,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="dinamicChart.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dinamicChart.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/dinamicChart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.18681319" vertical-offset="901" max-vertical-offset="6511">
-              <caret line="59" column="25" selection-start-line="59" selection-start-column="25" selection-end-line="59" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2752" max-vertical-offset="8942">
+              <caret line="197" column="72" selection-start-line="197" selection-start-column="72" selection-end-line="197" selection-end-column="72" />
               <folding>
-                <element signature="n#!!block;n#plus#0" expanded="false" />
-                <element signature="n#!!block;n#onWheel#0" expanded="false" />
-                <element signature="n#!!block;n#keyEvent#0" expanded="false" />
-                <element signature="n#!!block;n#clickEvent#0" expanded="false" />
-                <marker date="1457079219923" expanded="true" signature="7853:7873" placeholder="..." />
+                <marker date="1457370377548" expanded="true" signature="10154:10174" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="metrics.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/metrics.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.1538461" vertical-offset="4" max-vertical-offset="2142">
+              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="40" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TEST.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/TEST.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4084014" vertical-offset="1010" max-vertical-offset="8007">
+              <caret line="80" column="31" selection-start-line="80" selection-start-column="31" selection-end-line="80" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IndexController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/IndexController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+              <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -48,62 +74,19 @@
       <file leaf-file-name="HostController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/HostController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1583" max-vertical-offset="2346">
-              <caret line="333" column="247" selection-start-line="333" selection-start-column="247" selection-end-line="333" selection-end-column="247" />
+            <state vertical-scroll-proportion="-8.896552" vertical-offset="4400" max-vertical-offset="5372">
+              <caret line="349" column="0" selection-start-line="349" selection-start-column="0" selection-end-line="349" selection-end-column="0" />
               <folding>
-                <element signature="method#getAllProblemsCount#0;class#HostController#0" expanded="false" />
-                <element signature="method#getProblemsCount#0;class#HostController#0" expanded="false" />
-                <element signature="method#getMetricProblems#0;class#HostController#0" expanded="false" />
-                <element signature="method#getMetricProblems#1;class#HostController#0" expanded="false" />
-                <element signature="method#getAllMetricProblemsCount#0;class#HostController#0" expanded="false" />
-                <element signature="method#getMetrics#0;class#HostController#0" expanded="false" />
-                <element signature="method#getHostsProblemsCount#0;class#HostController#0" expanded="false" />
-                <element signature="method#getHostsProblems#0;class#HostController#0" expanded="false" />
-                <element signature="method#hostsPage#0;class#HostController#0" expanded="false" />
-                <element signature="method#addHostPage#0;class#HostController#0" expanded="false" />
-                <element signature="method#saveHost#0;class#HostController#0" expanded="false" />
-                <element signature="method#returnHosts#0;class#HostController#0" expanded="false" />
-                <element signature="e#3369#3389#0" expanded="false" />
-                <element signature="e#4884#4920#0" expanded="false" />
-                <element signature="method#problemsPage#0;class#HostController#0" expanded="false" />
-                <element signature="method#resolveHost#0;class#HostController#0" expanded="false" />
-                <element signature="method#resolveHostAll#0;class#HostController#0" expanded="false" />
-                <element signature="method#resolveMetric#0;class#HostController#0" expanded="false" />
-                <element signature="method#resolveMetric#1;class#HostController#0" expanded="false" />
-                <element signature="method#redirectToMetric#0;class#HostController#0" expanded="false" />
-                <element signature="e#6887#6919#0" expanded="false" />
-                <element signature="method#hostPage#0;class#HostController#0" expanded="false" />
-                <element signature="e#7398#7433#0" expanded="false" />
-                <element signature="method#problemsHostPage#0;class#HostController#0" expanded="false" />
-                <element signature="method#resolveInstMetric#0;class#HostController#0" expanded="false" />
-                <element signature="e#8333#8376#0" expanded="false" />
-                <element signature="method#editInstMetricPage#0;class#HostController#0" expanded="false" />
-                <element signature="e#9067#9106#0" expanded="false" />
-                <element signature="method#instMetricPage#0;class#HostController#0" expanded="false" />
-                <element signature="e#9701#9739#0" expanded="false" />
-                <element signature="method#instMetricSelect#0;class#HostController#0" expanded="false" />
-                <element signature="e#10593#10656#0" expanded="false" />
-                <element signature="method#ajaxTest#0;class#HostController#0" expanded="false" />
-                <element signature="e#11275#11337#0" expanded="false" />
                 <element signature="method#getAll#0;class#HostController#0" expanded="false" />
-                <element signature="e#11578#11646#0" expanded="false" />
-                <element signature="method#getValuesDay#0;class#HostController#0" expanded="false" />
-                <element signature="e#12255#12328#0" expanded="false" />
-                <element signature="method#getValuesTheeDays#0;class#HostController#0" expanded="false" />
-                <element signature="e#12952#13022#0" expanded="false" />
-                <element signature="method#getValuesMonth#0;class#HostController#0" expanded="false" />
-                <element signature="e#13637#13710#0" expanded="false" />
-                <element signature="method#getValuesSixMonth#0;class#HostController#0" expanded="false" />
-                <element signature="e#14334#14403#0" expanded="false" />
                 <element signature="method#getValuesYear#0;class#HostController#0" expanded="false" />
-                <element signature="e#15020#15091#0" expanded="false" />
-                <element signature="method#getValuesByZoom#0;class#HostController#0" expanded="false" />
-                <element signature="e#15661#15731#0" expanded="false" />
+                <element signature="method#getValuesSixMonth#0;class#HostController#0" expanded="false" />
+                <element signature="method#getValuesMonth#0;class#HostController#0" expanded="false" />
+                <element signature="method#getValuesTheeDays#0;class#HostController#0" expanded="false" />
+                <element signature="method#getValuesDay#0;class#HostController#0" expanded="false" />
+                <element signature="method#lastDay#0;class#HostController#0" expanded="false" />
                 <element signature="method#chartClickHour#0;class#HostController#0" expanded="false" />
-                <element signature="e#16352#16425#0" expanded="false" />
                 <element signature="method#chartClick#0;class#HostController#0" expanded="false" />
-                <element signature="e#17049#17118#0" expanded="false" />
-                <element signature="method#chartClickSec#0;class#HostController#0" expanded="false" />
+                <element signature="method#chartClickOneMinutes#0;class#HostController#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -112,8 +95,8 @@
       <file leaf-file-name="IMetricStorage.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/core/db/IMetricStorage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1778" max-vertical-offset="3638">
-              <caret line="124" column="36" selection-start-line="124" selection-start-column="23" selection-end-line="124" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1263" max-vertical-offset="3247">
+              <caret line="93" column="35" selection-start-line="93" selection-start-column="23" selection-end-line="93" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -122,10 +105,10 @@
       <file leaf-file-name="MetricStorage.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/core/MetricStorage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1831" max-vertical-offset="4267">
-              <caret line="638" column="0" selection-start-line="638" selection-start-column="0" selection-end-line="638" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2034" max-vertical-offset="4369">
+              <caret line="871" column="93" selection-start-line="871" selection-start-column="93" selection-end-line="871" selection-end-column="93" />
               <folding>
-                <element signature="e#692#703#0" expanded="false" />
+                <element signature="e#724#735#0" expanded="false" />
                 <element signature="method#setAllowableValueMetric#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#overMaxValue#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#setOverMaxValue#0;class#MetricStorage#0" expanded="false" />
@@ -150,17 +133,22 @@
                 <element signature="method#setResolvedHost#1;class#MetricStorage#0" expanded="false" />
                 <element signature="method#getHostNotResolvedLength#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#addValue#0;class#MetricStorage#0" expanded="false" />
-                <element signature="e#14975#14995#0" expanded="false" />
+                <element signature="e#15007#15027#0" expanded="false" />
                 <element signature="method#getLastDate#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#averaging#0;class#MetricStorage#0" expanded="false" />
-                <element signature="e#30091#30134#0" expanded="false" />
+                <element signature="e#30124#30167#0" expanded="false" />
+                <element signature="method#getAllValues#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#getValuesLastDay#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#getValuesDay#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#getValuesByZoom#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#getValuesByZoom#1;class#MetricStorage#0" expanded="false" />
+                <element signature="method#getValuesTheeDays#0;class#MetricStorage#0" expanded="false" />
+                <element signature="method#getValuesMonth#0;class#MetricStorage#0" expanded="false" />
+                <element signature="method#getValuesSixMonth#0;class#MetricStorage#0" expanded="false" />
+                <element signature="e#40561#40577#0" expanded="false" />
                 <element signature="method#getValuesLastHour#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#getValuesTheeMinutes#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#getValuesSec#0;class#MetricStorage#0" expanded="false" />
+                <element signature="method#getValuesOneMinutes#0;class#MetricStorage#0" expanded="false" />
+                <element signature="method#getValuesByZoom#0;class#MetricStorage#0" expanded="false" />
+                <element signature="method#getValuesByZoom#1;class#MetricStorage#0" expanded="false" />
                 <element signature="method#addTemplateMetric#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#getTemplateMetric#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#getTemplatMetrics#0;class#MetricStorage#0" expanded="false" />
@@ -180,65 +168,65 @@
                 <element signature="method#getHostIDbyTitle#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#addStandartMetrics#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#delMetricFromHost#1;class#MetricStorage#0" expanded="false" />
-                <marker date="1457079219950" expanded="false" signature="1249:1394" placeholder="UPDATE \&quot;MET..." />
-                <marker date="1457079219950" expanded="false" signature="1542:1733" placeholder="SELECT id, s..METRIC_STATE..." />
-                <marker date="1457079219950" expanded="false" signature="2240:2448" placeholder="INSERT INTO ..." />
-                <marker date="1457079219950" expanded="false" signature="2597:2775" placeholder="SELECT id, s..METRIC_STATE..." />
-                <marker date="1457079219950" expanded="false" signature="3285:3493" placeholder="INSERT INTO ..." />
-                <marker date="1457079219950" expanded="false" signature="3638:3810" placeholder="SELECT id, s..METRIC_STATE..." />
-                <marker date="1457079219950" expanded="false" signature="4148:4312" placeholder="UPDATE \&quot;MET..." />
-                <marker date="1457079219950" expanded="false" signature="4476:4623" placeholder="INSERT INTO ..." />
-                <marker date="1457079219950" expanded="false" signature="4818:4933" placeholder="SELECT id, s..METRIC_STATE..." />
-                <marker date="1457079219950" expanded="false" signature="6180:6307" placeholder="SELECT id, s..METRIC_STATE..." />
-                <marker date="1457079219950" expanded="false" signature="7663:7778" placeholder="SELECT id, s..METRIC_STATE..." />
-                <marker date="1457079219950" expanded="false" signature="8912:9009" placeholder="UPDATE \&quot;MET..." />
-                <marker date="1457079219950" expanded="false" signature="9138:9216" placeholder="UPDATE \&quot;MET..." />
-                <marker date="1457079219950" expanded="false" signature="9354:9415" placeholder="SELECT COUNT..METRIC_STATE..." />
-                <marker date="1457079219950" expanded="false" signature="9615:9690" placeholder="SELECT COUNT..METRIC_STATE..." />
-                <marker date="1457079219950" expanded="false" signature="10072:10209" placeholder="SELECT id, r..HOST_STATE..." />
-                <marker date="1457079219950" expanded="false" signature="10661:10807" placeholder="INSERT INTO ..." />
-                <marker date="1457079219950" expanded="false" signature="10959:11088" placeholder="UPDATE \&quot;HOS..." />
-                <marker date="1457079219950" expanded="false" signature="11280:11379" placeholder="SELECT id, r..HOST_STATE..." />
-                <marker date="1457079219950" expanded="false" signature="12534:12643" placeholder="SELECT id, r..HOST_STATE..." />
-                <marker date="1457079219950" expanded="false" signature="14053:14148" placeholder="UPDATE \&quot;HOS..." />
-                <marker date="1457079219950" expanded="false" signature="14275:14351" placeholder="UPDATE \&quot;HOS..." />
-                <marker date="1457079219950" expanded="false" signature="14487:14546" placeholder="SELECT COUNT..HOST_STATE..." />
-                <marker date="1457079219950" expanded="false" signature="14783:14925" placeholder="INSERT INTO ..." />
-                <marker date="1457079219950" expanded="false" signature="27801:27887" placeholder="SELECT MAX(d..VALUE_METRIC..." />
-                <marker date="1457079219950" expanded="false" signature="30345:30467" placeholder="SELECT value..VALUE_METRIC..." />
-                <marker date="1457079219950" expanded="false" signature="30772:30993" placeholder="SELECT value..VALUE_METRIC..." />
-                <marker date="1457079219950" expanded="false" signature="31346:31567" placeholder="SELECT value..VALUE_METRIC..." />
-                <marker date="1457079219950" expanded="false" signature="31925:32146" placeholder="SELECT value..VALUE_METRIC..." />
-                <marker date="1457079219950" expanded="false" signature="32504:32725" placeholder="SELECT value..VALUE_METRIC..." />
-                <marker date="1457079219950" expanded="false" signature="33083:33304" placeholder="SELECT value..VALUE_METRIC..." />
-                <marker date="1457079219950" expanded="false" signature="33658:33879" placeholder="SELECT value..VALUE_METRIC..." />
-                <marker date="1457079219950" expanded="false" signature="34079:34267" placeholder="SELECT value..VALUE_METRIC..." />
-                <marker date="1457079219950" expanded="false" signature="34507:34964" placeholder="(SELECT valu..." />
-                <marker date="1457079219950" expanded="false" signature="34508:34693" placeholder="SELECT value..VALUE_METRIC..." />
-                <marker date="1457079219950" expanded="false" signature="34762:34949" placeholder="SELECT value..VALUE_METRIC..." />
-                <marker date="1457079219950" expanded="false" signature="35332:35553" placeholder="SELECT value..VALUE_METRIC..." />
-                <marker date="1457079219950" expanded="false" signature="35971:36192" placeholder="SELECT value..VALUE_METRIC..." />
-                <marker date="1457079219950" expanded="false" signature="36958:37179" placeholder="SELECT value..VALUE_METRIC..." />
-                <marker date="1457079219950" expanded="false" signature="37748:37831" placeholder="INSERT INTO ..." />
-                <marker date="1457079219950" expanded="false" signature="38058:38103" placeholder="select * FRO..TEMPLATE_METRICS..." />
-                <marker date="1457079219950" expanded="false" signature="38628:38662" placeholder="SELECT * FRO..TEMPLATE_METRICS..." />
-                <marker date="1457079219950" expanded="false" signature="39287:39350" placeholder="select id FR..TEMPLATE_METRICS..." />
-                <marker date="1457079219950" expanded="false" signature="39610:39673" placeholder="select * FRO..TEMPLATE_METRICS..." />
-                <marker date="1457079219950" expanded="false" signature="40221:40423" placeholder="INSERT INTO ..." />
-                <marker date="1457079219950" expanded="false" signature="40620:40846" placeholder="INSERT INTO ..." />
-                <marker date="1457079219950" expanded="false" signature="41020:41339" placeholder="INSERT INTO ..." />
-                <marker date="1457079219950" expanded="false" signature="41577:41681" placeholder="SELECT id, t..INSTANCE_METRIC..." />
-                <marker date="1457079219950" expanded="false" signature="42605:42751" placeholder="SELECT id, t..INSTANCE_METRIC..." />
-                <marker date="1457079219950" expanded="false" signature="43542:43644" placeholder="SELECT id, t..INSTANCE_METRIC..." />
-                <marker date="1457079219950" expanded="false" signature="44389:44430" placeholder="DELETE FROM ..." />
-                <marker date="1457079219950" expanded="false" signature="44689:44840" placeholder="SELECT i.tit..METRIC_STATE..." />
-                <marker date="1457079219950" expanded="false" signature="45309:45405" placeholder="SELECT u.id,..Users..." />
-                <marker date="1457079219950" expanded="false" signature="45953:46005" placeholder="select count..VALUE_METRIC..." />
-                <marker date="1457079219950" expanded="false" signature="46287:46384" placeholder="select sshco..sshconfigurationhibernate..." />
-                <marker date="1457079219950" expanded="false" signature="46594:46667" placeholder="INSERT INTO ..." />
-                <marker date="1457079219950" expanded="false" signature="46734:46807" placeholder="INSERT INTO ..." />
-                <marker date="1457079219950" expanded="false" signature="46875:46948" placeholder="INSERT INTO ..." />
-                <marker date="1457079219950" expanded="false" signature="47116:47184" placeholder="delete from ..." />
+                <marker date="1457341890852" expanded="false" signature="1281:1426" placeholder="UPDATE \&quot;MET..." />
+                <marker date="1457341890852" expanded="false" signature="1574:1765" placeholder="SELECT id, s..METRIC_STATE..." />
+                <marker date="1457341890852" expanded="false" signature="2272:2480" placeholder="INSERT INTO ..." />
+                <marker date="1457341890852" expanded="false" signature="2629:2807" placeholder="SELECT id, s..METRIC_STATE..." />
+                <marker date="1457341890852" expanded="false" signature="3317:3525" placeholder="INSERT INTO ..." />
+                <marker date="1457341890852" expanded="false" signature="3670:3842" placeholder="SELECT id, s..METRIC_STATE..." />
+                <marker date="1457341890852" expanded="false" signature="4180:4344" placeholder="UPDATE \&quot;MET..." />
+                <marker date="1457341890852" expanded="false" signature="4508:4655" placeholder="INSERT INTO ..." />
+                <marker date="1457341890852" expanded="false" signature="4850:4965" placeholder="SELECT id, s..METRIC_STATE..." />
+                <marker date="1457341890852" expanded="false" signature="6212:6339" placeholder="SELECT id, s..METRIC_STATE..." />
+                <marker date="1457341890852" expanded="false" signature="7695:7810" placeholder="SELECT id, s..METRIC_STATE..." />
+                <marker date="1457341890852" expanded="false" signature="8944:9041" placeholder="UPDATE \&quot;MET..." />
+                <marker date="1457341890852" expanded="false" signature="9170:9248" placeholder="UPDATE \&quot;MET..." />
+                <marker date="1457341890852" expanded="false" signature="9386:9447" placeholder="SELECT COUNT..METRIC_STATE..." />
+                <marker date="1457341890852" expanded="false" signature="9647:9722" placeholder="SELECT COUNT..METRIC_STATE..." />
+                <marker date="1457341890852" expanded="false" signature="10104:10241" placeholder="SELECT id, r..HOST_STATE..." />
+                <marker date="1457341890852" expanded="false" signature="10693:10839" placeholder="INSERT INTO ..." />
+                <marker date="1457341890852" expanded="false" signature="10991:11120" placeholder="UPDATE \&quot;HOS..." />
+                <marker date="1457341890852" expanded="false" signature="11312:11411" placeholder="SELECT id, r..HOST_STATE..." />
+                <marker date="1457341890852" expanded="false" signature="12566:12675" placeholder="SELECT id, r..HOST_STATE..." />
+                <marker date="1457341890852" expanded="false" signature="14085:14180" placeholder="UPDATE \&quot;HOS..." />
+                <marker date="1457341890852" expanded="false" signature="14307:14383" placeholder="UPDATE \&quot;HOS..." />
+                <marker date="1457341890852" expanded="false" signature="14519:14578" placeholder="SELECT COUNT..HOST_STATE..." />
+                <marker date="1457341890852" expanded="false" signature="14815:14957" placeholder="INSERT INTO ..." />
+                <marker date="1457341890852" expanded="false" signature="27833:27919" placeholder="SELECT MAX(d..VALUE_METRIC..." />
+                <marker date="1457341890852" expanded="false" signature="30378:30500" placeholder="SELECT value..VALUE_METRIC..." />
+                <marker date="1457341890852" expanded="false" signature="30806:31027" placeholder="SELECT value..VALUE_METRIC..." />
+                <marker date="1457341890852" expanded="false" signature="32593:32814" placeholder="SELECT value..VALUE_METRIC..." />
+                <marker date="1457341890852" expanded="false" signature="34385:34606" placeholder="SELECT value..VALUE_METRIC..." />
+                <marker date="1457341890852" expanded="false" signature="36176:36397" placeholder="SELECT value..VALUE_METRIC..." />
+                <marker date="1457341890852" expanded="false" signature="38030:38251" placeholder="SELECT value..VALUE_METRIC..." />
+                <marker date="1457341890852" expanded="false" signature="39878:40099" placeholder="SELECT value..VALUE_METRIC..." />
+                <marker date="1457341890852" expanded="false" signature="42103:42324" placeholder="SELECT value..VALUE_METRIC..." />
+                <marker date="1457341890852" expanded="false" signature="43806:44027" placeholder="SELECT value..VALUE_METRIC..." />
+                <marker date="1457341890852" expanded="false" signature="44801:45022" placeholder="SELECT value..VALUE_METRIC..." />
+                <marker date="1457341890852" expanded="false" signature="45572:45765" placeholder="SELECT value..VALUE_METRIC..." />
+                <marker date="1457341890852" expanded="false" signature="46006:46463" placeholder="(SELECT valu..." />
+                <marker date="1457341890852" expanded="false" signature="46007:46192" placeholder="SELECT value..VALUE_METRIC..." />
+                <marker date="1457341890852" expanded="false" signature="46261:46448" placeholder="SELECT value..VALUE_METRIC..." />
+                <marker date="1457341890852" expanded="false" signature="46678:46761" placeholder="INSERT INTO ..." />
+                <marker date="1457341890852" expanded="false" signature="46988:47033" placeholder="select * FRO..TEMPLATE_METRICS..." />
+                <marker date="1457341890852" expanded="false" signature="47558:47592" placeholder="SELECT * FRO..TEMPLATE_METRICS..." />
+                <marker date="1457341890852" expanded="false" signature="48217:48280" placeholder="select id FR..TEMPLATE_METRICS..." />
+                <marker date="1457341890852" expanded="false" signature="48540:48603" placeholder="select * FRO..TEMPLATE_METRICS..." />
+                <marker date="1457341890852" expanded="false" signature="49151:49353" placeholder="INSERT INTO ..." />
+                <marker date="1457341890852" expanded="false" signature="49550:49776" placeholder="INSERT INTO ..." />
+                <marker date="1457341890852" expanded="false" signature="49950:50269" placeholder="INSERT INTO ..." />
+                <marker date="1457341890852" expanded="false" signature="50507:50611" placeholder="SELECT id, t..INSTANCE_METRIC..." />
+                <marker date="1457341890852" expanded="false" signature="51535:51681" placeholder="SELECT id, t..INSTANCE_METRIC..." />
+                <marker date="1457341890852" expanded="false" signature="52472:52574" placeholder="SELECT id, t..INSTANCE_METRIC..." />
+                <marker date="1457341890852" expanded="false" signature="53319:53360" placeholder="DELETE FROM ..." />
+                <marker date="1457341890852" expanded="false" signature="53619:53770" placeholder="SELECT i.tit..METRIC_STATE..." />
+                <marker date="1457341890852" expanded="false" signature="54239:54335" placeholder="SELECT u.id,..Users..." />
+                <marker date="1457341890852" expanded="false" signature="54883:54935" placeholder="select count..VALUE_METRIC..." />
+                <marker date="1457341890852" expanded="false" signature="55217:55314" placeholder="select sshco..sshconfigurationhibernate..." />
+                <marker date="1457341890852" expanded="false" signature="55524:55597" placeholder="INSERT INTO ..." />
+                <marker date="1457341890852" expanded="false" signature="55664:55737" placeholder="INSERT INTO ..." />
+                <marker date="1457341890852" expanded="false" signature="55805:55878" placeholder="INSERT INTO ..." />
+                <marker date="1457341890852" expanded="false" signature="56046:56114" placeholder="delete from ..." />
               </folding>
             </state>
           </provider>
@@ -260,8 +248,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/net/core/hibernate/dao/HostDaoImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/js/local.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/localStorage.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/css/index.css" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/addInstMetric.html" />
@@ -269,7 +255,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/static/js/index.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/css/hosts-page.css" />
         <option value="$PROJECT_DIR$/src/main/java/net/core/branches/ScheduledTask.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/web/controller/IndexController.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/core/models/HostsState.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/web/controller/HostsController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/securityPages/login.html" />
@@ -301,16 +286,19 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/editHost.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/host.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/hosts.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/instMetric.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/problems.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/problem.html" />
         <option value="$PROJECT_DIR$/src/main/java/net/core/models/chartValues.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/metrics.html" />
-        <option value="$PROJECT_DIR$/src/main/java/net/core/MetricStorage.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/core/db/IMetricStorage.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/web/controller/HostController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/core/MetricStorage.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/dinamicChart.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/metrics.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/css/bootstrap.min.css" />
+        <option value="$PROJECT_DIR$/src/main/java/net/web/controller/IndexController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/TEST.html" />
       </list>
     </option>
   </component>
@@ -332,8 +320,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -361,7 +349,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -494,7 +481,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="bootstrap" />
+              <option name="myItemId" value="img" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -628,20 +615,30 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="DefaultHtmlFileTemplate" value="Html5" />
     <property name="recentsLimit" value="5" />
     <property name="dynamic.classpath" value="false" />
     <property name="FullScreen" value="false" />
     <property name="LayoutCode.rearrangeEntriesJava" value="false" />
+    <property name="LayoutCode.rearrangeEntriesHTML" value="false" />
+    <property name="LayoutCode.rearrangeEntriesCSS" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\gitProjects\SystemMonitor\MonitoringSys\src\main\resources\static\js" />
+      <recent name="E:\gitProjects\SystemMonitor\MonitoringSys\src\main\resources\static\css" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\gitProjects\SystemMonitor\MonitoringSys\src\main\resources\static\img" />
+      <recent name="E:\gitProjects\SystemMonitor\MonitoringSys\src\main\resources\static\css" />
+      <recent name="E:\gitProjects\SystemMonitor\MonitoringSys\src\main\resources\static\js" />
       <recent name="E:\gitProjects\SystemMonitor\MonitoringSys\src\main\resources\static" />
     </key>
   </component>
@@ -933,6 +930,11 @@
     </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SliceManager">
+    <option name="analysisUIOptions">
+      <AnalysisUIOptions />
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -995,14 +997,15 @@
       <workItem from="1456859125415" duration="5050000" />
       <workItem from="1456947522653" duration="13214000" />
       <workItem from="1457006913714" duration="3611000" />
+      <workItem from="1457258249139" duration="24938000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="332018000" />
+    <option name="totallyTimeSpent" value="356956000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1016,28 +1019,28 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38330495" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38311687" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3168654" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31601733" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36626917" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36580086" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21633889" sideWeight="0.5008518" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2632375" sideWeight="0.49914822" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26279318" sideWeight="0.49914822" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32467532" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32467532" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1070,21 +1073,20 @@
           <properties />
           <option name="timeStamp" value="125" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/net/core/MetricStorage.java</url>
-          <line>683</line>
-          <properties />
-          <option name="timeStamp" value="209" />
-        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="212" />
+      <option name="time" value="233" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
-        <watch expression="zoom" />
+        <watch expression="rows" />
+        <watch expression="counter" />
+        <watch expression="values" />
+        <watch expression="map" />
+        <watch expression="nDate" />
+        <watch expression="calendar" />
       </configuration>
     </watches-manager>
   </component>
@@ -1093,46 +1095,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/metrics.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="986" max-vertical-offset="2040">
-          <caret line="58" column="53" selection-start-line="58" selection-start-column="53" selection-end-line="58" selection-end-column="53" />
-          <folding>
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#3;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#4;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/problem.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2040">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/instMetric.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="850" max-vertical-offset="2278">
-          <caret line="50" column="14" selection-start-line="50" selection-start-column="14" selection-end-line="50" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/core/models/InstanceMetric.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.060822897" vertical-offset="0" max-vertical-offset="0">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/core/hibernate/dao/HostDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24329159" vertical-offset="0" max-vertical-offset="0">
-          <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/core/hibernate/services/HostService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4257603" vertical-offset="0" max-vertical-offset="0">
@@ -1281,13 +1243,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/IndexController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="20" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/RegistrationController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
@@ -1366,13 +1321,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.570115" vertical-offset="541" max-vertical-offset="1411">
-          <caret line="61" column="21" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/hosts.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="986" max-vertical-offset="2737">
@@ -1408,18 +1356,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/metrics.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1258" max-vertical-offset="2142">
-          <caret line="107" column="22" selection-start-line="107" selection-start-column="22" selection-end-line="107" selection-end-column="22" />
-          <folding>
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#3;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#4;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/core/models/chartValues.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.12164579" vertical-offset="0" max-vertical-offset="559">
@@ -1428,90 +1364,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_60/src.zip!/java/util/GregorianCalendar.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/core/db/IMetricStorage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.502683" vertical-offset="13448" max-vertical-offset="54961">
-          <caret line="695" column="7" selection-start-line="695" selection-start-column="7" selection-end-line="695" selection-end-column="7" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1263" max-vertical-offset="3247">
+          <caret line="93" column="35" selection-start-line="93" selection-start-column="23" selection-end-line="93" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/HostController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1583" max-vertical-offset="2346">
-          <caret line="333" column="247" selection-start-line="333" selection-start-column="247" selection-end-line="333" selection-end-column="247" />
+        <state vertical-scroll-proportion="-8.896552" vertical-offset="4400" max-vertical-offset="5372">
+          <caret line="349" column="0" selection-start-line="349" selection-start-column="0" selection-end-line="349" selection-end-column="0" />
           <folding>
-            <element signature="method#getAllProblemsCount#0;class#HostController#0" expanded="false" />
-            <element signature="method#getProblemsCount#0;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricProblems#0;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricProblems#1;class#HostController#0" expanded="false" />
-            <element signature="method#getAllMetricProblemsCount#0;class#HostController#0" expanded="false" />
-            <element signature="method#getMetrics#0;class#HostController#0" expanded="false" />
-            <element signature="method#getHostsProblemsCount#0;class#HostController#0" expanded="false" />
-            <element signature="method#getHostsProblems#0;class#HostController#0" expanded="false" />
-            <element signature="method#hostsPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#addHostPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#saveHost#0;class#HostController#0" expanded="false" />
-            <element signature="method#returnHosts#0;class#HostController#0" expanded="false" />
-            <element signature="e#3369#3389#0" expanded="false" />
-            <element signature="e#4884#4920#0" expanded="false" />
-            <element signature="method#problemsPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveHost#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveHostAll#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveMetric#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveMetric#1;class#HostController#0" expanded="false" />
-            <element signature="method#redirectToMetric#0;class#HostController#0" expanded="false" />
-            <element signature="e#6887#6919#0" expanded="false" />
-            <element signature="method#hostPage#0;class#HostController#0" expanded="false" />
-            <element signature="e#7398#7433#0" expanded="false" />
-            <element signature="method#problemsHostPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveInstMetric#0;class#HostController#0" expanded="false" />
-            <element signature="e#8333#8376#0" expanded="false" />
-            <element signature="method#editInstMetricPage#0;class#HostController#0" expanded="false" />
-            <element signature="e#9067#9106#0" expanded="false" />
-            <element signature="method#instMetricPage#0;class#HostController#0" expanded="false" />
-            <element signature="e#9701#9739#0" expanded="false" />
-            <element signature="method#instMetricSelect#0;class#HostController#0" expanded="false" />
-            <element signature="e#10593#10656#0" expanded="false" />
-            <element signature="method#ajaxTest#0;class#HostController#0" expanded="false" />
-            <element signature="e#11275#11337#0" expanded="false" />
             <element signature="method#getAll#0;class#HostController#0" expanded="false" />
-            <element signature="e#11578#11646#0" expanded="false" />
-            <element signature="method#getValuesDay#0;class#HostController#0" expanded="false" />
-            <element signature="e#12255#12328#0" expanded="false" />
-            <element signature="method#getValuesTheeDays#0;class#HostController#0" expanded="false" />
-            <element signature="e#12952#13022#0" expanded="false" />
-            <element signature="method#getValuesMonth#0;class#HostController#0" expanded="false" />
-            <element signature="e#13637#13710#0" expanded="false" />
-            <element signature="method#getValuesSixMonth#0;class#HostController#0" expanded="false" />
-            <element signature="e#14334#14403#0" expanded="false" />
             <element signature="method#getValuesYear#0;class#HostController#0" expanded="false" />
-            <element signature="e#15020#15091#0" expanded="false" />
-            <element signature="method#getValuesByZoom#0;class#HostController#0" expanded="false" />
-            <element signature="e#15661#15731#0" expanded="false" />
+            <element signature="method#getValuesSixMonth#0;class#HostController#0" expanded="false" />
+            <element signature="method#getValuesMonth#0;class#HostController#0" expanded="false" />
+            <element signature="method#getValuesTheeDays#0;class#HostController#0" expanded="false" />
+            <element signature="method#getValuesDay#0;class#HostController#0" expanded="false" />
+            <element signature="method#lastDay#0;class#HostController#0" expanded="false" />
             <element signature="method#chartClickHour#0;class#HostController#0" expanded="false" />
-            <element signature="e#16352#16425#0" expanded="false" />
             <element signature="method#chartClick#0;class#HostController#0" expanded="false" />
-            <element signature="e#17049#17118#0" expanded="false" />
-            <element signature="method#chartClickSec#0;class#HostController#0" expanded="false" />
+            <element signature="method#chartClickOneMinutes#0;class#HostController#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/core/db/IMetricStorage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1778" max-vertical-offset="3638">
-          <caret line="124" column="36" selection-start-line="124" selection-start-column="23" selection-end-line="124" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/core/MetricStorage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1831" max-vertical-offset="4267">
-          <caret line="638" column="0" selection-start-line="638" selection-start-column="0" selection-end-line="638" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2034" max-vertical-offset="4369">
+          <caret line="871" column="93" selection-start-line="871" selection-start-column="93" selection-end-line="871" selection-end-column="93" />
           <folding>
-            <element signature="e#692#703#0" expanded="false" />
+            <element signature="e#724#735#0" expanded="false" />
             <element signature="method#setAllowableValueMetric#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#overMaxValue#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#setOverMaxValue#0;class#MetricStorage#0" expanded="false" />
@@ -1536,17 +1421,22 @@
             <element signature="method#setResolvedHost#1;class#MetricStorage#0" expanded="false" />
             <element signature="method#getHostNotResolvedLength#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#addValue#0;class#MetricStorage#0" expanded="false" />
-            <element signature="e#14975#14995#0" expanded="false" />
+            <element signature="e#15007#15027#0" expanded="false" />
             <element signature="method#getLastDate#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#averaging#0;class#MetricStorage#0" expanded="false" />
-            <element signature="e#30091#30134#0" expanded="false" />
+            <element signature="e#30124#30167#0" expanded="false" />
+            <element signature="method#getAllValues#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getValuesLastDay#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getValuesDay#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#getValuesByZoom#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#getValuesByZoom#1;class#MetricStorage#0" expanded="false" />
+            <element signature="method#getValuesTheeDays#0;class#MetricStorage#0" expanded="false" />
+            <element signature="method#getValuesMonth#0;class#MetricStorage#0" expanded="false" />
+            <element signature="method#getValuesSixMonth#0;class#MetricStorage#0" expanded="false" />
+            <element signature="e#40561#40577#0" expanded="false" />
             <element signature="method#getValuesLastHour#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getValuesTheeMinutes#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#getValuesSec#0;class#MetricStorage#0" expanded="false" />
+            <element signature="method#getValuesOneMinutes#0;class#MetricStorage#0" expanded="false" />
+            <element signature="method#getValuesByZoom#0;class#MetricStorage#0" expanded="false" />
+            <element signature="method#getValuesByZoom#1;class#MetricStorage#0" expanded="false" />
             <element signature="method#addTemplateMetric#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getTemplateMetric#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getTemplatMetrics#0;class#MetricStorage#0" expanded="false" />
@@ -1566,80 +1456,148 @@
             <element signature="method#getHostIDbyTitle#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#addStandartMetrics#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#delMetricFromHost#1;class#MetricStorage#0" expanded="false" />
-            <marker date="1457079219950" expanded="false" signature="1249:1394" placeholder="UPDATE \&quot;MET..." />
-            <marker date="1457079219950" expanded="false" signature="1542:1733" placeholder="SELECT id, s..METRIC_STATE..." />
-            <marker date="1457079219950" expanded="false" signature="2240:2448" placeholder="INSERT INTO ..." />
-            <marker date="1457079219950" expanded="false" signature="2597:2775" placeholder="SELECT id, s..METRIC_STATE..." />
-            <marker date="1457079219950" expanded="false" signature="3285:3493" placeholder="INSERT INTO ..." />
-            <marker date="1457079219950" expanded="false" signature="3638:3810" placeholder="SELECT id, s..METRIC_STATE..." />
-            <marker date="1457079219950" expanded="false" signature="4148:4312" placeholder="UPDATE \&quot;MET..." />
-            <marker date="1457079219950" expanded="false" signature="4476:4623" placeholder="INSERT INTO ..." />
-            <marker date="1457079219950" expanded="false" signature="4818:4933" placeholder="SELECT id, s..METRIC_STATE..." />
-            <marker date="1457079219950" expanded="false" signature="6180:6307" placeholder="SELECT id, s..METRIC_STATE..." />
-            <marker date="1457079219950" expanded="false" signature="7663:7778" placeholder="SELECT id, s..METRIC_STATE..." />
-            <marker date="1457079219950" expanded="false" signature="8912:9009" placeholder="UPDATE \&quot;MET..." />
-            <marker date="1457079219950" expanded="false" signature="9138:9216" placeholder="UPDATE \&quot;MET..." />
-            <marker date="1457079219950" expanded="false" signature="9354:9415" placeholder="SELECT COUNT..METRIC_STATE..." />
-            <marker date="1457079219950" expanded="false" signature="9615:9690" placeholder="SELECT COUNT..METRIC_STATE..." />
-            <marker date="1457079219950" expanded="false" signature="10072:10209" placeholder="SELECT id, r..HOST_STATE..." />
-            <marker date="1457079219950" expanded="false" signature="10661:10807" placeholder="INSERT INTO ..." />
-            <marker date="1457079219950" expanded="false" signature="10959:11088" placeholder="UPDATE \&quot;HOS..." />
-            <marker date="1457079219950" expanded="false" signature="11280:11379" placeholder="SELECT id, r..HOST_STATE..." />
-            <marker date="1457079219950" expanded="false" signature="12534:12643" placeholder="SELECT id, r..HOST_STATE..." />
-            <marker date="1457079219950" expanded="false" signature="14053:14148" placeholder="UPDATE \&quot;HOS..." />
-            <marker date="1457079219950" expanded="false" signature="14275:14351" placeholder="UPDATE \&quot;HOS..." />
-            <marker date="1457079219950" expanded="false" signature="14487:14546" placeholder="SELECT COUNT..HOST_STATE..." />
-            <marker date="1457079219950" expanded="false" signature="14783:14925" placeholder="INSERT INTO ..." />
-            <marker date="1457079219950" expanded="false" signature="27801:27887" placeholder="SELECT MAX(d..VALUE_METRIC..." />
-            <marker date="1457079219950" expanded="false" signature="30345:30467" placeholder="SELECT value..VALUE_METRIC..." />
-            <marker date="1457079219950" expanded="false" signature="30772:30993" placeholder="SELECT value..VALUE_METRIC..." />
-            <marker date="1457079219950" expanded="false" signature="31346:31567" placeholder="SELECT value..VALUE_METRIC..." />
-            <marker date="1457079219950" expanded="false" signature="31925:32146" placeholder="SELECT value..VALUE_METRIC..." />
-            <marker date="1457079219950" expanded="false" signature="32504:32725" placeholder="SELECT value..VALUE_METRIC..." />
-            <marker date="1457079219950" expanded="false" signature="33083:33304" placeholder="SELECT value..VALUE_METRIC..." />
-            <marker date="1457079219950" expanded="false" signature="33658:33879" placeholder="SELECT value..VALUE_METRIC..." />
-            <marker date="1457079219950" expanded="false" signature="34079:34267" placeholder="SELECT value..VALUE_METRIC..." />
-            <marker date="1457079219950" expanded="false" signature="34507:34964" placeholder="(SELECT valu..." />
-            <marker date="1457079219950" expanded="false" signature="34508:34693" placeholder="SELECT value..VALUE_METRIC..." />
-            <marker date="1457079219950" expanded="false" signature="34762:34949" placeholder="SELECT value..VALUE_METRIC..." />
-            <marker date="1457079219950" expanded="false" signature="35332:35553" placeholder="SELECT value..VALUE_METRIC..." />
-            <marker date="1457079219950" expanded="false" signature="35971:36192" placeholder="SELECT value..VALUE_METRIC..." />
-            <marker date="1457079219950" expanded="false" signature="36958:37179" placeholder="SELECT value..VALUE_METRIC..." />
-            <marker date="1457079219950" expanded="false" signature="37748:37831" placeholder="INSERT INTO ..." />
-            <marker date="1457079219950" expanded="false" signature="38058:38103" placeholder="select * FRO..TEMPLATE_METRICS..." />
-            <marker date="1457079219950" expanded="false" signature="38628:38662" placeholder="SELECT * FRO..TEMPLATE_METRICS..." />
-            <marker date="1457079219950" expanded="false" signature="39287:39350" placeholder="select id FR..TEMPLATE_METRICS..." />
-            <marker date="1457079219950" expanded="false" signature="39610:39673" placeholder="select * FRO..TEMPLATE_METRICS..." />
-            <marker date="1457079219950" expanded="false" signature="40221:40423" placeholder="INSERT INTO ..." />
-            <marker date="1457079219950" expanded="false" signature="40620:40846" placeholder="INSERT INTO ..." />
-            <marker date="1457079219950" expanded="false" signature="41020:41339" placeholder="INSERT INTO ..." />
-            <marker date="1457079219950" expanded="false" signature="41577:41681" placeholder="SELECT id, t..INSTANCE_METRIC..." />
-            <marker date="1457079219950" expanded="false" signature="42605:42751" placeholder="SELECT id, t..INSTANCE_METRIC..." />
-            <marker date="1457079219950" expanded="false" signature="43542:43644" placeholder="SELECT id, t..INSTANCE_METRIC..." />
-            <marker date="1457079219950" expanded="false" signature="44389:44430" placeholder="DELETE FROM ..." />
-            <marker date="1457079219950" expanded="false" signature="44689:44840" placeholder="SELECT i.tit..METRIC_STATE..." />
-            <marker date="1457079219950" expanded="false" signature="45309:45405" placeholder="SELECT u.id,..Users..." />
-            <marker date="1457079219950" expanded="false" signature="45953:46005" placeholder="select count..VALUE_METRIC..." />
-            <marker date="1457079219950" expanded="false" signature="46287:46384" placeholder="select sshco..sshconfigurationhibernate..." />
-            <marker date="1457079219950" expanded="false" signature="46594:46667" placeholder="INSERT INTO ..." />
-            <marker date="1457079219950" expanded="false" signature="46734:46807" placeholder="INSERT INTO ..." />
-            <marker date="1457079219950" expanded="false" signature="46875:46948" placeholder="INSERT INTO ..." />
-            <marker date="1457079219950" expanded="false" signature="47116:47184" placeholder="delete from ..." />
+            <marker date="1457341890852" expanded="false" signature="1281:1426" placeholder="UPDATE \&quot;MET..." />
+            <marker date="1457341890852" expanded="false" signature="1574:1765" placeholder="SELECT id, s..METRIC_STATE..." />
+            <marker date="1457341890852" expanded="false" signature="2272:2480" placeholder="INSERT INTO ..." />
+            <marker date="1457341890852" expanded="false" signature="2629:2807" placeholder="SELECT id, s..METRIC_STATE..." />
+            <marker date="1457341890852" expanded="false" signature="3317:3525" placeholder="INSERT INTO ..." />
+            <marker date="1457341890852" expanded="false" signature="3670:3842" placeholder="SELECT id, s..METRIC_STATE..." />
+            <marker date="1457341890852" expanded="false" signature="4180:4344" placeholder="UPDATE \&quot;MET..." />
+            <marker date="1457341890852" expanded="false" signature="4508:4655" placeholder="INSERT INTO ..." />
+            <marker date="1457341890852" expanded="false" signature="4850:4965" placeholder="SELECT id, s..METRIC_STATE..." />
+            <marker date="1457341890852" expanded="false" signature="6212:6339" placeholder="SELECT id, s..METRIC_STATE..." />
+            <marker date="1457341890852" expanded="false" signature="7695:7810" placeholder="SELECT id, s..METRIC_STATE..." />
+            <marker date="1457341890852" expanded="false" signature="8944:9041" placeholder="UPDATE \&quot;MET..." />
+            <marker date="1457341890852" expanded="false" signature="9170:9248" placeholder="UPDATE \&quot;MET..." />
+            <marker date="1457341890852" expanded="false" signature="9386:9447" placeholder="SELECT COUNT..METRIC_STATE..." />
+            <marker date="1457341890852" expanded="false" signature="9647:9722" placeholder="SELECT COUNT..METRIC_STATE..." />
+            <marker date="1457341890852" expanded="false" signature="10104:10241" placeholder="SELECT id, r..HOST_STATE..." />
+            <marker date="1457341890852" expanded="false" signature="10693:10839" placeholder="INSERT INTO ..." />
+            <marker date="1457341890852" expanded="false" signature="10991:11120" placeholder="UPDATE \&quot;HOS..." />
+            <marker date="1457341890852" expanded="false" signature="11312:11411" placeholder="SELECT id, r..HOST_STATE..." />
+            <marker date="1457341890852" expanded="false" signature="12566:12675" placeholder="SELECT id, r..HOST_STATE..." />
+            <marker date="1457341890852" expanded="false" signature="14085:14180" placeholder="UPDATE \&quot;HOS..." />
+            <marker date="1457341890852" expanded="false" signature="14307:14383" placeholder="UPDATE \&quot;HOS..." />
+            <marker date="1457341890852" expanded="false" signature="14519:14578" placeholder="SELECT COUNT..HOST_STATE..." />
+            <marker date="1457341890852" expanded="false" signature="14815:14957" placeholder="INSERT INTO ..." />
+            <marker date="1457341890852" expanded="false" signature="27833:27919" placeholder="SELECT MAX(d..VALUE_METRIC..." />
+            <marker date="1457341890852" expanded="false" signature="30378:30500" placeholder="SELECT value..VALUE_METRIC..." />
+            <marker date="1457341890852" expanded="false" signature="30806:31027" placeholder="SELECT value..VALUE_METRIC..." />
+            <marker date="1457341890852" expanded="false" signature="32593:32814" placeholder="SELECT value..VALUE_METRIC..." />
+            <marker date="1457341890852" expanded="false" signature="34385:34606" placeholder="SELECT value..VALUE_METRIC..." />
+            <marker date="1457341890852" expanded="false" signature="36176:36397" placeholder="SELECT value..VALUE_METRIC..." />
+            <marker date="1457341890852" expanded="false" signature="38030:38251" placeholder="SELECT value..VALUE_METRIC..." />
+            <marker date="1457341890852" expanded="false" signature="39878:40099" placeholder="SELECT value..VALUE_METRIC..." />
+            <marker date="1457341890852" expanded="false" signature="42103:42324" placeholder="SELECT value..VALUE_METRIC..." />
+            <marker date="1457341890852" expanded="false" signature="43806:44027" placeholder="SELECT value..VALUE_METRIC..." />
+            <marker date="1457341890852" expanded="false" signature="44801:45022" placeholder="SELECT value..VALUE_METRIC..." />
+            <marker date="1457341890852" expanded="false" signature="45572:45765" placeholder="SELECT value..VALUE_METRIC..." />
+            <marker date="1457341890852" expanded="false" signature="46006:46463" placeholder="(SELECT valu..." />
+            <marker date="1457341890852" expanded="false" signature="46007:46192" placeholder="SELECT value..VALUE_METRIC..." />
+            <marker date="1457341890852" expanded="false" signature="46261:46448" placeholder="SELECT value..VALUE_METRIC..." />
+            <marker date="1457341890852" expanded="false" signature="46678:46761" placeholder="INSERT INTO ..." />
+            <marker date="1457341890852" expanded="false" signature="46988:47033" placeholder="select * FRO..TEMPLATE_METRICS..." />
+            <marker date="1457341890852" expanded="false" signature="47558:47592" placeholder="SELECT * FRO..TEMPLATE_METRICS..." />
+            <marker date="1457341890852" expanded="false" signature="48217:48280" placeholder="select id FR..TEMPLATE_METRICS..." />
+            <marker date="1457341890852" expanded="false" signature="48540:48603" placeholder="select * FRO..TEMPLATE_METRICS..." />
+            <marker date="1457341890852" expanded="false" signature="49151:49353" placeholder="INSERT INTO ..." />
+            <marker date="1457341890852" expanded="false" signature="49550:49776" placeholder="INSERT INTO ..." />
+            <marker date="1457341890852" expanded="false" signature="49950:50269" placeholder="INSERT INTO ..." />
+            <marker date="1457341890852" expanded="false" signature="50507:50611" placeholder="SELECT id, t..INSTANCE_METRIC..." />
+            <marker date="1457341890852" expanded="false" signature="51535:51681" placeholder="SELECT id, t..INSTANCE_METRIC..." />
+            <marker date="1457341890852" expanded="false" signature="52472:52574" placeholder="SELECT id, t..INSTANCE_METRIC..." />
+            <marker date="1457341890852" expanded="false" signature="53319:53360" placeholder="DELETE FROM ..." />
+            <marker date="1457341890852" expanded="false" signature="53619:53770" placeholder="SELECT i.tit..METRIC_STATE..." />
+            <marker date="1457341890852" expanded="false" signature="54239:54335" placeholder="SELECT u.id,..Users..." />
+            <marker date="1457341890852" expanded="false" signature="54883:54935" placeholder="select count..VALUE_METRIC..." />
+            <marker date="1457341890852" expanded="false" signature="55217:55314" placeholder="select sshco..sshconfigurationhibernate..." />
+            <marker date="1457341890852" expanded="false" signature="55524:55597" placeholder="INSERT INTO ..." />
+            <marker date="1457341890852" expanded="false" signature="55664:55737" placeholder="INSERT INTO ..." />
+            <marker date="1457341890852" expanded="false" signature="55805:55878" placeholder="INSERT INTO ..." />
+            <marker date="1457341890852" expanded="false" signature="56046:56114" placeholder="delete from ..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/dinamicChart.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18681319" vertical-offset="901" max-vertical-offset="6511">
-          <caret line="59" column="25" selection-start-line="59" selection-start-column="25" selection-end-line="59" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2752" max-vertical-offset="8942">
+          <caret line="197" column="72" selection-start-line="197" selection-start-column="72" selection-end-line="197" selection-end-column="72" />
           <folding>
-            <element signature="n#!!block;n#plus#0" expanded="false" />
-            <element signature="n#!!block;n#onWheel#0" expanded="false" />
-            <element signature="n#!!block;n#keyEvent#0" expanded="false" />
-            <element signature="n#!!block;n#clickEvent#0" expanded="false" />
-            <marker date="1457079219923" expanded="true" signature="7853:7873" placeholder="..." />
+            <marker date="1457370377548" expanded="true" signature="10154:10174" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/metrics.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.1538461" vertical-offset="4" max-vertical-offset="2142">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="40" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/npm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="896">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/bootstrap-theme.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="583">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/bootstrap-theme.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.033957846" vertical-offset="29" max-vertical-offset="10081">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/bootstrap.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="883">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.033957846" vertical-offset="29" max-vertical-offset="115022">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27701148" vertical-offset="405" max-vertical-offset="1411">
+          <caret line="38" column="54" selection-start-line="38" selection-start-column="54" selection-end-line="39" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/IndexController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+          <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/TEST.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4084014" vertical-offset="1010" max-vertical-offset="8007">
+          <caret line="80" column="31" selection-start-line="80" selection-start-column="31" selection-end-line="80" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
