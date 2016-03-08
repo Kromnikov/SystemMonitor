@@ -237,22 +237,6 @@ public class HostController {
         return "redirect:/problem?hostId="+hostId;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     //TODO:page inst metrics
     @RequestMapping(value="/intsMetrics")
     @ResponseBody
@@ -281,45 +265,6 @@ public class HostController {
         modelAndView.setViewName("metrics");
         return modelAndView;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //TODO:page edit inst metrics
-    @RequestMapping(value="/editIntsMetrics")
-    @ResponseBody
-    public ModelAndView editInstMetricPage(@RequestParam("hostId") int hostId) throws SQLException, ParseException {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("getTemplatMetrics", metricStorage.getTemplatMetrics());
-        modelAndView.addObject("getProblemsCount", getProblemsCount(hostId));
-        modelAndView.addObject("getMetrics", metricStorage.getInstMetrics(hostId));
-        modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
-        modelAndView.addObject("hostId", hostId);
-        modelAndView.setViewName("addIntsMetric");
-        return modelAndView;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
 
     @RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
     @ResponseBody

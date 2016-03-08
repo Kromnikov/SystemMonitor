@@ -63,6 +63,9 @@
                     <a  href="/optionsInstance">Instance Metrics <div class="left-menu-counter"></div></a>
                 </li>
                 <li>
+                    <a href="/editIntsMetrics">Edit services<div class="left-menu-counter"></div></a>
+                </li>
+                <li>
                     <a  class="contener-menu-select">Accaunts <div class="left-menu-counter"></div></a>
                 </li>
             </ul>
@@ -84,7 +87,9 @@
                     <td  th:text="${user.password}"></td>
                     <td>
                     <select  name="usersRole" onload="rolesFunction()">
-                        <option th:text="${user.role}" th:name="${user.role}"></option>
+                        <option th:text="${user.role}"></option>
+                        <option value="1">USER</option>
+                        <option value="2">ADMIN</option>
                     </select>
                     </td>
                 </tr>
