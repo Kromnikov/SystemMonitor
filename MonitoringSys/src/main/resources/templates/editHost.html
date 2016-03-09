@@ -66,7 +66,7 @@
     <div class="content">
 
         <div class="center-contener-60" align="center">
-            <form action="#" th:action="@{/hosts}" th:object="${getHost}" method="post">
+            <form action="#" th:action="@{/templates/hosts}" th:object="${getHost}" method="post">
                 <h3>Редактировать хост</h3>
                 <input  type="text"   name="id" placeholder="Имя хоста" th:field="*{id}" th:type="hidden"/>
                 <input  type="text"   name="host" placeholder="Имя хоста" th:field="*{host}"/>

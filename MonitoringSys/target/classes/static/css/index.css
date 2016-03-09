@@ -1,3 +1,31 @@
+.red {
+    background: url("../img/red_cub.jpg") repeat;
+    color:#ffffff;
+}
+.green {
+    background: url("../img/green_cub.jpg") repeat;
+    color:#ffffff;
+}
+.blue {
+    background: url("../img/blue_cub.jpg") repeat;
+    color:#ffffff;
+}
+.yellow {
+    background: url("../img/yellow_cub.jpg") repeat;
+    color:#ffffff;
+}
+.row-circle {
+    border-radius: 10px;
+}
+.margin2020 {
+    margin-left: 20px;
+}
+.right{
+    margin-left:20%;
+}
+.margin-top-20 {
+    margin-top: 20px;
+}
 
 .container {
     height: 100%;
