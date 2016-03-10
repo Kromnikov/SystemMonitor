@@ -14,26 +14,54 @@
     background: url("../img/yellow_cub.jpg") repeat;
     color:#ffffff;
 }
-.row-circle {
-    border-radius: 10px;
+.white-text {
+    color:#ffffff;
+}
+.row-circle-5 {
+    border-radius: 3px;
 }
 .margin2020 {
-    margin-left: 20px;
+    margin-right: 2%;
+}
+.margin5 {
+    margin-right: 5%;
 }
 .right{
     margin-left:20%;
 }
 .margin-top-20 {
-    margin-top: 20px;
+     margin-top: 20px;
+ }
+.margin-top-40 {
+      margin-top: 40px;
+  }
+.margin-top-12 {
+    margin-top: 12px;
 }
-
+.margin-left-15 {
+    margin-left: 15%;
+}
+.margin-left-5 {
+    margin-left: 2%;
+}
 .container {
     height: 100%;
     width: 100%;
     overflow: hidden;
 }
-
-
+.clear-background-color {
+    background-color: transparent;
+}
+.icon2 {
+    margin-left: 100%;
+    margin-top: 10%;
+    font-size: 4em;
+}
+.message {
+    position: fixed;
+    z-index: 101;
+    background-color: red;
+}
 
 .header {
     padding-top: 0;
@@ -60,11 +88,11 @@
 }
 
 .content {
-    /*margin-left: 10px;*/
+    margin-left: 15%;
     width: 100%;
     height:100%;
-    float: right;
-    border-left:1px dotted black;
+    /*float: right;*/
+    /*border-left:1px dotted black;*/
     /*box-shadow: 2px 0px 5px 1px rgba(0, 0, 0, .2);*/
 }
 

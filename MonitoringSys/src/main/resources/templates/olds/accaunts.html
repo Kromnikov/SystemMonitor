@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <link href="../../static/css/index.css"
+          th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
+    <link href="../../static/css/hosts-page.css"
+          th:href="@{css/hosts-page.css}" rel="stylesheet" media="screen"/>
+
+    <link href="../../static/css/host.css"
+          th:href="@{css/host.css}" rel="stylesheet" media="screen"/>
+    <title>Accaunts</title>
+</head>
+<body>
+<div class="header">
+
+    <div class="header-left">
+
+        <p class="host-name"></p>
+    </div>
+
+    <div class="header-right">
+        <ul class="header-menu">
+            <li>
+                <a th:href="hosts">Hosts</a>
+            </li>
+            <li>
+                <a  href="/problems">Problems<div class="left-menu-counter"></div></a>
+            </li>
+            <li>
+                <a  href="/">Home</a>
+            </li>
+            <li>
+                <a  class="header-menu-black">Accaunts<div class="left-menu-counter"></div></a>
+            </li>
+            <li>
+                <a th:action="@{/logout}" method="post" href="/login">Log Out</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="content">
+
+    <div class="center-contener">
+
+        <div class="contener-head">
+            Accaunt's Editor
+        </div>
+        <table width="100%" border="1px" cellspacing="0px" cellpadding="4px" align="center" >
+
+            <td class="tablehead">id</td>
+            <td class="tablehead">username</td>
+            <td class="tablehead">password</td>
+            <td class="tablehead">role</td>
+            <div th:each="user: ${getAllUsers}">
+                <tr >
+                    <td th:field="*{id}"  type="hidden" th:text="${user.id}"></td>
+                    <td th:field="*{username}" th:text="${user.username}"></td>
+                    <td th:field="*{password}" th:text="${user.password}"></td>
+                    <td th:field="*{role}" th:text="${user.role}"></td>
+                </tr>
+            </div>
+        </table>
+        <!--<div class="row-contener left"><a  th:href="@{'selectInstMetric='+${problem.id}}" th:text="${problem.state}"></a></div>-->
+
+
+    </div>
+    </div>
+</body>
+</html>

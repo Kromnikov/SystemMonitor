@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Spring Framework Guru</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+
+    <script src="../static/js/jquery.min.js"
+            th:src="@{js/jquery.min.js}"></script>
+
+
+    <script src="../../static/js/index.js"
+            th:src="@{js/index.js}"></script>
+    <script src="../../static/js/redirects.js"
+            th:src="@{js/redirects.js}"></script>
+
+    <link href="../../static/css/index.css"
+          th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
+    <link href="../../static/css/hosts-page.css"
+          th:href="@{css/hosts-page.css}" rel="stylesheet" media="screen"/>
+
+    <link href="../../static/css/host.css"
+          th:href="@{css/host.css}" rel="stylesheet" media="screen"/>
+</head>
+<body onload="onLoad()">
+<div class="container">
+
+    <div class="header">
+
+        <div class="header-left">
+
+            <p class="host-name"></p>
+        </div>
+
+        <div class="header-right">
+            <ul class="header-menu">
+                <li>
+                    <a th:href="hosts">Hosts</a>
+                </li>
+                <li>
+                    <a  class="header-menu-black">Problems<div class="left-menu-counter" th:text="${getAllProblemsCount}"></div></a>
+                </li>
+                <li>
+                    <a  href="/">Home</a>
+                </li>
+                <li>
+                    <a  href="/accaunts">Accaunts</a>
+                </li>
+                <li>
+                    <a th:action="@{/logout}" method="post" href="/login">Log Out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+    <div class="content">
+
+        <div class="center-contener">
+
+            <div class="contener-head">
+               Metrics problems<div th:text="${getProblemsCount}"  class="left-menu-counter"></div>
+            </div>
+            <table width="100%" border="1px" cellspacing="0px" cellpadding="4px" align="center" >
+
+                <td class="tablehead">id</td>
+                <td class="tablehead">value</td>
+                <td class="tablehead">start</td>
+                <td class="tablehead">end</td>
+                <td class="tablehead">instMetric</td>
+                <td class="tablehead">resolved</td>
+                <div th:each="problem: ${getMetricProblems}">
+                    <tr  class="select_row_host_metric" th:onclick="'javascript:redirectToMetric(\'' + ${problem.id} + '\');'" >
+                        <td th:field="*{id}"  type="hidden" th:text="${problem.id}"></td>
+                        <td th:field="*{value}" th:text="${problem.value}"></td>
+                        <td th:field="*{start}" th:text="${problem.start}"></td>
+                        <td th:field="*{end}" th:text="${problem.end}"></td>
+                        <td th:field="*{instMetric}" th:text="${problem.instMetric}"></td>
+                        <td><a th:text="'resolve'"   th:href="@{problems/resolve/metric(resMetrId=${problem.id})}"></a></td>
+
+                    </tr>
+                </div>
+            </table>
+            <!--<div class="row-contener left"><a  th:href="@{'selectInstMetric='+${problem.id}}" th:text="${problem.state}"></a></div>-->
+
+
+        </div>
+		
+			<a class="resolve-all" th:href="@{problems/resolve/metric/all}">Resolve all</a>
+
+
+        <div class="center-contener">
+
+            <div class="contener-head">
+                Hosts problems<div th:text="${getHostsProblemsCount}"  class="left-menu-counter"></div>
+            </div>
+            <table width="100%" border="1px" cellspacing="0px" cellpadding="4px" align="center" >
+
+                <td class="tablehead">id</td>
+                <td class="tablehead">host</td>
+                <td class="tablehead">start</td>
+                <td class="tablehead">end</td>
+                <td class="tablehead">resolved</td>
+                <div th:each="problem: ${getHostsProblems}">
+                    <tr class="select_row_host_metric" th:onclick="'javascript:redirectToHost(\'' + ${problem.hostId} + '\');'" >
+                        <td th:field="*{id}"  type="hidden" th:text="${problem.id}"></td>
+                        <td th:field="*{hostName}" th:text="${problem.hostName}"></td>
+                        <td th:field="*{start}" th:text="${problem.start}"></td>
+                        <td th:field="*{end}" th:text="${problem.end}"></td>
+                        <td><a th:text="'resolve'"  th:href="@{problems/resolve/host(hostId=${problem.id})}"></a></td>
+
+                    </tr>
+                </div>
+            </table>
+
+        </div>
+			<a class="resolve-all"  th:href="@{problems/resolve/hosts/all}">Resolve all</a>
+
+
+
+
+        <div class="bottom"> </div>
+    </div>
+
+</div>
+</body>
+</html>

@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
-    <title>Monitoring system</title>
+    <title>Spring Framework Guru</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
-    <script src="../static/js/localStorage.js"
-            th:src="@{js/localStorage.js}"></script>
+
+    <script src="../static/js/jquery-2.2.0.min.js"
+            th:src="@{js/jquery-2.2.0.min.js}"></script>
+    <script src="../static/js/bootstrap.min.js"
+            th:src="@{js/bootstrap.min.js}"></script>
+    <script src="../static/js/index.js"
+            th:src="@{js/index.js}"></script>
+
+    <link href="../static/css/bootstrap.css"
+          th:href="@{css/bootstrap.css}" rel="stylesheet" media="screen"/>
+
+    <link href="../static/css/AdminLTE.css"
+          th:href="@{css/AdminLTE.css}" rel="stylesheet" media="screen"/>
 
     <link href="../static/css/index.css"
           th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
 
-    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
-            th:src="@{js/jquery-2.2.0.min.js}"></script>
-
-
-    <!--<script src="http://code.highcharts.com/highcharts.js"></script>-->
-    <!--<script src="http://code.highcharts.com/modules/exporting.js"></script>-->
     <script src="../static/js/highstock.js"
             th:src="@{js/highstock.js}"></script>
     <script src="../static/js/exporting.js"
@@ -24,55 +29,180 @@
             th:src="@{js/dinamicChart.js}"></script>
 
 
+    <!--external css-->
+    <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{css/font-awesome.css}"/>
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/style.css" rel="stylesheet" th:href="@{css/style.css}"/>
+    <link href="../static/css/style-responsive.css" rel="stylesheet" th:href="@{css/style-responsive.css}"/>
 
 
+    <script th:inline="javascript">
+        loadChart3(1, 12, 'getCPU');
+    </script>
 </head>
-<body onload="loadChart3()">
-<div class="container">
 
-    <div class="header">
 
-        <div class="header-left">
-		<!--
-		<p class="host-name"><p th:text="'Host name ' + ${Values.value} + '!'" /></p>
-		-->
-            <!--<img src="../static/img/spring.jpg" width="200" height="30"-->
-                 <!--th:src="@{img/spring.jpg}"/>-->
-        </div>
-
-        <div class="header-right">
-            <ul class="header-menu">
-                <li>
-                    <a th:href="hosts" onclick="cleanlocalStorage()">Hosts</a>
-                </li>
-                <!--<li>-->
-                    <!--<a>Templated services</a>-->
-                <!--</li>-->
-                <li>
-                    <a th:href="@{'problems'}">Problems<div class="left-menu-counter" th:text="${getAllProblemsCount}"></div></a>
-                </li>
-                <li>
-                    <a class="header-menu-black">Home</a>
-                </li>
-                <li>
-                    <a  href="/accaunts">Accaunts</a>
-                </li>
-                <li>
-                    <a th:action="@{/logout}" method="post" href="/login">Log Out</a>
-                </li>
+<body>
+<nav class="navbar navbar-default navbar-static-top margin-left-15">
+    <div class="container">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Login</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right margin-top-12">
+            <button class="btn dropdown-toggle fa fa-bell-o clear-background-color" type="button" data-toggle="dropdown">
+                <span class="label label-warning">10</span></button>
+            <ul class="dropdown-menu">
+                <li><a href="#"><b class="label label-info label-min fa fa-envelope-o white-text fa-lg">&nbsp;</b>Mail message</a></li>
+                <li><a href="#"><b class="label label-warning label-min fa fa-frown-o white-text fa-lg">&nbsp;</b>Down host_name</a></li>
+                <li><a href="#"><b class="label label-success label-min fa fa-smile-o white-text fa-lg">&nbsp;</b>Up host_name</a></li>
             </ul>
-        </div>
+        </ul>
+    </div>
+</nav>
+
+<div class="nav-side-menu">
+    <div class="brand">System monitor</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+    <div class="menu-list">
+
+        <ul id="menu-content" class="menu-content collapse out">
+            <li>
+                <a href="#">
+                    <i class="fa fa-home fa-lg"></i> Home
+                </a>
+            </li>
+
+            <li data-toggle="collapse" data-target="#products" class="collapsed active">
+                <a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="products">
+                <li class="active"><a href="#">CSS3 Animation</a></li>
+                <li><a href="#">General</a></li>
+                <li><a href="#">Buttons</a></li>
+                <li><a href="#">Typography</a></li>
+                <li><a href="#">FontAwesome</a></li>
+                <li><a href="#">Slider</a></li>
+                <li><a href="#">Panels</a></li>
+                <li><a href="#">Widgets</a></li>
+                <li><a href="#">Bootstrap Model</a></li>
+            </ul>
+
+
+            <li data-toggle="collapse" data-target="#service" class="collapsed">
+                <a href="#"><i class="fa fa-globe fa-lg"></i> Services <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="service">
+                <li>New Service 1</li>
+                <li>New Service 2</li>
+                <li>New Service 3</li>
+            </ul>
+
+            <li>
+                <a th:href="@{'problems'}">
+                    <i class="fa fa-exclamation fa-lg"></i> Problems
+                </a>
+            </li>
+
+            <li data-toggle="collapse" data-target="#new" class="collapsed">
+                <a href="#"><i class="fa fa-cog fa-lg"></i> Admin panel <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="new">
+                <li>Hosts</li>
+                <li>Services</li>
+                <li>Users</li>
+            </ul>
+
+
+            <li>
+                <a href="#">
+                    <i class="fa fa-user fa-lg"></i> Profile
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+
+<div class="content">
+
+    <div class="col-lg-10 margin-top-20">
+        <table style="width: 100%;">
+            <tr>
+                <td class="">
+                    <div class="red row-circle-5 margin5">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h3>44</h3>
+
+                                <p>Ошибки</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <i class="icon2 fa fa-warning-1"></i>
+                            </div>
+                        </div>
+                        <div class="inner">
+                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="blue row-circle-5 margin5">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h3>15</h3>
+
+                                <p>Сообщений</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <i class="icon2 fa fa-envelope-o"></i>
+                            </div>
+                        </div>
+                        <div class="inner">
+                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="green row-circle-5 ">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h3>9</h3>
+                                <p>Сервисов</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <i class="icon2 fa fa-thumbs-up"></i>
+                            </div>
+                        </div>
+                        <div class="inner">
+                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
 
 
 
 
-    <div class="content">
-        <div class="divChart"></div>
-        <div id="chart_1"></div>
-        <div class="bottom"> </div>
+
+    <div id="chart_1" class="col-lg-10 margin-top-40">
+        <div class="content-panel">
+            TEST
+        </div>
+    </div>
+    <div id="chart_2" class="col-lg-10 margin-top-40">
+        <div class="content-panel">
+            TEST
+        </div>
     </div>
 
 </div>
+
+
 </body>
+
 </html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Spring Framework Guru</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+
+    <script src="../../src/main/resources/static/js/index.js"
+            th:src="@{js/index.js}"></script>
+
+    <link href="../../static/css/index.css"
+          th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
+    <link href="../../static/css/hosts-page.css"
+          th:href="@{css/hosts-page.css}" rel="stylesheet" media="screen"/>
+    <link href="../../static/css/host.css"
+          th:href="@{css/host.css}" rel="stylesheet" media="screen"/>
+
+</head>
+<body onload="onLoad()">
+<div class="container">
+
+    <div class="header">
+
+        <div class="header-right">
+            <ul class="header-menu">
+                <li>
+                    <a class="header-menu-black" th:href="hosts" >Hosts</a>
+                </li>
+                <li>
+                    <a th:href="@{'problems'}">Problems<div class="left-menu-counter" th:text="${getAllProblemsCount}"></div></a>
+                </li>
+                <li>
+                    <a  href="/accaunts">Accaunts</a>
+                </li>
+                <li>
+                    <a th:action="@{/logout}" method="post" href="/login">Log Out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+    <div class="content">
+	
+	<div class="center-contener">
+				
+				<div class="contener-head">
+					<ul class="contener-menu">
+					
+					<li>
+						<a th:href="@{host(hostId=${hostId})}" class="contener-menu-select">Main</a>
+					</li>
+					<li>
+						<a th:href="@{problem(hostId=${hostId})}">Problems <div class="left-menu-counter" th:text="${getProblemsCount}"></div></a>
+					</li>
+
+					<li>
+						<a  th:href="@{intsMetrics(hostId=${hostId})}">Services</a>
+					</li>
+					<li>
+						<a th:href="@{editIntsMetrics(hostId=${hostId})}">Edit services</a>
+					</li>
+					</ul>
+				</div>
+				
+				<div class="inProcess">
+					<p>in process...</p>
+				</div>
+		
+	
+   
+   
+   
+	</div>
+		<div class="bottom"> </div>
+    </div>
+
+</div>
+</body>
+</html>
