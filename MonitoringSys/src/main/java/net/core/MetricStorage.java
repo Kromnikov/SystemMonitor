@@ -729,7 +729,7 @@ public  class MetricStorage implements IMetricStorage {
     public List<User> getAllUsers()
     {
         List<User> usersList = new ArrayList<>();
-        String sql = "SELECT u.username , u.password, r.role FROM \"Users\" as u, \"Roles\" as r where u.roleid=r.roleid";
+        String sql = "SELECT u.username , u.password, r.role,r.roleid FROM \"Users\" as u, \"Roles\" as r where u.roleid=r.roleid";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
 
         for (Map row : rows) {
@@ -737,18 +737,29 @@ public  class MetricStorage implements IMetricStorage {
             user.setUsername((String)row.get("username"));
             user.setPassword((String)row.get("password"));
             user.setRole((String)row.get("role"));
+            user.setRoleid((int)row.get("roleid"));
             usersList.add(user);
         }
         return usersList;
     }
 
 
-
+    @Transactional
+    public long getCountRoles() throws SQLException {
+        String sql = "select count(*) from \"Roles\" ";
+        return (long)jdbcTemplateObject.queryForMap(sql).get("count");
+    }
 
     @Transactional
     public long getQuantityOfRow(int id) throws SQLException {
         String sql = "select count(*) from \"VALUE_METRIC\" where metric ="+id;
         return (long)jdbcTemplateObject.queryForMap(sql).get("count");
+    }
+
+    @Transactional
+    public void setNewUserRole(String username,int roleid) throws SQLException {
+        String sql ="UPDATE \"Users\" set  roleid="+roleid+" WHERE username=\'"+username+"\'";
+        jdbcTemplateObject.update(sql);
     }
 
     @Override

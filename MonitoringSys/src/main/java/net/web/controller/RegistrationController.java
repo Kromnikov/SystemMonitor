@@ -48,10 +48,8 @@ public class RegistrationController {
  @RequestMapping(params = {"addUser"},method = RequestMethod.POST, value = "/registration")
  public ModelAndView RegistrationAdd(String username, String password){
      if ((username!=null)&(password!=null)){
-         String sqlUser = "INSERT INTO \"Users\" VALUES ('"+username+"','"+password+"','true')";
-         String sqlRole = "INSERT INTO \"Roles\"(role,username) VALUES ('USER','"+username+"')";
+         String sqlUser = "INSERT INTO \"Users\" VALUES ('"+username+"','"+password+"','true',2)";
          jdbcTemplateObject.update(sqlUser);
-         jdbcTemplateObject.update(sqlRole);
      }
      ModelAndView modelAndView = new ModelAndView();
      modelAndView.setViewName("registration");

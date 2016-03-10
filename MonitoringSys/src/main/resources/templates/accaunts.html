@@ -83,19 +83,26 @@
             <td class="tablehead">role</td>
             <div th:each="user: ${getAllUsers}">
                 <tr>
-                    <td  th:text="${user.username}"></td>
-                    <td  th:text="${user.password}"></td>
-                    <td>
-                    <select  name="usersRole" onload="rolesFunction()">
-                        <option th:text="${user.role}"></option>
-                        <option value="1">USER</option>
-                        <option value="2">ADMIN</option>
-                    </select>
+                    <td >
+                    <div class="row-contener left" th:text="${user.username}">
+                    </div>
                     </td>
+                    <td  th:type="password" th:text="${user.password}"></td>
+                    <td >
+                        <div class="row-contener right">
+                        <a th:text="${user.role}" th:href="@{'accaunts?roleid='+${user.roleid}+'&amp;username='+${user.username}}"></a>
+                        </div>
+                    </td>
+                    <!--  <td>
+                    <select  name="usersRole" onload="rolesFunction()">
+                         <option th:text="${user.role}"></option>
+                         <option value="1">USER</option>
+                         <option value="2">ADMIN</option>
+                     </select>
+                    </td> -->
                 </tr>
             </div>
         </table>
-            <button type="submit" name="save">Save</button>
         </form>
         <!--<div class="row-contener left"><a  th:href="@{'selectInstMetric='+${problem.id}}" th:text="${problem.state}"></a></div>-->
 

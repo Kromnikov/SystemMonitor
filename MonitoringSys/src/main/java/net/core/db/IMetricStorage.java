@@ -102,4 +102,8 @@ public interface IMetricStorage{
     double getMinValueInstanceMetric(int id) throws SQLException;
     double getMaxValueInstanceMetric(int id) throws SQLException;
     void updateMinMaxValueInstanceMetric(double min_value, double max_value, int save) throws SQLException;
+
+    long getCountRoles() throws SQLException;
+
+    void setNewUserRole(String username, int roleid) throws SQLException;
 }
