@@ -51,7 +51,7 @@
         </ul>
         <ul class="nav navbar-nav navbar-right margin-top-12">
             <button class="btn dropdown-toggle fa fa-bell-o clear-background-color" type="button" data-toggle="dropdown">
-                <span class="label label-warning">10</span></button>
+                <span class="label label-warning">3</span></button>
             <ul class="dropdown-menu">
                 <li><a href="#"><b class="label label-info label-min fa fa-envelope-o white-text fa-lg">&nbsp;</b>Mail message</a></li>
                 <li><a href="#"><b class="label label-warning label-min fa fa-frown-o white-text fa-lg">&nbsp;</b>Down host_name</a></li>
@@ -68,35 +68,17 @@
     <div class="menu-list">
 
         <ul id="menu-content" class="menu-content collapse out">
-            <li>
-                <a href="#">
+            <li class="collapsed active">
+                <a href="/">
                     <i class="fa fa-home fa-lg"></i> Home
                 </a>
             </li>
-
-            <li data-toggle="collapse" data-target="#products" class="collapsed active">
-                <a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
-            </li>
-            <ul class="sub-menu collapse" id="products">
-                <li class="active"><a href="#">CSS3 Animation</a></li>
-                <li><a href="#">General</a></li>
-                <li><a href="#">Buttons</a></li>
-                <li><a href="#">Typography</a></li>
-                <li><a href="#">FontAwesome</a></li>
-                <li><a href="#">Slider</a></li>
-                <li><a href="#">Panels</a></li>
-                <li><a href="#">Widgets</a></li>
-                <li><a href="#">Bootstrap Model</a></li>
-            </ul>
-
-
             <li data-toggle="collapse" data-target="#service" class="collapsed">
-                <a href="#"><i class="fa fa-globe fa-lg"></i> Services <span class="arrow"></span></a>
+                <a href="#"><i class="fa fa-globe fa-lg"></i> Hosts <span class="arrow"></span></a>
             </li>
             <ul class="sub-menu collapse" id="service">
-                <li>New Service 1</li>
-                <li>New Service 2</li>
-                <li>New Service 3</li>
+                <a class="white-text" th:href="@{'addHostPage'}"><li>Add host</li></a>
+                <a class="white-text" th:href="hosts" ><li>Hosts</li></a>
             </ul>
 
             <li>
@@ -106,7 +88,7 @@
             </li>
 
             <li data-toggle="collapse" data-target="#new" class="collapsed">
-                <a href="#"><i class="fa fa-cog fa-lg"></i> Admin panel <span class="arrow"></span></a>
+                <a href="#"><i class="fa fa-cog fa-lg"></i> <s>Admin panel</s> <span class="arrow"></span></a>
             </li>
             <ul class="sub-menu collapse" id="new">
                 <li>Hosts</li>

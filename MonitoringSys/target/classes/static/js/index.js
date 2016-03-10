@@ -1,3 +1,56 @@
+function showProblemHost() {
+    $(document).ready(function () {
+        //$('#hostProblems').animate({
+        //    opacity: '0'
+        //});
+        //$("#chart_1").addClass("hidden");
+        $("#hostProblems").removeClass("hidden");
+
+    });
+    //console.log('lal1');
+}
+function showChart() {
+    $(document).ready(function () {
+        //$('#hostProblems').animate({
+        //    opacity: '0'
+        //});
+        $("#chart_1").removeClass("hidden");
+    });
+}function showMetrics() {
+    $(document).ready(function () {
+        //$('#hostProblems').animate({
+        //    opacity: '0'
+        //});
+        $("#hostMetrics").removeClass("hidden");
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function onLoad() {
 
     $('li a').click(function()
@@ -24,7 +77,6 @@ function onLoad() {
     $( ".row-contener.left" ).click(selectRowleft);
     $( ".row-contener.right" ).click(selectRowright);
 }
-
 function selectRowleft(){
     $( ".row-contener.left" ).removeClass("row-contener-select");
     $( this ).addClass( "row-contener-select" );
@@ -46,19 +98,6 @@ function resizeTo(){
     $(".center-contener-60").show().animate({width:'40%'}, 0).fadeOut(1);
     $(".center-contener-60").show().animate({opacity:1,  marginLeft: '+=20%'}, 0).fadeIn(500);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 function metricsMenu() {
     //$(".row-contener.right").each(function(i, el) {
     //    if (localStorage['rightSelect' + i] == 'favorites') {
@@ -78,3 +117,4 @@ function selectMetricsMenuItem(){
     var index = $('.services-left-menu li').index($item);
     localStorage.setItem('servicesSelect' + index, 'favorites');
 }
+

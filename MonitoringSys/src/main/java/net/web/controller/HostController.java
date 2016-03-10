@@ -68,6 +68,8 @@ public class HostController {
     public ModelAndView hostsPage() throws SQLException {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("hosts");
+        modelAndView.addObject("hostId", 0);
+        modelAndView.addObject("title", "title");
         modelAndView.addObject("getHosts", getHosts());
         modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
         return modelAndView;
@@ -191,7 +193,10 @@ public class HostController {
         modelAndView.addObject("getMetricProblems", getMetricProblems(hostId));
         modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
         modelAndView.addObject("hostId", hostId);
-        modelAndView.setViewName("problem");
+//        modelAndView.setViewName("problem");
+        modelAndView.addObject("title", "title");
+        modelAndView.addObject("getHosts", getHosts());
+        modelAndView.setViewName("hosts");
         return modelAndView;
     }
 
@@ -227,7 +232,9 @@ public class HostController {
         modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
         modelAndView.addObject("hostId", hostId);
         modelAndView.addObject("title", "title");
-        modelAndView.setViewName("metrics");
+//        modelAndView.setViewName("metrics");
+        modelAndView.addObject("getHosts", getHosts());
+        modelAndView.setViewName("hosts");
         return modelAndView;
     }
 
@@ -243,7 +250,9 @@ public class HostController {
         if (!title.equals("title")) {
             modelAndView.addObject("title", title);
         }
-        modelAndView.setViewName("metrics");
+//        modelAndView.setViewName("metrics");
+        modelAndView.addObject("getHosts", getHosts());
+        modelAndView.setViewName("hosts");
         return modelAndView;
     }
 

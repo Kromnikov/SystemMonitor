@@ -1,3 +1,26 @@
+
+.hidden {
+    display: block;
+}
+
+.content-panel input[type=text]
+{
+
+    display:block;
+    padding:3px 4px;
+    margin-top:5px;
+    margin-bottom:20px;
+}
+
+.row-contener {
+}
+.row-contener a {
+    cursor: pointer;
+    padding: 10px 10px;
+    display: block;
+    margin-bottom: 4px;
+}
+
 .red {
     background: url("../img/red_cub.jpg") repeat;
     color:#ffffff;
@@ -35,6 +58,9 @@
 .margin-top-40 {
       margin-top: 40px;
   }
+li a {
+    display: block;
+}
 .margin-top-12 {
     margin-top: 12px;
 }
