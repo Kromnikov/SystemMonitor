@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class HostController {
@@ -36,6 +37,10 @@ public class HostController {
 
     public int getProblemsCount(int hostId) throws SQLException {
         return (int) metricStorage.getMetricNotResolvedLength(hostId);
+    }
+
+    public Map<Long, Integer> getProblemsHosts() throws SQLException {
+        return metricStorage.getProblemsHosts();
     }
 
     public List<MetricState> getMetricProblems(int hostId) throws SQLException, ParseException {
@@ -70,6 +75,9 @@ public class HostController {
         modelAndView.setViewName("hosts");
         modelAndView.addObject("hostId", 0);
         modelAndView.addObject("title", "title");
+        for (Map.Entry<Long,Integer> row : getProblemsHosts().entrySet()) {
+            modelAndView.addObject("problemHost"+row.getKey(), row.getValue());
+        }
         modelAndView.addObject("getHosts", getHosts());
         modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
         return modelAndView;

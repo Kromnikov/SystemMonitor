@@ -18,7 +18,6 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.*;
 
 @Repository
@@ -640,9 +639,9 @@ public class MetricStorage implements IMetricStorage {
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         Map<Long, Double> map = new HashMap<>();
         if (rows.size() > 0) {
-                for (int i = 0; i < rows.size(); i++) {
-                    map.put((long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()), (double) rows.get(i).get("value"));
-                }
+            for (int i = 0; i < rows.size(); i++) {
+                map.put((long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()), (double) rows.get(i).get("value"));
+            }
         }
         return new chartValues(rows.size(), new TreeMap<Long, Double>(map));
 //        return averaging(jdbcTemplateObject.queryForList(sql));
@@ -760,7 +759,6 @@ public class MetricStorage implements IMetricStorage {
         String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
 
 //        return averaging(jdbcTemplateObject.queryForList(sql));
-
 
 
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
@@ -1098,9 +1096,25 @@ public class MetricStorage implements IMetricStorage {
         jdbcTemplateObject.update(sql);
     }
 
+    public Map<Long, Integer> getProblemsHosts()  throws SQLException {
+        Map<Long, Integer> map = new HashMap<>();
+
+        String sql = "SELECT count(*),host_id FROM \"METRIC_STATE\"  group by host_id";
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+        for (Map row : rows) {
+            Long a = (Long) row.get("host_id");
+            int b = (int) row.get("count");
+//            map.put((Long.parseLong(row.get("host_id").toString())), ((int) row.get("count")));
+        }
+
+        return map;
+    }
+
+
 
     //problem
     @Transactional
+
     public Problem getProblem(int problemId) throws SQLException {
         Problem problem = new Problem();
         getInstMetric(problemId);
