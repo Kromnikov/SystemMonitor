@@ -3680,6 +3680,7 @@ tbody.collapse.in {
   outline: 0;
 }
 .dropdown-menu {
+  z-index: 9999;
   position: absolute;
   top: 100%;
   left: 0;
@@ -4657,6 +4658,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default {
   background-color: #f8f8f8;
   border-color: #e7e7e7;
+  box-shadow: 4px 2px 5px 1px rgba(0, 0, 0, .2);
 }
 .navbar-default .navbar-brand {
   color: #777;

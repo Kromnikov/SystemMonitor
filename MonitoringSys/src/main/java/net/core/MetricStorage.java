@@ -637,7 +637,15 @@ public class MetricStorage implements IMetricStorage {
     @Transactional
     public chartValues getAllValues(int host_id, int metricId) {
         String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where metric = " + metricId + " and host = " + host_id + " order by date_time ";
-        return averaging(jdbcTemplateObject.queryForList(sql));
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+        Map<Long, Double> map = new HashMap<>();
+        if (rows.size() > 0) {
+                for (int i = 0; i < rows.size(); i++) {
+                    map.put((long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()), (double) rows.get(i).get("value"));
+                }
+        }
+        return new chartValues(rows.size(), new TreeMap<Long, Double>(map));
+//        return averaging(jdbcTemplateObject.queryForList(sql));
     }
 
     @Transactional
@@ -879,25 +887,25 @@ public class MetricStorage implements IMetricStorage {
 
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         int rowSize = rows.size(), counter = 1;
-        double values = (double) rows.get(0).get("value");
         Map<Long, Double> map = new HashMap<>();
-        nDate = ((java.sql.Timestamp) rows.get(0).get("date_time"));
-        nDate.setSeconds(0);
-//        System.out.println(nDate);
-        for (int i = 1; i < rowSize; i++) {
-            if (nDate.getMinutes() == ((java.sql.Timestamp) rows.get(i).get("date_time")).getMinutes()) {
-                values += (double) rows.get(i).get("value");
-                counter++;
-            } else {
+        if (rowSize > 0) {
+            double values = (double) rows.get(0).get("value");
+            nDate = ((java.sql.Timestamp) rows.get(0).get("date_time"));
+            nDate.setSeconds(0);
+            for (int i = 1; i < rowSize; i++) {
+                if (nDate.getMinutes() == ((java.sql.Timestamp) rows.get(i).get("date_time")).getMinutes()) {
+                    values += (double) rows.get(i).get("value");
+                    counter++;
+                } else {
+                    map.put((long) nDate.getTime(), values / counter);
+                    nDate = ((java.sql.Timestamp) rows.get(i).get("date_time"));
+                    nDate.setSeconds(0);
+                    values = (double) rows.get(i).get("value");
+                    counter = 1;
+                }
                 map.put((long) nDate.getTime(), values / counter);
-                nDate = ((java.sql.Timestamp) rows.get(i).get("date_time"));
-                nDate.setSeconds(0);
-                values = (double) rows.get(i).get("value");
-                counter = 1;
             }
-            map.put((long) nDate.getTime(), values / counter);
         }
-
         return new chartValues(rowSize, new TreeMap<Long, Double>(map));
     }
 

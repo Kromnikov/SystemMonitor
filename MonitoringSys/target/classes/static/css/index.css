@@ -198,15 +198,15 @@ li a {
 
 
 
-body{
-    height: 100%;
-    overflow:auto;
-    margin: 0;
-    padding: 0;
+/*body{*/
+    /*height: 100%;*/
+    /*overflow:auto;*/
+    /*margin: 0;*/
+    /*padding: 0;*/
     /*background-color:#FAFAFA;*/
-    background: url("../img/bg-139.png") repeat;
-    background-color: #E8E8E8;
-}
+    /*background: url("../img/bg-139.png") repeat;*/
+    /*background-color: #E8E8E8;*/
+/*}*/
 .header-menu-black {
     /*background-color: #FFFFFF;*/
     background: url("../img/bg-139.png") repeat;
