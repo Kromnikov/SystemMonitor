@@ -5,15 +5,13 @@ package net.core.models;
  */
 import javax.persistence.*;
 
-@Entity
-@Table(name="Users")
+
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String username;
     private String password;
     private String role;
+    private int roleid;
     public User(){}
     public User(String name, String pass) {
         username = name;
@@ -49,5 +47,13 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public int getRoleid() {
+        return roleid;
+    }
+
+    public void setRoleid(int roleid) {
+        this.roleid = roleid;
     }
 }

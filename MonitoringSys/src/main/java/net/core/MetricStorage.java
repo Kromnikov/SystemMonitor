@@ -796,7 +796,37 @@ public class MetricStorage implements IMetricStorage {
         }
         return templateMetric;
     }
+    @Transactional
+    public double getMinValueTemplateMetric(int id) throws SQLException {
+        String sql = "select min_value FROM \"TEMPLATE_METRICS\" where id ="+id;
+        return (double)jdbcTemplateObject.queryForMap(sql).get("min_value");
+    }
+    public double getMaxValueTemplateMetric(int id) throws SQLException {
+        String sql = "select max_value FROM \"TEMPLATE_METRICS\" where id ="+id;
+        return (double)jdbcTemplateObject.queryForMap(sql).get("max_value");
+    }
 
+    @Transactional
+    public void updateMinMaxValueTemplateMetric(double min_value,double max_value,int id) throws SQLException {
+        String sql = "UPDATE \"TEMPLATE_METRICS\" SET min_value="+min_value+",max_value="+max_value+"WHERE id="+id;
+        jdbcTemplateObject.update(sql);
+    }
+
+    @Transactional
+    public double getMinValueInstanceMetric(int id) throws SQLException {
+        String sql = "select min_value FROM \"INSTANCE_METRIC\" where id ="+id;
+        return (double)jdbcTemplateObject.queryForMap(sql).get("min_value");
+    }
+    public double getMaxValueInstanceMetric(int id) throws SQLException {
+        String sql = "select max_value FROM \"INSTANCE_METRIC\" where id ="+id;
+        return (double)jdbcTemplateObject.queryForMap(sql).get("max_value");
+    }
+
+    @Transactional
+    public void updateMinMaxValueInstanceMetric(double min_value,double max_value,int id) throws SQLException {
+        String sql = "UPDATE \"INSTANCE_METRIC\" SET min_value="+min_value+",max_value="+max_value+"WHERE id="+id;
+        jdbcTemplateObject.update(sql);
+    }
 
     //metrics-host
     @Transactional
@@ -949,23 +979,36 @@ public class MetricStorage implements IMetricStorage {
         return problem;
     }
 
+
     @Transactional
-    public List<User> getAllUsers() {
+    public List<User> getAllUsers()
+    {
         List<User> usersList = new ArrayList<>();
-        String sql = "SELECT u.id, u.username , u.password, r.role FROM \"Users\" as u, \"Roles\" as r where u.id=r.id";
+        String sql = "SELECT u.username , u.password, r.role,r.roleid FROM \"Users\" as u, \"Roles\" as r where u.roleid=r.roleid";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
 
         for (Map row : rows) {
             User user = new User();
-            user.setId((int) row.get("id"));
-            user.setUsername((String) row.get("username"));
-            user.setPassword((String) row.get("password"));
-            user.setRole((String) row.get("role"));
+            user.setUsername((String)row.get("username"));
+            user.setPassword((String)row.get("password"));
+            user.setRole((String)row.get("role"));
+            user.setRoleid((int)row.get("roleid"));
             usersList.add(user);
         }
         return usersList;
     }
+    @Transactional
+    public long getCountRoles() throws SQLException {
+        String sql = "select count(*) from \"Roles\" ";
+        return (long)jdbcTemplateObject.queryForMap(sql).get("count");
+    }
 
+
+    @Transactional
+    public void setNewUserRole(String username,int roleid) throws SQLException {
+        String sql ="UPDATE \"Users\" set  roleid="+roleid+" WHERE username=\'"+username+"\'";
+        jdbcTemplateObject.update(sql);
+    }
 
     @Transactional
     public long getQuantityOfRow(int id) throws SQLException {

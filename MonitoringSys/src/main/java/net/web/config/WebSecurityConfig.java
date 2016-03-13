@@ -25,16 +25,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usersByUsernameQuery(
                         "select username, password,enabled from \"Users\" where username=?")
                 .authoritiesByUsernameQuery(
-                        "select username, role from \"Roles\"  where username = ?");
+                        "select u.username, r.role from \"Users\" as u, \n" +
+                                "\"Roles\" as r where username = ? and u.roleid = r.roleid");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable().authorizeRequests()
+                .antMatchers("/options","/optionsInstance","/accaunts").access("hasRole('ROLE_ADMIN')")
+                .and().formLogin().defaultSuccessUrl("/", false);
         http.authorizeRequests().antMatchers( "/registration").permitAll()
                 .anyRequest().authenticated();
-        http.formLogin().loginPage("/login").permitAll().and().logout().permitAll();
+        http.formLogin().loginPage("/login").permitAll();
+        http.logout().permitAll().logoutUrl("/logout").logoutSuccessUrl("/login?logout").invalidateHttpSession(true);
     }
 
+
+
+    @Autowired
+    void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .inMemoryAuthentication()
+                .withUser("anton").password("password").roles("USER")
+                .and()
+                .withUser("admin").password("admin").roles("ADMIN");
+    }
     @Configuration
     protected static class AuthenticationConfiguration extends
             GlobalAuthenticationConfigurerAdapter {

@@ -41,7 +41,7 @@ public interface IMetricStorage {
 
     public List<MetricState> getMetricProblems(int hostId) throws SQLException, ParseException;
 
-    public List<MetricState> getMetricProblems(int hostId,int instMetricId) throws SQLException, ParseException;
+    public List<MetricState> getMetricProblems(int hostId, int instMetricId) throws SQLException, ParseException;
 
     public List<MetricState> getMetricProblems() throws SQLException, ParseException;
 
@@ -68,23 +68,6 @@ public interface IMetricStorage {
 
     //values
     public void addValue(int host, int metric, double value, String dateTime) throws SQLException;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     public Date getLastDate(int hostId, int metricId);
@@ -115,21 +98,11 @@ public interface IMetricStorage {
     public chartValues getValuesOneMinutes(int host_id, int metricId, int zoom, Date dateTime);
 
 
-
-
-
-
     //hostsRows
     public List<hostRow> getHostRow() throws SQLException;
 
     //metricRows
     public List<metricRow> getMetricRow(int hostId) throws SQLException;
-
-
-
-
-
-
 
 
     //
@@ -176,4 +149,20 @@ public interface IMetricStorage {
     void delMetricFromHost(int host, int id) throws SQLException;
 
     List<User> getAllUsers();
+
+    double getMinValueTemplateMetric(int id) throws SQLException;
+
+    double getMaxValueTemplateMetric(int id) throws SQLException;
+
+    void updateMinMaxValueTemplateMetric(double min_value, double max_value, int save) throws SQLException;
+
+    double getMinValueInstanceMetric(int id) throws SQLException;
+
+    double getMaxValueInstanceMetric(int id) throws SQLException;
+
+    void updateMinMaxValueInstanceMetric(double min_value, double max_value, int save) throws SQLException;
+
+    long getCountRoles() throws SQLException;
+
+    void setNewUserRole(String username, int roleid) throws SQLException;
 }
