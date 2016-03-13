@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 
 public interface IMetricStorage {
@@ -41,6 +40,8 @@ public interface IMetricStorage {
     public long getMetricNotResolvedLength(int hostId) throws SQLException;
 
     public List<MetricState> getMetricProblems(int hostId) throws SQLException, ParseException;
+
+    public List<MetricState> getMetricProblems(int hostId,int instMetricId) throws SQLException, ParseException;
 
     public List<MetricState> getMetricProblems() throws SQLException, ParseException;
 
@@ -118,25 +119,11 @@ public interface IMetricStorage {
 
 
 
+    //hostsRows
+    public List<hostRow> getHostRow() throws SQLException;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //metricRows
+    public List<metricRow> getMetricRow(int hostId) throws SQLException;
 
 
 
@@ -168,8 +155,6 @@ public interface IMetricStorage {
     public void delInstMetric(int metricId) throws SQLException;
 
     public long getQuantityOfRow(int id) throws SQLException;
-
-    public Map<Long, Integer> getProblemsHosts() throws SQLException;
 
     //
 //    public ResultSet getAllValueMetricOnHostResult(int id)throws SQLException;
