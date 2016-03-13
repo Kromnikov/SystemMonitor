@@ -250,6 +250,9 @@
 .fa-file-o:before {
   content: "\f016";
 }
+.fa-area-chart:before {
+  content: "\f1fe";
+}
 .fa-clock-o:before {
   content: "\f017";
 }
