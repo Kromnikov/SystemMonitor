@@ -1040,7 +1040,7 @@ public class MetricStorage implements IMetricStorage {
 
     @Transactional
     public void delMetricFromHost(int host, int id) throws SQLException {
-        String sql = "delete from  \"HOST_METRIC\" where metric_id=" + id + " and host_id=" + host;
+        String sql = "delete from  \"INSTANCE_METRIC\" where id=" + id + " and host=" + host;
         jdbcTemplateObject.update(sql);
     }
 

@@ -3,8 +3,6 @@
 <head lang="en">
     <title>Spring Framework Guru</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
-
     <script src="../static/js/jquery-2.2.0.min.js"
             th:src="@{js/jquery-2.2.0.min.js}"></script>
     <script src="../static/js/bootstrap.min.js"
@@ -41,8 +39,6 @@
         loadChart3(1, 1, 'getCPU');
     </script>
 </head>
-
-
 <body>
 <nav class="navbar navbar-default navbar-static-top margin-left-15">
     <div class="container">
@@ -91,9 +87,10 @@
                 <a href="#"><i class="fa fa-cog fa-lg"></i> <s>Admin panel</s> <span class="arrow"></span></a>
             </li>
             <ul class="sub-menu collapse" id="new">
-                <li>Hosts</li>
-                <li>Services</li>
-                <li>Users</li>
+                <a class="white-text" th:href="optionsInstance" ><li>Instance Metrics</li></a>
+                <a class="white-text" th:href="options" ><li>Temolet Metrics</li></a>
+                <a class="white-text" th:href="editIntsMetrics" ><li>Services</li></a>
+                <a class="white-text" th:href="accaunts" ><li>Accaunts</li></a>
             </ul>
 
 

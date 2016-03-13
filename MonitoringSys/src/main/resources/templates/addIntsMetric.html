@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
-    <title>Spring Framework Guru</title>
+    <title>Monitoring system</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script src="../static/js/jquery-2.2.0.min.js"
             th:src="@{js/jquery-2.2.0.min.js}"></script>
@@ -35,9 +34,7 @@
 <div class="nav-side-menu">
     <div class="brand">System monitor</div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-
     <div class="menu-list">
-
         <ul id="menu-content" class="menu-content collapse out">
             <li class="collapsed">
                 <a href="/">
@@ -62,10 +59,10 @@
                 <a href="#"><i class="fa fa-cog fa-lg"></i> <s>Admin panel</s> <span class="arrow"></span></a>
             </li>
             <ul class="sub-menu collapse" id="new">
-                <a class="white-text" th:href="optionsInstance" ><li>Instance Metrics</li></a>
-                <a class="white-text" th:href="options" ><li>Template Metrics</li></a>
-                <a class="white-text" th:href="editIntsMetrics" ><li>Services</li></a>
-                <a class="white-text" th:href="accaunts" ><li class="active">Accaunts</li></a>
+                <a class="white-text" th:href="optionsInstance" ><li >Instance Metrics</li></a>
+                <a class="white-text" th:href="options" ><li >Template Metrics</li></a>
+                <a class="white-text" th:href="editIntsMetrics" ><li  class="active">Services</li></a>
+                <a class="white-text" th:href="accaunts" ><li>Accaunts</li></a>
             </ul>
             <li>
                 <a href="#">
@@ -75,35 +72,40 @@
         </ul>
     </div>
 </div>
-<div class="content">
-    <form action="#" name="form1" th:object="${getAllUsers}" method="get">
-        <table width="100%" border="1px" cellspacing="0px" cellpadding="4px" align="center" id="tb" >
-            <td class="tablehead">username</td>
-            <td class="tablehead">password</td>
-            <td class="tablehead">role</td>
-            <div th:each="user: ${getAllUsers}">
-                <tr>
-                    <td >
-                        <div class="row-contener left" th:text="${user.username}">
-                        </div>
-                    </td>
-                    <td  th:type="password" th:text="${user.password}"></td>
-                    <td >
-                        <div class="row-contener right">
-                            <a th:text="${user.role}" th:href="@{'accaunts?roleid='+${user.roleid}+'&amp;username='+${user.username}}"></a>
-                        </div>
-                    </td>
-                        <!--  <td>
-                        <select  name="usersRole" onload="rolesFunction()">
-                             <option th:text="${user.role}"></option>
-                             <option value="1">USER</option>
-                             <option value="2">ADMIN</option>
-                         </select>
-                        </td> -->
-                </tr>
+    <div class="content">
+            <div class="left-right-contener">
+                <form th:action="@{/editIntsMetrics}"  method="get">
+                    <table width="100%" border="1px" cellspacing="0px" cellpadding="4px" align="center" id="tb">
+                        <td class="tablehead">Hosts</td>
+                        <td class="tablehead">Instance</td>
+                        <td class="tablehead">Template</td>
+                        <tr>
+                            <td>
+                                <div class="left-contener">
+                                    <div th:each="host: ${getHosts}">
+                                        <div class="row-contener left"><a  th:href="@{'editIntsMetrics?hostid='+${host.id}}" th:text="${host.host}"></a></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="left-contener">
+                                    <div th:each="instMetric: ${getMetrics}">
+                                        <div class="row-contener left"><a  th:href="@{'editIntsMetrics?instMetricid='+${instMetric.id}+'&amp;hostid='+${hostid}}" th:text="${instMetric.title}"></a></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="right-contener">
+                                    <div th:each="templMetric: ${getTemplatMetrics}">
+                                        <div class="row-contener right"><a  th:href="@{'editIntsMetrics?templMetricid='+${templMetric.id}+'&amp;hostid='+${hostid}}" th:text="${templMetric.title}"></a></div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <div class="bottom"> </div>
             </div>
-        </table>
-    </form>
-</div>
+        </div>
 </body>
 </html>
