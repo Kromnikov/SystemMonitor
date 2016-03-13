@@ -934,7 +934,6 @@ public class MetricStorage implements IMetricStorage {
         }
         return metricRows;
     }
-
     //problem
     @Transactional
     public Problem getProblem(int problemId) throws SQLException {
