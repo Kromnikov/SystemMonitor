@@ -17,7 +17,6 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class HostController {
@@ -31,6 +30,10 @@ public class HostController {
         return this.hosts.getAll();
     }
 
+    public List<hostRow> getHostRow() throws SQLException {
+        return metricStorage.getHostRow();
+    }
+
     public int getAllProblemsCount() throws SQLException {
         return ((int) metricStorage.getMetricNotResolvedLength() + (int) metricStorage.getHostNotResolvedLength());
     }
@@ -39,13 +42,13 @@ public class HostController {
         return (int) metricStorage.getMetricNotResolvedLength(hostId);
     }
 
-    public Map<Long, Integer> getProblemsHosts() throws SQLException {
-        return metricStorage.getProblemsHosts();
-    }
-
     public List<MetricState> getMetricProblems(int hostId) throws SQLException, ParseException {
         return metricStorage.getMetricProblems(hostId);
     }
+    public List<MetricState> getMetricProblems(int hostId,int metricId) throws SQLException, ParseException {
+        return metricStorage.getMetricProblems(hostId,metricId);
+    }
+
 
     public List<MetricState> getMetricProblems() throws SQLException, ParseException {
         return metricStorage.getMetricProblems();
@@ -58,6 +61,9 @@ public class HostController {
     public List<InstanceMetric> getMetrics(int hostId) throws SQLException {
         return metricStorage.getInstMetrics(hostId);
     }
+    public List<metricRow> getMetricRow(int hostId) throws SQLException {
+        return metricStorage.getMetricRow(hostId);
+    }
 
     public int getHostsProblemsCount() throws SQLException {
         return (int) metricStorage.getHostNotResolvedLength();
@@ -68,20 +74,59 @@ public class HostController {
     }
 
 
-    //TODO:page hosts
+
+
+
+
+
+
     @RequestMapping(value = "/hosts")
     public ModelAndView hostsPage() throws SQLException {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("hosts");
         modelAndView.addObject("hostId", 0);
         modelAndView.addObject("title", "title");
-        for (Map.Entry<Long,Integer> row : getProblemsHosts().entrySet()) {
-            modelAndView.addObject("problemHost"+row.getKey(), row.getValue());
-        }
-        modelAndView.addObject("getHosts", getHosts());
+        modelAndView.addObject("getHosts", getHostRow());
         modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
         return modelAndView;
     }
+    @RequestMapping(value = "/host")
+    public ModelAndView hostsPage(@RequestParam("hostId")  int hostId, @RequestParam(required = false, defaultValue = "hidden") String instMetrics, @RequestParam(required = false, defaultValue = "hidden") String problems, @RequestParam(required = false, defaultValue = "-1") int instMetricId, @RequestParam(required = false, defaultValue = "title") String title) throws SQLException, ParseException {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("hosts");
+        modelAndView.addObject("getHosts", getHostRow());
+        modelAndView.addObject("hostId", hostId);
+        modelAndView.addObject("instMetrics", instMetrics);
+        modelAndView.addObject("problems", problems);
+        //metrics
+        modelAndView.addObject("title", title);
+        modelAndView.addObject("instMetricId", instMetricId);
+        modelAndView.addObject("getMetrics", getMetricRow(hostId));
+
+        //problems
+        if (instMetricId > 0 & problems.equals("show")) {
+            modelAndView.addObject("getMetricProblems", getMetricProblems(hostId,instMetricId));
+
+        } else {
+            modelAndView.addObject("getMetricProblems", getMetricProblems(hostId));
+        }
+
+
+        return modelAndView;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     //TODO:page addHost
@@ -179,40 +224,20 @@ public class HostController {
     }
 
 
-    //TODO:main page host
-    @RequestMapping(value = "/host")
-    @ResponseBody
-    public ModelAndView hostPage(@RequestParam("hostId") int hostId) throws SQLException {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("getProblemsCount", getProblemsCount(hostId));
-        modelAndView.addObject("hostId", hostId);
-        modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
-        modelAndView.setViewName("host");
-        return modelAndView;
-    }
+//    //TODO:main page host
+//    @RequestMapping(value = "/host")
+//    @ResponseBody
+//    public ModelAndView hostPage(@RequestParam("hostId") int hostId) throws SQLException {
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.addObject("getProblemsCount", getProblemsCount(hostId));
+//        modelAndView.addObject("hostId", hostId);
+//        modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
+//        modelAndView.setViewName("host");
+//        return modelAndView;
+//    }
 
 
-    //TODO:page problem
-    @RequestMapping(value = "/problem")
-    @ResponseBody
-    public ModelAndView problemsHostPage(@RequestParam("hostId") int hostId) throws SQLException, ParseException {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("getProblemsCount", getProblemsCount(hostId));
-        modelAndView.addObject("getMetricProblems", getMetricProblems(hostId));
-        modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
-        modelAndView.addObject("hostId", hostId);
-//        modelAndView.setViewName("problem");
-        modelAndView.addObject("title", "title");
-        modelAndView.addObject("getHosts", getHosts());
-        modelAndView.setViewName("hosts");
-        return modelAndView;
-    }
 
-    @RequestMapping(value = "/problem/resolve", method = RequestMethod.GET)
-    public String resolveInstMetric(@RequestParam("hostId") int hostId, @RequestParam("resMetrId") int resMetrId) {
-        metricStorage.setResolvedMetric(resMetrId);
-        return "redirect:/problem?hostId=" + hostId;
-    }
 
 
     //TODO:page edit inst metrics
@@ -229,40 +254,6 @@ public class HostController {
         return modelAndView;
     }
 
-
-    //TODO:page inst metrics
-    @RequestMapping(value = "/intsMetrics")
-    @ResponseBody
-    public ModelAndView instMetricPage(@RequestParam("hostId") int hostId) throws SQLException, ParseException {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("getProblemsCount", getProblemsCount(hostId));
-        modelAndView.addObject("getMetrics", getMetrics(hostId));
-        modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
-        modelAndView.addObject("hostId", hostId);
-        modelAndView.addObject("title", "title");
-//        modelAndView.setViewName("metrics");
-        modelAndView.addObject("getHosts", getHosts());
-        modelAndView.setViewName("hosts");
-        return modelAndView;
-    }
-
-    @RequestMapping(value = "/intsMetric")
-    @ResponseBody
-    public ModelAndView instMetricSelect(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "title") String title) throws SQLException, ParseException {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("getProblemsCount", getProblemsCount(hostId));
-        modelAndView.addObject("getMetrics", getMetrics(hostId));
-        modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
-        modelAndView.addObject("hostId", hostId);
-        modelAndView.addObject("instMetricId", instMetricId);
-        if (!title.equals("title")) {
-            modelAndView.addObject("title", title);
-        }
-//        modelAndView.setViewName("metrics");
-        modelAndView.addObject("getHosts", getHosts());
-        modelAndView.setViewName("hosts");
-        return modelAndView;
-    }
 
 
 
@@ -367,12 +358,12 @@ public class HostController {
 
     @RequestMapping(value = "/lastDay", method = RequestMethod.GET)
     @ResponseBody
-    public chartValues lastDay(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
+    public chartValues lastDay(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
         chartValues values = null;
         if (date == 0) {
-            values = metricStorage.getValuesLastDay(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
+            values = metricStorage.getValuesLastDay(hostId, instMetricId, metricStorage.getLastDate(hostId, instMetricId));
         } else {
-            values = metricStorage.getValuesLastDay(hostId, instMetricId, zoom, new Date(date));
+            values = metricStorage.getValuesLastDay(hostId, instMetricId,  new Date(date));
         }
 
 
@@ -441,5 +432,20 @@ public class HostController {
 //        return values;
 //
 //    }
+
+
+
+    //TODO Favorites
+
+    @RequestMapping(value = "/addToFavorites", method = RequestMethod.GET)
+    public String addFavorites(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("title") String title) throws SQLException {
+        metricStorage.addToFavorites(hostId,instMetricId);
+        return "redirect:/host?hostId="+hostId+"&instMetrics=show&instMetricId="+instMetricId+"&title="+title;
+    }
+    @RequestMapping(value = "/dellFromFavorites", method = RequestMethod.GET)
+    public String dellFavorites(@RequestParam("favoritesId") int favoritesId) throws SQLException {
+        metricStorage.dellFromFavorites(favoritesId);
+        return "redirect:/";
+    }
 
 }

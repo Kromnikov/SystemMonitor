@@ -2,12 +2,12 @@ package net.core.db;
 
 import net.core.configurations.SSHConfiguration;
 import net.core.models.*;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 
 public interface IMetricStorage {
@@ -41,6 +41,8 @@ public interface IMetricStorage {
     public long getMetricNotResolvedLength(int hostId) throws SQLException;
 
     public List<MetricState> getMetricProblems(int hostId) throws SQLException, ParseException;
+
+    public List<MetricState> getMetricProblems(int hostId,int instMetricId) throws SQLException, ParseException;
 
     public List<MetricState> getMetricProblems() throws SQLException, ParseException;
 
@@ -90,7 +92,7 @@ public interface IMetricStorage {
 
     public chartValues getAllValues(int host_id, int metricId);
 
-    public chartValues getValuesLastDay(int host_id, int metricId, int zoom, Date dateTime);
+    public chartValues getValuesLastDay(int host_id, int metricId, Date dateTime);
 
     public chartValues getValuesDay(int host_id, int metricId, int zoom, Date dateTime);
 
@@ -118,26 +120,14 @@ public interface IMetricStorage {
 
 
 
+    //hostsRows
+    public List<hostRow> getHostRow() throws SQLException;
 
+    //metricRows
+    public List<metricRow> getMetricRow(int hostId) throws SQLException;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //Favorites
+    public List<Favorites> getFavoritesRow() throws SQLException;
 
 
 
@@ -169,8 +159,6 @@ public interface IMetricStorage {
 
     public long getQuantityOfRow(int id) throws SQLException;
 
-    public Map<Long, Integer> getProblemsHosts() throws SQLException;
-
     //
 //    public ResultSet getAllValueMetricOnHostResult(int id)throws SQLException;
 //
@@ -191,4 +179,9 @@ public interface IMetricStorage {
     void delMetricFromHost(int host, int id) throws SQLException;
 
     List<User> getAllUsers();
+
+    //TODO Favorites
+    public void addToFavorites(int host, int metric) throws SQLException;
+
+    public void dellFromFavorites(int favoritesId) throws SQLException;
 }
