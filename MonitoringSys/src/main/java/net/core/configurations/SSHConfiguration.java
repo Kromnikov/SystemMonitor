@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "SSHConfigurationHibernate")
 public class SSHConfiguration {
     @Id
-    @Column(name = "SSHConfigurationHibernate_ID", updatable=false, nullable=false)
+    @Column(name = "sshconfigurationhibernate_id", updatable=false, nullable=false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -25,6 +25,9 @@ public class SSHConfiguration {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "location")
+    private String location;
+
     public SSHConfiguration() {
 
     }
@@ -42,6 +45,16 @@ public class SSHConfiguration {
         this.port = port;
         this.login = login;
         this.password = password;
+    }
+
+    public SSHConfiguration(int id,String name, String host, int port, String login, String password, String location) {
+        this.id=id;
+        this.name = name;
+        this.host = host;
+        this.port = port;
+        this.login = login;
+        this.password = password;
+        this.location = location;
     }
 
     public SSHConfiguration(String host) {
@@ -95,5 +108,13 @@ public class SSHConfiguration {
 
     public void setPassword(String pass) {
         this.password = pass;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

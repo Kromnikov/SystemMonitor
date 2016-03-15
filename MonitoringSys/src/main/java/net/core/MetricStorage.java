@@ -1027,6 +1027,12 @@ public class MetricStorage implements IMetricStorage {
         return (int) jdbcTemplateObject.queryForMap(sql).get("sshconfigurationhibernate_id");
     }
 
+    public void updateHost(int id,String host,String login, String password,int port, String name, String location) throws SQLException {
+        String sql = "UPDATE sshconfigurationhibernate SET host='"+host+"',login='" +login+
+                "',password='"+password+"',port="+port+",name='"+name+"',location='"+location+"' WHERE sshconfigurationhibernate_id="+id;
+       jdbcTemplateObject.update(sql);
+    }
+
     @Transactional
     public void addStandartMetrics(int id) throws SQLException {
         String sql = "INSERT INTO \"INSTANCE_METRIC\" (TEMPL_METRIC,HOST) VALUES (1," + id + ");";

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head lang="en">
-    <title>Monitoring system</title>
+    <title>Spring Framework Guru</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script src="../static/js/jquery-2.2.0.min.js"
             th:src="@{js/jquery-2.2.0.min.js}"></script>
@@ -48,21 +49,19 @@
                 <a class="white-text" th:href="@{'addHostPage'}"><li>Add host</li></a>
                 <a class="white-text" th:href="hosts" ><li>Hosts</li></a>
             </ul>
-
             <li>
                 <a th:href="@{'problems'}">
                     <i class="fa fa-exclamation fa-lg"></i> Problems
                 </a>
             </li>
-
             <li data-toggle="collapse" data-target="#new" class="collapsed active">
                 <a href="#"><i class="fa fa-cog fa-lg"></i> <s>Admin panel</s> <span class="arrow"></span></a>
             </li>
             <ul class="sub-menu collapse" id="new">
-                <a class="white-text" th:href="hostedit" ><li>Host Editor</li></a>
-                <a class="white-text" th:href="optionsInstance" ><li >Instance Metrics</li></a>
-                <a class="white-text" th:href="options" ><li >Template Metrics</li></a>
-                <a class="white-text" th:href="editIntsMetrics" ><li  class="active">Services</li></a>
+                <a class="white-text" th:href="hostedit" ><li class="active">Host Editor</li></a>
+                <a class="white-text" th:href="optionsInstance" ><li>Instance Metrics</li></a>
+                <a class="white-text" th:href="options" ><li>Template Metrics</li></a>
+                <a class="white-text" th:href="editIntsMetrics" ><li>Services</li></a>
                 <a class="white-text" th:href="accaunts" ><li>Accaunts</li></a>
             </ul>
             <li>
@@ -73,40 +72,56 @@
         </ul>
     </div>
 </div>
-    <div class="content">
-            <div class="left-right-contener">
-                <form th:action="@{/editIntsMetrics}"  method="get">
-                    <table width="100%" border="1px" cellspacing="0px" cellpadding="4px" align="center" id="tb">
-                        <td class="tablehead">Hosts</td>
-                        <td class="tablehead">Instance</td>
-                        <td class="tablehead">Template</td>
-                        <tr>
-                            <td>
-                                <div class="left-contener">
-                                    <div th:each="host: ${getHosts}">
-                                        <div class="row-contener left"><a  th:href="@{'editIntsMetrics?hostid='+${host.id}}" th:text="${host.host}"></a></div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="left-contener">
-                                    <div th:each="instMetric: ${getMetrics}">
-                                        <div class="row-contener left"><a  th:href="@{'editIntsMetrics?instMetricid='+${instMetric.id}+'&amp;hostid='+${hostid}}" th:text="${instMetric.title}"></a></div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="right-contener">
-                                    <div th:each="templMetric: ${getTemplatMetrics}">
-                                        <div class="row-contener right"><a  th:href="@{'editIntsMetrics?templMetricid='+${templMetric.id}+'&amp;hostid='+${hostid}}" th:text="${templMetric.title}"></a></div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </form>
-                <div class="bottom"> </div>
+<div class="content">
+  <table width="90%" align="center">
+    <tr><td>
+        <table  width="100%" border="1px" cellspacing="0px" cellpadding="4px"  id="tb" >
+            <td class="tablehead">Host ID</td>
+            <td class="tablehead">Host</td>
+            <div th:each="getHost: ${getHosts}">
+                <tr>
+                    <td>
+                        <a th:text="${getHost.host}" th:href="@{'hostedit?hostid='+${getHost.id}}"></a>
+                    </td>
+                    <td>
+                        <a th:text="${getHost.name}" th:href="@{'hostedit?hostid='+${getHost.id}}"></a>
+                    </td>
+                </tr>
             </div>
-        </div>
+        </table>
+       </td>
+       <td>
+        <form  name="form1"  method="get">
+        <table  border="1px" cellspacing="0px" cellpadding="4px"  id="tb1" >
+            <tr>
+                <td>IP</td>
+                <td><input name="ip" th:value="${host.host}"/></td>
+            </tr>
+            <tr>
+                <td>Login</td>
+                <td><input name="login" th:value="${host.login}"/></td>
+            </tr>
+            <tr >
+                <td>Password</td>
+                <td><input name="password"  th:value="${host.password}"/></td>
+            </tr>
+            <tr >
+                <td>Name</td>
+                <td><input name="name"  th:value="${host.name}"/></td>
+            </tr>
+            <tr >
+                <td>Port</td>
+                <td><input name="port"  th:value="${host.port}"/></td>
+            </tr>
+            <tr>
+                <td>Location</td>
+                <td><input name="location"  th:value="${host.location}"/></td>
+            </tr>
+        </table>
+            <button type="submit" name="save" th:value="${hostid}">Save</button>
+    </form>
+    </td></tr>
+  </table>
+</div>
 </body>
 </html>

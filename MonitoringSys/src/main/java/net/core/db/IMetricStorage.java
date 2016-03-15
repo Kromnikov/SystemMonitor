@@ -165,4 +165,6 @@ public interface IMetricStorage {
     long getCountRoles() throws SQLException;
 
     void setNewUserRole(String username, int roleid) throws SQLException;
+
+    void updateHost(int hostid, String ip, String login, String password, int port, String name, String location) throws SQLException;;
 }

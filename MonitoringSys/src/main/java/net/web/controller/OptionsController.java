@@ -1,7 +1,10 @@
 package net.web.controller;
 
+import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;
+import net.core.hibernate.dao.HostDaoImpl;
 import net.core.hibernate.services.HostService;
+import net.core.hibernate.services.HostServiceImpl;
 import net.core.models.InstanceMetric;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +34,21 @@ public class OptionsController {
     }
     public int getAllProblemsCount() throws SQLException {
         return ((int)metricStorage.getMetricNotResolvedLength()+(int)metricStorage.getHostNotResolvedLength());
+    }
+
+    public void saveHost(int hostid,String ip,String login,String password,String name,int port, String location) throws SQLException {
+        metricStorage.updateHost(hostid,ip,login,password,port,name,location);
+        /*SSHConfiguration host = new SSHConfiguration();
+        host.setId(hostid);
+        host.setName(name);
+        host.setHost(ip);
+        host.setLocation(location);
+        host.setLogin(login);
+        host.setPassword(password);
+        host.setPort(port);
+        HostServiceImpl hostService = new HostServiceImpl();
+        HostDaoImpl hostDao = new HostDaoImpl();
+        hostService.update(host);*/
     }
     //Контроллер для Templat метрик
     @RequestMapping(method = RequestMethod.GET, value = "/options")
@@ -170,6 +188,39 @@ public class OptionsController {
         modelAndView.addObject("getMetrics", metricStorage.getInstMetrics(hostid));
         modelAndView.addObject("hostid", hostid);
         modelAndView.setViewName("addIntsMetric");
+        return modelAndView;
+    }
+
+    //Редактор хостов
+    @RequestMapping(value="/hostedit", method = RequestMethod.GET)
+    public ModelAndView hostEditPage() throws SQLException, ParseException {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("getHosts",hosts.getAll());
+        SSHConfiguration host=hosts.get(1);
+        modelAndView.addObject("host", host);
+        modelAndView.addObject("hostid",1);
+        modelAndView.setViewName("hostEditor");
+        return modelAndView;
+    }
+    @RequestMapping(params={"hostid"}, value="/hostedit", method = RequestMethod.GET)
+    public ModelAndView hostEditChose(int hostid) throws SQLException, ParseException {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("getHosts",hosts.getAll());
+        SSHConfiguration host=hosts.get(hostid);
+        modelAndView.addObject("hostid",hostid);
+        modelAndView.addObject("host", host);
+        modelAndView.setViewName("hostEditor");
+        return modelAndView;
+    }
+    @RequestMapping(params={"save"}, value="/hostedit", method = RequestMethod.GET)
+    public ModelAndView hostEditSave(int save,String ip,String login,String password,String name,int port,String location) throws SQLException, ParseException {
+        saveHost(save,ip,login,password,name,port,location);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("getHosts",hosts.getAll());
+        SSHConfiguration host=hosts.get(save);
+        modelAndView.addObject("host", host);
+        modelAndView.addObject("hostid",save);
+        modelAndView.setViewName("hostEditor");
         return modelAndView;
     }
 
