@@ -2,7 +2,6 @@ package net.core.db;
 
 import net.core.configurations.SSHConfiguration;
 import net.core.models.*;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -94,26 +93,26 @@ public interface IMetricStorage {
 
     public chartValues getValuesLastDay(int host_id, int metricId, Date dateTime);
 
-    public chartValues getValuesDay(int host_id, int metricId, int zoom, Date dateTime);
+    public chartValues getValuesDay(int host_id, int metricId, Date dateTime);
 
-    public chartValues getValuesTheeDays(int host_id, int metricId, int zoom, Date dateTime);
+    public chartValues getValuesTheeDays(int host_id, int metricId, Date dateTime);
 
-    public chartValues getValuesMonth(int host_id, int metricId, int zoom, Date dateTime);
+    public chartValues getValuesMonth(int host_id, int metricId, Date dateTime);
 
-    public chartValues getValuesSixMonth(int host_id, int metricId, int zoom, Date dateTime);
+    public chartValues getValuesSixMonth(int host_id, int metricId, Date dateTime);
 
-    public chartValues getValuesYear(int host_id, int metricId, int zoom, Date dateTime);
+    public chartValues getValuesYear(int host_id, int metricId, Date dateTime);
 
 
-    public chartValues getValuesByZoom(int host_id, int metricId, int zoom);
+//    public chartValues getValuesByZoom(int host_id, int metricId, int zoom);
 
-    public chartValues getValuesByZoom(int host_id, int metricId, int zoom, Date dateTime);
+//    public chartValues getValuesByZoom(int host_id, int metricId, Date dateTime);
 
-    public chartValues getValuesLastHour(int host_id, int metricId, int zoom, Date dateTime);
+    public chartValues getValuesLastHour(int host_id, int metricId, Date dateTime);
 
-    public chartValues getValuesTheeMinutes(int host_id, int metricId, int zoom, Date dateTime);
+    public chartValues getValuesTheeMinutes(int host_id, int metricId, Date dateTime);
 
-    public chartValues getValuesOneMinutes(int host_id, int metricId, int zoom, Date dateTime);
+    public chartValues getValuesOneMinutes(int host_id, int metricId, Date dateTime);
 
 
 
@@ -184,4 +183,13 @@ public interface IMetricStorage {
     public void addToFavorites(int host, int metric) throws SQLException;
 
     public void dellFromFavorites(int favoritesId) throws SQLException;
+
+    //TODO problems count home page
+    public int hostsProblemsCount() throws SQLException;
+
+    public int hostsSuccesCount() throws SQLException;
+
+    public int metricsProblemCount() throws SQLException;
+
+    public int metricsSuccesCount() throws SQLException;
 }

@@ -1,8 +1,13 @@
+var instMetricId=0;
+var zoomCount = 0;
+var favoritesId=0;
 function loadChart3(hostId1, instMetricId1, title1) {
-    console.log(hostId1+'-'+instMetricId1);
     datetime = 0;
     $.getJSON('/lastDay?hostId=' + hostId1 + '&instMetricId=' + instMetricId1 , function (data, status) {
-        console.log(instMetricId);
+        //console.log(instMetricId);
+        onWheel();
+        keyEvent();
+        buttons();
         dataJson = data;
         chart2(data, title,instMetricId1);
     });
@@ -10,6 +15,200 @@ function loadChart3(hostId1, instMetricId1, title1) {
 }
 
 
+
+function buttons() {
+    //console.log('buttons');
+
+    $('#all').click(function () {
+        $.getJSON('/getAll?hostId=' + hostId + '&instMetricId=' + instMetricId, function (data, status) {
+            chart2(data, title,instMetricId);
+        });
+    });
+    $('#min').click(function () {
+        min();
+    });
+    $('#plus').click(function () {
+        plus();
+    });
+
+}
+function min() {
+    //if (zoomCount != 0) {
+    if (zoomCount == 3) {
+        console.log('1 min --> 3 min');
+        zoomCount = 2;
+        $('#'+instMetricId).attr("zoomCount","2");
+        $.getJSON('/chartClickTheeMinutes?hostId=' + hostId + '&instMetricId=' + instMetricId +  "&date=" + datetime, function (data, status) {
+            chart2(data, title,instMetricId);
+        });
+
+    } else if (zoomCount == 2) {
+        console.log('3 min --> 1 hour');
+        zoomCount = 1;
+        $('#'+instMetricId).attr("zoomCount","1");
+        $.getJSON('/chartClickHour?hostId=' + hostId + '&instMetricId=' + instMetricId +  "&date=" + datetime, function (data, status) {
+            chart2(data, title,instMetricId);
+        });
+    } else if (zoomCount == 1) {
+        console.log('1 hour --> day');
+        zoomCount = 0;
+        $('#'+instMetricId).attr("zoomCount","0");
+        $.getJSON('/getValuesDay?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint + 20) + "&date=" + datetime, function (data, status) {
+            chart2(data, title,instMetricId);
+        });
+    } else if (zoomCount == 0) {
+        console.log('1 day --> 3 days');
+        zoomCount = -1;
+        //console.log($('#'+instMetricId).attr('zoomCount'));
+        $('#'+instMetricId).attr("zoomCount","-1");
+        //console.log($('#'+instMetricId).attr('zoomCount'));
+        $.getJSON('/getValuesTheeDays?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint + 20) + "&date=" + datetime, function (data, status) {
+            chart2(data, title,instMetricId);
+        });
+    } else if (zoomCount == -1) {
+        zoomCount = -2;
+        $('#'+instMetricId).attr("zoomCount","-2");
+        console.log('3 days --> 1 month');
+        $.getJSON('/getValuesMonth?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint + 20) + "&date=" + datetime, function (data, status) {
+            chart2(data, title,instMetricId);
+        });
+    } else if (zoomCount == -2) {
+        zoomCount = -3;
+        $('#'+instMetricId).attr("zoomCount","-3");
+        console.log('1 month --> 6 months');
+        $.getJSON('/getValuesSixMonth?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint + 20) + "&date=" + datetime, function (data, status) {
+            chart2(data, title,instMetricId);
+        });
+    } else if (zoomCount == -3) {
+        zoomCount = -4;
+        $('#'+instMetricId).attr("zoomCount","-4");
+        console.log('6 months --> 1 Year');
+        $.getJSON('/getValuesYear?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint + 20) + "&date=" + datetime, function (data, status) {
+            chart2(data, title,instMetricId);
+        });
+    } else if (zoomCount == -4) {
+        zoomCount = -5;
+        $('#'+instMetricId).attr("zoomCount","-5");
+        console.log('1 Year --> All');
+        $.getJSON('/getAll?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint + 20) + "&date=" + datetime, function (data, status) {
+            chart2(data, title,instMetricId);
+        });
+    }
+
+
+}
+function plus() {
+    if (zoomCount == -5) {
+        zoomCount = -4;
+        $('#'+instMetricId).attr("zoomCount",zoomCount);
+        console.log('All --> 1 Year');
+        $.getJSON('/getValuesYear?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint + 20) + "&date=" + datetime, function (data, status) {
+            chart2(data, title,instMetricId);
+        });
+    } else if (zoomCount == -4) {
+        zoomCount = -3;
+        $('#'+instMetricId).attr("zoomCount",zoomCount);
+        console.log('1 Year --> 6 months');
+        $.getJSON('/getValuesSixMonth?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint + 20) + "&date=" + datetime, function (data, status) {
+            chart2(data, title,instMetricId);
+        });
+    } else if (zoomCount == -3) {
+        zoomCount = -2;
+        $('#'+instMetricId).attr("zoomCount",zoomCount);
+        console.log('6 months --> 1 month');
+        $.getJSON('/getValuesMonth?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint + 20) + "&date=" + datetime, function (data, status) {
+            chart2(data, title,instMetricId);
+        });
+    } else if (zoomCount == -2) {
+        console.log('1 month --> 3 days');
+        zoomCount = -1;
+        $('#'+instMetricId).attr("zoomCount",zoomCount);
+        $.getJSON('/getValuesTheeDays?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint + 20) + "&date=" + datetime, function (data, status) {
+            chart2(data, title,instMetricId);
+        });
+    } else if (zoomCount == -1) {
+        console.log('3 days --> day');
+        zoomCount = 0;
+        $('#'+instMetricId).attr("zoomCount",zoomCount);
+        $.getJSON('/getValuesDay?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + (countPoint + 20) + "&date=" + datetime, function (data, status) {
+            chart2(data, title,instMetricId);
+        });
+    } else if (zoomCount == 0) {
+        console.log('day --> 1 hour');
+        zoomCount = 1;
+        $('#'+instMetricId).attr("zoomCount",zoomCount);
+        $.getJSON('/chartClickHour?hostId=' + hostId + '&instMetricId=' + instMetricId +  "&date=" + datetime, function (data, status) {
+            chart2(data, title,instMetricId);
+        });
+    } else if (zoomCount == 1) {
+        console.log('1 hour --> 3 min');
+        zoomCount = 2;
+        $('#'+instMetricId).attr("zoomCount",zoomCount);
+        $.getJSON('/chartClickTheeMinutes?hostId=' + hostId + '&instMetricId=' + instMetricId +  "&date=" + datetime, function (data, status) {
+            chart2(data, title,instMetricId);
+        });
+    } else if (zoomCount == 2) {
+        console.log('3 min --> 1 min');
+        zoomCount = 3;
+        $('#'+instMetricId).attr("zoomCount",zoomCount);
+        $.getJSON('/chartClickOneMinutes?hostId=' + hostId + '&instMetricId=' + instMetricId +  "&date=" + datetime, function (data, status) {
+            chart2(data, title,instMetricId);
+        });
+    }
+}
+var a = 0;
+function onWheel() {
+    //console.log('onWheel');
+
+    $('div.charts').mouseenter(function () {
+        //console.log($(this).attr('id'));
+        instMetricId = $(this).attr('id');
+        zoomCount = ($(this).attr('zoomCount'));
+        favoritesId = ($(this).attr('favoritesId'));
+        console.log(favoritesId);
+        a=this;
+        console.log(zoomCount);
+        weelIn();
+    });
+    $('div.charts').mouseleave(function () {
+        zoomCount = 0;
+        weelOut();
+    });
+}
+function weelIn() {
+    document.onwheel = function (e) {
+        e = e || window.event;
+        var delta = e.deltaY || e.detail || e.wheelDelta;
+        if (delta < 0) {// - /////////
+            plus();
+        } else {// + ////////
+            min();
+        }
+        e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+    };
+}
+function weelOut() {
+    document.onwheel = function (e) {
+
+    };
+}
+function keyEvent() {
+    //console.log('keyEvent');
+    document.onkeydown = function (e) {
+        e = e || window.event;
+        if (e.shiftKey && e.keyCode == 189) {
+            //console.log('Shift min');
+            min();
+        } else if (e.shiftKey && e.keyCode == 187) {
+            //console.log('Shift plus');
+            plus();
+        }
+        return true;
+    }
+}
+function clickEvent() {
+    plus();
+}
 
 
 function chart2(jsonData, title,chart_id) {
@@ -67,7 +266,7 @@ function chart2(jsonData, title,chart_id) {
                 contextButton: {
                     text: 'Dell from favorites',
                     onclick: function () {
-                        window.location.href = "/dellFromFavorites?favoritesId="+0;
+                        window.location.href = "/dellFromFavorites?favoritesId="+favoritesId;
                     }
 
                 },

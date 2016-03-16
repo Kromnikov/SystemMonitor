@@ -462,7 +462,7 @@ public class MetricStorage implements IMetricStorage {
     }
 
     @Transactional
-    public chartValues getValuesDay(int host_id, int metricId, int zoom, Date dateTime) {
+    public chartValues getValuesDay(int host_id, int metricId,  Date dateTime) {
         Date nDate = (Date) dateTime.clone();
         nDate.setHours(dateTime.getHours() - 24);
         dateTime.setHours(dateTime.getHours() + 24);
@@ -497,7 +497,7 @@ public class MetricStorage implements IMetricStorage {
     }
 
     @Transactional
-    public chartValues getValuesTheeDays(int host_id, int metricId, int zoom, Date dateTime) {
+    public chartValues getValuesTheeDays(int host_id, int metricId,  Date dateTime) {
         Date nDate = (Date) dateTime.clone();
         nDate.setHours(dateTime.getHours() - 60);
         dateTime.setHours(dateTime.getHours() + 60);
@@ -532,7 +532,7 @@ public class MetricStorage implements IMetricStorage {
     }
 
     @Transactional
-    public chartValues getValuesMonth(int host_id, int metricId, int zoom, Date dateTime) {
+    public chartValues getValuesMonth(int host_id, int metricId,  Date dateTime) {
         Date nDate = (Date) dateTime.clone();
         nDate.setHours(dateTime.getHours() - 360);
         dateTime.setHours(dateTime.getHours() + 360);
@@ -571,7 +571,7 @@ public class MetricStorage implements IMetricStorage {
     }
 
     @Transactional
-    public chartValues getValuesSixMonth(int host_id, int metricId, int zoom, Date dateTime) {
+    public chartValues getValuesSixMonth(int host_id, int metricId,  Date dateTime) {
         Date nDate = (Date) dateTime.clone();
         nDate.setMonth(dateTime.getMonth() - 3);
         dateTime.setMonth(dateTime.getMonth() + 3);
@@ -608,7 +608,7 @@ public class MetricStorage implements IMetricStorage {
     }
 
     @Transactional
-    public chartValues getValuesYear(int host_id, int metricId, int zoom, Date dateTime) {
+    public chartValues getValuesYear(int host_id, int metricId,  Date dateTime) {
         Date nDate = (Date) dateTime.clone();
         nDate.setMonth(dateTime.getMonth() - 6);
         dateTime.setMonth(dateTime.getMonth() + 6);
@@ -656,7 +656,7 @@ public class MetricStorage implements IMetricStorage {
     }
 
     @Transactional
-    public chartValues getValuesLastHour(int host_id, int metricId, int zoom, Date dateTime) {
+    public chartValues getValuesLastHour(int host_id, int metricId,  Date dateTime) {
         Date nDate = (Date) dateTime.clone();
         nDate.setMinutes(dateTime.getMinutes() - 30);
         dateTime.setMinutes(dateTime.getMinutes() + 30);
@@ -689,7 +689,7 @@ public class MetricStorage implements IMetricStorage {
     }
 
     @Transactional
-    public chartValues getValuesTheeMinutes(int host_id, int metricId, int zoom, Date dateTime) {
+    public chartValues getValuesTheeMinutes(int host_id, int metricId,  Date dateTime) {
         Map<Long, Double> map = new HashMap<>();
         Date nDate = (Date) dateTime.clone();
         nDate.setMinutes(dateTime.getMinutes() - 1);
@@ -707,7 +707,7 @@ public class MetricStorage implements IMetricStorage {
     }
 
     @Transactional
-    public chartValues getValuesOneMinutes(int host_id, int metricId, int zoom, Date dateTime) {
+    public chartValues getValuesOneMinutes(int host_id, int metricId,  Date dateTime) {
         Map<Long, Double> map = new HashMap<>();
         Date nDate = (Date) dateTime.clone();
         nDate.setSeconds(dateTime.getSeconds() - 30);
@@ -731,15 +731,14 @@ public class MetricStorage implements IMetricStorage {
         return averaging(jdbcTemplateObject.queryForList(sql));
     }
 
-    @Transactional
-    public chartValues getValuesByZoom(int host_id, int metricId, int zoom, Date dateTime) {
-        int limit = zoom;
-        String sql = "(SELECT value,date_time FROM \"VALUE_METRIC\" where date_time < '" + dateFormat.format(dateTime) + "'  and metric = " + metricId + " and host = " + host_id + " order by date_time  limit " + limit + " )" +
-                "UNION ALL\n" +
-                "(SELECT value,date_time FROM \"VALUE_METRIC\"  where date_time >= '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time   limit " + limit + " )";
-
-        return averaging(jdbcTemplateObject.queryForList(sql));
-    }
+//    @Transactional
+//    public chartValues getValuesByZoom(int host_id, int metricId,  Date dateTime) {
+//        String sql = "(SELECT value,date_time FROM \"VALUE_METRIC\" where date_time < '" + dateFormat.format(dateTime) + "'  and metric = " + metricId + " and host = " + host_id + " order by date_time  limit " + limit + " )" +
+//                "UNION ALL\n" +
+//                "(SELECT value,date_time FROM \"VALUE_METRIC\"  where date_time >= '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time   limit " + limit + " )";
+//
+//        return averaging(jdbcTemplateObject.queryForList(sql));
+//    }
 
 
     //metrics
@@ -1027,7 +1026,29 @@ public class MetricStorage implements IMetricStorage {
     }
     @Transactional
     public void dellFromFavorites(int favoritesId) throws SQLException {
-        String sql = "DELETE FROM \"FAVORITES\" WHERE where id = "+favoritesId;
+        String sql = "DELETE FROM \"FAVORITES\" WHERE id = "+favoritesId;
         jdbcTemplateObject.update(sql);
+    }
+
+    //TODO problems count home page
+    @Transactional
+    public int hostsProblemsCount() throws SQLException {
+        String sql = "SELECT count(*)  FROM \"HOST_STATE\"  where \"end_datetime\" is null";
+        return Integer.parseInt(jdbcTemplateObject.queryForMap(sql).get("count").toString());
+    }
+    @Transactional
+    public int hostsSuccesCount() throws SQLException {
+        String sql = "SELECT count(*)  FROM \"HOST_STATE\"  where \"end_datetime\" is not null";
+        return Integer.parseInt(jdbcTemplateObject.queryForMap(sql).get("count").toString());
+    }
+    @Transactional
+    public int metricsProblemCount() throws SQLException {
+        String sql = "SELECT count(*)  FROM \"METRIC_STATE\"  where \"end_datetime\" is null";
+        return Integer.parseInt(jdbcTemplateObject.queryForMap(sql).get("count").toString());
+    }
+    @Transactional
+    public int metricsSuccesCount() throws SQLException {
+        String sql = "SELECT count(*)  FROM \"METRIC_STATE\"  where \"end_datetime\" is not null";
+        return Integer.parseInt(jdbcTemplateObject.queryForMap(sql).get("count").toString());
     }
 }
