@@ -301,7 +301,7 @@ function chart2(jsonData, title) {
         exporting: {
             buttons: {
                 contextButton: {
-                    text: 'Add to favorites',
+                    text: 'Add to home page',
                     onclick: function () {
                         window.location.href = "/addToFavorites?hostId="+hostId+"&instMetricId="+instMetricId+"&title="+title;
                     }

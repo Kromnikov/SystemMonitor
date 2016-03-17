@@ -185,10 +185,11 @@
         <script th:inline="javascript">
             var hostId = [[${favorites.hostId}]];
             var instMetricId = [[${favorites.metricId}]];
+            var favoritesId = [[${favorites.id}]];
             var title = [[${favorites.title}]];
-            loadChart3(hostId, instMetricId, title);
+            loadChart3(hostId, instMetricId, title,favoritesId);
         </script>
-        <div th:id="${favorites.metricId}" class="col-lg-10 margin-top-40 charts" zoomCount="0" th:favoritesId="${favorites.id}">
+        <div th:id="${favorites.metricId}" class="col-lg-10 margin-top-40 charts" zoomCount="0">
             <div class="content-panel">
             </div>
         </div>
