@@ -6,7 +6,10 @@ import net.core.db.IMetricStorage;
 import net.core.hibernate.services.HostService;
 import net.core.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementSetter;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.sql.DataSource;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -929,6 +934,8 @@ public class MetricStorage implements IMetricStorage {
         }
         return hostrows;
     }
+
+
     //metricRows
     @Transactional
          public List<metricRow> getMetricRow(int hostId) throws SQLException {
@@ -1033,6 +1040,26 @@ public class MetricStorage implements IMetricStorage {
        jdbcTemplateObject.update(sql);
     }
 
+    @Override
+    public List<SSHConfiguration> getHostsByLocation(String location) throws SQLException {
+        String sql = "SELECT * FROM \"sshconfigurationhibernate\" WHERE location LIKE\'%"+location+"%\'";
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+        List<SSHConfiguration> hosts= new ArrayList<>();
+        for (Map row : rows) {
+            SSHConfiguration host = new SSHConfiguration();
+            host.setId((int)row.get("sshconfigurationhibernate_id"));
+            host.setPort((int)row.get("port"));
+            host.setLogin((String)row.get("login"));
+            host.setPassword((String)row.get("password"));
+            host.setLocation((String)row.get("location"));
+            host.setName((String)row.get("name"));
+            host.setHost((String)row.get("host"));
+            hosts.add(host);
+        }
+        return hosts;
+    }
+
+
     @Transactional
     public void addStandartMetrics(int id) throws SQLException {
         String sql = "INSERT INTO \"INSTANCE_METRIC\" (TEMPL_METRIC,HOST) VALUES (1," + id + ");";
@@ -1050,5 +1077,9 @@ public class MetricStorage implements IMetricStorage {
         jdbcTemplateObject.update(sql);
     }
 
+    public int getHostIdByLocation(String location){
+        int id;
+        return 0;
+    }
     //
 }

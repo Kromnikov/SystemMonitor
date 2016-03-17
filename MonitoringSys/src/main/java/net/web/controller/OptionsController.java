@@ -37,8 +37,8 @@ public class OptionsController {
     }
 
     public void saveHost(int hostid,String ip,String login,String password,String name,int port, String location) throws SQLException {
-        metricStorage.updateHost(hostid,ip,login,password,port,name,location);
-        /*SSHConfiguration host = new SSHConfiguration();
+        //metricStorage.updateHost(hostid,ip,login,password,port,name,location);
+        SSHConfiguration host = new SSHConfiguration();
         host.setId(hostid);
         host.setName(name);
         host.setHost(ip);
@@ -46,9 +46,7 @@ public class OptionsController {
         host.setLogin(login);
         host.setPassword(password);
         host.setPort(port);
-        HostServiceImpl hostService = new HostServiceImpl();
-        HostDaoImpl hostDao = new HostDaoImpl();
-        hostService.update(host);*/
+        hosts.update(host);
     }
     //Контроллер для Templat метрик
     @RequestMapping(method = RequestMethod.GET, value = "/options")

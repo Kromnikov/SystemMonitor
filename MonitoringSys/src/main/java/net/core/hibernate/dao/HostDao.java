@@ -17,4 +17,6 @@ public interface HostDao {
 
     public SSHConfiguration get(int id);
 
+    public List<SSHConfiguration> getByLocation(String location);
+
 }

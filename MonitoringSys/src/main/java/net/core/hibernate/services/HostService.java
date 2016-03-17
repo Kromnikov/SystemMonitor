@@ -27,4 +27,6 @@ public interface HostService {
     public void update(SSHConfiguration content);
 
     public SSHConfiguration get(int id);
+
+    public List<SSHConfiguration> getByLocation(String location);
 }

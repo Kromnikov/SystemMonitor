@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -93,6 +94,36 @@ public class HostController {
         modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
         return modelAndView;
     }
+    @RequestMapping(params={"search"},value = "/hosts",method= RequestMethod.GET)
+    public ModelAndView hostsPageSearch(String location) throws SQLException {
+        ModelAndView modelAndView = new ModelAndView();
+        List<hostRow> hostRows = new ArrayList<>();
+        List<SSHConfiguration> sshConfigurations = new ArrayList<>();
+        //sshConfigurations=hosts.getByLocation("HOME");
+        sshConfigurations=metricStorage.getHostsByLocation(location);
+        hostRows=metricStorage.getHostRow();
+        boolean b=false;
+        int length = hostRows.size();
+        for (int i=0; i<hostRows.size(); i++){
+            b=false;
+            for (int j=0; j<sshConfigurations.size(); j++) {
+                if (hostRows.get(i).getId()==sshConfigurations.get(j).getId()) {
+                    b = true;
+                }
+            }
+            if (b==false){
+                hostRows.remove(i);
+                i--;
+            }
+        }
+        modelAndView.setViewName("hosts");
+        modelAndView.addObject("hostId", 0);
+        modelAndView.addObject("title", "title");
+        modelAndView.addObject("getHosts", hostRows);
+        modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/host")
     public ModelAndView hostsPage(@RequestParam("hostId")  int hostId, @RequestParam(required = false, defaultValue = "hidden") String instMetrics, @RequestParam(required = false, defaultValue = "hidden") String problems, @RequestParam(required = false, defaultValue = "-1") int instMetricId, @RequestParam(required = false, defaultValue = "title") String title) throws SQLException, ParseException {
         ModelAndView modelAndView = new ModelAndView();
