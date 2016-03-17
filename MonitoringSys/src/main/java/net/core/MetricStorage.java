@@ -1038,8 +1038,9 @@ public class MetricStorage implements IMetricStorage {
     }
     @Transactional
     public int hostsSuccesCount() throws SQLException {
-        String sql = "SELECT count(*)  FROM \"HOST_STATE\"  where \"end_datetime\" is not null";
-        return Integer.parseInt(jdbcTemplateObject.queryForMap(sql).get("count").toString());
+//        String sql = "SELECT count(*)  FROM \"INSTANCE_METRIC\"  where \"end_datetime\" is not null";
+//        return Integer.parseInt(jdbcTemplateObject.queryForMap(sql).get("count").toString());
+        return hosts.getAll().size() - hostsProblemsCount();
     }
     @Transactional
     public int metricsProblemCount() throws SQLException {
@@ -1047,8 +1048,11 @@ public class MetricStorage implements IMetricStorage {
         return Integer.parseInt(jdbcTemplateObject.queryForMap(sql).get("count").toString());
     }
     @Transactional
-    public int metricsSuccesCount() throws SQLException {
-        String sql = "SELECT count(*)  FROM \"METRIC_STATE\"  where \"end_datetime\" is not null";
-        return Integer.parseInt(jdbcTemplateObject.queryForMap(sql).get("count").toString());
+    public int metricsSuccesCount() throws SQLException {//TODO стоит делать или нет, хз
+        String sql = "SELECT count(*)  FROM \"INSTANCE_METRIC\"";
+//        if (hostsSuccesCount() > 0) {
+            return Integer.parseInt(jdbcTemplateObject.queryForMap(sql).get("count").toString());
+//        }
+//        return 0;
     }
 }

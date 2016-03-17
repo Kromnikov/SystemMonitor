@@ -122,10 +122,10 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <h3 th:text="${hostsProblemsCount}">44</h3>
-                                <p>Хосты</p>
+                                <p>Отключеных хостов</p>
                             </div>
                             <div class="col-sm-6">
-                                <i class="icon2 fa fa-warning-1"></i>
+                                <i class="icon2 fa fa-stop"></i>
                             </div>
                         </div>
                         <div class="inner">
@@ -134,11 +134,27 @@
                     </div>
                 </td>
                 <td class="">
-                    <div class="orange row-circle-5 margin5">
+                    <div class="green row-circle-5 margin5">
                         <div class="row">
                             <div class="col-sm-4">
                                 <h3 th:text="${hostsSuccesCount}">44</h3>
-                                <p>Хосты</p>
+                                <p>Работающих хостов</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <i class="icon2 fa fa-thumbs-up"></i>
+                            </div>
+                        </div>
+                        <div class="inner">
+                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="orange row-circle-5 margin5">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h3 th:text="${metricsProblemCount}">44</h3>
+                                <p>Ошибок сервисов</p>
                             </div>
                             <div class="col-sm-6">
                                 <i class="icon2 fa fa-warning-1"></i>
@@ -150,30 +166,14 @@
                     </div>
                 </td>
                 <td>
-                    <div class="blue row-circle-5 margin5">
+                    <div class="blue row-circle-5 ">
                         <div class="row">
-                            <div class="col-sm-4">
-                                <h3 th:text="${metricsProblemCount}">44</h3>
-                                <p>Сервисы</p>
-                            </div>
-                            <div class="col-sm-6">
-                                <i class="icon2 fa fa-envelope-o"></i>
-                            </div>
-                        </div>
-                        <div class="inner">
-                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="green row-circle-5 ">
-                        <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <h3 th:text="${metricsSuccesCount}">44</h3>
-                                <p>Сервисы</p>
+                                <p>Всего сервисов</p>
                             </div>
-                            <div class="col-sm-6">
-                                <i class="icon2 fa fa-thumbs-up"></i>
+                            <div class="col-sm-7">
+                                <i class="icon2 fa fa-navicon"></i>
                             </div>
                         </div>
                         <div class="inner">
