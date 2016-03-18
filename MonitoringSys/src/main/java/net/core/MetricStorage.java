@@ -956,12 +956,14 @@ public class MetricStorage implements IMetricStorage {
     public Problem getProblem(int problemId) throws SQLException {
         Problem problem = new Problem();
         getInstMetric(problemId);
-        String sql = "SELECT i.title , a.host_id, a.inst_metric FROM \"METRIC_STATE\" as a , \"INSTANCE_METRIC\" as i where a.id = " + problemId + " and i.id = a.inst_metric";
+        String sql = "SELECT i.title , a.host_id, a.inst_metric,a.start_datetime,a.end_datetime FROM \"METRIC_STATE\" as a , \"INSTANCE_METRIC\" as i where a.id = " + problemId + " and i.id = a.inst_metric";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         for (Map row : rows) {
             problem.setHostId((int) row.get("host_id"));
             problem.setInstMetricId((int) row.get("inst_metric"));
             problem.setInstMetric((String) row.get("title"));
+            problem.setStartDate(((java.sql.Timestamp) rows.get(0).get("start_datetime")));
+            problem.setEndDate(((java.sql.Timestamp) rows.get(0).get("end_datetime")));
         }
         return problem;
     }
@@ -1040,7 +1042,7 @@ public class MetricStorage implements IMetricStorage {
     public int hostsSuccesCount() throws SQLException {
 //        String sql = "SELECT count(*)  FROM \"INSTANCE_METRIC\"  where \"end_datetime\" is not null";
 //        return Integer.parseInt(jdbcTemplateObject.queryForMap(sql).get("count").toString());
-        return hosts.getAll().size() - hostsProblemsCount();
+        return hosts.getAll().size();
     }
     @Transactional
     public int metricsProblemCount() throws SQLException {

@@ -171,7 +171,7 @@
                         <td th:field="*{instMetric}" th:text="${metric.date}">CPU</td>
                         <td>
                                 <span  th:class="(${metric.status} == '0') ?'label label-success label-mini' : 'label label-warning label-mini'"
-                                       th:text="(${metric.status} == '0') ? 'OK' : 'ERR'">SUCCESS</span>
+                                       th:text="(${metric.status} == '0') ? 'OK' : 'ERROR'">SUCCESS</span>
                         </td>
                         <td>
                             <!--<button class="btn btn-success btn-xs"><a class="fa fa-check white-text"-->
@@ -213,11 +213,11 @@
                         <td th:field="*{instMetric}" th:text="${problem.instMetric}">CPU</td>
                         <td>
                             <span th:class="${problem.end} ? 'label label-success label-mini' : 'label label-warning label-mini'"
-                                  th:text="${problem.end} ? 'SUCCESS' : 'WARNING'">LAL</span>
+                                  th:text="${problem.end} ? 'OK' : 'ERROR'">LAL</span>
                         </td>
                         <td>
                             <button class="btn btn-success btn-xs"><a class="fa fa-check white-text"
-                                                                      th:href="@{problems/resolve/metric(resMetrId=${problem.id})}"></a>
+                                                                      th:href="@{hosts/resolve/metric(resMetrId=${problem.id},hostId=${hostId},instMetricId=${instMetricId})}"></a>
                             </button>
                             <button class="btn btn-primary btn-xs"><a class="fa fa-search white-text"
                                                                       th:href="@{/problem/metric(problemId=${problem.id})}"></a>
@@ -260,7 +260,7 @@
                         </td>
                         <td>
                             <span  th:class="(${host.status} == '0') ?'label label-success label-mini' : 'label label-warning label-mini'"
-                            th:text="(${host.status} == '0') ? 'OK' : 'ERR'">SUCCESS</span>
+                            th:text="(${host.status} == '0') ? 'OK' : 'ERROR'">SUCCESS</span>
                         </td>
 
                     </tr>

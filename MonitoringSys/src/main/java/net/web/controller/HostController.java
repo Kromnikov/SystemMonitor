@@ -211,6 +211,12 @@ public class HostController {
         return "redirect:/problems";
     }
 
+    @RequestMapping(value = "/hosts/resolve/metric", method = RequestMethod.GET)
+    public String resolveMetricHostsPage(@RequestParam("resMetrId") int resMetrId,@RequestParam("hostId") int hostId,@RequestParam("instMetricId") int instMetricId) {
+        metricStorage.setResolvedMetric(resMetrId);
+        return "redirect:/host?hostId="+hostId+"&problems=show&instMetricId="+instMetricId;
+    }
+
     @RequestMapping(value = "/problems/resolve/metric/all", method = RequestMethod.GET)
     public String resolveMetric() {
         metricStorage.setResolvedMetric();
@@ -220,7 +226,7 @@ public class HostController {
     @RequestMapping(value = "/problem/metric", method = RequestMethod.GET)
     public String redirectToMetric(@RequestParam("problemId") int problemId) throws SQLException {
         Problem problem = metricStorage.getProblem(problemId);
-        return "redirect:/intsMetric?hostId=" + problem.getHostId() + "&instMetricId=" + problem.getInstMetricId() + "&title=" + problem.getInstMetric();
+        return "redirect:/host?hostId=" + problem.getHostId() + "&instMetrics=show&instMetricId=" + problem.getInstMetricId() + "&title=" + problem.getInstMetric();
     }
 
 

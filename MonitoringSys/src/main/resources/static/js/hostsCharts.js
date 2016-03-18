@@ -301,20 +301,27 @@ function chart2(jsonData, title) {
         exporting: {
             buttons: {
                 contextButton: {
-                    text: 'Add to home page',
-                    onclick: function () {
-                        window.location.href = "/addToFavorites?hostId="+hostId+"&instMetricId="+instMetricId+"&title="+title;
-                    }
+                    //text: 'Dell from home page',
+                    //onclick: function () {
+                    //    window.location.href = "/dellFromFavorites?favoritesId=" + favoritesId;
+                    //}
 
-                },
-                exportButton: {
                     text: 'Download',
                     menuItems: Highcharts.getOptions().exporting.buttons.contextButton.menuItems.splice(2)
                 },
+                //exportButton: {
+                //    text: 'Download',
+                //    menuItems: Highcharts.getOptions().exporting.buttons.contextButton.menuItems.splice(2)
+                //},
                 printButton: {
-                    text: 'Print',
+                    //text: 'Print',
+                    //onclick: function () {
+                    //    this.print();
+                    //}
+
+                    text: 'Add to home page',
                     onclick: function () {
-                        this.print();
+                        window.location.href = "/addToFavorites?hostId="+hostId+"&instMetricId="+instMetricId+"&title="+title;
                     }
                 }
             }

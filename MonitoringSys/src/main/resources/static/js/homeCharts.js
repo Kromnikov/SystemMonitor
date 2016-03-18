@@ -11,7 +11,7 @@ function loadChart3(hostId1, instMetricId1, title1, favoritesId) {
         onWheel();
         keyEvent();
         buttons();
-        chart2(data, title, instMetricId1);
+        chart2(data, title1, instMetricId1);
     });
 
 }
@@ -297,20 +297,26 @@ function chart2(jsonData, title, chart_id) {
         exporting: {
             buttons: {
                 contextButton: {
-                    text: 'Dell from home page',
-                    onclick: function () {
-                        window.location.href = "/dellFromFavorites?favoritesId=" + favoritesId;
-                    }
+                    //text: 'Dell from home page',
+                    //onclick: function () {
+                    //    window.location.href = "/dellFromFavorites?favoritesId=" + favoritesId;
+                    //}
 
-                },
-                exportButton: {
                     text: 'Download',
                     menuItems: Highcharts.getOptions().exporting.buttons.contextButton.menuItems.splice(2)
                 },
+                //exportButton: {
+                //    text: 'Download',
+                //    menuItems: Highcharts.getOptions().exporting.buttons.contextButton.menuItems.splice(2)
+                //},
                 printButton: {
-                    text: 'Print',
+                    //text: 'Print',
+                    //onclick: function () {
+                    //    this.print();
+                    //}
+                    text: 'Dell from home page',
                     onclick: function () {
-                        this.print();
+                        window.location.href = "/dellFromFavorites?favoritesId=" + favoritesId;
                     }
                 }
             }
