@@ -183,7 +183,7 @@
                         </td>
                         <td>
                             <button class="btn btn-success btn-xs"><a class="fa fa-check white-text" th:href="@{problems/resolve/metric(resMetrId=${problem.id})}"></a></button>
-                            <button class="btn btn-primary btn-xs"><a class="fa fa-search white-text"  th:href="@{/problem/metric(problemId=${problem.id})}"></a></button>
+                            <button class="btn btn-primary btn-xs"><a class="fa fa-search white-text"  th:href="@{/problem/metric(problemId=${problem.id},startDate=${problem.start},endDate=${problem.end})}"></a></button>
                         </td>
                     </tr>
                 </div>

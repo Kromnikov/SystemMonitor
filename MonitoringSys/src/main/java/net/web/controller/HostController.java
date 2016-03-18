@@ -14,9 +14,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 @Controller
 public class HostController {
@@ -25,6 +29,8 @@ public class HostController {
     private IMetricStorage metricStorage;
     @Autowired
     private HostService hosts;
+
+//    private static DateFormat dateFormat = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy");
 
     public List<SSHConfiguration> getHosts() {
         return this.hosts.getAll();
@@ -45,10 +51,10 @@ public class HostController {
     public List<MetricState> getMetricProblems(int hostId) throws SQLException, ParseException {
         return metricStorage.getMetricProblems(hostId);
     }
+
     public List<MetricState> getMetricProblems(int hostId,int metricId) throws SQLException, ParseException {
         return metricStorage.getMetricProblems(hostId,metricId);
     }
-
 
     public List<MetricState> getMetricProblems() throws SQLException, ParseException {
         return metricStorage.getMetricProblems();
@@ -91,7 +97,7 @@ public class HostController {
         return modelAndView;
     }
     @RequestMapping(value = "/host")
-    public ModelAndView hostsPage(@RequestParam("hostId")  int hostId, @RequestParam(required = false, defaultValue = "hidden") String instMetrics, @RequestParam(required = false, defaultValue = "hidden") String problems, @RequestParam(required = false, defaultValue = "-1") int instMetricId, @RequestParam(required = false, defaultValue = "title") String title) throws SQLException, ParseException {
+    public ModelAndView hostsPage(@RequestParam("hostId")  int hostId, @RequestParam(required = false, defaultValue = "hidden") String instMetrics, @RequestParam(required = false, defaultValue = "hidden") String problems, @RequestParam(required = false, defaultValue = "-1") int instMetricId, @RequestParam(required = false, defaultValue = "title") String title,@RequestParam(required=false,defaultValue = "0") String startDate,@RequestParam(required=false,defaultValue = "0") String endDate) throws SQLException, ParseException {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("hosts");
         modelAndView.addObject("getHosts", getHostRow());
@@ -110,13 +116,28 @@ public class HostController {
         } else {
             modelAndView.addObject("getMetricProblems", getMetricProblems(hostId));
         }
+        if (!startDate.equals("0")) {
+            modelAndView.addObject("startDate", parserDate(startDate).getTime());
+        }
+        if (!endDate.equals("0")) {
+            modelAndView.addObject("startDate", parserDate(endDate).getTime());
+        }
 
 
         return modelAndView;
     }
 
 
-
+    private Date parserDate(String startDate) throws ParseException {
+        String mTimeZone = startDate.substring(20,23);
+        String mActualDate = startDate.replace(mTimeZone + " ", "");
+        System.out.println(mActualDate);
+        String TWITTER = "EEE MMM dd HH:mm:ss yyyy";
+        SimpleDateFormat mSf = new SimpleDateFormat(TWITTER, Locale.ENGLISH);
+        mSf.setTimeZone(TimeZone.getDefault());
+        Date mNewDate = mSf.parse(mActualDate);
+        return mNewDate;
+    }
 
 
 
@@ -224,24 +245,10 @@ public class HostController {
     }
 
     @RequestMapping(value = "/problem/metric", method = RequestMethod.GET)
-    public String redirectToMetric(@RequestParam("problemId") int problemId) throws SQLException {
+    public String redirectToMetric(@RequestParam("problemId") int problemId,@RequestParam(required=false,defaultValue = "0") String startDate,@RequestParam(required=false,defaultValue = "0") String endDate) throws SQLException {
         Problem problem = metricStorage.getProblem(problemId);
-        return "redirect:/host?hostId=" + problem.getHostId() + "&instMetrics=show&instMetricId=" + problem.getInstMetricId() + "&title=" + problem.getInstMetric();
+        return "redirect:/host?hostId=" + problem.getHostId() + "&instMetrics=show&instMetricId=" + problem.getInstMetricId() + "&title=" + problem.getInstMetric()+"&startDate="+startDate+"&endDate="+endDate;
     }
-
-
-//    //TODO:main page host
-//    @RequestMapping(value = "/host")
-//    @ResponseBody
-//    public ModelAndView hostPage(@RequestParam("hostId") int hostId) throws SQLException {
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.addObject("getProblemsCount", getProblemsCount(hostId));
-//        modelAndView.addObject("hostId", hostId);
-//        modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
-//        modelAndView.setViewName("host");
-//        return modelAndView;
-//    }
-
 
 
 
@@ -266,20 +273,6 @@ public class HostController {
 
 
     //TODO ajax charts
-//    @RequestMapping(value = "/lastDay", method = RequestMethod.GET)
-//         @ResponseBody
-//    public chartValues ajaxTest(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
-//        chartValues values = null;
-//        if (date == 0) {
-//            values = metricStorage.getValuesLastDay(hostId, instMetricId,  metricStorage.getLastDate(hostId, instMetricId));
-//        } else {
-//            values = metricStorage.getValuesLastDay(hostId, instMetricId,  new Date(date));
-//        }
-//
-//
-//        return values;
-//
-//    }
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     @ResponseBody
