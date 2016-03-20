@@ -238,7 +238,15 @@
             <table id="hostListTable" class="table table-striped table-advance table-hover">
                 <thead>
                 <tr>
-                    <th class="hidden-phone"><i class="fa fa-home"></i> Host</th>
+                    <th>
+                        <div class="dropdown">
+                            <i class="dropdown-toggle cursor_pointer fa fa-home" data-toggle="dropdown"> Host</i>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-header">Поиск</li>
+                                <li><input type="password" class="form-control" placeholder="Login" name="login" /></li>
+                            </ul>
+                        </div>
+                    </th>
                     <th><i class="fa fa-play"></i>Services</th>
                     <th><i class=" fa fa-stop"></i>Errors</th>
                     <th><i class=" fa fa-edit"></i>Status</th>

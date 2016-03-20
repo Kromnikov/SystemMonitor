@@ -3690,7 +3690,7 @@ tbody.collapse.in {
   min-width: 160px;
   padding: 5px 0;
   margin: 2px 0 0;
-  font-size: 14px;
+  font-size: 15px;
   text-align: left;
   list-style: none;
   background-color: #fff;
@@ -3699,8 +3699,7 @@ tbody.collapse.in {
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, .15);
   border-radius: 4px;
-  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-          box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+  box-shadow: 2px 10px 10px 5px rgba(0, 0, 0, .2) !important;
 }
 .dropdown-menu.pull-right {
   right: 0;
@@ -3720,6 +3719,11 @@ tbody.collapse.in {
   line-height: 1.42857143;
   color: #333;
   white-space: nowrap;
+}
+.dropdown-menu > li > input{
+  margin-left: 5%;
+  width: 90%;
+
 }
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {

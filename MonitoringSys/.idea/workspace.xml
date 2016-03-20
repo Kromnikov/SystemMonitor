@@ -26,70 +26,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="problems.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/problems.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.192307" vertical-offset="1748" max-vertical-offset="2482">
-              <caret line="185" column="202" selection-start-line="185" selection-start-column="202" selection-end-line="185" selection-end-column="202" />
-              <folding>
-                <element signature="n#nav#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="HostController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/HostController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1120" max-vertical-offset="3400">
-              <caret line="118" column="37" selection-start-line="118" selection-start-column="37" selection-end-line="118" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1989" max-vertical-offset="5576">
+              <caret line="139" column="0" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
               <folding>
-                <element signature="method#getHostRow#0;class#HostController#0" expanded="false" />
-                <element signature="method#getAllProblemsCount#0;class#HostController#0" expanded="false" />
-                <element signature="method#getProblemsCount#0;class#HostController#0" expanded="false" />
-                <element signature="method#getMetricProblems#0;class#HostController#0" expanded="false" />
-                <element signature="method#getMetricProblems#1;class#HostController#0" expanded="false" />
-                <element signature="method#getMetricProblems#2;class#HostController#0" expanded="false" />
-                <element signature="method#getMetrics#0;class#HostController#0" expanded="false" />
-                <element signature="method#getMetricRow#0;class#HostController#0" expanded="false" />
-                <element signature="method#getHostsProblemsCount#0;class#HostController#0" expanded="false" />
-                <element signature="method#getHostsProblems#0;class#HostController#0" expanded="false" />
-                <element signature="method#hostsPage#0;class#HostController#0" expanded="false" />
-                <element signature="method#addHostPage#0;class#HostController#0" expanded="false" />
-                <element signature="method#saveHost#0;class#HostController#0" expanded="false" />
-                <element signature="method#returnHosts#0;class#HostController#0" expanded="false" />
-                <element signature="e#6255#6275#0" expanded="false" />
-                <element signature="e#7770#7806#0" expanded="false" />
-                <element signature="method#problemsPage#0;class#HostController#0" expanded="false" />
-                <element signature="method#resolveHost#0;class#HostController#0" expanded="false" />
-                <element signature="method#resolveHostAll#0;class#HostController#0" expanded="false" />
-                <element signature="method#resolveMetric#0;class#HostController#0" expanded="false" />
-                <element signature="method#resolveMetricHostsPage#0;class#HostController#0" expanded="false" />
-                <element signature="method#resolveMetric#1;class#HostController#0" expanded="false" />
-                <element signature="e#10367#10410#0" expanded="false" />
-                <element signature="method#editInstMetricPage#0;class#HostController#0" expanded="false" />
-                <element signature="e#11100#11162#0" expanded="false" />
                 <element signature="method#getAll#0;class#HostController#0" expanded="false" />
-                <element signature="e#11403#11472#0" expanded="false" />
                 <element signature="method#getValuesYear#0;class#HostController#0" expanded="false" />
-                <element signature="e#12043#12116#0" expanded="false" />
                 <element signature="method#getValuesSixMonth#0;class#HostController#0" expanded="false" />
-                <element signature="e#12699#12769#0" expanded="false" />
                 <element signature="method#getValuesMonth#0;class#HostController#0" expanded="false" />
-                <element signature="e#13343#13416#0" expanded="false" />
                 <element signature="method#getValuesTheeDays#0;class#HostController#0" expanded="false" />
-                <element signature="e#13999#14067#0" expanded="false" />
                 <element signature="method#getValuesDay#0;class#HostController#0" expanded="false" />
-                <element signature="e#14635#14698#0" expanded="false" />
                 <element signature="method#lastDay#0;class#HostController#0" expanded="false" />
-                <element signature="e#15268#15338#0" expanded="false" />
                 <element signature="method#chartClickHour#0;class#HostController#0" expanded="false" />
-                <element signature="e#15917#15994#0" expanded="false" />
                 <element signature="method#chartClick#0;class#HostController#0" expanded="false" />
-                <element signature="e#16576#16652#0" expanded="false" />
                 <element signature="method#chartClickOneMinutes#0;class#HostController#0" expanded="false" />
-                <element signature="e#17241#17318#0" expanded="false" />
                 <element signature="method#addFavorites#0;class#HostController#0" expanded="false" />
                 <element signature="method#dellFavorites#0;class#HostController#0" expanded="false" />
               </folding>
@@ -100,15 +52,75 @@
       <file leaf-file-name="hosts.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/hosts.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.17471264" vertical-offset="273" max-vertical-offset="1598">
-              <caret line="25" column="43" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
+            <state vertical-scroll-proportion="0.70576924" vertical-offset="1605" max-vertical-offset="2703">
+              <caret line="248" column="25" selection-start-line="248" selection-start-column="25" selection-end-line="248" selection-end-column="25" />
               <folding>
-                <element signature="n#nav#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bootstrap.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/bootstrap.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.5172415" vertical-offset="62507" max-vertical-offset="117827">
+              <caret line="3688" column="14" selection-start-line="3688" selection-start-column="14" selection-end-line="3688" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/index.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.8965516" vertical-offset="317" max-vertical-offset="5236">
+              <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2193">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="homeCharts.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/homeCharts.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="258" max-vertical-offset="4233">
+              <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+              <folding>
+                <element signature="n#!!block;n#buttons#0" expanded="false" />
+                <element signature="n#!!block;n#min#0" expanded="false" />
+                <element signature="n#!!block;n#plus#0" expanded="false" />
+                <element signature="n#!!block;n#onWheel#0" expanded="false" />
+                <element signature="n#!!block;n#weelIn#0" expanded="false" />
+                <element signature="n#!!block;n#weelOut#0" expanded="false" />
+                <element signature="n#!!block;n#keyEvent#0" expanded="false" />
+                <element signature="n#!!block;n#clickEvent#0" expanded="false" />
+                <element signature="n#!!block;n#updateChart#0" expanded="false" />
+                <marker date="1458309489022" expanded="true" signature="9584:9604" placeholder="..." />
+                <marker date="1458309489022" expanded="true" signature="12483:12503" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2752" max-vertical-offset="3604">
+              <caret line="195" column="87" selection-start-line="195" selection-start-column="87" selection-end-line="195" selection-end-column="87" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -116,9 +128,42 @@
       <file leaf-file-name="MetricState.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/core/models/MetricState.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.0" vertical-offset="97" max-vertical-offset="1258">
+            <state vertical-scroll-proportion="0.0" vertical-offset="97" max-vertical-offset="1258">
               <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-              <folding />
+              <folding>
+                <element signature="e#743#744#0" expanded="false" />
+                <element signature="e#768#769#0" expanded="false" />
+                <element signature="e#801#802#0" expanded="false" />
+                <element signature="e#829#830#0" expanded="false" />
+                <element signature="e#861#862#0" expanded="false" />
+                <element signature="e#889#890#0" expanded="false" />
+                <element signature="e#931#932#0" expanded="false" />
+                <element signature="e#965#966#0" expanded="false" />
+                <element signature="e#995#996#0" expanded="false" />
+                <element signature="e#1023#1024#0" expanded="false" />
+                <element signature="e#1063#1064#0" expanded="false" />
+                <element signature="e#1097#1098#0" expanded="false" />
+                <element signature="e#1125#1126#0" expanded="false" />
+                <element signature="e#1151#1152#0" expanded="false" />
+                <element signature="e#1187#1188#0" expanded="false" />
+                <element signature="e#1217#1218#0" expanded="false" />
+                <element signature="e#1254#1255#0" expanded="false" />
+                <element signature="e#1287#1288#0" expanded="false" />
+                <element signature="e#1339#1340#0" expanded="false" />
+                <element signature="e#1383#1384#0" expanded="false" />
+                <element signature="e#1418#1419#0" expanded="false" />
+                <element signature="e#1449#1450#0" expanded="false" />
+                <element signature="e#1498#1499#0" expanded="false" />
+                <element signature="e#1538#1539#0" expanded="false" />
+                <element signature="e#1573#1574#0" expanded="false" />
+                <element signature="e#1604#1605#0" expanded="false" />
+                <element signature="e#1652#1653#0" expanded="false" />
+                <element signature="e#1692#1693#0" expanded="false" />
+                <element signature="e#1727#1728#0" expanded="false" />
+                <element signature="e#1758#1759#0" expanded="false" />
+                <element signature="e#1806#1807#0" expanded="false" />
+                <element signature="e#1846#1847#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -126,11 +171,13 @@
       <file leaf-file-name="MetricStorage.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/core/MetricStorage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.689655" vertical-offset="9069" max-vertical-offset="12325">
+            <state vertical-scroll-proportion="0.0" vertical-offset="9061" max-vertical-offset="12036">
               <caret line="720" column="31" selection-start-line="720" selection-start-column="31" selection-end-line="720" selection-end-column="94" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="imports" expanded="false" />
                 <element signature="e#692#703#0" expanded="false" />
+                <element signature="e#1031#1032#0" expanded="false" />
+                <element signature="e#1101#1102#0" expanded="false" />
                 <element signature="method#setOverMaxValue#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#lessMinValue#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#setLessMinValue#0;class#MetricStorage#0" expanded="false" />
@@ -141,6 +188,8 @@
                 <element signature="method#setResolvedMetric#1;class#MetricStorage#0" expanded="false" />
                 <element signature="method#getMetricNotResolvedLength#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#getMetricNotResolvedLength#1;class#MetricStorage#0" expanded="false" />
+                <element signature="e#11346#11347#0" expanded="false" />
+                <element signature="e#11434#11435#0" expanded="false" />
                 <element signature="method#availableHost#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#setNotAvailableHost#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#setAvailableHost#0;class#MetricStorage#0" expanded="false" />
@@ -177,16 +226,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IMetricStorage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/core/db/IMetricStorage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1479" max-vertical-offset="3315">
-              <caret line="93" column="66" selection-start-line="93" selection-start-column="66" selection-end-line="93" selection-end-column="66" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -203,15 +242,16 @@
         <option value="$PROJECT_DIR$/src/main/java/net/web/controller/IndexController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/dinamicChart.js" />
         <option value="$PROJECT_DIR$/src/main/java/net/core/db/IMetricStorage.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/css/index.css" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/js/homeCharts.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/hostsCharts.js" />
         <option value="$PROJECT_DIR$/src/main/java/net/core/models/Problem.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/core/MetricStorage.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/hosts.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/problems.html" />
         <option value="$PROJECT_DIR$/src/main/java/net/web/controller/HostController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/homeCharts.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/css/index.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/hosts.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/css/bootstrap.css" />
       </list>
     </option>
   </component>
@@ -230,8 +270,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -888,47 +928,49 @@
       <workItem from="1458197916277" duration="11037000" />
       <workItem from="1458235670732" duration="7492000" />
       <workItem from="1458298436508" duration="3570000" />
+      <workItem from="1458302775319" duration="1095000" />
+      <workItem from="1458465898209" duration="2416000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46325000" />
+    <option name="totallyTimeSpent" value="49836000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25189108" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39502165" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32792208" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6643952" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2521322" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3935264" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32792208" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6643952" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -953,7 +995,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/net/web/controller/HostController.java</url>
-          <line>121</line>
+          <line>142</line>
           <properties />
           <option name="timeStamp" value="36" />
         </line-breakpoint>
@@ -967,93 +1009,15 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="680">
-          <caret line="191" column="95" selection-start-line="191" selection-start-column="95" selection-end-line="191" selection-end-column="95" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/homeCharts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!block;n#min#0" expanded="false" />
-            <element signature="n#!!block;n#plus#0" expanded="false" />
-            <element signature="n#!!block;n#onWheel#0" expanded="false" />
-            <element signature="n#!!block;n#weelIn#0" expanded="false" />
-            <element signature="n#!!block;n#weelOut#0" expanded="false" />
-            <element signature="n#!!block;n#keyEvent#0" expanded="false" />
-            <element signature="n#!!block;n#clickEvent#0" expanded="false" />
-            <element signature="n#!!block;n#updateChart#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/HostController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4816" max-vertical-offset="5304">
-          <caret line="446" column="39" selection-start-line="446" selection-start-column="22" selection-end-line="446" selection-end-column="39" />
-          <folding>
-            <element signature="method#getHostRow#0;class#HostController#0" expanded="false" />
-            <element signature="method#getAllProblemsCount#0;class#HostController#0" expanded="false" />
-            <element signature="method#getProblemsCount#0;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricProblems#0;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricProblems#1;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricProblems#2;class#HostController#0" expanded="false" />
-            <element signature="method#getMetrics#0;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricRow#0;class#HostController#0" expanded="false" />
-            <element signature="method#getHostsProblemsCount#0;class#HostController#0" expanded="false" />
-            <element signature="method#getHostsProblems#0;class#HostController#0" expanded="false" />
-            <element signature="method#hostsPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#addHostPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#saveHost#0;class#HostController#0" expanded="false" />
-            <element signature="method#returnHosts#0;class#HostController#0" expanded="false" />
-            <element signature="e#6255#6275#0" expanded="false" />
-            <element signature="e#7770#7806#0" expanded="false" />
-            <element signature="method#problemsPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveHost#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveHostAll#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveMetric#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveMetricHostsPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveMetric#1;class#HostController#0" expanded="false" />
-            <element signature="e#10367#10410#0" expanded="false" />
-            <element signature="method#editInstMetricPage#0;class#HostController#0" expanded="false" />
-            <element signature="e#11100#11162#0" expanded="false" />
-            <element signature="method#getAll#0;class#HostController#0" expanded="false" />
-            <element signature="e#11403#11472#0" expanded="false" />
-            <element signature="method#getValuesYear#0;class#HostController#0" expanded="false" />
-            <element signature="e#12043#12116#0" expanded="false" />
-            <element signature="method#getValuesSixMonth#0;class#HostController#0" expanded="false" />
-            <element signature="e#12699#12769#0" expanded="false" />
-            <element signature="method#getValuesMonth#0;class#HostController#0" expanded="false" />
-            <element signature="e#13343#13416#0" expanded="false" />
-            <element signature="method#getValuesTheeDays#0;class#HostController#0" expanded="false" />
-            <element signature="e#13999#14067#0" expanded="false" />
-            <element signature="method#getValuesDay#0;class#HostController#0" expanded="false" />
-            <element signature="e#14635#14698#0" expanded="false" />
-            <element signature="method#lastDay#0;class#HostController#0" expanded="false" />
-            <element signature="e#15268#15338#0" expanded="false" />
-            <element signature="method#chartClickHour#0;class#HostController#0" expanded="false" />
-            <element signature="e#15917#15994#0" expanded="false" />
-            <element signature="method#chartClick#0;class#HostController#0" expanded="false" />
-            <element signature="e#16576#16652#0" expanded="false" />
-            <element signature="method#chartClickOneMinutes#0;class#HostController#0" expanded="false" />
-            <element signature="e#17241#17318#0" expanded="false" />
-            <element signature="method#addFavorites#0;class#HostController#0" expanded="false" />
-            <element signature="method#dellFavorites#0;class#HostController#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/core/MetricStorage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="11777" max-vertical-offset="12631">
           <caret line="1029" column="0" selection-start-line="1029" selection-start-column="0" selection-end-line="1029" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="e#692#703#0" expanded="false" />
+            <element signature="e#1031#1032#0" expanded="false" />
+            <element signature="e#1101#1102#0" expanded="false" />
             <element signature="method#setOverMaxValue#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#lessMinValue#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#setLessMinValue#0;class#MetricStorage#0" expanded="false" />
@@ -1064,6 +1028,8 @@
             <element signature="method#setResolvedMetric#1;class#MetricStorage#0" expanded="false" />
             <element signature="method#getMetricNotResolvedLength#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getMetricNotResolvedLength#1;class#MetricStorage#0" expanded="false" />
+            <element signature="e#11346#11347#0" expanded="false" />
+            <element signature="e#11434#11435#0" expanded="false" />
             <element signature="method#availableHost#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#setNotAvailableHost#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#setAvailableHost#0;class#MetricStorage#0" expanded="false" />
@@ -1127,6 +1093,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2669">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="n#!!block;n#buttons#0" expanded="false" />
             <element signature="n#!!block;n#min#0" expanded="false" />
             <element signature="n#!!block;n#plus#0" expanded="false" />
             <element signature="n#!!block;n#onWheel#0" expanded="false" />
@@ -1135,6 +1102,8 @@
             <element signature="n#!!block;n#keyEvent#0" expanded="false" />
             <element signature="n#!!block;n#clickEvent#0" expanded="false" />
             <element signature="n#!!block;n#updateChart#0" expanded="false" />
+            <marker date="1458309489022" expanded="true" signature="9584:9604" placeholder="..." />
+            <marker date="1458309489022" expanded="true" signature="12483:12503" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1163,51 +1132,16 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="4816" max-vertical-offset="5304">
           <caret line="446" column="39" selection-start-line="446" selection-start-column="22" selection-end-line="446" selection-end-column="39" />
           <folding>
-            <element signature="method#getHostRow#0;class#HostController#0" expanded="false" />
-            <element signature="method#getAllProblemsCount#0;class#HostController#0" expanded="false" />
-            <element signature="method#getProblemsCount#0;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricProblems#0;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricProblems#1;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricProblems#2;class#HostController#0" expanded="false" />
-            <element signature="method#getMetrics#0;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricRow#0;class#HostController#0" expanded="false" />
-            <element signature="method#getHostsProblemsCount#0;class#HostController#0" expanded="false" />
-            <element signature="method#getHostsProblems#0;class#HostController#0" expanded="false" />
-            <element signature="method#hostsPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#addHostPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#saveHost#0;class#HostController#0" expanded="false" />
-            <element signature="method#returnHosts#0;class#HostController#0" expanded="false" />
-            <element signature="e#6255#6275#0" expanded="false" />
-            <element signature="e#7770#7806#0" expanded="false" />
-            <element signature="method#problemsPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveHost#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveHostAll#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveMetric#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveMetricHostsPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveMetric#1;class#HostController#0" expanded="false" />
-            <element signature="e#10367#10410#0" expanded="false" />
-            <element signature="method#editInstMetricPage#0;class#HostController#0" expanded="false" />
-            <element signature="e#11100#11162#0" expanded="false" />
             <element signature="method#getAll#0;class#HostController#0" expanded="false" />
-            <element signature="e#11403#11472#0" expanded="false" />
             <element signature="method#getValuesYear#0;class#HostController#0" expanded="false" />
-            <element signature="e#12043#12116#0" expanded="false" />
             <element signature="method#getValuesSixMonth#0;class#HostController#0" expanded="false" />
-            <element signature="e#12699#12769#0" expanded="false" />
             <element signature="method#getValuesMonth#0;class#HostController#0" expanded="false" />
-            <element signature="e#13343#13416#0" expanded="false" />
             <element signature="method#getValuesTheeDays#0;class#HostController#0" expanded="false" />
-            <element signature="e#13999#14067#0" expanded="false" />
             <element signature="method#getValuesDay#0;class#HostController#0" expanded="false" />
-            <element signature="e#14635#14698#0" expanded="false" />
             <element signature="method#lastDay#0;class#HostController#0" expanded="false" />
-            <element signature="e#15268#15338#0" expanded="false" />
             <element signature="method#chartClickHour#0;class#HostController#0" expanded="false" />
-            <element signature="e#15917#15994#0" expanded="false" />
             <element signature="method#chartClick#0;class#HostController#0" expanded="false" />
-            <element signature="e#16576#16652#0" expanded="false" />
             <element signature="method#chartClickOneMinutes#0;class#HostController#0" expanded="false" />
-            <element signature="e#17241#17318#0" expanded="false" />
             <element signature="method#addFavorites#0;class#HostController#0" expanded="false" />
             <element signature="method#dellFavorites#0;class#HostController#0" expanded="false" />
           </folding>
@@ -1219,8 +1153,10 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="11777" max-vertical-offset="12631">
           <caret line="1029" column="0" selection-start-line="1029" selection-start-column="0" selection-end-line="1029" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="e#692#703#0" expanded="false" />
+            <element signature="e#1031#1032#0" expanded="false" />
+            <element signature="e#1101#1102#0" expanded="false" />
             <element signature="method#setOverMaxValue#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#lessMinValue#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#setLessMinValue#0;class#MetricStorage#0" expanded="false" />
@@ -1231,6 +1167,8 @@
             <element signature="method#setResolvedMetric#1;class#MetricStorage#0" expanded="false" />
             <element signature="method#getMetricNotResolvedLength#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getMetricNotResolvedLength#1;class#MetricStorage#0" expanded="false" />
+            <element signature="e#11346#11347#0" expanded="false" />
+            <element signature="e#11434#11435#0" expanded="false" />
             <element signature="method#availableHost#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#setNotAvailableHost#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#setAvailableHost#0;class#MetricStorage#0" expanded="false" />
@@ -1294,6 +1232,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2193">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="n#!!block;n#buttons#0" expanded="false" />
             <element signature="n#!!block;n#min#0" expanded="false" />
             <element signature="n#!!block;n#plus#0" expanded="false" />
             <element signature="n#!!block;n#onWheel#0" expanded="false" />
@@ -1302,6 +1241,8 @@
             <element signature="n#!!block;n#keyEvent#0" expanded="false" />
             <element signature="n#!!block;n#clickEvent#0" expanded="false" />
             <element signature="n#!!block;n#updateChart#0" expanded="false" />
+            <marker date="1458309489022" expanded="true" signature="9584:9604" placeholder="..." />
+            <marker date="1458309489022" expanded="true" signature="12483:12503" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1330,51 +1271,16 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="4816" max-vertical-offset="5304">
           <caret line="446" column="39" selection-start-line="446" selection-start-column="22" selection-end-line="446" selection-end-column="39" />
           <folding>
-            <element signature="method#getHostRow#0;class#HostController#0" expanded="false" />
-            <element signature="method#getAllProblemsCount#0;class#HostController#0" expanded="false" />
-            <element signature="method#getProblemsCount#0;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricProblems#0;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricProblems#1;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricProblems#2;class#HostController#0" expanded="false" />
-            <element signature="method#getMetrics#0;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricRow#0;class#HostController#0" expanded="false" />
-            <element signature="method#getHostsProblemsCount#0;class#HostController#0" expanded="false" />
-            <element signature="method#getHostsProblems#0;class#HostController#0" expanded="false" />
-            <element signature="method#hostsPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#addHostPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#saveHost#0;class#HostController#0" expanded="false" />
-            <element signature="method#returnHosts#0;class#HostController#0" expanded="false" />
-            <element signature="e#6255#6275#0" expanded="false" />
-            <element signature="e#7770#7806#0" expanded="false" />
-            <element signature="method#problemsPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveHost#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveHostAll#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveMetric#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveMetricHostsPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveMetric#1;class#HostController#0" expanded="false" />
-            <element signature="e#10367#10410#0" expanded="false" />
-            <element signature="method#editInstMetricPage#0;class#HostController#0" expanded="false" />
-            <element signature="e#11100#11162#0" expanded="false" />
             <element signature="method#getAll#0;class#HostController#0" expanded="false" />
-            <element signature="e#11403#11472#0" expanded="false" />
             <element signature="method#getValuesYear#0;class#HostController#0" expanded="false" />
-            <element signature="e#12043#12116#0" expanded="false" />
             <element signature="method#getValuesSixMonth#0;class#HostController#0" expanded="false" />
-            <element signature="e#12699#12769#0" expanded="false" />
             <element signature="method#getValuesMonth#0;class#HostController#0" expanded="false" />
-            <element signature="e#13343#13416#0" expanded="false" />
             <element signature="method#getValuesTheeDays#0;class#HostController#0" expanded="false" />
-            <element signature="e#13999#14067#0" expanded="false" />
             <element signature="method#getValuesDay#0;class#HostController#0" expanded="false" />
-            <element signature="e#14635#14698#0" expanded="false" />
             <element signature="method#lastDay#0;class#HostController#0" expanded="false" />
-            <element signature="e#15268#15338#0" expanded="false" />
             <element signature="method#chartClickHour#0;class#HostController#0" expanded="false" />
-            <element signature="e#15917#15994#0" expanded="false" />
             <element signature="method#chartClick#0;class#HostController#0" expanded="false" />
-            <element signature="e#16576#16652#0" expanded="false" />
             <element signature="method#chartClickOneMinutes#0;class#HostController#0" expanded="false" />
-            <element signature="e#17241#17318#0" expanded="false" />
             <element signature="method#addFavorites#0;class#HostController#0" expanded="false" />
             <element signature="method#dellFavorites#0;class#HostController#0" expanded="false" />
           </folding>
@@ -1386,8 +1292,10 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="11777" max-vertical-offset="12631">
           <caret line="1029" column="0" selection-start-line="1029" selection-start-column="0" selection-end-line="1029" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="e#692#703#0" expanded="false" />
+            <element signature="e#1031#1032#0" expanded="false" />
+            <element signature="e#1101#1102#0" expanded="false" />
             <element signature="method#setOverMaxValue#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#lessMinValue#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#setLessMinValue#0;class#MetricStorage#0" expanded="false" />
@@ -1398,6 +1306,8 @@
             <element signature="method#setResolvedMetric#1;class#MetricStorage#0" expanded="false" />
             <element signature="method#getMetricNotResolvedLength#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getMetricNotResolvedLength#1;class#MetricStorage#0" expanded="false" />
+            <element signature="e#11346#11347#0" expanded="false" />
+            <element signature="e#11434#11435#0" expanded="false" />
             <element signature="method#availableHost#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#setNotAvailableHost#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#setAvailableHost#0;class#MetricStorage#0" expanded="false" />
@@ -1461,6 +1371,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="3385" max-vertical-offset="5508">
           <caret line="214" column="32" selection-start-line="214" selection-start-column="32" selection-end-line="214" selection-end-column="32" />
           <folding>
+            <element signature="n#!!block;n#buttons#0" expanded="false" />
             <element signature="n#!!block;n#min#0" expanded="false" />
             <element signature="n#!!block;n#plus#0" expanded="false" />
             <element signature="n#!!block;n#onWheel#0" expanded="false" />
@@ -1469,6 +1380,8 @@
             <element signature="n#!!block;n#keyEvent#0" expanded="false" />
             <element signature="n#!!block;n#clickEvent#0" expanded="false" />
             <element signature="n#!!block;n#updateChart#0" expanded="false" />
+            <marker date="1458309489022" expanded="true" signature="9584:9604" placeholder="..." />
+            <marker date="1458309489022" expanded="true" signature="12483:12503" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1478,51 +1391,16 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="3337" max-vertical-offset="5304">
           <caret line="363" column="51" selection-start-line="363" selection-start-column="51" selection-end-line="363" selection-end-column="51" />
           <folding>
-            <element signature="method#getHostRow#0;class#HostController#0" expanded="false" />
-            <element signature="method#getAllProblemsCount#0;class#HostController#0" expanded="false" />
-            <element signature="method#getProblemsCount#0;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricProblems#0;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricProblems#1;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricProblems#2;class#HostController#0" expanded="false" />
-            <element signature="method#getMetrics#0;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricRow#0;class#HostController#0" expanded="false" />
-            <element signature="method#getHostsProblemsCount#0;class#HostController#0" expanded="false" />
-            <element signature="method#getHostsProblems#0;class#HostController#0" expanded="false" />
-            <element signature="method#hostsPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#addHostPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#saveHost#0;class#HostController#0" expanded="false" />
-            <element signature="method#returnHosts#0;class#HostController#0" expanded="false" />
-            <element signature="e#6255#6275#0" expanded="false" />
-            <element signature="e#7770#7806#0" expanded="false" />
-            <element signature="method#problemsPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveHost#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveHostAll#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveMetric#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveMetricHostsPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveMetric#1;class#HostController#0" expanded="false" />
-            <element signature="e#10367#10410#0" expanded="false" />
-            <element signature="method#editInstMetricPage#0;class#HostController#0" expanded="false" />
-            <element signature="e#11100#11162#0" expanded="false" />
             <element signature="method#getAll#0;class#HostController#0" expanded="false" />
-            <element signature="e#11403#11472#0" expanded="false" />
             <element signature="method#getValuesYear#0;class#HostController#0" expanded="false" />
-            <element signature="e#12043#12116#0" expanded="false" />
             <element signature="method#getValuesSixMonth#0;class#HostController#0" expanded="false" />
-            <element signature="e#12699#12769#0" expanded="false" />
             <element signature="method#getValuesMonth#0;class#HostController#0" expanded="false" />
-            <element signature="e#13343#13416#0" expanded="false" />
             <element signature="method#getValuesTheeDays#0;class#HostController#0" expanded="false" />
-            <element signature="e#13999#14067#0" expanded="false" />
             <element signature="method#getValuesDay#0;class#HostController#0" expanded="false" />
-            <element signature="e#14635#14698#0" expanded="false" />
             <element signature="method#lastDay#0;class#HostController#0" expanded="false" />
-            <element signature="e#15268#15338#0" expanded="false" />
             <element signature="method#chartClickHour#0;class#HostController#0" expanded="false" />
-            <element signature="e#15917#15994#0" expanded="false" />
             <element signature="method#chartClick#0;class#HostController#0" expanded="false" />
-            <element signature="e#16576#16652#0" expanded="false" />
             <element signature="method#chartClickOneMinutes#0;class#HostController#0" expanded="false" />
-            <element signature="e#17241#17318#0" expanded="false" />
             <element signature="method#addFavorites#0;class#HostController#0" expanded="false" />
             <element signature="method#dellFavorites#0;class#HostController#0" expanded="false" />
           </folding>
@@ -1534,8 +1412,10 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="1620" max-vertical-offset="12631">
           <caret line="433" column="65" selection-start-line="433" selection-start-column="65" selection-end-line="433" selection-end-column="65" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="e#692#703#0" expanded="false" />
+            <element signature="e#1031#1032#0" expanded="false" />
+            <element signature="e#1101#1102#0" expanded="false" />
             <element signature="method#setOverMaxValue#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#lessMinValue#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#setLessMinValue#0;class#MetricStorage#0" expanded="false" />
@@ -1546,6 +1426,8 @@
             <element signature="method#setResolvedMetric#1;class#MetricStorage#0" expanded="false" />
             <element signature="method#getMetricNotResolvedLength#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getMetricNotResolvedLength#1;class#MetricStorage#0" expanded="false" />
+            <element signature="e#11346#11347#0" expanded="false" />
+            <element signature="e#11434#11435#0" expanded="false" />
             <element signature="method#availableHost#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#setNotAvailableHost#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#setAvailableHost#0;class#MetricStorage#0" expanded="false" />
@@ -1609,6 +1491,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2125">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="n#!!block;n#buttons#0" expanded="false" />
             <element signature="n#!!block;n#min#0" expanded="false" />
             <element signature="n#!!block;n#plus#0" expanded="false" />
             <element signature="n#!!block;n#onWheel#0" expanded="false" />
@@ -1617,6 +1500,8 @@
             <element signature="n#!!block;n#keyEvent#0" expanded="false" />
             <element signature="n#!!block;n#clickEvent#0" expanded="false" />
             <element signature="n#!!block;n#updateChart#0" expanded="false" />
+            <marker date="1458309489022" expanded="true" signature="9584:9604" placeholder="..." />
+            <marker date="1458309489022" expanded="true" signature="12483:12503" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1645,51 +1530,16 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="2266" max-vertical-offset="3638">
           <caret line="363" column="51" selection-start-line="363" selection-start-column="35" selection-end-line="363" selection-end-column="51" />
           <folding>
-            <element signature="method#getHostRow#0;class#HostController#0" expanded="false" />
-            <element signature="method#getAllProblemsCount#0;class#HostController#0" expanded="false" />
-            <element signature="method#getProblemsCount#0;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricProblems#0;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricProblems#1;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricProblems#2;class#HostController#0" expanded="false" />
-            <element signature="method#getMetrics#0;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricRow#0;class#HostController#0" expanded="false" />
-            <element signature="method#getHostsProblemsCount#0;class#HostController#0" expanded="false" />
-            <element signature="method#getHostsProblems#0;class#HostController#0" expanded="false" />
-            <element signature="method#hostsPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#addHostPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#saveHost#0;class#HostController#0" expanded="false" />
-            <element signature="method#returnHosts#0;class#HostController#0" expanded="false" />
-            <element signature="e#6255#6275#0" expanded="false" />
-            <element signature="e#7770#7806#0" expanded="false" />
-            <element signature="method#problemsPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveHost#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveHostAll#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveMetric#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveMetricHostsPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveMetric#1;class#HostController#0" expanded="false" />
-            <element signature="e#10367#10410#0" expanded="false" />
-            <element signature="method#editInstMetricPage#0;class#HostController#0" expanded="false" />
-            <element signature="e#11100#11162#0" expanded="false" />
             <element signature="method#getAll#0;class#HostController#0" expanded="false" />
-            <element signature="e#11403#11472#0" expanded="false" />
             <element signature="method#getValuesYear#0;class#HostController#0" expanded="false" />
-            <element signature="e#12043#12116#0" expanded="false" />
             <element signature="method#getValuesSixMonth#0;class#HostController#0" expanded="false" />
-            <element signature="e#12699#12769#0" expanded="false" />
             <element signature="method#getValuesMonth#0;class#HostController#0" expanded="false" />
-            <element signature="e#13343#13416#0" expanded="false" />
             <element signature="method#getValuesTheeDays#0;class#HostController#0" expanded="false" />
-            <element signature="e#13999#14067#0" expanded="false" />
             <element signature="method#getValuesDay#0;class#HostController#0" expanded="false" />
-            <element signature="e#14635#14698#0" expanded="false" />
             <element signature="method#lastDay#0;class#HostController#0" expanded="false" />
-            <element signature="e#15268#15338#0" expanded="false" />
             <element signature="method#chartClickHour#0;class#HostController#0" expanded="false" />
-            <element signature="e#15917#15994#0" expanded="false" />
             <element signature="method#chartClick#0;class#HostController#0" expanded="false" />
-            <element signature="e#16576#16652#0" expanded="false" />
             <element signature="method#chartClickOneMinutes#0;class#HostController#0" expanded="false" />
-            <element signature="e#17241#17318#0" expanded="false" />
             <element signature="method#addFavorites#0;class#HostController#0" expanded="false" />
             <element signature="method#dellFavorites#0;class#HostController#0" expanded="false" />
           </folding>
@@ -1701,8 +1551,10 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="1637" max-vertical-offset="4658">
           <caret line="434" column="65" selection-start-line="434" selection-start-column="65" selection-end-line="434" selection-end-column="65" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="e#692#703#0" expanded="false" />
+            <element signature="e#1031#1032#0" expanded="false" />
+            <element signature="e#1101#1102#0" expanded="false" />
             <element signature="method#setOverMaxValue#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#lessMinValue#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#setLessMinValue#0;class#MetricStorage#0" expanded="false" />
@@ -1713,6 +1565,8 @@
             <element signature="method#setResolvedMetric#1;class#MetricStorage#0" expanded="false" />
             <element signature="method#getMetricNotResolvedLength#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getMetricNotResolvedLength#1;class#MetricStorage#0" expanded="false" />
+            <element signature="e#11346#11347#0" expanded="false" />
+            <element signature="e#11434#11435#0" expanded="false" />
             <element signature="method#availableHost#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#setNotAvailableHost#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#setAvailableHost#0;class#MetricStorage#0" expanded="false" />
@@ -1792,13 +1646,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1751" max-vertical-offset="5151">
-          <caret line="117" column="25" selection-start-line="117" selection-start-column="25" selection-end-line="118" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/dinamicChart.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.48300537" vertical-offset="172" max-vertical-offset="850">
@@ -1835,25 +1682,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.8076925" vertical-offset="902" max-vertical-offset="1428">
-          <caret line="193" column="49" selection-start-line="193" selection-start-column="49" selection-end-line="193" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/core/models/Problem.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8175313" vertical-offset="410" max-vertical-offset="1241">
           <caret line="71" column="32" selection-start-line="71" selection-start-column="32" selection-end-line="71" selection-end-column="32" />
           <folding>
-            <element signature="e#1370#1371#0" expanded="true" />
-            <element signature="e#1418#1419#0" expanded="true" />
-            <element signature="e#1460#1461#0" expanded="true" />
-            <element signature="e#1492#1493#0" expanded="true" />
-            <element signature="e#1522#1523#0" expanded="true" />
-            <element signature="e#1566#1567#0" expanded="true" />
-            <element signature="e#1604#1605#0" expanded="true" />
+            <element signature="e#1370#1371#0" expanded="false" />
+            <element signature="e#1418#1419#0" expanded="false" />
+            <element signature="e#1460#1461#0" expanded="false" />
+            <element signature="e#1492#1493#0" expanded="false" />
+            <element signature="e#1522#1523#0" expanded="false" />
+            <element signature="e#1566#1567#0" expanded="false" />
+            <element signature="e#1604#1605#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1874,27 +1714,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/homeCharts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1666" max-vertical-offset="4488">
-          <caret line="298" column="20" selection-start-line="298" selection-start-column="20" selection-end-line="298" selection-end-column="20" />
-          <folding>
-            <element signature="n#!!block;n#min#0" expanded="false" />
-            <element signature="n#!!block;n#plus#0" expanded="false" />
-            <element signature="n#!!block;n#onWheel#0" expanded="false" />
-            <element signature="n#!!block;n#weelIn#0" expanded="false" />
-            <element signature="n#!!block;n#weelOut#0" expanded="false" />
-            <element signature="n#!!block;n#keyEvent#0" expanded="false" />
-            <element signature="n#!!block;n#clickEvent#0" expanded="false" />
-            <element signature="n#!!block;n#updateChart#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/problems.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.192307" vertical-offset="1748" max-vertical-offset="2482">
-          <caret line="185" column="202" selection-start-line="185" selection-start-column="202" selection-end-line="185" selection-end-column="202" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1765" max-vertical-offset="2482">
+          <caret line="186" column="29" selection-start-line="186" selection-start-column="29" selection-end-line="186" selection-end-column="29" />
           <folding>
             <element signature="n#nav#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -1904,19 +1727,54 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/core/models/MetricState.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0" vertical-offset="97" max-vertical-offset="1258">
+        <state vertical-scroll-proportion="0.0" vertical-offset="97" max-vertical-offset="1258">
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="e#743#744#0" expanded="false" />
+            <element signature="e#768#769#0" expanded="false" />
+            <element signature="e#801#802#0" expanded="false" />
+            <element signature="e#829#830#0" expanded="false" />
+            <element signature="e#861#862#0" expanded="false" />
+            <element signature="e#889#890#0" expanded="false" />
+            <element signature="e#931#932#0" expanded="false" />
+            <element signature="e#965#966#0" expanded="false" />
+            <element signature="e#995#996#0" expanded="false" />
+            <element signature="e#1023#1024#0" expanded="false" />
+            <element signature="e#1063#1064#0" expanded="false" />
+            <element signature="e#1097#1098#0" expanded="false" />
+            <element signature="e#1125#1126#0" expanded="false" />
+            <element signature="e#1151#1152#0" expanded="false" />
+            <element signature="e#1187#1188#0" expanded="false" />
+            <element signature="e#1217#1218#0" expanded="false" />
+            <element signature="e#1254#1255#0" expanded="false" />
+            <element signature="e#1287#1288#0" expanded="false" />
+            <element signature="e#1339#1340#0" expanded="false" />
+            <element signature="e#1383#1384#0" expanded="false" />
+            <element signature="e#1418#1419#0" expanded="false" />
+            <element signature="e#1449#1450#0" expanded="false" />
+            <element signature="e#1498#1499#0" expanded="false" />
+            <element signature="e#1538#1539#0" expanded="false" />
+            <element signature="e#1573#1574#0" expanded="false" />
+            <element signature="e#1604#1605#0" expanded="false" />
+            <element signature="e#1652#1653#0" expanded="false" />
+            <element signature="e#1692#1693#0" expanded="false" />
+            <element signature="e#1727#1728#0" expanded="false" />
+            <element signature="e#1758#1759#0" expanded="false" />
+            <element signature="e#1806#1807#0" expanded="false" />
+            <element signature="e#1846#1847#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/core/MetricStorage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.689655" vertical-offset="9069" max-vertical-offset="12325">
+        <state vertical-scroll-proportion="0.0" vertical-offset="9069" max-vertical-offset="12325">
           <caret line="720" column="31" selection-start-line="720" selection-start-column="31" selection-end-line="720" selection-end-column="94" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="e#692#703#0" expanded="false" />
+            <element signature="e#1031#1032#0" expanded="false" />
+            <element signature="e#1101#1102#0" expanded="false" />
             <element signature="method#setOverMaxValue#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#lessMinValue#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#setLessMinValue#0;class#MetricStorage#0" expanded="false" />
@@ -1927,6 +1785,8 @@
             <element signature="method#setResolvedMetric#1;class#MetricStorage#0" expanded="false" />
             <element signature="method#getMetricNotResolvedLength#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getMetricNotResolvedLength#1;class#MetricStorage#0" expanded="false" />
+            <element signature="e#11346#11347#0" expanded="false" />
+            <element signature="e#11434#11435#0" expanded="false" />
             <element signature="method#availableHost#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#setNotAvailableHost#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#setAvailableHost#0;class#MetricStorage#0" expanded="false" />
@@ -1966,76 +1826,98 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34888437" vertical-offset="1715" max-vertical-offset="2822">
           <caret line="130" column="21" selection-start-line="130" selection-start-column="21" selection-end-line="130" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2752" max-vertical-offset="3604">
+          <caret line="195" column="87" selection-start-line="195" selection-start-column="87" selection-end-line="195" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/homeCharts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="258" max-vertical-offset="4233">
+          <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+          <folding>
+            <element signature="n#!!block;n#buttons#0" expanded="false" />
+            <element signature="n#!!block;n#min#0" expanded="false" />
+            <element signature="n#!!block;n#plus#0" expanded="false" />
+            <element signature="n#!!block;n#onWheel#0" expanded="false" />
+            <element signature="n#!!block;n#weelIn#0" expanded="false" />
+            <element signature="n#!!block;n#weelOut#0" expanded="false" />
+            <element signature="n#!!block;n#keyEvent#0" expanded="false" />
+            <element signature="n#!!block;n#clickEvent#0" expanded="false" />
+            <element signature="n#!!block;n#updateChart#0" expanded="false" />
+            <marker date="1458309489022" expanded="true" signature="9584:9604" placeholder="..." />
+            <marker date="1458309489022" expanded="true" signature="12483:12503" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2193">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/addHost.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41463414" vertical-offset="2397" max-vertical-offset="3162">
+          <caret line="154" column="53" selection-start-line="154" selection-start-column="53" selection-end-line="155" selection-end-column="99" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/HostController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1120" max-vertical-offset="3400">
-          <caret line="118" column="37" selection-start-line="118" selection-start-column="37" selection-end-line="118" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2125" max-vertical-offset="5712">
+          <caret line="139" column="0" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
           <folding>
-            <element signature="method#getHostRow#0;class#HostController#0" expanded="false" />
-            <element signature="method#getAllProblemsCount#0;class#HostController#0" expanded="false" />
-            <element signature="method#getProblemsCount#0;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricProblems#0;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricProblems#1;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricProblems#2;class#HostController#0" expanded="false" />
-            <element signature="method#getMetrics#0;class#HostController#0" expanded="false" />
-            <element signature="method#getMetricRow#0;class#HostController#0" expanded="false" />
-            <element signature="method#getHostsProblemsCount#0;class#HostController#0" expanded="false" />
-            <element signature="method#getHostsProblems#0;class#HostController#0" expanded="false" />
-            <element signature="method#hostsPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#addHostPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#saveHost#0;class#HostController#0" expanded="false" />
-            <element signature="method#returnHosts#0;class#HostController#0" expanded="false" />
-            <element signature="e#6255#6275#0" expanded="false" />
-            <element signature="e#7770#7806#0" expanded="false" />
-            <element signature="method#problemsPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveHost#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveHostAll#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveMetric#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveMetricHostsPage#0;class#HostController#0" expanded="false" />
-            <element signature="method#resolveMetric#1;class#HostController#0" expanded="false" />
-            <element signature="e#10367#10410#0" expanded="false" />
-            <element signature="method#editInstMetricPage#0;class#HostController#0" expanded="false" />
-            <element signature="e#11100#11162#0" expanded="false" />
             <element signature="method#getAll#0;class#HostController#0" expanded="false" />
-            <element signature="e#11403#11472#0" expanded="false" />
             <element signature="method#getValuesYear#0;class#HostController#0" expanded="false" />
-            <element signature="e#12043#12116#0" expanded="false" />
             <element signature="method#getValuesSixMonth#0;class#HostController#0" expanded="false" />
-            <element signature="e#12699#12769#0" expanded="false" />
             <element signature="method#getValuesMonth#0;class#HostController#0" expanded="false" />
-            <element signature="e#13343#13416#0" expanded="false" />
             <element signature="method#getValuesTheeDays#0;class#HostController#0" expanded="false" />
-            <element signature="e#13999#14067#0" expanded="false" />
             <element signature="method#getValuesDay#0;class#HostController#0" expanded="false" />
-            <element signature="e#14635#14698#0" expanded="false" />
             <element signature="method#lastDay#0;class#HostController#0" expanded="false" />
-            <element signature="e#15268#15338#0" expanded="false" />
             <element signature="method#chartClickHour#0;class#HostController#0" expanded="false" />
-            <element signature="e#15917#15994#0" expanded="false" />
             <element signature="method#chartClick#0;class#HostController#0" expanded="false" />
-            <element signature="e#16576#16652#0" expanded="false" />
             <element signature="method#chartClickOneMinutes#0;class#HostController#0" expanded="false" />
-            <element signature="e#17241#17318#0" expanded="false" />
             <element signature="method#addFavorites#0;class#HostController#0" expanded="false" />
             <element signature="method#dellFavorites#0;class#HostController#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.8965516" vertical-offset="317" max-vertical-offset="5236">
+          <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.5172415" vertical-offset="62507" max-vertical-offset="117827">
+          <caret line="3688" column="14" selection-start-line="3688" selection-start-column="14" selection-end-line="3688" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/hosts.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17471264" vertical-offset="273" max-vertical-offset="1598">
-          <caret line="25" column="43" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.70576924" vertical-offset="1605" max-vertical-offset="2703">
+          <caret line="248" column="25" selection-start-line="248" selection-start-column="25" selection-end-line="248" selection-end-column="25" />
           <folding>
-            <element signature="n#nav#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
