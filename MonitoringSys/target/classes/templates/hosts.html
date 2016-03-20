@@ -44,12 +44,14 @@
                 var hostId = [[${hostId}]];
                 var instMetricId = [[${instMetricId}]];
                 var getMetrics = [[${getMetrics}]];
+                var date = [[${startDate}]];
+                var endDate = [[${endDate}]];
                 console.log(getMetrics);
         //		alert(title+'->'+hostId+'->'+instMetricId+"->"+index);
                 if(instMetrics == 'show') {
                     if(title!='title') {
                         showChart();
-                        loadChart3(hostId, instMetricId, title);
+                        loadChart3(hostId, instMetricId, title,date,endDate);
                     }
                     showMetrics();
 //                    loadChart3(hostId, instMetricId, title);
@@ -238,7 +240,20 @@
             <table id="hostListTable" class="table table-striped table-advance table-hover">
                 <thead>
                 <tr>
-                    <th class="hidden-phone"><i class="fa fa-home"></i> Host</th>
+                    <th>
+                        <div class="dropdown">
+                            <i class="dropdown-toggle cursor_pointer fa fa-home" data-toggle="dropdown"> Host</i>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-header">Поиск</li>
+                                <li>
+                                    <div>
+                                        <input type="password" class="form-control" placeholder="Login" name="login" />
+                                        <a class="fa fa-search cursor_pointer"></a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </th>
                     <th><i class="fa fa-play"></i>Services</th>
                     <th><i class=" fa fa-stop"></i>Errors</th>
                     <th><i class=" fa fa-edit"></i>Status</th>

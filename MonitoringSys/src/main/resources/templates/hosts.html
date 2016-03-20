@@ -44,12 +44,14 @@
                 var hostId = [[${hostId}]];
                 var instMetricId = [[${instMetricId}]];
                 var getMetrics = [[${getMetrics}]];
+                var date = [[${startDate}]];
+                var endDate = [[${endDate}]];
                 console.log(getMetrics);
         //		alert(title+'->'+hostId+'->'+instMetricId+"->"+index);
                 if(instMetrics == 'show') {
                     if(title!='title') {
                         showChart();
-                        loadChart3(hostId, instMetricId, title);
+                        loadChart3(hostId, instMetricId, title,date,endDate);
                     }
                     showMetrics();
 //                    loadChart3(hostId, instMetricId, title);
@@ -243,7 +245,12 @@
                             <i class="dropdown-toggle cursor_pointer fa fa-home" data-toggle="dropdown"> Host</i>
                             <ul class="dropdown-menu">
                                 <li class="dropdown-header">Поиск</li>
-                                <li><input type="password" class="form-control" placeholder="Login" name="login" /></li>
+                                <li>
+                                    <div>
+                                        <input type="password" class="form-control" placeholder="Login" name="login" />
+                                        <a class="fa fa-search cursor_pointer"></a>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                     </th>

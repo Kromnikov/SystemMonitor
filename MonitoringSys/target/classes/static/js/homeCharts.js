@@ -211,24 +211,6 @@ function clickEvent() {
 
 function updateChart(jsonData) {
     var chart = $('#' + instMetricId).highcharts();
-    //while(chart.series.length > 2)
-    //    chart.series[0].remove(true);
-    //var i = 0;
-    //$.each(jsonData.values, function (key, value) {
-    //    //console.log(i);
-    //    if (i > chart.series[0].data.length-1) {
-    //        chart.series[0].addPoint({marker:{fillColor:'#659355'},x: key * +1, y: value, color:'#659355'}, false, false);
-    //        i = i + 1;
-    //    } else {
-    //        chart.series[0].data[i].update({
-    //            x: key * +1,
-    //            y: value
-    //        });
-    //        i = i + 1;
-    //    }
-    //
-    //});
-    //chart.redraw();
 
     var chartData=[];
     $.each(jsonData.values, function (key, value) {

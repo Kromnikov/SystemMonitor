@@ -3720,10 +3720,17 @@ tbody.collapse.in {
   color: #333;
   white-space: nowrap;
 }
-.dropdown-menu > li > input{
+.dropdown-menu > li > div {
   margin-left: 5%;
-  width: 90%;
-
+  display: block;
+}
+.dropdown-menu > li > div > input{
+  width: 85%;
+  display: inline-block;
+}
+.dropdown-menu > li > div > a{
+  width: 10%;
+  display: inline-block;
 }
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {

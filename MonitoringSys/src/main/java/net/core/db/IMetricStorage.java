@@ -89,7 +89,7 @@ public interface IMetricStorage {
 
     public Date getLastDate(int hostId, int metricId);
 
-    public chartValues getAllValues(int host_id, int metricId);
+    public chartValuesO getAllValues(int host_id, int metricId);
 
     public chartValues getValuesLastDay(int host_id, int metricId, Date dateTime);
 

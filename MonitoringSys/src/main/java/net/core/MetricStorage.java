@@ -414,14 +414,45 @@ public class MetricStorage implements IMetricStorage {
     }
 
     @Transactional
-    public chartValues getAllValues(int host_id, int metricId) {
+    public chartValuesO getAllValues(int host_id, int metricId) {
+        long defTime= 10000;
         String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where metric = " + metricId + " and host = " + host_id + " order by date_time ";
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+        Map<Long, Object> map = new HashMap<>();
+        long x=0,prevX=0,Dif=0;
+        Object y=0,prevY=0;
+        if (rows.size() > 0) {
+            prevX = (long) (((java.sql.Timestamp) rows.get(0).get("date_time")).getTime());
+            prevY = (double) rows.get(0).get("value");
+            map.put(prevX, (double)prevY);
+                for (int i = 1; i < rows.size(); i++) {
+                    x = (long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
+                    y = (double) rows.get(i).get("value");
+                    Dif = x - prevX;
+                    while (Dif>defTime) {
+                        prevX += defTime;
+                        prevY = null;
+                        Dif = x - prevX;
+                        map.put(prevX, prevY);
+                    }
+                    map.put(x, y);
+                    prevX=x;
+                    prevY=y;
+                }
+        }
+        return new chartValuesO(rows.size(), new TreeMap<Long, Object>(map));
+//        return averaging(jdbcTemplateObject.queryForList(sql));
+    }
+
+    @Transactional
+    public chartValues getBetweenValues(int host_id, int metricId,long startDate,long endDate) {
+        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where metric = " + metricId + " and host = " + host_id + "and between '" + dateFormat.format(startDate) + "'and '" + dateFormat.format(endDate) + "' order by date_time ";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         Map<Long, Double> map = new HashMap<>();
         if (rows.size() > 0) {
-                for (int i = 0; i < rows.size(); i++) {
-                    map.put((long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()), (double) rows.get(i).get("value"));
-                }
+            for (int i = 0; i < rows.size(); i++) {
+                map.put((long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()), (double) rows.get(i).get("value"));
+            }
         }
         return new chartValues(rows.size(), new TreeMap<Long, Double>(map));
 //        return averaging(jdbcTemplateObject.queryForList(sql));
