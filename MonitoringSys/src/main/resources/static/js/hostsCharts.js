@@ -14,7 +14,7 @@ function loadChart3(hostId1, instMetricId1, title1,datetime1,endDatetime1) {
     hostId=hostId1;
     instMetricId=instMetricId1;
     title=title1;
-    $.getJSON('/getAll?hostId=' + hostId + '&instMetricId=' + instMetricId , function (data, status) {
+    $.getJSON('/chartClickHour?hostId=' + hostId + '&instMetricId=' + instMetricId , function (data, status) {
         console.log(instMetricId);
         onWheel();
         keyEvent();
@@ -225,11 +225,12 @@ function chart2(jsonData, title) {
 
         chart: {
             type: 'spline',
-            events: {
-                keydown: function () {
-                    alert("error");
-                }
-            }
+            dashStyle:'Dot'
+            //events: {
+            //    keydown: function () {
+            //        alert("error");
+            //    }
+            //}
         },
         title: {
             text: title
@@ -252,9 +253,33 @@ function chart2(jsonData, title) {
         },
 
         plotOptions: {
-            series: {
-                compare: 'percent'
-            }
+            //series: {
+            //    compare: 'percent'
+            //},
+            //area: {
+            //    fillColor: {
+            //        linearGradient: {
+            //            x1: 0,
+            //            y1: 0,
+            //            x2: 0,
+            //            y2: 1
+            //        },
+            //        stops: [
+            //            [0, Highcharts.getOptions().colors[0]],
+            //            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+            //        ]
+            //    },
+            //    marker: {
+            //        radius: 2
+            //    },
+            //    lineWidth: 1,
+            //    states: {
+            //        hover: {
+            //            lineWidth: 1
+            //        }
+            //    },
+            //    threshold: null
+            //}
         },
 
         tooltip: {
@@ -265,24 +290,10 @@ function chart2(jsonData, title) {
         exporting: {
             buttons: {
                 contextButton: {
-                    //text: 'Dell from home page',
-                    //onclick: function () {
-                    //    window.location.href = "/dellFromFavorites?favoritesId=" + favoritesId;
-                    //}
-
                     text: 'Download',
                     menuItems: Highcharts.getOptions().exporting.buttons.contextButton.menuItems.splice(2)
                 },
-                //exportButton: {
-                //    text: 'Download',
-                //    menuItems: Highcharts.getOptions().exporting.buttons.contextButton.menuItems.splice(2)
-                //},
                 printButton: {
-                    //text: 'Print',
-                    //onclick: function () {
-                    //    this.print();
-                    //}
-
                     text: 'Add to home page',
                     onclick: function () {
                         window.location.href = "/addToFavorites?hostId="+hostId+"&instMetricId="+instMetricId+"&title="+title;
@@ -314,7 +325,12 @@ function chart2(jsonData, title) {
                     data.push({
                         x: key * +1,
                         y: value,
-                        marker: {fillColor: 'black'}
+                        marker: {fillColor: 'black'},
+
+                        //y:22.05,
+                        //marker: {
+                        //    symbol: 'url(https://www.highcharts.com/samples/graphics/sun.png)'
+                        //}
                     });
                 });
                 return data;

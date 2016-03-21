@@ -108,11 +108,11 @@ public interface IMetricStorage {
 
 //    public chartValues getValuesByZoom(int host_id, int metricId, Date dateTime);
 
-    public chartValues getValuesLastHour(int host_id, int metricId, Date dateTime);
+    public chartValuesO getValuesLastHour(int host_id, int metricId, Date dateTime);
 
-    public chartValues getValuesTheeMinutes(int host_id, int metricId, Date dateTime);
+    public chartValuesO getValuesTheeMinutes(int host_id, int metricId, Date dateTime);
 
-    public chartValues getValuesOneMinutes(int host_id, int metricId, Date dateTime);
+    public chartValuesO getValuesOneMinutes(int host_id, int metricId, Date dateTime);
 
 
 

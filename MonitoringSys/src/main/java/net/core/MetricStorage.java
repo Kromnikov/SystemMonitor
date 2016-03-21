@@ -413,9 +413,11 @@ public class MetricStorage implements IMetricStorage {
         return new chartValues(rowSize, new TreeMap<Long, Double>(map));
     }
 
+
+
     @Transactional
     public chartValuesO getAllValues(int host_id, int metricId) {
-        long defTime= 10000;
+        long defTime= 10*1000;//10sek
         String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where metric = " + metricId + " and host = " + host_id + " order by date_time ";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         Map<Long, Object> map = new HashMap<>();
@@ -445,25 +447,10 @@ public class MetricStorage implements IMetricStorage {
     }
 
     @Transactional
-    public chartValues getBetweenValues(int host_id, int metricId,long startDate,long endDate) {
-        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where metric = " + metricId + " and host = " + host_id + "and between '" + dateFormat.format(startDate) + "'and '" + dateFormat.format(endDate) + "' order by date_time ";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-        Map<Long, Double> map = new HashMap<>();
-        if (rows.size() > 0) {
-            for (int i = 0; i < rows.size(); i++) {
-                map.put((long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()), (double) rows.get(i).get("value"));
-            }
-        }
-        return new chartValues(rows.size(), new TreeMap<Long, Double>(map));
-//        return averaging(jdbcTemplateObject.queryForList(sql));
-    }
-
-    @Transactional
     public chartValues getValuesLastDay(int host_id, int metricId, Date dateTime) {
         Date nDate = (Date) dateTime.clone();
         nDate.setHours(dateTime.getHours() - 24);
         String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
-//        return averaging(jdbcTemplateObject.queryForList(sql));
 
 
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
@@ -473,7 +460,6 @@ public class MetricStorage implements IMetricStorage {
         nDate = ((java.sql.Timestamp) rows.get(0).get("date_time"));
         nDate.setSeconds(0);
         nDate.setMinutes(0);
-//        System.out.println(nDate);
         for (int i = 1; i < rowSize; i++) {
             if ((nDate.getHours() == ((java.sql.Timestamp) rows.get(i).get("date_time")).getHours()) & (nDate.getDay() == ((java.sql.Timestamp) rows.get(i).get("date_time")).getDay())) {
                 values += (double) rows.get(i).get("value");
@@ -687,74 +673,123 @@ public class MetricStorage implements IMetricStorage {
     }
 
     @Transactional
-    public chartValues getValuesLastHour(int host_id, int metricId,  Date dateTime) {
+    public chartValuesO getValuesLastHour(int host_id, int metricId,  Date dateTime) {
         Date nDate = (Date) dateTime.clone();
         nDate.setMinutes(dateTime.getMinutes() - 30);
         dateTime.setMinutes(dateTime.getMinutes() + 30);
         String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
-//        return averaging(jdbcTemplateObject.queryForList(sql));
-
-
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-        int rowSize = rows.size(), counter = 1;
-        Map<Long, Double> map = new HashMap<>();
-        if (rowSize > 0) {
-            double values = (double) rows.get(0).get("value");
-            nDate = ((java.sql.Timestamp) rows.get(0).get("date_time"));
-            nDate.setSeconds(0);
-            for (int i = 1; i < rowSize; i++) {
-                if (nDate.getMinutes() == ((java.sql.Timestamp) rows.get(i).get("date_time")).getMinutes()) {
-                    values += (double) rows.get(i).get("value");
-                    counter++;
-                } else {
-                    map.put((long) nDate.getTime(), values / counter);
-                    nDate = ((java.sql.Timestamp) rows.get(i).get("date_time"));
-                    nDate.setSeconds(0);
-                    values = (double) rows.get(i).get("value");
-                    counter = 1;
-                }
-                map.put((long) nDate.getTime(), values / counter);
-            }
+
+        nDate.setSeconds(0);
+        nDate.setMinutes(0);
+        Map<Long, Object> map = new HashMap<>();
+
+        if (rows.size() > 0) {
+            map = averaging(rows, nDate,"hour");
         }
-        return new chartValues(rowSize, new TreeMap<Long, Double>(map));
+        return new chartValuesO(rows.size(), new TreeMap<Long, Object>(map));
     }
 
     @Transactional
-    public chartValues getValuesTheeMinutes(int host_id, int metricId,  Date dateTime) {
-        Map<Long, Double> map = new HashMap<>();
+    public chartValuesO getValuesTheeMinutes(int host_id, int metricId,  Date dateTime) {
+        long defTime= 10*1000;//10sek
         Date nDate = (Date) dateTime.clone();
         nDate.setMinutes(dateTime.getMinutes() - 1);
         dateTime.setMinutes(dateTime.getMinutes() + 1);
         String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
 
-        int rowSize = rows.size();
-        if (rowSize > 0) {
-            for (int i = 0; i < rowSize; i++) {
-                map.put((long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()), (double) rows.get(i).get("value"));
-            }
+        Map<Long, Object> map = new HashMap<>();
+        if (rows.size() > 0) {
+            map = averaging(rows, nDate,"minutes");
         }
-        return new chartValues(rowSize, new TreeMap<Long, Double>(map));
+        return new chartValuesO(rows.size(), new TreeMap<Long, Object>(map));
     }
 
     @Transactional
-    public chartValues getValuesOneMinutes(int host_id, int metricId,  Date dateTime) {
-        Map<Long, Double> map = new HashMap<>();
+    public chartValuesO getValuesOneMinutes(int host_id, int metricId,  Date dateTime) {
+        long defTime= 10*1000;//10sek
         Date nDate = (Date) dateTime.clone();
         nDate.setSeconds(dateTime.getSeconds() - 30);
         dateTime.setSeconds(dateTime.getSeconds() + 30);
         String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
 
-        int rowSize = rows.size();
-        if (rowSize > 0) {
-            for (int i = 0; i < rowSize; i++) {
-                map.put((long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()), (double) rows.get(i).get("value"));
-            }
+        Map<Long, Object> map = new HashMap<>();
+        if (rows.size() > 0) {
+            map = averaging(rows, nDate,"minutes");
         }
-        return new chartValues(rowSize, new TreeMap<Long, Double>(map));
+        return new chartValuesO(rows.size(), new TreeMap<Long, Object>(map));
     }
 
+
+    private Map<Long, Object> averaging(List<Map<String, Object>> rows,Date nDate,String rout) {
+        Map<Long, Object> map = new HashMap<>();
+        int countPoint=0,counter=1;
+        double sumValues=0;
+        long x=0,prevX=0,Dif=0,defTime= 10*1000
+                ,startTime=nDate.getTime(),pStartTime=nDate.getTime();
+        Object y=0,prevY=0;
+        prevX = (long) (((java.sql.Timestamp) rows.get(0).get("date_time")).getTime());
+        prevY = (double) rows.get(0).get("value");
+
+        switch (rout) {
+            case "minutes":
+            {
+                prevX = (long) (((java.sql.Timestamp) rows.get(0).get("date_time")).getTime());
+                prevY = (double) rows.get(0).get("value");
+                map.put(prevX, (double)prevY);
+                for (int i = 1; i < rows.size(); i++) {
+                    x = (long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
+                    y = (double) rows.get(i).get("value");
+                    Dif = x - prevX;
+                    while (Dif>defTime) {
+                        prevX += defTime;
+                        prevY = null;
+                        Dif = x - prevX;
+                        map.put(prevX, prevY);
+                    }
+                    map.put(x, y);
+                    prevX=x;
+                    prevY=y;
+                }
+            }
+            case "hour": {
+                for (int i = 0; i < 60; i++) {
+                    for (int j = 0; j < 6; j++) {
+                        if (startTime < prevX) {
+                            startTime += defTime;
+                        } else {
+                            sumValues += (double) prevY;
+                            countPoint++;
+                            prevY = (double) rows.get(counter).get("value");
+                            prevX = (long) (((java.sql.Timestamp) rows.get(counter).get("date_time")).getTime());
+                            counter++;
+                            startTime += defTime;
+                        }
+                    }
+                    if (countPoint > 0) {
+//                    System.out.println(new Date(pStartTime)+"-"+(new BigDecimal(sumValues / countPoint).setScale(3, RoundingMode.UP).doubleValue()));
+                        map.put(pStartTime, new BigDecimal(sumValues / countPoint).setScale(3, RoundingMode.UP).doubleValue());
+                        countPoint = 0;
+                        sumValues = 0;
+                    } else {
+//                    System.out.println(new Date(pStartTime)+"-null");
+                        map.put(pStartTime, null);
+                    }
+                    pStartTime = startTime;
+                }
+            }
+        }
+
+        return map;
+
+    }
+
+//    private chartValuesO averagingOverMinutes(Map<Long, Object> map) {
+//
+//        return new chartValuesO(0, new TreeMap<Long, Object>(map));
+//    }
 
     @Transactional
     public chartValues getValuesByZoom(int host_id, int metricId, int zoom) {
