@@ -31,7 +31,7 @@ public class HostController {
         return this.hosts.getAll();
     }
 
-    public List<hostRow> getHostRow() throws SQLException {
+    public List<HostRow> getHostRow() throws SQLException {
         return metricStorage.getHostRow();
     }
 
@@ -94,27 +94,19 @@ public class HostController {
         modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
         return modelAndView;
     }
-    @RequestMapping(params={"search"},value = "/hosts",method= RequestMethod.GET)
-    public ModelAndView hostsPageSearch(String location) throws SQLException {
+    @RequestMapping(params={"search","location"},value = "/hosts",method= RequestMethod.GET)
+    public ModelAndView hostsPageSearchLocation(String location) throws SQLException {
         ModelAndView modelAndView = new ModelAndView();
-        List<hostRow> hostRows = new ArrayList<>();
-        List<SSHConfiguration> sshConfigurations = new ArrayList<>();
-        //sshConfigurations=hosts.getByLocation("HOME");
-        sshConfigurations=metricStorage.getHostsByLocation(location);
-        hostRows=metricStorage.getHostRow();
-        boolean b=false;
+        List<HostRow> hostRows = new ArrayList<HostRow>();
+        hostRows= getHostRow();
         int length = hostRows.size();
-        for (int i=0; i<hostRows.size(); i++){
-            b=false;
-            for (int j=0; j<sshConfigurations.size(); j++) {
-                if (hostRows.get(i).getId()==sshConfigurations.get(j).getId()) {
-                    b = true;
-                }
-            }
-            if (b==false){
+        int i=0;
+        while (i<hostRows.size()) {
+            if (hostRows.get(i).getLocation().indexOf(location)==-1) {
                 hostRows.remove(i);
                 i--;
             }
+            i++;
         }
         modelAndView.setViewName("hosts");
         modelAndView.addObject("hostId", 0);
@@ -123,6 +115,30 @@ public class HostController {
         modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
         return modelAndView;
     }
+
+    @RequestMapping(params={"search","hostName"},value = "/hosts",method= RequestMethod.GET)
+    public ModelAndView hostsPageSearchHostName(String hostName) throws SQLException {
+        ModelAndView modelAndView = new ModelAndView();
+        List<HostRow> hostRows = new ArrayList<HostRow>();
+        hostRows= getHostRow();
+        int length = hostRows.size();
+        int i=0;
+        while (i<hostRows.size()) {
+            if (hostRows.get(i).getHostName().indexOf(hostName)==-1) {
+                hostRows.remove(i);
+                i--;
+            }
+            i++;
+        }
+        modelAndView.setViewName("hosts");
+        modelAndView.addObject("hostId", 0);
+        modelAndView.addObject("title", "title");
+        modelAndView.addObject("getHosts", hostRows);
+        modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
+        return modelAndView;
+    }
+
+
 
     @RequestMapping(value = "/host")
     public ModelAndView hostsPage(@RequestParam("hostId")  int hostId, @RequestParam(required = false, defaultValue = "hidden") String instMetrics, @RequestParam(required = false, defaultValue = "hidden") String problems, @RequestParam(required = false, defaultValue = "-1") int instMetricId, @RequestParam(required = false, defaultValue = "title") String title) throws SQLException, ParseException {

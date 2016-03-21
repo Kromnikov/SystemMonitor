@@ -1,3 +1,8 @@
+.cursor_pointer {
+    cursor: pointer;
+
+}
+
 
 .expand {
     background-color: red;
@@ -70,6 +75,10 @@
     background: url("../img/yellow_cub.jpg") repeat;
     color:#ffffff;
 }
+.orange {
+    background: url("../img/orange-cube.jpg") repeat;
+    color:#ffffff;
+}
 .white-text {
     color:#ffffff;
 }
@@ -115,7 +124,7 @@ li a {
     background-color: transparent;
 }
 .icon2 {
-    margin-left: 100%;
+    margin-left: 80%;
     margin-top: 10%;
     font-size: 4em;
 }

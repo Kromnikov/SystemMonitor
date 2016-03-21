@@ -6,10 +6,7 @@ import net.core.db.IMetricStorage;
 import net.core.hibernate.services.HostService;
 import net.core.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementSetter;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,8 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.sql.DataSource;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -914,15 +909,16 @@ public class MetricStorage implements IMetricStorage {
 
     //hostsRows
     @Transactional
-    public List<hostRow> getHostRow() throws SQLException {
-        List<hostRow> hostrows = new ArrayList<>();
+    public List<HostRow> getHostRow() throws SQLException {
+        List<HostRow> hostrows = new ArrayList<>();
         String sql = "(select count(*) as countServices,host,(select count(*)from \"METRIC_STATE\" where host_id = im.host) as countProblems ,(select count(*)from \"HOST_STATE\" where host = im.host and (\"end_datetime\" is null and \"start_datetime\" is not null)) as status from \"INSTANCE_METRIC\" as im group by host)";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
 
         for (SSHConfiguration host : this.hosts.getAll()) {
-            hostRow hostRow = new hostRow();
+            HostRow hostRow = new HostRow();
             hostRow.setId(host.getId());
             hostRow.setHostName(host.getName());
+            hostRow.setLocation(host.getLocation());
             for (Map row : rows) {
                 if(host.getId()==(int) row.get("host")) {
                     hostRow.setServicesCount(Integer.parseInt(row.get("countServices").toString()));

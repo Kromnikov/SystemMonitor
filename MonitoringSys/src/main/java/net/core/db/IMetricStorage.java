@@ -99,7 +99,7 @@ public interface IMetricStorage {
 
 
     //hostsRows
-    public List<hostRow> getHostRow() throws SQLException;
+    public List<HostRow> getHostRow() throws SQLException;
 
     //metricRows
     public List<metricRow> getMetricRow(int hostId) throws SQLException;

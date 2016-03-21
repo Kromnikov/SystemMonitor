@@ -3,22 +3,24 @@ package net.core.models;
 /**
  * Created by Kromnikov on 13.03.2016.
  */
-public class hostRow {
+public class HostRow {
     int id;
     String hostName;
     int servicesCount;
     int errorsCount;
     String status;
+    String location;
 
-    public hostRow() {
+    public HostRow() {
     }
 
-    public hostRow(int id, String hostName, int servicesCount, int errorsCount, String status) {
+    public HostRow(int id, String hostName, int servicesCount, int errorsCount, String status, String location) {
         this.id = id;
         this.hostName = hostName;
         this.servicesCount = servicesCount;
         this.errorsCount = errorsCount;
         this.status = status;
+        this.location = location;
     }
 
     public int getId() {
@@ -59,5 +61,13 @@ public class hostRow {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }
