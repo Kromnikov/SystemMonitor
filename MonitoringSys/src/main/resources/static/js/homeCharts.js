@@ -33,6 +33,9 @@ function buttons() {
     });
 
 }
+
+
+
 function min() {
     //if (zoomCount != 0) {
     if (zoomCount == 3) {
@@ -157,6 +160,9 @@ function plus() {
         });
     }
 }
+
+
+
 function onWheel() {
     //console.log('onWheel');
 

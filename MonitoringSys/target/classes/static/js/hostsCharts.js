@@ -14,7 +14,7 @@ function loadChart3(hostId1, instMetricId1, title1,datetime1,endDatetime1) {
     hostId=hostId1;
     instMetricId=instMetricId1;
     title=title1;
-    $.getJSON('/chartClickHour?hostId=' + hostId + '&instMetricId=' + instMetricId , function (data, status) {
+    $.getJSON('/getValuesDay?hostId=' + hostId + '&instMetricId=' + instMetricId , function (data, status) {
         console.log(instMetricId);
         onWheel();
         keyEvent();
@@ -50,84 +50,99 @@ function buttons() {
 function min() {
     //if (zoomCount != 0) {
     if (zoomCount == 3) {
-        console.log('1 min --> 3 min');
         zoomCount = 2;
+        console.log('1 min --> 3 min');
         $.getJSON('/chartClickTheeMinutes?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
             chart2(data, title,1);
         });
 
     } else if (zoomCount == 2) {
-        console.log('3 min --> 1 hour');
         zoomCount = 1;
+        console.log('3 min --> 1 hour');
         $.getJSON('/chartClickHour?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
             chart2(data, title,1);
         });
     } else if (zoomCount == 1) {
-        console.log('1 hour --> day');
         zoomCount = 0;
+        console.log('1 hour --> 1 day');
         $.getJSON('/getValuesDay?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
             chart2(data, title,1);
         });
     } else if (zoomCount == 0) {
-        console.log('1 day --> 3 days');
         zoomCount = -1;
-        $.getJSON('/getValuesTheeDays?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
-            chart2(data, title,1);
-        });
-    } else if (zoomCount == -1) {
-        zoomCount = -2;
-        console.log('3 days --> 1 month');
+        console.log('1 day --> 1 month');
         $.getJSON('/getValuesMonth?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
             chart2(data, title,1);
         });
-    } else if (zoomCount == -2) {
-        zoomCount = -3;
-        console.log('1 month --> 6 months');
-        $.getJSON('/getValuesSixMonth?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
-            chart2(data, title,1);
-        });
-    } else if (zoomCount == -3) {
-        zoomCount = -4;
-        console.log('6 months --> 1 Year');
-        $.getJSON('/getValuesYear?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
-            chart2(data, title,1);
-        });
-    } else if (zoomCount == -4) {
-        zoomCount = -5;
-        console.log('1 Year --> All');
-        $.getJSON('/getAll?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
-            chart2(data, title,1);
-        });
+        //console.log('1 day --> 3 days');
+        //$.getJSON('/getValuesTheeDays?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
+        //    chart2(data, title,1);
+        //});
+    } else if (zoomCount == -1) {
+        zoomCount = -2;
+            console.log('1 month --> 1 Year');
+            $.getJSON('/getValuesYear?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
+                chart2(data, title,1);
+            });
+        //console.log('3 days --> 1 month');
+        //$.getJSON('/getValuesMonth?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
+        //    chart2(data, title,1);
+        //});
     }
+    //else if (zoomCount == -2) {
+    //    zoomCount = -3;
+    //    console.log('1 month --> 6 months');
+    //    $.getJSON('/getValuesSixMonth?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
+    //        chart2(data, title,1);
+    //    });
+    //} else if (zoomCount == -3) {
+    //    zoomCount = -4;
+    //    console.log('6 months --> 1 Year');
+    //    $.getJSON('/getValuesYear?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
+    //        chart2(data, title,1);
+    //    });
+    //} else if (zoomCount == -4) {
+    //    zoomCount = -5;
+    //    console.log('1 Year --> All');
+    //    $.getJSON('/getAll?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
+    //        chart2(data, title,1);
+    //    });
+    //}
 }
 function plus() {
-    if (zoomCount == -5) {
-        zoomCount = -4;
-        console.log('All --> 1 Year');
-        $.getJSON('/getValuesYear?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
-            chart2(data, title,1);
-        });
-    } else if (zoomCount == -4) {
-        zoomCount = -3;
-        console.log('1 Year --> 6 months');
-        $.getJSON('/getValuesSixMonth?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
-            chart2(data, title,1);
-        });
-    } else if (zoomCount == -3) {
-        zoomCount = -2;
-        console.log('6 months --> 1 month');
+    //if (zoomCount == -5) {
+    //    zoomCount = -4;
+    //    console.log('All --> 1 Year');
+    //    $.getJSON('/getValuesYear?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
+    //        chart2(data, title,1);
+    //    });
+    //} else if (zoomCount == -4) {
+    //    zoomCount = -3;
+    //    console.log('1 Year --> 6 months');
+    //    $.getJSON('/getValuesSixMonth?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
+    //        chart2(data, title,1);
+    //    });
+    //} else if (zoomCount == -3) {
+    //    zoomCount = -2;
+    //    console.log('6 months --> 1 month');
+    //    $.getJSON('/getValuesMonth?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
+    //        chart2(data, title,1);
+    //    });
+    //} else
+    if (zoomCount == -2) {
+        zoomCount = -1;
+        console.log('1 year --> 1 month');
         $.getJSON('/getValuesMonth?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
             chart2(data, title,1);
         });
-    } else if (zoomCount == -2) {
-        console.log('1 month --> 3 days');
-        zoomCount = -1;
-        $.getJSON('/getValuesTheeDays?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
-            chart2(data, title,1);
-        });
+        //console.log('1 month --> 3 days');
+        //$.getJSON('/getValuesTheeDays?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
+        //    chart2(data, title,1);
+        //});
     } else if (zoomCount == -1) {
-        console.log('3 days --> day');
         zoomCount = 0;
+        //console.log('3 days --> day');
+        console.log('1 month --> 1 day');
         $.getJSON('/getValuesDay?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
             chart2(data, title,1);
         });
@@ -224,7 +239,7 @@ function chart2(jsonData, title) {
     $('#chart_1').highcharts('StockChart', {
 
         chart: {
-            type: 'spline',
+            type: 'area',
             dashStyle:'Dot'
             //events: {
             //    keydown: function () {
@@ -242,7 +257,8 @@ function chart2(jsonData, title) {
         yAxis: {
             labels: {
                 formatter: function () {
-                    return (this.value > 0 ? ' + ' : '') + this.value + '%';
+                    //return (this.value > 0 ? ' + ' : '') + this.value + '%';
+                    return this.value;
                 }
             },
             plotLines: [{
@@ -256,30 +272,30 @@ function chart2(jsonData, title) {
             //series: {
             //    compare: 'percent'
             //},
-            //area: {
-            //    fillColor: {
-            //        linearGradient: {
-            //            x1: 0,
-            //            y1: 0,
-            //            x2: 0,
-            //            y2: 1
-            //        },
-            //        stops: [
-            //            [0, Highcharts.getOptions().colors[0]],
-            //            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-            //        ]
-            //    },
-            //    marker: {
-            //        radius: 2
-            //    },
-            //    lineWidth: 1,
-            //    states: {
-            //        hover: {
-            //            lineWidth: 1
-            //        }
-            //    },
-            //    threshold: null
-            //}
+            area: {
+                fillColor: {
+                    linearGradient: {
+                        x1: 0,
+                        y1: 0,
+                        x2: 0,
+                        y2: 1
+                    },
+                    stops: [
+                        [0, Highcharts.getOptions().colors[0]],
+                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                    ]
+                },
+                marker: {
+                    radius: 2
+                },
+                lineWidth: 1,
+                states: {
+                    hover: {
+                        lineWidth: 1
+                    }
+                },
+                threshold: null
+            }
         },
 
         tooltip: {
@@ -316,7 +332,7 @@ function chart2(jsonData, title) {
             name: 'data',
             marker: {
                 enabled: true,
-                radius: 1
+                radius: 2
             },
             data: (function () {
                 var data = [];
@@ -325,7 +341,7 @@ function chart2(jsonData, title) {
                     data.push({
                         x: key * +1,
                         y: value,
-                        marker: {fillColor: 'black'},
+                        marker: {fillColor: 'blue'}
 
                         //y:22.05,
                         //marker: {

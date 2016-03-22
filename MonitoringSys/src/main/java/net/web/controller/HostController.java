@@ -281,8 +281,8 @@ public class HostController {
 
     @RequestMapping(value = "/getValuesYear", method = RequestMethod.GET)
     @ResponseBody
-    public chartValues getValuesYear(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException {
-        chartValues values = null;
+    public chartValuesO getValuesYear(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException, ParseException {
+        chartValuesO values = null;
         if (date == 0) {
             values = metricStorage.getValuesYear(hostId, instMetricId,  metricStorage.getLastDate(hostId, instMetricId));
         } else {
@@ -311,8 +311,8 @@ public class HostController {
 
     @RequestMapping(value = "/getValuesMonth", method = RequestMethod.GET)
     @ResponseBody
-    public chartValues getValuesMonth(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException {
-        chartValues values = null;
+    public chartValuesO getValuesMonth(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException, ParseException {
+        chartValuesO values = null;
         if (date == 0) {
             values = metricStorage.getValuesMonth(hostId, instMetricId,  metricStorage.getLastDate(hostId, instMetricId));
         } else {
@@ -341,8 +341,8 @@ public class HostController {
 
     @RequestMapping(value = "/getValuesDay", method = RequestMethod.GET)
     @ResponseBody
-    public chartValues getValuesDay(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException {
-        chartValues values = null;
+    public chartValuesO getValuesDay(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException, ParseException {
+        chartValuesO values = null;
         if (date == 0) {
             values = metricStorage.getValuesDay(hostId, instMetricId,  metricStorage.getLastDate(hostId, instMetricId));
         } else {
@@ -356,8 +356,8 @@ public class HostController {
 
     @RequestMapping(value = "/lastDay", method = RequestMethod.GET)
     @ResponseBody
-    public chartValues lastDay(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException {
-        chartValues values = null;
+    public chartValuesO lastDay(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException, ParseException {
+        chartValuesO values = null;
         if (date == 0) {
 //            Date a=  metricStorage.getLastDate(hostId, instMetricId);
             values = metricStorage.getValuesLastDay(hostId, instMetricId, metricStorage.getLastDate(hostId, instMetricId));
@@ -372,7 +372,7 @@ public class HostController {
 
     @RequestMapping(value = "/chartClickHour", method = RequestMethod.GET)
     @ResponseBody
-    public chartValuesO chartClickHour(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException {
+    public chartValuesO chartClickHour(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException, ParseException {
         chartValuesO values = null;
         if (date == 0) {
             values = metricStorage.getValuesLastHour(hostId, instMetricId,  metricStorage.getLastDate(hostId, instMetricId));
@@ -386,7 +386,7 @@ public class HostController {
 
     @RequestMapping(value = "/chartClickTheeMinutes", method = RequestMethod.GET)
     @ResponseBody
-    public chartValuesO chartClick(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException {
+    public chartValuesO chartClick(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException, ParseException {
 
         chartValuesO values = null;
         if (date == 0) {
@@ -401,7 +401,7 @@ public class HostController {
 
     @RequestMapping(value = "/chartClickOneMinutes", method = RequestMethod.GET)
     @ResponseBody
-    public chartValuesO chartClickOneMinutes(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException {
+    public chartValuesO chartClickOneMinutes(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException, ParseException {
 
         chartValuesO values = null;
         if (date == 0) {

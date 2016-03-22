@@ -91,28 +91,28 @@ public interface IMetricStorage {
 
     public chartValuesO getAllValues(int host_id, int metricId);
 
-    public chartValues getValuesLastDay(int host_id, int metricId, Date dateTime);
+    public chartValuesO getValuesLastDay(int host_id, int metricId, Date dateTime) throws ParseException;
 
-    public chartValues getValuesDay(int host_id, int metricId, Date dateTime);
+    public chartValuesO getValuesDay(int host_id, int metricId, Date dateTime) throws ParseException;
 
     public chartValues getValuesTheeDays(int host_id, int metricId, Date dateTime);
 
-    public chartValues getValuesMonth(int host_id, int metricId, Date dateTime);
+    public chartValuesO getValuesMonth(int host_id, int metricId, Date dateTime) throws ParseException;
 
     public chartValues getValuesSixMonth(int host_id, int metricId, Date dateTime);
 
-    public chartValues getValuesYear(int host_id, int metricId, Date dateTime);
+    public chartValuesO getValuesYear(int host_id, int metricId, Date dateTime) throws ParseException;
 
 
 //    public chartValues getValuesByZoom(int host_id, int metricId, int zoom);
 
 //    public chartValues getValuesByZoom(int host_id, int metricId, Date dateTime);
 
-    public chartValuesO getValuesLastHour(int host_id, int metricId, Date dateTime);
+    public chartValuesO getValuesLastHour(int host_id, int metricId, Date dateTime) throws ParseException;
 
-    public chartValuesO getValuesTheeMinutes(int host_id, int metricId, Date dateTime);
+    public chartValuesO getValuesTheeMinutes(int host_id, int metricId, Date dateTime) throws ParseException;
 
-    public chartValuesO getValuesOneMinutes(int host_id, int metricId, Date dateTime);
+    public chartValuesO getValuesOneMinutes(int host_id, int metricId, Date dateTime) throws ParseException;
 
 
 
