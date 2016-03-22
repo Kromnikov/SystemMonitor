@@ -26,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "select username, password,enabled from \"Users\" where username=?")
                 .authoritiesByUsernameQuery(
                         "select u.username, r.role from \"Users\" as u, \n" +
-                                "\"Roles\" as r where username = ? and u.roleid = r.roleid");
+                                "\"Roles\" as r where u.username = ? and r.roleid = r.roleid");
     }
 
     @Override

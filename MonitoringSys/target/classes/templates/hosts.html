@@ -19,15 +19,11 @@
             th:src="@{js/highstock.js}"></script>
     <script src="../static/js/exporting.js"
             th:src="@{js/exporting.js}"></script>
-<<<<<<< HEAD
-    <script src="../static/js/dinamicChart.js"
-            th:src="@{js/dinamicChart.js}"></script>
-=======
+
     <script src="../static/js/hostsCharts.js"
             th:src="@{js/hostsCharts.js}"></script>
 
 
->>>>>>> local-kromnikov
     <!--external css-->
     <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{css/font-awesome.css}"/>
     <!-- Custom styles for this template -->
@@ -58,10 +54,7 @@
 </head>
 
 <body  onload="hideShowHostListContent()">
-<<<<<<< HEAD
-=======
 
->>>>>>> local-kromnikov
 <nav class="navbar navbar-default navbar-static-top margin-left-15">
     <div class="container">
         <ul class="nav navbar-nav navbar-right">
@@ -172,11 +165,8 @@
                         <td th:field="*{instMetric}" th:text="${metric.date}">CPU</td>
                         <td>
                                 <span  th:class="(${metric.status} == '0') ?'label label-success label-mini' : 'label label-warning label-mini'"
-<<<<<<< HEAD
-                                       th:text="(${metric.status} == '0') ? 'OK' : 'ERR'">SUCCESS</span>
-=======
                                        th:text="(${metric.status} == '0') ? 'OK' : 'ERROR'">SUCCESS</span>
->>>>>>> local-kromnikov
+
                         </td>
                         <td>
                             <!--<button class="btn btn-success btn-xs"><a class="fa fa-check white-text"-->
@@ -235,11 +225,7 @@
     </div>
 
     <div id="hostList"  class="col-lg-10 margin-top-20">
-<<<<<<< HEAD
-        <a class="floatRight fa fa-expand black-text" style="cursor: pointer"></a>
-=======
         <!--<a class="floatRight fa fa-expand black-text" style="cursor: pointer"></a>-->
->>>>>>> local-kromnikov
         <div class="content-panel ">
             <h4   style="cursor:pointer;" ><i class="fa fa-angle-right"></i>
                 Hosts list</h4>
@@ -248,7 +234,7 @@
                 <tr>
                     <th>
                         <div class="dropdown">
-<<<<<<< HEAD
+<!--<<<<<<< HEAD-->
                             <i class="dropdown-toggle cursor_pointer fa fa-search" data-toggle="dropdown" style="cursor: pointer" ></i>
                             <i class="dropdown-toggle cursor_pointer fa fa-home" data-toggle="dropdown" style="cursor: pointer" >Host Name</i>
                             <ul class="dropdown-menu">
@@ -259,15 +245,15 @@
                                             <input type="text" class="form-control" placeholder="Host Name" name="hostName"/><!--
                                          --><button type="submit" name="search" class="fa fa-search cursor_pointer">Search</button>
                                         </form>
-=======
-                            <i class="dropdown-toggle cursor_pointer fa fa-home" data-toggle="dropdown"> Host</i>
-                            <ul class="dropdown-menu">
-                                <li class="dropdown-header">Поиск</li>
-                                <li>
-                                    <div>
-                                        <input type="password" class="form-control" placeholder="Login" name="login" />
-                                        <a class="fa fa-search cursor_pointer"></a>
->>>>>>> local-kromnikov
+<!--=======-->
+                            <!--<i class="dropdown-toggle cursor_pointer fa fa-home" data-toggle="dropdown"> Host</i>-->
+                            <!--<ul class="dropdown-menu">-->
+                                <!--<li class="dropdown-header">Поиск</li>-->
+                                <!--<li>-->
+                                    <!--<div>-->
+                                        <!--<input type="password" class="form-control" placeholder="Login" name="login" />-->
+                                        <!--<a class="fa fa-search cursor_pointer"></a>-->
+<!--local-kromnikov-->
                                     </div>
                                 </li>
                             </ul>
@@ -276,7 +262,7 @@
                     <th><i class="fa fa-play"></i>Services</th>
                     <th><i class=" fa fa-stop"></i>Errors</th>
                     <th><i class=" fa fa-edit"></i>Status</th>
-<<<<<<< HEAD
+<!--<<<<<<< HEAD-->
                     <th>
                         <div class="dropdown">
                             <i class="dropdown-toggle cursor_pointer fa fa-search" data-toggle="dropdown" style="cursor: pointer" ></i>
@@ -294,18 +280,18 @@
                             </ul>
                         </div>
                     </th>
-=======
->>>>>>> local-kromnikov
+<!--=======-->
+<!--local-kromnikov-->
                 </tr>
                 </thead>
                 <tbody>
                 <div th:each="host: ${getHosts}">
                     <tr>
-<<<<<<< HEAD
-                        <td th:field="*{name}" th:text="${host.hostName}" class="hidden-phone"></td>
-=======
+<!--<<<<<<< HEAD-->
+                        <!--<td th:field="*{name}" th:text="${host.hostName}" class="hidden-phone"></td>-->
+<!--=======-->
                         <td th:field="*{name}" th:text="${host.hostName}" class="hidden-phone">Kromnikov</td>
->>>>>>> local-kromnikov
+<!--local-kromnikov-->
                         <td th:field="*{name}">
                             <button class="btn btn-success btn-xs"><a class="white-text"
                                                                       th:href="@{host(hostId=${host.id},instMetrics=show)}"
@@ -318,13 +304,10 @@
                         </td>
                         <td>
                             <span  th:class="(${host.status} == '0') ?'label label-success label-mini' : 'label label-warning label-mini'"
-<<<<<<< HEAD
-                            th:text="(${host.status} == '0') ? 'OK' : 'ERR'">SUCCESS</span>
+                            th:text="(${host.status} == '0') ? 'OK' : 'ERROR'">SUCCESS</span>
                         </td>
                         <td th:field="*{name}" th:text="${host.location}">
-=======
-                            th:text="(${host.status} == '0') ? 'OK' : 'ERROR'">SUCCESS</span>
->>>>>>> local-kromnikov
+
                         </td>
 
                     </tr>
