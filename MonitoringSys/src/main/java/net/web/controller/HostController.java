@@ -19,8 +19,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -38,7 +36,7 @@ public class HostController {
         return this.hosts.getAll();
     }
 
-    public List<HostRow> getHostRow() throws SQLException {
+    public List<hostRow> getHostRow() throws SQLException {
         return metricStorage.getHostRow();
     }
 
@@ -102,7 +100,7 @@ public class HostController {
     @RequestMapping(params={"search","location"},value = "/hosts",method= RequestMethod.GET)
     public ModelAndView hostsPageSearchLocation(String location) throws SQLException {
         ModelAndView modelAndView = new ModelAndView();
-        List<HostRow> hostRows = new ArrayList<HostRow>();
+        List<hostRow> hostRows = new ArrayList<hostRow>();
         hostRows= getHostRow();
         int length = hostRows.size();
         int i=0;
@@ -176,7 +174,7 @@ public class HostController {
     @RequestMapping(params={"search","hostName"},value = "/hosts",method= RequestMethod.GET)
     public ModelAndView hostsPageSearchHostName(String hostName) throws SQLException {
         ModelAndView modelAndView = new ModelAndView();
-        List<HostRow> hostRows = new ArrayList<HostRow>();
+        List<hostRow> hostRows = new ArrayList<hostRow>();
         hostRows= getHostRow();
         int length = hostRows.size();
         int i=0;

@@ -876,13 +876,13 @@ public class MetricStorage implements IMetricStorage {
 
     //hostsRows
     @Transactional
-    public List<HostRow> getHostRow() throws SQLException {
-        List<HostRow> hostrows = new ArrayList<>();
+    public List<hostRow> getHostRow() throws SQLException {
+        List<hostRow> hostrows = new ArrayList<>();
         String sql = "(select count(*) as countServices,host,(select count(*)from \"METRIC_STATE\" where host_id = im.host) as countProblems ,(select count(*)from \"HOST_STATE\" where host = im.host and (\"end_datetime\" is null and \"start_datetime\" is not null)) as status from \"INSTANCE_METRIC\" as im group by host)";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
 
         for (SSHConfiguration host : this.hosts.getAll()) {
-            HostRow hostRow = new HostRow();
+            hostRow hostRow = new hostRow();
             hostRow.setId(host.getId());
             hostRow.setHostName(host.getName());
             hostRow.setLocation(host.getLocation());
@@ -908,7 +908,12 @@ public class MetricStorage implements IMetricStorage {
             metricrow.setId(Integer.parseInt(row.get("id").toString()));
             metricrow.setTitle((row.get("title").toString()));
             metricrow.setErrorsCount(Integer.parseInt(row.get("countProblems").toString()));
-            metricrow.setLastValue(Double.parseDouble(row.get("value").toString()));
+            try {
+                metricrow.setLastValue(Double.parseDouble(row.get("value").toString()));
+            }
+            catch(Exception e){
+                metricrow.setLastValue(0);
+            }
             metricrow.setDate(((java.sql.Timestamp) row.get("date")));
             metricrow.setStatus(row.get("status").toString());
             metricRows.add(metricrow);
