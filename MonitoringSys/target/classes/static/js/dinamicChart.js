@@ -8,12 +8,13 @@ var hostId;
 var instMetricId;
 var title;
 function loadChart3(hostId1, instMetricId1, title1) {
+    console.log(hostId1+'-'+instMetricId1+'-'+title1);
     datetime = 0;
     hostId=hostId1;
     instMetricId=instMetricId1;
     title=title1;
     $.getJSON('/lastDay?hostId=' + hostId + '&instMetricId=' + instMetricId + '&zoom=' + zoom, function (data, status) {
-        console.log(hostId);
+        console.log(instMetricId);
         onWheel();
         keyEvent();
         buttons();
@@ -255,7 +256,7 @@ function chart2(jsonData, title,chart_id) {
         }
     });
     var chart;
-    $('#chart_'+chart_id).highcharts('StockChart', {
+    $('#'+instMetricId).highcharts('StockChart', {
 
         chart: {
             type: 'spline',
@@ -296,6 +297,28 @@ function chart2(jsonData, title,chart_id) {
             valueDecimals: 2
         },
 
+
+        exporting: {
+            buttons: {
+                contextButton: {
+                    text: 'Dell from favorites',
+                    onclick: function () {
+                        window.location.href = "/dellFromFavorites?favoritesId="+0;
+                    }
+
+                },
+                exportButton: {
+                    text: 'Download',
+                    menuItems: Highcharts.getOptions().exporting.buttons.contextButton.menuItems.splice(2)
+                },
+                printButton: {
+                    text: 'Print',
+                    onclick: function () {
+                        this.print();
+                    }
+                }
+            }
+        },
 
         series: [{
             cursor: 'pointer',

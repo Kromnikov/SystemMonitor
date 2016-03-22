@@ -41,7 +41,7 @@ public interface IMetricStorage {
 
     public List<MetricState> getMetricProblems(int hostId) throws SQLException, ParseException;
 
-    public List<MetricState> getMetricProblems(int hostId, int instMetricId) throws SQLException, ParseException;
+    public List<MetricState> getMetricProblems(int hostId,int instMetricId) throws SQLException, ParseException;
 
     public List<MetricState> getMetricProblems() throws SQLException, ParseException;
 
@@ -72,30 +72,29 @@ public interface IMetricStorage {
 
     public Date getLastDate(int hostId, int metricId);
 
-    public chartValues getAllValues(int host_id, int metricId);
+    public chartValuesO getAllValues(int host_id, int metricId);
 
-    public chartValues getValuesLastDay(int host_id, int metricId, int zoom, Date dateTime);
-
-    public chartValues getValuesDay(int host_id, int metricId, int zoom, Date dateTime);
-
-    public chartValues getValuesTheeDays(int host_id, int metricId, int zoom, Date dateTime);
-
-    public chartValues getValuesMonth(int host_id, int metricId, int zoom, Date dateTime);
-
-    public chartValues getValuesSixMonth(int host_id, int metricId, int zoom, Date dateTime);
-
-    public chartValues getValuesYear(int host_id, int metricId, int zoom, Date dateTime);
-
-
-    public chartValues getValuesByZoom(int host_id, int metricId, int zoom);
-
-    public chartValues getValuesByZoom(int host_id, int metricId, int zoom, Date dateTime);
-
-    public chartValues getValuesLastHour(int host_id, int metricId, int zoom, Date dateTime);
-
-    public chartValues getValuesTheeMinutes(int host_id, int metricId, int zoom, Date dateTime);
-
-    public chartValues getValuesOneMinutes(int host_id, int metricId, int zoom, Date dateTime);
+//    public chartValuesO getValuesLastDay(int host_id, int metricId, int zoom, Date dateTime);
+//
+//    public chartValuesO getValuesDay(int host_id, int metricId, int zoom, Date dateTime);
+//
+//    public chartValuesO getValuesTheeDays(int host_id, int metricId, int zoom, Date dateTime);
+//
+//    public chartValuesO getValuesMonth(int host_id, int metricId, int zoom, Date dateTime);
+//
+//    public chartValuesO getValuesSixMonth(int host_id, int metricId, int zoom, Date dateTime);
+//
+//
+//
+//    public chartValues getValuesByZoom(int host_id, int metricId, int zoom);
+//
+//    public chartValues getValuesByZoom(int host_id, int metricId, int zoom, Date dateTime);
+//
+//    public chartValues getValuesLastHour(int host_id, int metricId, int zoom, Date dateTime);
+//
+//    public chartValues getValuesTheeMinutes(int host_id, int metricId, int zoom, Date dateTime);
+//
+//    public chartValues getValuesOneMinutes(int host_id, int metricId, int zoom, Date dateTime);
 
 
     //hostsRows
@@ -103,6 +102,47 @@ public interface IMetricStorage {
 
     //metricRows
     public List<metricRow> getMetricRow(int hostId) throws SQLException;
+
+    public chartValuesO getValuesLastDay(int host_id, int metricId, Date dateTime) throws ParseException;
+
+    public chartValuesO getValuesDay(int host_id, int metricId, Date dateTime) throws ParseException;
+
+    public chartValues getValuesTheeDays(int host_id, int metricId, Date dateTime);
+
+    public chartValuesO getValuesMonth(int host_id, int metricId, Date dateTime) throws ParseException;
+
+    public chartValues getValuesSixMonth(int host_id, int metricId, Date dateTime);
+
+    public chartValuesO getValuesYear(int host_id, int metricId, Date dateTime) throws ParseException;
+
+
+//    public chartValues getValuesByZoom(int host_id, int metricId, int zoom);
+
+//    public chartValues getValuesByZoom(int host_id, int metricId, Date dateTime);
+
+    public chartValuesO getValuesLastHour(int host_id, int metricId, Date dateTime) throws ParseException;
+
+    public chartValuesO getValuesTheeMinutes(int host_id, int metricId, Date dateTime) throws ParseException;
+
+    public chartValuesO getValuesOneMinutes(int host_id, int metricId, Date dateTime) throws ParseException;
+
+
+
+
+
+
+    //hostsRows
+
+
+    //metricRows
+
+    //Favorites
+    public List<Favorites> getFavoritesRow() throws SQLException;
+
+
+
+
+
 
 
     //
@@ -169,4 +209,18 @@ public interface IMetricStorage {
     void updateHost(int hostid, String ip, String login, String password, int port, String name, String location) throws SQLException;;
 
     public List<SSHConfiguration> getHostsByLocation(String location)throws SQLException;
+
+    //TODO Favorites
+    public void addToFavorites(int host, int metric) throws SQLException;
+
+    public void dellFromFavorites(int favoritesId) throws SQLException;
+
+    //TODO problems count home page
+    public int hostsProblemsCount() throws SQLException;
+
+    public int hostsSuccesCount() throws SQLException;
+
+    public int metricsProblemCount() throws SQLException;
+
+    public int metricsSuccesCount() throws SQLException;
 }

@@ -43,7 +43,7 @@
 </head>
 
 
-<body>
+<body  onload="hideShowHostListContent()">
 <nav class="navbar navbar-default navbar-static-top margin-left-15">
     <div class="container">
         <ul class="nav navbar-nav navbar-right">
@@ -118,12 +118,12 @@
 
     <div class="col-lg-10 margin-top-20">
         <div class="content-panel ">
-            <h4><i class="fa fa-angle-right"></i>
+            <h4  style="cursor:pointer;" ><i class="fa fa-angle-right"></i>
                 Hosts problems</h4>
             <table class="table table-striped table-advance table-hover">
                 <thead>
                 <tr>
-                    <th><i class="fa fa-key"></i> id</th>
+                    <th class="hidden"><i class="fa fa-key"></i> id</th>
                     <th class="hidden-phone"><i class="fa fa-home"></i> Host</th>
                     <th><i class="fa fa-play"></i> Start</th>
                     <th><i class=" fa fa-stop"></i> End</th>
@@ -134,13 +134,13 @@
                 <tbody>
                 <div th:each="problem: ${getHostsProblems}">
                     <tr>
-                        <td th:field="*{id}" th:text="${problem.id}">4</td>
+                        <td class="hidden" th:field="*{id}" th:text="${problem.id}">4</td>
                         <td th:field="*{hostName}" th:text="${problem.hostName}" class="hidden-phone">192.168.0.1</td>
                         <td th:field="*{start}" th:text="${problem.start}">17 Jun</td>
                         <td th:field="*{end}" th:text="${problem.end}">18 Jun</td>
                         <td>
                             <span  th:class="${problem.end} ? 'label label-success label-mini' : 'label label-warning label-mini'"
-                                   th:text="${problem.end} ? 'SUCCESS' : 'WARNING'">LAL</span>
+                                   th:text="${problem.end} ? 'OK' : 'ERROR'">LAL</span>
                         </td>
                         <td>
                             <button class="btn btn-success btn-xs"><a class="fa fa-check white-text" th:href="@{problems/resolve/host(hostId=${problem.id})}"></a></button>
@@ -157,12 +157,12 @@
 
     <div class="col-lg-10 margin-top-20">
         <div class="content-panel ">
-            <h4><i class="fa fa-angle-right"></i>
+            <h4  style="cursor:pointer;" ><i class="fa fa-angle-right"></i>
                 Metrics problems</h4>
             <table class="table table-striped table-advance table-hover">
                 <thead>
                 <tr>
-                    <th><i class="fa fa-key"></i> id</th>
+                    <th class="hidden"><i class="fa fa-key"></i> id</th>
                     <th class="hidden-phone"><i class="fa fa-superscript"></i> Value</th>
                     <th><i class="fa fa-play"></i> Start</th>
                     <th><i class=" fa fa-stop"></i> End</th>
@@ -174,18 +174,18 @@
                 <tbody>
                 <div th:each="problem: ${getMetricProblems}">
                     <tr>
-                        <td th:field="*{id}" th:text="${problem.id}">4</td>
+                        <td class="hidden" th:field="*{id}" th:text="${problem.id}">4</td>
                         <td th:field="*{value}" th:text="${problem.value}" class="hidden-phone">128,9</td>
                         <td th:field="*{start}" th:text="${problem.start}">17 Jun</td>
                         <td th:field="*{end}" th:text="${problem.end}">18 Jun</td>
                         <td th:field="*{instMetric}" th:text="${problem.instMetric}">CPU</td>
                         <td>
                             <span  th:class="${problem.end} ? 'label label-success label-mini' : 'label label-warning label-mini'"
-                                   th:text="${problem.end} ? 'SUCCESS' : 'WARNING'">LAL</span>
+                                   th:text="${problem.end} ? 'OK' : 'ERROR'">LAL</span>
                         </td>
                         <td>
                             <button class="btn btn-success btn-xs"><a class="fa fa-check white-text" th:href="@{problems/resolve/metric(resMetrId=${problem.id})}"></a></button>
-                            <button class="btn btn-primary btn-xs"><a class="fa fa-search white-text"  th:href="@{/problem/metric(problemId=${problem.id})}"></a></button>
+                            <button class="btn btn-primary btn-xs"><a class="fa fa-search white-text"  th:href="@{/problem/metric(problemId=${problem.id},startDate=${problem.start},endDate=${problem.end})}"></a></button>
                         </td>
                     </tr>
                 </div>
@@ -193,6 +193,9 @@
             </table>
         </div>
     </div>
+
+
+
 
 </div>
 

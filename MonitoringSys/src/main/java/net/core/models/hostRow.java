@@ -1,8 +1,5 @@
 package net.core.models;
 
-/**
- * Created by Kromnikov on 13.03.2016.
- */
 public class HostRow {
     int id;
     String hostName;
@@ -12,7 +9,9 @@ public class HostRow {
     String location;
 
     public HostRow() {
+
     }
+
 
     public HostRow(int id, String hostName, int servicesCount, int errorsCount, String status, String location) {
         this.id = id;

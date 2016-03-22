@@ -18,6 +18,11 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 @Controller
 public class HostController {
@@ -26,6 +31,8 @@ public class HostController {
     private IMetricStorage metricStorage;
     @Autowired
     private HostService hosts;
+
+//    private static DateFormat dateFormat = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy");
 
     public List<SSHConfiguration> getHosts() {
         return this.hosts.getAll();
@@ -46,10 +53,11 @@ public class HostController {
     public List<MetricState> getMetricProblems(int hostId) throws SQLException, ParseException {
         return metricStorage.getMetricProblems(hostId);
     }
+
+
     public List<MetricState> getMetricProblems(int hostId,int metricId) throws SQLException, ParseException {
         return metricStorage.getMetricProblems(hostId,metricId);
     }
-
 
     public List<MetricState> getMetricProblems() throws SQLException, ParseException {
         return metricStorage.getMetricProblems();
@@ -73,9 +81,6 @@ public class HostController {
     public List<HostsState> getHostsProblems() throws SQLException, ParseException {
         return metricStorage.getHostsProblems();
     }
-
-
-
 
 
 
@@ -115,6 +120,58 @@ public class HostController {
         modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
         return modelAndView;
     }
+    @RequestMapping(value = "/host")
+    public ModelAndView hostsPage(@RequestParam("hostId")  int hostId, @RequestParam(required = false, defaultValue = "hidden") String instMetrics, @RequestParam(required = false, defaultValue = "hidden") String problems, @RequestParam(required = false, defaultValue = "-1") int instMetricId, @RequestParam(required = false, defaultValue = "title") String title,@RequestParam(required=false,defaultValue = "0") String startDate,@RequestParam(required=false,defaultValue = "0") String endDate) throws SQLException, ParseException {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("hosts");
+        modelAndView.addObject("getHosts", getHostRow());
+        modelAndView.addObject("hostId", hostId);
+        modelAndView.addObject("instMetrics", instMetrics);
+        modelAndView.addObject("problems", problems);
+        //metrics
+        modelAndView.addObject("title", title);
+        modelAndView.addObject("instMetricId", instMetricId);
+        modelAndView.addObject("getMetrics", getMetricRow(hostId));
+
+        //problems
+        if (instMetricId > 0 & problems.equals("show")) {
+            modelAndView.addObject("getMetricProblems", getMetricProblems(hostId,instMetricId));
+
+        } else {
+            modelAndView.addObject("getMetricProblems", getMetricProblems(hostId));
+        }
+        if (!startDate.equals("0")) {
+            modelAndView.addObject("startDate", parserDate(startDate).getTime());
+        }
+        if (!endDate.equals("0")) {
+            modelAndView.addObject("endDate", parserDate(endDate).getTime());
+        }
+
+
+        return modelAndView;
+    }
+
+
+    private Date parserDate(String startDate) throws ParseException {
+        String mTimeZone = startDate.substring(20,23);
+        String mActualDate = startDate.replace(mTimeZone + " ", "");
+        System.out.println(mActualDate);
+        String TWITTER = "EEE MMM dd HH:mm:ss yyyy";
+        SimpleDateFormat mSf = new SimpleDateFormat(TWITTER, Locale.ENGLISH);
+        mSf.setTimeZone(TimeZone.getDefault());
+        Date mNewDate = mSf.parse(mActualDate);
+        return mNewDate;
+    }
+
+
+
+
+
+
+
+
+
+
 
     @RequestMapping(params={"search","hostName"},value = "/hosts",method= RequestMethod.GET)
     public ModelAndView hostsPageSearchHostName(String hostName) throws SQLException {
@@ -140,30 +197,30 @@ public class HostController {
 
 
 
-    @RequestMapping(value = "/host")
-    public ModelAndView hostsPage(@RequestParam("hostId")  int hostId, @RequestParam(required = false, defaultValue = "hidden") String instMetrics, @RequestParam(required = false, defaultValue = "hidden") String problems, @RequestParam(required = false, defaultValue = "-1") int instMetricId, @RequestParam(required = false, defaultValue = "title") String title) throws SQLException, ParseException {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("hosts");
-        modelAndView.addObject("getHosts", getHostRow());
-        modelAndView.addObject("hostId", hostId);
-        modelAndView.addObject("instMetrics", instMetrics);
-        modelAndView.addObject("problems", problems);
-        //metrics
-        modelAndView.addObject("title", title);
-        modelAndView.addObject("instMetricId", instMetricId);
-        modelAndView.addObject("getMetrics", getMetricRow(hostId));
-
-        //problems
-        if (instMetricId > 0 & problems.equals("show")) {
-            modelAndView.addObject("getMetricProblems", getMetricProblems(hostId,instMetricId));
-
-        } else {
-            modelAndView.addObject("getMetricProblems", getMetricProblems(hostId));
-        }
-
-
-        return modelAndView;
-    }
+//    @RequestMapping(value = "/host")
+//    public ModelAndView hostsPage(@RequestParam("hostId")  int hostId, @RequestParam(required = false, defaultValue = "hidden") String instMetrics, @RequestParam(required = false, defaultValue = "hidden") String problems, @RequestParam(required = false, defaultValue = "-1") int instMetricId, @RequestParam(required = false, defaultValue = "title") String title) throws SQLException, ParseException {
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("hosts");
+//        modelAndView.addObject("getHosts", getHostRow());
+//        modelAndView.addObject("hostId", hostId);
+//        modelAndView.addObject("instMetrics", instMetrics);
+//        modelAndView.addObject("problems", problems);
+//        //metrics
+//        modelAndView.addObject("title", title);
+//        modelAndView.addObject("instMetricId", instMetricId);
+//        modelAndView.addObject("getMetrics", getMetricRow(hostId));
+//
+//        //problems
+//        if (instMetricId > 0 & problems.equals("show")) {
+//            modelAndView.addObject("getMetricProblems", getMetricProblems(hostId,instMetricId));
+//
+//        } else {
+//            modelAndView.addObject("getMetricProblems", getMetricProblems(hostId));
+//        }
+//
+//
+//        return modelAndView;
+//    }
 
 
 
@@ -261,6 +318,12 @@ public class HostController {
         return "redirect:/problems";
     }
 
+    @RequestMapping(value = "/hosts/resolve/metric", method = RequestMethod.GET)
+    public String resolveMetricHostsPage(@RequestParam("resMetrId") int resMetrId,@RequestParam("hostId") int hostId,@RequestParam("instMetricId") int instMetricId) {
+        metricStorage.setResolvedMetric(resMetrId);
+        return "redirect:/host?hostId="+hostId+"&problems=show&instMetricId="+instMetricId;
+    }
+
     @RequestMapping(value = "/problems/resolve/metric/all", method = RequestMethod.GET)
     public String resolveMetric() {
         metricStorage.setResolvedMetric();
@@ -268,27 +331,10 @@ public class HostController {
     }
 
     @RequestMapping(value = "/problem/metric", method = RequestMethod.GET)
-    public String redirectToMetric(@RequestParam("problemId") int problemId) throws SQLException {
+    public String redirectToMetric(@RequestParam("problemId") int problemId,@RequestParam(required=false,defaultValue = "0") String startDate,@RequestParam(required=false,defaultValue = "0") String endDate) throws SQLException {
         Problem problem = metricStorage.getProblem(problemId);
-        return "redirect:/intsMetric?hostId=" + problem.getHostId() + "&instMetricId=" + problem.getInstMetricId() + "&title=" + problem.getInstMetric();
+        return "redirect:/host?hostId=" + problem.getHostId() + "&instMetrics=show&instMetricId=" + problem.getInstMetricId() + "&title=" + problem.getInstMetric()+"&startDate="+startDate+"&endDate="+endDate;
     }
-
-
-//    //TODO:main page host
-//    @RequestMapping(value = "/host")
-//    @ResponseBody
-//    public ModelAndView hostPage(@RequestParam("hostId") int hostId) throws SQLException {
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.addObject("getProblemsCount", getProblemsCount(hostId));
-//        modelAndView.addObject("hostId", hostId);
-//        modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
-//        modelAndView.setViewName("host");
-//        return modelAndView;
-//    }
-
-
-
-
 
     //TODO:page edit inst metrics
     @RequestMapping(value = "/editIntsMetrics")
@@ -310,35 +356,21 @@ public class HostController {
 
 
     //TODO ajax charts
-//    @RequestMapping(value = "/lastDay", method = RequestMethod.GET)
-//         @ResponseBody
-//    public chartValues ajaxTest(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
-//        chartValues values = null;
-//        if (date == 0) {
-//            values = metricStorage.getValuesLastDay(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
-//        } else {
-//            values = metricStorage.getValuesLastDay(hostId, instMetricId, zoom, new Date(date));
-//        }
-//
-//
-//        return values;
-//
-//    }
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     @ResponseBody
-    public chartValues getAll(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId) throws JsonProcessingException {
+    public chartValuesO getAll(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId) throws JsonProcessingException {
         return metricStorage.getAllValues(hostId,instMetricId);
     }
 
     @RequestMapping(value = "/getValuesYear", method = RequestMethod.GET)
     @ResponseBody
-    public chartValues getValuesYear(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
-        chartValues values = null;
+    public chartValuesO getValuesYear(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException, ParseException {
+        chartValuesO values = null;
         if (date == 0) {
-            values = metricStorage.getValuesYear(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
+            values = metricStorage.getValuesYear(hostId, instMetricId,  metricStorage.getLastDate(hostId, instMetricId));
         } else {
-            values = metricStorage.getValuesYear(hostId, instMetricId, zoom, new Date(date));
+            values = metricStorage.getValuesYear(hostId, instMetricId,  new Date(date));
         }
 
 
@@ -348,12 +380,12 @@ public class HostController {
 
     @RequestMapping(value = "/getValuesSixMonth", method = RequestMethod.GET)
     @ResponseBody
-    public chartValues getValuesSixMonth(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
+    public chartValues getValuesSixMonth(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException {
         chartValues values = null;
         if (date == 0) {
-            values = metricStorage.getValuesSixMonth(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
+            values = metricStorage.getValuesSixMonth(hostId, instMetricId,  metricStorage.getLastDate(hostId, instMetricId));
         } else {
-            values = metricStorage.getValuesSixMonth(hostId, instMetricId, zoom, new Date(date));
+            values = metricStorage.getValuesSixMonth(hostId, instMetricId,  new Date(date));
         }
 
 
@@ -363,12 +395,12 @@ public class HostController {
 
     @RequestMapping(value = "/getValuesMonth", method = RequestMethod.GET)
     @ResponseBody
-    public chartValues getValuesMonth(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
-        chartValues values = null;
+    public chartValuesO getValuesMonth(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException, ParseException {
+        chartValuesO values = null;
         if (date == 0) {
-            values = metricStorage.getValuesMonth(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
+            values = metricStorage.getValuesMonth(hostId, instMetricId,  metricStorage.getLastDate(hostId, instMetricId));
         } else {
-            values = metricStorage.getValuesMonth(hostId, instMetricId, zoom, new Date(date));
+            values = metricStorage.getValuesMonth(hostId, instMetricId,  new Date(date));
         }
 
 
@@ -378,12 +410,12 @@ public class HostController {
 
     @RequestMapping(value = "/getValuesTheeDays", method = RequestMethod.GET)
     @ResponseBody
-    public chartValues getValuesTheeDays(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
+    public chartValues getValuesTheeDays(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException {
         chartValues values = null;
         if (date == 0) {
-            values = metricStorage.getValuesTheeDays(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
+            values = metricStorage.getValuesTheeDays(hostId, instMetricId,  metricStorage.getLastDate(hostId, instMetricId));
         } else {
-            values = metricStorage.getValuesTheeDays(hostId, instMetricId, zoom, new Date(date));
+            values = metricStorage.getValuesTheeDays(hostId, instMetricId,  new Date(date));
         }
 
 
@@ -393,12 +425,12 @@ public class HostController {
 
     @RequestMapping(value = "/getValuesDay", method = RequestMethod.GET)
     @ResponseBody
-    public chartValues getValuesDay(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
-        chartValues values = null;
+    public chartValuesO getValuesDay(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException, ParseException {
+        chartValuesO values = null;
         if (date == 0) {
-            values = metricStorage.getValuesDay(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
+            values = metricStorage.getValuesDay(hostId, instMetricId,  metricStorage.getLastDate(hostId, instMetricId));
         } else {
-            values = metricStorage.getValuesDay(hostId, instMetricId, zoom, new Date(date));
+            values = metricStorage.getValuesDay(hostId, instMetricId,  new Date(date));
         }
 
 
@@ -408,12 +440,13 @@ public class HostController {
 
     @RequestMapping(value = "/lastDay", method = RequestMethod.GET)
     @ResponseBody
-    public chartValues lastDay(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
-        chartValues values = null;
+    public chartValuesO lastDay(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException, ParseException {
+        chartValuesO values = null;
         if (date == 0) {
-            values = metricStorage.getValuesLastDay(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
+//            Date a=  metricStorage.getLastDate(hostId, instMetricId);
+            values = metricStorage.getValuesLastDay(hostId, instMetricId, metricStorage.getLastDate(hostId, instMetricId));
         } else {
-            values = metricStorage.getValuesLastDay(hostId, instMetricId, zoom, new Date(date));
+            values = metricStorage.getValuesLastDay(hostId, instMetricId,  new Date(date));
         }
 
 
@@ -423,12 +456,12 @@ public class HostController {
 
     @RequestMapping(value = "/chartClickHour", method = RequestMethod.GET)
     @ResponseBody
-    public chartValues chartClickHour(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
-        chartValues values = null;
+    public chartValuesO chartClickHour(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException, ParseException {
+        chartValuesO values = null;
         if (date == 0) {
-            values = metricStorage.getValuesLastHour(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
+            values = metricStorage.getValuesLastHour(hostId, instMetricId,  metricStorage.getLastDate(hostId, instMetricId));
         } else {
-            values = metricStorage.getValuesLastHour(hostId, instMetricId, zoom, new Date(date));
+            values = metricStorage.getValuesLastHour(hostId, instMetricId,  new Date(date));
         }
 
         return values;
@@ -437,13 +470,13 @@ public class HostController {
 
     @RequestMapping(value = "/chartClickTheeMinutes", method = RequestMethod.GET)
     @ResponseBody
-    public chartValues chartClick(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
+    public chartValuesO chartClick(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException, ParseException {
 
-        chartValues values = null;
+        chartValuesO values = null;
         if (date == 0) {
-            values = metricStorage.getValuesTheeMinutes(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
+            values = metricStorage.getValuesTheeMinutes(hostId, instMetricId,  metricStorage.getLastDate(hostId, instMetricId));
         } else {
-            values = metricStorage.getValuesTheeMinutes(hostId, instMetricId, zoom, new Date(date));
+            values = metricStorage.getValuesTheeMinutes(hostId, instMetricId,  new Date(date));
         }
 
         return values;
@@ -452,13 +485,13 @@ public class HostController {
 
     @RequestMapping(value = "/chartClickOneMinutes", method = RequestMethod.GET)
     @ResponseBody
-    public chartValues chartClickOneMinutes(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
+    public chartValuesO chartClickOneMinutes(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException, ParseException {
 
-        chartValues values = null;
+        chartValuesO values = null;
         if (date == 0) {
-            values = metricStorage.getValuesOneMinutes(hostId, instMetricId, zoom, metricStorage.getLastDate(hostId, instMetricId));
+            values = metricStorage.getValuesOneMinutes(hostId, instMetricId,  metricStorage.getLastDate(hostId, instMetricId));
         } else {
-            values = metricStorage.getValuesOneMinutes(hostId, instMetricId, zoom, new Date(date));
+            values = metricStorage.getValuesOneMinutes(hostId, instMetricId,  new Date(date));
         }
 
         return values;
@@ -470,17 +503,32 @@ public class HostController {
 
 //    @RequestMapping(value = "/getValuesByZoom", method = RequestMethod.GET)
 //    @ResponseBody
-//    public chartValues getValuesByZoom(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("zoom") int zoom, @RequestParam(required = false, defaultValue = "0") long date) throws JsonProcessingException {
+//    public chartValues getValuesByZoom(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException {
 //        chartValues values = null;
 //        if (date == 0) {
 //            values = metricStorage.getValuesByZoom(hostId, instMetricId, zoom);
 //        } else {
-//            values = metricStorage.getValuesByZoom(hostId, instMetricId, zoom, new Date(date));
+//            values = metricStorage.getValuesByZoom(hostId, instMetricId,  new Date(date));
 //        }
 //
 //
 //        return values;
 //
 //    }
+
+
+
+    //TODO Favorites
+
+    @RequestMapping(value = "/addToFavorites", method = RequestMethod.GET)
+    public String addFavorites(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam("title") String title) throws SQLException {
+        metricStorage.addToFavorites(hostId,instMetricId);
+        return "redirect:/host?hostId="+hostId+"&instMetrics=show&instMetricId="+instMetricId+"&title="+title;
+    }
+    @RequestMapping(value = "/dellFromFavorites", method = RequestMethod.GET)
+    public String dellFavorites(@RequestParam("favoritesId") int favoritesId) throws SQLException {
+        metricStorage.dellFromFavorites(favoritesId);
+        return "redirect:/";
+    }
 
 }

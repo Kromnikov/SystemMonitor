@@ -1,5 +1,7 @@
 package net.core.models;
 
+import java.util.Date;
+
 public class Problem {
 
     private int id;
@@ -11,6 +13,10 @@ public class Problem {
     private int hostId;
 
     private String hostName;
+
+    private Date startDate;
+
+    private Date endDate;
 
     public Problem() {
     }
@@ -61,5 +67,21 @@ public class Problem {
 
     public void setHostName(String hostName) {
         this.hostName = hostName;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 }

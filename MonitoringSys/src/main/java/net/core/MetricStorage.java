@@ -5,6 +5,7 @@ import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;
 import net.core.hibernate.services.HostService;
 import net.core.models.*;
+import net.core.tools.Averaging;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -414,164 +415,58 @@ public class MetricStorage implements IMetricStorage {
     }
 
     @Transactional
-    public chartValues getAllValues(int host_id, int metricId) {
+    public chartValuesO getAllValues(int host_id, int metricId) {
+        long defTime= 10*1000;//10sek
         String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where metric = " + metricId + " and host = " + host_id + " order by date_time ";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-        Map<Long, Double> map = new HashMap<>();
+        Map<Long, Object> map = new HashMap<>();
+        long x=0,prevX=0,Dif=0;
+        Object y=0,prevY=0;
         if (rows.size() > 0) {
-                for (int i = 0; i < rows.size(); i++) {
-                    map.put((long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()), (double) rows.get(i).get("value"));
+            prevX = (long) (((java.sql.Timestamp) rows.get(0).get("date_time")).getTime());
+            prevY = (double) rows.get(0).get("value");
+            map.put(prevX, (double)prevY);
+                for (int i = 1; i < rows.size(); i++) {
+                    x = (long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
+                    y = (double) rows.get(i).get("value");
+                    Dif = x - prevX;
+                    while (Dif>defTime) {
+                        prevX += defTime;
+                        prevY = null;
+                        Dif = x - prevX;
+                        map.put(prevX, prevY);
+                    }
+                    map.put(x, y);
+                    prevX=x;
+                    prevY=y;
                 }
         }
-        return new chartValues(rows.size(), new TreeMap<Long, Double>(map));
+        return new chartValuesO(rows.size(), new TreeMap<Long, Object>(map));
 //        return averaging(jdbcTemplateObject.queryForList(sql));
     }
 
     @Transactional
-    public chartValues getValuesLastDay(int host_id, int metricId, int zoom, Date dateTime) {
+    public chartValuesO getValuesLastDay(int host_id, int metricId, Date dateTime) throws ParseException {
         Date nDate = (Date) dateTime.clone();
         nDate.setHours(dateTime.getHours() - 24);
         String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
-//        return averaging(jdbcTemplateObject.queryForList(sql));
-
-
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-        int rowSize = rows.size(), counter = 1;
-        double values = (double) rows.get(0).get("value");
-        Map<Long, Double> map = new HashMap<>();
-        nDate = ((java.sql.Timestamp) rows.get(0).get("date_time"));
-        nDate.setSeconds(0);
-        nDate.setMinutes(0);
-//        System.out.println(nDate);
-        for (int i = 1; i < rowSize; i++) {
-            if ((nDate.getHours() == ((java.sql.Timestamp) rows.get(i).get("date_time")).getHours()) & (nDate.getDay() == ((java.sql.Timestamp) rows.get(i).get("date_time")).getDay())) {
-                values += (double) rows.get(i).get("value");
-                counter++;
-            } else {
-                map.put((long) nDate.getTime(), values / counter);
-                nDate = ((java.sql.Timestamp) rows.get(i).get("date_time"));
-                nDate.setSeconds(0);
-                nDate.setMinutes(0);
-                values = (double) rows.get(i).get("value");
-                counter = 1;
-            }
-            map.put((long) nDate.getTime(), values / counter);
-        }
-
-        return new chartValues(rowSize, new TreeMap<Long, Double>(map));
-    }
-
-    @Transactional
-    public chartValues getValuesDay(int host_id, int metricId, int zoom, Date dateTime) {
-        Date nDate = (Date) dateTime.clone();
-        nDate.setHours(dateTime.getHours() - 24);
-        dateTime.setHours(dateTime.getHours() + 24);
-        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
-//        return averaging(jdbcTemplateObject.queryForList(sql));
-
-
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-        int rowSize = rows.size(), counter = 1;
-        double values = (double) rows.get(0).get("value");
-        Map<Long, Double> map = new HashMap<>();
-        nDate = ((java.sql.Timestamp) rows.get(0).get("date_time"));
-        nDate.setSeconds(0);
-        nDate.setMinutes(0);
-//        System.out.println(nDate);
-        for (int i = 1; i < rowSize; i++) {
-            if ((nDate.getHours() == ((java.sql.Timestamp) rows.get(i).get("date_time")).getHours()) & (nDate.getDay() == ((java.sql.Timestamp) rows.get(i).get("date_time")).getDay())) {
-                values += (double) rows.get(i).get("value");
-                counter++;
-            } else {
-                map.put((long) nDate.getTime(), values / counter);
-                nDate = ((java.sql.Timestamp) rows.get(i).get("date_time"));
-                nDate.setSeconds(0);
-                nDate.setMinutes(0);
-                values = (double) rows.get(i).get("value");
-                counter = 1;
-            }
-            map.put((long) nDate.getTime(), values / counter);
-        }
-
-        return new chartValues(rowSize, new TreeMap<Long, Double>(map));
-    }
-
-    @Transactional
-    public chartValues getValuesTheeDays(int host_id, int metricId, int zoom, Date dateTime) {
-        Date nDate = (Date) dateTime.clone();
-        nDate.setHours(dateTime.getHours() - 60);
-        dateTime.setHours(dateTime.getHours() + 60);
-        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
-//        return averaging(jdbcTemplateObject.queryForList(sql));
-
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-        int rowSize = rows.size(), counter = 1;
-        double values = (double) rows.get(0).get("value");
-        Map<Long, Double> map = new HashMap<>();
-        nDate = ((java.sql.Timestamp) rows.get(0).get("date_time"));
-        nDate.setSeconds(0);
-        nDate.setMinutes(0);
-//        System.out.println(nDate);
-        for (int i = 1; i < rowSize; i++) {
-
-            if ((nDate.getHours() == ((java.sql.Timestamp) rows.get(i).get("date_time")).getHours()) & (nDate.getDay() == ((java.sql.Timestamp) rows.get(i).get("date_time")).getDay())) {
-                values += (double) rows.get(i).get("value");
-                counter++;
-            } else {
-                map.put((long) nDate.getTime(), values / counter);
-                nDate = ((java.sql.Timestamp) rows.get(i).get("date_time"));
-                nDate.setSeconds(0);
-                nDate.setMinutes(0);
-                values = (double) rows.get(i).get("value");
-                counter = 1;
-            }
-            map.put((long) nDate.getTime(), values / counter);
-        }
-
-        return new chartValues(rowSize, new TreeMap<Long, Double>(map));
-    }
-
-    @Transactional
-    public chartValues getValuesMonth(int host_id, int metricId, int zoom, Date dateTime) {
-        Date nDate = (Date) dateTime.clone();
-        nDate.setHours(dateTime.getHours() - 360);
-        dateTime.setHours(dateTime.getHours() + 360);
-        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
-
-//        return averaging(jdbcTemplateObject.queryForList(sql));
 
 
 
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         int rowSize = rows.size(), counter = 1;
-        double values = (double) rows.get(0).get("value");
-        Map<Long, Double> map = new HashMap<>();
-        nDate = ((java.sql.Timestamp) rows.get(0).get("date_time"));
-        nDate.setSeconds(0);
-        nDate.setMinutes(0);
-        nDate.setHours(0);
-//        System.out.println(nDate);
-        for (int i = 1; i < rowSize; i++) {
-            if ((nDate.getDay() == ((java.sql.Timestamp) rows.get(i).get("date_time")).getDay()) & (nDate.getMonth() == ((java.sql.Timestamp) rows.get(i).get("date_time")).getMonth())) {
-                values += (double) rows.get(i).get("value");
-                counter++;
-            } else {
-                map.put((long) nDate.getTime(), values / counter);
-                nDate = ((java.sql.Timestamp) rows.get(i).get("date_time"));
-                nDate.setSeconds(0);
-                nDate.setMinutes(0);
-                nDate.setHours(0);
-                values = (double) rows.get(i).get("value");
-                counter = 1;
-            }
-            map.put((long) nDate.getTime(), values / counter);
+        Map<Long, Object> map = new HashMap<>();
+        if (rowSize > 0) {
+            nDate.setSeconds(0);
+            nDate.setMinutes(0);
+            map = Averaging.getValues(rows, nDate, "day");
         }
 
-        return new chartValues(rowSize, new TreeMap<Long, Double>(map));
+        return new chartValuesO(rowSize, new TreeMap<Long, Object>(map));
     }
 
     @Transactional
-    public chartValues getValuesSixMonth(int host_id, int metricId, int zoom, Date dateTime) {
+    public chartValues getValuesSixMonth(int host_id, int metricId,  Date dateTime) {
         Date nDate = (Date) dateTime.clone();
         nDate.setMonth(dateTime.getMonth() - 3);
         dateTime.setMonth(dateTime.getMonth() + 3);
@@ -608,7 +503,7 @@ public class MetricStorage implements IMetricStorage {
     }
 
     @Transactional
-    public chartValues getValuesYear(int host_id, int metricId, int zoom, Date dateTime) {
+    public chartValuesO getValuesYear(int host_id, int metricId,  Date dateTime) throws ParseException {
         Date nDate = (Date) dateTime.clone();
         nDate.setMonth(dateTime.getMonth() - 6);
         dateTime.setMonth(dateTime.getMonth() + 6);
@@ -620,7 +515,7 @@ public class MetricStorage implements IMetricStorage {
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         int rowSize = rows.size(), counter = 1;
         double values = (double) rows.get(0).get("value");
-        Map<Long, Double> map = new HashMap<>();
+//        Map<Long, Double> map = new HashMap<>();
         nDate = ((java.sql.Timestamp) rows.get(0).get("date_time"));
         nDate.setSeconds(0);
         nDate.setMinutes(0);
@@ -636,8 +531,95 @@ public class MetricStorage implements IMetricStorage {
 //        nDate= calendar.getTime();
 //        System.out.println(nDate);
 
+//        for (int i = 1; i < rowSize; i++) {
+//            if ((nDate.getYear() == ((java.sql.Timestamp) rows.get(i).get("date_time")).getYear()) & (nDate.getMonth() == ((java.sql.Timestamp) rows.get(i).get("date_time")).getMonth())) {
+//                values += (double) rows.get(i).get("value");
+//                counter++;
+//            } else {
+//                map.put((long) nDate.getTime(), values / counter);
+//                nDate = ((java.sql.Timestamp) rows.get(i).get("date_time"));
+//                nDate.setSeconds(0);
+//                nDate.setMinutes(0);
+//                nDate.setHours(0);
+//                values = (double) rows.get(i).get("value");
+//                counter = 1;
+//            }
+//            map.put((long) nDate.getTime(), values / counter);
+//        }
+
+        Map<Long, Object> map = new HashMap<>();
+        if (rowSize > 0) {
+            map = Averaging.getValues(rows, nDate, "year");
+        }
+        return new chartValuesO(rowSize, new TreeMap<Long, Object>(map));
+    }
+
+    @Transactional
+    public chartValuesO getValuesMonth(int host_id, int metricId,  Date dateTime) throws ParseException {
+        Date nDate = (Date) dateTime.clone();
+        nDate.setHours(dateTime.getHours() - 360);
+        dateTime.setHours(dateTime.getHours() + 360);
+        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
+
+//        return averaging(jdbcTemplateObject.queryForList(sql));
+
+
+
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+        int rowSize = rows.size(), counter = 1;
+//        double values = (double) rows.get(0).get("value");
+//        Map<Long, Double> map = new HashMap<>();
+//        nDate = ((java.sql.Timestamp) rows.get(0).get("date_time"));
+//        nDate.setSeconds(0);
+//        nDate.setMinutes(0);
+//        nDate.setHours(0);
+////        System.out.println(nDate);
+//        for (int i = 1; i < rowSize; i++) {
+//            if ((nDate.getDay() == ((java.sql.Timestamp) rows.get(i).get("date_time")).getDay()) & (nDate.getMonth() == ((java.sql.Timestamp) rows.get(i).get("date_time")).getMonth())) {
+//                values += (double) rows.get(i).get("value");
+//                counter++;
+//            } else {
+//                map.put((long) nDate.getTime(), values / counter);
+//                nDate = ((java.sql.Timestamp) rows.get(i).get("date_time"));
+//                nDate.setSeconds(0);
+//                nDate.setMinutes(0);
+//                nDate.setHours(0);
+//                values = (double) rows.get(i).get("value");
+//                counter = 1;
+//            }
+//            map.put((long) nDate.getTime(), values / counter);
+//        }
+
+        Map<Long, Object> map = new HashMap<>();
+        if (rowSize > 0) {
+            nDate.setSeconds(0);
+            nDate.setMinutes(0);
+            nDate.setHours(0);
+            map = Averaging.getValues(rows, nDate, "month");
+        }
+
+        return new chartValuesO(rowSize, new TreeMap<Long, Object>(map));
+    }
+
+    @Transactional
+    public chartValues getValuesTheeDays(int host_id, int metricId,  Date dateTime) {
+        Date nDate = (Date) dateTime.clone();
+        nDate.setHours(dateTime.getHours() - 60);
+        dateTime.setHours(dateTime.getHours() + 60);
+        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
+//        return averaging(jdbcTemplateObject.queryForList(sql));
+
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+        int rowSize = rows.size(), counter = 1;
+        double values = (double) rows.get(0).get("value");
+        Map<Long, Double> map = new HashMap<>();
+        nDate = ((java.sql.Timestamp) rows.get(0).get("date_time"));
+        nDate.setSeconds(0);
+        nDate.setMinutes(0);
+//        System.out.println(nDate);
         for (int i = 1; i < rowSize; i++) {
-            if ((nDate.getYear() == ((java.sql.Timestamp) rows.get(i).get("date_time")).getYear()) & (nDate.getMonth() == ((java.sql.Timestamp) rows.get(i).get("date_time")).getMonth())) {
+
+            if ((nDate.getHours() == ((java.sql.Timestamp) rows.get(i).get("date_time")).getHours()) & (nDate.getDay() == ((java.sql.Timestamp) rows.get(i).get("date_time")).getDay())) {
                 values += (double) rows.get(i).get("value");
                 counter++;
             } else {
@@ -645,7 +627,6 @@ public class MetricStorage implements IMetricStorage {
                 nDate = ((java.sql.Timestamp) rows.get(i).get("date_time"));
                 nDate.setSeconds(0);
                 nDate.setMinutes(0);
-                nDate.setHours(0);
                 values = (double) rows.get(i).get("value");
                 counter = 1;
             }
@@ -656,90 +637,76 @@ public class MetricStorage implements IMetricStorage {
     }
 
     @Transactional
-    public chartValues getValuesLastHour(int host_id, int metricId, int zoom, Date dateTime) {
+    public chartValuesO getValuesDay(int host_id, int metricId,  Date dateTime) throws ParseException {
+        Date nDate = (Date) dateTime.clone();
+        nDate.setHours(dateTime.getHours() - 24);
+        dateTime.setHours(dateTime.getHours() + 24);
+        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
+
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+        int rowSize = rows.size(), counter = 1;
+        Map<Long, Object> map = new HashMap<>();
+        if (rowSize > 0) {
+            nDate.setSeconds(0);
+            nDate.setMinutes(0);
+            map = Averaging.getValues(rows, nDate, "day");
+        }
+
+        return new chartValuesO(rowSize, new TreeMap<Long, Object>(map));
+    }
+
+    @Transactional
+    public chartValuesO getValuesLastHour(int host_id, int metricId,  Date dateTime) throws ParseException {
         Date nDate = (Date) dateTime.clone();
         nDate.setMinutes(dateTime.getMinutes() - 30);
         dateTime.setMinutes(dateTime.getMinutes() + 30);
         String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
-//        return averaging(jdbcTemplateObject.queryForList(sql));
-
-
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-        int rowSize = rows.size(), counter = 1;
-        Map<Long, Double> map = new HashMap<>();
-        if (rowSize > 0) {
-            double values = (double) rows.get(0).get("value");
-            nDate = ((java.sql.Timestamp) rows.get(0).get("date_time"));
-            nDate.setSeconds(0);
-            for (int i = 1; i < rowSize; i++) {
-                if (nDate.getMinutes() == ((java.sql.Timestamp) rows.get(i).get("date_time")).getMinutes()) {
-                    values += (double) rows.get(i).get("value");
-                    counter++;
-                } else {
-                    map.put((long) nDate.getTime(), values / counter);
-                    nDate = ((java.sql.Timestamp) rows.get(i).get("date_time"));
-                    nDate.setSeconds(0);
-                    values = (double) rows.get(i).get("value");
-                    counter = 1;
-                }
-                map.put((long) nDate.getTime(), values / counter);
-            }
+
+        nDate.setSeconds(0);
+        nDate.setMinutes(0);
+        Map<Long, Object> map = new HashMap<>();
+
+        if (rows.size() > 0) {
+            map = Averaging.getValues(rows, nDate, "hour");
         }
-        return new chartValues(rowSize, new TreeMap<Long, Double>(map));
+        return new chartValuesO(rows.size(), new TreeMap<Long, Object>(map));
     }
 
     @Transactional
-    public chartValues getValuesTheeMinutes(int host_id, int metricId, int zoom, Date dateTime) {
-        Map<Long, Double> map = new HashMap<>();
+    public chartValuesO getValuesTheeMinutes(int host_id, int metricId,  Date dateTime) throws ParseException {
+        long defTime= 10*1000;//10sek
         Date nDate = (Date) dateTime.clone();
         nDate.setMinutes(dateTime.getMinutes() - 1);
         dateTime.setMinutes(dateTime.getMinutes() + 1);
         String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
 
-        int rowSize = rows.size();
-        if (rowSize > 0) {
-            for (int i = 0; i < rowSize; i++) {
-                map.put((long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()), (double) rows.get(i).get("value"));
-            }
+        Map<Long, Object> map = new HashMap<>();
+        if (rows.size() > 0) {
+            map = Averaging.getValues(rows, nDate, "minutes");
         }
-        return new chartValues(rowSize, new TreeMap<Long, Double>(map));
+        return new chartValuesO(rows.size(), new TreeMap<Long, Object>(map));
     }
 
     @Transactional
-    public chartValues getValuesOneMinutes(int host_id, int metricId, int zoom, Date dateTime) {
-        Map<Long, Double> map = new HashMap<>();
+    public chartValuesO getValuesOneMinutes(int host_id, int metricId,  Date dateTime) throws ParseException {
+        long defTime= 10*1000;//10sek
         Date nDate = (Date) dateTime.clone();
         nDate.setSeconds(dateTime.getSeconds() - 30);
         dateTime.setSeconds(dateTime.getSeconds() + 30);
         String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
 
-        int rowSize = rows.size();
-        if (rowSize > 0) {
-            for (int i = 0; i < rowSize; i++) {
-                map.put((long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()), (double) rows.get(i).get("value"));
-            }
+        Map<Long, Object> map = new HashMap<>();
+        if (rows.size() > 0) {
+            map = Averaging.getValues(rows, nDate, "minutes");
         }
-        return new chartValues(rowSize, new TreeMap<Long, Double>(map));
+        return new chartValuesO(rows.size(), new TreeMap<Long, Object>(map));
     }
 
 
-    @Transactional
-    public chartValues getValuesByZoom(int host_id, int metricId, int zoom) {
-        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time < '" + getLastDate(host_id, metricId) + "'  and  metric = " + metricId + " and host = " + host_id + " order by date_time DESC limit " + zoom;
-        return averaging(jdbcTemplateObject.queryForList(sql));
-    }
 
-    @Transactional
-    public chartValues getValuesByZoom(int host_id, int metricId, int zoom, Date dateTime) {
-        int limit = zoom;
-        String sql = "(SELECT value,date_time FROM \"VALUE_METRIC\" where date_time < '" + dateFormat.format(dateTime) + "'  and metric = " + metricId + " and host = " + host_id + " order by date_time  limit " + limit + " )" +
-                "UNION ALL\n" +
-                "(SELECT value,date_time FROM \"VALUE_METRIC\"  where date_time >= '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time   limit " + limit + " )";
-
-        return averaging(jdbcTemplateObject.queryForList(sql));
-    }
 
 
     //metrics
@@ -930,11 +897,9 @@ public class MetricStorage implements IMetricStorage {
         }
         return hostrows;
     }
-
-
     //metricRows
     @Transactional
-         public List<metricRow> getMetricRow(int hostId) throws SQLException {
+    public List<metricRow> getMetricRow(int hostId) throws SQLException {
         List<metricRow> metricRows = new ArrayList<>();
         String sql = "select id,title ,(select value from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as value ,(select date_time from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as date ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id ) as countProblems ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id and (\"end_datetime\" is null and \"start_datetime\" is not null)) as status  from \"INSTANCE_METRIC\" as im where host = " + hostId;
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
@@ -967,17 +932,37 @@ public class MetricStorage implements IMetricStorage {
         }
         return metricRows;
     }
+    //Favorites
+    @Transactional
+    public List<Favorites> getFavoritesRow() throws SQLException {
+        List<Favorites> favoriteses = new ArrayList<>();
+        String sql = "select *,(select title from \"INSTANCE_METRIC\" where id = f.inst_metric_id) as title  from \"FAVORITES\" as f";
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+
+            for (Map row : rows) {
+                Favorites favorite = new Favorites();
+                favorite.setId((int) row.get("id"));
+                favorite.setHostId(Integer.parseInt(row.get("host_id").toString()));
+                favorite.setMetricId(Integer.parseInt(row.get("inst_metric_id").toString()));
+                favorite.setTitle(row.get("title").toString());
+                favoriteses.add(favorite);
+            }
+        return favoriteses;
+    }
+
     //problem
     @Transactional
     public Problem getProblem(int problemId) throws SQLException {
         Problem problem = new Problem();
         getInstMetric(problemId);
-        String sql = "SELECT i.title , a.host_id, a.inst_metric FROM \"METRIC_STATE\" as a , \"INSTANCE_METRIC\" as i where a.id = " + problemId + " and i.id = a.inst_metric";
+        String sql = "SELECT i.title , a.host_id, a.inst_metric,a.start_datetime,a.end_datetime FROM \"METRIC_STATE\" as a , \"INSTANCE_METRIC\" as i where a.id = " + problemId + " and i.id = a.inst_metric";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         for (Map row : rows) {
             problem.setHostId((int) row.get("host_id"));
             problem.setInstMetricId((int) row.get("inst_metric"));
             problem.setInstMetric((String) row.get("title"));
+            problem.setStartDate(((java.sql.Timestamp) rows.get(0).get("start_datetime")));
+            problem.setEndDate(((java.sql.Timestamp) rows.get(0).get("end_datetime")));
         }
         return problem;
     }
@@ -1077,5 +1062,41 @@ public class MetricStorage implements IMetricStorage {
         int id;
         return 0;
     }
-    //
+    //TODO Favorites
+    @Transactional
+    public void addToFavorites(int host, int metric) throws SQLException {
+        String sql = "INSERT INTO \"FAVORITES\"(host_id,inst_metric_id) VALUES (" + host + "," + metric + ")";
+        jdbcTemplateObject.update(sql);
+    }
+    @Transactional
+    public void dellFromFavorites(int favoritesId) throws SQLException {
+        String sql = "DELETE FROM \"FAVORITES\" WHERE id = "+favoritesId;
+        jdbcTemplateObject.update(sql);
+    }
+
+    //TODO problems count home page
+    @Transactional
+    public int hostsProblemsCount() throws SQLException {
+        String sql = "SELECT count(*)  FROM \"HOST_STATE\"  where \"end_datetime\" is null";
+        return Integer.parseInt(jdbcTemplateObject.queryForMap(sql).get("count").toString());
+    }
+    @Transactional
+    public int hostsSuccesCount() throws SQLException {
+//        String sql = "SELECT count(*)  FROM \"INSTANCE_METRIC\"  where \"end_datetime\" is not null";
+//        return Integer.parseInt(jdbcTemplateObject.queryForMap(sql).get("count").toString());
+        return hosts.getAll().size();
+    }
+    @Transactional
+    public int metricsProblemCount() throws SQLException {
+        String sql = "SELECT count(*)  FROM \"METRIC_STATE\"  where \"end_datetime\" is null";
+        return Integer.parseInt(jdbcTemplateObject.queryForMap(sql).get("count").toString());
+    }
+    @Transactional
+    public int metricsSuccesCount() throws SQLException {//TODO стоит делать или нет, хз
+        String sql = "SELECT count(*)  FROM \"INSTANCE_METRIC\"";
+//        if (hostsSuccesCount() > 0) {
+            return Integer.parseInt(jdbcTemplateObject.queryForMap(sql).get("count").toString());
+//        }
+//        return 0;
+    }
 }
