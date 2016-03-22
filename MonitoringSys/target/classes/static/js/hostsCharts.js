@@ -48,7 +48,6 @@ function buttons() {
 
 }
 function min() {
-    //if (zoomCount != 0) {
     if (zoomCount == 3) {
         zoomCount = 2;
         console.log('1 min --> 3 min');
@@ -74,74 +73,23 @@ function min() {
         $.getJSON('/getValuesMonth?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
             chart2(data, title,1);
         });
-        //console.log('1 day --> 3 days');
-        //$.getJSON('/getValuesTheeDays?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
-        //    chart2(data, title,1);
-        //});
     } else if (zoomCount == -1) {
         zoomCount = -2;
             console.log('1 month --> 1 Year');
             $.getJSON('/getValuesYear?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
                 chart2(data, title,1);
             });
-        //console.log('3 days --> 1 month');
-        //$.getJSON('/getValuesMonth?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
-        //    chart2(data, title,1);
-        //});
     }
-    //else if (zoomCount == -2) {
-    //    zoomCount = -3;
-    //    console.log('1 month --> 6 months');
-    //    $.getJSON('/getValuesSixMonth?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
-    //        chart2(data, title,1);
-    //    });
-    //} else if (zoomCount == -3) {
-    //    zoomCount = -4;
-    //    console.log('6 months --> 1 Year');
-    //    $.getJSON('/getValuesYear?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
-    //        chart2(data, title,1);
-    //    });
-    //} else if (zoomCount == -4) {
-    //    zoomCount = -5;
-    //    console.log('1 Year --> All');
-    //    $.getJSON('/getAll?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
-    //        chart2(data, title,1);
-    //    });
-    //}
 }
 function plus() {
-    //if (zoomCount == -5) {
-    //    zoomCount = -4;
-    //    console.log('All --> 1 Year');
-    //    $.getJSON('/getValuesYear?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
-    //        chart2(data, title,1);
-    //    });
-    //} else if (zoomCount == -4) {
-    //    zoomCount = -3;
-    //    console.log('1 Year --> 6 months');
-    //    $.getJSON('/getValuesSixMonth?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
-    //        chart2(data, title,1);
-    //    });
-    //} else if (zoomCount == -3) {
-    //    zoomCount = -2;
-    //    console.log('6 months --> 1 month');
-    //    $.getJSON('/getValuesMonth?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
-    //        chart2(data, title,1);
-    //    });
-    //} else
     if (zoomCount == -2) {
         zoomCount = -1;
         console.log('1 year --> 1 month');
         $.getJSON('/getValuesMonth?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
             chart2(data, title,1);
         });
-        //console.log('1 month --> 3 days');
-        //$.getJSON('/getValuesTheeDays?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
-        //    chart2(data, title,1);
-        //});
     } else if (zoomCount == -1) {
         zoomCount = 0;
-        //console.log('3 days --> day');
         console.log('1 month --> 1 day');
         $.getJSON('/getValuesDay?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
             chart2(data, title,1);

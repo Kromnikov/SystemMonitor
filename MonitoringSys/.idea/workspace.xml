@@ -31,40 +31,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="homeCharts.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="homeCharts.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/homeCharts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="424" max-vertical-offset="5916">
-              <caret line="213" column="0" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.28513238" vertical-offset="1849" max-vertical-offset="5576">
+              <caret line="218" column="38" selection-start-line="218" selection-start-column="38" selection-end-line="218" selection-end-column="38" />
               <folding>
-                <element signature="n#!!block;n#plus#0" expanded="false" />
+                <element signature="n#!!block;n#buttons#0" expanded="false" />
+                <element signature="n#!!block;n#min#0" expanded="false" />
                 <element signature="n#!!block;n#onWheel#0" expanded="false" />
                 <element signature="n#!!block;n#weelIn#0" expanded="false" />
                 <element signature="n#!!block;n#weelOut#0" expanded="false" />
                 <element signature="n#!!block;n#keyEvent#0" expanded="false" />
                 <element signature="n#!!block;n#clickEvent#0" expanded="false" />
-                <marker date="1458636707379" expanded="true" signature="9590:9610" placeholder="..." />
-                <marker date="1458636707379" expanded="true" signature="12489:12509" placeholder="..." />
+                <marker date="1458637329548" expanded="true" signature="8008:8028" placeholder="..." />
+                <marker date="1458637329548" expanded="true" signature="10906:10926" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hostsCharts.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="hostsCharts.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/hostsCharts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.20340909" vertical-offset="892" max-vertical-offset="3791">
-              <caret line="78" column="36" selection-start-line="78" selection-start-column="36" selection-end-line="78" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1609" max-vertical-offset="3298">
+              <caret line="207" column="78" selection-start-line="207" selection-start-column="78" selection-end-line="208" selection-end-column="38" />
               <folding>
                 <element signature="n#!!block;n#buttons#0" expanded="false" />
-                <element signature="n#!!block;n#plus#0" expanded="false" />
+                <element signature="n#!!block;n#min#0" expanded="false" />
+                <element signature="e#1229#1491#0" expanded="false" />
+                <element signature="e#1517#1772#0" expanded="false" />
+                <element signature="e#1798#2051#0" expanded="false" />
                 <element signature="n#!!block;n#onWheel#0" expanded="false" />
                 <element signature="n#!!block;n#weelIn#0" expanded="false" />
                 <element signature="n#!!block;n#weelOut#0" expanded="false" />
                 <element signature="n#!!block;n#keyEvent#0" expanded="false" />
                 <element signature="n#!!block;n#clickEvent#0" expanded="false" />
-                <element signature="e#10511#11043#0" expanded="false" />
-                <marker date="1458636089793" expanded="true" signature="10365:10385" placeholder="..." />
+                <element signature="e#7945#8477#0" expanded="false" />
+                <marker date="1458637147730" expanded="true" signature="7799:7819" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -976,12 +980,12 @@
       <workItem from="1458465898209" duration="3391000" />
       <workItem from="1458470823542" duration="81000" />
       <workItem from="1458482179026" duration="6570000" />
-      <workItem from="1458503130224" duration="22691000" />
+      <workItem from="1458503130224" duration="23254000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80153000" />
+    <option name="totallyTimeSpent" value="80716000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1040" extended-state="0" />
@@ -998,7 +1002,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4284141" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="-3" y="-1" width="359" height="731" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4284141" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="-3" y="-1" width="359" height="731" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32599118" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1039,7 +1043,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="132" />
+      <option name="time" value="133" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -2364,37 +2368,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/homeCharts.js">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/hostsCharts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="424" max-vertical-offset="5916">
-          <caret line="213" column="0" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1609" max-vertical-offset="3298">
+          <caret line="207" column="78" selection-start-line="207" selection-start-column="78" selection-end-line="208" selection-end-column="38" />
           <folding>
-            <element signature="n#!!block;n#plus#0" expanded="false" />
+            <element signature="n#!!block;n#buttons#0" expanded="false" />
+            <element signature="n#!!block;n#min#0" expanded="false" />
+            <element signature="e#1229#1491#0" expanded="false" />
+            <element signature="e#1517#1772#0" expanded="false" />
+            <element signature="e#1798#2051#0" expanded="false" />
             <element signature="n#!!block;n#onWheel#0" expanded="false" />
             <element signature="n#!!block;n#weelIn#0" expanded="false" />
             <element signature="n#!!block;n#weelOut#0" expanded="false" />
             <element signature="n#!!block;n#keyEvent#0" expanded="false" />
             <element signature="n#!!block;n#clickEvent#0" expanded="false" />
-            <marker date="1458636707379" expanded="true" signature="9590:9610" placeholder="..." />
-            <marker date="1458636707379" expanded="true" signature="12489:12509" placeholder="..." />
+            <element signature="e#7945#8477#0" expanded="false" />
+            <marker date="1458637147730" expanded="true" signature="7799:7819" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/hostsCharts.js">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/homeCharts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20340909" vertical-offset="892" max-vertical-offset="3791">
-          <caret line="78" column="36" selection-start-line="78" selection-start-column="36" selection-end-line="78" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.28513238" vertical-offset="1849" max-vertical-offset="5576">
+          <caret line="218" column="38" selection-start-line="218" selection-start-column="38" selection-end-line="218" selection-end-column="38" />
           <folding>
             <element signature="n#!!block;n#buttons#0" expanded="false" />
-            <element signature="n#!!block;n#plus#0" expanded="false" />
+            <element signature="n#!!block;n#min#0" expanded="false" />
             <element signature="n#!!block;n#onWheel#0" expanded="false" />
             <element signature="n#!!block;n#weelIn#0" expanded="false" />
             <element signature="n#!!block;n#weelOut#0" expanded="false" />
             <element signature="n#!!block;n#keyEvent#0" expanded="false" />
             <element signature="n#!!block;n#clickEvent#0" expanded="false" />
-            <element signature="e#10511#11043#0" expanded="false" />
-            <marker date="1458636089793" expanded="true" signature="10365:10385" placeholder="..." />
+            <marker date="1458637329548" expanded="true" signature="8008:8028" placeholder="..." />
+            <marker date="1458637329548" expanded="true" signature="10906:10926" placeholder="..." />
           </folding>
         </state>
       </provider>
