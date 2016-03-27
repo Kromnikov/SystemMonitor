@@ -72,59 +72,59 @@ public interface IMetricStorage {
 
     public Date getLastDate(int hostId, int metricId);
 
-    public chartValuesO getAllValues(int host_id, int metricId);
+    public ChartValuesO getAllValues(int host_id, int metricId);
 
-//    public chartValuesO getValuesLastDay(int host_id, int metricId, int zoom, Date dateTime);
+//    public ChartValuesO getValuesLastDay(int host_id, int metricId, int zoom, Date dateTime);
 //
-//    public chartValuesO getValuesDay(int host_id, int metricId, int zoom, Date dateTime);
+//    public ChartValuesO getValuesDay(int host_id, int metricId, int zoom, Date dateTime);
 //
-//    public chartValuesO getValuesTheeDays(int host_id, int metricId, int zoom, Date dateTime);
+//    public ChartValuesO getValuesTheeDays(int host_id, int metricId, int zoom, Date dateTime);
 //
-//    public chartValuesO getValuesMonth(int host_id, int metricId, int zoom, Date dateTime);
+//    public ChartValuesO getValuesMonth(int host_id, int metricId, int zoom, Date dateTime);
 //
-//    public chartValuesO getValuesSixMonth(int host_id, int metricId, int zoom, Date dateTime);
+//    public ChartValuesO getValuesSixMonth(int host_id, int metricId, int zoom, Date dateTime);
 //
 //
 //
-//    public chartValues getValuesByZoom(int host_id, int metricId, int zoom);
+//    public ChartValues getValuesByZoom(int host_id, int metricId, int zoom);
 //
-//    public chartValues getValuesByZoom(int host_id, int metricId, int zoom, Date dateTime);
+//    public ChartValues getValuesByZoom(int host_id, int metricId, int zoom, Date dateTime);
 //
-//    public chartValues getValuesLastHour(int host_id, int metricId, int zoom, Date dateTime);
+//    public ChartValues getValuesLastHour(int host_id, int metricId, int zoom, Date dateTime);
 //
-//    public chartValues getValuesTheeMinutes(int host_id, int metricId, int zoom, Date dateTime);
+//    public ChartValues getValuesTheeMinutes(int host_id, int metricId, int zoom, Date dateTime);
 //
-//    public chartValues getValuesOneMinutes(int host_id, int metricId, int zoom, Date dateTime);
+//    public ChartValues getValuesOneMinutes(int host_id, int metricId, int zoom, Date dateTime);
 
 
     //hostsRows
-    public List<hostRow> getHostRow() throws SQLException;
+    public List<HostRow> getHostRow() throws SQLException;
 
     //metricRows
-    public List<metricRow> getMetricRow(int hostId) throws SQLException;
+    public List<MetricRow> getMetricRow(int hostId) throws SQLException;
 
-    public chartValuesO getValuesLastDay(int host_id, int metricId, Date dateTime) throws ParseException;
+    public ChartValuesO getValuesLastDay(int host_id, int metricId, Date dateTime) throws ParseException;
 
-    public chartValuesO getValuesDay(int host_id, int metricId, Date dateTime) throws ParseException;
+    public ChartValuesO getValuesDay(int host_id, int metricId, Date dateTime) throws ParseException;
 
-    public chartValues getValuesTheeDays(int host_id, int metricId, Date dateTime);
+    public ChartValues getValuesTheeDays(int host_id, int metricId, Date dateTime);
 
-    public chartValuesO getValuesMonth(int host_id, int metricId, Date dateTime) throws ParseException;
+    public ChartValuesO getValuesMonth(int host_id, int metricId, Date dateTime) throws ParseException;
 
-    public chartValues getValuesSixMonth(int host_id, int metricId, Date dateTime);
+    public ChartValues getValuesSixMonth(int host_id, int metricId, Date dateTime);
 
-    public chartValuesO getValuesYear(int host_id, int metricId, Date dateTime) throws ParseException;
+    public ChartValuesO getValuesYear(int host_id, int metricId, Date dateTime) throws ParseException;
 
 
-//    public chartValues getValuesByZoom(int host_id, int metricId, int zoom);
+//    public ChartValues getValuesByZoom(int host_id, int metricId, int zoom);
 
-//    public chartValues getValuesByZoom(int host_id, int metricId, Date dateTime);
+//    public ChartValues getValuesByZoom(int host_id, int metricId, Date dateTime);
 
-    public chartValuesO getValuesLastHour(int host_id, int metricId, Date dateTime) throws ParseException;
+    public ChartValuesO getValuesLastHour(int host_id, int metricId, Date dateTime) throws ParseException;
 
-    public chartValuesO getValuesTheeMinutes(int host_id, int metricId, Date dateTime) throws ParseException;
+    public ChartValuesO getValuesTheeMinutes(int host_id, int metricId, Date dateTime) throws ParseException;
 
-    public chartValuesO getValuesOneMinutes(int host_id, int metricId, Date dateTime) throws ParseException;
+    public ChartValuesO getValuesOneMinutes(int host_id, int metricId, Date dateTime) throws ParseException;
 
 
 

@@ -371,7 +371,7 @@ public class MetricStorage implements IMetricStorage {
         return (Date) jdbcTemplateObject.queryForMap(sql).get("MAX");
     }
 
-    private chartValues averaging(List<Map<String, Object>> rows) {
+    private ChartValues averaging(List<Map<String, Object>> rows) {
         Map<Long, Double> map = new HashMap<>();
         long date = 0;
         double sumValues = 0, roundVar = 0;
@@ -411,11 +411,11 @@ public class MetricStorage implements IMetricStorage {
                 }
             }
         }
-        return new chartValues(rowSize, new TreeMap<Long, Double>(map));
+        return new ChartValues(rowSize, new TreeMap<Long, Double>(map));
     }
 
     @Transactional
-    public chartValuesO getAllValues(int host_id, int metricId) {
+    public ChartValuesO getAllValues(int host_id, int metricId) {
         long defTime= 10*1000;//10sek
         String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where metric = " + metricId + " and host = " + host_id + " order by date_time ";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
@@ -441,12 +441,12 @@ public class MetricStorage implements IMetricStorage {
                     prevY=y;
                 }
         }
-        return new chartValuesO(rows.size(), new TreeMap<Long, Object>(map));
+        return new ChartValuesO(rows.size(), new TreeMap<Long, Object>(map));
 //        return averaging(jdbcTemplateObject.queryForList(sql));
     }
 
     @Transactional
-    public chartValuesO getValuesLastDay(int host_id, int metricId, Date dateTime) throws ParseException {
+    public ChartValuesO getValuesLastDay(int host_id, int metricId, Date dateTime) throws ParseException {
         Date nDate = (Date) dateTime.clone();
         nDate.setHours(dateTime.getHours() - 24);
         String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
@@ -462,11 +462,11 @@ public class MetricStorage implements IMetricStorage {
             map = Averaging.getValues(rows, nDate, "day");
         }
 
-        return new chartValuesO(rowSize, new TreeMap<Long, Object>(map));
+        return new ChartValuesO(rowSize, new TreeMap<Long, Object>(map));
     }
 
     @Transactional
-    public chartValues getValuesSixMonth(int host_id, int metricId,  Date dateTime) {
+    public ChartValues getValuesSixMonth(int host_id, int metricId, Date dateTime) {
         Date nDate = (Date) dateTime.clone();
         nDate.setMonth(dateTime.getMonth() - 3);
         dateTime.setMonth(dateTime.getMonth() + 3);
@@ -499,11 +499,11 @@ public class MetricStorage implements IMetricStorage {
             map.put((long) nDate.getTime(), values / counter);
         }
 
-        return new chartValues(rowSize, new TreeMap<Long, Double>(map));
+        return new ChartValues(rowSize, new TreeMap<Long, Double>(map));
     }
 
     @Transactional
-    public chartValuesO getValuesYear(int host_id, int metricId,  Date dateTime) throws ParseException {
+    public ChartValuesO getValuesYear(int host_id, int metricId, Date dateTime) throws ParseException {
         Date nDate = (Date) dateTime.clone();
         nDate.setMonth(dateTime.getMonth() - 6);
         dateTime.setMonth(dateTime.getMonth() + 6);
@@ -551,11 +551,11 @@ public class MetricStorage implements IMetricStorage {
         if (rowSize > 0) {
             map = Averaging.getValues(rows, nDate, "year");
         }
-        return new chartValuesO(rowSize, new TreeMap<Long, Object>(map));
+        return new ChartValuesO(rowSize, new TreeMap<Long, Object>(map));
     }
 
     @Transactional
-    public chartValuesO getValuesMonth(int host_id, int metricId,  Date dateTime) throws ParseException {
+    public ChartValuesO getValuesMonth(int host_id, int metricId, Date dateTime) throws ParseException {
         Date nDate = (Date) dateTime.clone();
         nDate.setHours(dateTime.getHours() - 360);
         dateTime.setHours(dateTime.getHours() + 360);
@@ -598,11 +598,11 @@ public class MetricStorage implements IMetricStorage {
             map = Averaging.getValues(rows, nDate, "month");
         }
 
-        return new chartValuesO(rowSize, new TreeMap<Long, Object>(map));
+        return new ChartValuesO(rowSize, new TreeMap<Long, Object>(map));
     }
 
     @Transactional
-    public chartValues getValuesTheeDays(int host_id, int metricId,  Date dateTime) {
+    public ChartValues getValuesTheeDays(int host_id, int metricId, Date dateTime) {
         Date nDate = (Date) dateTime.clone();
         nDate.setHours(dateTime.getHours() - 60);
         dateTime.setHours(dateTime.getHours() + 60);
@@ -633,11 +633,11 @@ public class MetricStorage implements IMetricStorage {
             map.put((long) nDate.getTime(), values / counter);
         }
 
-        return new chartValues(rowSize, new TreeMap<Long, Double>(map));
+        return new ChartValues(rowSize, new TreeMap<Long, Double>(map));
     }
 
     @Transactional
-    public chartValuesO getValuesDay(int host_id, int metricId,  Date dateTime) throws ParseException {
+    public ChartValuesO getValuesDay(int host_id, int metricId, Date dateTime) throws ParseException {
         Date nDate = (Date) dateTime.clone();
         nDate.setHours(dateTime.getHours() - 24);
         dateTime.setHours(dateTime.getHours() + 24);
@@ -652,11 +652,11 @@ public class MetricStorage implements IMetricStorage {
             map = Averaging.getValues(rows, nDate, "day");
         }
 
-        return new chartValuesO(rowSize, new TreeMap<Long, Object>(map));
+        return new ChartValuesO(rowSize, new TreeMap<Long, Object>(map));
     }
 
     @Transactional
-    public chartValuesO getValuesLastHour(int host_id, int metricId,  Date dateTime) throws ParseException {
+    public ChartValuesO getValuesLastHour(int host_id, int metricId, Date dateTime) throws ParseException {
         Date nDate = (Date) dateTime.clone();
         nDate.setMinutes(dateTime.getMinutes() - 30);
         dateTime.setMinutes(dateTime.getMinutes() + 30);
@@ -670,11 +670,11 @@ public class MetricStorage implements IMetricStorage {
         if (rows.size() > 0) {
             map = Averaging.getValues(rows, nDate, "hour");
         }
-        return new chartValuesO(rows.size(), new TreeMap<Long, Object>(map));
+        return new ChartValuesO(rows.size(), new TreeMap<Long, Object>(map));
     }
 
     @Transactional
-    public chartValuesO getValuesTheeMinutes(int host_id, int metricId,  Date dateTime) throws ParseException {
+    public ChartValuesO getValuesTheeMinutes(int host_id, int metricId, Date dateTime) throws ParseException {
         long defTime= 10*1000;//10sek
         Date nDate = (Date) dateTime.clone();
         nDate.setMinutes(dateTime.getMinutes() - 1);
@@ -686,11 +686,11 @@ public class MetricStorage implements IMetricStorage {
         if (rows.size() > 0) {
             map = Averaging.getValues(rows, nDate, "minutes");
         }
-        return new chartValuesO(rows.size(), new TreeMap<Long, Object>(map));
+        return new ChartValuesO(rows.size(), new TreeMap<Long, Object>(map));
     }
 
     @Transactional
-    public chartValuesO getValuesOneMinutes(int host_id, int metricId,  Date dateTime) throws ParseException {
+    public ChartValuesO getValuesOneMinutes(int host_id, int metricId, Date dateTime) throws ParseException {
         long defTime= 10*1000;//10sek
         Date nDate = (Date) dateTime.clone();
         nDate.setSeconds(dateTime.getSeconds() - 30);
@@ -702,7 +702,7 @@ public class MetricStorage implements IMetricStorage {
         if (rows.size() > 0) {
             map = Averaging.getValues(rows, nDate, "minutes");
         }
-        return new chartValuesO(rows.size(), new TreeMap<Long, Object>(map));
+        return new ChartValuesO(rows.size(), new TreeMap<Long, Object>(map));
     }
 
 
@@ -876,13 +876,13 @@ public class MetricStorage implements IMetricStorage {
 
     //hostsRows
     @Transactional
-    public List<hostRow> getHostRow() throws SQLException {
-        List<hostRow> hostrows = new ArrayList<>();
+    public List<HostRow> getHostRow() throws SQLException {
+        List<HostRow> hostrows = new ArrayList<>();
         String sql = "(select count(*) as countServices,host,(select count(*)from \"METRIC_STATE\" where host_id = im.host) as countProblems ,(select count(*)from \"HOST_STATE\" where host = im.host and (\"end_datetime\" is null and \"start_datetime\" is not null)) as status from \"INSTANCE_METRIC\" as im group by host)";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
 
         for (SSHConfiguration host : this.hosts.getAll()) {
-            hostRow hostRow = new hostRow();
+            HostRow hostRow = new HostRow();
             hostRow.setId(host.getId());
             hostRow.setHostName(host.getName());
             hostRow.setLocation(host.getLocation());
@@ -899,12 +899,12 @@ public class MetricStorage implements IMetricStorage {
     }
     //metricRows
     @Transactional
-    public List<metricRow> getMetricRow(int hostId) throws SQLException {
-        List<metricRow> metricRows = new ArrayList<>();
+    public List<MetricRow> getMetricRow(int hostId) throws SQLException {
+        List<MetricRow> metricRows = new ArrayList<>();
         String sql = "select id,title ,(select value from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as value ,(select date_time from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as date ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id ) as countProblems ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id and (\"end_datetime\" is null and \"start_datetime\" is not null)) as status  from \"INSTANCE_METRIC\" as im where host = " + hostId;
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         for (Map row : rows) {
-            metricRow metricrow = new metricRow();
+            MetricRow metricrow = new MetricRow();
             metricrow.setId(Integer.parseInt(row.get("id").toString()));
             metricrow.setTitle((row.get("title").toString()));
             metricrow.setErrorsCount(Integer.parseInt(row.get("countProblems").toString()));
@@ -921,12 +921,12 @@ public class MetricStorage implements IMetricStorage {
         return metricRows;
     }
     @Transactional
-    public List<metricRow> getMetricRow(int hostId,int metricId) throws SQLException {
-        List<metricRow> metricRows = new ArrayList<>();
+    public List<MetricRow> getMetricRow(int hostId, int metricId) throws SQLException {
+        List<MetricRow> metricRows = new ArrayList<>();
         String sql = "select id,title ,(select value from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as value ,(select date_time from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as date ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id ) as countProblems ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id and (\"end_datetime\" is null and \"start_datetime\" is not null)) as status  from \"INSTANCE_METRIC\" as im where id = " + metricId;
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         for (Map row : rows) {
-            metricRow metricrow = new metricRow();
+            MetricRow metricrow = new MetricRow();
             metricrow.setId(Integer.parseInt(row.get("id").toString()));
             metricrow.setTitle((row.get("title").toString()));
             metricrow.setErrorsCount(Integer.parseInt(row.get("countProblems").toString()));

@@ -23,11 +23,91 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="HostController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/HostController.java">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
+            <state vertical-scroll-proportion="-2.709091">
+              <caret line="47" column="49" selection-start-line="47" selection-start-column="11" selection-end-line="47" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FormWorkpiece.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/FormWorkpiece.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.709091">
+              <caret line="49" column="49" selection-start-line="49" selection-start-column="49" selection-end-line="49" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="instanceMetricsOption.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/instanceMetricsOption.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.709091">
+              <caret line="33" column="47" selection-start-line="33" selection-start-column="45" selection-end-line="33" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.43889844">
+              <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="problems.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/problems.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.709091">
+              <caret line="48" column="49" selection-start-line="48" selection-start-column="49" selection-end-line="48" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="registration.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/registration.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="templetMetrics.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/templetMetrics.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.418182">
+              <caret line="33" column="46" selection-start-line="33" selection-start-column="45" selection-end-line="33" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="accaunts.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/accaunts.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="20.115385">
+              <caret line="28" column="34" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hostEditor.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/hostEditor.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.709091">
+              <caret line="94" column="23" selection-start-line="94" selection-start-column="20" selection-end-line="94" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -36,189 +116,9 @@
       <file leaf-file-name="hosts.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/hosts.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="266" column="135" selection-start-line="266" selection-start-column="135" selection-end-line="266" selection-end-column="135" />
-              <folding>
-                <element signature="n#style#0;n#i#0;n#div#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#i#1;n#div#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#i#0;n#div#0;n#th#4;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MetricStorage.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/core/MetricStorage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.22899505">
-              <caret line="914" column="40" selection-start-line="914" selection-start-column="40" selection-end-line="914" selection-end-column="40" />
-              <folding>
-                <element signature="e#725#736#0" expanded="false" />
-                <element signature="method#setAllowableValueMetric#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#overMaxValue#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#lessMinValue#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#setLessMinValue#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#correctlyMetric#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#setCorrectlyMetric#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#setIncorrectlyMetric#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#getMetricTableModel#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#getMetricProblems#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#getMetricProblems#1;class#MetricStorage#0" expanded="false" />
-                <element signature="method#getMetricProblems#2;class#MetricStorage#0" expanded="false" />
-                <element signature="method#setResolvedMetric#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#setResolvedMetric#1;class#MetricStorage#0" expanded="false" />
-                <element signature="method#getMetricNotResolvedLength#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#getMetricNotResolvedLength#1;class#MetricStorage#0" expanded="false" />
-                <element signature="method#availableHost#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#setNotAvailableHost#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#setAvailableHost#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#getHostTableModel#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#getHostsProblems#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#setResolvedHost#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#setResolvedHost#1;class#MetricStorage#0" expanded="false" />
-                <element signature="method#getHostNotResolvedLength#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#addValue#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#getLastDate#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#averaging#0;class#MetricStorage#0" expanded="false" />
-                <element signature="e#24053#24069#0" expanded="false" />
-                <element signature="e#26199#26259#0" expanded="false" />
-                <element signature="method#getTemplatMetric#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#getMinValueTemplateMetric#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#getMaxValueTemplateMetric#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#updateMinMaxValueTemplateMetric#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#updateMinMaxValueInstanceMetric#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#addInstMetric#2;class#MetricStorage#0" expanded="false" />
-                <element signature="method#getInstMetrics#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#getInstMetric#0;class#MetricStorage#0" expanded="false" />
-                <element signature="method#getInstMetric#1;class#MetricStorage#0" expanded="false" />
-                <element signature="method#updateHost#0;class#MetricStorage#0" expanded="false" />
-                <element signature="e#52177#52280#0" expanded="false" />
-                <element signature="e#53006#53017#0" expanded="false" />
-                <marker date="1458673309769" expanded="true" signature="1282:1427" placeholder="UPDATE \&quot;MET... " />
-                <marker date="1458673309769" expanded="true" signature="1575:1766" placeholder="SELECT id, s... METRIC_STATE" />
-                <marker date="1458673309769" expanded="true" signature="2273:2481" placeholder="INSERT INTO \&quot;METRIC_STATE\&quot;... " />
-                <marker date="1458673309769" expanded="true" signature="2630:2808" placeholder="SELECT id, s... METRIC_STATE" />
-                <marker date="1458673309769" expanded="true" signature="3318:3526" placeholder="INSERT INTO \&quot;METRIC_STATE\&quot;... " />
-                <marker date="1458673309769" expanded="true" signature="3671:3843" placeholder="SELECT id, s... METRIC_STATE" />
-                <marker date="1458673309769" expanded="true" signature="4181:4345" placeholder="UPDATE \&quot;MET... " />
-                <marker date="1458673309769" expanded="true" signature="4509:4656" placeholder="INSERT INTO \&quot;METRIC_STATE\&quot;... " />
-                <marker date="1458673309769" expanded="true" signature="4851:4966" placeholder="SELECT id, s... METRIC_STATE" />
-                <marker date="1458673309769" expanded="true" signature="6213:6340" placeholder="SELECT id, s... METRIC_STATE" />
-                <marker date="1458673309769" expanded="true" signature="7718:7849" placeholder="SELECT id, s... METRIC_STATE" />
-                <marker date="1458673309769" expanded="true" signature="9207:9322" placeholder="SELECT id, s... METRIC_STATE" />
-                <marker date="1458673309769" expanded="true" signature="10456:10553" placeholder="UPDATE \&quot;MET... " />
-                <marker date="1458673309769" expanded="true" signature="10682:10760" placeholder="UPDATE \&quot;MET... " />
-                <marker date="1458673309769" expanded="true" signature="10898:10959" placeholder="SELECT COUNT... METRIC_STATE" />
-                <marker date="1458673309769" expanded="true" signature="11159:11234" placeholder="SELECT COUNT... METRIC_STATE" />
-                <marker date="1458673309769" expanded="true" signature="11616:11753" placeholder="SELECT id, r... HOST_STATE" />
-                <marker date="1458673309769" expanded="true" signature="12205:12351" placeholder="INSERT INTO \&quot;HOST_STATE\&quot;... " />
-                <marker date="1458673309769" expanded="true" signature="12503:12632" placeholder="UPDATE \&quot;HOS... " />
-                <marker date="1458673309769" expanded="true" signature="12824:12923" placeholder="SELECT id, r... HOST_STATE" />
-                <marker date="1458673309769" expanded="true" signature="14078:14187" placeholder="SELECT id, r... HOST_STATE" />
-                <marker date="1458673309769" expanded="true" signature="15597:15692" placeholder="UPDATE \&quot;HOS... " />
-                <marker date="1458673309769" expanded="true" signature="15819:15895" placeholder="UPDATE \&quot;HOS... " />
-                <marker date="1458673309769" expanded="true" signature="16031:16090" placeholder="SELECT COUNT... HOST_STATE" />
-                <marker date="1458673309769" expanded="true" signature="16327:16469" placeholder="INSERT INTO \&quot;VALUE_METRIC\&quot;... " />
-                <marker date="1458673309769" expanded="true" signature="16616:16702" placeholder="SELECT MAX(d... VALUE_METRIC" />
-                <marker date="1458673309769" expanded="true" signature="19053:19175" placeholder="SELECT value... VALUE_METRIC" />
-                <marker date="1458673309769" expanded="true" signature="20584:20805" placeholder="SELECT value... VALUE_METRIC" />
-                <marker date="1458673309769" expanded="true" signature="21506:21727" placeholder="SELECT value... VALUE_METRIC" />
-                <marker date="1458673309769" expanded="true" signature="23368:23589" placeholder="SELECT value... VALUE_METRIC" />
-                <marker date="1458673309769" expanded="true" signature="25777:25998" placeholder="SELECT value... VALUE_METRIC" />
-                <marker date="1458673309769" expanded="true" signature="27914:28135" placeholder="SELECT value... VALUE_METRIC" />
-                <marker date="1458673309769" expanded="true" signature="29715:29936" placeholder="SELECT value... VALUE_METRIC" />
-                <marker date="1458673309769" expanded="true" signature="30668:30889" placeholder="SELECT value... VALUE_METRIC" />
-                <marker date="1458673309769" expanded="true" signature="31613:31834" placeholder="SELECT value... VALUE_METRIC" />
-                <marker date="1458673309769" expanded="true" signature="32503:32724" placeholder="SELECT value... VALUE_METRIC" />
-                <marker date="1458673309769" expanded="true" signature="33189:33272" placeholder="INSERT INTO \&quot;TEMPLATE_METRICS\&quot;... " />
-                <marker date="1458673309769" expanded="true" signature="33499:33544" placeholder="select * FRO... TEMPLATE_METRICS" />
-                <marker date="1458673309769" expanded="true" signature="34069:34103" placeholder="SELECT * FRO... TEMPLATE_METRICS" />
-                <marker date="1458673309769" expanded="true" signature="34728:34791" placeholder="select id FR... TEMPLATE_METRICS" />
-                <marker date="1458673309769" expanded="true" signature="35051:35114" placeholder="select * FRO... TEMPLATE_METRICS" />
-                <marker date="1458673309769" expanded="true" signature="35574:35627" placeholder="select min_v... TEMPLATE_METRICS" />
-                <marker date="1458673309769" expanded="true" signature="35812:35865" placeholder="select max_v... TEMPLATE_METRICS" />
-                <marker date="1458673309769" expanded="true" signature="36108:36196" placeholder="UPDATE \&quot;TEM... " />
-                <marker date="1458673309769" expanded="true" signature="36364:36416" placeholder="select min_v... INSTANCE_METRIC" />
-                <marker date="1458673309769" expanded="true" signature="36601:36653" placeholder="select max_v... INSTANCE_METRIC" />
-                <marker date="1458673309769" expanded="true" signature="36896:36983" placeholder="UPDATE \&quot;INS... " />
-                <marker date="1458673309769" expanded="true" signature="37237:37439" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-                <marker date="1458673309769" expanded="true" signature="37636:37862" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-                <marker date="1458673309769" expanded="true" signature="38036:38355" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-                <marker date="1458673309769" expanded="true" signature="38593:38697" placeholder="SELECT id, t... INSTANCE_METRIC" />
-                <marker date="1458673309769" expanded="true" signature="39621:39767" placeholder="SELECT id, t... INSTANCE_METRIC" />
-                <marker date="1458673309769" expanded="true" signature="40558:40660" placeholder="SELECT id, t... INSTANCE_METRIC" />
-                <marker date="1458673309769" expanded="true" signature="41405:41446" placeholder="DELETE FROM " />
-                <marker date="1458673309769" expanded="true" signature="41676:41975" placeholder="(select coun... " />
-                <marker date="1458673309769" expanded="true" signature="41677:41974" placeholder="select count... INSTANCE_METRIC" />
-                <marker date="1458673309769" expanded="true" signature="41716:41776" placeholder="select count... METRIC_STATE" />
-                <marker date="1458673309769" expanded="true" signature="41797:41918" placeholder="select count... HOST_STATE" />
-                <marker date="1458673309769" expanded="true" signature="42964:43440" placeholder="select id,ti... " />
-                <marker date="1458673309769" expanded="true" signature="44452:44926" placeholder="select id,ti... " />
-                <marker date="1458673309769" expanded="true" signature="45812:45922" placeholder="select *,(se... FAVORITES" />
-                <marker date="1458673309769" expanded="true" signature="45822:45887" placeholder="select title... INSTANCE_METRIC" />
-                <marker date="1458673309769" expanded="true" signature="46679:46862" placeholder="SELECT i.tit... METRIC_STATE" />
-                <marker date="1458673309769" expanded="true" signature="47516:47623" placeholder="SELECT u.use... Users" />
-                <marker date="1458673309769" expanded="true" signature="48164:48194" placeholder="select count... Roles" />
-                <marker date="1458673309769" expanded="true" signature="48398:48469" placeholder="UPDATE \&quot;Use... " />
-                <marker date="1458673309769" expanded="true" signature="48623:48675" placeholder="select count... VALUE_METRIC" />
-                <marker date="1458673309769" expanded="true" signature="48957:49054" placeholder="select sshco... sshconfigurationhibernate" />
-                <marker date="1458673309769" expanded="true" signature="49318:49520" placeholder="UPDATE sshco... " />
-                <marker date="1458673309769" expanded="true" signature="49700:49781" placeholder="SELECT * FRO... sshconfigurationhibernate" />
-                <marker date="1458673309769" expanded="true" signature="50577:50650" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-                <marker date="1458673309769" expanded="true" signature="50717:50790" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-                <marker date="1458673309769" expanded="true" signature="50858:50931" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-                <marker date="1458673309769" expanded="true" signature="51099:51161" placeholder="delete from " />
-                <marker date="1458673309769" expanded="true" signature="51448:51534" placeholder="INSERT INTO \&quot;FAVORITES\&quot;... " />
-                <marker date="1458673309769" expanded="true" signature="51697:51734" placeholder="DELETE FROM " />
-                <marker date="1458673309769" expanded="true" signature="51931:51999" placeholder="SELECT count... HOST_STATE" />
-                <marker date="1458673309769" expanded="true" signature="52521:52591" placeholder="SELECT count... METRIC_STATE" />
-                <marker date="1458673309769" expanded="true" signature="52824:52865" placeholder="SELECT count... INSTANCE_METRIC" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="hostRow.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/core/models/hostRow.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
-              <folding>
-                <element signature="e#547#548#0" expanded="true" />
-                <element signature="e#572#573#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IMetricStorage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/core/db/IMetricStorage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="100" column="20" selection-start-line="100" selection-start-column="20" selection-end-line="100" selection-end-column="20" />
+            <state vertical-scroll-proportion="-2.709091">
+              <caret line="60" column="49" selection-start-line="60" selection-start-column="49" selection-end-line="60" selection-end-column="49" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WebSecurityConfig.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/web/config/WebSecurityConfig.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="27" column="77" selection-start-line="27" selection-start-column="77" selection-end-line="27" selection-end-column="77" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-              <folding>
-                <marker date="1458646592591" expanded="true" signature="8394:8408" placeholder="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -228,8 +128,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -251,13 +151,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/olds/accaunts.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/olds/addIntsMetric.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/registration.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/accaunts.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/addHost.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/addIntsMetric.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/FormWorkpiece.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/instanceMetricsOption.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/problems.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/templetMetrics.html" />
         <option value="$PROJECT_DIR$/src/main/java/net/core/configurations/SSHConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/web/controller/OptionsController.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/core/hibernate/dao/HostDao.java" />
@@ -265,15 +158,25 @@
         <option value="$PROJECT_DIR$/src/main/java/net/core/hibernate/services/HostServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/test/java/testMail.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/core/hibernate/dao/HostDaoImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/hostEditor.html" />
         <option value="$PROJECT_DIR$/src/main/java/net/core/models/HostRow.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/core/db/IMetricStorage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/web/controller/HostController.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/web/config/WebSecurityConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
         <option value="$PROJECT_DIR$/src/main/java/net/core/models/hostRow.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/hosts.html" />
         <option value="$PROJECT_DIR$/src/main/java/net/core/MetricStorage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/web/controller/ChartController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/web/controller/HostController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/web/controller/ProblemsController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/accaunts.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/templetMetrics.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/instanceMetricsOption.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/hostEditor.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/addHost.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/addIntsMetric.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/FormWorkpiece.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/hosts.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/problems.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/login.html" />
       </list>
     </option>
   </component>
@@ -348,6 +251,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -381,10 +287,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -645,12 +547,13 @@
               <option name="myItemId" value="net" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -665,7 +568,7 @@
     <property name="recentsLimit" value="5" />
     <property name="dynamic.classpath" value="false" />
     <property name="LayoutCode.rearrangeEntriesJava" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Web-проектирование/ЛабРаб/lab4/pom.xml" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Web-проектирование/Курсовая/WebProject/pom.xml" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
@@ -805,6 +708,65 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
     <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="myFilePath" />
@@ -920,12 +882,74 @@
       <patterns />
       <method />
     </configuration>
+    <configuration default="true" type="JUnitTestDiscovery" factoryName="JUnit Test Discovery" changeList="All">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
     <configuration default="true" type="JarApplication" factoryName="JAR Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="Java Scratch" factoryName="Java Scratch">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SCRATCH_FILE_ID" value="0" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="MonitoringSys" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
@@ -970,6 +994,34 @@
       <listeners />
       <method />
     </configuration>
+    <configuration default="true" type="TestNGTestDiscovery" factoryName="TestNG Test Discovery" changeList="All">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
@@ -977,6 +1029,18 @@
       <arguments />
       <pass-parent-envs>true</pass-parent-envs>
       <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="osgi.bnd.run" factoryName="Run Launcher">
+      <method />
+    </configuration>
+    <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
     <configuration default="false" name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -1031,11 +1095,16 @@
       <workItem from="1458646771891" duration="2549000" />
       <workItem from="1458669966241" duration="611000" />
       <workItem from="1458672466362" duration="1220000" />
+      <workItem from="1458722119813" duration="75000" />
+      <workItem from="1458748985986" duration="746000" />
+      <workItem from="1459009966869" duration="3069000" />
+      <workItem from="1459064887159" duration="1212000" />
+      <workItem from="1459066168219" duration="7036000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81943000" />
+    <option name="totallyTimeSpent" value="94081000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1378" height="744" extended-state="0" />
@@ -1049,7 +1118,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37795275" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23937008" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1072,7 +1141,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32929516" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1102,189 +1171,15 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/hosts.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="266" column="135" selection-start-line="266" selection-start-column="135" selection-end-line="266" selection-end-column="135" />
-          <folding>
-            <element signature="n#style#0;n#i#0;n#div#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#1;n#div#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#div#0;n#th#4;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/core/MetricStorage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#725#736#0" expanded="false" />
-            <element signature="method#setAllowableValueMetric#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#overMaxValue#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#lessMinValue#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#setLessMinValue#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#correctlyMetric#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#setCorrectlyMetric#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#setIncorrectlyMetric#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#getMetricTableModel#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#getMetricProblems#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#getMetricProblems#1;class#MetricStorage#0" expanded="false" />
-            <element signature="method#getMetricProblems#2;class#MetricStorage#0" expanded="false" />
-            <element signature="method#setResolvedMetric#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#setResolvedMetric#1;class#MetricStorage#0" expanded="false" />
-            <element signature="method#getMetricNotResolvedLength#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#getMetricNotResolvedLength#1;class#MetricStorage#0" expanded="false" />
-            <element signature="method#availableHost#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#setNotAvailableHost#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#setAvailableHost#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#getHostTableModel#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#getHostsProblems#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#setResolvedHost#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#setResolvedHost#1;class#MetricStorage#0" expanded="false" />
-            <element signature="method#getHostNotResolvedLength#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#addValue#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#getLastDate#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#averaging#0;class#MetricStorage#0" expanded="false" />
-            <element signature="e#24053#24069#0" expanded="false" />
-            <element signature="e#26199#26259#0" expanded="false" />
-            <element signature="method#getTemplatMetric#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#getMinValueTemplateMetric#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#getMaxValueTemplateMetric#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#updateMinMaxValueTemplateMetric#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#updateMinMaxValueInstanceMetric#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#addInstMetric#2;class#MetricStorage#0" expanded="false" />
-            <element signature="method#getInstMetrics#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#getInstMetric#0;class#MetricStorage#0" expanded="false" />
-            <element signature="method#getInstMetric#1;class#MetricStorage#0" expanded="false" />
-            <element signature="method#updateHost#0;class#MetricStorage#0" expanded="false" />
-            <element signature="e#52177#52280#0" expanded="false" />
-            <element signature="e#53006#53017#0" expanded="false" />
-            <marker date="1458673309769" expanded="true" signature="1282:1427" placeholder="UPDATE \&quot;MET... " />
-            <marker date="1458673309769" expanded="true" signature="1575:1766" placeholder="SELECT id, s... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="2273:2481" placeholder="INSERT INTO \&quot;METRIC_STATE\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="2630:2808" placeholder="SELECT id, s... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="3318:3526" placeholder="INSERT INTO \&quot;METRIC_STATE\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="3671:3843" placeholder="SELECT id, s... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="4181:4345" placeholder="UPDATE \&quot;MET... " />
-            <marker date="1458673309769" expanded="true" signature="4509:4656" placeholder="INSERT INTO \&quot;METRIC_STATE\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="4851:4966" placeholder="SELECT id, s... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="6213:6340" placeholder="SELECT id, s... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="7718:7849" placeholder="SELECT id, s... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="9207:9322" placeholder="SELECT id, s... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="10456:10553" placeholder="UPDATE \&quot;MET... " />
-            <marker date="1458673309769" expanded="true" signature="10682:10760" placeholder="UPDATE \&quot;MET... " />
-            <marker date="1458673309769" expanded="true" signature="10898:10959" placeholder="SELECT COUNT... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="11159:11234" placeholder="SELECT COUNT... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="11616:11753" placeholder="SELECT id, r... HOST_STATE" />
-            <marker date="1458673309769" expanded="true" signature="12205:12351" placeholder="INSERT INTO \&quot;HOST_STATE\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="12503:12632" placeholder="UPDATE \&quot;HOS... " />
-            <marker date="1458673309769" expanded="true" signature="12824:12923" placeholder="SELECT id, r... HOST_STATE" />
-            <marker date="1458673309769" expanded="true" signature="14078:14187" placeholder="SELECT id, r... HOST_STATE" />
-            <marker date="1458673309769" expanded="true" signature="15597:15692" placeholder="UPDATE \&quot;HOS... " />
-            <marker date="1458673309769" expanded="true" signature="15819:15895" placeholder="UPDATE \&quot;HOS... " />
-            <marker date="1458673309769" expanded="true" signature="16031:16090" placeholder="SELECT COUNT... HOST_STATE" />
-            <marker date="1458673309769" expanded="true" signature="16327:16469" placeholder="INSERT INTO \&quot;VALUE_METRIC\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="16616:16702" placeholder="SELECT MAX(d... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="19053:19175" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="20584:20805" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="21506:21727" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="23368:23589" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="25777:25998" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="27914:28135" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="29715:29936" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="30668:30889" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="31613:31834" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="32503:32724" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="33189:33272" placeholder="INSERT INTO \&quot;TEMPLATE_METRICS\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="33499:33544" placeholder="select * FRO... TEMPLATE_METRICS" />
-            <marker date="1458673309769" expanded="true" signature="34069:34103" placeholder="SELECT * FRO... TEMPLATE_METRICS" />
-            <marker date="1458673309769" expanded="true" signature="34728:34791" placeholder="select id FR... TEMPLATE_METRICS" />
-            <marker date="1458673309769" expanded="true" signature="35051:35114" placeholder="select * FRO... TEMPLATE_METRICS" />
-            <marker date="1458673309769" expanded="true" signature="35574:35627" placeholder="select min_v... TEMPLATE_METRICS" />
-            <marker date="1458673309769" expanded="true" signature="35812:35865" placeholder="select max_v... TEMPLATE_METRICS" />
-            <marker date="1458673309769" expanded="true" signature="36108:36196" placeholder="UPDATE \&quot;TEM... " />
-            <marker date="1458673309769" expanded="true" signature="36364:36416" placeholder="select min_v... INSTANCE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="36601:36653" placeholder="select max_v... INSTANCE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="36896:36983" placeholder="UPDATE \&quot;INS... " />
-            <marker date="1458673309769" expanded="true" signature="37237:37439" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="37636:37862" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="38036:38355" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="38593:38697" placeholder="SELECT id, t... INSTANCE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="39621:39767" placeholder="SELECT id, t... INSTANCE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="40558:40660" placeholder="SELECT id, t... INSTANCE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="41405:41446" placeholder="DELETE FROM " />
-            <marker date="1458673309769" expanded="true" signature="41676:41975" placeholder="(select coun... " />
-            <marker date="1458673309769" expanded="true" signature="41677:41974" placeholder="select count... INSTANCE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="41716:41776" placeholder="select count... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="41797:41918" placeholder="select count... HOST_STATE" />
-            <marker date="1458673309769" expanded="true" signature="42964:43440" placeholder="select id,ti... " />
-            <marker date="1458673309769" expanded="true" signature="44452:44926" placeholder="select id,ti... " />
-            <marker date="1458673309769" expanded="true" signature="45812:45922" placeholder="select *,(se... FAVORITES" />
-            <marker date="1458673309769" expanded="true" signature="45822:45887" placeholder="select title... INSTANCE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="46679:46862" placeholder="SELECT i.tit... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="47516:47623" placeholder="SELECT u.use... Users" />
-            <marker date="1458673309769" expanded="true" signature="48164:48194" placeholder="select count... Roles" />
-            <marker date="1458673309769" expanded="true" signature="48398:48469" placeholder="UPDATE \&quot;Use... " />
-            <marker date="1458673309769" expanded="true" signature="48623:48675" placeholder="select count... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="48957:49054" placeholder="select sshco... sshconfigurationhibernate" />
-            <marker date="1458673309769" expanded="true" signature="49318:49520" placeholder="UPDATE sshco... " />
-            <marker date="1458673309769" expanded="true" signature="49700:49781" placeholder="SELECT * FRO... sshconfigurationhibernate" />
-            <marker date="1458673309769" expanded="true" signature="50577:50650" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="50717:50790" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="50858:50931" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="51099:51161" placeholder="delete from " />
-            <marker date="1458673309769" expanded="true" signature="51448:51534" placeholder="INSERT INTO \&quot;FAVORITES\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="51697:51734" placeholder="DELETE FROM " />
-            <marker date="1458673309769" expanded="true" signature="51931:51999" placeholder="SELECT count... HOST_STATE" />
-            <marker date="1458673309769" expanded="true" signature="52521:52591" placeholder="SELECT count... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="52824:52865" placeholder="SELECT count... INSTANCE_METRIC" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/core/models/hostRow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
-          <folding>
-            <element signature="e#547#548#0" expanded="true" />
-            <element signature="e#572#573#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/core/db/IMetricStorage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="100" column="20" selection-start-line="100" selection-start-column="20" selection-end-line="100" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/web/config/WebSecurityConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="77" selection-start-line="27" selection-start-column="77" selection-end-line="27" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding>
-            <marker date="1458646592591" expanded="true" signature="8394:8408" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/HostController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="199" column="24" selection-start-line="199" selection-start-column="24" selection-end-line="199" selection-end-column="24" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1173#1174#0" expanded="false" />
+            <element signature="e#1215#1216#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1293,9 +1188,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#style#0;n#i#0;n#div#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#1;n#div#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#div#0;n#th#4;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#div#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#i#1;n#div#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#i#0;n#div#0;n#th#4;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1304,7 +1199,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="27" column="77" selection-start-line="27" selection-start-column="77" selection-end-line="27" selection-end-column="77" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1312,9 +1206,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding>
-            <marker date="1458646592591" expanded="true" signature="8394:8408" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1322,7 +1213,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1173#1174#0" expanded="false" />
+            <element signature="e#1215#1216#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1331,9 +1226,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="234" column="119" selection-start-line="234" selection-start-column="119" selection-end-line="234" selection-end-column="119" />
           <folding>
-            <element signature="n#style#0;n#i#0;n#div#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#1;n#div#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#div#0;n#th#4;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#div#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#i#1;n#div#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#i#0;n#div#0;n#th#4;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1377,8 +1272,8 @@
             <element signature="method#addValue#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getLastDate#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#averaging#0;class#MetricStorage#0" expanded="false" />
-            <element signature="e#24053#24069#0" expanded="false" />
-            <element signature="e#26199#26259#0" expanded="false" />
+            <element signature="e#24051#24067#0" expanded="false" />
+            <element signature="e#26196#26256#0" expanded="false" />
             <element signature="method#getTemplatMetric#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getMinValueTemplateMetric#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getMaxValueTemplateMetric#0;class#MetricStorage#0" expanded="false" />
@@ -1389,87 +1284,87 @@
             <element signature="method#getInstMetric#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getInstMetric#1;class#MetricStorage#0" expanded="false" />
             <element signature="method#updateHost#0;class#MetricStorage#0" expanded="false" />
-            <element signature="e#52177#52280#0" expanded="false" />
-            <element signature="e#53006#53017#0" expanded="false" />
-            <marker date="1458673309769" expanded="true" signature="1282:1427" placeholder="UPDATE \&quot;MET... " />
-            <marker date="1458673309769" expanded="true" signature="1575:1766" placeholder="SELECT id, s... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="2273:2481" placeholder="INSERT INTO \&quot;METRIC_STATE\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="2630:2808" placeholder="SELECT id, s... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="3318:3526" placeholder="INSERT INTO \&quot;METRIC_STATE\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="3671:3843" placeholder="SELECT id, s... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="4181:4345" placeholder="UPDATE \&quot;MET... " />
-            <marker date="1458673309769" expanded="true" signature="4509:4656" placeholder="INSERT INTO \&quot;METRIC_STATE\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="4851:4966" placeholder="SELECT id, s... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="6213:6340" placeholder="SELECT id, s... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="7718:7849" placeholder="SELECT id, s... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="9207:9322" placeholder="SELECT id, s... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="10456:10553" placeholder="UPDATE \&quot;MET... " />
-            <marker date="1458673309769" expanded="true" signature="10682:10760" placeholder="UPDATE \&quot;MET... " />
-            <marker date="1458673309769" expanded="true" signature="10898:10959" placeholder="SELECT COUNT... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="11159:11234" placeholder="SELECT COUNT... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="11616:11753" placeholder="SELECT id, r... HOST_STATE" />
-            <marker date="1458673309769" expanded="true" signature="12205:12351" placeholder="INSERT INTO \&quot;HOST_STATE\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="12503:12632" placeholder="UPDATE \&quot;HOS... " />
-            <marker date="1458673309769" expanded="true" signature="12824:12923" placeholder="SELECT id, r... HOST_STATE" />
-            <marker date="1458673309769" expanded="true" signature="14078:14187" placeholder="SELECT id, r... HOST_STATE" />
-            <marker date="1458673309769" expanded="true" signature="15597:15692" placeholder="UPDATE \&quot;HOS... " />
-            <marker date="1458673309769" expanded="true" signature="15819:15895" placeholder="UPDATE \&quot;HOS... " />
-            <marker date="1458673309769" expanded="true" signature="16031:16090" placeholder="SELECT COUNT... HOST_STATE" />
-            <marker date="1458673309769" expanded="true" signature="16327:16469" placeholder="INSERT INTO \&quot;VALUE_METRIC\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="16616:16702" placeholder="SELECT MAX(d... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="19053:19175" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="20584:20805" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="21506:21727" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="23368:23589" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="25777:25998" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="27914:28135" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="29715:29936" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="30668:30889" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="31613:31834" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="32503:32724" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="33189:33272" placeholder="INSERT INTO \&quot;TEMPLATE_METRICS\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="33499:33544" placeholder="select * FRO... TEMPLATE_METRICS" />
-            <marker date="1458673309769" expanded="true" signature="34069:34103" placeholder="SELECT * FRO... TEMPLATE_METRICS" />
-            <marker date="1458673309769" expanded="true" signature="34728:34791" placeholder="select id FR... TEMPLATE_METRICS" />
-            <marker date="1458673309769" expanded="true" signature="35051:35114" placeholder="select * FRO... TEMPLATE_METRICS" />
-            <marker date="1458673309769" expanded="true" signature="35574:35627" placeholder="select min_v... TEMPLATE_METRICS" />
-            <marker date="1458673309769" expanded="true" signature="35812:35865" placeholder="select max_v... TEMPLATE_METRICS" />
-            <marker date="1458673309769" expanded="true" signature="36108:36196" placeholder="UPDATE \&quot;TEM... " />
-            <marker date="1458673309769" expanded="true" signature="36364:36416" placeholder="select min_v... INSTANCE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="36601:36653" placeholder="select max_v... INSTANCE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="36896:36983" placeholder="UPDATE \&quot;INS... " />
-            <marker date="1458673309769" expanded="true" signature="37237:37439" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="37636:37862" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="38036:38355" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="38593:38697" placeholder="SELECT id, t... INSTANCE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="39621:39767" placeholder="SELECT id, t... INSTANCE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="40558:40660" placeholder="SELECT id, t... INSTANCE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="41405:41446" placeholder="DELETE FROM " />
-            <marker date="1458673309769" expanded="true" signature="41676:41975" placeholder="(select coun... " />
-            <marker date="1458673309769" expanded="true" signature="41677:41974" placeholder="select count... INSTANCE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="41716:41776" placeholder="select count... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="41797:41918" placeholder="select count... HOST_STATE" />
-            <marker date="1458673309769" expanded="true" signature="42964:43440" placeholder="select id,ti... " />
-            <marker date="1458673309769" expanded="true" signature="44452:44926" placeholder="select id,ti... " />
-            <marker date="1458673309769" expanded="true" signature="45812:45922" placeholder="select *,(se... FAVORITES" />
-            <marker date="1458673309769" expanded="true" signature="45822:45887" placeholder="select title... INSTANCE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="46679:46862" placeholder="SELECT i.tit... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="47516:47623" placeholder="SELECT u.use... Users" />
-            <marker date="1458673309769" expanded="true" signature="48164:48194" placeholder="select count... Roles" />
-            <marker date="1458673309769" expanded="true" signature="48398:48469" placeholder="UPDATE \&quot;Use... " />
-            <marker date="1458673309769" expanded="true" signature="48623:48675" placeholder="select count... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="48957:49054" placeholder="select sshco... sshconfigurationhibernate" />
-            <marker date="1458673309769" expanded="true" signature="49318:49520" placeholder="UPDATE sshco... " />
-            <marker date="1458673309769" expanded="true" signature="49700:49781" placeholder="SELECT * FRO... sshconfigurationhibernate" />
-            <marker date="1458673309769" expanded="true" signature="50577:50650" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="50717:50790" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="50858:50931" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="51099:51161" placeholder="delete from " />
-            <marker date="1458673309769" expanded="true" signature="51448:51534" placeholder="INSERT INTO \&quot;FAVORITES\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="51697:51734" placeholder="DELETE FROM " />
-            <marker date="1458673309769" expanded="true" signature="51931:51999" placeholder="SELECT count... HOST_STATE" />
-            <marker date="1458673309769" expanded="true" signature="52521:52591" placeholder="SELECT count... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="52824:52865" placeholder="SELECT count... INSTANCE_METRIC" />
+            <element signature="e#52170#52273#0" expanded="false" />
+            <element signature="e#52999#53010#0" expanded="false" />
+            <marker date="1459065822196" expanded="true" signature="1282:1427" placeholder="UPDATE \&quot;MET... " />
+            <marker date="1459065822196" expanded="true" signature="1575:1766" placeholder="SELECT id, s... METRIC_STATE" />
+            <marker date="1459065822196" expanded="true" signature="2273:2481" placeholder="INSERT INTO \&quot;METRIC_STATE\&quot;... " />
+            <marker date="1459065822196" expanded="true" signature="2630:2808" placeholder="SELECT id, s... METRIC_STATE" />
+            <marker date="1459065822196" expanded="true" signature="3318:3526" placeholder="INSERT INTO \&quot;METRIC_STATE\&quot;... " />
+            <marker date="1459065822196" expanded="true" signature="3671:3843" placeholder="SELECT id, s... METRIC_STATE" />
+            <marker date="1459065822196" expanded="true" signature="4181:4345" placeholder="UPDATE \&quot;MET... " />
+            <marker date="1459065822196" expanded="true" signature="4509:4656" placeholder="INSERT INTO \&quot;METRIC_STATE\&quot;... " />
+            <marker date="1459065822196" expanded="true" signature="4851:4966" placeholder="SELECT id, s... METRIC_STATE" />
+            <marker date="1459065822196" expanded="true" signature="6213:6340" placeholder="SELECT id, s... METRIC_STATE" />
+            <marker date="1459065822196" expanded="true" signature="7718:7849" placeholder="SELECT id, s... METRIC_STATE" />
+            <marker date="1459065822196" expanded="true" signature="9207:9322" placeholder="SELECT id, s... METRIC_STATE" />
+            <marker date="1459065822196" expanded="true" signature="10456:10553" placeholder="UPDATE \&quot;MET... " />
+            <marker date="1459065822196" expanded="true" signature="10682:10760" placeholder="UPDATE \&quot;MET... " />
+            <marker date="1459065822196" expanded="true" signature="10898:10959" placeholder="SELECT COUNT... METRIC_STATE" />
+            <marker date="1459065822196" expanded="true" signature="11159:11234" placeholder="SELECT COUNT... METRIC_STATE" />
+            <marker date="1459065822196" expanded="true" signature="11616:11753" placeholder="SELECT id, r... HOST_STATE" />
+            <marker date="1459065822196" expanded="true" signature="12205:12351" placeholder="INSERT INTO \&quot;HOST_STATE\&quot;... " />
+            <marker date="1459065822196" expanded="true" signature="12503:12632" placeholder="UPDATE \&quot;HOS... " />
+            <marker date="1459065822196" expanded="true" signature="12824:12923" placeholder="SELECT id, r... HOST_STATE" />
+            <marker date="1459065822196" expanded="true" signature="14078:14187" placeholder="SELECT id, r... HOST_STATE" />
+            <marker date="1459065822196" expanded="true" signature="15597:15692" placeholder="UPDATE \&quot;HOS... " />
+            <marker date="1459065822196" expanded="true" signature="15819:15895" placeholder="UPDATE \&quot;HOS... " />
+            <marker date="1459065822196" expanded="true" signature="16031:16090" placeholder="SELECT COUNT... HOST_STATE" />
+            <marker date="1459065822196" expanded="true" signature="16327:16469" placeholder="INSERT INTO \&quot;VALUE_METRIC\&quot;... " />
+            <marker date="1459065822196" expanded="true" signature="16616:16702" placeholder="SELECT MAX(d... VALUE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="19053:19175" placeholder="SELECT value... VALUE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="20584:20805" placeholder="SELECT value... VALUE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="21505:21726" placeholder="SELECT value... VALUE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="23366:23587" placeholder="SELECT value... VALUE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="25774:25995" placeholder="SELECT value... VALUE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="27910:28131" placeholder="SELECT value... VALUE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="29710:29931" placeholder="SELECT value... VALUE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="30662:30883" placeholder="SELECT value... VALUE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="31606:31827" placeholder="SELECT value... VALUE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="32495:32716" placeholder="SELECT value... VALUE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="33181:33264" placeholder="INSERT INTO \&quot;TEMPLATE_METRICS\&quot;... " />
+            <marker date="1459065822196" expanded="true" signature="33491:33536" placeholder="select * FRO... TEMPLATE_METRICS" />
+            <marker date="1459065822196" expanded="true" signature="34061:34095" placeholder="SELECT * FRO... TEMPLATE_METRICS" />
+            <marker date="1459065822196" expanded="true" signature="34720:34783" placeholder="select id FR... TEMPLATE_METRICS" />
+            <marker date="1459065822196" expanded="true" signature="35043:35106" placeholder="select * FRO... TEMPLATE_METRICS" />
+            <marker date="1459065822196" expanded="true" signature="35566:35619" placeholder="select min_v... TEMPLATE_METRICS" />
+            <marker date="1459065822196" expanded="true" signature="35804:35857" placeholder="select max_v... TEMPLATE_METRICS" />
+            <marker date="1459065822196" expanded="true" signature="36100:36188" placeholder="UPDATE \&quot;TEM... " />
+            <marker date="1459065822196" expanded="true" signature="36356:36408" placeholder="select min_v... INSTANCE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="36593:36645" placeholder="select max_v... INSTANCE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="36888:36975" placeholder="UPDATE \&quot;INS... " />
+            <marker date="1459065822196" expanded="true" signature="37229:37431" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
+            <marker date="1459065822196" expanded="true" signature="37628:37854" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
+            <marker date="1459065822196" expanded="true" signature="38028:38347" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
+            <marker date="1459065822196" expanded="true" signature="38585:38689" placeholder="SELECT id, t... INSTANCE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="39613:39759" placeholder="SELECT id, t... INSTANCE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="40550:40652" placeholder="SELECT id, t... INSTANCE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="41397:41438" placeholder="DELETE FROM " />
+            <marker date="1459065822196" expanded="true" signature="41668:41967" placeholder="(select coun... " />
+            <marker date="1459065822196" expanded="true" signature="41669:41966" placeholder="select count... INSTANCE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="41708:41768" placeholder="select count... METRIC_STATE" />
+            <marker date="1459065822196" expanded="true" signature="41789:41910" placeholder="select count... HOST_STATE" />
+            <marker date="1459065822196" expanded="true" signature="42956:43432" placeholder="select id,ti... " />
+            <marker date="1459065822196" expanded="true" signature="44445:44919" placeholder="select id,ti... " />
+            <marker date="1459065822196" expanded="true" signature="45805:45915" placeholder="select *,(se... FAVORITES" />
+            <marker date="1459065822196" expanded="true" signature="45815:45880" placeholder="select title... INSTANCE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="46672:46855" placeholder="SELECT i.tit... METRIC_STATE" />
+            <marker date="1459065822196" expanded="true" signature="47509:47616" placeholder="SELECT u.use... Users" />
+            <marker date="1459065822196" expanded="true" signature="48157:48187" placeholder="select count... Roles" />
+            <marker date="1459065822196" expanded="true" signature="48391:48462" placeholder="UPDATE \&quot;Use... " />
+            <marker date="1459065822196" expanded="true" signature="48616:48668" placeholder="select count... VALUE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="48950:49047" placeholder="select sshco... sshconfigurationhibernate" />
+            <marker date="1459065822196" expanded="true" signature="49311:49513" placeholder="UPDATE sshco... " />
+            <marker date="1459065822196" expanded="true" signature="49693:49774" placeholder="SELECT * FRO... sshconfigurationhibernate" />
+            <marker date="1459065822196" expanded="true" signature="50570:50643" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
+            <marker date="1459065822196" expanded="true" signature="50710:50783" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
+            <marker date="1459065822196" expanded="true" signature="50851:50924" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
+            <marker date="1459065822196" expanded="true" signature="51092:51154" placeholder="delete from " />
+            <marker date="1459065822196" expanded="true" signature="51441:51527" placeholder="INSERT INTO \&quot;FAVORITES\&quot;... " />
+            <marker date="1459065822196" expanded="true" signature="51690:51727" placeholder="DELETE FROM " />
+            <marker date="1459065822196" expanded="true" signature="51924:51992" placeholder="SELECT count... HOST_STATE" />
+            <marker date="1459065822196" expanded="true" signature="52514:52584" placeholder="SELECT count... METRIC_STATE" />
+            <marker date="1459065822196" expanded="true" signature="52817:52858" placeholder="SELECT count... INSTANCE_METRIC" />
           </folding>
         </state>
       </provider>
@@ -1481,66 +1376,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/core/models/chartValues.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/core/models/ChartValues.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/addHost.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.5384617">
-          <caret line="101" column="82" selection-start-line="101" selection-start-column="82" selection-end-line="101" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/FormWorkpiece.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.0384617">
-          <caret line="94" column="82" selection-start-line="94" selection-start-column="82" selection-end-line="94" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/instanceMetricsOption.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.1923075">
-          <caret line="59" column="82" selection-start-line="59" selection-start-column="82" selection-end-line="59" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/problems.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.692307">
-          <caret line="96" column="82" selection-start-line="96" selection-start-column="82" selection-end-line="96" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/addIntsMetric.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="84" column="30" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/accaunts.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="7" selection-start-line="0" selection-start-column="0" selection-end-line="32" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/templetMetrics.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.692307">
-          <caret line="99" column="108" selection-start-line="99" selection-start-column="40" selection-end-line="99" selection-end-column="108" />
         </state>
       </provider>
     </entry>
@@ -1555,47 +1394,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding>
-            <element signature="e#743#744#0" expanded="false" />
-            <element signature="e#768#769#0" expanded="false" />
-            <element signature="e#801#802#0" expanded="false" />
-            <element signature="e#829#830#0" expanded="false" />
-            <element signature="e#861#862#0" expanded="false" />
-            <element signature="e#889#890#0" expanded="false" />
-            <element signature="e#931#932#0" expanded="false" />
-            <element signature="e#965#966#0" expanded="false" />
-            <element signature="e#995#996#0" expanded="false" />
-            <element signature="e#1023#1024#0" expanded="false" />
-            <element signature="e#1063#1064#0" expanded="false" />
-            <element signature="e#1097#1098#0" expanded="false" />
-            <element signature="e#1125#1126#0" expanded="false" />
-            <element signature="e#1151#1152#0" expanded="false" />
-            <element signature="e#1187#1188#0" expanded="false" />
-            <element signature="e#1217#1218#0" expanded="false" />
-            <element signature="e#1254#1255#0" expanded="false" />
-            <element signature="e#1287#1288#0" expanded="false" />
-            <element signature="e#1339#1340#0" expanded="false" />
-            <element signature="e#1383#1384#0" expanded="false" />
-            <element signature="e#1418#1419#0" expanded="false" />
-            <element signature="e#1449#1450#0" expanded="false" />
-            <element signature="e#1498#1499#0" expanded="false" />
-            <element signature="e#1538#1539#0" expanded="false" />
-            <element signature="e#1573#1574#0" expanded="false" />
-            <element signature="e#1604#1605#0" expanded="false" />
-            <element signature="e#1652#1653#0" expanded="false" />
-            <element signature="e#1692#1693#0" expanded="false" />
-            <element signature="e#1727#1728#0" expanded="false" />
-            <element signature="e#1758#1759#0" expanded="false" />
-            <element signature="e#1806#1807#0" expanded="false" />
-            <element signature="e#1846#1847#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/OptionsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="27" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -1610,7 +1408,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="3.1538463">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1639,13 +1436,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/IndexController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1702,7 +1492,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5037037">
           <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1717,23 +1506,52 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="27" column="77" selection-start-line="27" selection-start-column="77" selection-end-line="27" selection-end-column="77" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/hostEditor.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.019906323">
-          <caret line="77" column="88" selection-start-line="77" selection-start-column="88" selection-end-line="77" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/RegistrationController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
           <folding>
-            <marker date="1458646592591" expanded="true" signature="8394:8408" placeholder="..." />
+            <element signature="imports" expanded="false" />
+            <element signature="e#616#617#0" expanded="false" />
+            <element signature="e#686#687#0" expanded="false" />
+            <marker date="1457869733228" expanded="true" signature="2143:2210" placeholder="INSERT INTO \&quot;Users\&quot;... " />
+            <marker date="1457869733228" expanded="true" signature="2240:2307" placeholder="INSERT INTO \&quot;Roles\&quot;... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/core/models/HostRow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
+          <folding>
+            <element signature="e#547#548#0" expanded="false" />
+            <element signature="e#572#573#0" expanded="false" />
+            <element signature="e#605#606#0" expanded="false" />
+            <element signature="e#633#634#0" expanded="false" />
+            <element signature="e#668#669#0" expanded="false" />
+            <element signature="e#699#700#0" expanded="false" />
+            <element signature="e#747#748#0" expanded="false" />
+            <element signature="e#787#788#0" expanded="false" />
+            <element signature="e#824#825#0" expanded="false" />
+            <element signature="e#860#861#0" expanded="false" />
+            <element signature="e#915#916#0" expanded="false" />
+            <element signature="e#965#966#0" expanded="false" />
+            <element signature="e#1000#1001#0" expanded="false" />
+            <element signature="e#1034#1035#0" expanded="false" />
+            <element signature="e#1085#1086#0" expanded="false" />
+            <element signature="e#1131#1132#0" expanded="false" />
+            <element signature="e#1164#1165#0" expanded="false" />
+            <element signature="e#1193#1194#0" expanded="false" />
+            <element signature="e#1237#1238#0" expanded="false" />
+            <element signature="e#1273#1274#0" expanded="false" />
+            <element signature="e#1308#1309#0" expanded="false" />
+            <element signature="e#1339#1340#0" expanded="false" />
+            <element signature="e#1387#1388#0" expanded="false" />
+            <element signature="e#1427#1428#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1742,44 +1560,73 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="100" column="20" selection-start-line="100" selection-start-column="20" selection-end-line="100" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/AccauntEditorController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/ChartController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="168" column="5" selection-start-line="168" selection-start-column="5" selection-end-line="168" selection-end-column="5" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/core/models/hostRow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
-          <folding>
-            <element signature="e#547#548#0" expanded="true" />
-            <element signature="e#572#573#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/hosts.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="266" column="135" selection-start-line="266" selection-start-column="135" selection-end-line="266" selection-end-column="135" />
-          <folding>
-            <element signature="n#style#0;n#i#0;n#div#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#1;n#div#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#div#0;n#th#4;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/HostController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
+          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1173#1174#0" expanded="false" />
+            <element signature="e#1215#1216#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/IndexController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="24" selection-end-column="30" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/OptionsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="47" column="27" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/ProblemsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/core/MetricStorage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22899505">
+        <state vertical-scroll-proportion="0.0">
           <caret line="914" column="40" selection-start-line="914" selection-start-column="40" selection-end-line="914" selection-end-column="40" />
           <folding>
             <element signature="e#725#736#0" expanded="false" />
@@ -1809,8 +1656,8 @@
             <element signature="method#addValue#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getLastDate#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#averaging#0;class#MetricStorage#0" expanded="false" />
-            <element signature="e#24053#24069#0" expanded="false" />
-            <element signature="e#26199#26259#0" expanded="false" />
+            <element signature="e#24051#24067#0" expanded="false" />
+            <element signature="e#26196#26256#0" expanded="false" />
             <element signature="method#getTemplatMetric#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getMinValueTemplateMetric#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getMaxValueTemplateMetric#0;class#MetricStorage#0" expanded="false" />
@@ -1821,88 +1668,194 @@
             <element signature="method#getInstMetric#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getInstMetric#1;class#MetricStorage#0" expanded="false" />
             <element signature="method#updateHost#0;class#MetricStorage#0" expanded="false" />
-            <element signature="e#52177#52280#0" expanded="false" />
-            <element signature="e#53006#53017#0" expanded="false" />
-            <marker date="1458673309769" expanded="true" signature="1282:1427" placeholder="UPDATE \&quot;MET... " />
-            <marker date="1458673309769" expanded="true" signature="1575:1766" placeholder="SELECT id, s... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="2273:2481" placeholder="INSERT INTO \&quot;METRIC_STATE\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="2630:2808" placeholder="SELECT id, s... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="3318:3526" placeholder="INSERT INTO \&quot;METRIC_STATE\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="3671:3843" placeholder="SELECT id, s... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="4181:4345" placeholder="UPDATE \&quot;MET... " />
-            <marker date="1458673309769" expanded="true" signature="4509:4656" placeholder="INSERT INTO \&quot;METRIC_STATE\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="4851:4966" placeholder="SELECT id, s... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="6213:6340" placeholder="SELECT id, s... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="7718:7849" placeholder="SELECT id, s... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="9207:9322" placeholder="SELECT id, s... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="10456:10553" placeholder="UPDATE \&quot;MET... " />
-            <marker date="1458673309769" expanded="true" signature="10682:10760" placeholder="UPDATE \&quot;MET... " />
-            <marker date="1458673309769" expanded="true" signature="10898:10959" placeholder="SELECT COUNT... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="11159:11234" placeholder="SELECT COUNT... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="11616:11753" placeholder="SELECT id, r... HOST_STATE" />
-            <marker date="1458673309769" expanded="true" signature="12205:12351" placeholder="INSERT INTO \&quot;HOST_STATE\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="12503:12632" placeholder="UPDATE \&quot;HOS... " />
-            <marker date="1458673309769" expanded="true" signature="12824:12923" placeholder="SELECT id, r... HOST_STATE" />
-            <marker date="1458673309769" expanded="true" signature="14078:14187" placeholder="SELECT id, r... HOST_STATE" />
-            <marker date="1458673309769" expanded="true" signature="15597:15692" placeholder="UPDATE \&quot;HOS... " />
-            <marker date="1458673309769" expanded="true" signature="15819:15895" placeholder="UPDATE \&quot;HOS... " />
-            <marker date="1458673309769" expanded="true" signature="16031:16090" placeholder="SELECT COUNT... HOST_STATE" />
-            <marker date="1458673309769" expanded="true" signature="16327:16469" placeholder="INSERT INTO \&quot;VALUE_METRIC\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="16616:16702" placeholder="SELECT MAX(d... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="19053:19175" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="20584:20805" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="21506:21727" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="23368:23589" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="25777:25998" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="27914:28135" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="29715:29936" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="30668:30889" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="31613:31834" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="32503:32724" placeholder="SELECT value... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="33189:33272" placeholder="INSERT INTO \&quot;TEMPLATE_METRICS\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="33499:33544" placeholder="select * FRO... TEMPLATE_METRICS" />
-            <marker date="1458673309769" expanded="true" signature="34069:34103" placeholder="SELECT * FRO... TEMPLATE_METRICS" />
-            <marker date="1458673309769" expanded="true" signature="34728:34791" placeholder="select id FR... TEMPLATE_METRICS" />
-            <marker date="1458673309769" expanded="true" signature="35051:35114" placeholder="select * FRO... TEMPLATE_METRICS" />
-            <marker date="1458673309769" expanded="true" signature="35574:35627" placeholder="select min_v... TEMPLATE_METRICS" />
-            <marker date="1458673309769" expanded="true" signature="35812:35865" placeholder="select max_v... TEMPLATE_METRICS" />
-            <marker date="1458673309769" expanded="true" signature="36108:36196" placeholder="UPDATE \&quot;TEM... " />
-            <marker date="1458673309769" expanded="true" signature="36364:36416" placeholder="select min_v... INSTANCE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="36601:36653" placeholder="select max_v... INSTANCE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="36896:36983" placeholder="UPDATE \&quot;INS... " />
-            <marker date="1458673309769" expanded="true" signature="37237:37439" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="37636:37862" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="38036:38355" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="38593:38697" placeholder="SELECT id, t... INSTANCE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="39621:39767" placeholder="SELECT id, t... INSTANCE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="40558:40660" placeholder="SELECT id, t... INSTANCE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="41405:41446" placeholder="DELETE FROM " />
-            <marker date="1458673309769" expanded="true" signature="41676:41975" placeholder="(select coun... " />
-            <marker date="1458673309769" expanded="true" signature="41677:41974" placeholder="select count... INSTANCE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="41716:41776" placeholder="select count... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="41797:41918" placeholder="select count... HOST_STATE" />
-            <marker date="1458673309769" expanded="true" signature="42964:43440" placeholder="select id,ti... " />
-            <marker date="1458673309769" expanded="true" signature="44452:44926" placeholder="select id,ti... " />
-            <marker date="1458673309769" expanded="true" signature="45812:45922" placeholder="select *,(se... FAVORITES" />
-            <marker date="1458673309769" expanded="true" signature="45822:45887" placeholder="select title... INSTANCE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="46679:46862" placeholder="SELECT i.tit... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="47516:47623" placeholder="SELECT u.use... Users" />
-            <marker date="1458673309769" expanded="true" signature="48164:48194" placeholder="select count... Roles" />
-            <marker date="1458673309769" expanded="true" signature="48398:48469" placeholder="UPDATE \&quot;Use... " />
-            <marker date="1458673309769" expanded="true" signature="48623:48675" placeholder="select count... VALUE_METRIC" />
-            <marker date="1458673309769" expanded="true" signature="48957:49054" placeholder="select sshco... sshconfigurationhibernate" />
-            <marker date="1458673309769" expanded="true" signature="49318:49520" placeholder="UPDATE sshco... " />
-            <marker date="1458673309769" expanded="true" signature="49700:49781" placeholder="SELECT * FRO... sshconfigurationhibernate" />
-            <marker date="1458673309769" expanded="true" signature="50577:50650" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="50717:50790" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="50858:50931" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="51099:51161" placeholder="delete from " />
-            <marker date="1458673309769" expanded="true" signature="51448:51534" placeholder="INSERT INTO \&quot;FAVORITES\&quot;... " />
-            <marker date="1458673309769" expanded="true" signature="51697:51734" placeholder="DELETE FROM " />
-            <marker date="1458673309769" expanded="true" signature="51931:51999" placeholder="SELECT count... HOST_STATE" />
-            <marker date="1458673309769" expanded="true" signature="52521:52591" placeholder="SELECT count... METRIC_STATE" />
-            <marker date="1458673309769" expanded="true" signature="52824:52865" placeholder="SELECT count... INSTANCE_METRIC" />
+            <element signature="e#52170#52273#0" expanded="false" />
+            <element signature="e#52999#53010#0" expanded="false" />
+            <marker date="1459065822196" expanded="true" signature="1282:1427" placeholder="UPDATE \&quot;MET... " />
+            <marker date="1459065822196" expanded="true" signature="1575:1766" placeholder="SELECT id, s... METRIC_STATE" />
+            <marker date="1459065822196" expanded="true" signature="2273:2481" placeholder="INSERT INTO \&quot;METRIC_STATE\&quot;... " />
+            <marker date="1459065822196" expanded="true" signature="2630:2808" placeholder="SELECT id, s... METRIC_STATE" />
+            <marker date="1459065822196" expanded="true" signature="3318:3526" placeholder="INSERT INTO \&quot;METRIC_STATE\&quot;... " />
+            <marker date="1459065822196" expanded="true" signature="3671:3843" placeholder="SELECT id, s... METRIC_STATE" />
+            <marker date="1459065822196" expanded="true" signature="4181:4345" placeholder="UPDATE \&quot;MET... " />
+            <marker date="1459065822196" expanded="true" signature="4509:4656" placeholder="INSERT INTO \&quot;METRIC_STATE\&quot;... " />
+            <marker date="1459065822196" expanded="true" signature="4851:4966" placeholder="SELECT id, s... METRIC_STATE" />
+            <marker date="1459065822196" expanded="true" signature="6213:6340" placeholder="SELECT id, s... METRIC_STATE" />
+            <marker date="1459065822196" expanded="true" signature="7718:7849" placeholder="SELECT id, s... METRIC_STATE" />
+            <marker date="1459065822196" expanded="true" signature="9207:9322" placeholder="SELECT id, s... METRIC_STATE" />
+            <marker date="1459065822196" expanded="true" signature="10456:10553" placeholder="UPDATE \&quot;MET... " />
+            <marker date="1459065822196" expanded="true" signature="10682:10760" placeholder="UPDATE \&quot;MET... " />
+            <marker date="1459065822196" expanded="true" signature="10898:10959" placeholder="SELECT COUNT... METRIC_STATE" />
+            <marker date="1459065822196" expanded="true" signature="11159:11234" placeholder="SELECT COUNT... METRIC_STATE" />
+            <marker date="1459065822196" expanded="true" signature="11616:11753" placeholder="SELECT id, r... HOST_STATE" />
+            <marker date="1459065822196" expanded="true" signature="12205:12351" placeholder="INSERT INTO \&quot;HOST_STATE\&quot;... " />
+            <marker date="1459065822196" expanded="true" signature="12503:12632" placeholder="UPDATE \&quot;HOS... " />
+            <marker date="1459065822196" expanded="true" signature="12824:12923" placeholder="SELECT id, r... HOST_STATE" />
+            <marker date="1459065822196" expanded="true" signature="14078:14187" placeholder="SELECT id, r... HOST_STATE" />
+            <marker date="1459065822196" expanded="true" signature="15597:15692" placeholder="UPDATE \&quot;HOS... " />
+            <marker date="1459065822196" expanded="true" signature="15819:15895" placeholder="UPDATE \&quot;HOS... " />
+            <marker date="1459065822196" expanded="true" signature="16031:16090" placeholder="SELECT COUNT... HOST_STATE" />
+            <marker date="1459065822196" expanded="true" signature="16327:16469" placeholder="INSERT INTO \&quot;VALUE_METRIC\&quot;... " />
+            <marker date="1459065822196" expanded="true" signature="16616:16702" placeholder="SELECT MAX(d... VALUE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="19053:19175" placeholder="SELECT value... VALUE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="20584:20805" placeholder="SELECT value... VALUE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="21505:21726" placeholder="SELECT value... VALUE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="23366:23587" placeholder="SELECT value... VALUE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="25774:25995" placeholder="SELECT value... VALUE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="27910:28131" placeholder="SELECT value... VALUE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="29710:29931" placeholder="SELECT value... VALUE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="30662:30883" placeholder="SELECT value... VALUE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="31606:31827" placeholder="SELECT value... VALUE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="32495:32716" placeholder="SELECT value... VALUE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="33181:33264" placeholder="INSERT INTO \&quot;TEMPLATE_METRICS\&quot;... " />
+            <marker date="1459065822196" expanded="true" signature="33491:33536" placeholder="select * FRO... TEMPLATE_METRICS" />
+            <marker date="1459065822196" expanded="true" signature="34061:34095" placeholder="SELECT * FRO... TEMPLATE_METRICS" />
+            <marker date="1459065822196" expanded="true" signature="34720:34783" placeholder="select id FR... TEMPLATE_METRICS" />
+            <marker date="1459065822196" expanded="true" signature="35043:35106" placeholder="select * FRO... TEMPLATE_METRICS" />
+            <marker date="1459065822196" expanded="true" signature="35566:35619" placeholder="select min_v... TEMPLATE_METRICS" />
+            <marker date="1459065822196" expanded="true" signature="35804:35857" placeholder="select max_v... TEMPLATE_METRICS" />
+            <marker date="1459065822196" expanded="true" signature="36100:36188" placeholder="UPDATE \&quot;TEM... " />
+            <marker date="1459065822196" expanded="true" signature="36356:36408" placeholder="select min_v... INSTANCE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="36593:36645" placeholder="select max_v... INSTANCE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="36888:36975" placeholder="UPDATE \&quot;INS... " />
+            <marker date="1459065822196" expanded="true" signature="37229:37431" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
+            <marker date="1459065822196" expanded="true" signature="37628:37854" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
+            <marker date="1459065822196" expanded="true" signature="38028:38347" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
+            <marker date="1459065822196" expanded="true" signature="38585:38689" placeholder="SELECT id, t... INSTANCE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="39613:39759" placeholder="SELECT id, t... INSTANCE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="40550:40652" placeholder="SELECT id, t... INSTANCE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="41397:41438" placeholder="DELETE FROM " />
+            <marker date="1459065822196" expanded="true" signature="41668:41967" placeholder="(select coun... " />
+            <marker date="1459065822196" expanded="true" signature="41669:41966" placeholder="select count... INSTANCE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="41708:41768" placeholder="select count... METRIC_STATE" />
+            <marker date="1459065822196" expanded="true" signature="41789:41910" placeholder="select count... HOST_STATE" />
+            <marker date="1459065822196" expanded="true" signature="42956:43432" placeholder="select id,ti... " />
+            <marker date="1459065822196" expanded="true" signature="44445:44919" placeholder="select id,ti... " />
+            <marker date="1459065822196" expanded="true" signature="45805:45915" placeholder="select *,(se... FAVORITES" />
+            <marker date="1459065822196" expanded="true" signature="45815:45880" placeholder="select title... INSTANCE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="46672:46855" placeholder="SELECT i.tit... METRIC_STATE" />
+            <marker date="1459065822196" expanded="true" signature="47509:47616" placeholder="SELECT u.use... Users" />
+            <marker date="1459065822196" expanded="true" signature="48157:48187" placeholder="select count... Roles" />
+            <marker date="1459065822196" expanded="true" signature="48391:48462" placeholder="UPDATE \&quot;Use... " />
+            <marker date="1459065822196" expanded="true" signature="48616:48668" placeholder="select count... VALUE_METRIC" />
+            <marker date="1459065822196" expanded="true" signature="48950:49047" placeholder="select sshco... sshconfigurationhibernate" />
+            <marker date="1459065822196" expanded="true" signature="49311:49513" placeholder="UPDATE sshco... " />
+            <marker date="1459065822196" expanded="true" signature="49693:49774" placeholder="SELECT * FRO... sshconfigurationhibernate" />
+            <marker date="1459065822196" expanded="true" signature="50570:50643" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
+            <marker date="1459065822196" expanded="true" signature="50710:50783" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
+            <marker date="1459065822196" expanded="true" signature="50851:50924" placeholder="INSERT INTO \&quot;INSTANCE_METRIC\&quot;... " />
+            <marker date="1459065822196" expanded="true" signature="51092:51154" placeholder="delete from " />
+            <marker date="1459065822196" expanded="true" signature="51441:51527" placeholder="INSERT INTO \&quot;FAVORITES\&quot;... " />
+            <marker date="1459065822196" expanded="true" signature="51690:51727" placeholder="DELETE FROM " />
+            <marker date="1459065822196" expanded="true" signature="51924:51992" placeholder="SELECT count... HOST_STATE" />
+            <marker date="1459065822196" expanded="true" signature="52514:52584" placeholder="SELECT count... METRIC_STATE" />
+            <marker date="1459065822196" expanded="true" signature="52817:52858" placeholder="SELECT count... INSTANCE_METRIC" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/core/AccauntDb.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+          <folding>
+            <marker date="1456315619800" expanded="true" signature="873:967" placeholder="SELECT u.id,... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/addHost.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.709091">
+          <caret line="51" column="49" selection-start-line="51" selection-start-column="49" selection-end-line="51" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/addIntsMetric.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.709091">
+          <caret line="44" column="47" selection-start-line="44" selection-start-column="45" selection-end-line="44" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/FormWorkpiece.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.709091">
+          <caret line="49" column="49" selection-start-line="49" selection-start-column="49" selection-end-line="49" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/hostEditor.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.709091">
+          <caret line="94" column="23" selection-start-line="94" selection-start-column="20" selection-end-line="94" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/hosts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.709091">
+          <caret line="60" column="49" selection-start-line="60" selection-start-column="49" selection-end-line="60" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.709091">
+          <caret line="47" column="49" selection-start-line="47" selection-start-column="11" selection-end-line="47" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/instanceMetricsOption.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.709091">
+          <caret line="33" column="47" selection-start-line="33" selection-start-column="45" selection-end-line="33" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/problems.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.709091">
+          <caret line="48" column="49" selection-start-line="48" selection-start-column="49" selection-end-line="48" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/registration.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/templetMetrics.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.418182">
+          <caret line="33" column="46" selection-start-line="33" selection-start-column="45" selection-end-line="33" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/accaunts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="20.115385">
+          <caret line="28" column="34" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43889844">
+          <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>

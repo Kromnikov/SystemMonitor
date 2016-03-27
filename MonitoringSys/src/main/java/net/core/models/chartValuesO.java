@@ -5,16 +5,16 @@ import java.util.Map;
 /**
  * Created by Kromnikov on 20.03.2016.
  */
-public class chartValuesO {
+public class ChartValuesO {
 
     private int count;
 
     private Map<Long, Object> values;
 
-    public chartValuesO() {
+    public ChartValuesO() {
     }
 
-    public chartValuesO(int count, Map<Long, Object> values) {
+    public ChartValuesO(int count, Map<Long, Object> values) {
         this.count = count;
         this.values = values;
     }

@@ -2,16 +2,16 @@ package net.core.models;
 
 import java.util.Map;
 
-public class chartValues {
+public class ChartValues {
 
     private int count;
 
     private Map<Long, Double> values;
 
-    public chartValues() {
+    public ChartValues() {
     }
 
-    public chartValues(int count, Map<Long, Double> values) {
+    public ChartValues(int count, Map<Long, Double> values) {
         this.count = count;
         this.values = values;
     }
