@@ -188,6 +188,11 @@ http://www.w3.org/2001/XMLSchema-instance ">
 
 
     <build>
+        <testResources>
+            <testResource>
+                <directory>src/main/java/net/web/config</directory>
+            </testResource>
+        </testResources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

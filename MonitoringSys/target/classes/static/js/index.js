@@ -1,27 +1,23 @@
 function showProblemHost() {
     $(document).ready(function () {
-        //$('#hostProblems').animate({
-        //    opacity: '0'
-        //});
-        //$("#chart_1").addClass("hidden");
-        $("#hostProblems").removeClass("hidden");
-        $("#hostListTable").toggleClass('hidden');
-
+        //$("#hostProblems").removeClass("hidden");
+        //$("#hostListTable").toggleClass('hidden');
+        $("#hostListTable").removeClass('hidden');
     });
     //console.log('lal1');
 }
 function showChart() {
     $(document).ready(function () {
         $("#chart_1").removeClass("hidden");
-        if(!$("#hostMetricsTable").hasClass('hidden'))
-        $("#hostMetricsTable").addClass('hidden');
+        $("#hostListTable").addClass('hidden');
     });
 }
 function showMetrics() {
     $(document).ready(function () {
-        $("#hostMetrics").removeClass("hidden");
-        if(!$("#hostListTable").hasClass('hidden'))
-        $("#hostListTable").addClass('hidden');
+        //$("#hostMetrics").removeClass("hidden");
+        //if(!$("#hostListTable").hasClass('hidden'))
+        //$("#hostListTable").addClass('hidden');
+        $("#hostListTable").removeClass('hidden');
     });
 }
 function hideShowHostListContent() {
