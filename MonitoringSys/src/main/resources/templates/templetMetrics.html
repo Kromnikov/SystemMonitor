@@ -78,11 +78,9 @@
                         </thead>
                         <tr>
                             <td>
-                                <div class="left-contener">
                                     <div th:each="templMetric: ${getTemplatMetrics}">
                                         <div class="row-contener right"><a  name="tempMetric" th:href="@{'options?tempid='+${templMetric.id}}" th:text="${templMetric.title}"></a></div>
                                     </div>
-                                </div>
                             </td>
                             <td>
                                 <div class="right-contener">

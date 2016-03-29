@@ -13,7 +13,7 @@
 <div th:if="${param.error}">
     Invalid username and password.
 </div>
-<div th:if="${param.logout}" color="red">
+<div th:if="${param.logout}">
     You have been logged out.
 </div>
 <form class="form-1" th:action="@{/login}" method="post">

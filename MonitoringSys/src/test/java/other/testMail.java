@@ -1,3 +1,4 @@
+package other;
 
 import net.core.agents.MailAgent;
 /**
