@@ -94,6 +94,12 @@ public class HostController {
         }
         return alarmsModels;
     }
+    @RequestMapping(value = "/dellAlarm", method = RequestMethod.GET)
+    @ResponseBody
+    public void dellAlarm(@RequestParam("id") int id) {
+        AlarmsLog alarmsLog = alarmsLogDao.get(id);
+        alarmsLogDao.remove(alarmsLog);
+    }
 
 
 

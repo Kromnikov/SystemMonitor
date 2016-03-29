@@ -1,11 +1,5 @@
 function dellAlarm() {
-    $(document).ready(function () {
-        $(".dropdown-menu-right").click(function () {
-            console.log('dell where id= '+$(this).attr('idalarm'));
-        });
-    });
-    //console.log('this '+$(this).);
-    //console.log('dell where id= '+$(this).attr('idalarm'));
+
 }
 
 function checking() {
@@ -15,13 +9,13 @@ function checking() {
             $("#dropdown-menu-length").empty();
             $("#dropdown-menu-length").append(Object.keys(data).length);
             $.each(data, function (key,values) {
-                console.log(values.id);
+                //console.log(values.id);
                 if(values.type=="error"){
                     $("#dropdown-menu").append('<li><a href="#"><b class="label label-warning label-min fa fa-frown-o white-text fa-lg">&nbsp;</b>'+values.message+'' +
-                    '<b idAlarm="'+values.id+'"  class="dropdown-menu-right fa fa-times fa-lg"></b></a></li>');
+                    '<b idalarm="'+values.id+'"  class="dropdown-menu-right fa fa-times fa-lg"></b></a></li>');
                 }else{
                     $("#dropdown-menu").append('<li><a href="#"><b class="label label-success label-min fa fa-smile-o white-text fa-lg">&nbsp;</b>'+values.message+'' +
-                    '<b  idAlarm="'+values.id+'"  class="dropdown-menu-right fa fa-times fa-lg"></b></a></li>');
+                    '<b  idalarm="'+values.id+'"  class="dropdown-menu-right fa fa-times fa-lg"></b></a></li>');
                 }
             });
         });
@@ -36,10 +30,10 @@ function start_checking() {
             $.each(data, function (key,values) {
                 if(values.type=="error"){
                     $("#dropdown-menu").append('<li><a href="#"><b class="label label-warning label-min fa fa-frown-o white-text fa-lg">&nbsp;</b>'+values.message+'' +
-                    '<b idAlarm="'+values.id+'"  class="dropdown-menu-right fa fa-times fa-lg"></b></a></li>');
+                    '<b idalarm="'+values.id+'"  class="dropdown-menu-right fa fa-times fa-lg"></b></a></li>');
                 }else{
                     $("#dropdown-menu").append('<li><a href="#"><b class="label label-success label-min fa fa-smile-o white-text fa-lg">&nbsp;</b>'+values.message+'' +
-                    '<b idAlarm="'+values.id+'"  class="dropdown-menu-right fa fa-times fa-lg"></b></a></li>');
+                    '<b idalarm="'+values.id+'"  class="dropdown-menu-right fa fa-times fa-lg"></b></a></li>');
                 }
             });
         });
@@ -70,7 +64,11 @@ function showMetrics() {
     });
 }
 function hideShowHostListContent() {
-    $('.dropdown-menu-right').click(function () {
+    $('b').click(function () {
+        console.log($(this).attr('idalarm'));
+        $.getJSON('/dellAlarm?id='+$(this).attr('idalarm'), function (data) {
+
+        });
     });
     $('.fa-expand').click(function () {
         $(this).toggleClass('fa-expand');
@@ -80,7 +78,7 @@ function hideShowHostListContent() {
         $(this).parent().children('.content-panel').toggleClass('expand');
     });
     $('h4').click(function () {
-        console.log('dell where id= '+$(this).attr('idalarm'));
+        //console.log('dell where id= '+$(this).attr('idalarm'));
         $(this).children('i').toggleClass('fa-angle-right');
         $(this).children('i').toggleClass('fa-angle-down');
         $(this).parent().children('table').toggleClass('hidden');
