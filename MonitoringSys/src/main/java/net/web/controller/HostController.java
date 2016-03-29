@@ -1,6 +1,8 @@
 package net.web.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import net.core.alarms.AlarmsLog;
+import net.core.alarms.dao.AlarmsLogDao;
 import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;
 import net.core.hibernate.services.HostService;
@@ -15,14 +17,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
 
 @Controller
 public class HostController {
@@ -31,6 +29,8 @@ public class HostController {
     private IMetricStorage metricStorage;
     @Autowired
     private HostService hosts;
+    @Autowired
+    private AlarmsLogDao alarmsLogDao;
 
 //    private static DateFormat dateFormat = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy");
 
@@ -83,6 +83,17 @@ public class HostController {
     }
 
 
+
+    //TODO: alarms
+    @RequestMapping(value = "/getAlarms", method = RequestMethod.GET)
+    @ResponseBody
+    public List<AlarmsModel> getAlarms(@RequestParam("userName") String userName) {
+        List<AlarmsModel> alarmsModels = new ArrayList<>();
+        for (AlarmsLog g : alarmsLogDao.getByUser(userName)) {
+            alarmsModels.add(new AlarmsModel(g.getType(),g.getMessage(),g.getId()));
+        }
+        return alarmsModels;
+    }
 
 
 

@@ -1,6 +1,7 @@
-package net.core;
+package net.core.db;
 
 
+import net.core.alarms.dao.AlarmsLogDao;
 import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;
 import net.core.hibernate.services.HostService;
@@ -28,6 +29,9 @@ public class MetricStorage implements IMetricStorage {
     private JdbcTemplate jdbcTemplateObject;
 
     @Autowired
+    private AlarmsLogDao alarmsLogDao;
+
+    @Autowired
     private HostService hosts;
 
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -38,8 +42,26 @@ public class MetricStorage implements IMetricStorage {
     }
 
 
+    //alarms
+
+
+
+
     //sql
     //metric-state
+    @Transactional //MAX
+    public boolean isMetricHasProblem(long instMetric) {
+        String sql = "SELECT id, state, start_datetime, \"end_datetime\", inst_metric,host_id  FROM \"METRIC_STATE\" where  inst_metric =" + instMetric + " and \"end_datetime\" is null ";
+        boolean state = false;
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+        if (rows.isEmpty()) {
+            return state;
+        } else {
+            return true;
+        }
+    }
+
+
     @Transactional
     public void setAllowableValueMetric(String endTime, int instMetric) {
         String sql = "UPDATE \"METRIC_STATE\" SET \"end_datetime\" = (TIMESTAMP '" + endTime + "')  where  inst_metric =" + instMetric + " and \"end_datetime\" is null";

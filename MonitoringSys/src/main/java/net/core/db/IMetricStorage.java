@@ -13,6 +13,8 @@ public interface IMetricStorage {
 
     //sql
     //metric-state
+    public boolean isMetricHasProblem(long instMetric);
+
     public void setAllowableValueMetric(String endTime, int instMetric);
 
     public boolean overMaxValue(long instMetric);

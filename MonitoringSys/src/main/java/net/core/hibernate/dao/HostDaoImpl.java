@@ -1,7 +1,6 @@
 package net.core.hibernate.dao;
 
 import net.core.configurations.SSHConfiguration;
-import org.hibernate.Criteria;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -38,12 +37,13 @@ public class HostDaoImpl implements HostDao {
     }
 
     public SSHConfiguration get(int id) {
-        return em.getReference(SSHConfiguration.class, id);
+        return em.createQuery("from SSHConfiguration where id ="+id, SSHConfiguration.class).getSingleResult();
+//        return em.getReference(SSHConfiguration.class, id);
     }
+
 
     @Override
     public List<SSHConfiguration> getByLocation(String location) {
-
         TypedQuery<SSHConfiguration> query = em.createNamedQuery("SSHConfiguration.location", SSHConfiguration.class);
         query.setParameter("location", location);
         return query.getResultList();

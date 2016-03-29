@@ -1,11 +1,9 @@
 package net.core.tools;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.core.MetricStorage;
 import net.core.db.IMetricStorage;
 import net.core.models.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.activation.DataSource;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;

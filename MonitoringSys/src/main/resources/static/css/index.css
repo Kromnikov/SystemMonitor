@@ -104,7 +104,8 @@
       margin-top: 40px;
   }
 li a {
-    display: block;
+    /*display: block;*/
+
 }
 .margin-top-12 {
     margin-top: 12px;

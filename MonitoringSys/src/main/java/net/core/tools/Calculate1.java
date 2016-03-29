@@ -1,4 +1,4 @@
-package net.core;
+package net.core.tools;
 
 
 public class Calculate1 {

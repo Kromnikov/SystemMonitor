@@ -1,19 +1,21 @@
-package net.core.agents;
+package net.core.alarms;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
-/**
- * Created by ANTON on 30.01.2016.
- */
 public final class MailAgent {
     private String username;
     private String password;
     private Properties properties;
     public MailAgent(){
-
+        properties = new Properties();
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.socketFactory.port", "465");
+        properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.port", "465");
     }
     private MailAgent(String username, String password) {
         this.username = username;
@@ -36,7 +38,7 @@ public final class MailAgent {
         try {
             Message message = new MimeMessage(session);
             //от кого
-            message.setFrom(new InternetAddress(username));
+            message.setFrom(new InternetAddress(fromEmail));
             //кому
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
             //Заголовок письма
@@ -50,9 +52,9 @@ public final class MailAgent {
             throw new RuntimeException(e);
         }
     }
-    public void standartSender(String text, String mailTo){
-        mailTo="anton130794@ya.ru";
-        MailAgent sslSender = new MailAgent("testmailncracker@gmail.com", "12341234q");
-        sslSender.send("Сбой в системе. MonitoringSystem", text, "testmailncracker@gmail.com",mailTo);
+    public void send(String text, String mailTo){
+        this.username = "testmailncracker@gmail.com";
+        this.password = "12341234q";
+        send("Сбой в системе. MonitoringSystem", text, username, mailTo);
     }
 }

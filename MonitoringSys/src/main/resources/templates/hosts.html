@@ -30,6 +30,9 @@
     <link href="../static/css/style.css" rel="stylesheet" th:href="@{css/style.css}"/>
     <link href="../static/css/style-responsive.css" rel="stylesheet" th:href="@{css/style-responsive.css}"/>
     <script th:inline="javascript">
+        checking();
+//        dellAlarm();
+        start_checking();
     var title = [[${title}]];
     var instMetrics = [[${instMetrics}]];
     var problems = [[${problems}]];
@@ -64,14 +67,14 @@
         <ul class="nav navbar-nav navbar-right margin-top-12">
             <button class="btn dropdown-toggle fa fa-bell-o clear-background-color" type="button"
                     data-toggle="dropdown">
-                <span class="label label-warning">3</span></button>
-            <ul class="dropdown-menu">
-                <li><a href="#"><b class="label label-info label-min fa fa-envelope-o white-text fa-lg">&nbsp;</b>Mail
-                    message</a></li>
-                <li><a href="#"><b class="label label-warning label-min fa fa-frown-o white-text fa-lg">&nbsp;</b>Down
-                    host_name</a></li>
-                <li><a href="#"><b class="label label-success label-min fa fa-smile-o white-text fa-lg">&nbsp;</b>Up
-                    host_name</a></li>
+                <span id="dropdown-menu-length" class="label label-warning">3</span></button>
+            <ul id="dropdown-menu" class="dropdown-menu">
+                <li><a class="dropdown-menu-left" href="#"><b class="label label-info label-min fa fa-envelope-o white-text fa-lg">&nbsp;</b>Mail
+                    message<b onclick="dellAlarm()" class="dropdown-menu-right fa fa-times fa-lg" idAlarm="3"></b></a></li>
+                <!--<li><a href="#"><b class="label label-warning label-min fa fa-frown-o white-text fa-lg">&nbsp;</b>Down-->
+                    <!--host_name</a></li>-->
+                <!--<li><a href="#"><b class="label label-success label-min fa fa-smile-o white-text fa-lg">&nbsp;</b>Up-->
+                    <!--host_name</a></li>-->
             </ul>
         </ul>
     </div>
@@ -140,103 +143,10 @@
 </div>
 <div class="content">
 
-    <div id="chart_1" class="col-lg-10 margin-top-40 hidden">
-    <div class="content-panel ">
+    <div id="chart_1" class="col-lg-10 margin-top-40 hidden"><div class="content-panel "></div></div>
 
-    </div>
-    <!--<i class="fa fa-tag">afawf</i>-->
-    <!--<button class="btn btn-danger btn-xs">awf</button>-->
-    </div>
-
-    <!--<div id="hostMetrics" class="col-lg-10 margin-top-20 hidden">-->
-    <!--<div class="content-panel ">-->
-    <!--<h4  style="cursor:pointer;" ><i class="fa fa-angle-right"></i>-->
-    <!--Metrics list</h4>-->
-    <!--<table id="hostMetricsTable"  class="table table-striped table-advance table-hover">-->
-    <!--<thead>-->
-    <!--<tr>-->
-    <!--<th class="hidden-phone"><i class="fa fa-tag"></i> Title</th>-->
-    <!--<th><i class="fa fa-code"></i> Problems</th>-->
-    <!--<th><i class=" fa fa-chevron-circle-down"></i>Last value</th>-->
-    <!--<th><i class=" fa fa-chevron-circle-up"></i> Date</th>-->
-    <!--<th><i class=" fa fa-edit"></i> Status</th>-->
-    <!--<th><i class=" fa fa-bar-chart-o"></i> History</th>-->
-    <!--</tr>-->
-    <!--</thead>-->
-    <!--<tbody>-->
-    <!--<div th:each="metric: ${getMetrics}">-->
-    <!--<tr>-->
-    <!--<td th:field="*{value}" th:text="${metric.title}" class="hidden-phone">128,9</td>-->
-    <!--<td th:field="*{start}" >-->
-    <!--<button class="btn btn-danger btn-xs"><a class="white-text"-->
-    <!--th:href="@{host(hostId=${hostId},problems=show,instMetricId=${metric.id})}"-->
-    <!--th:text="${metric.errorsCount}"></a></button>-->
-    <!--</td>-->
-    <!--<td th:field="*{end}" th:text="${metric.lastValue}">18 Jun</td>-->
-    <!--<td th:field="*{instMetric}" th:text="${metric.date}">CPU</td>-->
-    <!--<td>-->
-    <!--<span  th:class="(${metric.status} == '0') ?'label label-success label-mini' : 'label label-warning label-mini'"-->
-    <!--th:text="(${metric.status} == '0') ? 'OK' : 'ERROR'">SUCCESS</span>-->
-
-    <!--</td>-->
-    <!--<td>-->
-    <!--&lt;!&ndash;<button class="btn btn-success btn-xs"><a class="fa fa-check white-text"&ndash;&gt;-->
-    <!--&lt;!&ndash;th:href="@{metrics/resolve/metric(resMetrId=${metric.id})}"></a>&ndash;&gt;-->
-    <!--&lt;!&ndash;</button>&ndash;&gt;-->
-    <!--<button class="btn btn-primary btn-xs"><a class="fa fa-search white-text"-->
-    <!--th:href="@{host(hostId=${hostId},instMetrics=show,instMetricId=${metric.id},title=${metric.title})}">-->
-    <!--</a>-->
-    <!--</button>-->
-    <!--</td>-->
-    <!--</tr>-->
-    <!--</div>-->
-    <!--</tbody>-->
-    <!--</table>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div id="hostProblems" class="col-lg-10 margin-top-20 hidden">-->
-    <!--<div class="content-panel ">-->
-    <!--<h4   style="cursor:pointer;"><i class="fa fa-angle-right"></i>-->
-    <!--Host problems</h4>-->
-    <!--<table id="hostProblemsTable" class="table table-striped table-advance table-hover">-->
-    <!--<thead>-->
-    <!--<tr>-->
-    <!--<th class="hidden-phone"><i class="fa fa-superscript"></i> Value</th>-->
-    <!--<th><i class="fa fa-play"></i> Start</th>-->
-    <!--<th><i class=" fa fa-stop"></i> End</th>-->
-    <!--<th><i class=" fa fa-lightbulb-o"></i> Inst metric</th>-->
-    <!--<th><i class=" fa fa-edit"></i> Status</th>-->
-    <!--<th></th>-->
-    <!--</tr>-->
-    <!--</thead>-->
-    <!--<tbody>-->
-    <!--<div th:each="problem: ${getMetricProblems}">-->
-    <!--<tr>-->
-    <!--<td th:field="*{value}" th:text="${problem.value}" class="hidden-phone">128,9</td>-->
-    <!--<td th:field="*{start}" th:text="${problem.start}">17 Jun</td>-->
-    <!--<td th:field="*{end}" th:text="${problem.end}">18 Jun</td>-->
-    <!--<td th:field="*{instMetric}" th:text="${problem.instMetric}">CPU</td>-->
-    <!--<td>-->
-    <!--<span th:class="${problem.end} ? 'label label-success label-mini' : 'label label-warning label-mini'"-->
-    <!--th:text="${problem.end} ? 'OK' : 'ERROR'">LAL</span>-->
-    <!--</td>-->
-    <!--<td>-->
-    <!--<button class="btn btn-success btn-xs"><a class="fa fa-check white-text"-->
-    <!--th:href="@{hosts/resolve/metric(resMetrId=${problem.id},hostId=${hostId},instMetricId=${instMetricId})}"></a>-->
-    <!--</button>-->
-    <!--<button class="btn btn-primary btn-xs"><a class="fa fa-search white-text"-->
-    <!--th:href="@{/problem/metric(problemId=${problem.id})}"></a>-->
-    <!--</button>-->
-    <!--</td>-->
-    <!--</tr>-->
-    <!--</div>-->
-    <!--</tbody>-->
-    <!--</table>-->
-    <!--</div>-->
-    <!--</div>-->
 
     <div id="hostList" class="col-lg-10 margin-top-20">
-        <!--<a class="floatRight fa fa-expand black-text" style="cursor: pointer"></a>-->
         <div class="content-panel ">
             <h4 style="cursor:pointer;"><i class="fa fa-angle-right"></i>
                 Hosts list</h4>
@@ -260,15 +170,6 @@
                                                 Search
                                             </button>
                                         </form>
-                                        <!--=======-->
-                                        <!--<i class="dropdown-toggle cursor_pointer fa fa-home" data-toggle="dropdown"> Host</i>-->
-                                        <!--<ul class="dropdown-menu">-->
-                                        <!--<li class="dropdown-header">Поиск</li>-->
-                                        <!--<li>-->
-                                        <!--<div>-->
-                                        <!--<input type="password" class="form-control" placeholder="Login" name="login" />-->
-                                        <!--<a class="fa fa-search cursor_pointer"></a>-->
-                                        <!--local-kromnikov-->
                                     </div>
                                 </li>
                             </ul>
@@ -288,8 +189,7 @@
                                     <div class="form-group">
                                         <form method="get" class="navbar-form navbar-left">
                                             <input type="text" class="form-control" placeholder="Location"
-                                                   name="location"/><!--
-                                         -->
+                                                   name="location"/>
                                             <button type="submit" name="search" class="fa fa-search cursor_pointer">
                                                 Search
                                             </button>
@@ -299,18 +199,12 @@
                             </ul>
                         </div>
                     </th>
-                    <!--=======-->
-                    <!--local-kromnikov-->
                 </tr>
                 </thead>
                 <tbody>
                 <div th:each="host: ${getHosts}">
                     <tr>
-                        <!--<<<<<<< HEAD-->
-                        <!--<td th:field="*{name}" th:text="${host.hostName}" class="hidden-phone"></td>-->
-                        <!--=======-->
                         <td th:field="*{name}" th:text="${host.hostName}" class="hidden-phone">Kromnikov</td>
-                        <!--local-kromnikov-->
                         <td th:field="*{name}">
                             <button class="btn btn-success btn-xs"><a class="white-text"
                                                                       th:href="@{host(hostId=${host.id},instMetrics=show)}"
@@ -333,8 +227,6 @@
 
                     <div th:if="${problems} == 'show'">
                         <div th:if="${hostId} == ${host.id}">
-                            <!--th:switch="${problems}"-->
-                            <!--<tr th:case="'show'">-->
                             <td colspan="7">
                                 <div id="hostProblems" class="">
                                     <div class="content-panel-1 ">
@@ -383,7 +275,6 @@
                                     </div>
                                 </div>
                             </td>
-                            <!--</tr>-->
                         </div>
                     </div>
 
