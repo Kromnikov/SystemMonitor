@@ -34,7 +34,13 @@ public class SSHAgent {
             session = jsch.getSession(configuration.getLogin(), configuration.getHost(), configuration.getPort());
             session.setPassword(configuration.getPassword());
             session.setConfig(config);
+            try {
                 session.connect();
+            } catch (com.jcraft.jsch.JSchException e) {
+                System.out.println("err connection to host: "+this.configuration.getHost());
+                return false;
+//                System.out.println(e.getCause());
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -53,10 +59,9 @@ public class SSHAgent {
 
             return getMetricValue();
         } catch (JSchException e) {
-            e.printStackTrace();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+        } catch (IOException e) {
+//            e.printStackTrace();
         }
         return 0;
     }

@@ -37,4 +37,13 @@ public class HostServiceImpl implements HostService {
         dao.update(content);
     }
 
+    public SSHConfiguration get(int id) {
+        return dao.get(id);
+    }
+
+    @Override
+    public List<SSHConfiguration> getByLocation(String location) {
+        return dao.getByLocation(location);
+    }
+
 }

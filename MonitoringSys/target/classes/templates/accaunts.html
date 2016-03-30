@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head lang="en">
+    <title>Spring Framework Guru</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="../static/js/jquery-2.2.0.min.js"
+            th:src="@{js/jquery-2.2.0.min.js}"></script>
+    <script src="../static/js/bootstrap.min.js"
+            th:src="@{js/bootstrap.min.js}"></script>
+    <script src="../static/js/index.js"
+            th:src="@{js/index.js}"></script>
+    <link href="../static/css/bootstrap.css"
+          th:href="@{css/bootstrap.css}" rel="stylesheet" media="screen"/>
+
+    <link href="../static/css/AdminLTE.css"
+          th:href="@{css/AdminLTE.css}" rel="stylesheet" media="screen"/>
+
+    <link href="../static/css/index.css"
+          th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
+
+    <script src="../static/js/highstock.js"
+            th:src="@{js/highstock.js}"></script>
+    <script src="../static/js/exporting.js"
+            th:src="@{js/exporting.js}"></script>
+    <script src="../static/js/dinamicChart.js"
+            th:src="@{js/dinamicChart.js}"></script>
+    <!--external css-->
+    <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{css/font-awesome.css}"/>
+    <!-- Custom styles for this template -->
+    <link href="../static/css/style.css" rel="stylesheet" th:href="@{css/style.css}"/>
+    <link href="../static/css/style-responsive.css" rel="stylesheet" th:href="@{css/style-responsive.css}"/>
+</head>
+<body>
+<div class="nav-side-menu">
+    <div class="brand">System monitor</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+    <div class="menu-list">
+
+        <ul id="menu-content" class="menu-content collapse out">
+            <li class="collapsed">
+                <a href="/">
+                    <i class="fa fa-home fa-lg"></i> Home
+                </a>
+            </li>
+            <li data-toggle="collapse" data-target="#service" class="collapsed">
+                <a href="#"><i class="fa fa-globe fa-lg"></i> Hosts <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="service">
+                <a class="white-text" th:href="@{'addHostPage'}"><li>Add host</li></a>
+                <a class="white-text" th:href="hosts" ><li>Hosts</li></a>
+            </ul>
+
+            <li>
+                <a th:href="@{'problems'}">
+                    <i class="fa fa-exclamation fa-lg"></i> Problems
+                </a>
+            </li>
+
+            <li data-toggle="collapse" data-target="#new" class="collapsed active">
+                <a href="#"><i class="fa fa-cog fa-lg"></i> <s>Admin panel</s> <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="new">
+                <a class="white-text" th:href="hostedit" ><li>Host Editor</li></a>
+                <a class="white-text" th:href="optionsInstance" ><li>Instance Metrics</li></a>
+                <a class="white-text" th:href="options" ><li>Template Metrics</li></a>
+                <a class="white-text" th:href="editIntsMetrics" ><li>Services</li></a>
+                <a class="white-text" th:href="accaunts" ><li class="active">Accaunts</li></a>
+            </ul>
+            <li>
+                <a href="#">
+                    <i class="fa fa-user fa-lg"></i> Profile
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="content">
+    <form action="#" name="form1" th:object="${getAllUsers}" method="get">
+        <table width="100%" border="1px" cellspacing="0px" cellpadding="4px" align="center" id="tb" >
+            <td class="tablehead">username</td>
+            <td class="tablehead">password</td>
+            <td class="tablehead">role</td>
+            <div th:each="user: ${getAllUsers}">
+                <tr>
+                    <td >
+                        <div class="row-contener left" th:text="${user.username}">
+                        </div>
+                    </td>
+                    <td  th:type="password" th:text="${user.password}"></td>
+                    <td >
+                        <div class="row-contener right">
+                            <a th:text="${user.role}" th:href="@{'accaunts?roleid='+${user.roleid}+'&amp;username='+${user.username}}"></a>
+                        </div>
+                    </td>
+                        <!--  <td>
+                        <select  name="usersRole" onload="rolesFunction()">
+                             <option th:text="${user.role}"></option>
+                             <option value="1">USER</option>
+                             <option value="2">ADMIN</option>
+                         </select>
+                        </td> -->
+                </tr>
+            </div>
+        </table>
+    </form>
+</div>
+</body>
+</html>

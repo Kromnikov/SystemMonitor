@@ -1,11 +1,139 @@
+.cursor_pointer {
+    cursor: pointer;
 
+}
+
+
+.expand {
+    background-color: red;
+    /*transform:rotate(50deg);-moz-transform:rotate(50deg);-webkit-transform:rotate(50deg);*/
+    /*margin: 0px auto;*/
+    transition: 1s linear;
+
+    width: 80%;
+    height: 100%;
+    position: fixed;
+    overflow: auto;
+}
+.expand:hover {
+    /*background-color: blue;*/
+    /*max-width: 100%;*/
+    /*height: 100%;*/
+}
+
+
+.content {
+    margin-left: 15%;
+    width: 100%;
+    height:100%;
+    /*float: right;*/
+    /*border-left:1px dotted black;*/
+    /*box-shadow: 2px 0px 5px 1px rgba(0, 0, 0, .2);*/
+}
+
+
+
+.black-text {
+    color:#000000;
+}
+
+.hidden {
+    display: block;
+}
+
+.content-panel input[type=text]
+{
+
+    display:block;
+    padding:3px 4px;
+    margin-top:5px;
+    margin-bottom:20px;
+}
+
+.row-contener {
+}
+.row-contener a {
+    cursor: pointer;
+    padding: 10px 10px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.red {
+    background: url("../img/red_cub.jpg") repeat;
+    color:#ffffff;
+}
+.green {
+    background: url("../img/green_cub.jpg") repeat;
+    color:#ffffff;
+}
+.blue {
+    background: url("../img/blue_cub.jpg") repeat;
+    color:#ffffff;
+}
+.yellow {
+    background: url("../img/yellow_cub.jpg") repeat;
+    color:#ffffff;
+}
+.orange {
+    background: url("../img/orange-cube.jpg") repeat;
+    color:#ffffff;
+}
+.white-text {
+    color:#ffffff;
+}
+.row-circle-5 {
+    border-radius: 3px;
+}
+.margin2020 {
+    margin-right: 2%;
+}
+.margin5 {
+    margin-right: 5%;
+}
+.right{
+    margin-left:20%;
+}
+.floatRight {
+    float: right;
+}
+.margin-top-20 {
+     margin-top: 20px;
+ }
+.margin-top-40 {
+      margin-top: 40px;
+  }
+li a {
+    /*display: block;*/
+
+}
+.margin-top-12 {
+    margin-top: 12px;
+}
+.margin-left-15 {
+    margin-left: 15%;
+}
+.margin-left-5 {
+    margin-left: 2%;
+}
 .container {
     height: 100%;
     width: 100%;
     overflow: hidden;
 }
-
-
+.clear-background-color {
+    background-color: transparent;
+}
+.icon2 {
+    margin-left: 80%;
+    margin-top: 10%;
+    font-size: 4em;
+}
+.message {
+    position: fixed;
+    z-index: 101;
+    background-color: red;
+}
 
 .header {
     padding-top: 0;
@@ -30,16 +158,6 @@
 .bottom-container{
     bottom: 0;
 }
-
-.content {
-    /*margin-left: 10px;*/
-    width: 100%;
-    height:100%;
-    float: right;
-    border-left:1px dotted black;
-    /*box-shadow: 2px 0px 5px 1px rgba(0, 0, 0, .2);*/
-}
-
 
 .left-context {
     padding: 0;
@@ -92,23 +210,39 @@
 
 
 
-
-
-
-
-
-
-
-
-body{
-    height: 100%;
-    overflow:auto;
-    margin: 0;
-    padding: 0;
-    /*background-color:#FAFAFA;*/
-    background: url("../img/bg-139.png") repeat;
-    /*background-color: #E8E8E8;*/
+.select_row_host_metric {
+    -webkit-transition: all 0.2s ease-in-out 0s;
+    -moz-transition: all 0.2s ease-in-out 0s;
+    -o-transition: all 0.2s ease-in-out 0s;
+    -ms-transition: all 0.2s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
 }
+.select_row_host_metric td a {
+    text-decoration: none;
+    color: #000000;
+}
+.select_row_host_metric td a:hover {
+    color: #ffffff;
+}
+
+.select_row_host_metric:hover {
+    cursor: pointer;
+    background-color: #ABABAB;
+    color: #ffffff;
+}
+
+
+
+
+/*body{*/
+    /*height: 100%;*/
+    /*overflow:auto;*/
+    /*margin: 0;*/
+    /*padding: 0;*/
+    /*background-color:#FAFAFA;*/
+    /*background: url("../img/bg-139.png") repeat;*/
+    /*background-color: #E8E8E8;*/
+/*}*/
 .header-menu-black {
     /*background-color: #FFFFFF;*/
     background: url("../img/bg-139.png") repeat;

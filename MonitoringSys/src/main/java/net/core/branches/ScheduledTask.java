@@ -1,6 +1,10 @@
 package net.core.branches;
 
 import net.core.agents.SSHAgent;
+import net.core.alarms.AlarmsLog;
+import net.core.alarms.RouteAlarms;
+import net.core.alarms.dao.AlarmsLogDao;
+import net.core.alarms.dao.GenericAlarmDao;
 import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;
 import net.core.hibernate.services.HostService;
@@ -25,13 +29,19 @@ public class ScheduledTask extends TimerTask {
 
     private IMetricStorage metricStorage;
 
+    @Autowired
+    private RouteAlarms routeAlarms;
+
     private HostService hosts;
+
+    private GenericAlarmDao genericAlarm;
 
     public ScheduledTask() {
     }
 
     @Autowired
-    public ScheduledTask(IMetricStorage metricStorage,HostService hosts) {
+    public ScheduledTask(IMetricStorage metricStorage,HostService hosts,GenericAlarmDao genericAlarm) {
+        this.genericAlarm = genericAlarm;
         this.hosts=hosts;
         this.metricStorage=metricStorage;
     }
@@ -40,6 +50,15 @@ public class ScheduledTask extends TimerTask {
     @Override
     public void run() {
         System.out.println("ScheduledTask");
+
+//        routeAlarms.sendMessage(genericAlarm.getByMetric(12), "Метрика lol");
+
+//        routeAlarms.sendMessage(genericAlarm.getByHost(1));
+//        System.out.println(alarmsLogDao.get(1).getMessage());
+//        for (AlarmsLog g : alarmsLogDao.getByUser("anton")) {
+//            System.out.println(g.getMessage());
+//        }
+
         try {
             for (SSHConfiguration host : hosts.getAll()) {
                 SSHAgent sshAgent = new SSHAgent(host);
@@ -47,13 +66,20 @@ public class ScheduledTask extends TimerTask {
                 if (sshAgent.connect()) {
                     if(!available) {//Если хост последний раз был не доступен, то выставляем дату окончания данного статуса
                         metricStorage.setAvailableHost(dateFormat.format(new Date()), host.getId());
+                        Thread myThready = new Thread(new Runnable()
+                        {
+                            public void run()
+                            {
+                                routeAlarms.sendMessage("ok",genericAlarm.getByHost(host.getId()),"Соединение с хостом '"+host.getName()+"' было востановлено ");
+                            }
+                        });
+                        myThready.start();
                     }
                     for (final InstanceMetric instanceMetric : metricStorage.getInstMetrics(host.getId())) {
                         final String date = dateFormat.format(new Date());
                         final double valueMetric = sshAgent.getMetricValue(instanceMetric);
 
                         if(valueMetric!=(Integer.MIN_VALUE)) {
-                            System.out.println("oK!");
                             Thread myThready = new Thread(new Runnable()
                             {
                                 public void run()
@@ -69,15 +95,26 @@ public class ScheduledTask extends TimerTask {
                             metricStorage.addValue(host.getId(), instanceMetric.getId(), valueMetric, date);
                         }
                         else {
-                            System.out.println("unknow!");
                             if(metricStorage.correctlyMetric(instanceMetric.getId()))              //статус метрики ERR
                                 metricStorage.setIncorrectlyMetric(date, instanceMetric.getId());
                         }
                     }
                 } else {
-                    System.out.println("not connect");
+//                    System.out.println("not connect");
                     if(available) {//Если хост последний раз был доступен
-                        metricStorage.setNotAvailableHost(dateFormat.format(new Date()), host.getId());
+                        metricStorage.setNotAvailableHost(dateFormat.format(new Date()), host.getId(),host.getHost());
+                        Thread myThready = new Thread(new Runnable()
+                        {
+                            public void run()
+                            {
+                                routeAlarms.sendMessage("error",genericAlarm.getByHost(host.getId()),"Cоединение с хостом "+host.getName()+ " было потеряно!");
+                            }
+                        });
+                        myThready.start();
+
+//                        MailAgent mailAgent = new MailAgent();
+//                        mailAgent.send("Cоединение с хостом "+host.getHost()+ " было потеряно!","anton130794@ya.ru");
+
                     }
                 }
             }
@@ -89,24 +126,35 @@ public class ScheduledTask extends TimerTask {
 
 
     private void rageValue(double valueMetric,InstanceMetric instanceMetric,String date,int hostId) {
+        //TODO Сейчас может быть только больше или меньше, сразу два выхода не будет, можно это исправить
         if (valueMetric > instanceMetric.getMaxValue()) {//MAX
-            if (metricStorage.overMaxValue(instanceMetric.getId())){
-                metricStorage.setOverMaxValue(date, instanceMetric.getId(),hostId);
-                System.out.println("overMax");
+            if (metricStorage.overMaxValue(instanceMetric.getId())) {
+                if (!metricStorage.lessMinValue(instanceMetric.getId())) {
+                    metricStorage.setAllowableValueMetric(date, instanceMetric.getId());
+                    routeAlarms.sendMessage("ok",genericAlarm.getByMetric(instanceMetric.getId()), "Метрика " + instanceMetric.getTitle() + " (Хост:" + hosts.get(instanceMetric.getHostId()).getName() + ") востановила своё значение! ");
+                }
+                metricStorage.setOverMaxValue(date, instanceMetric, hostId, valueMetric);
+                routeAlarms.sendMessage("error",genericAlarm.getByMetric(instanceMetric.getId()), "Метрика " + instanceMetric.getTitle() + " (Хост:" + hosts.get(instanceMetric.getHostId()).getName() + ") вышла за допустимы диапазон! " +
+                        "\nПорог максимального значения: " + instanceMetric.getMaxValue() +
+                        "\nЗначение: " + valueMetric);
             }
-        }
-
-        if (valueMetric < instanceMetric.getMinValue()) {//MIN
+        } else if (valueMetric < instanceMetric.getMinValue()) {//MIN
             if (metricStorage.lessMinValue(instanceMetric.getId())) {
-                metricStorage.setLessMinValue(date, instanceMetric.getId(),hostId);
-                System.out.println("lessMin");
+                if (!metricStorage.overMaxValue(instanceMetric.getId())) {
+                    metricStorage.setAllowableValueMetric(date, instanceMetric.getId());
+                    routeAlarms.sendMessage("ok",genericAlarm.getByMetric(instanceMetric.getId()), "Метрика " + instanceMetric.getTitle() + " (Хост:" + hosts.get(instanceMetric.getHostId()).getName() + ") востановила своё значение! ");
+                }
+                metricStorage.setLessMinValue(date, instanceMetric, hostId, valueMetric);
+                routeAlarms.sendMessage("error",genericAlarm.getByMetric(instanceMetric.getId()), "Метрика " + instanceMetric.getTitle() + " (Хост:" + hosts.get(instanceMetric.getHostId()).getName() + ") вышла за допустимы диапазон! " +
+                        "\nПорог минимального значения: " + instanceMetric.getMinValue() +
+                        "\nЗначение: " + valueMetric);
             }
-        }
-
-        else//allowable
+        } else//allowable
         {
-            metricStorage.setAllowableValueMetric(date, instanceMetric.getId());
-            System.out.println("Allowable");
+            if (metricStorage.isMetricHasProblem(instanceMetric.getId())) {
+                metricStorage.setAllowableValueMetric(date, instanceMetric.getId());
+                routeAlarms.sendMessage("ok",genericAlarm.getByMetric(instanceMetric.getId()), "Метрика " + instanceMetric.getTitle() + " (Хост:" + hosts.get(instanceMetric.getHostId()).getName() + ") востановила своё значение! ");
+            }
         }
     }
 

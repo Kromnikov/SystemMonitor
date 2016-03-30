@@ -20,8 +20,8 @@
 }
 
 .center-contener-60{
-    background-color:white;
-    margin-left:30%;
+    background-color:white; !important;
+    margin-left:20%;
     max-width:40%;
     /*margin-left:10%;*/
     /*max-width:80%;*/

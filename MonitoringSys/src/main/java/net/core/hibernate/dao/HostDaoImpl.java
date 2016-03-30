@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
@@ -30,8 +31,23 @@ public class HostDaoImpl implements HostDao {
 
     @Override
     public void update(SSHConfiguration content) {
+
         em.find(SSHConfiguration.class, content.getId());
         em.merge(content);
     }
+
+    public SSHConfiguration get(int id) {
+        return em.createQuery("from SSHConfiguration where id ="+id, SSHConfiguration.class).getSingleResult();
+//        return em.getReference(SSHConfiguration.class, id);
+    }
+
+
+    @Override
+    public List<SSHConfiguration> getByLocation(String location) {
+        TypedQuery<SSHConfiguration> query = em.createNamedQuery("SSHConfiguration.location", SSHConfiguration.class);
+        query.setParameter("location", location);
+        return query.getResultList();
+    }
+
 
 }
