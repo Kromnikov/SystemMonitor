@@ -1,14 +1,11 @@
-package dao.netcracker.testdao;
+package com.netcracker.testdao;
 
 import net.core.MetricStorage;
 import net.core.configurations.SSHConfiguration;
-import net.core.hibernate.dao.HostDao;
-import net.core.hibernate.dao.HostDaoImpl;
 import net.core.hibernate.services.HostServiceImpl;
 import net.web.config.DatabaseConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -30,7 +27,6 @@ public class testDAO {
         SSHConfiguration hosts = new SSHConfiguration();
         hostService.get(id);
         verify(hostService).get(1);
-
     }
     @Test
     public void getAllHost() throws Exception {
