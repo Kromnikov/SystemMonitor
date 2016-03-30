@@ -1,4 +1,4 @@
-package net.core.db;
+package net.core;
 
 
 import net.core.alarms.dao.AlarmsLogDao;
@@ -8,6 +8,7 @@ import net.core.hibernate.services.HostService;
 import net.core.models.*;
 import net.core.tools.Averaging;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -921,38 +922,38 @@ public class MetricStorage implements IMetricStorage {
     }
     //metricRows
     @Transactional
-    public List<metricRow> getMetricRow(int hostId) throws SQLException {
-        List<metricRow> metricRows = new ArrayList<>();
+    public List<MetricRow> getMetricRow(int hostId) throws SQLException {
+        List<MetricRow> MetricRows = new ArrayList<>();
         String sql = "select id,title ,(select value from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as value ,(select date_time from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as date ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id ) as countProblems ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id and (\"end_datetime\" is null and \"start_datetime\" is not null)) as status  from \"INSTANCE_METRIC\" as im where host = " + hostId;
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         for (Map row : rows) {
-            metricRow metricrow = new metricRow();
+            MetricRow metricrow = new MetricRow();
             metricrow.setId(Integer.parseInt(row.get("id").toString()));
             metricrow.setTitle((row.get("title").toString()));
             metricrow.setErrorsCount(Integer.parseInt(row.get("countProblems").toString()));
             metricrow.setLastValue(Double.parseDouble(row.get("value").toString()));
             metricrow.setDate(((java.sql.Timestamp) row.get("date")));
             metricrow.setStatus(row.get("status").toString());
-            metricRows.add(metricrow);
+            MetricRows.add(metricrow);
         }
-        return metricRows;
+        return MetricRows;
     }
     @Transactional
-    public List<metricRow> getMetricRow(int hostId,int metricId) throws SQLException {
-        List<metricRow> metricRows = new ArrayList<>();
+    public List<MetricRow> getMetricRow(int hostId,int metricId) throws SQLException {
+        List<MetricRow> MetricRows = new ArrayList<>();
         String sql = "select id,title ,(select value from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as value ,(select date_time from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as date ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id ) as countProblems ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id and (\"end_datetime\" is null and \"start_datetime\" is not null)) as status  from \"INSTANCE_METRIC\" as im where id = " + metricId;
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         for (Map row : rows) {
-            metricRow metricrow = new metricRow();
+            MetricRow metricrow = new MetricRow();
             metricrow.setId(Integer.parseInt(row.get("id").toString()));
             metricrow.setTitle((row.get("title").toString()));
             metricrow.setErrorsCount(Integer.parseInt(row.get("countProblems").toString()));
             metricrow.setLastValue(Double.parseDouble(row.get("value").toString()));
             metricrow.setDate(((java.sql.Timestamp) row.get("date")));
             metricrow.setStatus(row.get("status").toString());
-            metricRows.add(metricrow);
+            MetricRows.add(metricrow);
         }
-        return metricRows;
+        return MetricRows;
     }
     //Favorites
     @Transactional

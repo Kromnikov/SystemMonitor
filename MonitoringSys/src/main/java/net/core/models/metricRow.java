@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by Kromnikov on 13.03.2016.
  */
-public class metricRow {
+public class MetricRow {
     int id;
     String title;
     double lastValue;
@@ -13,10 +13,10 @@ public class metricRow {
     Date date;
     String status;
 
-    public metricRow() {
+    public MetricRow() {
     }
 
-    public metricRow(int id, String title, double lastValue, int errorsCount, Date date, String status) {
+    public MetricRow(int id, String title, double lastValue, int errorsCount, Date date, String status) {
         this.id = id;
         this.title = title;
         this.lastValue = lastValue;

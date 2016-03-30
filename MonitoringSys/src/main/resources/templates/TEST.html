@@ -3,29 +3,53 @@
 <head lang="en">
     <title>Spring Framework Guru</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/kromnikov
     <script src="../static/js/jquery-2.2.0.min.js"
             th:src="@{js/jquery-2.2.0.min.js}"></script>
     <script src="../static/js/bootstrap.min.js"
             th:src="@{js/bootstrap.min.js}"></script>
     <script src="../static/js/index.js"
             th:src="@{js/index.js}"></script>
+<<<<<<< HEAD
     <link href="../static/css/bootstrap.css"
           th:href="@{css/bootstrap.css}" rel="stylesheet" media="screen"/>
     <link href="../static/css/AdminLTE.css"
           th:href="@{css/AdminLTE.css}" rel="stylesheet" media="screen"/>
     <link href="../static/css/index.css"
           th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
+=======
+
+    <link href="../static/css/bootstrap.css"
+          th:href="@{css/bootstrap.css}" rel="stylesheet" media="screen"/>
+
+    <link href="../static/css/AdminLTE.css"
+          th:href="@{css/AdminLTE.css}" rel="stylesheet" media="screen"/>
+
+    <link href="../static/css/index.css"
+          th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
+
+>>>>>>> origin/kromnikov
     <script src="../static/js/highstock.js"
             th:src="@{js/highstock.js}"></script>
     <script src="../static/js/exporting.js"
             th:src="@{js/exporting.js}"></script>
+<<<<<<< HEAD
 
     <script src="../static/js/hostsCharts.js"
             th:src="@{js/hostsCharts.js}"></script>
+=======
+    <script src="../static/js/dinamicChart.js"
+            th:src="@{js/dinamicChart.js}"></script>
+>>>>>>> origin/kromnikov
 
 
     <!--external css-->
     <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{css/font-awesome.css}"/>
+<<<<<<< HEAD
     <!-- Custom styles for this template -->
     <link href="../static/css/style.css" rel="stylesheet" th:href="@{css/style.css}"/>
     <link href="../static/css/style-responsive.css" rel="stylesheet" th:href="@{css/style-responsive.css}"/>
@@ -71,10 +95,41 @@
                     host_name</a></li>
                 <li><a href="#"><b class="label label-success label-min fa fa-smile-o white-text fa-lg">&nbsp;</b>Up
                     host_name</a></li>
+=======
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/style.css" rel="stylesheet" th:href="@{css/style.css}"/>
+    <link href="../static/css/style-responsive.css" rel="stylesheet" th:href="@{css/style-responsive.css}"/>
+
+
+    <script th:inline="javascript">
+        loadChart3(1, 12, 'getCPU');
+    </script>
+</head>
+
+
+<body>
+<nav class="navbar navbar-default navbar-static-top margin-left-15">
+    <div class="container">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Login</a></li>
+            </ul>
+        <ul class="nav navbar-nav navbar-right margin-top-12">
+            <button class="btn dropdown-toggle fa fa-bell-o clear-background-color" type="button" data-toggle="dropdown">
+                <span class="label label-warning">10</span></button>
+            <ul class="dropdown-menu">
+                <li><a href="#">HTML</a></li>
+                <li><a href="#">CSS</a></li>
+                <li><a href="#">JavaScript</a></li>
+>>>>>>> origin/kromnikov
             </ul>
         </ul>
     </div>
 </nav>
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/kromnikov
 <div class="nav-side-menu">
     <div class="brand">System monitor</div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
@@ -82,12 +137,18 @@
     <div class="menu-list">
 
         <ul id="menu-content" class="menu-content collapse out">
+<<<<<<< HEAD
             <li class="collapsed">
                 <a href="/">
+=======
+            <li>
+                <a href="#">
+>>>>>>> origin/kromnikov
                     <i class="fa fa-home fa-lg"></i> Home
                 </a>
             </li>
 
+<<<<<<< HEAD
             <li data-toggle="collapse" data-target="#service" class="collapsed active">
                 <a href="#"><i class="fa fa-globe fa-lg"></i> Hosts <span class="arrow"></span></a>
             </li>
@@ -102,11 +163,41 @@
 
             <li>
                 <a th:href="@{'problems'}">
+=======
+            <li data-toggle="collapse" data-target="#products" class="collapsed active">
+                <a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="products">
+                <li class="active"><a href="#">CSS3 Animation</a></li>
+                <li><a href="#">General</a></li>
+                <li><a href="#">Buttons</a></li>
+                <li><a href="#">Typography</a></li>
+                <li><a href="#">FontAwesome</a></li>
+                <li><a href="#">Slider</a></li>
+                <li><a href="#">Panels</a></li>
+                <li><a href="#">Widgets</a></li>
+                <li><a href="#">Bootstrap Model</a></li>
+            </ul>
+
+
+            <li data-toggle="collapse" data-target="#service" class="collapsed">
+                <a href="#"><i class="fa fa-globe fa-lg"></i> Services <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="service">
+                <li>New Service 1</li>
+                <li>New Service 2</li>
+                <li>New Service 3</li>
+            </ul>
+
+            <li>
+                <a href="#">
+>>>>>>> origin/kromnikov
                     <i class="fa fa-exclamation fa-lg"></i> Problems
                 </a>
             </li>
 
             <li data-toggle="collapse" data-target="#new" class="collapsed">
+<<<<<<< HEAD
                 <a href="#"><i class="fa fa-cog fa-lg"></i> <s>Admin panel</s> <span class="arrow"></span></a>
             </li>
             <ul class="sub-menu collapse" id="new">
@@ -125,6 +216,14 @@
                 <a class="white-text" th:href="accaunts">
                     <li>Accaunts</li>
                 </a>
+=======
+                <a href="#"><i class="fa fa-cog fa-lg"></i> Admin panel <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="new">
+                <li>Hosts</li>
+                <li>Services</li>
+                <li>Users</li>
+>>>>>>> origin/kromnikov
             </ul>
 
 
@@ -137,6 +236,7 @@
         </ul>
     </div>
 </div>
+<<<<<<< HEAD
 <div class="content">
 
 
@@ -335,11 +435,242 @@
                         </div>
                     </div>
                 </div>
+=======
+
+
+<div class="content">
+
+    <div class="col-lg-10 margin-top-20">
+        <table style="width: 100%;">
+            <tr>
+                <td class="">
+                    <div class="red row-circle-5 margin5">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h3>44</h3>
+
+                                <p>Ошибки</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <i class="icon2 fa fa-warning-1"></i>
+                            </div>
+                        </div>
+                        <div class="inner">
+                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="blue row-circle-5 margin5">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h3>44</h3>
+
+                                <p>Ошибки</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <i class="icon2 fa fa-warning-1"></i>
+                            </div>
+                        </div>
+                        <div class="inner">
+                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="green row-circle-5 ">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h3>44</h3>
+
+                                <p>Ошибки</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <i class="icon2 fa fa-warning-1"></i>
+                            </div>
+                        </div>
+                        <div class="inner">
+                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+</div>
+
+
+
+
+
+    <div id="chart_1" class="col-lg-10 margin-top-20">
+        <div class="content-panel">
+            TEST
+        </div>
+    </div>
+
+    <!--<div class="message margin-top-20">-->
+        <!--<div class="">-->
+            <!--MESSAGE-->
+        <!--</div>-->
+    <!--</div>-->
+
+
+    <div class="col-lg-10 margin-top-20">
+
+        <div class="content-panel ">
+            <h4><i class="fa fa-angle-right"></i>
+                Advanced Table</h4>
+            <table class="table table-striped table-advance table-hover">
+
+                <thead>
+                <tr>
+                    <th><i class="fa fa-bullhorn"></i> Company</th>
+                    <th class="hidden-phone"><i class="fa fa-question-circle"></i> Descrition</th>
+                    <th><i class="fa fa-bookmark"></i> Profit</th>
+                    <th><i class=" fa fa-edit"></i> Status</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><a href="basic_table.html#">Company Ltd</a></td>
+                    <td class="hidden-phone">Lorem Ipsum dolor</td>
+                    <td>12000.00$</td>
+                    <td><span class="label label-info">label-info</span></td>
+                    <td>
+                        <button class="btn btn-success btn-xs"><i class="fa">btn-success</i></button>
+                        <button class="btn btn-primary btn-xs"><i class="fa">btn-primary</i></button>
+                        <button class="btn btn-danger btn-xs"><i class="fa">btn-danger</i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="basic_table.html#">
+                            Dashgum co
+                        </a>
+                    </td>
+                    <td class="hidden-phone">Lorem Ipsum dolor</td>
+                    <td>17900.00$</td>
+                    <td><span class="label label-warning label-mini">WARNING</span></td>
+                    <td>
+                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                        <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="basic_table.html#">
+                            Another Co
+                        </a>
+                    </td>
+                    <td class="hidden-phone">Lorem Ipsum dolor</td>
+                    <td>14400.00$</td>
+                    <td><span class="label label-success label-mini">label-success</span></td>
+                    <td>
+                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                        <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="basic_table.html#">
+                            Dashgum ext
+                        </a>
+                    </td>
+                    <td class="hidden-phone">Lorem Ipsum dolor</td>
+                    <td>22000.50$</td>
+                    <td><span class="label label-success label-mini">Paid</span></td>
+                    <td>
+                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                        <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="basic_table.html#">Total Ltd</a></td>
+                    <td class="hidden-phone">Lorem Ipsum dolor</td>
+                    <td>12120.00$</td>
+                    <td><span class="label label-warning label-mini">Due</span></td>
+                    <td>
+                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                        <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                    </td>
+                </tr>
+>>>>>>> origin/kromnikov
                 </tbody>
             </table>
         </div>
     </div>
 
 </div>
+<<<<<<< HEAD
 </body>
+=======
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+</body>
+
+>>>>>>> origin/kromnikov
 </html>
