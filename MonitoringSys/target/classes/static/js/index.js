@@ -64,6 +64,9 @@ function showMetrics() {
     });
 }
 function hideShowHostListContent() {
+    checking();
+    start_checking();
+
     $('b').click(function () {
         console.log($(this).attr('idalarm'));
         $.getJSON('/dellAlarm?id='+$(this).attr('idalarm'), function (data) {

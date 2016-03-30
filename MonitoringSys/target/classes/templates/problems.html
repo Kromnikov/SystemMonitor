@@ -4,10 +4,7 @@
     <title>Spring Framework Guru</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/kromnikov
     <script src="../static/js/jquery-2.2.0.min.js"
             th:src="@{js/jquery-2.2.0.min.js}"></script>
     <script src="../static/js/bootstrap.min.js"
@@ -34,24 +31,13 @@
 
     <!--external css-->
     <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{css/font-awesome.css}"/>
-<<<<<<< HEAD
 
     <!-- Custom styles for this template -->
     <link href="../static/css/style.css" rel="stylesheet" th:href="@{css/style.css}"/>
     <link href="../static/css/style-responsive.css" rel="stylesheet" th:href="@{css/style-responsive.css}"/>
 
 
-=======
 
-    <!-- Custom styles for this template -->
-    <link href="../static/css/style.css" rel="stylesheet" th:href="@{css/style.css}"/>
-    <link href="../static/css/style-responsive.css" rel="stylesheet" th:href="@{css/style-responsive.css}"/>
-
-
->>>>>>> origin/kromnikov
-    <script th:inline="javascript">
-        loadChart3(1, 1, 'getCPU');
-    </script>
 </head>
 
 
@@ -59,20 +45,14 @@
 <nav class="navbar navbar-default navbar-static-top margin-left-15">
     <div class="container">
         <ul class="nav navbar-nav navbar-right">
-<<<<<<< HEAD
             <li><a href="#">Login</a></li>
-=======
-            <li><a href="/logout">LogOut</a></li>
->>>>>>> origin/kromnikov
         </ul>
         <ul class="nav navbar-nav navbar-right margin-top-12">
             <button class="btn dropdown-toggle fa fa-bell-o clear-background-color" type="button"
                     data-toggle="dropdown">
-                <span class="label label-warning">3</span></button>
-            <ul class="dropdown-menu">
-                <li><a href="#"><b class="label label-info label-min fa fa-envelope-o white-text fa-lg">&nbsp;</b>Mail message</a></li>
-                <li><a href="#"><b class="label label-warning label-min fa fa-frown-o white-text fa-lg">&nbsp;</b>Down host_name</a></li>
-                <li><a href="#"><b class="label label-success label-min fa fa-smile-o white-text fa-lg">&nbsp;</b>Up host_name</a></li>
+                <span id="dropdown-menu-length" class="label label-warning">0</span></button>
+            <ul id="dropdown-menu" class="dropdown-menu">
+
             </ul>
         </ul>
     </div>
@@ -130,11 +110,7 @@
 
 
 <div class="content">
-<<<<<<< HEAD
 
-
-=======
->>>>>>> origin/kromnikov
     <div class="col-lg-10 margin-top-20">
         <div class="content-panel ">
             <h4  style="cursor:pointer;" ><i class="fa fa-angle-right"></i>
