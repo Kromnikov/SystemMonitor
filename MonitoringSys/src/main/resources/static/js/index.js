@@ -67,6 +67,17 @@ function hideShowHostListContent() {
     checking();
     start_checking();
 
+    $('.dropdown-toggle').click(function () {
+        $("#dropdown-menu").toggle();
+    });
+
+    $(document).mouseup(function (e) {
+        var container = $("#dropdown-menu");
+        if (container.has(e.target).length === 0){
+            container.hide();
+        }
+    });
+
     $('b').click(function () {
         console.log($(this).attr('idalarm'));
         $.getJSON('/dellAlarm?id='+$(this).attr('idalarm'), function (data) {
