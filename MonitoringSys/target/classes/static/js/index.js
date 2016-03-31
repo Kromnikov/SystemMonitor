@@ -12,10 +12,10 @@ function checking() {
                 //console.log(values.id);
                 if(values.type=="error"){
                     $("#dropdown-menu").append('<li><a href="#"><b class="label label-warning label-min fa fa-frown-o white-text fa-lg">&nbsp;</b>'+values.message+'' +
-                    '<b idalarm="'+values.id+'"  class="dropdown-menu-right fa fa-times fa-lg"></b></a></li>');
+                    '<b1 idalarm="'+values.id+'"  class="dropdown-menu-right fa fa-times fa-lg"></b1></a></li>');
                 }else{
                     $("#dropdown-menu").append('<li><a href="#"><b class="label label-success label-min fa fa-smile-o white-text fa-lg">&nbsp;</b>'+values.message+'' +
-                    '<b  idalarm="'+values.id+'"  class="dropdown-menu-right fa fa-times fa-lg"></b></a></li>');
+                    '<b1  idalarm="'+values.id+'"  class="dropdown-menu-right fa fa-times fa-lg"></b1></a></li>');
                 }
             });
         });
@@ -30,10 +30,10 @@ function start_checking() {
             $.each(data, function (key,values) {
                 if(values.type=="error"){
                     $("#dropdown-menu").append('<li><a href="#"><b class="label label-warning label-min fa fa-frown-o white-text fa-lg">&nbsp;</b>'+values.message+'' +
-                    '<b idalarm="'+values.id+'"  class="dropdown-menu-right fa fa-times fa-lg"></b></a></li>');
+                    '<b1 idalarm="'+values.id+'"  class="lol dropdown-menu-right fa fa-times fa-lg"></b1></a></li>');
                 }else{
                     $("#dropdown-menu").append('<li><a href="#"><b class="label label-success label-min fa fa-smile-o white-text fa-lg">&nbsp;</b>'+values.message+'' +
-                    '<b idalarm="'+values.id+'"  class="dropdown-menu-right fa fa-times fa-lg"></b></a></li>');
+                    '<b1 idalarm="'+values.id+'"  class="dropdown-menu-right fa fa-times fa-lg"></b1></a></li>');
                 }
             });
         });
@@ -63,17 +63,36 @@ function showMetrics() {
         $("#hostListTable").removeClass('hidden');
     });
 }
+function lol() {
+        console.log('idalarm');
+        console.log($(this).attr('idalarm'));
+}
 function hideShowHostListContent() {
     checking();
-    start_checking();
+    //start_checking();
 
-    $('b').click(function () {
-        console.log($(this).attr('idalarm'));
-        $.getJSON('/dellAlarm?id='+$(this).attr('idalarm'), function (data) {
-
-        });
-        checking();
+    $('.dropdown-toggle').click(function () {
+        $("#dropdown-menu").toggle();
     });
+
+    $(document).mouseup(function (e) {
+        var container = $("#dropdown-menu");
+        if (container.has(e.target).length === 0){
+            container.hide();
+        }
+    });
+
+    $('b1').hover(function () {
+        console.log('b1');
+    });
+    $('li').hover(function () {
+        console.log('li');
+    });
+    //$('.dropdown-menu-right').click(function () {
+    //    console.log($(this).attr('idalarm'));
+    //    $.getJSON('/dellAlarm?id='+$(this).attr('idalarm'), function (data) {});
+    //    checking();
+    //});
     $('.fa-expand').click(function () {
         $(this).toggleClass('fa-expand');
         $(this).toggleClass('fa-compress');

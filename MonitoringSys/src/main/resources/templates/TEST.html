@@ -202,32 +202,32 @@
                 <tbody>
                 <div th:each="host: ${getHosts}">
                     <tr>
-                        <td th:field="*{name}" th:text="${host.hostName}" class="hidden-phone">Kromnikov</td>
+                        <td class="content-panel-3" th:field="*{name}" th:text="${host.hostName}" class="hidden-phone">Kromnikov</td>
                         <td class="content-panel-2" th:field="*{name}">lol
                             <button class="btn btn-success btn-xs"><a class="white-text"
                                                                       th:href="@{host(hostId=${host.id},instMetrics=show)}"
                                                                       th:text="${host.servicesCount}"></a></button>
                         </td>
-                        <td th:field="*{name}">
+                        <td class="content-panel-3" th:field="*{name}">
                             <button class="btn btn-danger btn-xs"><a class="white-text"
                                                                      th:href="@{host(hostId=${host.id},problems=show)}"
                                                                      th:text="${host.errorsCount}"></a></button>
                         </td>
-                        <td>
+                        <td class="content-panel-3">
                             <span th:class="(${host.status} == '0') ?'label label-success label-mini' : 'label label-warning label-mini'"
                                   th:text="(${host.status} == '0') ? 'OK' : 'ERROR'">SUCCESS</span>
                         </td>
-                        <td th:field="*{name}" th:text="${host.location}">
+                        <td class="content-panel-3" th:field="*{name}" th:text="${host.location}">
 
                         </td>
 
                     </tr>
 
+                    <div th:if="${hostId} == ${host.id}">
                     <div th:if="${problems} == 'show'">
-                        <div th:if="${hostId} == ${host.id}">
-                            <td colspan="7">
+                            <td  class="content-panel-1-1 " colspan="7">
                                 <div id="hostProblems" class="">
-                                    <div class="content-panel-1 ">
+                                    <div>
                                         <h4 style="cursor:pointer;"><i class="fa fa-angle-right"   th:text="'Problem list of '+${host.hostName} "></i>
                                         </h4>
                                         <table id="hostProblemsTable"

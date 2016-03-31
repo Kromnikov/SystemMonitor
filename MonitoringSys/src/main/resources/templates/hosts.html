@@ -69,7 +69,7 @@
                 <span id="dropdown-menu-length" class="label label-warning">3</span></button>
             <ul id="dropdown-menu" class="dropdown-menu">
                 <li><a id="aclass" class="dropdown-menu-left" href="#"><b class="label label-info label-min fa fa-envelope-o white-text fa-lg">&nbsp;</b>Mail
-                    message<b  idalarm="idal" class="dropdown-menu-right fa fa-times fa-lg"></b></a></li>
+                    message<b1  idalarm="idal" class="dropdown-menu-right fa fa-times fa-lg"></b1></a></li>
                 <!--<li><a href="#"><b class="label label-warning label-min fa fa-frown-o white-text fa-lg">&nbsp;</b>Down-->
                     <!--host_name</a></li>-->
                 <!--<li><a href="#"><b class="label label-success label-min fa fa-smile-o white-text fa-lg">&nbsp;</b>Up-->
@@ -202,6 +202,7 @@
                 </thead>
                 <tbody>
                 <div th:each="host: ${getHosts}">
+                    <div th:if="${hostId} != ${host.id}">
                     <tr>
                         <td th:field="*{name}" th:text="${host.hostName}" class="hidden-phone">Kromnikov</td>
                         <td th:field="*{name}">
@@ -223,12 +224,61 @@
                         </td>
 
                     </tr>
+                    </div>
+
+                    <div th:if="${hostId} == ${host.id}">
+                        <tr>
+                            <td th:field="*{name}" th:text="${host.hostName}" class="hidden-phone content-panel-3">Kromnikov</td>
+
+
+
+                            <div th:if="${instMetrics} == 'show'">
+                            <td class="content-panel-2" th:field="*{name}">
+                                <button class="btn btn-success btn-xs"><a class="white-text"
+                                                                          th:href="@{host(hostId=${host.id},instMetrics=show)}"
+                                                                          th:text="${host.servicesCount}"></a></button>
+                            </td>
+                            <td class="content-panel-3" th:field="*{name}">
+                                <button class="btn btn-danger btn-xs"><a class="white-text"
+                                                                         th:href="@{host(hostId=${host.id},problems=show)}"
+                                                                         th:text="${host.errorsCount}"></a></button>
+                            </td>
+                            </div>
+
+
+
+
+
+                            <div th:if="${problems} == 'show'">
+                                <td class="content-panel-3" th:field="*{name}">
+                                    <button class="btn btn-success btn-xs"><a class="white-text"
+                                                                              th:href="@{host(hostId=${host.id},instMetrics=show)}"
+                                                                              th:text="${host.servicesCount}"></a></button>
+                                </td>
+                                <td class="content-panel-2" th:field="*{name}">
+                                    <button class="btn btn-danger btn-xs"><a class="white-text"
+                                                                             th:href="@{host(hostId=${host.id},problems=show)}"
+                                                                             th:text="${host.errorsCount}"></a></button>
+                                </td>
+                            </div>
+
+
+
+
+                            <td class="content-panel-3">
+                            <span th:class="(${host.status} == '0') ?'label label-success label-mini' : 'label label-warning label-mini'"
+                                  th:text="(${host.status} == '0') ? 'OK' : 'ERROR'">SUCCESS</span>
+                            </td>
+                            <td class="content-panel-3" th:field="*{name}" th:text="${host.location}">
+
+                            </td>
+
+                        </tr>
 
                     <div th:if="${problems} == 'show'">
-                        <div th:if="${hostId} == ${host.id}">
-                            <td colspan="7">
+                            <td class="content-panel-1-1 " colspan="7">
                                 <div id="hostProblems" class="">
-                                    <div class="content-panel-1 ">
+                                    <div>
                                         <h4 style="cursor:pointer;"><i class="fa fa-angle-right"   th:text="'Problem list of '+${host.hostName} "></i>
                                             </h4>
                                         <table id="hostProblemsTable"
@@ -275,14 +325,12 @@
                                 </div>
                             </td>
                         </div>
-                    </div>
 
 
                     <div th:if="${instMetrics} == 'show'">
-                        <div th:if="${hostId} == ${host.id}">
-                            <td colspan="7">
+                            <td class="content-panel-1-1 " colspan="7">
                                 <div id="hostMetrics">
-                                    <div class="content-panel-1 ">
+                                    <div>
                                         <h4 style="cursor:pointer;"><i class="fa fa-angle-right" th:text="'Metrics list of '+${host.hostName} "></i>
                                             </h4>
                                         <table id="hostMetricsTable"

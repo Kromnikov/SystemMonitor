@@ -1164,15 +1164,36 @@ PANELS CONFIGURATIONS
 .content-panel-1 {
     position: relative;!important;
     background: #ffffff;
-    box-shadow: 0px 1px 2px #585858;
     padding-top: 15px;
     padding-bottom: 5px;
+    -webkit-box-shadow: 0px 11px 51px -16px rgba(0,0,0,0.44);
+    -moz-box-shadow: 0px 11px 51px -16px rgba(0,0,0,0.44);
+    box-shadow: 0px 11px 51px -16px rgba(0,0,0,0.44);
+}
+.content-panel-1-1 {
+    position: relative;!important;
+    background: #ffffff;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    -webkit-box-shadow: 0px 11px 51px -16px rgba(0,0,0,0.44);
+    -moz-box-shadow: 0px 11px 51px -16px rgba(0,0,0,0.44);
+    box-shadow: 0px 11px 51px -16px rgba(0,0,0,0.44);
 }
 .content-panel-2 {
-    position: static;!important;
+    position: relative;!important;
     background: #ffffff;
-    box-shadow:  0px -1px 5px #585858;
-    padding-left: 100px;
+    -webkit-box-shadow: 0px -1px 11px 0px rgba(0,0,0,0.44);
+    -moz-box-shadow: 0px -1px 11px 0px rgba(0,0,0,0.44);
+    box-shadow: 0px -1px 11px 0px rgba(0,0,0,0.44);
+    /*border-right: inset 1px rgba(0,0,0,0.44);*/
+    /*border-left: inset 1px rgba(0,0,0,0.44);*/
+}
+.content-panel-3 {
+    position: relative;!important;
+    -webkit-box-shadow: 0px 17px 18px -8px rgba(0,0,0,0.44);
+    -moz-box-shadow: 0px 17px 18px -8px rgba(0,0,0,0.44);
+    box-shadow: 0px 17px 18px -8px rgba(0,0,0,0.44);
+
 }
 
 /*WEATHER PANELS*/
