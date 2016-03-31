@@ -6,6 +6,8 @@ import net.core.models.HostsState;
 import net.core.models.MetricState;
 import net.core.models.Problem;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -56,6 +58,9 @@ public class ProblemsController {
         modelAndView.addObject("getProblemsCount", getAllMetricProblemsCount());
         modelAndView.addObject("getHostsProblemsCount", getHostsProblemsCount());
         modelAndView.addObject("getHostsProblems", getHostsProblems());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        modelAndView.addObject("username", name);
         modelAndView.setViewName("problems");
         return modelAndView;
     }

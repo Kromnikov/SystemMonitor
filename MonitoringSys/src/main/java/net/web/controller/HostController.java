@@ -8,6 +8,8 @@ import net.core.db.IMetricStorage;
 import net.core.hibernate.services.HostService;
 import net.core.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -98,9 +100,14 @@ public class HostController {
     }
     @RequestMapping(value = "/dellAlarm", method = RequestMethod.GET)
     @ResponseBody
-    public void dellAlarm(@RequestParam("id") int id) {
+    public List<AlarmsModel> dellAlarm(@RequestParam("id") int id,@RequestParam("userName") String userName) {
         AlarmsLog alarmsLog = alarmsLogDao.get(id);
         alarmsLogDao.remove(alarmsLog);
+        List<AlarmsModel> alarmsModels = new ArrayList<>();
+        for (AlarmsLog g : alarmsLogDao.getByUser(userName)) {
+            alarmsModels.add(new AlarmsModel(g.getType(),g.getMessage(),g.getId()));
+        }
+        return alarmsModels;
     }
 
 
@@ -114,6 +121,9 @@ public class HostController {
         modelAndView.addObject("title", "title");
         modelAndView.addObject("getHosts", getHostRow());
         modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        modelAndView.addObject("username", name);
         return modelAndView;
     }
     @RequestMapping(params={"search","location"},value = "/hosts",method= RequestMethod.GET)
@@ -135,6 +145,9 @@ public class HostController {
         modelAndView.addObject("title", "title");
         modelAndView.addObject("getHosts", hostRows);
         modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        modelAndView.addObject("username", name);
         return modelAndView;
     }
     @RequestMapping(value = "/host")
@@ -145,6 +158,9 @@ public class HostController {
         modelAndView.addObject("hostId", hostId);
         modelAndView.addObject("instMetrics", instMetrics);
         modelAndView.addObject("problems", problems);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        modelAndView.addObject("username", name);
         //metrics
         modelAndView.addObject("title", title);
         modelAndView.addObject("instMetricId", instMetricId);
@@ -208,6 +224,9 @@ public class HostController {
         modelAndView.addObject("title", "title");
         modelAndView.addObject("getHosts", hostRows);
         modelAndView.addObject("getAllProblemsCount", getAllProblemsCount());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        modelAndView.addObject("username", name);
         return modelAndView;
     }
 
@@ -257,6 +276,9 @@ public class HostController {
     public ModelAndView addHostPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("addHost");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        modelAndView.addObject("username", name);
         return modelAndView;
     }
 

@@ -5,6 +5,8 @@ import net.core.hibernate.services.HostService;
 import net.core.models.Favorites;
 import net.core.models.Value;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,6 +59,9 @@ public class IndexController {
         modelAndView.addObject("hostsSuccesCount", hostsSuccesCount());
         modelAndView.addObject("metricsProblemCount", metricsProblemCount());
         modelAndView.addObject("metricsSuccesCount", metricsSuccesCount());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        modelAndView.addObject("username", name);
         modelAndView.setViewName("index");
         return modelAndView;
     }

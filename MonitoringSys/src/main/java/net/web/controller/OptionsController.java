@@ -7,6 +7,8 @@ import net.core.hibernate.services.HostService;
 import net.core.hibernate.services.HostServiceImpl;
 import net.core.models.InstanceMetric;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -60,6 +62,9 @@ public class OptionsController {
         modelAndView.addObject("max",max);
         modelAndView.addObject("tempid",tempid);
         modelAndView.setViewName("templetMetrics");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        modelAndView.addObject("username", name);
         return modelAndView;
     }
 
@@ -73,6 +78,9 @@ public class OptionsController {
         modelAndView.addObject("max",max);
         modelAndView.addObject("tempid",tempid);
         modelAndView.setViewName("templetMetrics");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        modelAndView.addObject("username", name);
         return modelAndView;
     }
     @RequestMapping(params = {"save"},method = RequestMethod.GET, value = "/options")
@@ -83,6 +91,9 @@ public class OptionsController {
         modelAndView.addObject("max",max_value);
         modelAndView.addObject("getTemplatMetrics",metricStorage.getTemplatMetrics());
         modelAndView.setViewName("templetMetrics");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        modelAndView.addObject("username", name);
         return modelAndView;
     }
     //Контроллер для Instance метрик
@@ -99,6 +110,9 @@ public class OptionsController {
         modelAndView.addObject("max",max);
         modelAndView.addObject("instid",instid);
         modelAndView.setViewName("instanceMetricsOption");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        modelAndView.addObject("username", name);
         return modelAndView;
     }
     @RequestMapping(params = {"hostid"},method = RequestMethod.GET, value = "/optionsInstance")
@@ -113,6 +127,9 @@ public class OptionsController {
         modelAndView.addObject("max",max);
         modelAndView.addObject("instid",1);
         modelAndView.setViewName("instanceMetricsOption");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        modelAndView.addObject("username", name);
         return modelAndView;
     }
     @RequestMapping(params = {"hostid","instid"},method = RequestMethod.GET, value = "/optionsInstance")
@@ -127,6 +144,9 @@ public class OptionsController {
         modelAndView.addObject("max",max);
         modelAndView.addObject("instid",instid);
         modelAndView.setViewName("instanceMetricsOption");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        modelAndView.addObject("username", name);
         return modelAndView;
     }
     @RequestMapping(params = {"save"},method = RequestMethod.GET, value = "/optionsInstance")
@@ -139,6 +159,9 @@ public class OptionsController {
         modelAndView.addObject("getHosts",hosts.getAll());
         modelAndView.addObject("getTemplatMetrics",metricStorage.getTemplatMetrics());
         modelAndView.setViewName("instanceMetricsOption");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        modelAndView.addObject("username", name);
         return modelAndView;
     }
 
@@ -152,6 +175,9 @@ public class OptionsController {
         //modelAndView.addObject("templMetricid", 0);
        // modelAndView.addObject("instMetricid",0);
         modelAndView.setViewName("addIntsMetric");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        modelAndView.addObject("username", name);
         return modelAndView;
     }
     @RequestMapping(params={"hostid"},value="/editIntsMetrics", method = RequestMethod.GET)
@@ -164,6 +190,9 @@ public class OptionsController {
        // modelAndView.addObject("templMetricid", 0);
        // modelAndView.addObject("instMetricid",0);
         modelAndView.setViewName("addIntsMetric");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        modelAndView.addObject("username", name);
         return modelAndView;
     }
     @RequestMapping(params={"hostid","instMetricid"},value="/editIntsMetrics", method = RequestMethod.GET)
@@ -175,6 +204,9 @@ public class OptionsController {
         modelAndView.addObject("getMetrics", metricStorage.getInstMetrics(hostid));
         modelAndView.addObject("hostid", hostid);
         modelAndView.setViewName("addIntsMetric");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        modelAndView.addObject("username", name);
         return modelAndView;
     }
     @RequestMapping(params={"hostid","templMetricid"},value="/editIntsMetrics", method = RequestMethod.GET)
@@ -186,6 +218,9 @@ public class OptionsController {
         modelAndView.addObject("getMetrics", metricStorage.getInstMetrics(hostid));
         modelAndView.addObject("hostid", hostid);
         modelAndView.setViewName("addIntsMetric");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        modelAndView.addObject("username", name);
         return modelAndView;
     }
 
@@ -198,6 +233,9 @@ public class OptionsController {
         modelAndView.addObject("host", host);
         modelAndView.addObject("hostid",1);
         modelAndView.setViewName("hostEditor");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        modelAndView.addObject("username", name);
         return modelAndView;
     }
     @RequestMapping(params={"hostid"}, value="/hostedit", method = RequestMethod.GET)
@@ -208,6 +246,9 @@ public class OptionsController {
         modelAndView.addObject("hostid",hostid);
         modelAndView.addObject("host", host);
         modelAndView.setViewName("hostEditor");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        modelAndView.addObject("username", name);
         return modelAndView;
     }
     @RequestMapping(params={"save"}, value="/hostedit", method = RequestMethod.GET)
@@ -219,6 +260,9 @@ public class OptionsController {
         modelAndView.addObject("host", host);
         modelAndView.addObject("hostid",save);
         modelAndView.setViewName("hostEditor");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name1 = auth.getName(); //get logged in username
+        modelAndView.addObject("username", name1);
         return modelAndView;
     }
 

@@ -29,8 +29,29 @@
     <!-- Custom styles for this template -->
     <link href="../static/css/style.css" rel="stylesheet" th:href="@{css/style.css}"/>
     <link href="../static/css/style-responsive.css" rel="stylesheet" th:href="@{css/style-responsive.css}"/>
+
+
+    <script th:inline="javascript">
+        var username = [[${username}]];
+        hideShowHostListContent(username);
+    </script>
 </head>
 <body>
+<nav class="navbar navbar-default navbar-static-top margin-left-15">
+    <div class="container">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/logout">LogOut</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right margin-top-12">
+            <button class="btn dropdown-toggle fa fa-bell-o clear-background-color" type="button"
+                    data-toggle="dropdown">
+                <span id="dropdown-menu-length" class="label label-warning">0</span></button>
+            <ul id="dropdown-menu" class="dropdown-menu">
+
+            </ul>
+        </ul>
+    </div>
+</nav>
 <div class="nav-side-menu">
     <div class="brand">System monitor</div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>

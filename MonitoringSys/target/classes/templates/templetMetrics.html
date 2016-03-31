@@ -35,13 +35,17 @@
     <!-- Custom styles for this template -->
     <link href="../static/css/style.css" rel="stylesheet" th:href="@{css/style.css}"/>
     <link href="../static/css/style-responsive.css" rel="stylesheet" th:href="@{css/style-responsive.css}"/>
-</head>
-<body onload="hideShowHostListContent()">
 
+    <script th:inline="javascript">
+        var username = [[${username}]];
+        hideShowHostListContent(username);
+    </script>
+</head>
+<body>
 <nav class="navbar navbar-default navbar-static-top margin-left-15">
     <div class="container">
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Login</a></li>
+            <li><a href="/logout">LogOut</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right margin-top-12">
             <button class="btn dropdown-toggle fa fa-bell-o clear-background-color" type="button"
