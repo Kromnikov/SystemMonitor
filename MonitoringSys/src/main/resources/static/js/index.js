@@ -1,5 +1,48 @@
 var username;
 
+function modalEditHost() {
+
+    $(document).ready(function () {
+            $('.open_window').click(function (e) {
+                $.getJSON('/gethost?hostid=' + $(this).attr('id'), function (host) {
+                    //console.log(host.name+"-"+host.host);
+                    $("input[name='id']").val(host.id);
+                    $("input[name='name']").val(host.name);
+                    $("input[name='host']").val(host.host);
+                    $("input[name='port']").val(host.port);
+                    $("input[name='login']").val(host.login);
+                    $("input[name='password']").val(host.password);
+                    $("input[name='location']").val(host.location);
+
+                    $('.popup, .overlay').css({'opacity': 1, 'visibility': 'visible'});
+                    e.preventDefault();
+                });
+            });
+        $("#saveHost").click(function () {
+            $.getJSON('/saveHost?id=' + $("input[name='id']").val()
+                +'&name='+$("input[name='name']").val()
+                +'&host='+$("input[name='host']").val()
+                +'&port='+$("input[name='port']").val()
+                +'&login='+$("input[name='login']").val()
+                +'&password='+$("input[name='password']").val()
+                +'&location='+$("input[name='location']").val()
+                , function (host) {
+            });
+            $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
+            window.location.href = "/hostedit";
+        });
+
+        //$('.popup .close_window, .overlay').click(function (){
+        $('.close_window').click(function () {
+            $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
+        });
+    //    $('.open_window').click(function (e) {
+    //        $('.popup, .overlay').css({'opacity': 1, 'visibility': 'visible'});
+    //        e.preventDefault();
+    //    });
+    });
+}
+
 function dellAlarm(id) {
     console.log('dellAlarm where id= '+id);
     $.getJSON('/dellAlarm?id='+id+'&userName='+username, function (data) {
@@ -17,7 +60,6 @@ function dellAlarm(id) {
         });
     });
 }
-
 function checking() {
         console.log('checking');
         $.getJSON('/getAlarms?userName='+username, function (data) {
@@ -62,6 +104,8 @@ function hideShowHostListContent(name) {
         username = name;
         checking();
         start_checking();
+
+
 
         $('body').on('click', 'b1', function () {
             //$("#dropdown-menu").empty();

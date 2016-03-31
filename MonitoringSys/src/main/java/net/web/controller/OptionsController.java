@@ -2,9 +2,7 @@ package net.web.controller;
 
 import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;
-import net.core.hibernate.dao.HostDaoImpl;
 import net.core.hibernate.services.HostService;
-import net.core.hibernate.services.HostServiceImpl;
 import net.core.models.InstanceMetric;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -12,6 +10,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
@@ -38,18 +38,6 @@ public class OptionsController {
         return ((int)metricStorage.getMetricNotResolvedLength()+(int)metricStorage.getHostNotResolvedLength());
     }
 
-    public void saveHost(int hostid,String ip,String login,String password,String name,int port, String location) throws SQLException {
-        //metricStorage.updateHost(hostid,ip,login,password,port,name,location);
-        SSHConfiguration host = new SSHConfiguration();
-        host.setId(hostid);
-        host.setName(name);
-        host.setHost(ip);
-        host.setLocation(location);
-        host.setLogin(login);
-        host.setPassword(password);
-        host.setPort(port);
-        hosts.update(host);
-    }
     //Контроллер для Templat метрик
     @RequestMapping(method = RequestMethod.GET, value = "/options")
     public ModelAndView metric() throws SQLException {
@@ -224,19 +212,50 @@ public class OptionsController {
         return modelAndView;
     }
 
-    //Редактор хостов
+
+
+
+
+
+
+
+
+
+    public void saveHost(int hostid,String ip,String login,String password,String name,int port, String location) throws SQLException {
+        //metricStorage.updateHost(hostid,ip,login,password,port,name,location);
+        SSHConfiguration host = new SSHConfiguration();
+        host.setId(hostid);
+        host.setName(name);
+        host.setHost(ip);
+        host.setLocation(location);
+        host.setLogin(login);
+        host.setPassword(password);
+        host.setPort(port);
+        hosts.update(host);
+    }
+    //TODO: Редактор хостов
     @RequestMapping(value="/hostedit", method = RequestMethod.GET)
     public ModelAndView hostEditPage() throws SQLException, ParseException {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("getHosts",hosts.getAll());
-        SSHConfiguration host=hosts.get(1);
-        modelAndView.addObject("host", host);
-        modelAndView.addObject("hostid",1);
+//        SSHConfiguration host=hosts.get(1);
+//        modelAndView.addObject("host", host);
+//        modelAndView.addObject("hostid",1);
         modelAndView.setViewName("hostEditor");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName(); //get logged in username
         modelAndView.addObject("username", name);
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/gethost", method = RequestMethod.GET)
+    @ResponseBody
+    public SSHConfiguration getAlarms(@RequestParam("hostid") int hostid) {
+        return hosts.get(hostid);
+    }
+    @RequestMapping(value = "/saveHost", method = RequestMethod.GET)
+    public void saveHost(@RequestParam("host") String host,@RequestParam("name") String name,@RequestParam("port") int port,@RequestParam("login") String login,@RequestParam("password") String password,@RequestParam("location") String location,@RequestParam("id") int id) throws SQLException {
+        saveHost(id,host,login,password,name,port,location);
     }
     @RequestMapping(params={"hostid"}, value="/hostedit", method = RequestMethod.GET)
     public ModelAndView hostEditChose(int hostid) throws SQLException, ParseException {
@@ -251,6 +270,7 @@ public class OptionsController {
         modelAndView.addObject("username", name);
         return modelAndView;
     }
+    //TODO: save host
     @RequestMapping(params={"save"}, value="/hostedit", method = RequestMethod.GET)
     public ModelAndView hostEditSave(int save,String ip,String login,String password,String name,int port,String location) throws SQLException, ParseException {
         saveHost(save,ip,login,password,name,port,location);
