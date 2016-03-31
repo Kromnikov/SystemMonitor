@@ -7,7 +7,6 @@
             th:src="@{js/jquery-2.2.0.min.js}"></script>
     <script src="../static/js/bootstrap.min.js"
             th:src="@{js/bootstrap.min.js}"></script>
-<<<<<<< HEAD
     <script src="../static/js/index.js"
             th:src="@{js/index.js}"></script>
     <link href="../static/css/bootstrap.css"
@@ -25,21 +24,35 @@
             th:src="@{js/exporting.js}"></script>
     <script src="../static/js/dinamicChart.js"
             th:src="@{js/dinamicChart.js}"></script>
-=======
     <link href="../static/css/bootstrap.css"
           th:href="@{css/bootstrap.css}" rel="stylesheet" media="screen"/>
     <link href="../static/css/AdminLTE.css"
           th:href="@{css/AdminLTE.css}" rel="stylesheet" media="screen"/>
     <link href="../static/css/index.css"
           th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
->>>>>>> origin/kromnikov
     <!--external css-->
     <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{css/font-awesome.css}"/>
     <!-- Custom styles for this template -->
     <link href="../static/css/style.css" rel="stylesheet" th:href="@{css/style.css}"/>
     <link href="../static/css/style-responsive.css" rel="stylesheet" th:href="@{css/style-responsive.css}"/>
 </head>
-<body>
+<body onload="hideShowHostListContent()">
+
+<nav class="navbar navbar-default navbar-static-top margin-left-15">
+    <div class="container">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Login</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right margin-top-12">
+            <button class="btn dropdown-toggle fa fa-bell-o clear-background-color" type="button"
+                    data-toggle="dropdown">
+                <span id="dropdown-menu-length" class="label label-warning">0</span></button>
+            <ul id="dropdown-menu" class="dropdown-menu">
+
+            </ul>
+        </ul>
+    </div>
+</nav>
 <div class="nav-side-menu">
     <div class="brand">System monitor</div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
@@ -82,21 +95,7 @@
         </ul>
     </div>
 </div>
-<<<<<<< HEAD
-    <div class="content">
-            <div class="left-right-contener">
-                <form action="#"  th:object="${templMetric}" method="get">
-                    <table width="100%" border="1px" cellspacing="0px" cellpadding="4px" align="center" id="tb" >
-                        <td class="tablehead">Templet Metrics</td>
-                        <td class="tablehead">Settings</td>
-                        <tr>
-                            <td>
-                                <div class="left-contener">
-                                    <div th:each="templMetric: ${getTemplatMetrics}">
-                                        <div class="row-contener right"><a  name="tempMetric" th:href="@{'options?tempid='+${templMetric.id}}" th:text="${templMetric.title}"></a></div>
-                                    </div>
-                                </div>
-=======
+
 <div class="content">
     <div class="col-lg-10 margin-top-20">
         <div class="content-panel ">
@@ -116,25 +115,26 @@
                                     <div th:each="templMetric: ${getTemplatMetrics}">
                                         <div class="row-contener right"><a  name="tempMetric" th:href="@{'options?tempid='+${templMetric.id}}" th:text="${templMetric.title}"></a></div>
                                     </div>
->>>>>>> origin/kromnikov
+
                             </td>
                             <td>
                                 <div class="right-contener">
                                     <div>
-                                        <label> Min value : <input  type="text" name="min_value" th:value="${min}"/></label>
+                                        <label> Max value : <input  type="text" name="title" th:value="${tempMetric.getTitle()}"/></label>
                                     </div>
                                     <div>
-                                        <label> Max value : <input  type="text" name="max_value" th:value="${max}"/></label>
+                                        <label> Max value : <input  type="text" name="command" th:value="${tempMetric.getCommand()}"/></label>
                                     </div>
-<<<<<<< HEAD
                                     <div>
-                                        <p></p>
-                                        <button type="submit" name="save" th:value="${tempid}">Save</button>
+                                        <label> Min value : <input  type="text" name="min_value" th:value="${tempMetric.getMin_value()}"/></label>
                                     </div>
-=======
+                                    <div>
+                                        <label> Max value : <input  type="text" name="max_value" th:value="${tempMetric.getMax_value()}"/></label>
+                                    </div>
+
                                         <p></p>
-                                        <button type="submit" name="save" th:value="${tempid}">Save</button>
->>>>>>> origin/kromnikov
+                                        <button type="submit" name="save" th:value="${tempMetric.getId()}">Save</button>
+
                                 </div>
                             </td>
                         </tr>
@@ -144,9 +144,6 @@
                 <div class="bottom"> </div>
             </div>
         </div>
-<<<<<<< HEAD
-=======
     </div>
->>>>>>> origin/kromnikov
 </body>
 </html>

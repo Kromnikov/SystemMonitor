@@ -8,7 +8,6 @@ import net.core.hibernate.services.HostService;
 import net.core.models.*;
 import net.core.tools.Averaging;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -748,6 +747,8 @@ public class MetricStorage implements IMetricStorage {
             templateMetric.setId((int) row.get("id"));
             templateMetric.setTitle((String) row.get("title"));
             templateMetric.setCommand((String) row.get("query"));
+            templateMetric.setMin_value((double)row.get("min_value"));
+            templateMetric.setMax_value((double)row.get("max_value"));
         }
         return templateMetric;
     }
@@ -762,9 +763,26 @@ public class MetricStorage implements IMetricStorage {
             templateMetric.setId((int) row.get("id"));
             templateMetric.setTitle((String) row.get("title"));
             templateMetric.setCommand((String) row.get("query"));
+            templateMetric.setMin_value((double)row.get("min_value"));
+            templateMetric.setMax_value((double)row.get("max_value"));
             metrics1.add(templateMetric);
         }
         return metrics1;
+    }
+
+    public TemplateMetric getTopTemplatMetric() throws SQLException{
+        InstanceMetric instanceMetric = new InstanceMetric();
+        String sql = "SELECT *  FROM \"TEMPLATE_METRICS\" limit 1";
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+        TemplateMetric templateMetric = new TemplateMetric();
+        for (Map row : rows) {
+            templateMetric.setId((int) row.get("id"));
+            templateMetric.setTitle((String) row.get("title"));
+            templateMetric.setCommand((String) row.get("query"));
+            templateMetric.setMin_value((double)row.get("min_value"));
+            templateMetric.setMax_value((double)row.get("max_value"));
+        }
+        return templateMetric;
     }
 
     @Transactional
@@ -786,37 +804,13 @@ public class MetricStorage implements IMetricStorage {
         }
         return templateMetric;
     }
-    @Transactional
-    public double getMinValueTemplateMetric(int id) throws SQLException {
-        String sql = "select min_value FROM \"TEMPLATE_METRICS\" where id ="+id;
-        return (double)jdbcTemplateObject.queryForMap(sql).get("min_value");
-    }
-    public double getMaxValueTemplateMetric(int id) throws SQLException {
-        String sql = "select max_value FROM \"TEMPLATE_METRICS\" where id ="+id;
-        return (double)jdbcTemplateObject.queryForMap(sql).get("max_value");
-    }
 
     @Transactional
-    public void updateMinMaxValueTemplateMetric(double min_value,double max_value,int id) throws SQLException {
-        String sql = "UPDATE \"TEMPLATE_METRICS\" SET min_value="+min_value+",max_value="+max_value+"WHERE id="+id;
-        jdbcTemplateObject.update(sql);
+    public void updateTemplateMetric(double min_value,double max_value,int id, String title, String command) throws SQLException {
+        String sql = "UPDATE \"TEMPLATE_METRICS\" SET min_value=?,max_value=?,title=?,query=? WHERE id="+id;
+        jdbcTemplateObject.update(sql,min_value,max_value,title,command);
     }
 
-    @Transactional
-    public double getMinValueInstanceMetric(int id) throws SQLException {
-        String sql = "select min_value FROM \"INSTANCE_METRIC\" where id ="+id;
-        return (double)jdbcTemplateObject.queryForMap(sql).get("min_value");
-    }
-    public double getMaxValueInstanceMetric(int id) throws SQLException {
-        String sql = "select max_value FROM \"INSTANCE_METRIC\" where id ="+id;
-        return (double)jdbcTemplateObject.queryForMap(sql).get("max_value");
-    }
-
-    @Transactional
-    public void updateMinMaxValueInstanceMetric(double min_value,double max_value,int id) throws SQLException {
-        String sql = "UPDATE \"INSTANCE_METRIC\" SET min_value="+min_value+",max_value="+max_value+"WHERE id="+id;
-        jdbcTemplateObject.update(sql);
-    }
 
     //metrics-host
     @Transactional
@@ -875,6 +869,37 @@ public class MetricStorage implements IMetricStorage {
     }
 
     @Transactional
+    public InstanceMetric getInstMetricById(int id) throws SQLException {
+        InstanceMetric instanceMetric = new InstanceMetric();
+        String sql = "SELECT *  FROM \"INSTANCE_METRIC\" where id =" +id;
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+        for (Map row : rows) {
+            instanceMetric.setId((int) row.get("id"));
+            instanceMetric.setHostId((int) row.get("host"));
+            instanceMetric.setTempMetrcId((int) row.get("templ_metric"));
+            instanceMetric.setMinValue((double) row.get("min_value"));
+            instanceMetric.setMaxValue((double) row.get("max_value"));
+            instanceMetric.setCommand((String) row.get("query"));
+            instanceMetric.setTitle((String) row.get("title"));
+        }
+        return instanceMetric;
+    }
+    public InstanceMetric getTopInstMetric() throws SQLException{
+        InstanceMetric instanceMetric = new InstanceMetric();
+        String sql = "SELECT *  FROM \"INSTANCE_METRIC\" limit 1";
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+        for (Map row : rows) {
+            instanceMetric.setId((int) row.get("id"));
+            instanceMetric.setHostId((int) row.get("host"));
+            instanceMetric.setTempMetrcId((int) row.get("templ_metric"));
+            instanceMetric.setMinValue((double) row.get("min_value"));
+            instanceMetric.setMaxValue((double) row.get("max_value"));
+            instanceMetric.setCommand((String) row.get("query"));
+            instanceMetric.setTitle((String) row.get("title"));
+        }
+        return instanceMetric;
+    }
+    @Transactional
     public InstanceMetric getInstMetric(int instMetricId) throws SQLException {
         InstanceMetric instanceMetric = new InstanceMetric();
         String sql = "SELECT id, templ_metric, title, query, min_value, max_value, host  FROM \"INSTANCE_METRIC\" where id =" + instMetricId;
@@ -892,6 +917,13 @@ public class MetricStorage implements IMetricStorage {
     }
 
     @Transactional
+    public void updateInstMetric(double min_value,double max_value,int id,String title,String query) throws SQLException {
+        String sql = "UPDATE \"INSTANCE_METRIC\" SET min_value="+min_value+",max_value="+max_value+
+                ",title=?, query=? WHERE id="+id;
+        jdbcTemplateObject.update(sql,title,query);
+    }
+
+    @Transactional
     public void delInstMetric(int metricId) throws SQLException {
         String sql = "DELETE FROM \"INSTANCE_METRIC\" WHERE id=" + metricId;
         jdbcTemplateObject.update(sql);
@@ -899,13 +931,13 @@ public class MetricStorage implements IMetricStorage {
 
     //hostsRows
     @Transactional
-    public List<HostRow> getHostRow() throws SQLException {
-        List<HostRow> hostrows = new ArrayList<>();
+    public List<hostRow> getHostRow() throws SQLException {
+        List<hostRow> hostrows = new ArrayList<>();
         String sql = "(select count(*) as countServices,host,(select count(*)from \"METRIC_STATE\" where host_id = im.host) as countProblems ,(select count(*)from \"HOST_STATE\" where host = im.host and (\"end_datetime\" is null and \"start_datetime\" is not null)) as status from \"INSTANCE_METRIC\" as im group by host)";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
 
         for (SSHConfiguration host : this.hosts.getAll()) {
-            HostRow hostRow = new HostRow();
+            hostRow hostRow = new hostRow();
             hostRow.setId(host.getId());
             hostRow.setHostName(host.getName());
             hostRow.setLocation(host.getLocation());
@@ -922,16 +954,21 @@ public class MetricStorage implements IMetricStorage {
     }
     //metricRows
     @Transactional
-    public List<MetricRow> getMetricRow(int hostId) throws SQLException {
-        List<MetricRow> MetricRows = new ArrayList<>();
+    public List<metricRow> getMetricRow(int hostId) throws SQLException {
+        List<metricRow> MetricRows = new ArrayList<>();
         String sql = "select id,title ,(select value from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as value ,(select date_time from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as date ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id ) as countProblems ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id and (\"end_datetime\" is null and \"start_datetime\" is not null)) as status  from \"INSTANCE_METRIC\" as im where host = " + hostId;
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         for (Map row : rows) {
-            MetricRow metricrow = new MetricRow();
+            metricRow metricrow = new metricRow();
             metricrow.setId(Integer.parseInt(row.get("id").toString()));
             metricrow.setTitle((row.get("title").toString()));
             metricrow.setErrorsCount(Integer.parseInt(row.get("countProblems").toString()));
-            metricrow.setLastValue(Double.parseDouble(row.get("value").toString()));
+            try {
+                metricrow.setLastValue(Double.parseDouble(row.get("value").toString()));
+            }
+            catch(Exception e){
+                metricrow.setLastValue(0);
+            }
             metricrow.setDate(((java.sql.Timestamp) row.get("date")));
             metricrow.setStatus(row.get("status").toString());
             MetricRows.add(metricrow);
@@ -939,12 +976,12 @@ public class MetricStorage implements IMetricStorage {
         return MetricRows;
     }
     @Transactional
-    public List<MetricRow> getMetricRow(int hostId,int metricId) throws SQLException {
-        List<MetricRow> MetricRows = new ArrayList<>();
+    public List<metricRow> getMetricRow(int hostId, int metricId) throws SQLException {
+        List<metricRow> MetricRows = new ArrayList<>();
         String sql = "select id,title ,(select value from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as value ,(select date_time from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as date ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id ) as countProblems ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id and (\"end_datetime\" is null and \"start_datetime\" is not null)) as status  from \"INSTANCE_METRIC\" as im where id = " + metricId;
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         for (Map row : rows) {
-            MetricRow metricrow = new MetricRow();
+            metricRow metricrow = new metricRow();
             metricrow.setId(Integer.parseInt(row.get("id").toString()));
             metricrow.setTitle((row.get("title").toString()));
             metricrow.setErrorsCount(Integer.parseInt(row.get("countProblems").toString()));
@@ -1038,32 +1075,6 @@ public class MetricStorage implements IMetricStorage {
         return (int) jdbcTemplateObject.queryForMap(sql).get("sshconfigurationhibernate_id");
     }
 
-    public void updateHost(int id,String host,String login, String password,int port, String name, String location) throws SQLException {
-        String sql = "UPDATE sshconfigurationhibernate SET host='"+host+"',login='" +login+
-                "',password='"+password+"',port="+port+",name='"+name+"',location='"+location+"' WHERE sshconfigurationhibernate_id="+id;
-       jdbcTemplateObject.update(sql);
-    }
-
-    @Override
-    public List<SSHConfiguration> getHostsByLocation(String location) throws SQLException {
-        String sql = "SELECT * FROM \"sshconfigurationhibernate\" WHERE location LIKE\'%"+location+"%\'";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-        List<SSHConfiguration> hosts= new ArrayList<>();
-        for (Map row : rows) {
-            SSHConfiguration host = new SSHConfiguration();
-            host.setId((int)row.get("sshconfigurationhibernate_id"));
-            host.setPort((int)row.get("port"));
-            host.setLogin((String)row.get("login"));
-            host.setPassword((String)row.get("password"));
-            host.setLocation((String)row.get("location"));
-            host.setName((String)row.get("name"));
-            host.setHost((String)row.get("host"));
-            hosts.add(host);
-        }
-        return hosts;
-    }
-
-
     @Transactional
     public void addStandartMetrics(int id) throws SQLException {
         String sql = "INSERT INTO \"INSTANCE_METRIC\" (TEMPL_METRIC,HOST) VALUES (1," + id + ");";
@@ -1081,10 +1092,6 @@ public class MetricStorage implements IMetricStorage {
         jdbcTemplateObject.update(sql);
     }
 
-    public int getHostIdByLocation(String location){
-        int id;
-        return 0;
-    }
     //TODO Favorites
     @Transactional
     public void addToFavorites(int host, int metric) throws SQLException {

@@ -7,36 +7,18 @@
             th:src="@{js/jquery-2.2.0.min.js}"></script>
     <script src="../static/js/bootstrap.min.js"
             th:src="@{js/bootstrap.min.js}"></script>
-<<<<<<< HEAD
-    <script src="../static/js/index.js"
-            th:src="@{js/index.js}"></script>
-=======
->>>>>>> origin/kromnikov
     <link href="../static/css/bootstrap.css"
           th:href="@{css/bootstrap.css}" rel="stylesheet" media="screen"/>
     <link href="../static/css/AdminLTE.css"
           th:href="@{css/AdminLTE.css}" rel="stylesheet" media="screen"/>
     <link href="../static/css/index.css"
           th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
-<<<<<<< HEAD
-    <script src="../static/js/highstock.js"
-            th:src="@{js/highstock.js}"></script>
-    <script src="../static/js/exporting.js"
-            th:src="@{js/exporting.js}"></script>
-    <script src="../static/js/dinamicChart.js"
-            th:src="@{js/dinamicChart.js}"></script>
-=======
->>>>>>> origin/kromnikov
     <!--external css-->
     <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{css/font-awesome.css}"/>
     <!-- Custom styles for this template -->
     <link href="../static/css/style.css" rel="stylesheet" th:href="@{css/style.css}"/>
     <link href="../static/css/style-responsive.css" rel="stylesheet" th:href="@{css/style-responsive.css}"/>
 </head>
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/kromnikov
 <body>
 <div class="nav-side-menu">
     <div class="brand">System monitor</div>
@@ -80,56 +62,45 @@
         </ul>
     </div>
 </div>
-    <div class="content">
-<<<<<<< HEAD
-        <div class="left-right-contener">
-            <form action="#"  th:object="${templMetric}" method="get">
-                <table width="100%" border="1px" cellspacing="0px" cellpadding="4px" align="center" id="tb" >
-                    <td class="tablehead">Hosts</td>
-                    <td class="tablehead">Instance Metrics</td>
-                    <td class="tablehead">Settings</td>
-                    <tr>
-                        <td>
-                            <div th:each="host: ${getHosts}">
-                                <div class="row-contener right"><a  name="tempMetric" th:href="@{'optionsInstance?hostid='+${host.id}}" th:text="${host.host}"></a></div>
-=======
-        <div class="col-lg-10 margin-top-20">
-            <div class="content-panel ">
-                <h4><i class="fa fa-square"></i>
-                    Instances Metrics
-                </h4>
+<div class="content">
+    <div class="col-lg-10 margin-top-20">
+        <div class="content-panel ">
+            <h4><i class="fa fa-square"></i>
+                Instances Metrics
+            </h4>
             <form action="#"  th:object="${templMetric}" method="get">
                 <table  class="table table-striped table-advance table-hover">
                     <thead>
-                        <tr>
-                            <td class="tablehead"><i class="fa fa-home" >Hosts</i></td>
-                            <td class="tablehead"><i class="fa fa-medkit">Instance Metrics</i></td>
-                            <td class="tablehead"><i class="fa fa-support">Settings</i></td>
-                        </tr>
+                    <tr>
+                        <td class="tablehead"><i class="fa fa-home" >Hosts</i></td>
+                        <td class="tablehead"><i class="fa fa-medkit">Instance Metrics</i></td>
+                        <td class="tablehead"><i class="fa fa-support">Settings</i></td>
+                    </tr>
                     </thead>
                     <tr>
                         <td>
                             <div th:each="host: ${getHosts}">
                                 <div class="row-contener"><a  name="tempMetric" th:href="@{'optionsInstance?hostid='+${host.id}}" th:text="${host.host}"></a></div>
->>>>>>> origin/kromnikov
                             </div>
                         </td>
                         <td>
                             <div th:each="instMetric: ${getInstanceMetrics}">
-<<<<<<< HEAD
-                                <div class="row-contener right"><a  name="tempMetric" th:href="@{'optionsInstance?instid='+${instMetric.id}+'&amp;hostid='+${hostid}}" th:text="${instMetric.title}"></a></div>
-=======
                                 <div class="row-contener"><a  name="tempMetric" th:href="@{'optionsInstance?instid='+${instMetric.id}+'&amp;hostid='+${hostid}}" th:text="${instMetric.title}"></a></div>
->>>>>>> origin/kromnikov
                             </div>
                         </td>
                         <td>
                             <div class="right-contener">
                                 <div>
-                                    <label> Min value : <input  type="text" name="min_value" th:value="${min}"/></label>
+                                    <label> Min value : <input  type="text" name="min_value" th:value="${instMetric.getMinValue()}"/></label>
                                 </div>
                                 <div>
-                                    <label> Max value : <input  type="text" name="max_value" th:value="${max}"/></label>
+                                    <label> Max value : <input  type="text" name="max_value" th:value="${instMetric.getMaxValue()}"/></label>
+                                </div>
+                                <div>
+                                    <label> Command : <input  type="text" name="command" th:value="${instMetric.getCommand()}"/></label>
+                                </div>
+                                <div>
+                                    <label> Title : <input  type="text" name="title" th:value="${instMetric.getTitle()}"/></label>
                                 </div>
                                 <div>
                                     <p></p>
@@ -143,9 +114,6 @@
             <div class="bottom"> </div>
         </div>
     </div>
-<<<<<<< HEAD
-=======
-    </div>
->>>>>>> origin/kromnikov
+</div>
 </body>
 </html>

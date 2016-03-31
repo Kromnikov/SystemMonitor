@@ -120,14 +120,20 @@
                             <td>
                                 <div class="right-contener">
                                     <div>
-                                        <label> Min value : <input  type="text" name="min_value" th:value="${min}"/></label>
+                                        <label> Max value : <input  type="text" name="title" th:value="${tempMetric.getTitle()}"/></label>
                                     </div>
                                     <div>
-                                        <label> Max value : <input  type="text" name="max_value" th:value="${max}"/></label>
+                                        <label> Max value : <input  type="text" name="command" th:value="${tempMetric.getCommand()}"/></label>
+                                    </div>
+                                    <div>
+                                        <label> Min value : <input  type="text" name="min_value" th:value="${tempMetric.getMin_value()}"/></label>
+                                    </div>
+                                    <div>
+                                        <label> Max value : <input  type="text" name="max_value" th:value="${tempMetric.getMax_value()}"/></label>
                                     </div>
 
                                         <p></p>
-                                        <button type="submit" name="save" th:value="${tempid}">Save</button>
+                                        <button type="submit" name="save" th:value="${tempMetric.getId()}">Save</button>
 
                                 </div>
                             </td>

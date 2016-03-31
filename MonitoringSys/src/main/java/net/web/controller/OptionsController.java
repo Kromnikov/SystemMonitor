@@ -1,11 +1,13 @@
 package net.web.controller;
 
+import net.core.MetricStorage;
 import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;
 import net.core.hibernate.dao.HostDaoImpl;
 import net.core.hibernate.services.HostService;
 import net.core.hibernate.services.HostServiceImpl;
 import net.core.models.InstanceMetric;
+import net.core.models.TemplateMetric;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,6 +39,17 @@ public class OptionsController {
         return ((int)metricStorage.getMetricNotResolvedLength()+(int)metricStorage.getHostNotResolvedLength());
     }
 
+    public InstanceMetric getInstMetricCharacters(int id) throws SQLException {
+        InstanceMetric instanceMetrics;
+        instanceMetrics = metricStorage.getInstMetricById(id);
+        return instanceMetrics;
+    }
+
+    public InstanceMetric getTopInstMetricCharacters() throws SQLException {
+        InstanceMetric instanceMetrics;
+        instanceMetrics = metricStorage.getTopInstMetric();
+        return instanceMetrics;
+    }
     public void saveHost(int hostid,String ip,String login,String password,String name,int port, String location) throws SQLException {
         //metricStorage.updateHost(hostid,ip,login,password,port,name,location);
         SSHConfiguration host = new SSHConfiguration();
@@ -52,13 +66,8 @@ public class OptionsController {
     @RequestMapping(method = RequestMethod.GET, value = "/options")
     public ModelAndView metric() throws SQLException {
         ModelAndView modelAndView = new ModelAndView();
-        int tempid=1;
         modelAndView.addObject("getTemplatMetrics",metricStorage.getTemplatMetrics());
-        double min= metricStorage.getMinValueTemplateMetric(1);
-        double max= metricStorage.getMaxValueTemplateMetric(1);
-        modelAndView.addObject("min",min);
-        modelAndView.addObject("max",max);
-        modelAndView.addObject("tempid",tempid);
+        modelAndView.addObject("tempMetric",metricStorage.getTopTemplatMetric());
         modelAndView.setViewName("templetMetrics");
         return modelAndView;
     }
@@ -66,22 +75,17 @@ public class OptionsController {
     @RequestMapping(params = {"tempid"},method = RequestMethod.GET, value = "/options")
     public ModelAndView metricGet(int tempid) throws SQLException {
         ModelAndView modelAndView = new ModelAndView();
-        double min= metricStorage.getMinValueTemplateMetric(tempid);
-        double max= metricStorage.getMaxValueTemplateMetric(tempid);
         modelAndView.addObject("getTemplatMetrics",metricStorage.getTemplatMetrics());
-        modelAndView.addObject("min",min);
-        modelAndView.addObject("max",max);
-        modelAndView.addObject("tempid",tempid);
+        modelAndView.addObject("tempMetric",metricStorage.getTemplateMetric(tempid));
         modelAndView.setViewName("templetMetrics");
         return modelAndView;
     }
     @RequestMapping(params = {"save"},method = RequestMethod.GET, value = "/options")
-    public ModelAndView metricSet(double min_value, double max_value,int save) throws SQLException {
+    public ModelAndView metricSet(double min_value, double max_value,int save, String title, String command) throws SQLException {
         ModelAndView modelAndView = new ModelAndView();
-        metricStorage.updateMinMaxValueTemplateMetric(min_value,max_value,save);  //через save передаю id хоста, вот такой вот костыль)
-        modelAndView.addObject("min",min_value);
-        modelAndView.addObject("max",max_value);
+        metricStorage.updateTemplateMetric(min_value,max_value,save,title,command);  //через save передаю id хоста, вот такой вот костыль)
         modelAndView.addObject("getTemplatMetrics",metricStorage.getTemplatMetrics());
+        modelAndView.addObject("tempMetric",metricStorage.getTemplateMetric(save));
         modelAndView.setViewName("templetMetrics");
         return modelAndView;
     }
@@ -89,58 +93,49 @@ public class OptionsController {
     @RequestMapping(method = RequestMethod.GET, value = "/optionsInstance")
     public ModelAndView standartView() throws SQLException {
         ModelAndView modelAndView = new ModelAndView();
-        int instid=1;
+        InstanceMetric instanceMetric = getTopInstMetricCharacters();
         modelAndView.addObject("getInstanceMetrics",metricStorage.getInstMetrics(1));
+        modelAndView.addObject("instMetric",instanceMetric);
         modelAndView.addObject("getHosts",hosts.getAll());
-        modelAndView.addObject("hostid",1);
-        double min= metricStorage.getMinValueInstanceMetric(1);
-        double max= metricStorage.getMaxValueInstanceMetric(1);
-        modelAndView.addObject("min",min);
-        modelAndView.addObject("max",max);
-        modelAndView.addObject("instid",instid);
+        modelAndView.addObject("hostid",instanceMetric.getHostId());
         modelAndView.setViewName("instanceMetricsOption");
         return modelAndView;
     }
     @RequestMapping(params = {"hostid"},method = RequestMethod.GET, value = "/optionsInstance")
     public ModelAndView selectHostView(int hostid) throws SQLException {
         ModelAndView modelAndView = new ModelAndView();
+        InstanceMetric instanceMetric = getTopInstMetricCharacters();
         modelAndView.addObject("getInstanceMetrics",metricStorage.getInstMetrics(hostid));
+        modelAndView.addObject("instMetric",instanceMetric);
         modelAndView.addObject("getHosts",hosts.getAll());
         modelAndView.addObject("hostid",hostid);
-        double min= metricStorage.getMinValueInstanceMetric(1);
-        double max= metricStorage.getMaxValueInstanceMetric(1);
-        modelAndView.addObject("min",min);
-        modelAndView.addObject("max",max);
-        modelAndView.addObject("instid",1);
         modelAndView.setViewName("instanceMetricsOption");
         return modelAndView;
     }
     @RequestMapping(params = {"hostid","instid"},method = RequestMethod.GET, value = "/optionsInstance")
     public ModelAndView selectMetricView(int hostid,int instid) throws SQLException {
         ModelAndView modelAndView = new ModelAndView();
+        InstanceMetric instanceMetric = getInstMetricCharacters(instid);
         modelAndView.addObject("getInstanceMetrics",metricStorage.getInstMetrics(hostid));
+        modelAndView.addObject("instMetric",instanceMetric);
         modelAndView.addObject("getHosts",hosts.getAll());
         modelAndView.addObject("hostid",hostid);
-        double min= metricStorage.getMinValueInstanceMetric(instid);
-        double max= metricStorage.getMaxValueInstanceMetric(instid);
-        modelAndView.addObject("min",min);
-        modelAndView.addObject("max",max);
         modelAndView.addObject("instid",instid);
         modelAndView.setViewName("instanceMetricsOption");
         return modelAndView;
     }
     @RequestMapping(params = {"save"},method = RequestMethod.GET, value = "/optionsInstance")
-    public ModelAndView saveInstMetic(double min_value, double max_value,int save) throws SQLException {
+    public ModelAndView saveInstMetic(double min_value, double max_value,int save,String title,String command) throws SQLException {
         ModelAndView modelAndView = new ModelAndView();
-        metricStorage.updateMinMaxValueInstanceMetric(min_value,max_value,save);
-        modelAndView.addObject("min",min_value);
-        modelAndView.addObject("max",max_value);
+        metricStorage.updateInstMetric(min_value,max_value,save,title,command);
+        InstanceMetric instanceMetric = getTopInstMetricCharacters();
         modelAndView.addObject("getInstanceMetrics",metricStorage.getInstMetrics(1));
+        modelAndView.addObject("instMetric",instanceMetric);
         modelAndView.addObject("getHosts",hosts.getAll());
-        modelAndView.addObject("getTemplatMetrics",metricStorage.getTemplatMetrics());
         modelAndView.setViewName("instanceMetricsOption");
         return modelAndView;
     }
+
 
     @RequestMapping(value="/editIntsMetrics", method = RequestMethod.GET)
     public ModelAndView instMetricPage() throws SQLException, ParseException {
@@ -149,8 +144,6 @@ public class OptionsController {
         modelAndView.addObject("getTemplatMetrics", metricStorage.getTemplatMetrics());
         modelAndView.addObject("getMetrics", metricStorage.getInstMetrics(1));
         modelAndView.addObject("hostid", 1);
-        //modelAndView.addObject("templMetricid", 0);
-       // modelAndView.addObject("instMetricid",0);
         modelAndView.setViewName("addIntsMetric");
         return modelAndView;
     }
@@ -161,8 +154,6 @@ public class OptionsController {
         modelAndView.addObject("getTemplatMetrics", metricStorage.getTemplatMetrics());
         modelAndView.addObject("getMetrics", metricStorage.getInstMetrics(hostid));
         modelAndView.addObject("hostid", hostid);
-       // modelAndView.addObject("templMetricid", 0);
-       // modelAndView.addObject("instMetricid",0);
         modelAndView.setViewName("addIntsMetric");
         return modelAndView;
     }

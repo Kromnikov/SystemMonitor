@@ -52,7 +52,13 @@ public class IndexController {
     @RequestMapping(value = "/")
     public ModelAndView index(@ModelAttribute("Values") ArrayList<Value> values) throws SQLException, ParseException {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("favoritesList", getFavoritesRow());
+        try
+        {
+            modelAndView.addObject("favoritesList", getFavoritesRow());
+        }
+        catch (Exception e){
+
+        }
         modelAndView.addObject("hostsProblemsCount", hostsProblemsCount());
         modelAndView.addObject("hostsSuccesCount", hostsSuccesCount());
         modelAndView.addObject("metricsProblemCount", metricsProblemCount());

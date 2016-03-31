@@ -100,10 +100,10 @@ public interface IMetricStorage {
 
 
     //hostsRows
-    public List<HostRow> getHostRow() throws SQLException;
+    public List<hostRow> getHostRow() throws SQLException;
 
     //metricRows
-    public List<MetricRow> getMetricRow(int hostId) throws SQLException;
+    public List<metricRow> getMetricRow(int hostId) throws SQLException;
 
     public chartValuesO getValuesLastDay(int host_id, int metricId, Date dateTime) throws ParseException;
 
@@ -155,6 +155,8 @@ public interface IMetricStorage {
 
     public TemplateMetric getTemplatMetric(String title) throws SQLException;
 
+    TemplateMetric getTopTemplatMetric() throws SQLException;
+
     //
     //metrics-host
     public void addInstMetric(InstanceMetric instanceMetric) throws SQLException;
@@ -192,25 +194,12 @@ public interface IMetricStorage {
 
     List<User> getAllUsers();
 
-    double getMinValueTemplateMetric(int id) throws SQLException;
-
-    double getMaxValueTemplateMetric(int id) throws SQLException;
-
-    void updateMinMaxValueTemplateMetric(double min_value, double max_value, int save) throws SQLException;
-
-    double getMinValueInstanceMetric(int id) throws SQLException;
-
-    double getMaxValueInstanceMetric(int id) throws SQLException;
-
-    void updateMinMaxValueInstanceMetric(double min_value, double max_value, int save) throws SQLException;
+    void updateTemplateMetric(double min_value, double max_value, int save, String title, String command) throws SQLException;
 
     long getCountRoles() throws SQLException;
 
     void setNewUserRole(String username, int roleid) throws SQLException;
 
-    void updateHost(int hostid, String ip, String login, String password, int port, String name, String location) throws SQLException;;
-
-    public List<SSHConfiguration> getHostsByLocation(String location)throws SQLException;
 
     //TODO Favorites
     public void addToFavorites(int host, int metric) throws SQLException;
@@ -225,4 +214,10 @@ public interface IMetricStorage {
     public int metricsProblemCount() throws SQLException;
 
     public int metricsSuccesCount() throws SQLException;
+
+    InstanceMetric getInstMetricById(int id)throws SQLException;
+
+    InstanceMetric getTopInstMetric() throws SQLException;
+
+    void updateInstMetric(double min_value, double max_value, int save, String title, String command) throws SQLException;;
 }

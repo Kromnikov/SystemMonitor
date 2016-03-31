@@ -1,6 +1,5 @@
 package net.web.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import net.core.alarms.AlarmsLog;
 import net.core.alarms.dao.AlarmsLogDao;
 import net.core.configurations.SSHConfiguration;
@@ -40,7 +39,7 @@ public class HostController {
         return this.hosts.getAll();
     }
 
-    public List<HostRow> getHostRow() throws SQLException {
+    public List<hostRow> getHostRow() throws SQLException {
         return metricStorage.getHostRow();
     }
 
@@ -72,7 +71,7 @@ public class HostController {
     public List<InstanceMetric> getMetrics(int hostId) throws SQLException {
         return metricStorage.getInstMetrics(hostId);
     }
-    public List<MetricRow> getMetricRow(int hostId) throws SQLException {
+    public List<metricRow> getMetricRow(int hostId) throws SQLException {
         return metricStorage.getMetricRow(hostId);
     }
 
@@ -119,7 +118,7 @@ public class HostController {
     @RequestMapping(params={"search","location"},value = "/hosts",method= RequestMethod.GET)
     public ModelAndView hostsPageSearchLocation(String location) throws SQLException {
         ModelAndView modelAndView = new ModelAndView();
-        List<HostRow> hostRows = new ArrayList<HostRow>();
+        List<hostRow> hostRows = new ArrayList<hostRow>();
         hostRows= getHostRow();
         int length = hostRows.size();
         int i=0;
@@ -192,7 +191,7 @@ public class HostController {
     @RequestMapping(params={"search","hostName"},value = "/hosts",method= RequestMethod.GET)
     public ModelAndView hostsPageSearchHostName(String hostName) throws SQLException {
         ModelAndView modelAndView = new ModelAndView();
-        List<HostRow> hostRows = new ArrayList<HostRow>();
+        List<hostRow> hostRows = new ArrayList<hostRow>();
         hostRows= getHostRow();
         int length = hostRows.size();
         int i=0;
