@@ -86,9 +86,9 @@ function modalEditHost() {
                 +'&password='+$("input[name='password']").val()
                 +'&location='+$("input[name='location']").val()
                 , function (host) {
+                    window.location.href = "/hostedit";
             });
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
-            window.location.href = "/hostedit";
         });
 
         //$('.popup .close_window, .overlay').click(function (){
