@@ -920,6 +920,32 @@ public class MetricStorage implements IMetricStorage {
         }
         return hostrows;
     }
+    @Transactional
+    public List<HostEditRow> getHostEditRow() throws SQLException {
+        List<HostEditRow> hostrows = new ArrayList<>();
+        String sql = "(select count(*) as countServices,host,(select count(*)from \"METRIC_STATE\" where host_id = im.host) as countProblems ,(select count(*)from \"HOST_STATE\" where host = im.host and (\"end_datetime\" is null and \"start_datetime\" is not null)) as status from \"INSTANCE_METRIC\" as im group by host)";
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+
+        for (SSHConfiguration host : this.hosts.getAll()) {
+            HostEditRow hostRow = new HostEditRow();
+            hostRow.setId(host.getId());
+            hostRow.setName(host.getName());
+            hostRow.setHost(host.getHost());
+            hostRow.setPort(host.getPort());
+            hostRow.setLogin(host.getLogin());
+            hostRow.setPassword(host.getPassword());
+            hostRow.setLocation(host.getLocation());
+            for (Map row : rows) {
+                if(host.getId()==(int) row.get("host")) {
+                    hostRow.setServicesCount(Integer.parseInt(row.get("countServices").toString()));
+                    hostRow.setErrorsCount(Integer.parseInt(row.get("countProblems").toString()));
+                    hostRow.setStatus(row.get("status").toString());
+                }
+            }
+            hostrows.add(hostRow);
+        }
+        return hostrows;
+    }
     //metricRows
     @Transactional
     public List<MetricRow> getMetricRow(int hostId) throws SQLException {

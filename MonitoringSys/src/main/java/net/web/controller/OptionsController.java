@@ -3,7 +3,10 @@ package net.web.controller;
 import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;
 import net.core.hibernate.services.HostService;
+import net.core.models.HostEditRow;
+import net.core.models.HostRow;
 import net.core.models.InstanceMetric;
+import net.core.models.MetricsRow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -36,6 +39,9 @@ public class OptionsController {
     }
     public int getAllProblemsCount() throws SQLException {
         return ((int)metricStorage.getMetricNotResolvedLength()+(int)metricStorage.getHostNotResolvedLength());
+    }
+    public List<HostEditRow> getHostEditRow() throws SQLException {
+        return metricStorage.getHostEditRow();
     }
 
     //Контроллер для Templat метрик
@@ -153,6 +159,15 @@ public class OptionsController {
         return modelAndView;
     }
 
+
+
+
+
+
+
+    //TODO:editIntsMetrics
+
+
     @RequestMapping(value="/editIntsMetrics", method = RequestMethod.GET)
     public ModelAndView instMetricPage() throws SQLException, ParseException {
         ModelAndView modelAndView = new ModelAndView();
@@ -212,9 +227,37 @@ public class OptionsController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/addInstMetric", method = RequestMethod.GET)
+    @ResponseBody
+    public MetricsRow addInstMetric(@RequestParam("hostid") int hostid,@RequestParam("templMetricid") int templMetricid) throws SQLException {
+        metricStorage.addInstMetric(hostid,templMetricid);
+        MetricsRow metrics = new MetricsRow();
+        metrics.setHostId(hostid);
+        metrics.setInstanceMetrics(getMetrics(hostid));
+        metrics.setTemplateMetrics(metricStorage.getTemplatMetrics());
+        return metrics;
+    }
 
+    @RequestMapping(value = "/dellInstMetric", method = RequestMethod.GET)
+    @ResponseBody
+    public MetricsRow dellInstMetric(@RequestParam("hostid") int hostid,@RequestParam("instMetricid") int instMetricid) throws SQLException {
+        metricStorage.delMetricFromHost(hostid,instMetricid);
+        MetricsRow metrics = new MetricsRow();
+        metrics.setHostId(hostid);
+        metrics.setInstanceMetrics(getMetrics(hostid));
+        metrics.setTemplateMetrics(metricStorage.getTemplatMetrics());
+        return metrics;
+    }
 
-
+    @RequestMapping(value = "/getInstMetrics", method = RequestMethod.GET)
+    @ResponseBody
+    public MetricsRow getInstMetrics(@RequestParam("hostid") int hostid) throws SQLException {
+        MetricsRow metrics = new MetricsRow();
+        metrics.setHostId(hostid);
+        metrics.setInstanceMetrics(getMetrics(hostid));
+        metrics.setTemplateMetrics(metricStorage.getTemplatMetrics());
+        return metrics;
+    }
 
 
 
@@ -237,10 +280,7 @@ public class OptionsController {
     @RequestMapping(value="/hostedit", method = RequestMethod.GET)
     public ModelAndView hostEditPage() throws SQLException, ParseException {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("getHosts",hosts.getAll());
-//        SSHConfiguration host=hosts.get(1);
-//        modelAndView.addObject("host", host);
-//        modelAndView.addObject("hostid",1);
+        modelAndView.addObject("getHosts", getHostEditRow());
         modelAndView.setViewName("hostEditor");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName(); //get logged in username
@@ -253,37 +293,38 @@ public class OptionsController {
     public SSHConfiguration getAlarms(@RequestParam("hostid") int hostid) {
         return hosts.get(hostid);
     }
+
     @RequestMapping(value = "/saveHost", method = RequestMethod.GET)
     public void saveHost(@RequestParam("host") String host,@RequestParam("name") String name,@RequestParam("port") int port,@RequestParam("login") String login,@RequestParam("password") String password,@RequestParam("location") String location,@RequestParam("id") int id) throws SQLException {
         saveHost(id,host,login,password,name,port,location);
     }
-    @RequestMapping(params={"hostid"}, value="/hostedit", method = RequestMethod.GET)
-    public ModelAndView hostEditChose(int hostid) throws SQLException, ParseException {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("getHosts",hosts.getAll());
-        SSHConfiguration host=hosts.get(hostid);
-        modelAndView.addObject("hostid",hostid);
-        modelAndView.addObject("host", host);
-        modelAndView.setViewName("hostEditor");
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName(); //get logged in username
-        modelAndView.addObject("username", name);
-        return modelAndView;
-    }
-    //TODO: save host
-    @RequestMapping(params={"save"}, value="/hostedit", method = RequestMethod.GET)
-    public ModelAndView hostEditSave(int save,String ip,String login,String password,String name,int port,String location) throws SQLException, ParseException {
-        saveHost(save,ip,login,password,name,port,location);
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("getHosts",hosts.getAll());
-        SSHConfiguration host=hosts.get(save);
-        modelAndView.addObject("host", host);
-        modelAndView.addObject("hostid",save);
-        modelAndView.setViewName("hostEditor");
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name1 = auth.getName(); //get logged in username
-        modelAndView.addObject("username", name1);
-        return modelAndView;
-    }
+//    @RequestMapping(params={"hostid"}, value="/hostedit", method = RequestMethod.GET)
+//    public ModelAndView hostEditChose(int hostid) throws SQLException, ParseException {
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.addObject("getHosts",hosts.getAll());
+//        SSHConfiguration host=hosts.get(hostid);
+//        modelAndView.addObject("hostid",hostid);
+//        modelAndView.addObject("host", host);
+//        modelAndView.setViewName("hostEditor");
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        String name = auth.getName(); //get logged in username
+//        modelAndView.addObject("username", name);
+//        return modelAndView;
+//    }
+//    //TODO: save host
+//    @RequestMapping(params={"save"}, value="/hostedit", method = RequestMethod.GET)
+//    public ModelAndView hostEditSave(int save,String ip,String login,String password,String name,int port,String location) throws SQLException, ParseException {
+//        saveHost(save,ip,login,password,name,port,location);
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.addObject("getHosts",hosts.getAll());
+//        SSHConfiguration host=hosts.get(save);
+//        modelAndView.addObject("host", host);
+//        modelAndView.addObject("hostid",save);
+//        modelAndView.setViewName("hostEditor");
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        String name1 = auth.getName(); //get logged in username
+//        modelAndView.addObject("username", name1);
+//        return modelAndView;
+//    }
 
 }

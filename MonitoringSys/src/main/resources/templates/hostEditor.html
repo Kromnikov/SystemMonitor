@@ -38,9 +38,10 @@
     <link href="../static/css/style-responsive.css" rel="stylesheet" th:href="@{css/style-responsive.css}"/>
 
     <script th:inline="javascript">
-        modalEditHost();
-        var username = [[${username}]];
-        hideShowHostListContent(username);
+        modalEditHostMetrics();
+                modalEditHost();
+                var username = [[${username}]];
+                hideShowHostListContent(username);
     </script>
 </head>
 <body>
@@ -130,19 +131,26 @@
                     <th class="hidden-phone"><i class="fa fa-home"></i> Host name</th>
                     <th><i class="fa fa-cloud"></i> Host IP</th>
                     <th><i class=" fa fa-map-marker"></i> Location</th>
+                    <th><i class=" fa fa-play"></i> Services</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 <div th:each="host: ${getHosts}">
-                    <tr>
+                    <tr th:id="${host.id}">
                         <td class="hidden" th:field="*{id}" th:text="${host.id}">4</td>
                         <td th:field="*{hostName}" th:text="${host.name}" class="hidden-phone">192.168.0.1</td>
                         <td th:field="*{start}" th:text="${host.host}">17 Jun</td>
                         <td th:field="*{end}" th:text="${host.location}">18 Jun</td>
                         <td>
-                            <button class="btn btn-success btn-xs"><a th:id="${host.id}" class="fa fa-wrench fa-lg white-text open_window"></a>
-                                                                      <!--th:href="@{'hostedit?hostid='+${host.id}}"-->
+                            <button class="btn btn-success btn-xs"><a class="white-text open_inst_metrics"
+                                                                      th:text="${host.servicesCount}"></a></button>
+                            <!--th:href="@{host(hostId=${host.id},instMetrics=show)}"-->
+                        </td>
+                        <td>
+                            <button class="btn btn-success btn-xs"><a
+                                    class="fa fa-wrench fa-lg white-text open_window"></a>
+                                <!--th:href="@{'hostedit?hostid='+${host.id}}"-->
                             </button>
                         </td>
                     </tr>
@@ -151,137 +159,124 @@
             </table>
         </div>
     </div>
- <!--th:if="${host}"-->
-    <!--<div class="col-lg-10 margin-top-20">-->
-        <!--<div class="content-panel ">-->
-        <!--</div>-->
-    <!--</div>-->
 
-    <div class="overlay" title="окно"></div>
-    <div class="popup">
-        <div class="close_window_type close_window fa fa-times fa-lg"></div>
-        <div class="register-box-body">
-            <div class="form-group has-feedback hidden">
-
-                <input  type="text" class="form-control" placeholder="Host name" name="id"
-                        required="required"/>
-                <span class=" fa fa-home form-control-feedback"></span>
-            </div>
-                <div class="form-group has-feedback">
-
-                    <input  type="text" class="form-control" placeholder="Host name" name="name"
-                            required="required"/>
-                    <span class=" fa fa-home form-control-feedback"></span>
-                </div>
-                <div class="form-group has-feedback">
-
-                    <input type="text" class="form-control" placeholder="Host IP" name="host"
-                           required="required"/>
-                    <span class=" fa fa-home form-control-feedback"></span>
-                </div>
-                <div class="form-group has-feedback">
-                    <input type="text" class="form-control" placeholder="Port" name="port" required="required"/>
-                    <span class=" fa fa-code-fork  form-control-feedback"></span>
-                </div>
-                <div class="form-group has-feedback">
-                    <input type="text" class="form-control" placeholder="Login" name="login"
-                           required="required"/>
-                    <span class=" fa fa-puzzle-piece form-control-feedback"></span>
-                </div>
-                <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="Password" name="password"
-                           required="required"/>
-                    <span class=" fa fa-lock form-control-feedback"></span>
-                </div>
-                <div class="form-group has-feedback">
-                    <input type="text" class="form-control" placeholder="Location" name="location"/>
-                    <span class=" fa fa-location-arrow form-control-feedback"></span>
-                </div>
-                <div class="row">
-                    <div class="col-xs-6">
-                        <button id="saveHost" type="submit" class="btn btn-primary btn-block btn-flat" name="saveHost">Save
-                        </button>
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-xs-6">
-                        <button type="submit" class="close_window btn btn-primary btn-block btn-flat" name="returnHosts">Cancel
-                        </button>
-                    </div>
-                    <!-- /.col -->
-                </div>
-
-        </div>
-    </div>
-
-
-    <!--<table width="90%" align="center">-->
-    <!--<tr><td>-->
-    <!--<table  width="100%" border="1px" cellspacing="0px" cellpadding="4px"  id="tb" >-->
-    <!--<td class="tablehead">Host IP</td>-->
-    <!--<td class="tablehead">Host Name</td>-->
     <!--<div class="col-lg-10 margin-top-20">-->
     <!--<div class="content-panel ">-->
-    <!--<h4><i class="fa fa-square"></i>-->
-    <!--Host's Editor-->
-    <!--</h4>-->
     <!--<table class="table table-striped table-advance table-hover">-->
+    <!--<thead>-->
     <!--<tr>-->
-    <!--<td>-->
-    <!--<table  class="table table-striped table-advance table-hover">-->
-    <!--<td class="tablehead"><i class="fa fa-th-list">Host IP</i></td>-->
-    <!--<td class="tablehead"><i class="fa fa-user-md">Host Name</i></td>-->
-    <!--<div th:each="getHost: ${getHosts}">-->
-    <!--<tr>-->
-    <!--<td>-->
-    <!--<a th:text="${getHost.host}" th:href="@{'hostedit?hostid='+${getHost.id}}"></a>-->
-    <!--</td>-->
-    <!--<td>-->
-    <!--<a th:text="${getHost.name}" th:href="@{'hostedit?hostid='+${getHost.id}}"></a>-->
-    <!--</td>-->
+    <!--<th>instanceMetrics</th>-->
+    <!--<th>templateMetrics</th>-->
     <!--</tr>-->
+    <!--</thead>-->
+    <!--<tbody>-->
+    <!--<div th:each="host: ${getHosts}">-->
+    <!--<td>192.168.0.1</td>-->
+    <!--<td>18 Jun</td>-->
     <!--</div>-->
+    <!--</tbody>-->
     <!--</table>-->
-    <!--</td>-->
-    <!--<td>-->
-    <!--<form  name="form1"  method="get">-->
-    <!--<table  border="1px" cellspacing="0px" cellpadding="4px"  id="tb1" >-->
-    <!--<tr>-->
-    <!--<td>IP</td>-->
-    <!--<td><input name="ip" th:value="${host.host}"/></td>-->
-    <!--</tr>-->
-    <!--<tr>-->
-    <!--<td>Login</td>-->
-    <!--<td><input name="login" th:value="${host.login}"/></td>-->
-    <!--</tr>-->
-    <!--<tr >-->
-    <!--<td>Password</td>-->
-    <!--<td><input name="password"  th:value="${host.password}"/></td>-->
-    <!--</tr>-->
-    <!--<tr >-->
-    <!--<td>Name</td>-->
-    <!--<td><input name="name"  th:value="${host.name}"/></td>-->
-    <!--</tr>-->
-    <!--<tr >-->
-    <!--<td>Port</td>-->
+    <!--</div>-->
+    <!--</div>-->
 
-    <!--<td><input name="port"  th:value="${host.port}" required="required"/></td>-->
-    <!--</tr>-->
-    <!--<tr>-->
-    <!--<td>Location</td>-->
-    <!--<td><input name="location"  th:value="${host.location}"/></td>-->
-    <!--</tr>-->
-    <!--</table>-->
-    <!--<button type="submit" name="save" th:value="${hostid}">Save</button>-->
-    <!--</form>-->
-    <!--</td>-->
-    <!--</tr>-->
-    <!--</table>-->
+
+    <div class="overlay services" title="окно"></div>
+    <div class="popup services">
+        <div class="close_window_type close_window fa fa-times fa-lg"></div>
+        <table class="table table-striped table-advance table-hover">
+            <tr>
+                <td>
+                    <table class="table table-striped table-advance table-hover">
+                        <thead>
+                        <tr>
+                            <th><i class="fa fa-star"></i> InstanceMetric</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody id="InstanceMetric">
+
+                        <tr><td>getCPU</td><td><i class="fa fa-times fa-lg hovercolorredtext hovercursor"></i></td></tr>
+
+                        </tbody>
+                    </table>
+                </td>
+
+
+                <td>
+                    <table class="table table-striped table-advance table-hover">
+                        <thead>
+                        <tr>
+                            <th><i class="fa fa-star-o"></i> TemplateMetric</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody id="TemplateMetric">
+
+                        <tr><td>getRAM</td><td><i class="fa fa-check fa-lg hovercolorgreentext hovercursor"></i></td></tr>
+
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!--<div class="overlay host" title="окно"></div>-->
+    <!--<div class="popup host">-->
+    <!--<div class="close_window_type close_window fa fa-times fa-lg"></div>-->
+    <!--<div class="register-box-body">-->
+    <!--<div class="form-group has-feedback hidden">-->
+
+    <!--<input type="text" class="form-control" placeholder="Host name" name="id"-->
+    <!--required="required"/>-->
+    <!--<span class=" fa fa-home form-control-feedback"></span>-->
+    <!--</div>-->
+    <!--<div class="form-group has-feedback">-->
+
+    <!--<input type="text" class="form-control" placeholder="Host name" name="name"-->
+    <!--required="required"/>-->
+    <!--<span class=" fa fa-home form-control-feedback"></span>-->
+    <!--</div>-->
+    <!--<div class="form-group has-feedback">-->
+
+    <!--<input type="text" class="form-control" placeholder="Host IP" name="host"-->
+    <!--required="required"/>-->
+    <!--<span class=" fa fa-home form-control-feedback"></span>-->
+    <!--</div>-->
+    <!--<div class="form-group has-feedback">-->
+    <!--<input type="text" class="form-control" placeholder="Port" name="port" required="required"/>-->
+    <!--<span class=" fa fa-code-fork  form-control-feedback"></span>-->
+    <!--</div>-->
+    <!--<div class="form-group has-feedback">-->
+    <!--<input type="text" class="form-control" placeholder="Login" name="login"-->
+    <!--required="required"/>-->
+    <!--<span class=" fa fa-puzzle-piece form-control-feedback"></span>-->
+    <!--</div>-->
+    <!--<div class="form-group has-feedback">-->
+    <!--<input type="password" class="form-control" placeholder="Password" name="password"-->
+    <!--required="required"/>-->
+    <!--<span class=" fa fa-lock form-control-feedback"></span>-->
+    <!--</div>-->
+    <!--<div class="form-group has-feedback">-->
+    <!--<input type="text" class="form-control" placeholder="Location" name="location"/>-->
+    <!--<span class=" fa fa-location-arrow form-control-feedback"></span>-->
+    <!--</div>-->
+    <!--<div class="row">-->
+    <!--<div class="col-xs-6">-->
+    <!--<button id="saveHost" type="submit" class="btn btn-primary btn-block btn-flat" name="saveHost">Save-->
+    <!--</button>-->
+    <!--</div>-->
+    <!--&lt;!&ndash; /.col &ndash;&gt;-->
+    <!--<div class="col-xs-6">-->
+    <!--<button type="submit" class="close_window btn btn-primary btn-block btn-flat" name="returnHosts">-->
+    <!--Cancel-->
+    <!--</button>-->
+    <!--</div>-->
+    <!--&lt;!&ndash; /.col &ndash;&gt;-->
+    <!--</div>-->
+
     <!--</div>-->
     <!--</div>-->
-    <!--</table>-->
-    <!--</td>-->
-    <!--</tr>-->
-    <!--</table>-->
 
 
 </div>

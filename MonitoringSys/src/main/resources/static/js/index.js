@@ -1,10 +1,69 @@
 var username;
 
+function modalEditHostMetrics() {
+    $(document).ready(function () {
+        $('.open_inst_metrics').click(function (e) {
+            $("#InstanceMetric").empty();
+            $("#TemplateMetric").empty();
+            $.getJSON('/getInstMetrics?hostid=' + $(this).parent().parent().parent().attr('id'), function (metrics) {
+                $.each(metrics.instanceMetrics, function (key, values) {
+                    $("#InstanceMetric").append('<tr><td>'+values.title+'</td><td><instance hostId="'+metrics.hostId+'" instMetricId="'+values.id+'" class="fa fa-times fa-lg hovercolorredtext hovercursor"></instance></td></tr>');
+                });
+                $.each(metrics.templateMetrics, function (key, values) {
+                    $("#TemplateMetric").append('<tr><td>'+values.title+'</td><td><template hostId="'+metrics.hostId+'" templMetricId="'+values.id+'" class="fa fa-check fa-lg hovercolorgreentext hovercursor"></template></td></tr>');
+                });
+            });
+            $('.popup.services, .overlay.services').css({'opacity': 1, 'visibility': 'visible'});
+            $('.popup.services').css({'width':'700px'});
+
+
+
+            $('body').on('click', 'template', function () {
+                console.log($(this).attr('templMetricId'));
+                $("#InstanceMetric").empty();
+                $("#TemplateMetric").empty();
+                $.getJSON('/addInstMetric?hostid=' + $(this).attr('hostId')+'&templMetricid='+$(this).attr('templMetricid'), function (metrics) {
+                    $.each(metrics.instanceMetrics, function (key, values) {
+                        $("#InstanceMetric").append('<tr><td>'+values.title+'</td><td><instance hostId="'+metrics.hostId+'" instMetricId="'+values.id+'" class="fa fa-times fa-lg hovercolorredtext hovercursor"></instance></td></tr>');
+                    });
+                    $.each(metrics.templateMetrics, function (key, values) {
+                        $("#TemplateMetric").append('<tr><td>'+values.title+'</td><td><template hostId="'+metrics.hostId+'" templMetricId="'+values.id+'" class="fa fa-check fa-lg hovercolorgreentext hovercursor"></template></td></tr>');
+                    });
+                });
+            });
+
+
+
+            $('body').on('click', 'instance', function () {
+                console.log($(this).attr('instMetricId'));
+                $("#InstanceMetric").empty();
+                $("#TemplateMetric").empty();
+                $.getJSON('/dellInstMetric?hostid=' + $(this).attr('hostId')+'&instMetricid='+$(this).attr('instMetricId'), function (metrics) {
+                    $.each(metrics.instanceMetrics, function (key, values) {
+                        $("#InstanceMetric").append('<tr><td>'+values.title+'</td><td><instance hostId="'+metrics.hostId+'" instMetricId="'+values.id+'" class="fa fa-times fa-lg hovercolorredtext hovercursor"></instance></td></tr>');
+                    });
+                    $.each(metrics.templateMetrics, function (key, values) {
+                        $("#TemplateMetric").append('<tr><td>'+values.title+'</td><td><template hostId="'+metrics.hostId+'" templMetricId="'+values.id+'" class="fa fa-check fa-lg hovercolorgreentext hovercursor"></template></td></tr>');
+                    });
+                });
+            });
+        });
+
+        //$('.popup.services, .overlay.services').css({'opacity': 1, 'visibility': 'visible'});
+        //$('.popup.services').css({'width':'700px'});
+        //$("#InstanceMetric").append('<tr><td>getCPU</td><td><i class="fa fa-times fa-lg hovercolorredtext hovercursor"></i></td></tr>');
+    });
+
+}
+
+
+
+
 function modalEditHost() {
 
     $(document).ready(function () {
             $('.open_window').click(function (e) {
-                $.getJSON('/gethost?hostid=' + $(this).attr('id'), function (host) {
+                $.getJSON('/gethost?hostid=' + $(this).parent().parent().parent().attr('id'), function (host) {
                     //console.log(host.name+"-"+host.host);
                     $("input[name='id']").val(host.id);
                     $("input[name='name']").val(host.name);
@@ -14,7 +73,7 @@ function modalEditHost() {
                     $("input[name='password']").val(host.password);
                     $("input[name='location']").val(host.location);
 
-                    $('.popup, .overlay').css({'opacity': 1, 'visibility': 'visible'});
+                    $('.popup.host, .overlay.host').css({'opacity': 1, 'visibility': 'visible'});
                     e.preventDefault();
                 });
             });
@@ -35,6 +94,7 @@ function modalEditHost() {
         //$('.popup .close_window, .overlay').click(function (){
         $('.close_window').click(function () {
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
+            window.location.href = "/hostedit";
         });
     //    $('.open_window').click(function (e) {
     //        $('.popup, .overlay').css({'opacity': 1, 'visibility': 'visible'});

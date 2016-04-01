@@ -10,9 +10,7 @@ import org.springframework.security.config.annotation.web.servlet.configuration.
 
 import javax.sql.DataSource;
 
-/**
- * Created by ANTON on 15.02.2016.
- */
+
 @Configuration
 @EnableWebMvcSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -26,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "select username, password,enabled from \"Users\" where username=?")
                 .authoritiesByUsernameQuery(
                         "select u.username, r.role from \"Users\" as u, \n" +
-                                "\"Roles\" as r where u.username = ? and r.roleid = r.roleid");
+                                "\"Roles\" as r where u.username = ? ");
     }
 
     @Override

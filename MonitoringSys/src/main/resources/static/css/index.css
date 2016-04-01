@@ -166,8 +166,39 @@
 .margin5 {
     margin-right: 5%;
 }
+.hovercolorredtext:hover {
+    color:red;
+}
+
+.hovercolorgreentext:hover {
+    color:#2EFE64;
+}
+.hovercursor:hover {
+    cursor: pointer;
+}
+.block {
+    display: block;
+}
+.margin-left10p {
+    background-color: #e08e0b;
+    margin-left: 10%;
+    max-width: 50%;
+}
+.margin-left10p > td {
+    display: block;
+}
+.margin-left70p > td {
+    display: block;
+ }
+.margin-left70p {
+    background-color: #00e765;
+    margin-left: 70%;
+}
 .right{
     margin-left:20%;
+}
+.floatRLeft {
+    float: left;
 }
 .floatRight {
     float: right;
