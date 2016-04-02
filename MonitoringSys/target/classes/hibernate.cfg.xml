@@ -27,7 +27,7 @@
 
        <!-- <property name="hibernate.hbm2ddl.auto">create</property>-->
         <property name="show_sql">false</property>
-        <mapping class="core.configurations.SSHConfiguration"/>
+        <mapping class="net.core.configurations.SSHConfiguration"/>
 
 
     </session-factory>

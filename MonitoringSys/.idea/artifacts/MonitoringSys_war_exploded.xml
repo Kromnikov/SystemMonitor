@@ -76,6 +76,7 @@
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:3.2.4.RELEASE" />
           <element id="library" level="project" name="Maven: postgresql:postgresql:9.1-901.jdbc4" />
           <element id="library" level="project" name="Maven: com.jcraft:jsch:0.1.53" />
+          <element id="library" level="project" name="Maven: com.h2database:h2:1.4.191" />
           <element id="library" level="project" name="Maven: javax.mail:mail:1.4.7" />
           <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
           <element id="library" level="project" name="Maven: com.google.guava:guava:15.0" />
@@ -95,7 +96,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="E:\gitProjects\SystemMonitor\MonitoringSys\target/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/target/Artifact-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="MonitoringSys/web/Web" />
     </root>

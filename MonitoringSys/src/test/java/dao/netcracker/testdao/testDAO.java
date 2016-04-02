@@ -6,6 +6,9 @@ import net.core.hibernate.dao.HostDao;
 import net.core.hibernate.dao.HostDaoImpl;
 import net.core.hibernate.services.HostServiceImpl;
 import net.web.config.DatabaseConfig;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -25,11 +28,14 @@ import static org.mockito.Mockito.*;
 public class testDAO {
     @Test
     public void getHostById() throws Exception {
+        Configuration config = new Configuration().configure("hibernateTest.cfg.xml");
+        SessionFactory sessionFactory = config.buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        SSHConfiguration host = new SSHConfiguration();
+        host.setName("TEST");
+        HostServiceImpl hostService = spy(HostServiceImpl.class);
+        hostService.save(host);
         final int id = 1;
-        HostServiceImpl hostService = mock(HostServiceImpl.class);
-        SSHConfiguration hosts = new SSHConfiguration();
-        hostService.get(id);
-        verify(hostService).get(1);
 
     }
     @Test
