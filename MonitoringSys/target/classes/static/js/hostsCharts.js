@@ -8,7 +8,7 @@ var countPoint;
 var hostId;
 var instMetricId;
 var title;
-function loadChart3(hostId1, instMetricId1, title1,datetime1,endDatetime1) {
+function loadChart3(hostId1, instMetricId1, title1,datetime1,endDatetime1,username) {
     console.log(datetime1+'-'+endDatetime1+'-'+title1);
     datetime = 0;
     hostId=hostId1;
@@ -20,7 +20,7 @@ function loadChart3(hostId1, instMetricId1, title1,datetime1,endDatetime1) {
         keyEvent();
         buttons();
         dataJson = data;
-        chart2(data, title);
+        chart2(data, title,username);
     });
     //Highcharts.getOptions().exporting.buttons.contextButton.menuItems.push({
     //    text: 'Add to favorites',
@@ -145,10 +145,8 @@ function keyEvent() {
     document.onkeydown = function (e) {
         e = e || window.event;
         if (e.shiftKey && e.keyCode == 189) {
-            //console.log('Shift min');
             min();
         } else if (e.shiftKey && e.keyCode == 187) {
-            //console.log('Shift plus');
             plus();
         }
         return true;
@@ -156,27 +154,9 @@ function keyEvent() {
 }
 function clickEvent() {
     plus();
-    //if (zoomCount == 1) {
-    //    console.log('1 hour --> 3 min');
-    //    zoomCount = 2;
-    //    $.getJSON('/chartClickTheeMinutes?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
-    //        chart2(data, title,1);
-    //    });
-    //} else if (zoomCount == 2) {
-    //    console.log('3 min --> 1 min');
-    //    $.getJSON('/chartClickOneMinutes?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
-    //        chart2(data, title,1);
-    //    });
-    //} else {
-    //console.log('zoom = ' + (countPoint) + ' --> 1 hour');
-    //zoomCount = 1;
-    //$.getJSON('/chartClickHour?hostId=' + hostId + '&instMetricId=' + instMetricId  + "&date=" + datetime, function (data, status) {
-    //    chart2(data, title,1);
-    //});
-    //}
 }
 
-function chart2(jsonData, title) {
+function chart2(jsonData, title,username) {
     countPoint = jsonData.count;
     Highcharts.setOptions({
         global: {
@@ -260,7 +240,10 @@ function chart2(jsonData, title) {
                 printButton: {
                     text: 'Add to home page',
                     onclick: function () {
-                        window.location.href = "/addToFavorites?hostId="+hostId+"&instMetricId="+instMetricId+"&title="+title;
+                        $.getJSON( "/addToFavorites?hostId="+hostId+"&instMetricId="+instMetricId+"&title="+title+"&user="+username, function (metrics) {
+                        });
+                        alert('Метрика ('+title+') добавлена на главный экран');
+                        //window.location.href = "/addToFavorites?hostId="+hostId+"&instMetricId="+instMetricId+"&title="+title+"&user="+username;
                     }
                 }
             }

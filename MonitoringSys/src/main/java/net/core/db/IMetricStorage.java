@@ -31,7 +31,6 @@ public interface IMetricStorage {
 
     public void setIncorrectlyMetric(String startTime, int instMetric);
 
-    public TableModel getMetricTableModel();
 
     public void setResolvedMetric(int id);
 
@@ -76,28 +75,6 @@ public interface IMetricStorage {
 
     public chartValuesO getAllValues(int host_id, int metricId);
 
-//    public chartValuesO getValuesLastDay(int host_id, int metricId, int zoom, Date dateTime);
-//
-//    public chartValuesO getValuesDay(int host_id, int metricId, int zoom, Date dateTime);
-//
-//    public chartValuesO getValuesTheeDays(int host_id, int metricId, int zoom, Date dateTime);
-//
-//    public chartValuesO getValuesMonth(int host_id, int metricId, int zoom, Date dateTime);
-//
-//    public chartValuesO getValuesSixMonth(int host_id, int metricId, int zoom, Date dateTime);
-//
-//
-//
-//    public chartValues getValuesByZoom(int host_id, int metricId, int zoom);
-//
-//    public chartValues getValuesByZoom(int host_id, int metricId, int zoom, Date dateTime);
-//
-//    public chartValues getValuesLastHour(int host_id, int metricId, int zoom, Date dateTime);
-//
-//    public chartValues getValuesTheeMinutes(int host_id, int metricId, int zoom, Date dateTime);
-//
-//    public chartValues getValuesOneMinutes(int host_id, int metricId, int zoom, Date dateTime);
-
 
     //hostsRows
     public List<HostRow> getHostRow() throws SQLException;
@@ -119,9 +96,6 @@ public interface IMetricStorage {
     public chartValuesO getValuesYear(int host_id, int metricId, Date dateTime) throws ParseException;
 
 
-//    public chartValues getValuesByZoom(int host_id, int metricId, int zoom);
-
-//    public chartValues getValuesByZoom(int host_id, int metricId, Date dateTime);
 
     public chartValuesO getValuesLastHour(int host_id, int metricId, Date dateTime) throws ParseException;
 
@@ -140,7 +114,7 @@ public interface IMetricStorage {
     //metricRows
 
     //Favorites
-    public List<Favorites> getFavoritesRow() throws SQLException;
+    public List<Favorites> getFavoritesRow(String name) throws SQLException;
 
 
 
@@ -158,22 +132,12 @@ public interface IMetricStorage {
 
     //
     //metrics-host
-    public void addInstMetric(InstanceMetric instanceMetric) throws SQLException;
 
     public void addInstMetric(int host, int metric) throws SQLException;
 
-    public void addInstMetric(SSHConfiguration host, TemplateMetric templateMetric) throws SQLException;
 
     public List<InstanceMetric> getInstMetrics(int hostId) throws SQLException;
 
-    public InstanceMetric getInstMetric(int hostId, String title) throws SQLException;
-
-    public void delInstMetric(int metricId) throws SQLException;
-
-    public long getQuantityOfRow(int id) throws SQLException;
-
-    //
-//    public ResultSet getAllValueMetricOnHostResult(int id)throws SQLException;
 //
     public void delMetricFromHost(int id) throws SQLException;
 
@@ -214,7 +178,7 @@ public interface IMetricStorage {
     public List<SSHConfiguration> getHostsByLocation(String location)throws SQLException;
 
     //TODO Favorites
-    public void addToFavorites(int host, int metric) throws SQLException;
+    public void addToFavorites(int host, int metric,String user) throws SQLException;
 
     public void dellFromFavorites(int favoritesId) throws SQLException;
 

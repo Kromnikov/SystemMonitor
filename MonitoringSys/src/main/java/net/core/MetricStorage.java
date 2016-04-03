@@ -8,7 +8,6 @@ import net.core.hibernate.services.HostService;
 import net.core.models.*;
 import net.core.tools.Averaging;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -135,34 +134,6 @@ public class MetricStorage implements IMetricStorage {
     }
 
 
-    @Transactional
-    public TableModel getMetricTableModel() {
-        TableModel metricsTableModel = new TableModel();
-        String sql = "SELECT id, state, start_datetime, end_datetime, inst_metric, resolved  FROM \"METRIC_STATE\" where resolved = false";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-        if (rows.isEmpty()) {
-            return metricsTableModel;
-        } else {
-            String[] header = {"id", "Статус", "Дата начала", "Дата окончания", "Метрика", "Разрешено"};
-            String[][] data = new String[rows.size()][6];
-            int i = 0;
-            for (Map row : rows) {
-                data[i][0] = row.get("id").toString();
-                data[i][1] = row.get("state").toString();
-                data[i][2] = row.get("start_datetime").toString();
-                if (row.get("end_datetime") != null) {
-                    data[i][3] = row.get("end_datetime").toString();
-                } else {
-                    data[i][3] = " ";
-                }
-                data[i][4] = row.get("inst_metric").toString();
-                data[i][5] = row.get("resolved").toString();
-                i++;
-            }
-            metricsTableModel = new TableModel(header, data);
-        }
-        return metricsTableModel;
-    }
 
     @Transactional
     public List<MetricState> getMetricProblems(int hostId) throws SQLException, ParseException {
@@ -983,9 +954,9 @@ public class MetricStorage implements IMetricStorage {
     }
     //Favorites
     @Transactional
-    public List<Favorites> getFavoritesRow() throws SQLException {
+    public List<Favorites> getFavoritesRow(String name) throws SQLException {
         List<Favorites> favoriteses = new ArrayList<>();
-        String sql = "select *,(select title from \"INSTANCE_METRIC\" where id = f.inst_metric_id) as title  from \"FAVORITES\" as f";
+        String sql = "select *,(select title from \"INSTANCE_METRIC\" where id = f.inst_metric_id) as title  from \"FAVORITES\" as f where f.user_name='"+name+"'";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
 
             for (Map row : rows) {
@@ -1113,8 +1084,8 @@ public class MetricStorage implements IMetricStorage {
     }
     //TODO Favorites
     @Transactional
-    public void addToFavorites(int host, int metric) throws SQLException {
-        String sql = "INSERT INTO \"FAVORITES\"(host_id,inst_metric_id) VALUES (" + host + "," + metric + ")";
+    public void addToFavorites(int host, int metric,String user) throws SQLException {
+        String sql = "INSERT INTO \"FAVORITES\"(host_id,inst_metric_id,user_name) VALUES (" + host + "," + metric + ",'" + user + "')";
         jdbcTemplateObject.update(sql);
     }
     @Transactional

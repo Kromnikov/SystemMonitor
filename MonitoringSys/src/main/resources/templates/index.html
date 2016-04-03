@@ -183,11 +183,12 @@
 
     <div th:each="favorites: ${favoritesList}">
         <script th:inline="javascript">
+            var username = [[${username}]];
             var hostId = [[${favorites.hostId}]];
             var instMetricId = [[${favorites.metricId}]];
             var favoritesId = [[${favorites.id}]];
             var title = [[${favorites.title}]];
-            loadChart3(hostId, instMetricId, title,favoritesId);
+            loadChart3(hostId, instMetricId, title,favoritesId,username);
         </script>
         <div th:id="${favorites.metricId}" class="col-lg-10 margin-top-40 charts" zoomCount="0">
             <div class="content-panel">

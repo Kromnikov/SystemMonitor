@@ -2,7 +2,7 @@ var instMetricId = 0;
 var zoomCount = 0;
 var favoritesId = 0;
 var option;
-function loadChart3(hostId1, instMetricId1, title1, favoritesId) {
+function loadChart3(hostId1, instMetricId1, title1, favoritesId,username) {
     datetime = 0;
     $.getJSON('/lastDay?hostId=' + hostId1 + '&instMetricId=' + instMetricId1, function (data, status) {
         //console.log($("#"+instMetricId1).attr('favoritesId'));
@@ -11,7 +11,7 @@ function loadChart3(hostId1, instMetricId1, title1, favoritesId) {
         onWheel();
         keyEvent();
         buttons();
-        chart2(data, title1, instMetricId1);
+        chart2(data, title1, instMetricId1,username);
     });
 
 }
@@ -31,9 +31,6 @@ function buttons() {
     });
 
 }
-
-
-
 function min() {
     if (zoomCount == 3) {
         console.log('1 min --> 3 min');
@@ -115,9 +112,6 @@ function plus() {
         });
     }
 }
-
-
-
 function onWheel() {
     //console.log('onWheel');
 
@@ -187,7 +181,7 @@ function updateChart(jsonData) {
 }
 
 
-function chart2(jsonData, title, chart_id) {
+function chart2(jsonData, title, chart_id,username) {
     countPoint = jsonData.count;
     Highcharts.setOptions({
         global: {
@@ -262,26 +256,16 @@ function chart2(jsonData, title, chart_id) {
         exporting: {
             buttons: {
                 contextButton: {
-                    //text: 'Dell from home page',
-                    //onclick: function () {
-                    //    window.location.href = "/dellFromFavorites?favoritesId=" + favoritesId;
-                    //}
-
                     text: 'Download',
                     menuItems: Highcharts.getOptions().exporting.buttons.contextButton.menuItems.splice(2)
                 },
-                //exportButton: {
-                //    text: 'Download',
-                //    menuItems: Highcharts.getOptions().exporting.buttons.contextButton.menuItems.splice(2)
-                //},
                 printButton: {
-                    //text: 'Print',
-                    //onclick: function () {
-                    //    this.print();
-                    //}
                     text: 'Dell from home page',
                     onclick: function () {
-                        window.location.href = "/dellFromFavorites?favoritesId=" + favoritesId;
+                        //window.location.href = "/dellFromFavorites?favoritesId=" + favoritesId;
+                        $.getJSON( "/dellFromFavorites?favoritesId="+favoritesId, function (metrics) {
+                        });
+                        alert('Метрика ('+title+') удалена с главного экрана');
                     }
                 }
             }

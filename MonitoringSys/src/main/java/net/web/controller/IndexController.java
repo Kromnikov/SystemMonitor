@@ -26,8 +26,8 @@ public class IndexController {
     @Autowired
     private HostService hosts;
 
-    public List<Favorites> getFavoritesRow() throws SQLException {
-        return metricStorage.getFavoritesRow();
+    public List<Favorites> getFavoritesRow(String name) throws SQLException {
+        return metricStorage.getFavoritesRow(name);
     }
 
     public int hostsProblemsCount() throws SQLException, ParseException {
@@ -54,7 +54,6 @@ public class IndexController {
     @RequestMapping(value = "/")
     public ModelAndView index(@ModelAttribute("Values") ArrayList<Value> values) throws SQLException, ParseException {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("favoritesList", getFavoritesRow());
         modelAndView.addObject("hostsProblemsCount", hostsProblemsCount());
         modelAndView.addObject("hostsSuccesCount", hostsSuccesCount());
         modelAndView.addObject("metricsProblemCount", metricsProblemCount());
@@ -62,6 +61,7 @@ public class IndexController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName(); //get logged in username
         modelAndView.addObject("username", name);
+        modelAndView.addObject("favoritesList", getFavoritesRow(name));
         modelAndView.setViewName("index");
         return modelAndView;
     }

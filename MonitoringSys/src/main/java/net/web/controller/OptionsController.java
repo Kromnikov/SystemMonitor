@@ -4,7 +4,6 @@ import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;
 import net.core.hibernate.services.HostService;
 import net.core.models.HostEditRow;
-import net.core.models.HostRow;
 import net.core.models.InstanceMetric;
 import net.core.models.MetricsRow;
 import org.springframework.beans.factory.annotation.Autowired;

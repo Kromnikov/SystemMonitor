@@ -39,9 +39,9 @@
 
     <script th:inline="javascript">
         modalEditHostMetrics();
-                modalEditHost();
-                var username = [[${username}]];
-                hideShowHostListContent(username);
+        modalEditHost();
+        var username = [[${username}]];
+        hideShowHostListContent(username);
     </script>
 </head>
 <body>
@@ -160,25 +160,6 @@
         </div>
     </div>
 
-    <!--<div class="col-lg-10 margin-top-20">-->
-    <!--<div class="content-panel ">-->
-    <!--<table class="table table-striped table-advance table-hover">-->
-    <!--<thead>-->
-    <!--<tr>-->
-    <!--<th>instanceMetrics</th>-->
-    <!--<th>templateMetrics</th>-->
-    <!--</tr>-->
-    <!--</thead>-->
-    <!--<tbody>-->
-    <!--<div th:each="host: ${getHosts}">-->
-    <!--<td>192.168.0.1</td>-->
-    <!--<td>18 Jun</td>-->
-    <!--</div>-->
-    <!--</tbody>-->
-    <!--</table>-->
-    <!--</div>-->
-    <!--</div>-->
-
 
     <div class="overlay services" title="окно"></div>
     <div class="popup services">
@@ -195,7 +176,10 @@
                         </thead>
                         <tbody id="InstanceMetric">
 
-                        <tr><td>getCPU</td><td><i class="fa fa-times fa-lg hovercolorredtext hovercursor"></i></td></tr>
+                        <tr>
+                            <td>getCPU</td>
+                            <td><i class="fa fa-times fa-lg hovercolorredtext hovercursor"></i></td>
+                        </tr>
 
                         </tbody>
                     </table>
@@ -212,7 +196,10 @@
                         </thead>
                         <tbody id="TemplateMetric">
 
-                        <tr><td>getRAM</td><td><i class="fa fa-check fa-lg hovercolorgreentext hovercursor"></i></td></tr>
+                        <tr>
+                            <td>getRAM</td>
+                            <td><i class="fa fa-check fa-lg hovercolorgreentext hovercursor"></i></td>
+                        </tr>
 
                         </tbody>
                     </table>
@@ -223,59 +210,59 @@
 
     <div class="overlay host" title="окно"></div>
     <div class="popup host">
-    <div class="close_window_type close_window fa fa-times fa-lg"></div>
-    <div class="register-box-body">
-    <div class="form-group has-feedback hidden">
+        <div class="close_window_type close_window fa fa-times fa-lg"></div>
+        <div class="register-box-body">
+            <div class="form-group has-feedback hidden">
 
-    <input type="text" class="form-control" placeholder="Host name" name="id"
-    required="required"/>
-    <span class=" fa fa-home form-control-feedback"></span>
-    </div>
-    <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="Host name" name="id"
+                       required="required"/>
+                <span class=" fa fa-home form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
 
-    <input type="text" class="form-control" placeholder="Host name" name="name"
-    required="required"/>
-    <span class=" fa fa-home form-control-feedback"></span>
-    </div>
-    <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="Host name" name="name"
+                       required="required"/>
+                <span class=" fa fa-home form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
 
-    <input type="text" class="form-control" placeholder="Host IP" name="host"
-    required="required"/>
-    <span class=" fa fa-home form-control-feedback"></span>
-    </div>
-    <div class="form-group has-feedback">
-    <input type="text" class="form-control" placeholder="Port" name="port" required="required"/>
-    <span class=" fa fa-code-fork  form-control-feedback"></span>
-    </div>
-    <div class="form-group has-feedback">
-    <input type="text" class="form-control" placeholder="Login" name="login"
-    required="required"/>
-    <span class=" fa fa-puzzle-piece form-control-feedback"></span>
-    </div>
-    <div class="form-group has-feedback">
-    <input type="password" class="form-control" placeholder="Password" name="password"
-    required="required"/>
-    <span class=" fa fa-lock form-control-feedback"></span>
-    </div>
-    <div class="form-group has-feedback">
-    <input type="text" class="form-control" placeholder="Location" name="location"/>
-    <span class=" fa fa-location-arrow form-control-feedback"></span>
-    </div>
-    <div class="row">
-    <div class="col-xs-6">
-    <button id="saveHost" type="submit" class="btn btn-primary btn-block btn-flat" name="saveHost">Save
-    </button>
-    </div>
-    <!-- /.col -->
-    <div class="col-xs-6">
-    <button type="submit" class="close_window btn btn-primary btn-block btn-flat" name="returnHosts">
-    Cancel
-    </button>
-    </div>
-    <!-- /.col -->
-    </div>
+                <input type="text" class="form-control" placeholder="Host IP" name="host"
+                       required="required"/>
+                <span class=" fa fa-home form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="Port" name="port" required="required"/>
+                <span class=" fa fa-code-fork  form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="Login" name="login"
+                       required="required"/>
+                <span class=" fa fa-puzzle-piece form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" class="form-control" placeholder="Password" name="password"
+                       required="required"/>
+                <span class=" fa fa-lock form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="Location" name="location"/>
+                <span class=" fa fa-location-arrow form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <button id="saveHost" type="submit" class="btn btn-primary btn-block btn-flat" name="saveHost">Save
+                    </button>
+                </div>
+                <!-- /.col -->
+                <div class="col-xs-6">
+                    <button type="submit" class="close_window btn btn-primary btn-block btn-flat" name="returnHosts">
+                        Cancel
+                    </button>
+                </div>
+                <!-- /.col -->
+            </div>
 
-    </div>
+        </div>
     </div>
 
 
