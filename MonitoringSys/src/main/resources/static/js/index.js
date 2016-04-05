@@ -1,5 +1,185 @@
 var username;
 
+
+function dropDownMenuAccounts() {
+    $(document).ready(function(){
+        //$('a').on('click', function(e){
+        //    e.preventDefault();
+        //});
+
+        $('#ddmenu').hover(function () {
+            clearTimeout($.data(this,'timer'));
+            $('ul',this).stop(true,true).slideDown(200);
+        }, function () {
+            $.data(this,'timer', setTimeout($.proxy(function() {
+                $('ul',this).stop(true,true).slideUp(200);
+            }, this), 100));
+        });
+
+    });
+}
+
+//TODO: Модальные окна редактирования accounts
+function modalAccounts() {
+
+    $(document).ready(function () {
+        //$('.popup.accounts, .overlay.accounts').css({'opacity': 1, 'visibility': 'visible'});
+        var a;
+        $('body').on('click', '.roleselect', function () {
+            var role=$(this).attr('role');
+            //$("#mainDdmenu").val(role);
+            $("#roleValue").html(role);
+        });
+
+        $('.open_window').click(function (e) {
+            $.getJSON('/getAccounts?username=' + $(this).parent().parent().parent().attr('id'), function (user) {
+                console.log(user.username);
+                $("input[name='id']").val(user.id);
+                $("input[name='Username']").val(user.username);
+                $("input[name='Password']").val(user.password);
+                //$("input[name='Role']").val(user.role);
+
+                $("#ddmenu").empty();
+                $("#ddmenu").append('<li id="mainDdmenu"><a id="roleValue" href="#">'+user.role+'</a></li>');
+
+                a = $("#mainDdmenu").append('<ul id="noneMenu"></ul>');
+                $.each(user.allRoles, function (key, values) {
+                    $("#noneMenu").append('<li class="roleselect" role="'+values+'"><a href="#">'+values+'</a></li>');
+                });
+
+                $('.popup.accounts, .overlay.accounts').css({'opacity': 1, 'visibility': 'visible'});
+                e.preventDefault();
+            });
+        });
+        $("#saveAccount").click(function () {
+            $.getJSON('/saveAccount?id=' + $("input[name='id']").val()
+                +'&username='+$("input[name='Username']").val()
+                +'&password='+$("input[name='Password']").val()
+                +'&role='+$("#roleValue").html()
+                , function (host) {
+                });
+            $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
+            window.location.href = "/accounts";
+        });
+
+
+        $('.close_window').click(function () {
+            $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
+            window.location.href = "/accounts";
+        });
+
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//TODO: Модальные окна редактирования templ
+function modalTemplMetirc() {
+
+    $(document).ready(function () {
+
+        //dell
+        $('.dellTemplMetric').click(function () {
+            $.getJSON('/dellTemplMetric?metricId=' + $(this).parent().parent().attr('id'), function (templMetric) {
+
+            });
+        });
+
+
+
+        //Add
+        $('.openAddTemplate').click(function (e) {
+                $('.popup.addtemplMetric, .overlay.addtemplMetric').css({'opacity': 1, 'visibility': 'visible'});
+                e.preventDefault();
+        });
+        $("#addTemplMetric").click(function () {
+            $.getJSON('/addTemplMetric?id=' + $("input[name='sid']").val()
+                +'&title='+$("input[name='sTitle']").val()
+                +'&command='+$("input[name='sCommand']").val()
+                +'&minValue='+$("input[name='sMin Value']").val()
+                +'&maxValue='+$("input[name='sMax Value']").val()
+                , function (host) {
+                });
+            $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
+            window.location.href = "/templMetrics";
+        });
+
+
+        //Edit
+        $('.open_window').click(function (e) {
+            $.getJSON('/getTemplMetric?metricId=' + $(this).parent().parent().parent().attr('id'), function (templMetric) {
+                //console.log(host.name+"-"+host.host);
+                $("input[name='id']").val(templMetric.id);
+                $("input[name='Title']").val(templMetric.title);
+                $("input[name='Command']").val(templMetric.command);
+                $("input[name='Min Value']").val(templMetric.minValue);
+                $("input[name='Max Value']").val(templMetric.maxValue);
+
+                $('.popup.templMetric, .overlay.templMetric').css({'opacity': 1, 'visibility': 'visible'});
+                e.preventDefault();
+            });
+        });
+        $("#saveTemplMetric").click(function () {
+            $.getJSON('/saveTemplMetric?id=' + $("input[name='id']").val()
+                +'&title='+$("input[name='Title']").val()
+                +'&command='+$("input[name='Command']").val()
+                +'&minValue='+$("input[name='Min Value']").val()
+                +'&maxValue='+$("input[name='Max Value']").val()
+                , function (host) {
+                });
+            $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
+            window.location.href = "/templMetrics";
+        });
+
+
+        $('.close_window').click(function () {
+            $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
+            window.location.href = "/templMetrics";
+        });
+
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//TODO: Модальные окна редактирования хостов
+
 function modalEditHostMetrics() {
     $(document).ready(function () {
         $('.open_inst_metrics').click(function (e) {
@@ -55,10 +235,6 @@ function modalEditHostMetrics() {
     });
 
 }
-
-
-
-
 function modalEditHost() {
 
     $(document).ready(function () {
@@ -102,6 +278,15 @@ function modalEditHost() {
     //    });
     });
 }
+
+
+
+
+
+
+
+
+
 
 function dellAlarm(id) {
     console.log('dellAlarm where id= '+id);
@@ -156,6 +341,15 @@ function start_checking() {
         });
         start_checking();
     }, 10000);
+}
+
+function setHostName(name) {
+
+    $(document).ready(function () {
+        username = name;
+        checking();
+        start_checking();
+    });
 }
 
 function hideShowHostListContent(name) {

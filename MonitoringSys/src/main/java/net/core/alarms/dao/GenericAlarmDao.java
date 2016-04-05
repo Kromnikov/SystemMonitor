@@ -18,4 +18,6 @@ public interface GenericAlarmDao {
     public List<GenericAlarm> getByHost(int hostid);
 
     public List<GenericAlarm> getByMetric(int serviceid);
+
+    public List<GenericAlarm> getByUser(String username);
 }

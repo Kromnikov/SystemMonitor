@@ -11,6 +11,10 @@ import java.util.List;
 
 public interface IMetricStorage {
 
+    //TODO: alarms
+    public List<AlarmsRow> getAlarms(String userName);
+
+
     //sql
     //metric-state
     public boolean isMetricHasProblem(long instMetric);
@@ -152,10 +156,19 @@ public interface IMetricStorage {
 
     List<TemplateMetric> getTemplatMetrics() throws SQLException;
 
+    public void updateTemplMetric(int id, String title, String command, double minValue, double maxValue) throws SQLException;
+
+    public void addTemplMetric(String title, String command, double minValue, double maxValue) throws SQLException;
+
+    public void dellTemplMetric(int id) throws SQLException;
 
     void delMetricFromHost(int host, int id) throws SQLException;
 
     List<User> getAllUsers();
+
+    public User getUsers(String userName);
+
+    public void updateUser(int roleid, String username, String password, String role) throws SQLException;
 
     double getMinValueTemplateMetric(int id) throws SQLException;
 

@@ -1,7 +1,9 @@
 package net.core;
 
 
+import net.core.alarms.GenericAlarm;
 import net.core.alarms.dao.AlarmsLogDao;
+import net.core.alarms.dao.GenericAlarmDao;
 import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;
 import net.core.hibernate.services.HostService;
@@ -34,6 +36,9 @@ public class MetricStorage implements IMetricStorage {
     @Autowired
     private HostService hosts;
 
+    @Autowired
+    private GenericAlarmDao genericAlarm;
+
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Autowired
@@ -42,8 +47,42 @@ public class MetricStorage implements IMetricStorage {
     }
 
 
-    //alarms
+    //TODO: alarms
+    @Transactional
+    public List<AlarmsRow> getAlarms(String userName) {
+        List<AlarmsRow> alarmsRowList = new ArrayList<>();
+        String sql = "";
+        List<Map<String, Object>> rows ;
+        for (GenericAlarm ga : genericAlarm.getByUser(userName)) {
+            AlarmsRow alarmsRow = new AlarmsRow();
+            alarmsRow.setType(ga.getType());
+            alarmsRow.setMessage(ga.getMessage());
+            if(ga.getHostId()>-1) {
+                alarmsRow.setHostId(ga.getHostId());
+                alarmsRow.setHostName(hosts.get(alarmsRow.getHostId()).getName());
+            }
+            alarmsRow.setId(ga.getId());
+            {
+                if (ga.getServiceId() > -1);
+            }
+            alarmsRow.setServiceId(ga.getServiceId());
+            alarmsRow.setToEmail(ga.getToEmail());
+            alarmsRow.setToUser(ga.getToUser());
+            alarmsRow.setUser(ga.getUsername());
 
+
+            sql = "select title,host from \"INSTANCE_METRIC\" WHERE id="+alarmsRow.getServiceId();
+            rows= jdbcTemplateObject.queryForList(sql);
+            for (Map row : rows) {
+                alarmsRow.setServiceTitle((String) row.get("title"));
+                alarmsRow.setFromHost(hosts.get((int) row.get("host")).getName());
+            }
+
+
+            alarmsRowList.add(alarmsRow);
+        }
+        return alarmsRowList;
+    }
 
 
 
@@ -719,6 +758,10 @@ public class MetricStorage implements IMetricStorage {
             templateMetric.setId((int) row.get("id"));
             templateMetric.setTitle((String) row.get("title"));
             templateMetric.setCommand((String) row.get("query"));
+            if(row.get("min_value")!=null)
+                templateMetric.setMinValue((double) row.get("min_value"));
+            if(row.get("max_value")!=null)
+                templateMetric.setMaxValue((double) row.get("max_value"));
         }
         return templateMetric;
     }
@@ -733,10 +776,34 @@ public class MetricStorage implements IMetricStorage {
             templateMetric.setId((int) row.get("id"));
             templateMetric.setTitle((String) row.get("title"));
             templateMetric.setCommand((String) row.get("query"));
+            if(row.get("min_value")!=null)
+            templateMetric.setMinValue((double) row.get("min_value"));
+            if(row.get("max_value")!=null)
+            templateMetric.setMaxValue((double) row.get("max_value"));
             metrics1.add(templateMetric);
         }
         return metrics1;
     }
+
+
+    @Transactional
+    public void updateTemplMetric(int id,String title,String command,double minValue,double maxValue) throws SQLException {
+        String sql = "UPDATE \"TEMPLATE_METRICS\" SET min_value='"+minValue+"',max_value='"+maxValue+"',title='"+title+"',query=$q$"+command+"$q$ WHERE id="+id;
+        jdbcTemplateObject.update(sql);
+    }
+
+    @Transactional
+    public void addTemplMetric(String title,String command,double minValue,double maxValue) throws SQLException {
+        String sql = "INSERT INTO  \"TEMPLATE_METRICS\"( min_value, max_value,title, query) VALUES( '"+minValue+"','"+maxValue+"','"+title+"',$q$"+command+"$q$ )";
+        jdbcTemplateObject.update(sql);
+    }
+
+    @Transactional
+    public void dellTemplMetric(int id) throws SQLException {
+        String sql = "DELETE FROM \"TEMPLATE_METRICS\" where id="+id;
+        jdbcTemplateObject.update(sql);
+    }
+
 
     @Transactional
     public Integer getTemplatMetricID(String title) throws SQLException {
@@ -928,6 +995,7 @@ public class MetricStorage implements IMetricStorage {
             metricrow.setId(Integer.parseInt(row.get("id").toString()));
             metricrow.setTitle((row.get("title").toString()));
             metricrow.setErrorsCount(Integer.parseInt(row.get("countProblems").toString()));
+            if(row.get("value")!=null)
             metricrow.setLastValue(Double.parseDouble(row.get("value").toString()));
             metricrow.setDate(((java.sql.Timestamp) row.get("date")));
             metricrow.setStatus(row.get("status").toString());
@@ -989,10 +1057,10 @@ public class MetricStorage implements IMetricStorage {
 
 
     @Transactional
-    public List<User> getAllUsers()
-    {
-        List<User> usersList = new ArrayList<>();
-        String sql = "SELECT u.username , u.password, r.role,r.roleid FROM \"Users\" as u, \"Roles\" as r where u.roleid=r.roleid";
+    public List<User> getAllUsers() {
+        List<User> usersList = new ArrayList<>();//
+//        String sql = "SELECT u.username , u.password, r.role,r.roleid FROM \"Users\" as u, \"Roles\" as r where u.roleid=r.roleid";
+        String sql = "SELECT u.username , u.password, r.role,r.id FROM \"Users\" as u, \"Roles\" as r where u.username=r.username";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
 
         for (Map row : rows) {
@@ -1000,11 +1068,48 @@ public class MetricStorage implements IMetricStorage {
             user.setUsername((String)row.get("username"));
             user.setPassword((String)row.get("password"));
             user.setRole((String)row.get("role"));
-            user.setRoleid((int)row.get("roleid"));
+            user.setRoleid((int)row.get("id"));
             usersList.add(user);
         }
         return usersList;
     }
+    @Transactional
+    public User getUsers(String userName) {
+//        String sql = "SELECT u.username , u.password, r.role,r.roleid FROM \"Users\" as u, \"Roles\" as r where u.roleid=r.roleid";
+        String sql = "SELECT u.username , u.password, r.role,r.id FROM \"Users\" as u join \"Roles\" as r on r.username=u.username where u.username = '"+userName+"'";
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+
+        User user = new User();
+        for (Map row : rows) {
+            user.setUsername((String)row.get("username"));
+            user.setPassword((String)row.get("password"));
+            user.setRole((String)row.get("role"));
+            user.setRoleid((int)row.get("id"));
+        }
+
+        sql = "SELECT distinct r.role FROM \"Roles\" as r ";
+        rows = jdbcTemplateObject.queryForList(sql);
+        List<String> stringList = new ArrayList<>();
+        for (Map row : rows) {
+            stringList.add((String)row.get("role"));
+        }
+        user.setAllRoles(stringList);
+
+        return user;
+    }
+    @Transactional
+    public void updateUser(int roleid,String username,String password,String role) throws SQLException {
+        String sql ="UPDATE \"Roles\"   SET role='"+role+"', username='"+username+"' WHERE username='"+username+"'";
+        jdbcTemplateObject.update(sql);
+
+        sql ="UPDATE \"Users\" SET username='"+username+"', password='"+password+"' WHERE username='"+username+"'";
+        jdbcTemplateObject.update(sql);
+    }
+
+
+
+
+
     @Transactional
     public long getCountRoles() throws SQLException {
         String sql = "select count(*) from \"Roles\" ";

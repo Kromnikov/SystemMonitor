@@ -50,5 +50,9 @@ public class GenericAlarmService implements GenericAlarmDao {
         List results = em.createQuery("from GenericAlarm where serviceid ="+serviceid, GenericAlarm.class).getResultList();
         return results;
     }
+    public List<GenericAlarm> getByUser(String username) {
+        List results = em.createQuery("from GenericAlarm where username ='"+username+"'", GenericAlarm.class).getResultList();
+        return results;
+    }
 
 }

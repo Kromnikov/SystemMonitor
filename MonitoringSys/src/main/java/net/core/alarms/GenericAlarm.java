@@ -28,6 +28,9 @@ public class GenericAlarm {
     @Column(name = "message", nullable=true)
     private String message;
 
+    @Column(name = "username", nullable=true)
+    private String username;
+
     public GenericAlarm() {
     }
 
@@ -57,7 +60,10 @@ public class GenericAlarm {
     }
 
     public int getServiceId() {
-        return serviceId;
+        if(serviceId!=null)
+            return serviceId;
+        else
+            return -1;
     }
 
     public void setServiceId(int serviceId) {
@@ -65,7 +71,10 @@ public class GenericAlarm {
     }
 
     public int getHostId() {
-        return hostId;
+        if(hostId!=null)
+            return hostId;
+        else
+            return -1;
     }
 
     public void setHostId(int hostId) {
@@ -102,5 +111,13 @@ public class GenericAlarm {
 
     public void setHostId(Integer hostId) {
         this.hostId = hostId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

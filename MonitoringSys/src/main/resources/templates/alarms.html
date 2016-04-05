@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head lang="en">
+    <title>Spring Framework Guru</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="../static/js/jquery-2.2.0.min.js"
+            th:src="@{js/jquery-2.2.0.min.js}"></script>
+    <script src="../static/js/bootstrap.min.js"
+            th:src="@{js/bootstrap.min.js}"></script>
+    <script src="../static/js/index.js"
+            th:src="@{js/index.js}"></script>
+    <link href="../static/css/bootstrap.css"
+          th:href="@{css/bootstrap.css}" rel="stylesheet" media="screen"/>
+
+    <link href="../static/css/AdminLTE.css"
+          th:href="@{css/AdminLTE.css}" rel="stylesheet" media="screen"/>
+
+    <link href="../static/css/index.css"
+          th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
+
+    <script src="../static/js/highstock.js"
+            th:src="@{js/highstock.js}"></script>
+    <script src="../static/js/exporting.js"
+            th:src="@{js/exporting.js}"></script>
+    <script src="../static/js/dinamicChart.js"
+            th:src="@{js/dinamicChart.js}"></script>
+    <link href="../static/css/bootstrap.css"
+          th:href="@{css/bootstrap.css}" rel="stylesheet" media="screen"/>
+    <link href="../static/css/AdminLTE.css"
+          th:href="@{css/AdminLTE.css}" rel="stylesheet" media="screen"/>
+    <link href="../static/css/index.css"
+          th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
+    <!--external css-->
+    <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{css/font-awesome.css}"/>
+    <!-- Custom styles for this template -->
+    <link href="../static/css/style.css" rel="stylesheet" th:href="@{css/style.css}"/>
+    <link href="../static/css/style-responsive.css" rel="stylesheet" th:href="@{css/style-responsive.css}"/>
+
+    <script th:inline="javascript">
+        modalTemplMetirc();
+        var username = [[${username}]];
+        setHostName(username);
+    </script>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top margin-left-15">
+    <div class="container">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/logout">LogOut</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right margin-top-12">
+            <button class="btn dropdown-toggle fa fa-bell-o clear-background-color" type="button"
+                    data-toggle="dropdown">
+                <span id="dropdown-menu-length" class="label label-warning">0</span></button>
+            <ul id="dropdown-menu" class="dropdown-menu">
+
+            </ul>
+        </ul>
+    </div>
+</nav>
+<div class="nav-side-menu">
+    <div class="brand">System monitor</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+    <div class="menu-list">
+        <ul id="menu-content" class="menu-content collapse out">
+            <li class="collapsed">
+                <a href="/">
+                    <i class="fa fa-home fa-lg"></i> Home
+                </a>
+            </li>
+            <li data-toggle="collapse" data-target="#service" class="collapsed">
+                <a href="#"><i class="fa fa-globe fa-lg"></i> Hosts <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="service">
+                <a class="white-text" th:href="@{'addHostPage'}">
+                    <li>Add host</li>
+                </a>
+                <a class="white-text" th:href="hosts">
+                    <li>Hosts</li>
+                </a>
+            </ul>
+            <li>
+                <a th:href="@{'problems'}">
+                    <i class="fa fa-exclamation fa-lg"></i> Problems
+                </a>
+            </li>
+            <li data-toggle="collapse" data-target="#new" class="collapsed active">
+                <a href="#"><i class="fa fa-cog fa-lg"></i> <s>Admin panel</s> <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu " id="new">
+                <a class="white-text " th:href="hostedit">
+                    <li>Host Editor</li>
+                </a>
+                <a class="white-text" th:href="templMetrics">
+                    <li>Template Metrics</li>
+                </a>
+                <a class="white-text" th:href="accounts">
+                    <li>Accounts</li>
+                </a>
+                <a class="white-text" th:href="alarms">
+                    <li class="active">Alarms</li>
+                </a>
+            </ul>
+            <li>
+                <a href="#">
+                    <i class="fa fa-user fa-lg"></i> Profile
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="content">
+
+
+    <div class="col-lg-10 margin-top-20">
+        <div class="content-panel ">
+            <h4>
+                Templetes Metrics <a class="cursor_pointer openAddAlamr">(Add Alarm)</a></h4>
+            <table class="table table-striped table-advance table-hover">
+                <thead>
+                <tr>
+                    <th class="hidden-phone"><i class="fa fa-star-o"></i> Title</th>
+                    <th><i class="fa fa-home"></i> Host</th>
+                    <th><i class=" fa fa-cloud-upload"></i> toEmail</th>
+                    <th><i class=" fa fa-user"></i> toUser</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <div th:each="alarm: ${getAlarms}">
+                    <tr th:id="${alarm.id}">
+                        <td th:text="' '+${alarm.serviceTitle}+' ( of host: '+${alarm.fromHost}+' )'" class="hidden-phone">192.168.0.1</td>
+                        <td th:text="${alarm.hostName}">17 Jun</td>
+                        <td th:text="${alarm.toEmail}">18 Jun</td>
+                        <td th:text="${alarm.toUser}">18 Jun</td>
+                        <td>
+                            <button class="btn btn-success btn-xs"><a
+                                    class="fa fa-wrench fa-lg white-text open_window"></a>
+                            </button>
+                            <button class="btn btn-danger btn-xs dellTemplMetric"><a
+                                    class="fa fa-times fa-lg white-text"></a>
+                            </button>
+                        </td>
+                    </tr>
+                </div>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="overlay templMetric" title="окно"></div>
+    <div class="popup templMetric">
+        <div class="close_window_type close_window fa fa-times fa-lg"></div>
+        <div class="register-box-body">
+            <div class="form-group has-feedback hidden">
+
+                <input type="text" class="form-control" placeholder="id" name="id"
+                       required="required"/>
+                <span class=" fa fa-home form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+
+                <input type="text" class="form-control" placeholder="Title" name="Title"
+                       required="required"/>
+                <span class=" fa fa-star-o form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+
+                <input type="text" class="form-control" placeholder="Command" name="Command"
+                       required="required"/>
+                <span class=" fa fa-code form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="Min Value" name="Min Value" required="required"/>
+                <span class=" fa fa-chevron-left  form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="Max Value" name="Max Value"
+                       required="required"/>
+                <span class=" fa fa-chevron-right form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <button id="saveTemplMetric" type="submit" class="btn btn-primary btn-block btn-flat" name="saveTemplMetric">Save
+                    </button>
+                </div>
+                <div class="col-xs-6">
+                    <button type="submit" class="close_window btn btn-primary btn-block btn-flat" name="returnHosts">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

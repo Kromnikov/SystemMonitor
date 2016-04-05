@@ -27,7 +27,7 @@
             th:src="@{js/exporting.js}"></script>
     <script src="../static/js/dinamicChart.js"
             th:src="@{js/dinamicChart.js}"></script>
-    <link href="../../static/css/hosts-page.css"
+    <link href="../static/css/hosts-page.css"
           th:href="@{css/hosts-page.css}" rel="stylesheet" media="screen"/>
 
 
@@ -89,15 +89,20 @@
                 </a>
             </li>
 
-            <li data-toggle="collapse" data-target="#new" class="collapsed">
+            <li data-toggle="collapse" data-target="#new" class="collapsed ">
                 <a href="#"><i class="fa fa-cog fa-lg"></i> Admin panel <span class="arrow"></span></a>
             </li>
             <ul class="sub-menu collapse" id="new">
                 <a class="white-text" th:href="hostedit" ><li>Host Editor</li></a>
-                <a class="white-text" th:href="optionsInstance" ><li>Instance Metrics</li></a>
-                <a class="white-text" th:href="options" ><li>Temolet Metrics</li></a>
-                <a class="white-text" th:href="editIntsMetrics" ><li>Services</li></a>
-                <a class="white-text" th:href="accaunts" ><li>Accaunts</li></a>
+                <!--<a class="white-text" th:href="optionsInstance">
+                    <li>Instance Metrics</li>
+                </a>-->
+                <a class="white-text" th:href="templMetrics" ><li>Template Metrics</li></a>
+                <!--<a class="white-text" th:href="optionsInstance" ><li>Instance Metrics</li></a>-->
+                <a class="white-text" th:href="accounts" ><li>Accounts</li></a>
+                <a class="white-text" th:href="alarms">
+                    <li>Alarms</li>
+                </a>
             </ul>
 
 
