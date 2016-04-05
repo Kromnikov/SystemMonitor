@@ -22,15 +22,12 @@ import static org.mockito.Mockito.*;
  * Created by ANTON on 28.03.2016.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {DatabaseConfig.class})
+@ContextConfiguration(locations = {"/hibernateTest.cfg.xml"})
 @WebAppConfiguration
 @Transactional
 public class testDAO {
     @Test
     public void getHostById() throws Exception {
-        Configuration config = new Configuration().configure("hibernateTest.cfg.xml");
-        SessionFactory sessionFactory = config.buildSessionFactory();
-        Session session = sessionFactory.openSession();
         SSHConfiguration host = new SSHConfiguration();
         host.setName("TEST");
         HostServiceImpl hostService = spy(HostServiceImpl.class);
