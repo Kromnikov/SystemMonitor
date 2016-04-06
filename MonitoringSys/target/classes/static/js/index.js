@@ -1,6 +1,107 @@
 var username;
 
 
+//TODO: alarms
+function dropDownMenuAlarms() {
+    $(document).ready(function(){
+        $('.ddmenu').hover(function () {
+            clearTimeout($.data(this,'timer'));
+            $('ul',this).stop(true,true).slideDown(200);
+        }, function () {
+            $.data(this,'timer', setTimeout($.proxy(function() {
+                $('ul',this).stop(true,true).slideUp(200);
+            }, this), 100));
+        });
+
+    });
+}
+function editAlarmsModal() {
+    $(document).ready(function () {
+        //Edit
+        $('.open_window').click(function (e) {
+            $.getJSON('/getAlarm?id=' + $(this).parent().parent().parent().attr('id'), function (alarm) {
+                //console.log(host.name+"-"+host.host);
+                $("input[name='id']").val(alarm.id);
+                $("input[name='toEmail']").val(alarm.toEmail);
+
+                $("#metrics").empty();
+                $("#metrics").append('<li id="metricsMenu"><a id="roleValue" href="#">'+alarm.serviceTitle+'</a></li>');
+                a = $("#metricsMenu").append('<ul id="metricsnonemenu"></ul>');
+                $.each(alarm.instanceMetrics, function (key, values) {
+                    $("#metricsnonemenu").append('<li class="roleselect" hostid="'+values.id+'"><a href="#">'+values.title+'</a></li>');
+                });
+
+
+                $("#hosts").empty();
+                $("#hosts").append('<li id="hostsMenu"><a id="roleValue" href="#">'+alarm.fromHost+'</a></li>');
+                a = $("#hostsMenu").append('<ul id="hostnonemenu"></ul>');
+                $.each(alarm.hosts, function (key, values) {
+                    $("#hostnonemenu").append('<li class="roleselect" hostid="'+values.id+'"><a href="#">'+values.name+'</a></li>');
+                });
+
+
+                $("#tohost").empty();
+                $("#tohost").append('<li id="tohostMenu"><a id="roleValue" href="#">'+alarm.hostName+'</a></li>');
+                a = $("#tohostMenu").append('<ul id="tohostnonemenu"></ul>');
+                $.each(alarm.hosts, function (key, values) {
+                    $("#tohostnonemenu").append('<li class="roleselect" hostid="'+values.id+'"><a href="#">'+values.name+'</a></li>');
+                });
+
+
+
+                $("#touser").empty();
+                $("#touser").append('<li id="touserMenu"><a id="roleValue" href="#">'+alarm.toUser+'</a></li>');
+                a = $("#touserMenu").append('<ul id="tousernonemenu"></ul>');
+                $.each(alarm.allUsers, function (key, values) {
+                    $("#tousernonemenu").append('<li class="roleselect" hostid="'+values+'"><a href="#">'+values+'</a></li>');
+                });
+
+
+
+
+
+
+                $('.popup.editAlarm, .overlay.editAlarm').css({'opacity': 1, 'visibility': 'visible'});
+                e.preventDefault();
+            });
+        });
+        $("#saveAlarm").click(function () {
+            $.getJSON('/saveAlarm?id=' + $("input[name='id']").val()
+                +'&title='+$("input[name='Title']").val()
+                +'&command='+$("input[name='Command']").val()
+                +'&minValue='+$("input[name='Min Value']").val()
+                +'&maxValue='+$("input[name='Max Value']").val()
+                , function (host) {
+                });
+            $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
+            window.location.href = "/alarms";
+        });
+
+
+        $('.close_window').click(function () {
+            $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
+            window.location.href = "/alarms";
+        });
+
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//TODO: Модальные окна редактирования accounts
+
 function dropDownMenuAccounts() {
     $(document).ready(function(){
         //$('a').on('click', function(e){
@@ -18,8 +119,6 @@ function dropDownMenuAccounts() {
 
     });
 }
-
-//TODO: Модальные окна редактирования accounts
 function modalAccounts() {
 
     $(document).ready(function () {
@@ -27,7 +126,6 @@ function modalAccounts() {
         var a;
         $('body').on('click', '.roleselect', function () {
             var role=$(this).attr('role');
-            //$("#mainDdmenu").val(role);
             $("#roleValue").html(role);
         });
 

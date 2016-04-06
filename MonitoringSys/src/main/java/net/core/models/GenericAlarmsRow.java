@@ -1,8 +1,6 @@
 package net.core.models;
 
-import javax.persistence.Column;
-
-public class AlarmsRow {
+public class GenericAlarmsRow {
     private int id;
 
     private String type;
@@ -22,10 +20,10 @@ public class AlarmsRow {
 
     private String user;
 
-    public AlarmsRow() {
+    public GenericAlarmsRow() {
     }
 
-    public AlarmsRow(int id, String type, Integer serviceId, String serviceTitle, Integer hostId, String hostName, String toEmail, String toUser, String message, String user) {
+    public GenericAlarmsRow(int id, String type, Integer serviceId, String serviceTitle, Integer hostId, String hostName, String toEmail, String toUser, String message, String user) {
         this.id = id;
         this.type = type;
         this.serviceId = serviceId;

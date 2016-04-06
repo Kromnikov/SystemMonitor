@@ -37,7 +37,13 @@ public class HostDaoImpl implements HostDao {
     }
 
     public SSHConfiguration get(int id) {
-        return em.createQuery("from SSHConfiguration where id ="+id, SSHConfiguration.class).getSingleResult();
+        List<SSHConfiguration> sshConfiguration = em.createQuery("from SSHConfiguration where id ="+id, SSHConfiguration.class).getResultList();
+//        SSHConfiguration sshConfiguration =  em.createQuery("from SSHConfiguration where id ="+id, SSHConfiguration.class).getSingleResult();
+        if (sshConfiguration.size() > 0) {
+            return sshConfiguration.get(0);
+        } else {
+            return new SSHConfiguration();
+        }
 //        return em.getReference(SSHConfiguration.class, id);
     }
 

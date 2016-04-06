@@ -49,40 +49,101 @@ public class MetricStorage implements IMetricStorage {
 
     //TODO: alarms
     @Transactional
-    public List<AlarmsRow> getAlarms(String userName) {
-        List<AlarmsRow> alarmsRowList = new ArrayList<>();
+    public List<GenericAlarmsRow> getAlarms(String userName) {
+        List<GenericAlarmsRow> genericAlarmsRowList = new ArrayList<>();
         String sql = "";
         List<Map<String, Object>> rows ;
         for (GenericAlarm ga : genericAlarm.getByUser(userName)) {
-            AlarmsRow alarmsRow = new AlarmsRow();
-            alarmsRow.setType(ga.getType());
-            alarmsRow.setMessage(ga.getMessage());
+            GenericAlarmsRow genericAlarmsRow = new GenericAlarmsRow();
+            genericAlarmsRow.setType(ga.getType());
+            genericAlarmsRow.setMessage(ga.getMessage());
             if(ga.getHostId()>-1) {
-                alarmsRow.setHostId(ga.getHostId());
-                alarmsRow.setHostName(hosts.get(alarmsRow.getHostId()).getName());
+                genericAlarmsRow.setHostId(ga.getHostId());
+                genericAlarmsRow.setHostName(hosts.get(genericAlarmsRow.getHostId()).getName());
             }
-            alarmsRow.setId(ga.getId());
+            genericAlarmsRow.setId(ga.getId());
             {
                 if (ga.getServiceId() > -1);
             }
-            alarmsRow.setServiceId(ga.getServiceId());
-            alarmsRow.setToEmail(ga.getToEmail());
-            alarmsRow.setToUser(ga.getToUser());
-            alarmsRow.setUser(ga.getUsername());
+            genericAlarmsRow.setServiceId(ga.getServiceId());
+            genericAlarmsRow.setToEmail(ga.getToEmail());
+            genericAlarmsRow.setToUser(ga.getToUser());
+            genericAlarmsRow.setUser(ga.getUsername());
 
 
-            sql = "select title,host from \"INSTANCE_METRIC\" WHERE id="+alarmsRow.getServiceId();
+            sql = "select title,host from \"INSTANCE_METRIC\" WHERE id="+ genericAlarmsRow.getServiceId();
             rows= jdbcTemplateObject.queryForList(sql);
             for (Map row : rows) {
-                alarmsRow.setServiceTitle((String) row.get("title"));
-                alarmsRow.setFromHost(hosts.get((int) row.get("host")).getName());
+                genericAlarmsRow.setServiceTitle((String) row.get("title"));
+                genericAlarmsRow.setFromHost(hosts.get((int) row.get("host")).getName());
             }
 
 
-            alarmsRowList.add(alarmsRow);
+            genericAlarmsRowList.add(genericAlarmsRow);
         }
-        return alarmsRowList;
+        return genericAlarmsRowList;
     }
+    @Transactional
+    public AlarmRow getAlarm(int id) throws SQLException {
+        String sql = "";
+        List<Map<String, Object>> rows;
+        GenericAlarm ga = genericAlarm.get(id);
+
+        SSHConfiguration host = new SSHConfiguration();
+        AlarmRow alarmRow = new AlarmRow();
+        alarmRow.setType(ga.getType());
+        alarmRow.setMessage(ga.getMessage());
+        if (ga.getHostId() > -1) {
+            alarmRow.setHostId(ga.getHostId());
+            host = hosts.get(alarmRow.getHostId());
+            alarmRow.setHostName(host.getName());
+        }
+        alarmRow.setId(ga.getId());
+        {
+            if (ga.getServiceId() > -1) ;
+        }
+        alarmRow.setServiceId(ga.getServiceId());
+        alarmRow.setToEmail(ga.getToEmail());
+        alarmRow.setToUser(ga.getToUser());
+        alarmRow.setUser(ga.getUsername());
+        sql = "select title,host from \"INSTANCE_METRIC\" WHERE id=" + alarmRow.getServiceId();
+        rows = jdbcTemplateObject.queryForList(sql);
+        for (Map row : rows) {
+            alarmRow.setServiceTitle((String) row.get("title"));
+            alarmRow.setFromHost(hosts.get((int) row.get("host")).getName());
+        }
+
+        alarmRow.setInstanceMetrics(getInstMetrics(host.getId()));
+        alarmRow.setHosts(hosts.getAll());
+
+
+        sql = "SELECT username FROM \"Users\"";
+        rows = jdbcTemplateObject.queryForList(sql);
+        List<String> stringList = new ArrayList<>();
+        for (Map row : rows) {
+            stringList.add((String)row.get("username"));
+        }
+        alarmRow.setAllUsers(stringList);
+
+        return alarmRow;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

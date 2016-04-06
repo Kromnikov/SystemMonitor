@@ -1,3 +1,116 @@
+.leftRow {
+    width: 29%;!important;
+    display: inline-block;!important;
+}
+.rightRow {
+    width: 70%;!important;
+    display: inline-block;!important;
+}
+.ddmenu {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    /*font-size: 14px;*/
+    /*line-height: 1.42857143;*/
+    color: #555;
+    background-color: #fff;
+    /*background-image: none;*/
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.ddmenu li { display: block; position: relative; float: left; font-size: 1.45em; border-right: 1px solid #dae0e5; }
+
+.ddmenu li a {
+    display: block;
+    float: left;
+    color: rgba(0, 0, 0, 0.60);
+    /*padding: 0 50px;*/
+    line-height: 20px;
+    /*font-weight: bold;*/
+    text-decoration: none;
+    /*-webkit-transition: all 0.2s linear;*/
+    /*-moz-transition: all 0.2s linear;*/
+    /*-o-transition: all 0.2s linear;*/
+    /*transition: all 0.2s linear;*/
+}
+
+.ddmenu ul {
+    z-index: 9999;
+    position: absolute;
+    top: 35px;
+    width: 200px;
+    background: #fff;
+    display: none;
+    margin: 0;
+    padding: 7px 0;
+    list-style: none;
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.ddmenu ul:after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 100%;
+    left: 8px;
+    border-width: 0 8px 8px 8px;
+    border-style: solid;
+    border-color: #fff transparent;
+}
+
+.ddmenu ul:before {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 100%;
+    left: 4px;
+    border-width: 0 10px 10px 10px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.1) transparent;
+}
+
+.ddmenu ul li {
+    display: block;
+    width: 100%;
+    font-size: 0.9em;
+    text-shadow: 1px 1px 0 #fff;
+}
+
+.ddmenu ul li a {
+    display: block;
+    width: 100%;
+    padding: 6px 7px;
+    line-height: 1.4em;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+}
+.ddmenu ul li a:hover {
+    background: #e9edf3;
+}
+
+
+
+
+
+
+
+
+
+
+
 #ddmenu {
     display: block;
     width: 100%;
@@ -129,8 +242,8 @@
     left: 50%;
     opacity: 0;
     padding: 15px;
-    width: 300px;
-    height: 400px;
+    width: 400px;
+    /*height: 400px;*/
     position: fixed;
     text-align: justify;
     top: 40%;

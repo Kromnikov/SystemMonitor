@@ -12,7 +12,9 @@ import java.util.List;
 public interface IMetricStorage {
 
     //TODO: alarms
-    public List<AlarmsRow> getAlarms(String userName);
+    public List<GenericAlarmsRow> getAlarms(String userName);
+
+    public AlarmRow getAlarm(int id) throws SQLException;
 
 
     //sql

@@ -38,7 +38,8 @@
     <link href="../static/css/style-responsive.css" rel="stylesheet" th:href="@{css/style-responsive.css}"/>
 
     <script th:inline="javascript">
-        modalTemplMetirc();
+        dropDownMenuAlarms();
+        editAlarmsModal();
         var username = [[${username}]];
         setHostName(username);
     </script>
@@ -153,8 +154,8 @@
     </div>
 
 
-    <div class="overlay templMetric" title="окно"></div>
-    <div class="popup templMetric">
+    <div class="overlay editAlarm" title="окно"></div>
+    <div class="popup editAlarm">
         <div class="close_window_type close_window fa fa-times fa-lg"></div>
         <div class="register-box-body">
             <div class="form-group has-feedback hidden">
@@ -163,30 +164,82 @@
                        required="required"/>
                 <span class=" fa fa-home form-control-feedback"></span>
             </div>
-            <div class="form-group has-feedback">
 
-                <input type="text" class="form-control" placeholder="Title" name="Title"
-                       required="required"/>
-                <span class=" fa fa-star-o form-control-feedback"></span>
+            <div class=" cursor_pointer has-feedback leftRow">
+                    <ul class="ddmenu" id="hosts">
+                        <li id="mainDdmenu" ><a href="#">hosts</a>
+                            <ul>
+                                <li><a href="#">Миссия</a></li>
+                                <li><a href="#">Команда</a></li>
+                                <li><a href="#">История</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                <span class="cursor_pointer fa fa-caret-down  form-control-feedback"></span>
             </div>
-            <div class="form-group has-feedback">
 
-                <input type="text" class="form-control" placeholder="Command" name="Command"
-                       required="required"/>
-                <span class=" fa fa-code form-control-feedback"></span>
+
+
+            <div class=" cursor_pointer has-feedback rightRow">
+                    <ul class="ddmenu" id="metrics">
+                        <li id="mainDdmenu" ><a href="#">metrics</a>
+                            <ul>
+                                <li><a href="#">Миссия</a></li>
+                                <li><a href="#">Команда</a></li>
+                                <li><a href="#">История</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                <span class="cursor_pointer fa fa-caret-down  form-control-feedback"></span>
             </div>
-            <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="Min Value" name="Min Value" required="required"/>
-                <span class=" fa fa-chevron-left  form-control-feedback"></span>
+
+
+
+            <div class=" cursor_pointer form-group has-feedback">
+                <nav>
+                    <ul class="ddmenu" id="tohost">
+                        <li id="mainDdmenu" ><a href="#">tohost</a>
+                            <ul>
+                                <li><a href="#">Миссия</a></li>
+                                <li><a href="#">Команда</a></li>
+                                <li><a href="#">История</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <span class="cursor_pointer fa fa-caret-down  form-control-feedback"></span>
             </div>
+
+
+            <div class=" cursor_pointer form-group has-feedback">
+                <nav>
+                    <ul class="ddmenu" id="touser">
+                        <li id="mainDdmenu" ><a href="#">touser</a>
+                            <ul>
+                                <li><a href="#">Миссия</a></li>
+                                <li><a href="#">Команда</a></li>
+                                <li><a href="#">История</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <span class="cursor_pointer fa fa-caret-down  form-control-feedback"></span>
+            </div>
+
+
+
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="Max Value" name="Max Value"
+                <input type="text" class="form-control" placeholder="toEmail" name="toEmail"
                        required="required"/>
                 <span class=" fa fa-chevron-right form-control-feedback"></span>
             </div>
+
+
+
+
             <div class="row">
                 <div class="col-xs-6">
-                    <button id="saveTemplMetric" type="submit" class="btn btn-primary btn-block btn-flat" name="saveTemplMetric">Save
+                    <button id="saveAlarm" type="submit" class="btn btn-primary btn-block btn-flat" name="saveAlarm">Save
                     </button>
                 </div>
                 <div class="col-xs-6">

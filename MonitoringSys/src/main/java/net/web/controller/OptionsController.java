@@ -1,12 +1,11 @@
 package net.web.controller;
 
-import net.core.alarms.dao.GenericAlarmDao;
 import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;
 import net.core.hibernate.services.HostService;
+import net.core.models.AlarmRow;
 import net.core.models.HostEditRow;
 import net.core.models.InstanceMetric;
-import net.core.models.MetricsRow;
 import net.core.models.TemplateMetric;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -45,6 +44,11 @@ public class OptionsController {
         modelAndView.setViewName("alarms");
         modelAndView.addObject("username", name);
         return modelAndView;
+    }
+    @RequestMapping(value = "/getAlarm", method = RequestMethod.GET)
+    @ResponseBody
+    public AlarmRow getAlarm(@RequestParam("id") int id) throws SQLException {
+        return metricStorage.getAlarm(id);
     }
 
 

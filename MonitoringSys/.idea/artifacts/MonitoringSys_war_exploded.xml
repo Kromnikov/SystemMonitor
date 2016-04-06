@@ -100,7 +100,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="E:\gitProjects\SystemMonitor\MonitoringSys\target/MANIFEST.MF" />
+        <element id="file-copy" path="C:\kromnikov\gitProjects\SystemMonitor\MonitoringSys\target/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="MonitoringSys/web/Web" />
     </root>
