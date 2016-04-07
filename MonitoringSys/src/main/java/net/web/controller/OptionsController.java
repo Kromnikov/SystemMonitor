@@ -3,10 +3,7 @@ package net.web.controller;
 import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;
 import net.core.hibernate.services.HostService;
-import net.core.models.AlarmRow;
-import net.core.models.HostEditRow;
-import net.core.models.InstanceMetric;
-import net.core.models.TemplateMetric;
+import net.core.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -50,9 +47,31 @@ public class OptionsController {
     public AlarmRow getAlarm(@RequestParam("id") int id) throws SQLException {
         return metricStorage.getAlarm(id);
     }
-
-
-
+    @RequestMapping(value = "/getNewAlarm", method = RequestMethod.GET)
+    @ResponseBody
+    public AlarmRow getNewAlarm() throws SQLException {
+        return metricStorage.getNewAlarm();
+    }
+    @RequestMapping(value = "/getInstanceMetrics", method = RequestMethod.GET)
+    @ResponseBody
+    public List<InstanceMetric> getInstanceMetrics(@RequestParam("hostId") int id) throws SQLException {
+        return metricStorage.getInstMetrics(id);
+    }
+    @RequestMapping(value = "/saveAlarm", method = RequestMethod.GET)
+    @ResponseBody
+    public void saveAlarm(@RequestParam("id") int id,@RequestParam("toEmail") String toEmail,@RequestParam("toUser") String toUser,@RequestParam("metricId") int metricId,@RequestParam("hostId") int hostId) throws SQLException {
+        metricStorage.updateAlarm(id,metricId,hostId,toEmail,toUser);
+    }
+    @RequestMapping(value = "/addAlarm", method = RequestMethod.GET)
+    @ResponseBody
+    public void addAlarm(@RequestParam("toEmail") String toEmail,@RequestParam("toUser") String toUser,@RequestParam("metricId") int metricId,@RequestParam("hostId") int hostId,@RequestParam("user") String user) throws SQLException {
+        metricStorage.addAlarm(metricId, hostId, toEmail, toUser, user);
+    }
+    @RequestMapping(value = "/dellAlarms", method = RequestMethod.GET)
+    @ResponseBody
+    public void dellAlarm(@RequestParam("id") int id) throws SQLException {
+        metricStorage.dellAlarm(id);
+    }
 
 
 
@@ -98,7 +117,80 @@ public class OptionsController {
 
 
 
-//    //TODO: Контроллер для Instance метрик
+    //TODO: Контроллер для Instance метрик
+    @RequestMapping(value= "/instMetric")
+    public ModelAndView addInstMetric(@RequestParam(required = false , defaultValue = "-1") int instMetricId) throws SQLException {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("InstMetric");
+        modelAndView.addObject("username", SecurityContextHolder.getContext().getAuthentication().getName());
+        if (instMetricId > 0) {
+            InstanceMetric instanceMetric =  metricStorage.getInstMetric(instMetricId);
+            TemplateMetric templateMetric = metricStorage.getTemplateMetric(instanceMetric.getTempMetrcId());
+            modelAndView.addObject("InstanceMetric",instanceMetric);
+            modelAndView.addObject("templateMetric",templateMetric);
+            modelAndView.addObject("hostName",hosts.get(instanceMetric.getHostId()).getName() );
+//            modelAndView.addObject("instMetricId",instMetricId);
+        }
+        return modelAndView;
+    }
+    @RequestMapping(value = "/getHostsTempl", method = RequestMethod.GET)
+    @ResponseBody
+    public HostsTemplMetricsRow getHostsTempl() throws SQLException {
+        HostsTemplMetricsRow hostsTemplMetricsRow = new HostsTemplMetricsRow();
+        hostsTemplMetricsRow.setHosts(hosts.getAll());
+        hostsTemplMetricsRow.setTemplateMetrics(metricStorage.getTemplatMetrics());
+        return hostsTemplMetricsRow;
+    }
+    @RequestMapping(value = "/saveNewInstMetric", method = RequestMethod.GET)
+    public void addInstMetric(@RequestParam(required = false , defaultValue = "-1") int templId,@RequestParam(required = false , defaultValue = "-1") int hostId,@RequestParam(required = false , defaultValue = "Err") String title,@RequestParam(required = false , defaultValue = "Err") String command,@RequestParam(required = false , defaultValue = "0") double minValue,@RequestParam(required = false , defaultValue = "0") double maxValue) throws SQLException {
+        InstanceMetric instanceMetric = new InstanceMetric();
+        instanceMetric.setMinValue(minValue);
+        instanceMetric.setMaxValue(maxValue);
+        instanceMetric.setCommand(command);
+        instanceMetric.setTitle(title);
+        instanceMetric.setTempMetrcId(templId);
+        instanceMetric.setHostId(hostId);
+        metricStorage.addInstMetric(instanceMetric);
+    }
+    @RequestMapping(value = "/editInstMetric", method = RequestMethod.GET)
+    public void editInstMetric(@RequestParam("id") int id, @RequestParam(required = false , defaultValue = "-1") int templId,@RequestParam(required = false , defaultValue = "-1") int hostId,@RequestParam(required = false , defaultValue = "Err") String title,@RequestParam(required = false , defaultValue = "Err") String command,@RequestParam(required = false , defaultValue = "0") double minValue,@RequestParam(required = false , defaultValue = "0") double maxValue) throws SQLException {
+        metricStorage.editInstMetric(id, hostId, templId, title, command, minValue, maxValue);
+    }
+
+    @RequestMapping(value = "/addInstMetric", method = RequestMethod.GET)
+    @ResponseBody
+    public MetricsRow addInstMetric(@RequestParam("hostid") int hostid,@RequestParam("templMetricid") int templMetricid) throws SQLException {
+        metricStorage.addInstMetric(hostid,templMetricid);
+        MetricsRow metrics = new MetricsRow();
+        metrics.setHostId(hostid);
+        metrics.setInstanceMetrics(getMetrics(hostid));
+        metrics.setTemplateMetrics(metricStorage.getTemplatMetrics());
+        return metrics;
+    }
+
+    @RequestMapping(value = "/dellInstMetric", method = RequestMethod.GET)
+    @ResponseBody
+    public MetricsRow dellInstMetric(@RequestParam("hostid") int hostid,@RequestParam("instMetricid") int instMetricid) throws SQLException {
+        metricStorage.delMetricFromHost(hostid,instMetricid);
+        MetricsRow metrics = new MetricsRow();
+        metrics.setHostId(hostid);
+        metrics.setInstanceMetrics(getMetrics(hostid));
+        metrics.setTemplateMetrics(metricStorage.getTemplatMetrics());
+        return metrics;
+    }
+
+    @RequestMapping(value = "/getInstMetrics", method = RequestMethod.GET)
+    @ResponseBody
+    public MetricsRow getInstMetrics(@RequestParam("hostid") int hostid) throws SQLException {
+        MetricsRow metrics = new MetricsRow();
+        metrics.setHostId(hostid);
+        metrics.setInstanceMetrics(getMetrics(hostid));
+        metrics.setTemplateMetrics(metricStorage.getTemplatMetrics());
+        return metrics;
+    }
+
+
+
 //    @RequestMapping(method = RequestMethod.GET, value = "/optionsInstance")
 //    public ModelAndView standartView() throws SQLException {
 //        ModelAndView modelAndView = new ModelAndView();
@@ -235,38 +327,6 @@ public class OptionsController {
 //        return modelAndView;
 //    }
 //
-//    @RequestMapping(value = "/addInstMetric", method = RequestMethod.GET)
-//    @ResponseBody
-//    public MetricsRow addInstMetric(@RequestParam("hostid") int hostid,@RequestParam("templMetricid") int templMetricid) throws SQLException {
-//        metricStorage.addInstMetric(hostid,templMetricid);
-//        MetricsRow metrics = new MetricsRow();
-//        metrics.setHostId(hostid);
-//        metrics.setInstanceMetrics(getMetrics(hostid));
-//        metrics.setTemplateMetrics(metricStorage.getTemplatMetrics());
-//        return metrics;
-//    }
-//
-//    @RequestMapping(value = "/dellInstMetric", method = RequestMethod.GET)
-//    @ResponseBody
-//    public MetricsRow dellInstMetric(@RequestParam("hostid") int hostid,@RequestParam("instMetricid") int instMetricid) throws SQLException {
-//        metricStorage.delMetricFromHost(hostid,instMetricid);
-//        MetricsRow metrics = new MetricsRow();
-//        metrics.setHostId(hostid);
-//        metrics.setInstanceMetrics(getMetrics(hostid));
-//        metrics.setTemplateMetrics(metricStorage.getTemplatMetrics());
-//        return metrics;
-//    }
-//
-//    @RequestMapping(value = "/getInstMetrics", method = RequestMethod.GET)
-//    @ResponseBody
-//    public MetricsRow getInstMetrics(@RequestParam("hostid") int hostid) throws SQLException {
-//        MetricsRow metrics = new MetricsRow();
-//        metrics.setHostId(hostid);
-//        metrics.setInstanceMetrics(getMetrics(hostid));
-//        metrics.setTemplateMetrics(metricStorage.getTemplatMetrics());
-//        return metrics;
-//    }
-
 
 
 

@@ -127,16 +127,68 @@ public class MetricStorage implements IMetricStorage {
 
         return alarmRow;
     }
+    @Transactional
+    public AlarmRow getNewAlarm() throws SQLException {
+        String sql = "";
+        List<Map<String, Object>> rows;
+
+        SSHConfiguration host = new SSHConfiguration();
+        AlarmRow alarmRow = new AlarmRow();
+        sql = "select title,host from \"INSTANCE_METRIC\" WHERE id=" + alarmRow.getServiceId();
+        rows = jdbcTemplateObject.queryForList(sql);
+        for (Map row : rows) {
+            alarmRow.setServiceTitle((String) row.get("title"));
+            alarmRow.setFromHost(hosts.get((int) row.get("host")).getName());
+        }
+
+        alarmRow.setInstanceMetrics(getInstMetrics(host.getId()));
+        alarmRow.setHosts(hosts.getAll());
+
+
+        sql = "SELECT username FROM \"Users\"";
+        rows = jdbcTemplateObject.queryForList(sql);
+        List<String> stringList = new ArrayList<>();
+        for (Map row : rows) {
+            stringList.add((String)row.get("username"));
+        }
+        alarmRow.setAllUsers(stringList);
+
+        return alarmRow;
+    }
+
+    @Transactional
+    public void updateAlarm(int id, int serviseId, int hostId, String toEmail, String toUser) {
+        String sql = "UPDATE genericalarm SET serviceid="+serviseId+", hostid="+hostId+", toemail='"+toEmail+"', touser='"+toUser+"' WHERE id="+id;
+        jdbcTemplateObject.update(sql);
+    }
+    @Transactional
+    public void addAlarm(int serviseId, int hostId, String toEmail, String toUser,String user) {
+        String sql = "INSERT INTO genericalarm (serviceid, hostid, toemail, touser,  username)    VALUES ( '"+serviseId+"', '"+hostId+"', '"+toEmail+"', '"+toUser+"', '"+user+"')";
+        jdbcTemplateObject.update(sql);
+    }
+    @Transactional
+    public void dellAlarm(int id) {
+        String sql = "DELETE FROM genericalarm WHERE id="+id;
+        jdbcTemplateObject.update(sql);
+    }
 
 
 
 
 
 
+//TODO: instMetric
 
-
-
-
+    @Transactional
+    public void addInstMetric(InstanceMetric instanceMetric) throws SQLException {
+        String sql = "INSERT INTO \"INSTANCE_METRIC\"(host, templ_metric,min_value,max_value,title,query) VALUES (" + instanceMetric.getHostId() + "," + instanceMetric.getTempMetrcId() + "," + instanceMetric.getMinValue() + "," + instanceMetric.getMaxValue() + ",'" + instanceMetric.getTitle() + "',$q$" + instanceMetric.getCommand() + "$q$)";
+        jdbcTemplateObject.update(sql);
+    }
+    @Transactional
+    public void editInstMetric(int id,int hostId,int templMetricId,String title,String command,double minValue,double maxValue) throws SQLException {
+        String sql = "UPDATE \"INSTANCE_METRIC\" SET min_value='"+minValue+"', host='"+hostId+"', templ_metric='"+templMetricId+"',max_value='"+maxValue+"',title='"+title+"',query=$q$"+command+"$q$ WHERE id="+id;
+        jdbcTemplateObject.update(sql);
+    }
 
 
 
@@ -931,11 +983,6 @@ public class MetricStorage implements IMetricStorage {
         jdbcTemplateObject.update(sql);
     }
 
-    @Transactional
-    public void addInstMetric(InstanceMetric instanceMetric) throws SQLException {
-        String sql = "INSERT INTO \"INSTANCE_METRIC\"(host, templ_metric,min_value,max_value,title,query) VALUES (" + instanceMetric.getHostId() + "," + instanceMetric.getTempMetrcId() + "," + instanceMetric.getMinValue() + "," + instanceMetric.getMaxValue() + ",'" + instanceMetric.getTitle() + "',$q$" + instanceMetric.getCommand() + "$q$)";
-        jdbcTemplateObject.update(sql);
-    }
 
     @Transactional
     public List<InstanceMetric> getInstMetrics(int hostId) throws SQLException {

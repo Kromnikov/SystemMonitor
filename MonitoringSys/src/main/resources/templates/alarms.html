@@ -40,6 +40,7 @@
     <script th:inline="javascript">
         dropDownMenuAlarms();
         editAlarmsModal();
+        addAlarmsModal();
         var username = [[${username}]];
         setHostName(username);
     </script>
@@ -142,8 +143,9 @@
                             <button class="btn btn-success btn-xs"><a
                                     class="fa fa-wrench fa-lg white-text open_window"></a>
                             </button>
-                            <button class="btn btn-danger btn-xs dellTemplMetric"><a
-                                    class="fa fa-times fa-lg white-text"></a>
+                            <!--${alarm.id}-->
+                            <button class="btn btn-danger btn-xs dellTemplMetric dellAlarm" th:attr="dellAlarm=${alarm.id}"><a
+                                    class="fa fa-times fa-lg white-text" ></a>
                             </button>
                         </td>
                     </tr>
@@ -175,7 +177,6 @@
                             </ul>
                         </li>
                     </ul>
-                <span class="cursor_pointer fa fa-caret-down  form-control-feedback"></span>
             </div>
 
 
@@ -238,8 +239,12 @@
 
 
             <div class="row">
-                <div class="col-xs-6">
-                    <button id="saveAlarm" type="submit" class="btn btn-primary btn-block btn-flat" name="saveAlarm">Save
+                <div class="col-xs-6 hidden" id="saveAlarm">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat" name="saveAlarm">Save
+                    </button>
+                </div>
+                <div class="col-xs-6 hidden" id="addAlarm">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat" name="saveAlarm">Add
                     </button>
                 </div>
                 <div class="col-xs-6">

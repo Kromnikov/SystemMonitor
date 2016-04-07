@@ -1,80 +1,288 @@
 var username;
 
+//TODO: Inst Metric
+function instMetricPageFunctions() {
+    $(document).ready(function () {
+
+        $('body').on('click', '.tohostselect', function () {
+            $("#tohostValue").html($(this).attr('hostname'));
+            $("#tohostValue").attr('hostId', $(this).attr('hostid'));
+        });
+        $('body').on('click', '.templMetricselect', function () {
+            console.log($(this).attr('metricTitle') + "\n" + $(this).attr('metricQuery'));
+            $("input[name='Title']").val($(this).attr('metricTitle'));
+            $("input[name='query']").val($(this).attr('metricQuery'));
+            $("#templMetricValue").html($(this).attr('metricTitle'));
+            $("#templMetricValue").attr('metricId', $(this).attr('metricId'));
+            $("#templMetricValue").attr('metricQuery', $(this).attr('metricQuery'));
+            $("#templMetricValue").attr('metricTitle', $(this).attr('metricTitle'));
+        });
+
+    });
+
+}
+function editInstMetric(InstanceMetric,hostName) {
+    $(document).ready(function () {
+        $("#addInstMetric").addClass('hidden');
+        $("#addInstMetric").addClass('hidden');
+        $("#AddInstTitle").addClass('hidden');
+        $("#editInstMetric").removeClass('hidden');
+        $("#EditInstTitle").removeClass('hidden');
+
+        $("input[name='Title']").val(InstanceMetric.title);
+        $("input[name='query']").val(InstanceMetric.command);
+        $("input[name='minValue']").val(InstanceMetric.minValue);
+        $("input[name='maxValue']").val(InstanceMetric.maxValue);
+        $("input[name='id']").val(InstanceMetric.id);
+
+
+        $.getJSON('/getHostsTempl', function (hostTempl) {
+            $("#tohost").empty();
+            $("#tohost").append('<li id="tohostMenu"><a required="required" id="tohostValue" href="#">'+hostName+'</a></li>');
+            a = $("#tohostMenu").append('<ul id="tohostnonemenu"></ul>');
+            $.each(hostTempl.hosts, function (key, values) {
+                $("#tohostnonemenu").append('<li class="tohostselect" hostname="' + values.name + '" hostId="' + values.id + '"><a href="#">' + values.name + '</a></li>');
+            });
+
+            $("#templMetric").empty();
+            $("#templMetric").append('<li id="templMetricMenu"><a id="templMetricValue" href="#">'+InstanceMetric.title+'</a></li>');
+            a = $("#templMetricMenu").append('<ul id="templMetricnonemenu"></ul>');
+            $.each(hostTempl.templateMetrics, function (key, values) {
+                $("#templMetricnonemenu").append('<li class="templMetricselect" metricTitle="' + values.title + '" metricQuery="' + values.command + '" metricId="' + values.id + '"><a href="#">' + values.title + '</a></li>');
+            });
+        });
+
+
+        $("#editInstMetric").click(function () {
+            if ($("#templMetricValue").attr('metricId') != null) {
+                $.getJSON('/editInstMetric?'
+                    + 'id=' + $("input[name='id']").val()
+                    + '&templId=' + $("#templMetricValue").attr('metricId')
+                    + '&hostId=' + $("#tohostValue").attr('hostId')
+                    + '&title=' + $("input[name='Title']").val()
+                    + '&command=' + $("input[name='query']").val()
+                    + '&minValue=' + $("input[name='minValue']").val()
+                    + '&maxValue=' + $("input[name='maxValue']").val()
+                    , function (host) {
+                        window.location.href = "/alarms";
+                    });
+            } else {
+                $.getJSON('/editInstMetric?'
+                    + 'id=' + $("input[name='id']").val()
+                    + '&hostId=' + $("#tohostValue").attr('hostId')
+                    + '&title=' + $("input[name='Title']").val()
+                    + '&command=' + $("input[name='query']").val()
+                    + '&minValue=' + $("input[name='minValue']").val()
+                    + '&maxValue=' + $("input[name='maxValue']").val()
+                    , function (host) {
+                        window.location.href = "/alarms";
+                    });
+            }
+        });
+
+
+    });
+
+}
+function addInstMetric(instMetricId) {
+    $(document).ready(function () {
+        $.getJSON('/getHostsTempl', function (hostTempl) {
+            $("#tohost").empty();
+            $("#tohost").append('<li id="tohostMenu"><a required="required" id="tohostValue" href="#"></a></li>');
+            a = $("#tohostMenu").append('<ul id="tohostnonemenu"></ul>');
+            $.each(hostTempl.hosts, function (key, values) {
+                $("#tohostnonemenu").append('<li class="tohostselect" hostname="' + values.name + '" hostId="' + values.id + '"><a href="#">' + values.name + '</a></li>');
+            });
+
+            $("#templMetric").empty();
+            $("#templMetric").append('<li id="templMetricMenu"><a id="templMetricValue" href="#"></a></li>');
+            a = $("#templMetricMenu").append('<ul id="templMetricnonemenu"></ul>');
+            $.each(hostTempl.templateMetrics, function (key, values) {
+                $("#templMetricnonemenu").append('<li class="templMetricselect" metricTitle="' + values.title + '" metricQuery="' + values.command + '" metricId="' + values.id + '"><a href="#">' + values.title + '</a></li>');
+            });
+        });
+        $("#addInstMetric").removeClass('hidden');
+        $("AddInstTitle").removeClass('hidden');
+        $("#editInstMetric").addClass('hidden');
+        $("#EditInstTitle").addClass('hidden');
+
+
+        $("#addInstMetric").click(function () {
+            if ($("#templMetricValue").attr('metricId') != null) {
+                $.getJSON('/saveNewInstMetric?'
+                    + 'templId=' + $("#templMetricValue").attr('metricId')
+                    + '&hostId=' + $("#tohostValue").attr('hostId')
+                    + '&title=' + $("input[name='Title']").val()
+                    + '&command=' + $("input[name='query']").val()
+                    + '&minValue=' + $("input[name='minValue']").val()
+                    + '&maxValue=' + $("input[name='maxValue']").val()
+                    , function (host) {
+                        window.location.href = "/alarms";
+                    });
+            } else {
+                $.getJSON('/saveNewInstMetric?'
+                    + 'hostId=' + $("#tohostValue").attr('hostId')
+                    + '&title=' + $("input[name='Title']").val()
+                    + '&command=' + $("input[name='query']").val()
+                    + '&minValue=' + $("input[name='minValue']").val()
+                    + '&maxValue=' + $("input[name='maxValue']").val()
+                    , function (host) {
+                        window.location.href = "/alarms";
+                    });
+            }
+        });
+
+
+    });
+}
+
 
 //TODO: alarms
 function dropDownMenuAlarms() {
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('.ddmenu').hover(function () {
-            clearTimeout($.data(this,'timer'));
-            $('ul',this).stop(true,true).slideDown(200);
+            clearTimeout($.data(this, 'timer'));
+            $('ul', this).stop(true, true).slideDown(200);
         }, function () {
-            $.data(this,'timer', setTimeout($.proxy(function() {
-                $('ul',this).stop(true,true).slideUp(200);
+            $.data(this, 'timer', setTimeout($.proxy(function () {
+                $('ul', this).stop(true, true).slideUp(200);
             }, this), 100));
         });
 
     });
 }
+function addAlarmsModal() {
+    $(document).ready(function () {
+        $('.openAddAlamr').click(function () {
+            $.getJSON('/getNewAlarm', function (alarm) {
+                $("#hosts").empty();
+                $("#hosts").append('<li id="hostsMenu"><a id="hostsValue" href="#"></a></li>');
+                a = $("#hostsMenu").append('<ul id="hostnonemenu"></ul>');
+                $.each(alarm.hosts, function (key, values) {
+                    $("#hostnonemenu").append('<li class="hostselect" hostid="' + values.id + '" hostname="' + values.name + '"><a href="#">' + values.name + '</a></li>');
+                });
+                $("#metrics").empty();
+                $("#metrics").append('<li id="metricsMenu"><a id="metricValue" href="#"></a></li>');
+                a = $("#metricsMenu").append('<ul id="metricsnonemenu"></ul>');
+                $.each(alarm.instanceMetrics, function (key, values) {
+                    $("#metricsnonemenu").append('<li class="metricselect" metricId="' + values.id + '" metricTitle="' + values.title + '"><a href="#">' + values.title + '</a></li>');
+                });
+                $("#tohost").empty();
+                $("#tohost").append('<li id="tohostMenu"><a id="tohostValue" href="#"></a></li>');
+                a = $("#tohostMenu").append('<ul id="tohostnonemenu"></ul>');
+                $.each(alarm.hosts, function (key, values) {
+                    $("#tohostnonemenu").append('<li class="tohostselect" hostname="' + values.name + '" hostId="' + values.id + '"><a href="#">' + values.name + '</a></li>');
+                });
+                $("#touser").empty();
+                $("#touser").append('<li id="touserMenu"><a id="touservalue" href="#"></a></li>');
+                a = $("#touserMenu").append('<ul id="tousernonemenu"></ul>');
+                $.each(alarm.allUsers, function (key, values) {
+                    $("#tousernonemenu").append('<li class="touserselect" username="' + values + '"><a href="#">' + values + '</a></li>');
+                });
+
+
+                $("#saveAlarm").addClass('hidden');
+                $("#addAlarm").removeClass('hidden');
+
+                $('.popup.editAlarm, .overlay.editAlarm').css({'opacity': 1, 'visibility': 'visible'});
+                e.preventDefault();
+            });
+        });
+
+
+        $("#addAlarm").click(function () {
+            $.getJSON('/addAlarm?'
+                + 'toEmail=' + $("input[name='toEmail']").val()
+                + '&toUser=' + $("#touservalue").html()
+                + '&metricId=' + $("#metricValue").attr('metricId')
+                + '&hostId=' + $("#tohostValue").attr('hostId')
+                + '&user=' + username
+                , function (host) {
+                    window.location.href = "/alarms";
+                });
+            $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
+        });
+    });
+}
 function editAlarmsModal() {
     $(document).ready(function () {
+
+        $('.dellAlarm').click(function () {
+            $.getJSON('/dellAlarms?id=' + $(this).attr('dellAlarm'), function (alarm) {
+                window.location.href = "/alarms";
+            });
+        });
+
+        $('body').on('click', '.hostselect', function () {
+            var hostId = $(this).attr('hostid');
+            $("#hostsValue").html($(this).attr('hostname'));
+            $.getJSON('/getInstanceMetrics?hostId=' + hostId, function (instanceMetrics) {
+                $("#metrics").empty();
+                $("#metrics").append('<li id="metricsMenu"><a id="metricValue" href="#"></a></li>');
+                a = $("#metricsMenu").append('<ul id="metricsnonemenu"></ul>');
+                $.each(instanceMetrics, function (key, values) {
+                    $("#metricsnonemenu").append('<li class="metricselect" metricId="' + values.id + '" metricTitle="' + values.title + '""><a href="#">' + values.title + '</a></li>');
+                });
+            });
+        });
+        $('body').on('click', '.metricselect', function () {
+            $("#metricValue").html($(this).attr('metricTitle'));
+            $("#metricValue").attr('metricId', $(this).attr('metricId'));
+        });
+        $('body').on('click', '.tohostselect', function () {
+            $("#tohostValue").html($(this).attr('hostname'));
+            $("#tohostValue").attr('hostId', $(this).attr('hostid'));
+        });
+        $('body').on('click', '.touserselect', function () {
+            $("#touservalue").html($(this).attr('username'));
+        });
+
+
         //Edit
         $('.open_window').click(function (e) {
             $.getJSON('/getAlarm?id=' + $(this).parent().parent().parent().attr('id'), function (alarm) {
-                //console.log(host.name+"-"+host.host);
                 $("input[name='id']").val(alarm.id);
                 $("input[name='toEmail']").val(alarm.toEmail);
-
-                $("#metrics").empty();
-                $("#metrics").append('<li id="metricsMenu"><a id="roleValue" href="#">'+alarm.serviceTitle+'</a></li>');
-                a = $("#metricsMenu").append('<ul id="metricsnonemenu"></ul>');
-                $.each(alarm.instanceMetrics, function (key, values) {
-                    $("#metricsnonemenu").append('<li class="roleselect" hostid="'+values.id+'"><a href="#">'+values.title+'</a></li>');
-                });
-
-
                 $("#hosts").empty();
-                $("#hosts").append('<li id="hostsMenu"><a id="roleValue" href="#">'+alarm.fromHost+'</a></li>');
+                $("#hosts").append('<li id="hostsMenu"><a id="hostsValue" href="#">' + alarm.fromHost + '</a></li>');
                 a = $("#hostsMenu").append('<ul id="hostnonemenu"></ul>');
                 $.each(alarm.hosts, function (key, values) {
-                    $("#hostnonemenu").append('<li class="roleselect" hostid="'+values.id+'"><a href="#">'+values.name+'</a></li>');
+                    $("#hostnonemenu").append('<li class="hostselect" hostid="' + values.id + '" hostname="' + values.name + '"><a href="#">' + values.name + '</a></li>');
                 });
-
-
+                $("#metrics").empty();
+                $("#metrics").append('<li id="metricsMenu"><a id="metricValue" href="#">' + alarm.serviceTitle + '</a></li>');
+                a = $("#metricsMenu").append('<ul id="metricsnonemenu"></ul>');
+                $.each(alarm.instanceMetrics, function (key, values) {
+                    $("#metricsnonemenu").append('<li class="metricselect" metricId="' + values.id + '" metricTitle="' + values.title + '"><a href="#">' + values.title + '</a></li>');
+                });
                 $("#tohost").empty();
-                $("#tohost").append('<li id="tohostMenu"><a id="roleValue" href="#">'+alarm.hostName+'</a></li>');
+                $("#tohost").append('<li id="tohostMenu"><a id="tohostValue" href="#"  hostId="' + alarm.hostId + '">' + alarm.hostName + '</a></li>');
                 a = $("#tohostMenu").append('<ul id="tohostnonemenu"></ul>');
                 $.each(alarm.hosts, function (key, values) {
-                    $("#tohostnonemenu").append('<li class="roleselect" hostid="'+values.id+'"><a href="#">'+values.name+'</a></li>');
+                    $("#tohostnonemenu").append('<li class="tohostselect" hostname="' + values.name + '" hostId="' + values.id + '"><a href="#">' + values.name + '</a></li>');
                 });
-
-
-
                 $("#touser").empty();
-                $("#touser").append('<li id="touserMenu"><a id="roleValue" href="#">'+alarm.toUser+'</a></li>');
+                $("#touser").append('<li id="touserMenu"><a id="touservalue" href="#">' + alarm.toUser + '</a></li>');
                 a = $("#touserMenu").append('<ul id="tousernonemenu"></ul>');
                 $.each(alarm.allUsers, function (key, values) {
-                    $("#tousernonemenu").append('<li class="roleselect" hostid="'+values+'"><a href="#">'+values+'</a></li>');
+                    $("#tousernonemenu").append('<li class="touserselect" username="' + values + '"><a href="#">' + values + '</a></li>');
                 });
-
-
-
-
-
-
+                $("#saveAlarm").removeClass('hidden');
+                $("#addAlarm").addClass('hidden');
                 $('.popup.editAlarm, .overlay.editAlarm').css({'opacity': 1, 'visibility': 'visible'});
                 e.preventDefault();
             });
         });
         $("#saveAlarm").click(function () {
             $.getJSON('/saveAlarm?id=' + $("input[name='id']").val()
-                +'&title='+$("input[name='Title']").val()
-                +'&command='+$("input[name='Command']").val()
-                +'&minValue='+$("input[name='Min Value']").val()
-                +'&maxValue='+$("input[name='Max Value']").val()
+                + '&toEmail=' + $("input[name='toEmail']").val()
+                + '&toUser=' + $("#touservalue").html()
+                + '&metricId=' + $("#metricValue").attr('metricId')
+                + '&hostId=' + $("#tohostValue").attr('hostId')
                 , function (host) {
+                    window.location.href = "/alarms";
                 });
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
-            window.location.href = "/alarms";
         });
 
 
@@ -87,33 +295,20 @@ function editAlarmsModal() {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 //TODO: Модальные окна редактирования accounts
 
 function dropDownMenuAccounts() {
-    $(document).ready(function(){
+    $(document).ready(function () {
         //$('a').on('click', function(e){
         //    e.preventDefault();
         //});
 
         $('#ddmenu').hover(function () {
-            clearTimeout($.data(this,'timer'));
-            $('ul',this).stop(true,true).slideDown(200);
+            clearTimeout($.data(this, 'timer'));
+            $('ul', this).stop(true, true).slideDown(200);
         }, function () {
-            $.data(this,'timer', setTimeout($.proxy(function() {
-                $('ul',this).stop(true,true).slideUp(200);
+            $.data(this, 'timer', setTimeout($.proxy(function () {
+                $('ul', this).stop(true, true).slideUp(200);
             }, this), 100));
         });
 
@@ -125,7 +320,7 @@ function modalAccounts() {
         //$('.popup.accounts, .overlay.accounts').css({'opacity': 1, 'visibility': 'visible'});
         var a;
         $('body').on('click', '.roleselect', function () {
-            var role=$(this).attr('role');
+            var role = $(this).attr('role');
             $("#roleValue").html(role);
         });
 
@@ -138,11 +333,11 @@ function modalAccounts() {
                 //$("input[name='Role']").val(user.role);
 
                 $("#ddmenu").empty();
-                $("#ddmenu").append('<li id="mainDdmenu"><a id="roleValue" href="#">'+user.role+'</a></li>');
+                $("#ddmenu").append('<li id="mainDdmenu"><a id="roleValue" href="#">' + user.role + '</a></li>');
 
                 a = $("#mainDdmenu").append('<ul id="noneMenu"></ul>');
                 $.each(user.allRoles, function (key, values) {
-                    $("#noneMenu").append('<li class="roleselect" role="'+values+'"><a href="#">'+values+'</a></li>');
+                    $("#noneMenu").append('<li class="roleselect" role="' + values + '"><a href="#">' + values + '</a></li>');
                 });
 
                 $('.popup.accounts, .overlay.accounts').css({'opacity': 1, 'visibility': 'visible'});
@@ -151,9 +346,9 @@ function modalAccounts() {
         });
         $("#saveAccount").click(function () {
             $.getJSON('/saveAccount?id=' + $("input[name='id']").val()
-                +'&username='+$("input[name='Username']").val()
-                +'&password='+$("input[name='Password']").val()
-                +'&role='+$("#roleValue").html()
+                + '&username=' + $("input[name='Username']").val()
+                + '&password=' + $("input[name='Password']").val()
+                + '&role=' + $("#roleValue").html()
                 , function (host) {
                 });
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
@@ -168,24 +363,6 @@ function modalAccounts() {
 
     });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //TODO: Модальные окна редактирования templ
@@ -201,18 +378,17 @@ function modalTemplMetirc() {
         });
 
 
-
         //Add
         $('.openAddTemplate').click(function (e) {
-                $('.popup.addtemplMetric, .overlay.addtemplMetric').css({'opacity': 1, 'visibility': 'visible'});
-                e.preventDefault();
+            $('.popup.addtemplMetric, .overlay.addtemplMetric').css({'opacity': 1, 'visibility': 'visible'});
+            e.preventDefault();
         });
         $("#addTemplMetric").click(function () {
             $.getJSON('/addTemplMetric?id=' + $("input[name='sid']").val()
-                +'&title='+$("input[name='sTitle']").val()
-                +'&command='+$("input[name='sCommand']").val()
-                +'&minValue='+$("input[name='sMin Value']").val()
-                +'&maxValue='+$("input[name='sMax Value']").val()
+                + '&title=' + $("input[name='sTitle']").val()
+                + '&command=' + $("input[name='sCommand']").val()
+                + '&minValue=' + $("input[name='sMin Value']").val()
+                + '&maxValue=' + $("input[name='sMax Value']").val()
                 , function (host) {
                 });
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
@@ -236,10 +412,10 @@ function modalTemplMetirc() {
         });
         $("#saveTemplMetric").click(function () {
             $.getJSON('/saveTemplMetric?id=' + $("input[name='id']").val()
-                +'&title='+$("input[name='Title']").val()
-                +'&command='+$("input[name='Command']").val()
-                +'&minValue='+$("input[name='Min Value']").val()
-                +'&maxValue='+$("input[name='Max Value']").val()
+                + '&title=' + $("input[name='Title']").val()
+                + '&command=' + $("input[name='Command']").val()
+                + '&minValue=' + $("input[name='Min Value']").val()
+                + '&maxValue=' + $("input[name='Max Value']").val()
                 , function (host) {
                 });
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
@@ -256,111 +432,95 @@ function modalTemplMetirc() {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //TODO: Модальные окна редактирования хостов
 
+//$("#tohostValue").html($(this).attr('hostname'));
+//$("#tohostValue").attr('hostId', $(this).attr('hostid'));
 function modalEditHostMetrics() {
     $(document).ready(function () {
+        $('body').on('click', '.editInstMetric', function () {
+            window.location.href = "/instMetric?instMetricId=" + $(this).attr('instMetricId');
+        });
+        $('body').on('click', '.editTemplMetric', function () {
+            alert($(this).attr('templMetricId'));
+        });
+
         $('.open_inst_metrics').click(function (e) {
             $("#InstanceMetric").empty();
             $("#TemplateMetric").empty();
             $.getJSON('/getInstMetrics?hostid=' + $(this).parent().parent().parent().attr('id'), function (metrics) {
                 $.each(metrics.instanceMetrics, function (key, values) {
-                    $("#InstanceMetric").append('<tr><td>'+values.title+'</td><td><instance hostId="'+metrics.hostId+'" instMetricId="'+values.id+'" class="fa fa-times fa-lg hovercolorredtext hovercursor"></instance></td></tr>');
+                    $("#InstanceMetric").append('<tr><td class="cursor_pointer editInstMetric"  hostId="' + metrics.hostId + '" instMetricId="' + values.id + '" >' + values.title + '</td><td><instance hostId="' + metrics.hostId + '" instMetricId="' + values.id + '" class="fa fa-times fa-lg hovercolorredtext hovercursor"></instance></td></tr>');
                 });
                 $.each(metrics.templateMetrics, function (key, values) {
-                    $("#TemplateMetric").append('<tr><td>'+values.title+'</td><td><template hostId="'+metrics.hostId+'" templMetricId="'+values.id+'" class="fa fa-check fa-lg hovercolorgreentext hovercursor"></template></td></tr>');
+                    $("#TemplateMetric").append('<tr><td class="cursor_pointer editTemplMetric" hostId="' + metrics.hostId + '" templMetricId="' + values.id + '">' + values.title + '</td><td><template hostId="' + metrics.hostId + '" templMetricId="' + values.id + '" class="fa fa-check fa-lg hovercolorgreentext hovercursor"></template></td></tr>');
                 });
             });
             $('.popup.services, .overlay.services').css({'opacity': 1, 'visibility': 'visible'});
-            $('.popup.services').css({'width':'700px'});
-
+            $('.popup.services').css({'width': '700px'});
 
 
             $('body').on('click', 'template', function () {
                 console.log($(this).attr('templMetricId'));
                 $("#InstanceMetric").empty();
                 $("#TemplateMetric").empty();
-                $.getJSON('/addInstMetric?hostid=' + $(this).attr('hostId')+'&templMetricid='+$(this).attr('templMetricid'), function (metrics) {
+                $.getJSON('/addInstMetric?hostid=' + $(this).attr('hostId') + '&templMetricid=' + $(this).attr('templMetricid'), function (metrics) {
                     $.each(metrics.instanceMetrics, function (key, values) {
-                        $("#InstanceMetric").append('<tr><td>'+values.title+'</td><td><instance hostId="'+metrics.hostId+'" instMetricId="'+values.id+'" class="fa fa-times fa-lg hovercolorredtext hovercursor"></instance></td></tr>');
+                        $("#InstanceMetric").append('<tr><td  class="cursor_pointer editInstMetric"  hostId="' + metrics.hostId + '" instMetricId="' + values.id + '">' + values.title + '</td><td><instance hostId="' + metrics.hostId + '" instMetricId="' + values.id + '" class="fa fa-times fa-lg hovercolorredtext hovercursor"></instance></td></tr>');
                     });
                     $.each(metrics.templateMetrics, function (key, values) {
-                        $("#TemplateMetric").append('<tr><td>'+values.title+'</td><td><template hostId="'+metrics.hostId+'" templMetricId="'+values.id+'" class="fa fa-check fa-lg hovercolorgreentext hovercursor"></template></td></tr>');
+                        $("#TemplateMetric").append('<tr><td  class="cursor_pointer editTemplMetric" hostId="' + metrics.hostId + '" templMetricId="' + values.id + '">' + values.title + '</td><td><template hostId="' + metrics.hostId + '" templMetricId="' + values.id + '" class="fa fa-check fa-lg hovercolorgreentext hovercursor"></template></td></tr>');
                     });
                 });
             });
-
 
 
             $('body').on('click', 'instance', function () {
                 console.log($(this).attr('instMetricId'));
                 $("#InstanceMetric").empty();
                 $("#TemplateMetric").empty();
-                $.getJSON('/dellInstMetric?hostid=' + $(this).attr('hostId')+'&instMetricid='+$(this).attr('instMetricId'), function (metrics) {
+                $.getJSON('/dellInstMetric?hostid=' + $(this).attr('hostId') + '&instMetricid=' + $(this).attr('instMetricId'), function (metrics) {
                     $.each(metrics.instanceMetrics, function (key, values) {
-                        $("#InstanceMetric").append('<tr><td>'+values.title+'</td><td><instance hostId="'+metrics.hostId+'" instMetricId="'+values.id+'" class="fa fa-times fa-lg hovercolorredtext hovercursor"></instance></td></tr>');
+                        $("#InstanceMetric").append('<tr><td  class="cursor_pointer editInstMetric"  hostId="' + metrics.hostId + '" instMetricId="' + values.id + '">' + values.title + '</td><td><instance hostId="' + metrics.hostId + '" instMetricId="' + values.id + '" class="fa fa-times fa-lg hovercolorredtext hovercursor"></instance></td></tr>');
                     });
                     $.each(metrics.templateMetrics, function (key, values) {
-                        $("#TemplateMetric").append('<tr><td>'+values.title+'</td><td><template hostId="'+metrics.hostId+'" templMetricId="'+values.id+'" class="fa fa-check fa-lg hovercolorgreentext hovercursor"></template></td></tr>');
+                        $("#TemplateMetric").append('<tr><td  class="cursor_pointer editTemplMetric" hostId="' + metrics.hostId + '" templMetricId="' + values.id + '">' + values.title + '</td><td><template hostId="' + metrics.hostId + '" templMetricId="' + values.id + '" class="fa fa-check fa-lg hovercolorgreentext hovercursor"></template></td></tr>');
                     });
                 });
             });
         });
 
-        //$('.popup.services, .overlay.services').css({'opacity': 1, 'visibility': 'visible'});
-        //$('.popup.services').css({'width':'700px'});
-        //$("#InstanceMetric").append('<tr><td>getCPU</td><td><i class="fa fa-times fa-lg hovercolorredtext hovercursor"></i></td></tr>');
     });
 
 }
 function modalEditHost() {
 
     $(document).ready(function () {
-            $('.open_window').click(function (e) {
-                $.getJSON('/gethost?hostid=' + $(this).parent().parent().parent().attr('id'), function (host) {
-                    //console.log(host.name+"-"+host.host);
-                    $("input[name='id']").val(host.id);
-                    $("input[name='name']").val(host.name);
-                    $("input[name='host']").val(host.host);
-                    $("input[name='port']").val(host.port);
-                    $("input[name='login']").val(host.login);
-                    $("input[name='password']").val(host.password);
-                    $("input[name='location']").val(host.location);
+        $('.open_window').click(function (e) {
+            $.getJSON('/gethost?hostid=' + $(this).parent().parent().parent().attr('id'), function (host) {
+                //console.log(host.name+"-"+host.host);
+                $("input[name='id']").val(host.id);
+                $("input[name='name']").val(host.name);
+                $("input[name='host']").val(host.host);
+                $("input[name='port']").val(host.port);
+                $("input[name='login']").val(host.login);
+                $("input[name='password']").val(host.password);
+                $("input[name='location']").val(host.location);
 
-                    $('.popup.host, .overlay.host').css({'opacity': 1, 'visibility': 'visible'});
-                    e.preventDefault();
-                });
+                $('.popup.host, .overlay.host').css({'opacity': 1, 'visibility': 'visible'});
+                e.preventDefault();
             });
+        });
         $("#saveHost").click(function () {
             $.getJSON('/saveHost?id=' + $("input[name='id']").val()
-                +'&name='+$("input[name='name']").val()
-                +'&host='+$("input[name='host']").val()
-                +'&port='+$("input[name='port']").val()
-                +'&login='+$("input[name='login']").val()
-                +'&password='+$("input[name='password']").val()
-                +'&location='+$("input[name='location']").val()
+                + '&name=' + $("input[name='name']").val()
+                + '&host=' + $("input[name='host']").val()
+                + '&port=' + $("input[name='port']").val()
+                + '&login=' + $("input[name='login']").val()
+                + '&password=' + $("input[name='password']").val()
+                + '&location=' + $("input[name='location']").val()
                 , function (host) {
-            });
+                });
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
             window.location.href = "/hostedit";
         });
@@ -370,70 +530,62 @@ function modalEditHost() {
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
             window.location.href = "/hostedit";
         });
-    //    $('.open_window').click(function (e) {
-    //        $('.popup, .overlay').css({'opacity': 1, 'visibility': 'visible'});
-    //        e.preventDefault();
-    //    });
+        //    $('.open_window').click(function (e) {
+        //        $('.popup, .overlay').css({'opacity': 1, 'visibility': 'visible'});
+        //        e.preventDefault();
+        //    });
     });
 }
 
 
-
-
-
-
-
-
-
-
 function dellAlarm(id) {
-    console.log('dellAlarm where id= '+id);
-    $.getJSON('/dellAlarm?id='+id+'&userName='+username, function (data) {
+    console.log('dellAlarm where id= ' + id);
+    $.getJSON('/dellAlarm?id=' + id + '&userName=' + username, function (data) {
         $("#dropdown-menu").empty();
         $("#dropdown-menu-length").empty();
         $("#dropdown-menu-length").append(Object.keys(data).length);
-        $.each(data, function (key,values) {
-            if(values.type=="error"){
-                $("#dropdown-menu").append('<li><a href="#"><b class="label label-warning label-min fa fa-frown-o white-text fa-lg">&nbsp;</b>'+values.message+'' +
-                '<b1 idalarm="'+values.id+'"  class="dropdown-menu-right fa fa-times fa-lg"></b1></a></li>');
-            }else{
-                $("#dropdown-menu").append('<li><a href="#"><b class="label label-success label-min fa fa-smile-o white-text fa-lg">&nbsp;</b>'+values.message+'' +
-                '<b1  idalarm="'+values.id+'"  class="dropdown-menu-right fa fa-times fa-lg"></b1></a></li>');
+        $.each(data, function (key, values) {
+            if (values.type == "error") {
+                $("#dropdown-menu").append('<li><a href="#"><b class="label label-warning label-min fa fa-frown-o white-text fa-lg">&nbsp;</b>' + values.message + '' +
+                '<b1 idalarm="' + values.id + '"  class="dropdown-menu-right fa fa-times fa-lg"></b1></a></li>');
+            } else {
+                $("#dropdown-menu").append('<li><a href="#"><b class="label label-success label-min fa fa-smile-o white-text fa-lg">&nbsp;</b>' + values.message + '' +
+                '<b1  idalarm="' + values.id + '"  class="dropdown-menu-right fa fa-times fa-lg"></b1></a></li>');
             }
         });
     });
 }
 function checking() {
-        console.log('checking');
-        $.getJSON('/getAlarms?userName='+username, function (data) {
-            $("#dropdown-menu").empty();
-            $("#dropdown-menu-length").empty();
-            $("#dropdown-menu-length").append(Object.keys(data).length);
-            $.each(data, function (key,values) {
-                if(values.type=="error"){
-                    $("#dropdown-menu").append('<li><a href="#"><b class="label label-warning label-min fa fa-frown-o white-text fa-lg">&nbsp;</b>'+values.message+'' +
-                    '<b1 idalarm="'+values.id+'"  class="dropdown-menu-right fa fa-times fa-lg"></b1></a></li>');
-                }else{
-                    $("#dropdown-menu").append('<li><a href="#"><b class="label label-success label-min fa fa-smile-o white-text fa-lg">&nbsp;</b>'+values.message+'' +
-                    '<b1  idalarm="'+values.id+'"  class="dropdown-menu-right fa fa-times fa-lg"></b1></a></li>');
-                }
-            });
+    //console.log('checking');
+    $.getJSON('/getAlarms?userName=' + username, function (data) {
+        $("#dropdown-menu").empty();
+        $("#dropdown-menu-length").empty();
+        $("#dropdown-menu-length").append(Object.keys(data).length);
+        $.each(data, function (key, values) {
+            if (values.type == "error") {
+                $("#dropdown-menu").append('<li><a href="#"><b class="label label-warning label-min fa fa-frown-o white-text fa-lg">&nbsp;</b>' + values.message + '' +
+                '<b1 idalarm="' + values.id + '"  class="dropdown-menu-right fa fa-times fa-lg"></b1></a></li>');
+            } else {
+                $("#dropdown-menu").append('<li><a href="#"><b class="label label-success label-min fa fa-smile-o white-text fa-lg">&nbsp;</b>' + values.message + '' +
+                '<b1  idalarm="' + values.id + '"  class="dropdown-menu-right fa fa-times fa-lg"></b1></a></li>');
+            }
         });
+    });
 }
 function start_checking() {
-    setTimeout(function(){
-        console.log('checking');
-        $.getJSON('/getAlarms?userName='+username, function (data) {
+    setTimeout(function () {
+        //console.log('checking');
+        $.getJSON('/getAlarms?userName=' + username, function (data) {
             $("#dropdown-menu").empty();
             $("#dropdown-menu-length").empty();
             $("#dropdown-menu-length").append(Object.keys(data).length);
-            $.each(data, function (key,values) {
-                if(values.type=="error"){
-                    $("#dropdown-menu").append('<li><a href="#"><b class="label label-warning label-min fa fa-frown-o white-text fa-lg">&nbsp;</b>'+values.message+'' +
-                    '<b1 idalarm="'+values.id+'"  class="lol dropdown-menu-right fa fa-times fa-lg"></b1></a></li>');
-                }else{
-                    $("#dropdown-menu").append('<li><a href="#"><b class="label label-success label-min fa fa-smile-o white-text fa-lg">&nbsp;</b>'+values.message+'' +
-                    '<b1 idalarm="'+values.id+'"  class="dropdown-menu-right fa fa-times fa-lg"></b1></a></li>');
+            $.each(data, function (key, values) {
+                if (values.type == "error") {
+                    $("#dropdown-menu").append('<li><a href="#"><b class="label label-warning label-min fa fa-frown-o white-text fa-lg">&nbsp;</b>' + values.message + '' +
+                    '<b1 idalarm="' + values.id + '"  class="lol dropdown-menu-right fa fa-times fa-lg"></b1></a></li>');
+                } else {
+                    $("#dropdown-menu").append('<li><a href="#"><b class="label label-success label-min fa fa-smile-o white-text fa-lg">&nbsp;</b>' + values.message + '' +
+                    '<b1 idalarm="' + values.id + '"  class="dropdown-menu-right fa fa-times fa-lg"></b1></a></li>');
                 }
             });
         });
@@ -456,7 +608,6 @@ function hideShowHostListContent(name) {
         username = name;
         checking();
         start_checking();
-
 
 
         $('body').on('click', 'b1', function () {
@@ -490,7 +641,7 @@ function hideShowHostListContent(name) {
             $(this).children('i').toggleClass('fa-angle-down');
             $(this).parent().children('table').toggleClass('hidden');
         });
-        console.log(name);
+        //console.log(name);
 
     });
 }

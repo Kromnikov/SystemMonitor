@@ -16,6 +16,14 @@ public interface IMetricStorage {
 
     public AlarmRow getAlarm(int id) throws SQLException;
 
+    public AlarmRow getNewAlarm() throws SQLException;
+
+    public void updateAlarm(int id, int serviseId, int hostId, String toEmail, String toUser);
+
+    public void addAlarm(int serviseId, int hostId, String toEmail, String toUser, String user);
+
+    public void dellAlarm(int id);
+
 
     //sql
     //metric-state
@@ -140,6 +148,12 @@ public interface IMetricStorage {
     //metrics-host
 
     public void addInstMetric(int host, int metric) throws SQLException;
+
+    public void addInstMetric(InstanceMetric instanceMetric) throws SQLException;
+
+    public void editInstMetric(int id, int hostId, int templMetricId, String title, String command, double minValue, double maxValue) throws SQLException;
+
+    public InstanceMetric getInstMetric(int instMetricId) throws SQLException;
 
 
     public List<InstanceMetric> getInstMetrics(int hostId) throws SQLException;
