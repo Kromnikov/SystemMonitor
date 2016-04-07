@@ -96,7 +96,7 @@
             <ul class="sub-menu collapse" id="new">
                 <a class="white-text" th:href="hostedit" ><li>Host Editor</li></a>
                 <a class="white-text" th:href="optionsInstance" ><li>Instance Metrics</li></a>
-                <a class="white-text" th:href="options" ><li>Temolet Metrics</li></a>
+                <a class="white-text" th:href="options" ><li>Templet Metrics</li></a>
                 <a class="white-text" th:href="editIntsMetrics" ><li>Services</li></a>
                 <a class="white-text" th:href="accaunts" ><li>Accaunts</li></a>
             </ul>
@@ -120,18 +120,21 @@
         </div>
 
         <div class="register-box-body">
-            <form action="#" th:action="@{/templates/hosts}" method="post">
+            <form action="#" th:action="@{/hosts}" method="post">
                 <div class="form-group has-feedback">
-
                     <input type="text" class="form-control" placeholder="Host name" name="hostName" required="required"/>
                     <span class=" fa fa-home form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <input type="email" class="form-control" placeholder="Port" name="port" required="required"/>
+                    <input type="text" class="form-control" placeholder="Host IP" name="hostIP" required="required"/>
+                    <span class=" fa fa-home form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control" placeholder="Port" name="port" required="required"/>
                     <span class=" fa fa-code-fork  form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="Login" name="login" required="required" />
+                    <input type="test" class="form-control" placeholder="Login" name="login" required="required" />
                     <span class=" fa fa-puzzle-piece form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">

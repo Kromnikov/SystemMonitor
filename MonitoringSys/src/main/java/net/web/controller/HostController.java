@@ -260,8 +260,15 @@ public class HostController {
     }
 
     @RequestMapping(value = "/hosts", params = {"saveHost"}, method = RequestMethod.POST)
-    public String saveHost(String hostName, String port, String login, String password) throws SQLException {
-        hosts.save(new SSHConfiguration(hostName, Integer.parseInt(port), login, password));
+    public String saveHost(String hostName, String port, String login, String password, String hostIP, String location) throws SQLException {
+        SSHConfiguration host = new SSHConfiguration();
+        host.setHost(hostIP);
+        host.setName(hostName);
+        host.setLogin(login);
+        host.setPassword(password);
+        host.setLocation(location);
+        host.setPort(Integer.parseInt(port));
+        hosts.save(host);
         return "redirect:/hosts";
     }
 
