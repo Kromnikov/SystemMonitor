@@ -38,7 +38,14 @@
     <link href="../static/css/style-responsive.css" rel="stylesheet" th:href="@{css/style-responsive.css}"/>
 
     <script th:inline="javascript">
+        var templMetric = [[${templMetric}]];
         modalTemplMetirc();
+        if(templMetric != null){
+            loadPageWithtModal(templMetric);
+        }
+        else{
+            loadPageWithoutModal();
+        }
         var username = [[${username}]];
         setHostName(username);
     </script>

@@ -41,11 +41,11 @@
 
     <script th:inline="javascript">
         var InstanceMetric = [[${InstanceMetric}]];
-        var hostName = [[${hostName}]];
+        var host = [[${host}]];
         if(InstanceMetric!=null) {
-            editInstMetric(InstanceMetric,hostName);
+            editInstMetric(InstanceMetric,host);
         }else {
-            addInstMetric();
+            addInstMetric(host);
         }
 
         dropDownMenuAlarms();

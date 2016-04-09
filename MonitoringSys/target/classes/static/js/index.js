@@ -21,7 +21,7 @@ function instMetricPageFunctions() {
     });
 
 }
-function editInstMetric(InstanceMetric,hostName) {
+function editInstMetric(InstanceMetric,host) {
     $(document).ready(function () {
         $("#addInstMetric").addClass('hidden');
         $("#addInstMetric").addClass('hidden');
@@ -38,9 +38,10 @@ function editInstMetric(InstanceMetric,hostName) {
 
         $.getJSON('/getHostsTempl', function (hostTempl) {
             $("#tohost").empty();
-            $("#tohost").append('<li id="tohostMenu"><a required="required" id="tohostValue" href="#">'+hostName+'</a></li>');
+            $("#tohost").append('<li id="tohostMenu"><a required="required" id="tohostValue" href="#"  hostId="' + host.id + '">'+host.name+'</a></li>');
             a = $("#tohostMenu").append('<ul id="tohostnonemenu"></ul>');
             $.each(hostTempl.hosts, function (key, values) {
+                console.log(values.id );
                 $("#tohostnonemenu").append('<li class="tohostselect" hostname="' + values.name + '" hostId="' + values.id + '"><a href="#">' + values.name + '</a></li>');
             });
 
@@ -84,11 +85,11 @@ function editInstMetric(InstanceMetric,hostName) {
     });
 
 }
-function addInstMetric(instMetricId) {
+function addInstMetric(host) {
     $(document).ready(function () {
         $.getJSON('/getHostsTempl', function (hostTempl) {
             $("#tohost").empty();
-            $("#tohost").append('<li id="tohostMenu"><a required="required" id="tohostValue" href="#"></a></li>');
+            $("#tohost").append('<li id="tohostMenu"><a required="required" id="tohostValue" href="#"  hostId="' + host.id + '">'+host.name+'</a></li>');
             a = $("#tohostMenu").append('<ul id="tohostnonemenu"></ul>');
             $.each(hostTempl.hosts, function (key, values) {
                 $("#tohostnonemenu").append('<li class="tohostselect" hostname="' + values.name + '" hostId="' + values.id + '"><a href="#">' + values.name + '</a></li>');
@@ -366,6 +367,36 @@ function modalAccounts() {
 
 
 //TODO: Модальные окна редактирования templ
+function loadPageWithtModal(templMetric) {
+    $(document).ready(function () {
+            $("input[name='id']").val(templMetric.id);
+            $("input[name='Title']").val(templMetric.title);
+            $("input[name='Command']").val(templMetric.command);
+            $("input[name='Min Value']").val(templMetric.minValue);
+            $("input[name='Max Value']").val(templMetric.maxValue);
+
+            $('.popup.templMetric, .overlay.templMetric').css({'opacity': 1, 'visibility': 'visible'});
+            e.preventDefault();
+    });
+}
+function loadPageWithoutModal() {
+
+    $(document).ready(function () {
+        $('.open_window').click(function (e) {
+            $.getJSON('/getTemplMetric?metricId=' + $(this).parent().parent().parent().attr('id'), function (templMetric) {
+                //console.log(host.name+"-"+host.host);
+                $("input[name='id']").val(templMetric.id);
+                $("input[name='Title']").val(templMetric.title);
+                $("input[name='Command']").val(templMetric.command);
+                $("input[name='Min Value']").val(templMetric.minValue);
+                $("input[name='Max Value']").val(templMetric.maxValue);
+
+                $('.popup.templMetric, .overlay.templMetric').css({'opacity': 1, 'visibility': 'visible'});
+                e.preventDefault();
+            });
+        });
+    });
+}
 function modalTemplMetirc() {
 
     $(document).ready(function () {
@@ -397,19 +428,7 @@ function modalTemplMetirc() {
 
 
         //Edit
-        $('.open_window').click(function (e) {
-            $.getJSON('/getTemplMetric?metricId=' + $(this).parent().parent().parent().attr('id'), function (templMetric) {
-                //console.log(host.name+"-"+host.host);
-                $("input[name='id']").val(templMetric.id);
-                $("input[name='Title']").val(templMetric.title);
-                $("input[name='Command']").val(templMetric.command);
-                $("input[name='Min Value']").val(templMetric.minValue);
-                $("input[name='Max Value']").val(templMetric.maxValue);
 
-                $('.popup.templMetric, .overlay.templMetric').css({'opacity': 1, 'visibility': 'visible'});
-                e.preventDefault();
-            });
-        });
         $("#saveTemplMetric").click(function () {
             $.getJSON('/saveTemplMetric?id=' + $("input[name='id']").val()
                 + '&title=' + $("input[name='Title']").val()
@@ -442,18 +461,24 @@ function modalEditHostMetrics() {
             window.location.href = "/instMetric?instMetricId=" + $(this).attr('instMetricId');
         });
         $('body').on('click', '.editTemplMetric', function () {
-            alert($(this).attr('templMetricId'));
+            window.location.href = "/templMetrics?id=" + $(this).attr('templMetricId');
         });
 
         $('.open_inst_metrics').click(function (e) {
+            $('#addInsetMetricPage').attr("hostId",$(this).parent().parent().parent().attr('id'));
+
+            $('body').on('click', '#addInsetMetricPage', function () {
+                window.location.href = "/instMetric?hostId=" + $(this).attr('hostId');
+            });
+
             $("#InstanceMetric").empty();
             $("#TemplateMetric").empty();
-            $.getJSON('/getInstMetrics?hostid=' + $(this).parent().parent().parent().attr('id'), function (metrics) {
+            $.getJSON('/getMetricsRow?hostid=' + $(this).parent().parent().parent().attr('id'), function (metrics) {
                 $.each(metrics.instanceMetrics, function (key, values) {
                     $("#InstanceMetric").append('<tr><td class="cursor_pointer editInstMetric"  hostId="' + metrics.hostId + '" instMetricId="' + values.id + '" >' + values.title + '</td><td><instance hostId="' + metrics.hostId + '" instMetricId="' + values.id + '" class="fa fa-times fa-lg hovercolorredtext hovercursor"></instance></td></tr>');
                 });
                 $.each(metrics.templateMetrics, function (key, values) {
-                    $("#TemplateMetric").append('<tr><td class="cursor_pointer editTemplMetric" hostId="' + metrics.hostId + '" templMetricId="' + values.id + '">' + values.title + '</td><td><template hostId="' + metrics.hostId + '" templMetricId="' + values.id + '" class="fa fa-check fa-lg hovercolorgreentext hovercursor"></template></td></tr>');
+                    $("#TemplateMetric").append('<tr><td class="cursor_pointer editTemplMetric" hostId="' + metrics.hostId + '" templMetricId="' + values.id + '">' + values.title + '</td><td><template hostId="' + metrics.hostId + '" templMetricId="' + values.id + '" class="fa fa-plus fa-lg hovercolorgreentext hovercursor"></template></td></tr>');
                 });
             });
             $('.popup.services, .overlay.services').css({'opacity': 1, 'visibility': 'visible'});
@@ -464,12 +489,12 @@ function modalEditHostMetrics() {
                 console.log($(this).attr('templMetricId'));
                 $("#InstanceMetric").empty();
                 $("#TemplateMetric").empty();
-                $.getJSON('/addInstMetric?hostid=' + $(this).attr('hostId') + '&templMetricid=' + $(this).attr('templMetricid'), function (metrics) {
+                $.getJSON('/moveToInstMetric?hostid=' + $(this).attr('hostId') + '&templMetricid=' + $(this).attr('templMetricid'), function (metrics) {
                     $.each(metrics.instanceMetrics, function (key, values) {
                         $("#InstanceMetric").append('<tr><td  class="cursor_pointer editInstMetric"  hostId="' + metrics.hostId + '" instMetricId="' + values.id + '">' + values.title + '</td><td><instance hostId="' + metrics.hostId + '" instMetricId="' + values.id + '" class="fa fa-times fa-lg hovercolorredtext hovercursor"></instance></td></tr>');
                     });
                     $.each(metrics.templateMetrics, function (key, values) {
-                        $("#TemplateMetric").append('<tr><td  class="cursor_pointer editTemplMetric" hostId="' + metrics.hostId + '" templMetricId="' + values.id + '">' + values.title + '</td><td><template hostId="' + metrics.hostId + '" templMetricId="' + values.id + '" class="fa fa-check fa-lg hovercolorgreentext hovercursor"></template></td></tr>');
+                        $("#TemplateMetric").append('<tr><td  class="cursor_pointer editTemplMetric" hostId="' + metrics.hostId + '" templMetricId="' + values.id + '">' + values.title + '</td><td><template hostId="' + metrics.hostId + '" templMetricId="' + values.id + '" class="fa fa-plus fa-lg hovercolorgreentext hovercursor"></template></td></tr>');
                     });
                 });
             });
@@ -479,12 +504,12 @@ function modalEditHostMetrics() {
                 console.log($(this).attr('instMetricId'));
                 $("#InstanceMetric").empty();
                 $("#TemplateMetric").empty();
-                $.getJSON('/dellInstMetric?hostid=' + $(this).attr('hostId') + '&instMetricid=' + $(this).attr('instMetricId'), function (metrics) {
+                $.getJSON('/moveFromInstMetric?hostid=' + $(this).attr('hostId') + '&instMetricid=' + $(this).attr('instMetricId'), function (metrics) {
                     $.each(metrics.instanceMetrics, function (key, values) {
                         $("#InstanceMetric").append('<tr><td  class="cursor_pointer editInstMetric"  hostId="' + metrics.hostId + '" instMetricId="' + values.id + '">' + values.title + '</td><td><instance hostId="' + metrics.hostId + '" instMetricId="' + values.id + '" class="fa fa-times fa-lg hovercolorredtext hovercursor"></instance></td></tr>');
                     });
                     $.each(metrics.templateMetrics, function (key, values) {
-                        $("#TemplateMetric").append('<tr><td  class="cursor_pointer editTemplMetric" hostId="' + metrics.hostId + '" templMetricId="' + values.id + '">' + values.title + '</td><td><template hostId="' + metrics.hostId + '" templMetricId="' + values.id + '" class="fa fa-check fa-lg hovercolorgreentext hovercursor"></template></td></tr>');
+                        $("#TemplateMetric").append('<tr><td  class="cursor_pointer editTemplMetric" hostId="' + metrics.hostId + '" templMetricId="' + values.id + '">' + values.title + '</td><td><template hostId="' + metrics.hostId + '" templMetricId="' + values.id + '" class="fa fa-plus fa-lg hovercolorgreentext hovercursor"></template></td></tr>');
                     });
                 });
             });

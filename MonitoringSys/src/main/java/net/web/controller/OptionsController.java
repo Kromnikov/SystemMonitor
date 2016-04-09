@@ -86,9 +86,11 @@ public class OptionsController {
 
     //TODO: Контроллер для Templat метрик
     @RequestMapping(value="/templMetrics")
-    public ModelAndView templMetrics() throws SQLException {
+    public ModelAndView templMetrics(@RequestParam(required = false , defaultValue = "-1") int id) throws SQLException {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("getTemplatMetrics",metricStorage.getTemplatMetrics());
+        if(id>0)
+        modelAndView.addObject("templMetric",metricStorage.getTemplateMetric(id));
         modelAndView.setViewName("tempMetrics");
         modelAndView.addObject("username", SecurityContextHolder.getContext().getAuthentication().getName());
         return modelAndView;
@@ -119,7 +121,7 @@ public class OptionsController {
 
     //TODO: Контроллер для Instance метрик
     @RequestMapping(value= "/instMetric")
-    public ModelAndView addInstMetric(@RequestParam(required = false , defaultValue = "-1") int instMetricId) throws SQLException {
+    public ModelAndView addInstMetricPage(@RequestParam(required = false , defaultValue = "-1") int instMetricId,@RequestParam(required = false , defaultValue = "-1") int hostId) throws SQLException {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("InstMetric");
         modelAndView.addObject("username", SecurityContextHolder.getContext().getAuthentication().getName());
@@ -128,8 +130,11 @@ public class OptionsController {
             TemplateMetric templateMetric = metricStorage.getTemplateMetric(instanceMetric.getTempMetrcId());
             modelAndView.addObject("InstanceMetric",instanceMetric);
             modelAndView.addObject("templateMetric",templateMetric);
-            modelAndView.addObject("hostName",hosts.get(instanceMetric.getHostId()).getName() );
+            modelAndView.addObject("host",hosts.get(instanceMetric.getHostId()) );
 //            modelAndView.addObject("instMetricId",instMetricId);
+        }
+        if (hostId > 0) {
+            modelAndView.addObject("host",hosts.get(hostId) );
         }
         return modelAndView;
     }
@@ -157,7 +162,9 @@ public class OptionsController {
         metricStorage.editInstMetric(id, hostId, templId, title, command, minValue, maxValue);
     }
 
-    @RequestMapping(value = "/addInstMetric", method = RequestMethod.GET)
+
+
+    @RequestMapping(value = "/moveToInstMetric", method = RequestMethod.GET)
     @ResponseBody
     public MetricsRow addInstMetric(@RequestParam("hostid") int hostid,@RequestParam("templMetricid") int templMetricid) throws SQLException {
         metricStorage.addInstMetric(hostid,templMetricid);
@@ -168,7 +175,7 @@ public class OptionsController {
         return metrics;
     }
 
-    @RequestMapping(value = "/dellInstMetric", method = RequestMethod.GET)
+    @RequestMapping(value = "/moveFromInstMetric", method = RequestMethod.GET)
     @ResponseBody
     public MetricsRow dellInstMetric(@RequestParam("hostid") int hostid,@RequestParam("instMetricid") int instMetricid) throws SQLException {
         metricStorage.delMetricFromHost(hostid,instMetricid);
@@ -179,7 +186,7 @@ public class OptionsController {
         return metrics;
     }
 
-    @RequestMapping(value = "/getInstMetrics", method = RequestMethod.GET)
+    @RequestMapping(value = "/getMetricsRow", method = RequestMethod.GET)
     @ResponseBody
     public MetricsRow getInstMetrics(@RequestParam("hostid") int hostid) throws SQLException {
         MetricsRow metrics = new MetricsRow();
@@ -188,6 +195,10 @@ public class OptionsController {
         metrics.setTemplateMetrics(metricStorage.getTemplatMetrics());
         return metrics;
     }
+
+
+
+
 
 
 
