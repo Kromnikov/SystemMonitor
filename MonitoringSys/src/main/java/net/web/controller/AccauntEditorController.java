@@ -1,8 +1,6 @@
 package net.web.controller;
 
-import net.core.AccauntDb;
 import net.core.db.IMetricStorage;
-import net.core.models.TemplateMetric;
 import net.core.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by ANTON on 24.02.2016.
@@ -35,6 +34,11 @@ public class AccauntEditorController {
         modelAndView.setViewName("accaunts");
         return modelAndView;
     }
+    @RequestMapping(value = "/getRoles", method = RequestMethod.GET)
+    @ResponseBody
+    public List<String> getRoles() throws SQLException {
+        return metricStorage.getRoles();
+    }
     @RequestMapping(value = "/getAccounts", method = RequestMethod.GET)
     @ResponseBody
     public User getAccounts(@RequestParam("username") String username) throws SQLException {
@@ -44,7 +48,15 @@ public class AccauntEditorController {
     public void saveAccount(@RequestParam("id") int id,@RequestParam("username") String username,@RequestParam("password") String password,@RequestParam("role") String role) throws SQLException {
         metricStorage.updateUser(id,username,password,role);
     }
-
+    @RequestMapping(value = "/addAccount", method = RequestMethod.GET)
+    public void addAccount(@RequestParam("username") String username,@RequestParam("password") String password,@RequestParam("role") String role) throws SQLException {
+        metricStorage.addUser(username,password,role);
+    }
+    @RequestMapping(value = "/dellAccount", method = RequestMethod.GET)
+    public String dellHost(@RequestParam("username") String username) throws SQLException {
+        metricStorage.dellUser(username);
+        return "redirect:/accounts";
+    }
 
 //    @RequestMapping(params = {"roleid","username"}, value = "/accaunts")
 //    public ModelAndView accauntsChangeRole(int roleid,String username) throws SQLException {

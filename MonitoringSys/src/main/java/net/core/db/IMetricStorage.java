@@ -182,9 +182,15 @@ public interface IMetricStorage {
 
     List<User> getAllUsers();
 
+    public List<String> getRoles();
+
     public User getUsers(String userName);
 
     public void updateUser(int roleid, String username, String password, String role) throws SQLException;
+
+    public void addUser(String username, String password, String role) throws SQLException;
+
+    public void dellUser(String username) throws SQLException;
 
     double getMinValueTemplateMetric(int id) throws SQLException;
 

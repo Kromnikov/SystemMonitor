@@ -1,3 +1,14 @@
+.hostMetricAlarm {
+    /*border: 1px solid #ccc;*/
+    /*padding-top:20px;*/
+    margin-bottom: 40px;
+}
+.relative11 {
+    position: absolute;
+    margin-top: -25px;
+}
+
+
 .leftRow {
     width: 29%;!important;
     display: inline-block;!important;

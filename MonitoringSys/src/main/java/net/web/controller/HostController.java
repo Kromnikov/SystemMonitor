@@ -83,6 +83,12 @@ public class HostController {
     }
 
 
+    @RequestMapping(value = "/dellHost", method = RequestMethod.GET)
+    public String dellHost(@RequestParam("id") int id) {
+        hosts.remove(hosts.get(id));
+        return "redirect:/hostedit";
+    }
+
     //TODO: alarms
     @RequestMapping(value = "/getAlarms", method = RequestMethod.GET)
     @ResponseBody

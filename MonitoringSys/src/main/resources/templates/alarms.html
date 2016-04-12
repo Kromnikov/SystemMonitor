@@ -41,8 +41,8 @@
         dropDownMenuAlarms();
         editAlarmsModal();
         addAlarmsModal();
-        var username = [[${username}]];
-        setHostName(username);
+//        var username = [[${username}]];
+//        setHostName(username);
     </script>
 </head>
 <body>
@@ -76,9 +76,9 @@
                 <a href="#"><i class="fa fa-globe fa-lg"></i> Hosts <span class="arrow"></span></a>
             </li>
             <ul class="sub-menu collapse" id="service">
-                <a class="white-text" th:href="@{'addHostPage'}">
+<!--                <a class="white-text" th:href="@{'addHostPage'}">
                     <li>Add host</li>
-                </a>
+                </a>-->
                 <a class="white-text" th:href="hosts">
                     <li>Hosts</li>
                 </a>
@@ -167,32 +167,33 @@
                 <span class=" fa fa-home form-control-feedback"></span>
             </div>
 
-            <div class=" cursor_pointer has-feedback leftRow">
-                    <ul class="ddmenu" id="hosts">
-                        <li id="mainDdmenu" ><a href="#">hosts</a>
-                            <ul>
-                                <li><a href="#">Миссия</a></li>
-                                <li><a href="#">Команда</a></li>
-                                <li><a href="#">История</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-            </div>
 
+            <div class="hostMetricAlarm">
+                <h4>Alarm of</h4>
+                <div class=" cursor_pointer has-feedback leftRow">
+                        <ul class="ddmenu" id="hosts">
+                            <li id="mainDdmenu" ><a href="#">hosts</a>
+                                <ul>
+                                    <li><a href="#">Миссия</a></li>
+                                    <li><a href="#">Команда</a></li>
+                                    <li><a href="#">История</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                </div>
+                <div class=" cursor_pointer has-feedback rightRow">
+                        <ul class="ddmenu" id="metrics">
+                            <li id="mainDdmenu" ><a href="#">metrics</a>
+                                <ul>
+                                    <li><a href="#">Миссия</a></li>
+                                    <li><a href="#">Команда</a></li>
+                                    <li><a href="#">История</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    <span class="cursor_pointer fa fa-caret-down  form-control-feedback"></span>
+                </div>
 
-
-            <div class=" cursor_pointer has-feedback rightRow">
-                    <ul class="ddmenu" id="metrics">
-                        <li id="mainDdmenu" ><a href="#">metrics</a>
-                            <ul>
-                                <li><a href="#">Миссия</a></li>
-                                <li><a href="#">Команда</a></li>
-                                <li><a href="#">История</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                <span class="cursor_pointer fa fa-caret-down  form-control-feedback"></span>
-            </div>
 
 
 
@@ -210,8 +211,9 @@
                 </nav>
                 <span class="cursor_pointer fa fa-caret-down  form-control-feedback"></span>
             </div>
+            </div>
 
-
+            <h4 class="relative11">To</h4>
             <div class=" cursor_pointer form-group has-feedback">
                 <nav>
                     <ul class="ddmenu" id="touser">

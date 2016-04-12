@@ -154,6 +154,7 @@ function dropDownMenuAlarms() {
 }
 function addAlarmsModal() {
     $(document).ready(function () {
+        $('.popup.editAlarm, .overlay.editAlarm').css({'opacity': 1, 'visibility': 'visible'});
         $('.openAddAlamr').click(function () {
             $.getJSON('/getNewAlarm', function (alarm) {
                 $("#hosts").empty();
@@ -289,7 +290,7 @@ function editAlarmsModal() {
 
         $('.close_window').click(function () {
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
-            window.location.href = "/alarms";
+           // window.location.href = "/alarms";
         });
 
     });
@@ -300,11 +301,7 @@ function editAlarmsModal() {
 
 function dropDownMenuAccounts() {
     $(document).ready(function () {
-        //$('a').on('click', function(e){
-        //    e.preventDefault();
-        //});
-
-        $('#ddmenu').hover(function () {
+        $('.ddmenu').hover(function () {
             clearTimeout($.data(this, 'timer'));
             $('ul', this).stop(true, true).slideDown(200);
         }, function () {
@@ -318,11 +315,40 @@ function dropDownMenuAccounts() {
 function modalAccounts() {
 
     $(document).ready(function () {
-        //$('.popup.accounts, .overlay.accounts').css({'opacity': 1, 'visibility': 'visible'});
+        $('.openAddAccount').click(function (e) {
+            $.getJSON('/getRoles', function (roles) {
+                $("#newAccount").empty();
+                $("#newAccount").append('<li id="newAccountmainDdmenu"><a id="newAccountRoleValue" href="#"></a></li>');
+
+                $("#newAccountmainDdmenu").append('<ul id="newAccountnoneMenu"></ul>');
+                $.each(roles, function (key, values) {
+                    $("#newAccountnoneMenu").append('<li class="roleselect" role="' + values + '"><a href="#">' + values + '</a></li>');
+                });
+
+                $('.popup.addAccounts, .overlay.addAccounts').css({'opacity': 1, 'visibility': 'visible'});
+                e.preventDefault();
+            });
+        });
+        $("#addAccount").click(function () {
+            $.getJSON('/addAccount?'
+                + '&username=' + $("input[name='NEWUsername']").val()
+                + '&password=' + $("input[name='NEWPassword']").val()
+                + '&role=' + $("#newAccountRoleValue").html()
+                , function (host) {
+                });
+            $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
+            window.location.href = "/accounts";
+        });
+
+
         var a;
         $('body').on('click', '.roleselect', function () {
             var role = $(this).attr('role');
             $("#roleValue").html(role);
+            $("#newAccountRoleValue").html(role);
+            //$("#roleValue1").html(role);
+            //console.log("roleValue -->  "+$("#roleValue").html());
+            //console.log("roleValue1 -->  "+$("#roleValue1").html());
         });
 
         $('.open_window').click(function (e) {
@@ -333,10 +359,10 @@ function modalAccounts() {
                 $("input[name='Password']").val(user.password);
                 //$("input[name='Role']").val(user.role);
 
-                $("#ddmenu").empty();
-                $("#ddmenu").append('<li id="mainDdmenu"><a id="roleValue" href="#">' + user.role + '</a></li>');
+                $(".ddmenu").empty();
+                $(".ddmenu").append('<li class="mainDdmenu"><a id="roleValue" href="#">' + user.role + '</a></li>');
 
-                a = $("#mainDdmenu").append('<ul id="noneMenu"></ul>');
+                $(".mainDdmenu").append('<ul id="noneMenu"></ul>');
                 $.each(user.allRoles, function (key, values) {
                     $("#noneMenu").append('<li class="roleselect" role="' + values + '"><a href="#">' + values + '</a></li>');
                 });
@@ -359,7 +385,7 @@ function modalAccounts() {
 
         $('.close_window').click(function () {
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
-            window.location.href = "/accounts";
+           // window.location.href = "/accounts";
         });
 
     });
@@ -444,7 +470,7 @@ function modalTemplMetirc() {
 
         $('.close_window').click(function () {
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
-            window.location.href = "/templMetrics";
+           // window.location.href = "/templMetrics";
         });
 
     });
@@ -521,6 +547,27 @@ function modalEditHostMetrics() {
 function modalEditHost() {
 
     $(document).ready(function () {
+        $('.openAddHost').click(function (e) {
+                $('.popup.addhost, .overlay.addhost').css({'opacity': 1, 'visibility': 'visible'});
+                e.preventDefault();
+        });
+        $("#addHost").click(function () {
+            $.getJSON('/addHost?'
+                + 'name=' + $("input[name='NEWname']").val()
+                + '&host=' + $("input[name='NEWhost']").val()
+                + '&port=' + $("input[name='NEWport']").val()
+                + '&login=' + $("input[name='NEWlogin']").val()
+                + '&password=' + $("input[name='NEWpassword']").val()
+                + '&location=' + $("input[name='NEWlocation']").val()
+                , function (host) {
+                });
+            $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
+            window.location.href = "/hostedit";
+        });
+
+
+
+
         $('.open_window').click(function (e) {
             $.getJSON('/gethost?hostid=' + $(this).parent().parent().parent().attr('id'), function (host) {
                 //console.log(host.name+"-"+host.host);
@@ -553,14 +600,49 @@ function modalEditHost() {
         //$('.popup .close_window, .overlay').click(function (){
         $('.close_window').click(function () {
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
-            window.location.href = "/hostedit";
+            //window.location.href = "/hostedit";
         });
-        //    $('.open_window').click(function (e) {
-        //        $('.popup, .overlay').css({'opacity': 1, 'visibility': 'visible'});
-        //        e.preventDefault();
-        //    });
     });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function dellAlarm(id) {

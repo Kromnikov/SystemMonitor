@@ -377,5 +377,17 @@ public class OptionsController {
     public void saveHost(@RequestParam("host") String host,@RequestParam("name") String name,@RequestParam("port") int port,@RequestParam("login") String login,@RequestParam("password") String password,@RequestParam("location") String location,@RequestParam("id") int id) throws SQLException {
         saveHost(id,host,login,password,name,port,location);
     }
+    @RequestMapping(value = "/addHost", method = RequestMethod.GET)
+    public void addHost(@RequestParam("host") String host,@RequestParam("name") String name,@RequestParam("port") int port,@RequestParam("login") String login,@RequestParam("password") String password,@RequestParam("location") String location) throws SQLException {
+        SSHConfiguration sshConfiguration = new SSHConfiguration();
+        sshConfiguration.setName(name);
+        sshConfiguration.setHost(host);
+        sshConfiguration.setLocation(location);
+        sshConfiguration.setLogin(login);
+        sshConfiguration.setPassword(password);
+        sshConfiguration.setPort(port);
+        hosts.save(sshConfiguration);
+    }
+
 
 }

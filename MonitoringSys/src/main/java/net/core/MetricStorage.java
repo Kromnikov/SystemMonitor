@@ -1182,6 +1182,17 @@ public class MetricStorage implements IMetricStorage {
         return usersList;
     }
     @Transactional
+    public List<String> getRoles() {
+        String sql = "SELECT distinct r.role FROM \"Roles\" as r ";
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+        List<String> stringList = new ArrayList<>();
+        for (Map row : rows) {
+            stringList.add((String)row.get("role"));
+        }
+
+        return stringList;
+    }
+    @Transactional
     public User getUsers(String userName) {
 //        String sql = "SELECT u.username , u.password, r.role,r.roleid FROM \"Users\" as u, \"Roles\" as r where u.roleid=r.roleid";
         String sql = "SELECT u.username , u.password, r.role,r.id FROM \"Users\" as u join \"Roles\" as r on r.username=u.username where u.username = '"+userName+"'";
@@ -1213,7 +1224,23 @@ public class MetricStorage implements IMetricStorage {
         sql ="UPDATE \"Users\" SET username='"+username+"', password='"+password+"' WHERE username='"+username+"'";
         jdbcTemplateObject.update(sql);
     }
+    @Transactional
+    public void addUser(String username,String password,String role) throws SQLException {
+        String sql ="INSERT INTO  \"Users\" (username, password, enabled) VALUES ('"+username+"', '"+password+"',true)";
+        jdbcTemplateObject.update(sql);
 
+        sql ="INSERT INTO \"Roles\" (role, username)   VALUES ('"+role+"','"+username+"')";
+        jdbcTemplateObject.update(sql);
+    }
+
+    @Transactional
+    public void dellUser(String username) throws SQLException {
+        String sql ="DELETE FROM \"Roles\" where username='"+username+"'";
+        jdbcTemplateObject.update(sql);
+
+        sql ="DELETE FROM \"Users\" where username='"+username+"'";
+        jdbcTemplateObject.update(sql);
+    }
 
 
 
