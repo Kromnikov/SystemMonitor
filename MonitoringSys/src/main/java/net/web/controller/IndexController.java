@@ -61,7 +61,12 @@ public class IndexController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName(); //get logged in username
         modelAndView.addObject("username", name);
-        modelAndView.addObject("favoritesList", getFavoritesRow(name));
+        try {
+            modelAndView.addObject("favoritesList", getFavoritesRow(name));
+        }
+        catch (Exception e){
+            System.out.print("Список любимых метрик отсутствует");
+        }
         modelAndView.setViewName("index");
         return modelAndView;
     }
