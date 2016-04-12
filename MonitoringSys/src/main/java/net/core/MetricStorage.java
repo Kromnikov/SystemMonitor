@@ -1045,13 +1045,13 @@ public class MetricStorage implements IMetricStorage {
 
     //hostsRows
     @Transactional
-    public List<HostRow> getHostRow() throws SQLException {
-        List<HostRow> hostrows = new ArrayList<>();
+    public List<hostRow> getHostRow() throws SQLException {
+        List<hostRow> hostrows = new ArrayList<>();
         String sql = "(select count(*) as countServices,host,(select count(*)from \"METRIC_STATE\" where host_id = im.host) as countProblems ,(select count(*)from \"HOST_STATE\" where host = im.host and (\"end_datetime\" is null and \"start_datetime\" is not null)) as status from \"INSTANCE_METRIC\" as im group by host)";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
 
         for (SSHConfiguration host : this.hosts.getAll()) {
-            HostRow hostRow = new HostRow();
+            hostRow hostRow = new hostRow();
             hostRow.setId(host.getId());
             hostRow.setHostName(host.getName());
             hostRow.setLocation(host.getLocation());
@@ -1094,12 +1094,12 @@ public class MetricStorage implements IMetricStorage {
     }
     //metricRows
     @Transactional
-    public List<MetricRow> getMetricRow(int hostId) throws SQLException {
-        List<MetricRow> MetricRows = new ArrayList<>();
+    public List<metricRow> getMetricRow(int hostId) throws SQLException {
+        List<metricRow> MetricRows = new ArrayList<>();
         String sql = "select id,title ,(select value from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as value ,(select date_time from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as date ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id ) as countProblems ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id and (\"end_datetime\" is null and \"start_datetime\" is not null)) as status  from \"INSTANCE_METRIC\" as im where host = " + hostId;
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         for (Map row : rows) {
-            MetricRow metricrow = new MetricRow();
+            metricRow metricrow = new metricRow();
             metricrow.setId(Integer.parseInt(row.get("id").toString()));
             metricrow.setTitle((row.get("title").toString()));
             metricrow.setErrorsCount(Integer.parseInt(row.get("countProblems").toString()));
@@ -1112,12 +1112,12 @@ public class MetricStorage implements IMetricStorage {
         return MetricRows;
     }
     @Transactional
-    public List<MetricRow> getMetricRow(int hostId,int metricId) throws SQLException {
-        List<MetricRow> MetricRows = new ArrayList<>();
+    public List<metricRow> getMetricRow(int hostId, int metricId) throws SQLException {
+        List<metricRow> MetricRows = new ArrayList<>();
         String sql = "select id,title ,(select value from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as value ,(select date_time from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as date ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id ) as countProblems ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id and (\"end_datetime\" is null and \"start_datetime\" is not null)) as status  from \"INSTANCE_METRIC\" as im where id = " + metricId;
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         for (Map row : rows) {
-            MetricRow metricrow = new MetricRow();
+            metricRow metricrow = new metricRow();
             metricrow.setId(Integer.parseInt(row.get("id").toString()));
             metricrow.setTitle((row.get("title").toString()));
             metricrow.setErrorsCount(Integer.parseInt(row.get("countProblems").toString()));

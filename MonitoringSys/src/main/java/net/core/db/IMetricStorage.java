@@ -91,11 +91,11 @@ public interface IMetricStorage {
 
 
     //hostsRows
-    public List<HostRow> getHostRow() throws SQLException;
+    public List<hostRow> getHostRow() throws SQLException;
     public List<HostEditRow> getHostEditRow() throws SQLException;
 
     //metricRows
-    public List<MetricRow> getMetricRow(int hostId) throws SQLException;
+    public List<metricRow> getMetricRow(int hostId) throws SQLException;
 
     public chartValuesO getValuesLastDay(int host_id, int metricId, Date dateTime) throws ParseException;
 
