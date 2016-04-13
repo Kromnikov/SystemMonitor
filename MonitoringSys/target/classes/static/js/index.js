@@ -481,9 +481,17 @@ function modalTemplMetirc() {
 
 //$("#tohostValue").html($(this).attr('hostname'));
 //$("#tohostValue").attr('hostId', $(this).attr('hostid'));
+function clearModal() {
+    $("input[name='Title']").val('');
+    $("input[name='query']").val('');
+    $("input[name='minValue']").val('');
+    $("input[name='maxValue']").val('');
+
+}
 function closeModal(hostId) {
 
     $("#InstanceMetric").empty();
+
     $.getJSON('/getMetricsRow?hostid=' + hostId, function (metrics) {
         $.each(metrics.instanceMetrics, function (key, values) {
             $("#InstanceMetric").append('<tr><td class="cursor_pointer editInstMetric"  hostId="' + metrics.hostId + '" instMetricId="' + values.id + '" >' + values.title + '</td><td><instance hostId="' + metrics.hostId + '" instMetricId="' + values.id + '" class="fa fa-times fa-lg hovercolorredtext hovercursor"></instance></td></tr>');
@@ -505,11 +513,8 @@ function modalInst() {
             $('.popup.services').animate({left: "50%"}, 500);
         });
 
-
-
-
-
         $('body').on('click', '#addInsetMetricPage', function () {
+            clearModal();
             $.getJSON('/getHost?id=' + $(this).attr('hostId'), function (host) {
                 $.getJSON('/getHostsTempl', function (hostTempl) {
                     $("#tohost").empty();
@@ -533,50 +538,47 @@ function modalInst() {
             $("#EditInstTitle").addClass('hidden');
 
 
-            $("#addInstMetric").click(function () {
-                if ($("#templMetricValue").attr('metricId') != null) {
-                    $.getJSON('/saveNewInstMetric?'
-                        + 'templId=' + $("#templMetricValue").attr('metricId')
-                        + '&hostId=' + $("#tohostValue").attr('hostId')
-                        + '&title=' + $("input[name='Title']").val()
-                        + '&command=' + $("input[name='query']").val()
-                        + '&minValue=' + $("input[name='minValue']").val()
-                        + '&maxValue=' + $("input[name='maxValue']").val()
-                        , function (host) {
-                            //window.location.href = "/alarms";
-                        });
-                    setTimeout(function () {
-                        closeModal($("#tohostValue").attr('hostId'));
-                    }, 300);
-                } else {
-                    $.getJSON('/saveNewInstMetric?'
-                        + 'hostId=' + $("#tohostValue").attr('hostId')
-                        + '&title=' + $("input[name='Title']").val()
-                        + '&command=' + $("input[name='query']").val()
-                        + '&minValue=' + $("input[name='minValue']").val()
-                        + '&maxValue=' + $("input[name='maxValue']").val()
-                        , function (host) {
-                            //window.location.href = "/alarms";
-                        });
-                    setTimeout(function () {
-                        closeModal($("#tohostValue").attr('hostId'));
-                    }, 300);
-                }
-            });
 
-            $('.popup.services').animate({left: "0"}, 500);
+            $('.popup.services').animate({left: "-4%"}, 500);
             $('.popup1.editInst, .overlay1.editInst').css({'visibility': 'visible'});
             $('.popup1.editInst, .overlay1.editInst').animate({opacity: "1"}, 500);
         });
 
+        $("#addInstMetric").click(function () {
+            if ($("#templMetricValue").attr('metricId') != null) {
+                $.getJSON('/saveNewInstMetric?'
+                    + 'templId=' + $("#templMetricValue").attr('metricId')
+                    + '&hostId=' + $("#tohostValue").attr('hostId')
+                    + '&title=' + $("input[name='Title']").val()
+                    + '&command=' + $("input[name='query']").val()
+                    + '&minValue=' + $("input[name='minValue']").val()
+                    + '&maxValue=' + $("input[name='maxValue']").val()
+                    , function (host) {
+                        //window.location.href = "/alarms";
+                    });
+                setTimeout(function () {
+                    closeModal($("#tohostValue").attr('hostId'));
+                    clearModal();
+                }, 300);
+            } else {
+                $.getJSON('/saveNewInstMetric?'
+                    + 'hostId=' + $("#tohostValue").attr('hostId')
+                    + '&title=' + $("input[name='Title']").val()
+                    + '&command=' + $("input[name='query']").val()
+                    + '&minValue=' + $("input[name='minValue']").val()
+                    + '&maxValue=' + $("input[name='maxValue']").val()
+                    , function (host) {
+                        //window.location.href = "/alarms";
+                    });
+                setTimeout(function () {
+                    closeModal($("#tohostValue").attr('hostId'));
+                    clearModal();
+                }, 300);
+            }
+        });
 
         $('body').on('click', '.editInstMetric', function () {
-            //window.location.href = "/instMetric?instMetricId=" + $(this).attr('instMetricId');
-            $.getJSON('/getInstMetric?instMetricId=' + $(this).attr('instMetricId'), function (InstanceMetric) {
-                $.getJSON('/getHost?id=' + InstanceMetric.hostId, function (host) {
-                    $('.popup.services').animate({left: "0"}, 500);
-                    $('.popup1.editInst, .overlay1.editInst').css({'visibility': 'visible'});
-                    $('.popup1.editInst, .overlay1.editInst').animate({opacity: "1"}, 500);
+            $.getJSON('/getInstTempHost?instMetricId=' + $(this).attr('instMetricId'), function (row) {
 
                     $("#addInstMetric").addClass('hidden');
                     $("#addInstMetric").addClass('hidden');
@@ -584,65 +586,69 @@ function modalInst() {
                     $("#editInstMetric").removeClass('hidden');
                     $("#EditInstTitle").removeClass('hidden');
 
-                    $("input[name='Title']").val(InstanceMetric.title);
-                    $("input[name='query']").val(InstanceMetric.command);
-                    $("input[name='minValue']").val(InstanceMetric.minValue);
-                    $("input[name='maxValue']").val(InstanceMetric.maxValue);
-                    $("input[name='id']").val(InstanceMetric.id);
+                    $("input[name='Title']").val(row.instanceMetrics.title);
+                    $("input[name='query']").val(row.instanceMetrics.command);
+                    $("input[name='minValue']").val(row.instanceMetrics.minValue);
+                    $("input[name='maxValue']").val(row.instanceMetrics.maxValue);
+                    $("input[name='id']").val(row.instanceMetrics.id);
 
 
                     $.getJSON('/getHostsTempl', function (hostTempl) {
                         $("#tohost").empty();
-                        $("#tohost").append('<li id="tohostMenu"><a required="required" id="tohostValue" href="#"  hostId="' + host.id + '">' + host.name + '</a></li>');
+                        $("#tohost").append('<li id="tohostMenu"><a required="required" id="tohostValue" href="#"  hostId="' + row.host.id + '">' + row.host.name + '</a></li>');
                         a = $("#tohostMenu").append('<ul id="tohostnonemenu"></ul>');
                         $.each(hostTempl.hosts, function (key, values) {
-                            console.log(values.id);
                             $("#tohostnonemenu").append('<li class="tohostselect" hostname="' + values.name + '" hostId="' + values.id + '"><a href="#">' + values.name + '</a></li>');
                         });
 
                         $("#templMetric").empty();
-                        $("#templMetric").append('<li id="templMetricMenu"><a id="templMetricValue" href="#">' + InstanceMetric.title + '</a></li>');
+                        $("#templMetric").append('<li id="templMetricMenu"><a id="templMetricValue" href="#" metricId="'+row.templateMetrics.id+'">' + row.templateMetrics.title + '</a></li>');
                         a = $("#templMetricMenu").append('<ul id="templMetricnonemenu"></ul>');
                         $.each(hostTempl.templateMetrics, function (key, values) {
                             $("#templMetricnonemenu").append('<li class="templMetricselect" metricTitle="' + values.title + '" metricQuery="' + values.command + '" metricId="' + values.id + '"><a href="#">' + values.title + '</a></li>');
                         });
                     });
 
-
-                    $("#editInstMetric").click(function () {
-                        if ($("#templMetricValue").attr('metricId') != null) {
-                            $.getJSON('/editInstMetric?'
-                                + 'id=' + $("input[name='id']").val()
-                                + '&templId=' + $("#templMetricValue").attr('metricId')
-                                + '&hostId=' + $("#tohostValue").attr('hostId')
-                                + '&title=' + $("input[name='Title']").val()
-                                + '&command=' + $("input[name='query']").val()
-                                + '&minValue=' + $("input[name='minValue']").val()
-                                + '&maxValue=' + $("input[name='maxValue']").val()
-                                , function (host) {
-                                    //window.location.href = "/alarms";
-                                });
-                            setTimeout(function () {
-                                closeModal($("#tohostValue").attr('hostId'));
-                            }, 300);
-                        } else {
-                            $.getJSON('/editInstMetric?'
-                                + 'id=' + $("input[name='id']").val()
-                                + '&hostId=' + $("#tohostValue").attr('hostId')
-                                + '&title=' + $("input[name='Title']").val()
-                                + '&command=' + $("input[name='query']").val()
-                                + '&minValue=' + $("input[name='minValue']").val()
-                                + '&maxValue=' + $("input[name='maxValue']").val()
-                                , function (host) {
-                                    //window.location.href = "/alarms";
-                                });
-                            setTimeout(function () {
-                                closeModal($("#tohostValue").attr('hostId'));
-                            }, 300);
-                        }
-                    });
                 });
-            });
+
+            $('.popup.services').animate({left: "-4%"}, 500);
+            $('.popup1.editInst, .overlay1.editInst').css({'visibility': 'visible'});
+            $('.popup1.editInst, .overlay1.editInst').animate({opacity: "1"}, 500);
+        });
+
+        $("#editInstMetric").click(function () {
+            if ($("#templMetricValue").attr('metricId') != null) {
+                $.getJSON('/editInstMetric?'
+                    + 'id=' + $("input[name='id']").val()
+                    + '&templId=' + $("#templMetricValue").attr('metricId')
+                    + '&hostId=' + $("#tohostValue").attr('hostId')
+                    + '&title=' + $("input[name='Title']").val()
+                    + '&command=' + $("input[name='query']").val()
+                    + '&minValue=' + $("input[name='minValue']").val()
+                    + '&maxValue=' + $("input[name='maxValue']").val()
+                    , function (host) {
+
+                    });
+                setTimeout(function () {
+                    closeModal($("#tohostValue").attr('hostId'));
+                    clearModal();
+                }, 300);
+            } else {
+                $.getJSON('/editInstMetric?'
+                    + 'id=' + $("input[name='id']").val()
+                    + '&hostId=' + $("#tohostValue").attr('hostId')
+                    + '&title=' + $("input[name='Title']").val()
+                    + '&command=' + $("input[name='query']").val()
+                    + '&minValue=' + $("input[name='minValue']").val()
+                    + '&maxValue=' + $("input[name='maxValue']").val()
+                    , function (host) {
+
+                    });
+                setTimeout(function () {
+                    closeModal($("#tohostValue").attr('hostId'));
+                    clearModal();
+                }, 300);
+            }
         });
     });
 }
