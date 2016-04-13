@@ -65,9 +65,10 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.1205673" vertical-offset="891" max-vertical-offset="5525">
-              <caret line="577" column="11" selection-start-line="577" selection-start-column="11" selection-end-line="577" selection-end-column="11" />
+            <state vertical-scroll-proportion="0.18912797" vertical-offset="3" max-vertical-offset="4760">
+              <caret line="154" column="26" selection-start-line="154" selection-start-column="26" selection-end-line="154" selection-end-column="26" />
               <folding>
+                <element signature="n#!!block;n#instMetricPageFunctions#0" expanded="false" />
                 <element signature="n#!!block;n#editInstMetric#0" expanded="false" />
                 <element signature="n#!!block;n#addInstMetric#0" expanded="false" />
                 <element signature="n#!!block;n#dropDownMenuAlarms#0" expanded="false" />
@@ -79,12 +80,14 @@
                 <element signature="n#!!block;n#loadPageWithoutModal#0" expanded="false" />
                 <element signature="n#!!block;n#modalTemplMetirc#0" expanded="false" />
                 <element signature="n#!!block;n#clearModal#0" expanded="false" />
-                <element signature="e#23551#23708#0" expanded="false" />
-                <element signature="e#23750#23907#0" expanded="false" />
-                <element signature="e#23976#25803#0" expanded="false" />
-                <element signature="e#25853#27400#0" expanded="false" />
-                <element signature="e#27465#29917#0" expanded="false" />
-                <element signature="e#29968#31509#0" expanded="false" />
+                <element signature="n#!!block;n#closeModal#0" expanded="false" />
+                <element signature="n#!!block;n#modalInst#0" expanded="false" />
+                <element signature="e#24026#24183#0" expanded="false" />
+                <element signature="e#24225#24382#0" expanded="false" />
+                <element signature="e#24451#26278#0" expanded="false" />
+                <element signature="e#26328#27875#0" expanded="false" />
+                <element signature="e#27940#30392#0" expanded="false" />
+                <element signature="e#30443#31984#0" expanded="false" />
                 <element signature="n#!!block;n#modalEditHostMetrics#0" expanded="false" />
                 <element signature="n#!!block;n#modalEditHost#0" expanded="false" />
               </folding>
@@ -1259,12 +1262,12 @@
       <workItem from="1460190264110" duration="563000" />
       <workItem from="1460455033379" duration="434000" />
       <workItem from="1460455503007" duration="7405000" />
-      <workItem from="1460487600403" duration="11652000" />
+      <workItem from="1460487600403" duration="13276000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="252611000" />
+    <option name="totallyTimeSpent" value="254235000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1301,7 +1304,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.6504329" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6504329" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32683983" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1362,7 +1365,7 @@
           <option name="timeStamp" value="194" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="223" />
+      <option name="time" value="224" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -1933,9 +1936,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1205673" vertical-offset="891" max-vertical-offset="5525">
-          <caret line="577" column="11" selection-start-line="577" selection-start-column="11" selection-end-line="577" selection-end-column="11" />
+        <state vertical-scroll-proportion="0.18912797" vertical-offset="3" max-vertical-offset="4760">
+          <caret line="154" column="26" selection-start-line="154" selection-start-column="26" selection-end-line="154" selection-end-column="26" />
           <folding>
+            <element signature="n#!!block;n#instMetricPageFunctions#0" expanded="false" />
             <element signature="n#!!block;n#editInstMetric#0" expanded="false" />
             <element signature="n#!!block;n#addInstMetric#0" expanded="false" />
             <element signature="n#!!block;n#dropDownMenuAlarms#0" expanded="false" />
@@ -1947,12 +1951,14 @@
             <element signature="n#!!block;n#loadPageWithoutModal#0" expanded="false" />
             <element signature="n#!!block;n#modalTemplMetirc#0" expanded="false" />
             <element signature="n#!!block;n#clearModal#0" expanded="false" />
-            <element signature="e#23551#23708#0" expanded="false" />
-            <element signature="e#23750#23907#0" expanded="false" />
-            <element signature="e#23976#25803#0" expanded="false" />
-            <element signature="e#25853#27400#0" expanded="false" />
-            <element signature="e#27465#29917#0" expanded="false" />
-            <element signature="e#29968#31509#0" expanded="false" />
+            <element signature="n#!!block;n#closeModal#0" expanded="false" />
+            <element signature="n#!!block;n#modalInst#0" expanded="false" />
+            <element signature="e#24026#24183#0" expanded="false" />
+            <element signature="e#24225#24382#0" expanded="false" />
+            <element signature="e#24451#26278#0" expanded="false" />
+            <element signature="e#26328#27875#0" expanded="false" />
+            <element signature="e#27940#30392#0" expanded="false" />
+            <element signature="e#30443#31984#0" expanded="false" />
             <element signature="n#!!block;n#modalEditHostMetrics#0" expanded="false" />
             <element signature="n#!!block;n#modalEditHost#0" expanded="false" />
           </folding>

@@ -737,7 +737,9 @@ function modalEditHost() {
                 , function (host) {
                 });
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
-            window.location.href = "/hostedit";
+            setTimeout(function () {
+                window.location.href = "/hostedit";
+            }, 200);
         });
 
 
@@ -769,14 +771,18 @@ function modalEditHost() {
                 , function (host) {
                 });
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
-            window.location.href = "/hostedit";
+            setTimeout(function () {
+                window.location.href = "/hostedit";
+            }, 200);
         });
 
         //$('.popup .close_window, .overlay').click(function (){
         $('.close_window').click(function () {
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
             $('.popup1.editInst, .overlay1.editInst').css({'opacity': 0, 'visibility': 'hidden'});
-            window.location.href = "/hostedit";
+            setTimeout(function () {
+                window.location.href = "/hostedit";
+            }, 200);
         });
     });
 }
