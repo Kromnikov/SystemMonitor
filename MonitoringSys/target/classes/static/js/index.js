@@ -154,7 +154,7 @@ function dropDownMenuAlarms() {
 }
 function addAlarmsModal() {
     $(document).ready(function () {
-        $('.popup.editAlarm, .overlay.editAlarm').css({'opacity': 1, 'visibility': 'visible'});
+        //$('.popup.editAlarm, .overlay.editAlarm').css({'opacity': 1, 'visibility': 'visible'});
         $('.openAddAlamr').click(function () {
             $.getJSON('/getNewAlarm', function (alarm) {
                 $("#hosts").empty();
@@ -481,21 +481,188 @@ function modalTemplMetirc() {
 
 //$("#tohostValue").html($(this).attr('hostname'));
 //$("#tohostValue").attr('hostId', $(this).attr('hostid'));
+function closeModal(hostId) {
+
+    $("#InstanceMetric").empty();
+    $.getJSON('/getMetricsRow?hostid=' + hostId, function (metrics) {
+        $.each(metrics.instanceMetrics, function (key, values) {
+            $("#InstanceMetric").append('<tr><td class="cursor_pointer editInstMetric"  hostId="' + metrics.hostId + '" instMetricId="' + values.id + '" >' + values.title + '</td><td><instance hostId="' + metrics.hostId + '" instMetricId="' + values.id + '" class="fa fa-times fa-lg hovercolorredtext hovercursor"></instance></td></tr>');
+        });
+    });
+
+
+    $('.popup1.editInst, .overlay1.editInst').animate({opacity: "0"}, 100);
+    $('.popup.services').animate({left: "50%"}, 500);
+}
+function modalInst() {
+    $(document).ready(function () {
+        $('.close_window1').click(function () {
+            $('.popup1.editInst, .overlay1.editInst').animate({opacity: "0"}, 100);
+            $('.popup.services').animate({left: "50%"}, 500);
+        });
+        $('#cancel').click(function () {
+            $('.popup1.editInst, .overlay1.editInst').animate({opacity: "0"}, 100);
+            $('.popup.services').animate({left: "50%"}, 500);
+        });
+
+
+
+
+
+        $('body').on('click', '#addInsetMetricPage', function () {
+            $.getJSON('/getHost?id=' + $(this).attr('hostId'), function (host) {
+                $.getJSON('/getHostsTempl', function (hostTempl) {
+                    $("#tohost").empty();
+                    $("#tohost").append('<li id="tohostMenu"><a required="required" id="tohostValue" href="#"  hostId="' + host.id + '">' + host.name + '</a></li>');
+                    a = $("#tohostMenu").append('<ul id="tohostnonemenu"></ul>');
+                    $.each(hostTempl.hosts, function (key, values) {
+                        $("#tohostnonemenu").append('<li class="tohostselect" hostname="' + values.name + '" hostId="' + values.id + '"><a href="#">' + values.name + '</a></li>');
+                    });
+
+                    $("#templMetric").empty();
+                    $("#templMetric").append('<li id="templMetricMenu"><a id="templMetricValue" href="#"></a></li>');
+                    a = $("#templMetricMenu").append('<ul id="templMetricnonemenu"></ul>');
+                    $.each(hostTempl.templateMetrics, function (key, values) {
+                        $("#templMetricnonemenu").append('<li class="templMetricselect" metricTitle="' + values.title + '" metricQuery="' + values.command + '" metricId="' + values.id + '"><a href="#">' + values.title + '</a></li>');
+                    });
+                });
+            });
+            $("#addInstMetric").removeClass('hidden');
+            $("AddInstTitle").removeClass('hidden');
+            $("#editInstMetric").addClass('hidden');
+            $("#EditInstTitle").addClass('hidden');
+
+
+            $("#addInstMetric").click(function () {
+                if ($("#templMetricValue").attr('metricId') != null) {
+                    $.getJSON('/saveNewInstMetric?'
+                        + 'templId=' + $("#templMetricValue").attr('metricId')
+                        + '&hostId=' + $("#tohostValue").attr('hostId')
+                        + '&title=' + $("input[name='Title']").val()
+                        + '&command=' + $("input[name='query']").val()
+                        + '&minValue=' + $("input[name='minValue']").val()
+                        + '&maxValue=' + $("input[name='maxValue']").val()
+                        , function (host) {
+                            //window.location.href = "/alarms";
+                        });
+                    setTimeout(function () {
+                        closeModal($("#tohostValue").attr('hostId'));
+                    }, 300);
+                } else {
+                    $.getJSON('/saveNewInstMetric?'
+                        + 'hostId=' + $("#tohostValue").attr('hostId')
+                        + '&title=' + $("input[name='Title']").val()
+                        + '&command=' + $("input[name='query']").val()
+                        + '&minValue=' + $("input[name='minValue']").val()
+                        + '&maxValue=' + $("input[name='maxValue']").val()
+                        , function (host) {
+                            //window.location.href = "/alarms";
+                        });
+                    setTimeout(function () {
+                        closeModal($("#tohostValue").attr('hostId'));
+                    }, 300);
+                }
+            });
+
+            $('.popup.services').animate({left: "0"}, 500);
+            $('.popup1.editInst, .overlay1.editInst').css({'visibility': 'visible'});
+            $('.popup1.editInst, .overlay1.editInst').animate({opacity: "1"}, 500);
+        });
+
+
+        $('body').on('click', '.editInstMetric', function () {
+            //window.location.href = "/instMetric?instMetricId=" + $(this).attr('instMetricId');
+            $.getJSON('/getInstMetric?instMetricId=' + $(this).attr('instMetricId'), function (InstanceMetric) {
+                $.getJSON('/getHost?id=' + InstanceMetric.hostId, function (host) {
+                    $('.popup.services').animate({left: "0"}, 500);
+                    $('.popup1.editInst, .overlay1.editInst').css({'visibility': 'visible'});
+                    $('.popup1.editInst, .overlay1.editInst').animate({opacity: "1"}, 500);
+
+                    $("#addInstMetric").addClass('hidden');
+                    $("#addInstMetric").addClass('hidden');
+                    $("#AddInstTitle").addClass('hidden');
+                    $("#editInstMetric").removeClass('hidden');
+                    $("#EditInstTitle").removeClass('hidden');
+
+                    $("input[name='Title']").val(InstanceMetric.title);
+                    $("input[name='query']").val(InstanceMetric.command);
+                    $("input[name='minValue']").val(InstanceMetric.minValue);
+                    $("input[name='maxValue']").val(InstanceMetric.maxValue);
+                    $("input[name='id']").val(InstanceMetric.id);
+
+
+                    $.getJSON('/getHostsTempl', function (hostTempl) {
+                        $("#tohost").empty();
+                        $("#tohost").append('<li id="tohostMenu"><a required="required" id="tohostValue" href="#"  hostId="' + host.id + '">' + host.name + '</a></li>');
+                        a = $("#tohostMenu").append('<ul id="tohostnonemenu"></ul>');
+                        $.each(hostTempl.hosts, function (key, values) {
+                            console.log(values.id);
+                            $("#tohostnonemenu").append('<li class="tohostselect" hostname="' + values.name + '" hostId="' + values.id + '"><a href="#">' + values.name + '</a></li>');
+                        });
+
+                        $("#templMetric").empty();
+                        $("#templMetric").append('<li id="templMetricMenu"><a id="templMetricValue" href="#">' + InstanceMetric.title + '</a></li>');
+                        a = $("#templMetricMenu").append('<ul id="templMetricnonemenu"></ul>');
+                        $.each(hostTempl.templateMetrics, function (key, values) {
+                            $("#templMetricnonemenu").append('<li class="templMetricselect" metricTitle="' + values.title + '" metricQuery="' + values.command + '" metricId="' + values.id + '"><a href="#">' + values.title + '</a></li>');
+                        });
+                    });
+
+
+                    $("#editInstMetric").click(function () {
+                        if ($("#templMetricValue").attr('metricId') != null) {
+                            $.getJSON('/editInstMetric?'
+                                + 'id=' + $("input[name='id']").val()
+                                + '&templId=' + $("#templMetricValue").attr('metricId')
+                                + '&hostId=' + $("#tohostValue").attr('hostId')
+                                + '&title=' + $("input[name='Title']").val()
+                                + '&command=' + $("input[name='query']").val()
+                                + '&minValue=' + $("input[name='minValue']").val()
+                                + '&maxValue=' + $("input[name='maxValue']").val()
+                                , function (host) {
+                                    //window.location.href = "/alarms";
+                                });
+                            setTimeout(function () {
+                                closeModal($("#tohostValue").attr('hostId'));
+                            }, 300);
+                        } else {
+                            $.getJSON('/editInstMetric?'
+                                + 'id=' + $("input[name='id']").val()
+                                + '&hostId=' + $("#tohostValue").attr('hostId')
+                                + '&title=' + $("input[name='Title']").val()
+                                + '&command=' + $("input[name='query']").val()
+                                + '&minValue=' + $("input[name='minValue']").val()
+                                + '&maxValue=' + $("input[name='maxValue']").val()
+                                , function (host) {
+                                    //window.location.href = "/alarms";
+                                });
+                            setTimeout(function () {
+                                closeModal($("#tohostValue").attr('hostId'));
+                            }, 300);
+                        }
+                    });
+                });
+            });
+        });
+    });
+}
 function modalEditHostMetrics() {
     $(document).ready(function () {
-        $('body').on('click', '.editInstMetric', function () {
-            window.location.href = "/instMetric?instMetricId=" + $(this).attr('instMetricId');
-        });
+        //$('body').on('click', '.editInstMetric', function () {
+        //    window.location.href = "/instMetric?instMetricId=" + $(this).attr('instMetricId');
+        //});
         $('body').on('click', '.editTemplMetric', function () {
             window.location.href = "/templMetrics?id=" + $(this).attr('templMetricId');
         });
 
+        //$('body').on('click', '#addInsetMetricPage', function () {
+        //    window.location.href = "/instMetric?hostId=" + $(this).attr('hostId');
+        //});
+
         $('.open_inst_metrics').click(function (e) {
             $('#addInsetMetricPage').attr("hostId",$(this).parent().parent().parent().attr('id'));
 
-            $('body').on('click', '#addInsetMetricPage', function () {
-                window.location.href = "/instMetric?hostId=" + $(this).attr('hostId');
-            });
+
 
             $("#InstanceMetric").empty();
             $("#TemplateMetric").empty();
@@ -508,20 +675,21 @@ function modalEditHostMetrics() {
                 });
             });
             $('.popup.services, .overlay.services').css({'opacity': 1, 'visibility': 'visible'});
+            $('.popup.services').css({'left': '50%'});
             $('.popup.services').css({'width': '700px'});
 
 
             $('body').on('click', 'template', function () {
                 console.log($(this).attr('templMetricId'));
                 $("#InstanceMetric").empty();
-                $("#TemplateMetric").empty();
+                //$("#TemplateMetric").empty();
                 $.getJSON('/moveToInstMetric?hostid=' + $(this).attr('hostId') + '&templMetricid=' + $(this).attr('templMetricid'), function (metrics) {
                     $.each(metrics.instanceMetrics, function (key, values) {
                         $("#InstanceMetric").append('<tr><td  class="cursor_pointer editInstMetric"  hostId="' + metrics.hostId + '" instMetricId="' + values.id + '">' + values.title + '</td><td><instance hostId="' + metrics.hostId + '" instMetricId="' + values.id + '" class="fa fa-times fa-lg hovercolorredtext hovercursor"></instance></td></tr>');
                     });
-                    $.each(metrics.templateMetrics, function (key, values) {
-                        $("#TemplateMetric").append('<tr><td  class="cursor_pointer editTemplMetric" hostId="' + metrics.hostId + '" templMetricId="' + values.id + '">' + values.title + '</td><td><template hostId="' + metrics.hostId + '" templMetricId="' + values.id + '" class="fa fa-plus fa-lg hovercolorgreentext hovercursor"></template></td></tr>');
-                    });
+                    //$.each(metrics.templateMetrics, function (key, values) {
+                    //    $("#TemplateMetric").append('<tr><td  class="cursor_pointer editTemplMetric" hostId="' + metrics.hostId + '" templMetricId="' + values.id + '">' + values.title + '</td><td><template hostId="' + metrics.hostId + '" templMetricId="' + values.id + '" class="fa fa-plus fa-lg hovercolorgreentext hovercursor"></template></td></tr>');
+                    //});
                 });
             });
 
@@ -529,14 +697,14 @@ function modalEditHostMetrics() {
             $('body').on('click', 'instance', function () {
                 console.log($(this).attr('instMetricId'));
                 $("#InstanceMetric").empty();
-                $("#TemplateMetric").empty();
+                //$("#TemplateMetric").empty();
                 $.getJSON('/moveFromInstMetric?hostid=' + $(this).attr('hostId') + '&instMetricid=' + $(this).attr('instMetricId'), function (metrics) {
                     $.each(metrics.instanceMetrics, function (key, values) {
                         $("#InstanceMetric").append('<tr><td  class="cursor_pointer editInstMetric"  hostId="' + metrics.hostId + '" instMetricId="' + values.id + '">' + values.title + '</td><td><instance hostId="' + metrics.hostId + '" instMetricId="' + values.id + '" class="fa fa-times fa-lg hovercolorredtext hovercursor"></instance></td></tr>');
                     });
-                    $.each(metrics.templateMetrics, function (key, values) {
-                        $("#TemplateMetric").append('<tr><td  class="cursor_pointer editTemplMetric" hostId="' + metrics.hostId + '" templMetricId="' + values.id + '">' + values.title + '</td><td><template hostId="' + metrics.hostId + '" templMetricId="' + values.id + '" class="fa fa-plus fa-lg hovercolorgreentext hovercursor"></template></td></tr>');
-                    });
+                    //$.each(metrics.templateMetrics, function (key, values) {
+                    //    $("#TemplateMetric").append('<tr><td  class="cursor_pointer editTemplMetric" hostId="' + metrics.hostId + '" templMetricId="' + values.id + '">' + values.title + '</td><td><template hostId="' + metrics.hostId + '" templMetricId="' + values.id + '" class="fa fa-plus fa-lg hovercolorgreentext hovercursor"></template></td></tr>');
+                    //});
                 });
             });
         });
@@ -548,6 +716,7 @@ function modalEditHost() {
 
     $(document).ready(function () {
         $('.openAddHost').click(function (e) {
+            $('.popup.services').css({'left': '50%'});
                 $('.popup.addhost, .overlay.addhost').css({'opacity': 1, 'visibility': 'visible'});
                 e.preventDefault();
         });
@@ -600,7 +769,8 @@ function modalEditHost() {
         //$('.popup .close_window, .overlay').click(function (){
         $('.close_window').click(function () {
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
-            //window.location.href = "/hostedit";
+            $('.popup1.editInst, .overlay1.editInst').css({'opacity': 0, 'visibility': 'hidden'});
+            window.location.href = "/hostedit";
         });
     });
 }

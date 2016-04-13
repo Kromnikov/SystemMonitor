@@ -83,6 +83,12 @@ public class HostController {
     }
 
 
+    @RequestMapping(value = "/getHost", method = RequestMethod.GET)
+    @ResponseBody
+    public SSHConfiguration getHost(@RequestParam("id") int id) {
+        return hosts.get(id);
+    }
+
     @RequestMapping(value = "/dellHost", method = RequestMethod.GET)
     public String dellHost(@RequestParam("id") int id) {
         hosts.remove(hosts.get(id));

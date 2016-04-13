@@ -138,6 +138,11 @@ public class OptionsController {
         }
         return modelAndView;
     }
+    @RequestMapping(value= "/getInstMetric")
+    @ResponseBody
+    public InstanceMetric getInstMetric(@RequestParam(required = false , defaultValue = "-1") int instMetricId) throws SQLException {
+        return metricStorage.getInstMetric(instMetricId);
+    }
     @RequestMapping(value = "/getHostsTempl", method = RequestMethod.GET)
     @ResponseBody
     public HostsTemplMetricsRow getHostsTempl() throws SQLException {

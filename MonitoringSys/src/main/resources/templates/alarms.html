@@ -41,8 +41,8 @@
         dropDownMenuAlarms();
         editAlarmsModal();
         addAlarmsModal();
-//        var username = [[${username}]];
-//        setHostName(username);
+        var username = [[${username}]];
+        setHostName(username);
     </script>
 </head>
 <body>
@@ -169,8 +169,8 @@
 
 
             <div class="hostMetricAlarm">
-                <h4>Alarm of</h4>
-                <div class=" cursor_pointer has-feedback leftRow">
+                <h4>Alarm of metric</h4>
+                <div class=" cursor_pointer has-feedback leftRow ">
                         <ul class="ddmenu" id="hosts">
                             <li id="mainDdmenu" ><a href="#">hosts</a>
                                 <ul>
@@ -197,7 +197,8 @@
 
 
 
-            <div class=" cursor_pointer form-group has-feedback">
+                <h4>Alarm of host</h4>
+            <div class=" cursor_pointer form-group has-feedback hostMetricAlarm">
                 <nav>
                     <ul class="ddmenu" id="tohost">
                         <li id="mainDdmenu" ><a href="#">tohost</a>
@@ -213,8 +214,8 @@
             </div>
             </div>
 
-            <h4 class="relative11">To</h4>
-            <div class=" cursor_pointer form-group has-feedback">
+            <h4 class="relative11">To user</h4>
+            <div class=" cursor_pointer form-group has-feedback hostMetricAlarm">
                 <nav>
                     <ul class="ddmenu" id="touser">
                         <li id="mainDdmenu" ><a href="#">touser</a>
@@ -231,6 +232,7 @@
 
 
 
+            <h4 class="relative11">To mail</h4>
             <div class="form-group has-feedback">
                 <input type="text" class="form-control" placeholder="toEmail" name="toEmail"
                        required="required"/>
