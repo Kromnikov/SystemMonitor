@@ -3,6 +3,7 @@ package net.core.db;
 import net.core.configurations.SSHConfiguration;
 import net.core.models.*;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Date;
@@ -10,6 +11,8 @@ import java.util.List;
 
 
 public interface IMetricStorage {
+
+    public void dump() throws IOException;
 
     //TODO: alarms
     public List<GenericAlarmsRow> getAlarms(String userName);

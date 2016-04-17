@@ -200,7 +200,9 @@ function addAlarmsModal() {
                 + '&hostId=' + $("#tohostValue").attr('hostId')
                 + '&user=' + username
                 , function (host) {
-                    window.location.href = "/alarms";
+                    setTimeout(function () {
+                        window.location.href = "/alarms";
+                    }, 200);
                 });
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
         });
@@ -211,7 +213,9 @@ function editAlarmsModal() {
 
         $('.dellAlarm').click(function () {
             $.getJSON('/dellAlarms?id=' + $(this).attr('dellAlarm'), function (alarm) {
-                window.location.href = "/alarms";
+                setTimeout(function () {
+                    window.location.href = "/alarms";
+                }, 200);
             });
         });
 
@@ -282,7 +286,9 @@ function editAlarmsModal() {
                 + '&metricId=' + $("#metricValue").attr('metricId')
                 + '&hostId=' + $("#tohostValue").attr('hostId')
                 , function (host) {
-                    window.location.href = "/alarms";
+                    setTimeout(function () {
+                        window.location.href = "/alarms";
+                    }, 200);
                 });
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
         });
@@ -337,7 +343,9 @@ function modalAccounts() {
                 , function (host) {
                 });
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
-            window.location.href = "/accounts";
+            setTimeout(function () {
+                window.location.href = "/accounts";
+            }, 200);
         });
 
 
@@ -379,7 +387,9 @@ function modalAccounts() {
                 , function (host) {
                 });
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
-            window.location.href = "/accounts";
+            setTimeout(function () {
+                window.location.href = "/accounts";
+            }, 200);
         });
 
 
@@ -449,7 +459,10 @@ function modalTemplMetirc() {
                 , function (host) {
                 });
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
-            window.location.href = "/templMetrics";
+
+            setTimeout(function () {
+                window.location.href = "/templMetrics";
+            }, 200);
         });
 
 
@@ -464,7 +477,9 @@ function modalTemplMetirc() {
                 , function (host) {
                 });
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
-            window.location.href = "/templMetrics";
+            setTimeout(function () {
+                window.location.href = "/templMetrics";
+            }, 200);
         });
 
 

@@ -15,7 +15,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.SQLException;
@@ -46,6 +50,18 @@ public class MetricStorage implements IMetricStorage {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
 
+    //TODO:Развертываение
+    @PostConstruct
+    public void dump() throws IOException {
+        File f=new File("dump.sql");
+        try (FileReader reader  = new FileReader(f))
+        {
+            char[] buffer = new char[(int)f.length()];
+            reader.read(buffer);
+//            System.out.println(new String(buffer));
+            jdbcTemplateObject.update(new String(buffer));
+        }
+    }
 
     //TODO: alarms
     @Transactional

@@ -37,81 +37,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/index.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4272" max-vertical-offset="12308">
-              <caret line="270" column="21" selection-start-line="270" selection-start-column="9" selection-end-line="270" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="hostEditor.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/hostEditor.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-23.653847" vertical-offset="116" max-vertical-offset="5542">
-              <caret line="43" column="18" selection-start-line="43" selection-start-column="18" selection-end-line="43" selection-end-column="18" />
-              <folding>
-                <element signature="n#nav#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#h4#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.18912797" vertical-offset="3" max-vertical-offset="4760">
-              <caret line="154" column="26" selection-start-line="154" selection-start-column="26" selection-end-line="154" selection-end-column="26" />
-              <folding>
-                <element signature="n#!!block;n#instMetricPageFunctions#0" expanded="false" />
-                <element signature="n#!!block;n#editInstMetric#0" expanded="false" />
-                <element signature="n#!!block;n#addInstMetric#0" expanded="false" />
-                <element signature="n#!!block;n#dropDownMenuAlarms#0" expanded="false" />
-                <element signature="n#!!block;n#addAlarmsModal#0" expanded="false" />
-                <element signature="n#!!block;n#editAlarmsModal#0" expanded="false" />
-                <element signature="n#!!block;n#dropDownMenuAccounts#0" expanded="false" />
-                <element signature="n#!!block;n#modalAccounts#0" expanded="false" />
-                <element signature="n#!!block;n#loadPageWithtModal#0" expanded="false" />
-                <element signature="n#!!block;n#loadPageWithoutModal#0" expanded="false" />
-                <element signature="n#!!block;n#modalTemplMetirc#0" expanded="false" />
-                <element signature="n#!!block;n#clearModal#0" expanded="false" />
-                <element signature="n#!!block;n#closeModal#0" expanded="false" />
-                <element signature="n#!!block;n#modalInst#0" expanded="false" />
-                <element signature="e#24026#24183#0" expanded="false" />
-                <element signature="e#24225#24382#0" expanded="false" />
-                <element signature="e#24451#26278#0" expanded="false" />
-                <element signature="e#26328#27875#0" expanded="false" />
-                <element signature="e#27940#30392#0" expanded="false" />
-                <element signature="e#30443#31984#0" expanded="false" />
-                <element signature="n#!!block;n#modalEditHostMetrics#0" expanded="false" />
-                <element signature="n#!!block;n#modalEditHost#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IMetricStorage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/core/db/IMetricStorage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2435" max-vertical-offset="3876">
-              <caret line="155" column="26" selection-start-line="155" selection-start-column="26" selection-end-line="155" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MetricStorage.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MetricStorage.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/core/MetricStorage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.75862" vertical-offset="567" max-vertical-offset="6817">
-              <caret line="187" column="30" selection-start-line="187" selection-start-column="16" selection-end-line="187" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.33516484" vertical-offset="259" max-vertical-offset="5899">
+              <caret line="54" column="43" selection-start-line="54" selection-start-column="43" selection-end-line="54" selection-end-column="43" />
               <folding>
-                <element signature="e#847#858#0" expanded="false" />
+                <element signature="e#962#973#0" expanded="false" />
                 <element signature="method#getAlarms#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#getAlarm#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#getNewAlarm#0;class#MetricStorage#0" expanded="false" />
@@ -119,6 +51,7 @@
                 <element signature="method#addAlarm#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#dellAlarm#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#addInstMetric#0;class#MetricStorage#0" expanded="false" />
+                <element signature="method#editInstMetric#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#isMetricHasProblem#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#setAllowableValueMetric#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#overMaxValue#0;class#MetricStorage#0" expanded="false" />
@@ -150,9 +83,9 @@
                 <element signature="method#getValuesLastDay#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#getValuesSixMonth#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#getValuesYear#0;class#MetricStorage#0" expanded="false" />
-                <element signature="e#29433#29449#0" expanded="false" />
+                <element signature="e#29954#29970#0" expanded="false" />
                 <element signature="method#getValuesMonth#0;class#MetricStorage#0" expanded="false" />
-                <element signature="e#31579#31639#0" expanded="false" />
+                <element signature="e#32100#32160#0" expanded="false" />
                 <element signature="method#getValuesTheeDays#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#getValuesDay#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#getValuesLastHour#0;class#MetricStorage#0" expanded="false" />
@@ -176,6 +109,7 @@
                 <element signature="method#addInstMetric#2;class#MetricStorage#0" expanded="false" />
                 <element signature="method#getInstMetrics#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#getInstMetric#0;class#MetricStorage#0" expanded="false" />
+                <element signature="method#getInstMetric#1;class#MetricStorage#0" expanded="false" />
                 <element signature="method#delInstMetric#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#getHostRow#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#getHostEditRow#0;class#MetricStorage#0" expanded="false" />
@@ -184,6 +118,11 @@
                 <element signature="method#getFavoritesRow#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#getProblem#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#getAllUsers#0;class#MetricStorage#0" expanded="false" />
+                <element signature="method#getRoles#0;class#MetricStorage#0" expanded="false" />
+                <element signature="method#getUsers#0;class#MetricStorage#0" expanded="false" />
+                <element signature="method#updateUser#0;class#MetricStorage#0" expanded="false" />
+                <element signature="method#addUser#0;class#MetricStorage#0" expanded="false" />
+                <element signature="method#dellUser#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#getCountRoles#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#setNewUserRole#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#getQuantityOfRow#0;class#MetricStorage#0" expanded="false" />
@@ -198,52 +137,126 @@
                 <element signature="method#dellFromFavorites#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#hostsProblemsCount#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#hostsSuccesCount#0;class#MetricStorage#0" expanded="false" />
+                <element signature="e#63141#63244#0" expanded="false" />
                 <element signature="method#metricsProblemCount#0;class#MetricStorage#0" expanded="false" />
                 <element signature="method#metricsSuccesCount#0;class#MetricStorage#0" expanded="false" />
+                <element signature="e#63970#63981#0" expanded="false" />
+                <marker date="1460924159486" expanded="false" signature="2964:3016" placeholder="select title..INSTANCE_METRIC..." />
+                <marker date="1460924159486" expanded="false" signature="4305:4357" placeholder="select title..INSTANCE_METRIC..." />
+                <marker date="1460924159486" expanded="false" signature="4751:4781" placeholder="SELECT usern..Users..." />
+                <marker date="1460924159486" expanded="false" signature="5318:5370" placeholder="select title..INSTANCE_METRIC..." />
+                <marker date="1460924159486" expanded="false" signature="5764:5794" placeholder="SELECT usern..Users..." />
+                <marker date="1460924159486" expanded="false" signature="6213:6333" placeholder="UPDATE gener..." />
+                <marker date="1460924159486" expanded="false" signature="6523:6679" placeholder="INSERT INTO ..." />
+                <marker date="1460924159486" expanded="false" signature="6805:6839" placeholder="DELETE FROM ..." />
+                <marker date="1460924159486" expanded="false" signature="7041:7360" placeholder="INSERT INTO ..." />
+                <marker date="1460924159486" expanded="false" signature="7600:7785" placeholder="UPDATE \&quot;INS..." />
+                <marker date="1460924159486" expanded="false" signature="7980:8142" placeholder="SELECT id, s..METRIC_STATE..." />
+                <marker date="1460924159486" expanded="false" signature="8487:8632" placeholder="UPDATE \&quot;MET..." />
+                <marker date="1460924159486" expanded="false" signature="8780:8971" placeholder="SELECT id, s..METRIC_STATE..." />
+                <marker date="1460924159486" expanded="false" signature="9478:9686" placeholder="INSERT INTO ..." />
+                <marker date="1460924159486" expanded="false" signature="9835:10013" placeholder="SELECT id, s..METRIC_STATE..." />
+                <marker date="1460924159486" expanded="false" signature="10523:10731" placeholder="INSERT INTO ..." />
+                <marker date="1460924159486" expanded="false" signature="10876:11048" placeholder="SELECT id, s..METRIC_STATE..." />
+                <marker date="1460924159486" expanded="false" signature="11386:11550" placeholder="UPDATE \&quot;MET..." />
+                <marker date="1460924159486" expanded="false" signature="11714:11861" placeholder="INSERT INTO ..." />
+                <marker date="1460924159486" expanded="false" signature="12114:12241" placeholder="SELECT id, s..METRIC_STATE..." />
+                <marker date="1460924159486" expanded="false" signature="13619:13750" placeholder="SELECT id, s..METRIC_STATE..." />
+                <marker date="1460924159486" expanded="false" signature="15108:15223" placeholder="SELECT id, s..METRIC_STATE..." />
+                <marker date="1460924159486" expanded="false" signature="16357:16454" placeholder="UPDATE \&quot;MET..." />
+                <marker date="1460924159486" expanded="false" signature="16583:16661" placeholder="UPDATE \&quot;MET..." />
+                <marker date="1460924159486" expanded="false" signature="16799:16860" placeholder="SELECT COUNT..METRIC_STATE..." />
+                <marker date="1460924159486" expanded="false" signature="17060:17135" placeholder="SELECT COUNT..METRIC_STATE..." />
+                <marker date="1460924159486" expanded="false" signature="17517:17654" placeholder="SELECT id, r..HOST_STATE..." />
+                <marker date="1460924159486" expanded="false" signature="18106:18252" placeholder="INSERT INTO ..." />
+                <marker date="1460924159486" expanded="false" signature="18404:18533" placeholder="UPDATE \&quot;HOS..." />
+                <marker date="1460924159486" expanded="false" signature="18725:18824" placeholder="SELECT id, r..HOST_STATE..." />
+                <marker date="1460924159486" expanded="false" signature="19979:20088" placeholder="SELECT id, r..HOST_STATE..." />
+                <marker date="1460924159486" expanded="false" signature="21498:21593" placeholder="UPDATE \&quot;HOS..." />
+                <marker date="1460924159486" expanded="false" signature="21720:21796" placeholder="UPDATE \&quot;HOS..." />
+                <marker date="1460924159486" expanded="false" signature="21932:21991" placeholder="SELECT COUNT..HOST_STATE..." />
+                <marker date="1460924159486" expanded="false" signature="22228:22370" placeholder="INSERT INTO ..." />
+                <marker date="1460924159486" expanded="false" signature="22517:22603" placeholder="SELECT MAX(d..VALUE_METRIC..." />
+                <marker date="1460924159486" expanded="false" signature="24954:25076" placeholder="SELECT value..VALUE_METRIC..." />
+                <marker date="1460924159486" expanded="false" signature="26485:26706" placeholder="SELECT value..VALUE_METRIC..." />
+                <marker date="1460924159486" expanded="false" signature="27407:27628" placeholder="SELECT value..VALUE_METRIC..." />
+                <marker date="1460924159486" expanded="false" signature="29269:29490" placeholder="SELECT value..VALUE_METRIC..." />
+                <marker date="1460924159486" expanded="false" signature="31678:31899" placeholder="SELECT value..VALUE_METRIC..." />
+                <marker date="1460924159486" expanded="false" signature="33815:34036" placeholder="SELECT value..VALUE_METRIC..." />
+                <marker date="1460924159486" expanded="false" signature="35616:35837" placeholder="SELECT value..VALUE_METRIC..." />
+                <marker date="1460924159486" expanded="false" signature="36569:36790" placeholder="SELECT value..VALUE_METRIC..." />
+                <marker date="1460924159486" expanded="false" signature="37514:37735" placeholder="SELECT value..VALUE_METRIC..." />
+                <marker date="1460924159486" expanded="false" signature="38404:38625" placeholder="SELECT value..VALUE_METRIC..." />
+                <marker date="1460924159486" expanded="false" signature="39090:39173" placeholder="INSERT INTO ..." />
+                <marker date="1460924159486" expanded="false" signature="39400:39445" placeholder="select * FRO..TEMPLATE_METRICS..." />
+                <marker date="1460924159486" expanded="false" signature="40206:40240" placeholder="SELECT * FRO..TEMPLATE_METRICS..." />
+                <marker date="1460924159486" expanded="false" signature="41082:41215" placeholder="UPDATE \&quot;TEM..." />
+                <marker date="1460924159486" expanded="false" signature="41423:41562" placeholder="INSERT INTO ..." />
+                <marker date="1460924159486" expanded="false" signature="41715:41757" placeholder="DELETE FROM ..." />
+                <marker date="1460924159486" expanded="false" signature="41988:42051" placeholder="select id FR..TEMPLATE_METRICS..." />
+                <marker date="1460924159486" expanded="false" signature="42311:42374" placeholder="select * FRO..TEMPLATE_METRICS..." />
+                <marker date="1460924159486" expanded="false" signature="42834:42887" placeholder="select min_v..TEMPLATE_METRICS..." />
+                <marker date="1460924159486" expanded="false" signature="43072:43125" placeholder="select max_v..TEMPLATE_METRICS..." />
+                <marker date="1460924159486" expanded="false" signature="43368:43456" placeholder="UPDATE \&quot;TEM..." />
+                <marker date="1460924159486" expanded="false" signature="43624:43676" placeholder="select min_v..INSTANCE_METRIC..." />
+                <marker date="1460924159486" expanded="false" signature="43861:43913" placeholder="select max_v..INSTANCE_METRIC..." />
+                <marker date="1460924159486" expanded="false" signature="44156:44243" placeholder="UPDATE \&quot;INS..." />
+                <marker date="1460924159486" expanded="false" signature="44497:44699" placeholder="INSERT INTO ..." />
+                <marker date="1460924159486" expanded="false" signature="44896:45122" placeholder="INSERT INTO ..." />
+                <marker date="1460924159486" expanded="false" signature="45361:45465" placeholder="SELECT id, t..INSTANCE_METRIC..." />
+                <marker date="1460924159486" expanded="false" signature="46389:46535" placeholder="SELECT id, t..INSTANCE_METRIC..." />
+                <marker date="1460924159486" expanded="false" signature="47326:47428" placeholder="SELECT id, t..INSTANCE_METRIC..." />
+                <marker date="1460924159486" expanded="false" signature="48173:48214" placeholder="DELETE FROM ..." />
+                <marker date="1460924159486" expanded="false" signature="48444:48743" placeholder="(select coun..." />
+                <marker date="1460924159486" expanded="false" signature="48445:48742" placeholder="select count..INSTANCE_METRIC..." />
+                <marker date="1460924159486" expanded="false" signature="48484:48544" placeholder="select count..METRIC_STATE..." />
+                <marker date="1460924159486" expanded="false" signature="48565:48686" placeholder="select count..HOST_STATE..." />
+                <marker date="1460924159486" expanded="false" signature="49709:50008" placeholder="(select coun..." />
+                <marker date="1460924159486" expanded="false" signature="49710:50007" placeholder="select count..INSTANCE_METRIC..." />
+                <marker date="1460924159486" expanded="false" signature="49749:49809" placeholder="select count..METRIC_STATE..." />
+                <marker date="1460924159486" expanded="false" signature="49830:49951" placeholder="select count..HOST_STATE..." />
+                <marker date="1460924159486" expanded="false" signature="51191:51667" placeholder="select id,ti..." />
+                <marker date="1460924159486" expanded="false" signature="51209:51264" placeholder="select value..VALUE_METRIC..." />
+                <marker date="1460924159486" expanded="false" signature="52593:53067" placeholder="select id,ti..." />
+                <marker date="1460924159486" expanded="false" signature="52611:52666" placeholder="select value..VALUE_METRIC..." />
+                <marker date="1460924159486" expanded="false" signature="53964:54103" placeholder="select *,(se..FAVORITES..." />
+                <marker date="1460924159486" expanded="false" signature="53974:54039" placeholder="select title..INSTANCE_METRIC..." />
+                <marker date="1460924159486" expanded="false" signature="54860:55043" placeholder="SELECT i.tit..METRIC_STATE..." />
+                <marker date="1460924159486" expanded="false" signature="55829:55936" placeholder="SELECT u.use..Users..." />
+                <marker date="1460924159486" expanded="false" signature="56456:56498" placeholder="SELECT disti..Roles..." />
+                <marker date="1460924159486" expanded="false" signature="56981:57123" placeholder="SELECT u.use..Users..." />
+                <marker date="1460924159486" expanded="false" signature="57512:57554" placeholder="SELECT disti..Roles..." />
+                <marker date="1460924159486" expanded="false" signature="57969:58062" placeholder="UPDATE \&quot;Rol..." />
+                <marker date="1460924159486" expanded="false" signature="58120:58219" placeholder="UPDATE \&quot;Use..." />
+                <marker date="1460924159486" expanded="false" signature="58399:58496" placeholder="INSERT INTO ..." />
+                <marker date="1460924159486" expanded="false" signature="58554:58629" placeholder="INSERT INTO ..." />
+                <marker date="1460924159486" expanded="false" signature="58783:58834" placeholder="DELETE FROM ..." />
+                <marker date="1460924159486" expanded="false" signature="58892:58943" placeholder="DELETE FROM ..." />
+                <marker date="1460924159486" expanded="false" signature="59091:59121" placeholder="select count..Roles..." />
+                <marker date="1460924159486" expanded="false" signature="59325:59396" placeholder="UPDATE \&quot;Use..." />
+                <marker date="1460924159486" expanded="false" signature="59550:59602" placeholder="select count..VALUE_METRIC..." />
+                <marker date="1460924159486" expanded="false" signature="59884:59981" placeholder="select sshco..sshconfigurationhibernate..." />
+                <marker date="1460924159486" expanded="false" signature="60245:60447" placeholder="UPDATE sshco..." />
+                <marker date="1460924159486" expanded="false" signature="60627:60708" placeholder="SELECT * FRO..sshconfigurationhibernate..." />
+                <marker date="1460924159486" expanded="false" signature="61504:61577" placeholder="INSERT INTO ..." />
+                <marker date="1460924159486" expanded="false" signature="61644:61717" placeholder="INSERT INTO ..." />
+                <marker date="1460924159486" expanded="false" signature="61785:61858" placeholder="INSERT INTO ..." />
+                <marker date="1460924159486" expanded="false" signature="62026:62088" placeholder="delete from ..." />
+                <marker date="1460924159486" expanded="false" signature="62387:62498" placeholder="INSERT INTO ..." />
+                <marker date="1460924159486" expanded="false" signature="62661:62698" placeholder="DELETE FROM ..." />
+                <marker date="1460924159486" expanded="false" signature="62895:62963" placeholder="SELECT count..HOST_STATE..." />
+                <marker date="1460924159486" expanded="false" signature="63485:63555" placeholder="SELECT count..METRIC_STATE..." />
+                <marker date="1460924159486" expanded="false" signature="63788:63829" placeholder="SELECT count..INSTANCE_METRIC..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OptionsController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/OptionsController.java">
+      <file leaf-file-name="IMetricStorage.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/core/db/IMetricStorage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.8965516" vertical-offset="2347" max-vertical-offset="5508">
-              <caret line="210" column="0" selection-start-line="210" selection-start-column="0" selection-end-line="210" selection-end-column="0" />
-              <folding>
-                <element signature="method#getHostEditRow#0;class#OptionsController#0" expanded="false" />
-                <element signature="method#alarms#0;class#OptionsController#0" expanded="false" />
-                <element signature="e#1704#1768#0" expanded="false" />
-                <element signature="method#getAlarm#0;class#OptionsController#0" expanded="false" />
-                <element signature="e#1919#1986#0" expanded="false" />
-                <element signature="method#getNewAlarm#0;class#OptionsController#0" expanded="false" />
-                <element signature="e#2115#2189#0" expanded="false" />
-                <element signature="method#getInstanceMetrics#0;class#OptionsController#0" expanded="false" />
-                <element signature="e#2372#2437#0" expanded="false" />
-                <element signature="method#saveAlarm#0;class#OptionsController#0" expanded="false" />
-                <element signature="e#2764#2828#0" expanded="false" />
-                <element signature="method#addAlarm#0;class#OptionsController#0" expanded="false" />
-                <element signature="e#3164#3230#0" expanded="false" />
-                <element signature="method#dellAlarm#0;class#OptionsController#0" expanded="false" />
-                <element signature="method#getTemplMetric#0;class#OptionsController#0" expanded="false" />
-                <element signature="method#saveTemplMetric#0;class#OptionsController#0" expanded="false" />
-                <element signature="method#addTemplMetric#0;class#OptionsController#0" expanded="false" />
-                <element signature="method#dellTemplMetric#0;class#OptionsController#0" expanded="false" />
-                <element signature="method#addInstMetric#0;class#OptionsController#0" expanded="false" />
-                <element signature="method#dellInstMetric#0;class#OptionsController#0" expanded="false" />
-                <element signature="method#hostEditPage#0;class#OptionsController#0" expanded="false" />
-                <element signature="method#saveHost#0;class#OptionsController#0" expanded="false" />
-                <element signature="method#saveHost#1;class#OptionsController#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InstanceMetric.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/core/models/InstanceMetric.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1343">
-              <caret line="6" column="27" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3910">
+              <caret line="14" column="42" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -299,8 +312,6 @@
         <option value="$PROJECT_DIR$/src/main/java/net/core/models/HostsTemplMetricsRow.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/InstMetric.html" />
         <option value="$PROJECT_DIR$/src/main/java/net/web/controller/AccauntEditorController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/core/db/IMetricStorage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/core/MetricStorage.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/accaunts.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/problems.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
@@ -313,6 +324,8 @@
         <option value="$PROJECT_DIR$/src/main/java/net/core/models/InstTemplHostRow.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/web/controller/OptionsController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/index.js" />
+        <option value="$PROJECT_DIR$/src/main/java/net/core/db/IMetricStorage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/core/MetricStorage.java" />
       </list>
     </option>
   </component>
@@ -336,8 +349,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -488,8 +501,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -508,390 +519,10 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitoringSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitoringSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitoringSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitoringSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitoringSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitoringSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitoringSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitoringSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitoringSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitoringSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitoringSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitoringSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="net" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitoringSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitoringSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="net" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitoringSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitoringSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="net" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitoringSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitoringSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="net" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitoringSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitoringSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="net" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="db" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitoringSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitoringSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="net" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="configurations" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitoringSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitoringSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="net" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="branches" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitoringSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitoringSys" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="net" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="agents" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -921,18 +552,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\kromnikov\gitProjects\SystemMonitor\MonitoringSys" />
+      <recent name="C:\kromnikov\gitProjects\SystemMonitor\MonitoringSys\src\main\java\net\core" />
       <recent name="E:\gitProjects\SystemMonitor\MonitoringSys\src\main\resources\templates\unknow" />
       <recent name="D:\Net_Ctacker\GitHub\SystemMonitor1\MonitoringSys\src\main\resources\templates" />
       <recent name="D:\Net_Ctacker\GitHub\SystemMonitor1\MonitoringSys\src\main\resources\templates\olds" />
-      <recent name="E:\gitProjects\SystemMonitor\MonitoringSys\src\main\resources\static\js" />
-      <recent name="E:\gitProjects\SystemMonitor\MonitoringSys\src\main\resources\static\css" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\kromnikov\gitProjects\SystemMonitor\MonitoringSys" />
       <recent name="E:\gitProjects\SystemMonitor\MonitoringSys\src\main\resources\templates\unknow" />
       <recent name="E:\gitProjects\SystemMonitor\MonitoringSys\src\main\resources\templates" />
       <recent name="E:\gitProjects\SystemMonitor\MonitoringSys\src\main\resources\templates\main" />
       <recent name="E:\gitProjects\SystemMonitor\MonitoringSys\src\main\resources\templates\admin" />
-      <recent name="E:\gitProjects\SystemMonitor\MonitoringSys\src\main\resources\templates\acc" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="net.web.controller" />
@@ -1263,11 +894,12 @@
       <workItem from="1460455033379" duration="434000" />
       <workItem from="1460455503007" duration="7405000" />
       <workItem from="1460487600403" duration="13276000" />
+      <workItem from="1460919305531" duration="2815000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="254235000" />
+    <option name="totallyTimeSpent" value="260738000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1290,8 +922,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1304,10 +936,10 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6504329" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.64906305" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32683983" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3253833" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1315,16 +947,16 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2457356" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24508321" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3253833" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3253833" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1365,7 +997,7 @@
           <option name="timeStamp" value="194" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="224" />
+      <option name="time" value="226" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -1423,7 +1055,8 @@
             <element signature="method#getMetricRow#0;class#HostController#0" expanded="false" />
             <element signature="method#getHostsProblemsCount#0;class#HostController#0" expanded="false" />
             <element signature="method#getHostsProblems#0;class#HostController#0" expanded="false" />
-            <element signature="method#getAlarms#0;class#HostController#0" expanded="false" />
+            <element signature="e#3065#3066#0" expanded="false" />
+            <element signature="e#3101#3102#0" expanded="false" />
             <element signature="method#dellAlarm#0;class#HostController#0" expanded="false" />
             <element signature="method#hostsPage#0;class#HostController#0" expanded="false" />
             <element signature="method#hostsPageSearchLocation#0;class#HostController#0" expanded="false" />
@@ -1609,7 +1242,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1628" max-vertical-offset="2924">
           <caret line="129" column="119" selection-start-line="129" selection-start-column="99" selection-end-line="129" selection-end-column="119" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1617,7 +1249,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.38848922" vertical-offset="1833" max-vertical-offset="2822">
           <caret line="130" column="21" selection-start-line="130" selection-start-column="21" selection-end-line="130" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1634,14 +1265,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/core/models/HostRow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="935">
-          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/core/models/MetricRow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.40338984" vertical-offset="0" max-vertical-offset="969">
@@ -1654,7 +1277,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7339557" vertical-offset="680" max-vertical-offset="3587">
           <caret line="77" column="55" selection-start-line="77" selection-start-column="55" selection-end-line="78" selection-end-column="93" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1662,7 +1284,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6643678" vertical-offset="714" max-vertical-offset="3638">
           <caret line="76" column="93" selection-start-line="76" selection-start-column="93" selection-end-line="76" selection-end-column="93" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1670,19 +1291,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.0425532" vertical-offset="69797" max-vertical-offset="80835">
           <caret line="4123" column="0" selection-start-line="4123" selection-start-column="0" selection-end-line="4123" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/alarms.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39425287" vertical-offset="422" max-vertical-offset="2907">
-          <caret line="45" column="13" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
-          <folding>
-            <element signature="n#nav#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1690,15 +1298,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8074745" vertical-offset="205" max-vertical-offset="1088">
           <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4272" max-vertical-offset="12308">
-          <caret line="270" column="21" selection-start-line="270" selection-start-column="9" selection-end-line="270" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1745,14 +1344,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/core/db/IMetricStorage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2435" max-vertical-offset="3876">
-          <caret line="155" column="26" selection-start-line="155" selection-start-column="26" selection-end-line="155" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/InstMetric.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-32.692307" vertical-offset="204" max-vertical-offset="1292">
@@ -1769,7 +1360,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="48" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1777,16 +1367,345 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1343">
           <caret line="6" column="27" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="27" />
+          <folding>
+            <element signature="e#1104#1105#0" expanded="false" />
+            <element signature="e#1138#1139#0" expanded="false" />
+            <element signature="e#1189#1190#0" expanded="false" />
+            <element signature="e#1235#1236#0" expanded="false" />
+            <element signature="e#1261#1262#0" expanded="false" />
+            <element signature="e#1286#1287#0" expanded="false" />
+            <element signature="e#1319#1320#0" expanded="false" />
+            <element signature="e#1347#1348#0" expanded="false" />
+            <element signature="e#1379#1380#0" expanded="false" />
+            <element signature="e#1407#1408#0" expanded="false" />
+            <element signature="e#1449#1450#0" expanded="false" />
+            <element signature="e#1483#1484#0" expanded="false" />
+            <element signature="e#1517#1518#0" expanded="false" />
+            <element signature="e#1547#1548#0" expanded="false" />
+            <element signature="e#1593#1594#0" expanded="false" />
+            <element signature="e#1631#1632#0" expanded="false" />
+            <element signature="e#1666#1667#0" expanded="false" />
+            <element signature="e#1697#1698#0" expanded="false" />
+            <element signature="e#1745#1746#0" expanded="false" />
+            <element signature="e#1785#1786#0" expanded="false" />
+            <element signature="e#1820#1821#0" expanded="false" />
+            <element signature="e#1851#1852#0" expanded="false" />
+            <element signature="e#1899#1900#0" expanded="false" />
+            <element signature="e#1939#1940#0" expanded="false" />
+            <element signature="e#1969#1970#0" expanded="false" />
+            <element signature="e#1998#1999#0" expanded="false" />
+            <element signature="e#2039#2040#0" expanded="false" />
+            <element signature="e#2075#2076#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/core/models/HostRow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.060822897" vertical-offset="0" max-vertical-offset="935">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/OptionsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2074" max-vertical-offset="5508">
+          <caret line="205" column="18" selection-start-line="205" selection-start-column="18" selection-end-line="205" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="method#getHostEditRow#0;class#OptionsController#0" expanded="false" />
+            <element signature="method#alarms#0;class#OptionsController#0" expanded="false" />
+            <element signature="e#1704#1768#0" expanded="false" />
+            <element signature="method#getAlarm#0;class#OptionsController#0" expanded="false" />
+            <element signature="e#1919#1986#0" expanded="false" />
+            <element signature="method#getNewAlarm#0;class#OptionsController#0" expanded="false" />
+            <element signature="e#2115#2189#0" expanded="false" />
+            <element signature="method#getInstanceMetrics#0;class#OptionsController#0" expanded="false" />
+            <element signature="e#2372#2437#0" expanded="false" />
+            <element signature="method#saveAlarm#0;class#OptionsController#0" expanded="false" />
+            <element signature="e#2764#2828#0" expanded="false" />
+            <element signature="method#addAlarm#0;class#OptionsController#0" expanded="false" />
+            <element signature="e#3164#3230#0" expanded="false" />
+            <element signature="method#dellAlarm#0;class#OptionsController#0" expanded="false" />
+            <element signature="method#getTemplMetric#0;class#OptionsController#0" expanded="false" />
+            <element signature="method#saveTemplMetric#0;class#OptionsController#0" expanded="false" />
+            <element signature="method#addTemplMetric#0;class#OptionsController#0" expanded="false" />
+            <element signature="method#dellTemplMetric#0;class#OptionsController#0" expanded="false" />
+            <element signature="method#addInstMetric#0;class#OptionsController#0" expanded="false" />
+            <element signature="method#dellInstMetric#0;class#OptionsController#0" expanded="false" />
+            <element signature="method#hostEditPage#0;class#OptionsController#0" expanded="false" />
+            <element signature="method#saveHost#0;class#OptionsController#0" expanded="false" />
+            <element signature="e#19907#19908#0" expanded="false" />
+            <element signature="e#19947#19948#0" expanded="false" />
+            <element signature="method#saveHost#1;class#OptionsController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.65384614" vertical-offset="51" max-vertical-offset="2635">
+          <caret line="229" column="106" selection-start-line="229" selection-start-column="106" selection-end-line="229" selection-end-column="106" />
+          <folding>
+            <element signature="n#!!block;n#instMetricPageFunctions#0" expanded="false" />
+            <element signature="e#106#950#0" expanded="false" />
+            <element signature="e#168#311#0" expanded="false" />
+            <element signature="e#378#941#0" expanded="false" />
+            <element signature="n#!!block;n#editInstMetric#0" expanded="false" />
+            <element signature="e#1037#4172#0" expanded="false" />
+            <element signature="e#1653#2787#0" expanded="false" />
+            <element signature="e#1976#2204#0" expanded="false" />
+            <element signature="e#2534#2775#0" expanded="false" />
+            <element signature="e#2839#4162#0" expanded="false" />
+            <element signature="e#2906#3564#0" expanded="false" />
+            <element signature="e#3467#3548#0" expanded="false" />
+            <element signature="e#3570#4152#0" expanded="false" />
+            <element signature="e#4055#4136#0" expanded="false" />
+            <element signature="n#!!block;n#addInstMetric#0" expanded="false" />
+            <element signature="e#4243#6840#0" expanded="false" />
+            <element signature="e#4302#5371#0" expanded="false" />
+            <element signature="e#4625#4812#0" expanded="false" />
+            <element signature="e#5118#5359#0" expanded="false" />
+            <element signature="e#5619#6830#0" expanded="false" />
+            <element signature="e#5686#6288#0" expanded="false" />
+            <element signature="e#6191#6272#0" expanded="false" />
+            <element signature="e#6294#6820#0" expanded="false" />
+            <element signature="e#6723#6804#0" expanded="false" />
+            <element signature="n#!!block;n#dropDownMenuAlarms#0" expanded="false" />
+            <element signature="e#6928#7279#0" expanded="false" />
+            <element signature="e#6969#7088#0" expanded="false" />
+            <element signature="e#7102#7270#0" expanded="false" />
+            <element signature="e#7169#7245#0" expanded="false" />
+            <element signature="n#!!block;n#addAlarmsModal#0" expanded="false" />
+            <element signature="e#7491#9690#0" expanded="false" />
+            <element signature="e#7548#9678#0" expanded="false" />
+            <element signature="e#7817#8008#0" expanded="false" />
+            <element signature="e#8300#8503#0" expanded="false" />
+            <element signature="e#8780#8975#0" expanded="false" />
+            <element signature="e#9255#9413#0" expanded="false" />
+            <element signature="e#9736#10339#0" expanded="false" />
+            <element signature="e#10097#10248#0" expanded="false" />
+            <element signature="e#10142#10223#0" expanded="false" />
+            <element signature="e#10460#10695#0" expanded="false" />
+            <element signature="e#10548#10683#0" expanded="false" />
+            <element signature="e#10589#10662#0" expanded="false" />
+            <element signature="e#11536#11686#0" expanded="false" />
+            <element signature="e#11748#11891#0" expanded="false" />
+            <element signature="e#11953#12026#0" expanded="false" />
+            <element signature="e#12604#12795#0" expanded="false" />
+            <element signature="e#13113#13316#0" expanded="false" />
+            <element signature="e#13646#13841#0" expanded="false" />
+            <element signature="e#14141#14299#0" expanded="false" />
+            <element signature="e#14618#15218#0" expanded="false" />
+            <element signature="e#14976#15127#0" expanded="false" />
+            <element signature="e#15021#15102#0" expanded="false" />
+            <element signature="e#15268#15406#0" expanded="false" />
+            <element signature="n#!!block;n#dropDownMenuAccounts#0" expanded="false" />
+            <element signature="e#15538#15889#0" expanded="false" />
+            <element signature="e#15579#15698#0" expanded="false" />
+            <element signature="e#15712#15880#0" expanded="false" />
+            <element signature="e#15779#15855#0" expanded="false" />
+            <element signature="n#!!block;n#modalAccounts#0" expanded="false" />
+            <element signature="e#15956#19448#0" expanded="false" />
+            <element signature="e#16006#16696#0" expanded="false" />
+            <element signature="e#16060#16684#0" expanded="false" />
+            <element signature="e#16367#16523#0" expanded="false" />
+            <element signature="e#16742#17237#0" expanded="false" />
+            <element signature="e#17017#17036#0" expanded="false" />
+            <element signature="e#17153#17220#0" expanded="false" />
+            <element signature="e#17314#17643#0" expanded="false" />
+            <element signature="e#17463#17493#0" expanded="false" />
+            <element signature="e#17692#18689#0" expanded="false" />
+            <element signature="e#17806#18677#0" expanded="false" />
+            <element signature="e#18376#18522#0" expanded="false" />
+            <element signature="e#18736#19249#0" expanded="false" />
+            <element signature="e#19029#19048#0" expanded="false" />
+            <element signature="e#19165#19232#0" expanded="false" />
+            <element signature="e#19299#19439#0" expanded="false" />
+            <element signature="n#!!block;n#loadPageWithtModal#0" expanded="false" />
+            <element signature="e#19576#20037#0" expanded="false" />
+            <element signature="n#!!block;n#loadPageWithoutModal#0" expanded="false" />
+            <element signature="e#20111#20855#0" expanded="false" />
+            <element signature="e#20158#20847#0" expanded="false" />
+            <element signature="e#20282#20835#0" expanded="false" />
+            <element signature="n#!!block;n#modalTemplMetirc#0" expanded="false" />
+            <element signature="e#20925#22877#0" expanded="false" />
+            <element signature="e#20991#21135#0" expanded="false" />
+            <element signature="e#21107#21123#0" expanded="false" />
+            <element signature="e#21203#21356#0" expanded="false" />
+            <element signature="e#21406#22008#0" expanded="false" />
+            <element signature="e#21783#21802#0" expanded="false" />
+            <element signature="e#21920#21991#0" expanded="false" />
+            <element signature="e#22077#22674#0" expanded="false" />
+            <element signature="e#22450#22469#0" expanded="false" />
+            <element signature="e#22586#22657#0" expanded="false" />
+            <element signature="e#22724#22868#0" expanded="false" />
+            <element signature="e#22930#22981#0" expanded="false" />
+            <element signature="n#!!block;n#clearModal#0" expanded="false" />
+            <element signature="n#!!block;n#closeModal#0" expanded="false" />
+            <element signature="e#23361#23784#0" expanded="false" />
+            <element signature="e#23426#23776#0" expanded="false" />
+            <element signature="n#!!block;n#modalInst#0" expanded="false" />
+            <element signature="e#23978#31992#0" expanded="false" />
+            <element signature="e#24026#24183#0" expanded="false" />
+            <element signature="e#24225#24382#0" expanded="false" />
+            <element signature="e#24451#26278#0" expanded="false" />
+            <element signature="e#24558#25818#0" expanded="false" />
+            <element signature="e#24625#25802#0" expanded="false" />
+            <element signature="e#24984#25187#0" expanded="false" />
+            <element signature="e#25525#25782#0" expanded="false" />
+            <element signature="e#26328#27875#0" expanded="false" />
+            <element signature="e#26395#27165#0" expanded="false" />
+            <element signature="e#26900#26983#0" expanded="false" />
+            <element signature="e#27025#27144#0" expanded="false" />
+            <element signature="e#27171#27865#0" expanded="false" />
+            <element signature="e#27600#27683#0" expanded="false" />
+            <element signature="e#27725#27844#0" expanded="false" />
+            <element signature="e#27940#30392#0" expanded="false" />
+            <element signature="e#28044#30147#0" expanded="false" />
+            <element signature="e#28818#30126#0" expanded="false" />
+            <element signature="e#29201#29412#0" expanded="false" />
+            <element signature="e#29837#30102#0" expanded="false" />
+            <element signature="e#30443#31984#0" expanded="false" />
+            <element signature="e#30510#31277#0" expanded="false" />
+            <element signature="e#31071#31095#0" expanded="false" />
+            <element signature="e#31137#31256#0" expanded="false" />
+            <element signature="e#31283#31974#0" expanded="false" />
+            <element signature="e#31768#31792#0" expanded="false" />
+            <element signature="e#31834#31953#0" expanded="false" />
+            <element signature="n#!!block;n#modalEditHostMetrics#0" expanded="false" />
+            <element signature="e#32065#36695#0" expanded="false" />
+            <element signature="e#32075#32131#0" expanded="false" />
+            <element signature="e#32305#32404#0" expanded="false" />
+            <element signature="e#32416#32476#0" expanded="false" />
+            <element signature="e#32628#36686#0" expanded="false" />
+            <element signature="e#32931#33828#0" expanded="false" />
+            <element signature="e#33004#33370#0" expanded="false" />
+            <element signature="e#33444#33812#0" expanded="false" />
+            <element signature="e#34102#35357#0" expanded="false" />
+            <element signature="e#34409#35341#0" expanded="false" />
+            <element signature="e#34486#34860#0" expanded="false" />
+            <element signature="e#34883#34941#0" expanded="false" />
+            <element signature="e#35420#36674#0" expanded="false" />
+            <element signature="e#35726#36658#0" expanded="false" />
+            <element signature="e#35803#36177#0" expanded="false" />
+            <element signature="e#36200#36258#0" expanded="false" />
+            <element signature="n#!!block;n#modalEditHost#0" expanded="false" />
+            <element signature="e#36763#39675#0" expanded="false" />
+            <element signature="e#36810#37012#0" expanded="false" />
+            <element signature="e#37055#37734#0" expanded="false" />
+            <element signature="e#37514#37533#0" expanded="false" />
+            <element signature="e#37650#37717#0" expanded="false" />
+            <element signature="e#37786#38514#0" expanded="false" />
+            <element signature="e#37894#38502#0" expanded="false" />
+            <element signature="e#38558#39254#0" expanded="false" />
+            <element signature="e#39034#39053#0" expanded="false" />
+            <element signature="e#39170#39237#0" expanded="false" />
+            <element signature="e#39368#39667#0" expanded="false" />
+            <element signature="e#39583#39650#0" expanded="false" />
+            <element signature="n#!!block;n#dellAlarm#0" expanded="false" />
+            <element signature="e#39871#40728#0" expanded="false" />
+            <element signature="e#40067#40720#0" expanded="false" />
+            <element signature="e#40109#40406#0" expanded="false" />
+            <element signature="e#40412#40710#0" expanded="false" />
+            <element signature="n#!!block;n#checking#0" expanded="false" />
+            <element signature="e#40851#41708#0" expanded="false" />
+            <element signature="e#41047#41700#0" expanded="false" />
+            <element signature="e#41089#41386#0" expanded="false" />
+            <element signature="e#41392#41690#0" expanded="false" />
+            <element signature="n#!!block;n#start_checking#0" expanded="false" />
+            <element signature="e#41768#42820#0" expanded="false" />
+            <element signature="e#41874#42786#0" expanded="false" />
+            <element signature="e#42086#42774#0" expanded="false" />
+            <element signature="e#42132#42445#0" expanded="false" />
+            <element signature="e#42451#42760#0" expanded="false" />
+            <element signature="n#!!block;n#setHostName#0" expanded="false" />
+            <element signature="e#42897#42975#0" expanded="false" />
+            <element signature="n#!!block;n#hideShowHostListContent#0" expanded="false" />
+            <element signature="e#43057#44364#0" expanded="false" />
+            <element signature="e#43180#43352#0" expanded="false" />
+            <element signature="e#43194#43224#0" expanded="false" />
+            <element signature="e#43405#43458#0" expanded="false" />
+            <element signature="e#43503#43667#0" expanded="false" />
+            <element signature="e#43608#43657#0" expanded="false" />
+            <element signature="e#43712#44009#0" expanded="false" />
+            <element signature="e#44046#44326#0" expanded="false" />
+            <element signature="n#!!block;n#showProblemHost#0" expanded="false" />
+            <element signature="e#44434#44597#0" expanded="false" />
+            <element signature="e#44444#44487#0" expanded="false" />
+            <element signature="n#!!block;n#showChart#0" expanded="false" />
+            <element signature="e#44686#44786#0" expanded="false" />
+            <element signature="n#!!block;n#showMetrics#0" expanded="false" />
+            <element signature="e#44850#45063#0" expanded="false" />
+            <element signature="e#44860#44902#0" expanded="false" />
+            <element signature="n#!!block;n#onLoad#0" expanded="false" />
+            <element signature="e#45121#45213#0" expanded="false" />
+            <element signature="e#45253#45345#0" expanded="false" />
+            <element signature="e#45399#45530#0" expanded="false" />
+            <element signature="e#45460#45524#0" expanded="false" />
+            <element signature="e#45584#45779#0" expanded="false" />
+            <element signature="e#45646#45773#0" expanded="false" />
+            <element signature="n#!!block;n#selectRowleft#0" expanded="false" />
+            <element signature="n#!!block;n#selectRowright#0" expanded="false" />
+            <element signature="n#!!block;n#resizeTo#0" expanded="false" />
+            <element signature="n#!!block;n#metricsMenu#0" expanded="false" />
+            <element signature="e#46880#46929#0" expanded="false" />
+            <element signature="e#47182#47224#0" expanded="false" />
+            <element signature="n#!!block;n#selectMetricsMenuItem#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/hostEditor.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.19615385" vertical-offset="884" max-vertical-offset="7463">
+          <caret line="46" column="18" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5865" max-vertical-offset="12308">
+          <caret line="345" column="21" selection-start-line="345" selection-start-column="9" selection-end-line="345" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/alarms.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3576923" vertical-offset="1191" max-vertical-offset="3502">
+          <caret line="146" column="43" selection-start-line="146" selection-start-column="43" selection-end-line="146" selection-end-column="43" />
+          <folding>
+            <element signature="n#nav#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/core/db/IMetricStorage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3910">
+          <caret line="14" column="42" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dump.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33398822" vertical-offset="0" max-vertical-offset="9078">
+          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/core/MetricStorage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.75862" vertical-offset="567" max-vertical-offset="6817">
-          <caret line="187" column="30" selection-start-line="187" selection-start-column="16" selection-end-line="187" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.33516484" vertical-offset="259" max-vertical-offset="5899">
+          <caret line="54" column="43" selection-start-line="54" selection-start-column="43" selection-end-line="54" selection-end-column="43" />
           <folding>
-            <element signature="e#847#858#0" expanded="false" />
+            <element signature="e#962#973#0" expanded="false" />
             <element signature="method#getAlarms#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getAlarm#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getNewAlarm#0;class#MetricStorage#0" expanded="false" />
@@ -1794,6 +1713,7 @@
             <element signature="method#addAlarm#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#dellAlarm#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#addInstMetric#0;class#MetricStorage#0" expanded="false" />
+            <element signature="method#editInstMetric#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#isMetricHasProblem#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#setAllowableValueMetric#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#overMaxValue#0;class#MetricStorage#0" expanded="false" />
@@ -1825,9 +1745,9 @@
             <element signature="method#getValuesLastDay#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getValuesSixMonth#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getValuesYear#0;class#MetricStorage#0" expanded="false" />
-            <element signature="e#29433#29449#0" expanded="false" />
+            <element signature="e#29954#29970#0" expanded="false" />
             <element signature="method#getValuesMonth#0;class#MetricStorage#0" expanded="false" />
-            <element signature="e#31579#31639#0" expanded="false" />
+            <element signature="e#32100#32160#0" expanded="false" />
             <element signature="method#getValuesTheeDays#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getValuesDay#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getValuesLastHour#0;class#MetricStorage#0" expanded="false" />
@@ -1851,6 +1771,7 @@
             <element signature="method#addInstMetric#2;class#MetricStorage#0" expanded="false" />
             <element signature="method#getInstMetrics#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getInstMetric#0;class#MetricStorage#0" expanded="false" />
+            <element signature="method#getInstMetric#1;class#MetricStorage#0" expanded="false" />
             <element signature="method#delInstMetric#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getHostRow#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getHostEditRow#0;class#MetricStorage#0" expanded="false" />
@@ -1859,6 +1780,11 @@
             <element signature="method#getFavoritesRow#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getProblem#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getAllUsers#0;class#MetricStorage#0" expanded="false" />
+            <element signature="method#getRoles#0;class#MetricStorage#0" expanded="false" />
+            <element signature="method#getUsers#0;class#MetricStorage#0" expanded="false" />
+            <element signature="method#updateUser#0;class#MetricStorage#0" expanded="false" />
+            <element signature="method#addUser#0;class#MetricStorage#0" expanded="false" />
+            <element signature="method#dellUser#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getCountRoles#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#setNewUserRole#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#getQuantityOfRow#0;class#MetricStorage#0" expanded="false" />
@@ -1873,94 +1799,116 @@
             <element signature="method#dellFromFavorites#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#hostsProblemsCount#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#hostsSuccesCount#0;class#MetricStorage#0" expanded="false" />
+            <element signature="e#63141#63244#0" expanded="false" />
             <element signature="method#metricsProblemCount#0;class#MetricStorage#0" expanded="false" />
             <element signature="method#metricsSuccesCount#0;class#MetricStorage#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/core/models/InstTemplHostRow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17075893" vertical-offset="0" max-vertical-offset="896">
-          <caret line="9" column="34" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/hostEditor.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.653847" vertical-offset="116" max-vertical-offset="5542">
-          <caret line="43" column="18" selection-start-line="43" selection-start-column="18" selection-end-line="43" selection-end-column="18" />
-          <folding>
-            <element signature="n#nav#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#h4#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/web/controller/OptionsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.8965516" vertical-offset="2347" max-vertical-offset="5508">
-          <caret line="210" column="0" selection-start-line="210" selection-start-column="0" selection-end-line="210" selection-end-column="0" />
-          <folding>
-            <element signature="method#getHostEditRow#0;class#OptionsController#0" expanded="false" />
-            <element signature="method#alarms#0;class#OptionsController#0" expanded="false" />
-            <element signature="e#1704#1768#0" expanded="false" />
-            <element signature="method#getAlarm#0;class#OptionsController#0" expanded="false" />
-            <element signature="e#1919#1986#0" expanded="false" />
-            <element signature="method#getNewAlarm#0;class#OptionsController#0" expanded="false" />
-            <element signature="e#2115#2189#0" expanded="false" />
-            <element signature="method#getInstanceMetrics#0;class#OptionsController#0" expanded="false" />
-            <element signature="e#2372#2437#0" expanded="false" />
-            <element signature="method#saveAlarm#0;class#OptionsController#0" expanded="false" />
-            <element signature="e#2764#2828#0" expanded="false" />
-            <element signature="method#addAlarm#0;class#OptionsController#0" expanded="false" />
-            <element signature="e#3164#3230#0" expanded="false" />
-            <element signature="method#dellAlarm#0;class#OptionsController#0" expanded="false" />
-            <element signature="method#getTemplMetric#0;class#OptionsController#0" expanded="false" />
-            <element signature="method#saveTemplMetric#0;class#OptionsController#0" expanded="false" />
-            <element signature="method#addTemplMetric#0;class#OptionsController#0" expanded="false" />
-            <element signature="method#dellTemplMetric#0;class#OptionsController#0" expanded="false" />
-            <element signature="method#addInstMetric#0;class#OptionsController#0" expanded="false" />
-            <element signature="method#dellInstMetric#0;class#OptionsController#0" expanded="false" />
-            <element signature="method#hostEditPage#0;class#OptionsController#0" expanded="false" />
-            <element signature="method#saveHost#0;class#OptionsController#0" expanded="false" />
-            <element signature="method#saveHost#1;class#OptionsController#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18912797" vertical-offset="3" max-vertical-offset="4760">
-          <caret line="154" column="26" selection-start-line="154" selection-start-column="26" selection-end-line="154" selection-end-column="26" />
-          <folding>
-            <element signature="n#!!block;n#instMetricPageFunctions#0" expanded="false" />
-            <element signature="n#!!block;n#editInstMetric#0" expanded="false" />
-            <element signature="n#!!block;n#addInstMetric#0" expanded="false" />
-            <element signature="n#!!block;n#dropDownMenuAlarms#0" expanded="false" />
-            <element signature="n#!!block;n#addAlarmsModal#0" expanded="false" />
-            <element signature="n#!!block;n#editAlarmsModal#0" expanded="false" />
-            <element signature="n#!!block;n#dropDownMenuAccounts#0" expanded="false" />
-            <element signature="n#!!block;n#modalAccounts#0" expanded="false" />
-            <element signature="n#!!block;n#loadPageWithtModal#0" expanded="false" />
-            <element signature="n#!!block;n#loadPageWithoutModal#0" expanded="false" />
-            <element signature="n#!!block;n#modalTemplMetirc#0" expanded="false" />
-            <element signature="n#!!block;n#clearModal#0" expanded="false" />
-            <element signature="n#!!block;n#closeModal#0" expanded="false" />
-            <element signature="n#!!block;n#modalInst#0" expanded="false" />
-            <element signature="e#24026#24183#0" expanded="false" />
-            <element signature="e#24225#24382#0" expanded="false" />
-            <element signature="e#24451#26278#0" expanded="false" />
-            <element signature="e#26328#27875#0" expanded="false" />
-            <element signature="e#27940#30392#0" expanded="false" />
-            <element signature="e#30443#31984#0" expanded="false" />
-            <element signature="n#!!block;n#modalEditHostMetrics#0" expanded="false" />
-            <element signature="n#!!block;n#modalEditHost#0" expanded="false" />
+            <element signature="e#63970#63981#0" expanded="false" />
+            <marker date="1460924159486" expanded="false" signature="2964:3016" placeholder="select title..INSTANCE_METRIC..." />
+            <marker date="1460924159486" expanded="false" signature="4305:4357" placeholder="select title..INSTANCE_METRIC..." />
+            <marker date="1460924159486" expanded="false" signature="4751:4781" placeholder="SELECT usern..Users..." />
+            <marker date="1460924159486" expanded="false" signature="5318:5370" placeholder="select title..INSTANCE_METRIC..." />
+            <marker date="1460924159486" expanded="false" signature="5764:5794" placeholder="SELECT usern..Users..." />
+            <marker date="1460924159486" expanded="false" signature="6213:6333" placeholder="UPDATE gener..." />
+            <marker date="1460924159486" expanded="false" signature="6523:6679" placeholder="INSERT INTO ..." />
+            <marker date="1460924159486" expanded="false" signature="6805:6839" placeholder="DELETE FROM ..." />
+            <marker date="1460924159486" expanded="false" signature="7041:7360" placeholder="INSERT INTO ..." />
+            <marker date="1460924159486" expanded="false" signature="7600:7785" placeholder="UPDATE \&quot;INS..." />
+            <marker date="1460924159486" expanded="false" signature="7980:8142" placeholder="SELECT id, s..METRIC_STATE..." />
+            <marker date="1460924159486" expanded="false" signature="8487:8632" placeholder="UPDATE \&quot;MET..." />
+            <marker date="1460924159486" expanded="false" signature="8780:8971" placeholder="SELECT id, s..METRIC_STATE..." />
+            <marker date="1460924159486" expanded="false" signature="9478:9686" placeholder="INSERT INTO ..." />
+            <marker date="1460924159486" expanded="false" signature="9835:10013" placeholder="SELECT id, s..METRIC_STATE..." />
+            <marker date="1460924159486" expanded="false" signature="10523:10731" placeholder="INSERT INTO ..." />
+            <marker date="1460924159486" expanded="false" signature="10876:11048" placeholder="SELECT id, s..METRIC_STATE..." />
+            <marker date="1460924159486" expanded="false" signature="11386:11550" placeholder="UPDATE \&quot;MET..." />
+            <marker date="1460924159486" expanded="false" signature="11714:11861" placeholder="INSERT INTO ..." />
+            <marker date="1460924159486" expanded="false" signature="12114:12241" placeholder="SELECT id, s..METRIC_STATE..." />
+            <marker date="1460924159486" expanded="false" signature="13619:13750" placeholder="SELECT id, s..METRIC_STATE..." />
+            <marker date="1460924159486" expanded="false" signature="15108:15223" placeholder="SELECT id, s..METRIC_STATE..." />
+            <marker date="1460924159486" expanded="false" signature="16357:16454" placeholder="UPDATE \&quot;MET..." />
+            <marker date="1460924159486" expanded="false" signature="16583:16661" placeholder="UPDATE \&quot;MET..." />
+            <marker date="1460924159486" expanded="false" signature="16799:16860" placeholder="SELECT COUNT..METRIC_STATE..." />
+            <marker date="1460924159486" expanded="false" signature="17060:17135" placeholder="SELECT COUNT..METRIC_STATE..." />
+            <marker date="1460924159486" expanded="false" signature="17517:17654" placeholder="SELECT id, r..HOST_STATE..." />
+            <marker date="1460924159486" expanded="false" signature="18106:18252" placeholder="INSERT INTO ..." />
+            <marker date="1460924159486" expanded="false" signature="18404:18533" placeholder="UPDATE \&quot;HOS..." />
+            <marker date="1460924159486" expanded="false" signature="18725:18824" placeholder="SELECT id, r..HOST_STATE..." />
+            <marker date="1460924159486" expanded="false" signature="19979:20088" placeholder="SELECT id, r..HOST_STATE..." />
+            <marker date="1460924159486" expanded="false" signature="21498:21593" placeholder="UPDATE \&quot;HOS..." />
+            <marker date="1460924159486" expanded="false" signature="21720:21796" placeholder="UPDATE \&quot;HOS..." />
+            <marker date="1460924159486" expanded="false" signature="21932:21991" placeholder="SELECT COUNT..HOST_STATE..." />
+            <marker date="1460924159486" expanded="false" signature="22228:22370" placeholder="INSERT INTO ..." />
+            <marker date="1460924159486" expanded="false" signature="22517:22603" placeholder="SELECT MAX(d..VALUE_METRIC..." />
+            <marker date="1460924159486" expanded="false" signature="24954:25076" placeholder="SELECT value..VALUE_METRIC..." />
+            <marker date="1460924159486" expanded="false" signature="26485:26706" placeholder="SELECT value..VALUE_METRIC..." />
+            <marker date="1460924159486" expanded="false" signature="27407:27628" placeholder="SELECT value..VALUE_METRIC..." />
+            <marker date="1460924159486" expanded="false" signature="29269:29490" placeholder="SELECT value..VALUE_METRIC..." />
+            <marker date="1460924159486" expanded="false" signature="31678:31899" placeholder="SELECT value..VALUE_METRIC..." />
+            <marker date="1460924159486" expanded="false" signature="33815:34036" placeholder="SELECT value..VALUE_METRIC..." />
+            <marker date="1460924159486" expanded="false" signature="35616:35837" placeholder="SELECT value..VALUE_METRIC..." />
+            <marker date="1460924159486" expanded="false" signature="36569:36790" placeholder="SELECT value..VALUE_METRIC..." />
+            <marker date="1460924159486" expanded="false" signature="37514:37735" placeholder="SELECT value..VALUE_METRIC..." />
+            <marker date="1460924159486" expanded="false" signature="38404:38625" placeholder="SELECT value..VALUE_METRIC..." />
+            <marker date="1460924159486" expanded="false" signature="39090:39173" placeholder="INSERT INTO ..." />
+            <marker date="1460924159486" expanded="false" signature="39400:39445" placeholder="select * FRO..TEMPLATE_METRICS..." />
+            <marker date="1460924159486" expanded="false" signature="40206:40240" placeholder="SELECT * FRO..TEMPLATE_METRICS..." />
+            <marker date="1460924159486" expanded="false" signature="41082:41215" placeholder="UPDATE \&quot;TEM..." />
+            <marker date="1460924159486" expanded="false" signature="41423:41562" placeholder="INSERT INTO ..." />
+            <marker date="1460924159486" expanded="false" signature="41715:41757" placeholder="DELETE FROM ..." />
+            <marker date="1460924159486" expanded="false" signature="41988:42051" placeholder="select id FR..TEMPLATE_METRICS..." />
+            <marker date="1460924159486" expanded="false" signature="42311:42374" placeholder="select * FRO..TEMPLATE_METRICS..." />
+            <marker date="1460924159486" expanded="false" signature="42834:42887" placeholder="select min_v..TEMPLATE_METRICS..." />
+            <marker date="1460924159486" expanded="false" signature="43072:43125" placeholder="select max_v..TEMPLATE_METRICS..." />
+            <marker date="1460924159486" expanded="false" signature="43368:43456" placeholder="UPDATE \&quot;TEM..." />
+            <marker date="1460924159486" expanded="false" signature="43624:43676" placeholder="select min_v..INSTANCE_METRIC..." />
+            <marker date="1460924159486" expanded="false" signature="43861:43913" placeholder="select max_v..INSTANCE_METRIC..." />
+            <marker date="1460924159486" expanded="false" signature="44156:44243" placeholder="UPDATE \&quot;INS..." />
+            <marker date="1460924159486" expanded="false" signature="44497:44699" placeholder="INSERT INTO ..." />
+            <marker date="1460924159486" expanded="false" signature="44896:45122" placeholder="INSERT INTO ..." />
+            <marker date="1460924159486" expanded="false" signature="45361:45465" placeholder="SELECT id, t..INSTANCE_METRIC..." />
+            <marker date="1460924159486" expanded="false" signature="46389:46535" placeholder="SELECT id, t..INSTANCE_METRIC..." />
+            <marker date="1460924159486" expanded="false" signature="47326:47428" placeholder="SELECT id, t..INSTANCE_METRIC..." />
+            <marker date="1460924159486" expanded="false" signature="48173:48214" placeholder="DELETE FROM ..." />
+            <marker date="1460924159486" expanded="false" signature="48444:48743" placeholder="(select coun..." />
+            <marker date="1460924159486" expanded="false" signature="48445:48742" placeholder="select count..INSTANCE_METRIC..." />
+            <marker date="1460924159486" expanded="false" signature="48484:48544" placeholder="select count..METRIC_STATE..." />
+            <marker date="1460924159486" expanded="false" signature="48565:48686" placeholder="select count..HOST_STATE..." />
+            <marker date="1460924159486" expanded="false" signature="49709:50008" placeholder="(select coun..." />
+            <marker date="1460924159486" expanded="false" signature="49710:50007" placeholder="select count..INSTANCE_METRIC..." />
+            <marker date="1460924159486" expanded="false" signature="49749:49809" placeholder="select count..METRIC_STATE..." />
+            <marker date="1460924159486" expanded="false" signature="49830:49951" placeholder="select count..HOST_STATE..." />
+            <marker date="1460924159486" expanded="false" signature="51191:51667" placeholder="select id,ti..." />
+            <marker date="1460924159486" expanded="false" signature="51209:51264" placeholder="select value..VALUE_METRIC..." />
+            <marker date="1460924159486" expanded="false" signature="52593:53067" placeholder="select id,ti..." />
+            <marker date="1460924159486" expanded="false" signature="52611:52666" placeholder="select value..VALUE_METRIC..." />
+            <marker date="1460924159486" expanded="false" signature="53964:54103" placeholder="select *,(se..FAVORITES..." />
+            <marker date="1460924159486" expanded="false" signature="53974:54039" placeholder="select title..INSTANCE_METRIC..." />
+            <marker date="1460924159486" expanded="false" signature="54860:55043" placeholder="SELECT i.tit..METRIC_STATE..." />
+            <marker date="1460924159486" expanded="false" signature="55829:55936" placeholder="SELECT u.use..Users..." />
+            <marker date="1460924159486" expanded="false" signature="56456:56498" placeholder="SELECT disti..Roles..." />
+            <marker date="1460924159486" expanded="false" signature="56981:57123" placeholder="SELECT u.use..Users..." />
+            <marker date="1460924159486" expanded="false" signature="57512:57554" placeholder="SELECT disti..Roles..." />
+            <marker date="1460924159486" expanded="false" signature="57969:58062" placeholder="UPDATE \&quot;Rol..." />
+            <marker date="1460924159486" expanded="false" signature="58120:58219" placeholder="UPDATE \&quot;Use..." />
+            <marker date="1460924159486" expanded="false" signature="58399:58496" placeholder="INSERT INTO ..." />
+            <marker date="1460924159486" expanded="false" signature="58554:58629" placeholder="INSERT INTO ..." />
+            <marker date="1460924159486" expanded="false" signature="58783:58834" placeholder="DELETE FROM ..." />
+            <marker date="1460924159486" expanded="false" signature="58892:58943" placeholder="DELETE FROM ..." />
+            <marker date="1460924159486" expanded="false" signature="59091:59121" placeholder="select count..Roles..." />
+            <marker date="1460924159486" expanded="false" signature="59325:59396" placeholder="UPDATE \&quot;Use..." />
+            <marker date="1460924159486" expanded="false" signature="59550:59602" placeholder="select count..VALUE_METRIC..." />
+            <marker date="1460924159486" expanded="false" signature="59884:59981" placeholder="select sshco..sshconfigurationhibernate..." />
+            <marker date="1460924159486" expanded="false" signature="60245:60447" placeholder="UPDATE sshco..." />
+            <marker date="1460924159486" expanded="false" signature="60627:60708" placeholder="SELECT * FRO..sshconfigurationhibernate..." />
+            <marker date="1460924159486" expanded="false" signature="61504:61577" placeholder="INSERT INTO ..." />
+            <marker date="1460924159486" expanded="false" signature="61644:61717" placeholder="INSERT INTO ..." />
+            <marker date="1460924159486" expanded="false" signature="61785:61858" placeholder="INSERT INTO ..." />
+            <marker date="1460924159486" expanded="false" signature="62026:62088" placeholder="delete from ..." />
+            <marker date="1460924159486" expanded="false" signature="62387:62498" placeholder="INSERT INTO ..." />
+            <marker date="1460924159486" expanded="false" signature="62661:62698" placeholder="DELETE FROM ..." />
+            <marker date="1460924159486" expanded="false" signature="62895:62963" placeholder="SELECT count..HOST_STATE..." />
+            <marker date="1460924159486" expanded="false" signature="63485:63555" placeholder="SELECT count..METRIC_STATE..." />
+            <marker date="1460924159486" expanded="false" signature="63788:63829" placeholder="SELECT count..INSTANCE_METRIC..." />
           </folding>
         </state>
       </provider>
