@@ -6,9 +6,14 @@ import net.core.hibernate.dao.HostDao;
 import net.core.hibernate.dao.HostDaoImpl;
 import net.core.hibernate.services.HostServiceImpl;
 import net.web.config.DatabaseConfig;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -22,7 +27,22 @@ import static org.mockito.Mockito.*;
 @ContextConfiguration(classes = {DatabaseConfig.class})
 @WebAppConfiguration
 @Transactional
-public class testDAO {
+public class TestDAO {
+    private EmbeddedDatabase embeddedDatabase;
+    @Before
+    public void setUp(){
+        embeddedDatabase = new EmbeddedDatabaseBuilder()
+                .setType(EmbeddedDatabaseType.H2)
+                .build();
+        //JdbcTemplate jdbcTemplate = new JdbcTemplate(embeddedDatabase);
+        NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(embeddedDatabase);
+        SSHConfiguration host = new SSHConfiguration();
+        host.setLogin("test");
+        host.setName("test");
+        host.setLocation("test");
+        HostServiceImpl hostService = new HostServiceImpl();
+        hostService.save(host);
+    }
     @Test
     public void getHostById() throws Exception {
         final int id = 1;

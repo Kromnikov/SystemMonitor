@@ -88,6 +88,25 @@
           <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.5" />
           <element id="library" level="project" name="Maven: junit:junit:4.12" />
           <element id="library" level="project" name="Maven: org.mockito:mockito-all:1.10.19" />
+          <element id="library" level="project" name="Maven: org.seleniumhq.selenium:selenium-java:2.53.0" />
+          <element id="library" level="project" name="Maven: org.seleniumhq.selenium:selenium-chrome-driver:2.53.0" />
+          <element id="library" level="project" name="Maven: org.seleniumhq.selenium:selenium-remote-driver:2.53.0" />
+          <element id="library" level="project" name="Maven: cglib:cglib-nodep:2.1_3" />
+          <element id="library" level="project" name="Maven: org.seleniumhq.selenium:selenium-api:2.53.0" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.5.1" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4.4" />
+          <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.9" />
+          <element id="library" level="project" name="Maven: org.seleniumhq.selenium:selenium-edge-driver:2.53.0" />
+          <element id="library" level="project" name="Maven: commons-io:commons-io:2.4" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-exec:1.3" />
+          <element id="library" level="project" name="Maven: org.seleniumhq.selenium:selenium-firefox-driver:2.53.0" />
+          <element id="library" level="project" name="Maven: org.seleniumhq.selenium:selenium-ie-driver:2.53.0" />
+          <element id="library" level="project" name="Maven: net.java.dev.jna:jna:4.1.0" />
+          <element id="library" level="project" name="Maven: net.java.dev.jna:jna-platform:4.1.0" />
+          <element id="library" level="project" name="Maven: org.seleniumhq.selenium:selenium-safari-driver:2.53.0" />
+          <element id="library" level="project" name="Maven: io.netty:netty:3.5.7.Final" />
+          <element id="library" level="project" name="Maven: org.seleniumhq.selenium:selenium-support:2.53.0" />
+          <element id="library" level="project" name="Maven: org.seleniumhq.selenium:selenium-leg-rc:2.53.0" />
           <element id="library" level="project" name="Maven: org.springframework:springloaded:1.2.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.thymeleaf.extras:thymeleaf-extras-conditionalcomments:2.1.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf:2.1.4.RELEASE" />
@@ -100,7 +119,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="C:\kromnikov\gitProjects\SystemMonitor\MonitoringSys\target/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/target/Artifact-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="MonitoringSys/web/Web" />
     </root>
