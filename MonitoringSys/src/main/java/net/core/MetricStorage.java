@@ -51,7 +51,14 @@ public class MetricStorage implements IMetricStorage {
     @Override
     public void dump() throws IOException {
 
-        
+        //        File f=new File("dump.sql");
+//        try (FileReader reader  = new FileReader(f))
+//        {
+//            char[] buffer = new char[(int)f.length()];
+//            reader.read(buffer);
+////            System.out.println(new String(buffer));
+//            jdbcTemplateObject.update(new String(buffer));
+//        }
     }
 
     //TODO: alarms
