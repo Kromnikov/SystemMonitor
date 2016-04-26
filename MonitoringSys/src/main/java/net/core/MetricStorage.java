@@ -15,9 +15,10 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -46,17 +47,11 @@ public class MetricStorage implements IMetricStorage {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
 
-    //TODO:Развертываение
-    @PostConstruct
+
+    @Override
     public void dump() throws IOException {
-//        File f=new File("dump.sql");
-//        try (FileReader reader  = new FileReader(f))
-//        {
-//            char[] buffer = new char[(int)f.length()];
-//            reader.read(buffer);
-////            System.out.println(new String(buffer));
-//            jdbcTemplateObject.update(new String(buffer));
-//        }
+
+        
     }
 
     //TODO: alarms
@@ -175,8 +170,8 @@ public class MetricStorage implements IMetricStorage {
     }
     @Transactional
     public void addAlarm(int serviseId, int hostId, String toEmail, String toUser,String user) {
-        String sql = "INSERT INTO genericalarm (serviceid, hostid, toemail, touser,  username)    VALUES ( '"+serviseId+"', '"+hostId+"', '"+toEmail+"', '"+toUser+"', '"+user+"')";
-        jdbcTemplateObject.update(sql);
+        String sql = "INSERT INTO genericalarm (serviceid, hostid, toemail, touser,  username)    VALUES (?,?,?,?,?)";
+        jdbcTemplateObject.update(sql,serviseId,hostId,toEmail,toUser,user);
     }
     @Transactional
     public void dellAlarm(int id) {
@@ -193,8 +188,8 @@ public class MetricStorage implements IMetricStorage {
 
     @Transactional
     public void addInstMetric(InstanceMetric instanceMetric) throws SQLException {
-        String sql = "INSERT INTO \"INSTANCE_METRIC\"(host, templ_metric,min_value,max_value,title,query) VALUES (" + instanceMetric.getHostId() + "," + instanceMetric.getTempMetrcId() + "," + instanceMetric.getMinValue() + "," + instanceMetric.getMaxValue() + ",'" + instanceMetric.getTitle() + "',$q$" + instanceMetric.getCommand() + "$q$)";
-        jdbcTemplateObject.update(sql);
+        String sql = "INSERT INTO \"INSTANCE_METRIC\"(host, templ_metric,min_value,max_value,title,query) VALUES (?,?,?,?,?,?)";
+        jdbcTemplateObject.update(sql,instanceMetric.getHostId(),instanceMetric.getTempMetrcId(),instanceMetric.getMinValue(),instanceMetric.getMaxValue() , instanceMetric.getTitle() , instanceMetric.getCommand());
     }
     @Transactional
     public void editInstMetric(int id,int hostId,int templMetricId,String title,String command,double minValue,double maxValue) throws SQLException {
@@ -248,8 +243,8 @@ public class MetricStorage implements IMetricStorage {
     public void setOverMaxValue(String startTime, InstanceMetric instanceMetric, int hostId, double valueMetric) {
         String state = "'Значение " + valueMetric + " превысило пороговое значение " + instanceMetric.getMaxValue() + "'";
         String sql = "INSERT INTO \"METRIC_STATE\"(start_datetime,state,inst_metric,resolved,host_id) " +
-                " VALUES ((TIMESTAMP '" + startTime + "')," + state + "," + instanceMetric.getId() + ",false," + hostId + ")";
-        jdbcTemplateObject.update(sql);
+                " VALUES ((TIMESTAMP '" + startTime + "'),?,?,?,?)";
+        jdbcTemplateObject.update(sql,state,instanceMetric.getId(),false,hostId);
     }
 
 
@@ -269,8 +264,8 @@ public class MetricStorage implements IMetricStorage {
     public void setLessMinValue(String startTime, InstanceMetric instanceMetric, int hostId, double valueMetric) {
         String state = "'Значение " + valueMetric + " ниже порогового значения " + instanceMetric.getMinValue() + "'";
         String sql = "INSERT INTO \"METRIC_STATE\"(start_datetime,state,inst_metric,resolved,host_id) " +
-                " VALUES ((TIMESTAMP '" + startTime + "')," + state + "," + instanceMetric.getId() + ",false," + hostId + ")";
-        jdbcTemplateObject.update(sql);
+                " VALUES ((TIMESTAMP '" + startTime + "'),?,?,?,?)";
+        jdbcTemplateObject.update(sql,state,instanceMetric.getId(),false,hostId);
     }
 
     @Transactional
@@ -293,8 +288,8 @@ public class MetricStorage implements IMetricStorage {
 
     @Transactional
     public void setIncorrectlyMetric(String startTime, int instMetric) {
-        String sql = "INSERT INTO \"METRIC_STATE\"(start_datetime,state,inst_metric,resolved)  VALUES ((TIMESTAMP '" + startTime + "'),'unknow'," + instMetric + ",false)";
-        jdbcTemplateObject.update(sql);
+        String sql = "INSERT INTO \"METRIC_STATE\"(start_datetime,state,inst_metric,resolved)  VALUES ((TIMESTAMP '" + startTime + "'),'unknow',?,?)";
+        jdbcTemplateObject.update(sql,instMetric,false);
     }
 
 
@@ -427,8 +422,8 @@ public class MetricStorage implements IMetricStorage {
 
     @Transactional
     public void setNotAvailableHost(String startTime, int host, String hostName) {
-        String sql = "INSERT INTO \"HOST_STATE\"(start_datetime,resolved,host,host_name)  VALUES ((TIMESTAMP '" + startTime + "'),false," + host + ",'" + hostName + "')";
-        jdbcTemplateObject.update(sql);
+        String sql = "INSERT INTO \"HOST_STATE\"(start_datetime,resolved,host,host_name)  VALUES ((TIMESTAMP '" + startTime + "'),?,?,?)";
+        jdbcTemplateObject.update(sql,false,host,hostName);
     }
 
     @Transactional
@@ -517,17 +512,59 @@ public class MetricStorage implements IMetricStorage {
 
 
     //values
-    //TODO: много лишнего
     @Transactional
     public void addValue(int host, int metric, double value, String dateTime) throws SQLException {
-        String sql = "INSERT INTO \"VALUE_METRIC\"(host, metric, value,date_time)  VALUES (" + host + "," + metric + "," + value + ",(TIMESTAMP '" + dateTime + "'))";
-        jdbcTemplateObject.update(sql);
+        String sql = "INSERT INTO \"VALUE_METRIC\"(host, metric, value,date_time)  VALUES (?,?,?,(TIMESTAMP '" + dateTime + "'))";
+        jdbcTemplateObject.update(sql,host,metric,value);
     }
 
     @Transactional
     public Date getLastDate(int hostId, int metricId) {
         String sql = "SELECT MAX(date_time) FROM \"VALUE_METRIC\" where metric = " + metricId + " and host =" + hostId;
         return (Date) jdbcTemplateObject.queryForMap(sql).get("MAX");
+    }
+
+    private GraphPoints averaging(List<Map<String, Object>> rows) {
+        Map<Long, Double> map = new HashMap<>();
+        long date = 0;
+        double sumValues = 0, roundVar = 0;
+        int COUNT_POINTS = 20, countValues = 0, countPoint = 0, i = 1, rowSize = rows.size(), merger = (int) Math.floor(rowSize / (COUNT_POINTS));
+        if (rowSize > 0) {
+            if (rowSize <= COUNT_POINTS) {
+                for (i = 0; i < rowSize; i++) {
+                    map.put((long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()), (double) rows.get(i).get("value"));
+                }
+            } else {
+                map.put((long) (((java.sql.Timestamp) rows.get(0).get("date_time")).getTime()), (double) rows.get(0).get("value"));
+                while (countPoint != COUNT_POINTS) {
+                    while (merger != countValues) {
+                        if (i < rowSize) {
+                            sumValues += (double) rows.get(i).get("value");
+                            date = (long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
+                            countValues++;
+                            i++;
+                        }
+                    }
+                    roundVar = new BigDecimal(sumValues / merger).setScale(3, RoundingMode.UP).doubleValue();
+                    map.put(date, roundVar);
+                    sumValues = 0;
+                    countValues = 0;
+                    countPoint++;
+
+                }
+                if (i != rowSize) {
+                    while (i != rowSize) {
+                        sumValues += (double) rows.get(i).get("value");
+                        date = (long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
+                        countValues++;
+                        i++;
+                    }
+                    roundVar = new BigDecimal(sumValues / countValues).setScale(3, RoundingMode.UP).doubleValue();
+                    map.put(date, roundVar);
+                }
+            }
+        }
+        return new GraphPoints(rowSize, new TreeMap<Long, Object>(map));
     }
 
     @Transactional
@@ -542,20 +579,20 @@ public class MetricStorage implements IMetricStorage {
             prevX = (long) (((java.sql.Timestamp) rows.get(0).get("date_time")).getTime());
             prevY = (double) rows.get(0).get("value");
             map.put(prevX, (double)prevY);
-                for (int i = 1; i < rows.size(); i++) {
-                    x = (long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
-                    y = (double) rows.get(i).get("value");
+            for (int i = 1; i < rows.size(); i++) {
+                x = (long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
+                y = (double) rows.get(i).get("value");
+                Dif = x - prevX;
+                while (Dif>defTime) {
+                    prevX += defTime;
+                    prevY = null;
                     Dif = x - prevX;
-                    while (Dif>defTime) {
-                        prevX += defTime;
-                        prevY = null;
-                        Dif = x - prevX;
-                        map.put(prevX, prevY);
-                    }
-                    map.put(x, y);
-                    prevX=x;
-                    prevY=y;
+                    map.put(prevX, prevY);
                 }
+                map.put(x, y);
+                prevX=x;
+                prevY=y;
+            }
         }
         return new GraphPoints(rows.size(), new TreeMap<Long, Object>(map));
 //        return averaging(jdbcTemplateObject.queryForList(sql));
@@ -828,8 +865,8 @@ public class MetricStorage implements IMetricStorage {
     //metrics
     @Transactional
     public void addTemplateMetric(String title, String query) throws SQLException {
-        String sql = "INSERT INTO \"TEMPLATE_METRICS\"(title, query) VALUES (" + title + "," + query + ")";
-        jdbcTemplateObject.update(sql);
+        String sql = "INSERT INTO \"TEMPLATE_METRICS\"(title, query) VALUES (?,?)";
+        jdbcTemplateObject.update(sql,title,query);
     }
 
     @Transactional
@@ -860,9 +897,9 @@ public class MetricStorage implements IMetricStorage {
             templateMetric.setTitle((String) row.get("title"));
             templateMetric.setCommand((String) row.get("query"));
             if(row.get("min_value")!=null)
-            templateMetric.setMinValue((double) row.get("min_value"));
+                templateMetric.setMinValue((double) row.get("min_value"));
             if(row.get("max_value")!=null)
-            templateMetric.setMaxValue((double) row.get("max_value"));
+                templateMetric.setMaxValue((double) row.get("max_value"));
             metrics1.add(templateMetric);
         }
         return metrics1;
@@ -877,8 +914,8 @@ public class MetricStorage implements IMetricStorage {
 
     @Transactional
     public void addTemplMetric(String title,String command,double minValue,double maxValue) throws SQLException {
-        String sql = "INSERT INTO  \"TEMPLATE_METRICS\"( min_value, max_value,title, query) VALUES( '"+minValue+"','"+maxValue+"','"+title+"',$q$"+command+"$q$ )";
-        jdbcTemplateObject.update(sql);
+        String sql = "INSERT INTO  \"TEMPLATE_METRICS\"( min_value, max_value,title, query) VALUES( ?,?,?,?)";
+        jdbcTemplateObject.update(sql,minValue,maxValue,title,command);
     }
 
     @Transactional
@@ -943,14 +980,14 @@ public class MetricStorage implements IMetricStorage {
     @Transactional
     public void addInstMetric(int host, int metric) throws SQLException {
         TemplateMetric templateMetric = getTemplateMetric(metric);
-        String sql = "INSERT INTO \"INSTANCE_METRIC\"(host, templ_metric,min_value,max_value,title,query) VALUES (" + host + "," + metric + ",0,0,'" + templateMetric.getTitle() + "',$q$" + templateMetric.getCommand() + "$q$)";
-        jdbcTemplateObject.update(sql);
+        String sql = "INSERT INTO \"INSTANCE_METRIC\"(host, templ_metric,min_value,max_value,title,query) VALUES (?,?,?,?,?,?)";
+        jdbcTemplateObject.update(sql,host, metric,0,0, templateMetric.getTitle(), templateMetric.getCommand());
     }
 
     @Transactional
     public void addInstMetric(SSHConfiguration host, TemplateMetric templateMetric) throws SQLException {
-        String sql = "INSERT INTO \"INSTANCE_METRIC\"(host, templ_metric,min_value,max_value,title,query) VALUES (" + host.getId() + "," + templateMetric.getId() + ",0,0,'" + templateMetric.getTitle() + "',$q$" + templateMetric.getCommand() + "$q$)";
-        jdbcTemplateObject.update(sql);
+        String sql = "INSERT INTO \"INSTANCE_METRIC\"(host, templ_metric,min_value,max_value,title,query) VALUES (?,?,?,?,?,?)";
+        jdbcTemplateObject.update(sql,host.getId(),templateMetric.getId(),0,0,templateMetric.getTitle(),templateMetric.getCommand());
     }
 
 
@@ -1074,7 +1111,7 @@ public class MetricStorage implements IMetricStorage {
             metricrow.setTitle((row.get("title").toString()));
             metricrow.setErrorsCount(Integer.parseInt(row.get("countProblems").toString()));
             if(row.get("value")!=null)
-            metricrow.setLastValue(Double.parseDouble(row.get("value").toString()));
+                metricrow.setLastValue(Double.parseDouble(row.get("value").toString()));
             metricrow.setDate(((java.sql.Timestamp) row.get("date")));
             metricrow.setStatus(row.get("status").toString());
             MetricRows.add(metricrow);
@@ -1082,7 +1119,7 @@ public class MetricStorage implements IMetricStorage {
         return MetricRows;
     }
     @Transactional
-    public List<MetricRow> getMetricRow(int hostId,int metricId) throws SQLException {
+    public List<MetricRow> getMetricRow(int hostId, int metricId) throws SQLException {
         List<MetricRow> MetricRows = new ArrayList<>();
         String sql = "select id,title ,(select value from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as value ,(select date_time from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as date ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id ) as countProblems ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id and (\"end_datetime\" is null and \"start_datetime\" is not null)) as status  from \"INSTANCE_METRIC\" as im where id = " + metricId;
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
@@ -1105,14 +1142,14 @@ public class MetricStorage implements IMetricStorage {
         String sql = "select *,(select title from \"INSTANCE_METRIC\" where id = f.inst_metric_id) as title  from \"FAVORITES\" as f where f.user_name='"+name+"'";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
 
-            for (Map row : rows) {
-                Favorites favorite = new Favorites();
-                favorite.setId((int) row.get("id"));
-                favorite.setHostId(Integer.parseInt(row.get("host_id").toString()));
-                favorite.setMetricId(Integer.parseInt(row.get("inst_metric_id").toString()));
-                favorite.setTitle(row.get("title").toString());
-                favoriteses.add(favorite);
-            }
+        for (Map row : rows) {
+            Favorites favorite = new Favorites();
+            favorite.setId((int) row.get("id"));
+            favorite.setHostId(Integer.parseInt(row.get("host_id").toString()));
+            favorite.setMetricId(Integer.parseInt(row.get("inst_metric_id").toString()));
+            favorite.setTitle(row.get("title").toString());
+            favoriteses.add(favorite);
+        }
         return favoriteses;
     }
 
@@ -1196,11 +1233,11 @@ public class MetricStorage implements IMetricStorage {
     }
     @Transactional
     public void addUser(String username,String password,String role) throws SQLException {
-        String sql ="INSERT INTO  \"Users\" (username, password, enabled) VALUES ('"+username+"', '"+password+"',true)";
-        jdbcTemplateObject.update(sql);
+        String sql ="INSERT INTO  \"Users\" (username, password, enabled) VALUES (?,?,?)";
+        jdbcTemplateObject.update(sql,username,password,true);
 
-        sql ="INSERT INTO \"Roles\" (role, username)   VALUES ('"+role+"','"+username+"')";
-        jdbcTemplateObject.update(sql);
+        sql ="INSERT INTO \"Roles\" (role, username)   VALUES (?,?)";
+        jdbcTemplateObject.update(sql,role,username);
     }
 
     @Transactional
@@ -1248,7 +1285,7 @@ public class MetricStorage implements IMetricStorage {
     public void updateHost(int id,String host,String login, String password,int port, String name, String location) throws SQLException {
         String sql = "UPDATE sshconfigurationhibernate SET host='"+host+"',login='" +login+
                 "',password='"+password+"',port="+port+",name='"+name+"',location='"+location+"' WHERE sshconfigurationhibernate_id="+id;
-       jdbcTemplateObject.update(sql);
+        jdbcTemplateObject.update(sql);
     }
 
     @Override
@@ -1273,12 +1310,12 @@ public class MetricStorage implements IMetricStorage {
 
     @Transactional
     public void addStandartMetrics(int id) throws SQLException {
-        String sql = "INSERT INTO \"INSTANCE_METRIC\" (TEMPL_METRIC,HOST) VALUES (1," + id + ");";
-        jdbcTemplateObject.update(sql);
-        String sql1 = "INSERT INTO \"INSTANCE_METRIC\" (TEMPL_METRIC,HOST) VALUES (2," + id + ");";
-        jdbcTemplateObject.update(sql1);
-        String sql2 = "INSERT INTO \"INSTANCE_METRIC\" (TEMPL_METRIC,HOST) VALUES (5," + id + ");";
-        jdbcTemplateObject.update(sql2);
+        String sql = "INSERT INTO \"INSTANCE_METRIC\" (TEMPL_METRIC,HOST) VALUES (?,?);";
+        jdbcTemplateObject.update(sql,1,id);
+        String sql1 = "INSERT INTO \"INSTANCE_METRIC\" (TEMPL_METRIC,HOST) VALUES (?,?);";
+        jdbcTemplateObject.update(sql1,2,id);
+        String sql2 = "INSERT INTO \"INSTANCE_METRIC\" (TEMPL_METRIC,HOST) VALUES (?,?);";
+        jdbcTemplateObject.update(sql2,5,id);
     }
 
 
@@ -1295,8 +1332,8 @@ public class MetricStorage implements IMetricStorage {
     //TODO Favorites
     @Transactional
     public void addToFavorites(int host, int metric,String user) throws SQLException {
-        String sql = "INSERT INTO \"FAVORITES\"(host_id,inst_metric_id,user_name) VALUES (" + host + "," + metric + ",'" + user + "')";
-        jdbcTemplateObject.update(sql);
+        String sql = "INSERT INTO \"FAVORITES\"(host_id,inst_metric_id,user_name) VALUES (?,?,?)";
+        jdbcTemplateObject.update(sql,host,metric,user);
     }
     @Transactional
     public void dellFromFavorites(int favoritesId) throws SQLException {
@@ -1325,7 +1362,7 @@ public class MetricStorage implements IMetricStorage {
     public int metricsSuccesCount() throws SQLException {//TODO стоит делать или нет, хз
         String sql = "SELECT count(*)  FROM \"INSTANCE_METRIC\"";
 //        if (hostsSuccesCount() > 0) {
-            return Integer.parseInt(jdbcTemplateObject.queryForMap(sql).get("count").toString());
+        return Integer.parseInt(jdbcTemplateObject.queryForMap(sql).get("count").toString());
 //        }
 //        return 0;
     }
