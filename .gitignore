@@ -8,6 +8,10 @@ MonitoringSys/.idea/dataSources.xml
 MonitoringSys/.idea/encodings.xml
 MonitoringSys/.idea/libraries/Maven__antlr_antlr_2_7_7.xml
 MonitoringSys/.idea/libraries/Maven__aopalliance_aopalliance_1_0.xml
+<<<<<<< HEAD
+=======
+MonitoringSys/.idea/libraries/Maven__cglib_cglib_nodep_2_1_3.xml
+>>>>>>> refUI
 MonitoringSys/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_1_3.xml
 MonitoringSys/.idea/libraries/Maven__ch_qos_logback_logback_core_1_1_3.xml
 MonitoringSys/.idea/libraries/Maven__com_fasterxml_classmate_1_1_0.xml
@@ -18,7 +22,14 @@ MonitoringSys/.idea/libraries/Maven__com_github_mxab_thymeleaf_extras_thymeleaf_
 MonitoringSys/.idea/libraries/Maven__com_google_code_gson_gson_2_6_1.xml
 MonitoringSys/.idea/libraries/Maven__com_google_guava_guava_15_0.xml
 MonitoringSys/.idea/libraries/Maven__com_jcraft_jsch_0_1_53.xml
+<<<<<<< HEAD
 MonitoringSys/.idea/libraries/Maven__dom4j_dom4j_1_6_1.xml
+=======
+MonitoringSys/.idea/libraries/Maven__commons_codec_commons_codec_1_9.xml
+MonitoringSys/.idea/libraries/Maven__commons_io_commons_io_2_4.xml
+MonitoringSys/.idea/libraries/Maven__dom4j_dom4j_1_6_1.xml
+MonitoringSys/.idea/libraries/Maven__io_netty_netty_3_5_7_Final.xml
+>>>>>>> refUI
 MonitoringSys/.idea/libraries/Maven__javax_activation_activation_1_1.xml
 MonitoringSys/.idea/libraries/Maven__javax_mail_mail_1_4_7.xml
 MonitoringSys/.idea/libraries/Maven__javax_servlet_jstl_1_2.xml
@@ -28,8 +39,18 @@ MonitoringSys/.idea/libraries/Maven__javax_validation_validation_api_1_1_0_Final
 MonitoringSys/.idea/libraries/Maven__jfree_jcommon_1_0_16.xml
 MonitoringSys/.idea/libraries/Maven__jfree_jfreechart_1_0_13.xml
 MonitoringSys/.idea/libraries/Maven__junit_junit_4_12.xml
+<<<<<<< HEAD
 MonitoringSys/.idea/libraries/Maven__nz_net_ultraq_thymeleaf_thymeleaf_layout_dialect_1_3_1.xml
 MonitoringSys/.idea/libraries/Maven__ognl_ognl_3_0_8.xml
+=======
+MonitoringSys/.idea/libraries/Maven__net_java_dev_jna_jna_4_1_0.xml
+MonitoringSys/.idea/libraries/Maven__net_java_dev_jna_jna_platform_4_1_0.xml
+MonitoringSys/.idea/libraries/Maven__nz_net_ultraq_thymeleaf_thymeleaf_layout_dialect_1_3_1.xml
+MonitoringSys/.idea/libraries/Maven__ognl_ognl_3_0_8.xml
+MonitoringSys/.idea/libraries/Maven__org_apache_commons_commons_exec_1_3.xml
+MonitoringSys/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_5_1.xml
+MonitoringSys/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4_4.xml
+>>>>>>> refUI
 MonitoringSys/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_8_0_30.xml
 MonitoringSys/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_el_8_0_30.xml
 MonitoringSys/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_jasper_8_0_30.xml
@@ -56,6 +77,19 @@ MonitoringSys/.idea/libraries/Maven__org_json_json_20160212.xml
 MonitoringSys/.idea/libraries/Maven__org_mockito_mockito_all_1_10_19.xml
 MonitoringSys/.idea/libraries/Maven__org_mockito_mockito_core_1_10_19.xml
 MonitoringSys/.idea/libraries/Maven__org_objenesis_objenesis_2_1.xml
+<<<<<<< HEAD
+=======
+MonitoringSys/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_api_2_53_0.xml
+MonitoringSys/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_chrome_driver_2_53_0.xml
+MonitoringSys/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_edge_driver_2_53_0.xml
+MonitoringSys/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_firefox_driver_2_53_0.xml
+MonitoringSys/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_ie_driver_2_53_0.xml
+MonitoringSys/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_java_2_53_0.xml
+MonitoringSys/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_leg_rc_2_53_0.xml
+MonitoringSys/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_remote_driver_2_53_0.xml
+MonitoringSys/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_safari_driver_2_53_0.xml
+MonitoringSys/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_support_2_53_0.xml
+>>>>>>> refUI
 MonitoringSys/.idea/libraries/Maven__org_slf4j_jcl_over_slf4j_1_7_13.xml
 MonitoringSys/.idea/libraries/Maven__org_slf4j_jul_to_slf4j_1_7_13.xml
 MonitoringSys/.idea/libraries/Maven__org_slf4j_log4j_over_slf4j_1_7_13.xml
@@ -112,12 +146,15 @@ MonitoringSys/.idea/sqldialects.xml
 MonitoringSys/.idea/uiDesigner.xml
 MonitoringSys/.idea/vcs.xml
 MonitoringSys/.idea/workspace.xml
+<<<<<<< HEAD
 MonitoringSys/mypath/mydb.lck
 MonitoringSys/mypath/mydb.properties
 MonitoringSys/mypath/mydb.script
 MonitoringSys/mypath/mydb[Конфликт].lck
 MonitoringSys/mypath/mydb[Конфликт].properties
 MonitoringSys/mypath/mydb[Конфликт].script
+=======
+>>>>>>> refUI
 MonitoringSys/target/Artifact-1.0-SNAPSHOT.jar
 MonitoringSys/target/Artifact-1.0-SNAPSHOT.war
 MonitoringSys/target/Artifact-1.0-SNAPSHOT/WEB-INF/classes/static/js/homeCharts.js
@@ -176,7 +213,10 @@ MonitoringSys/target/classes/net/core/models/HostsState.class
 MonitoringSys/target/classes/net/core/models/HostsTemplMetricsRow.class
 MonitoringSys/target/classes/net/core/models/InstTemplHostRow.class
 MonitoringSys/target/classes/net/core/models/InstanceMetric.class
+<<<<<<< HEAD
 MonitoringSys/target/classes/net/core/models/MetricRow.class
+=======
+>>>>>>> refUI
 MonitoringSys/target/classes/net/core/models/MetricState.class
 MonitoringSys/target/classes/net/core/models/MetricsRow.class
 MonitoringSys/target/classes/net/core/models/Problem.class
@@ -187,6 +227,10 @@ MonitoringSys/target/classes/net/core/models/User.class
 MonitoringSys/target/classes/net/core/models/Value.class
 MonitoringSys/target/classes/net/core/models/chartValues.class
 MonitoringSys/target/classes/net/core/models/chartValuesO.class
+<<<<<<< HEAD
+=======
+MonitoringSys/target/classes/net/core/models/metricRow.class
+>>>>>>> refUI
 MonitoringSys/target/classes/net/core/tools/Averaging.class
 MonitoringSys/target/classes/net/core/tools/Calculate1.class
 MonitoringSys/target/classes/net/core/tools/Converter.class
@@ -282,6 +326,10 @@ MonitoringSys/target/test-classes/DatabaseConfig.java
 MonitoringSys/target/test-classes/MetricStorageJUnitTest.class
 MonitoringSys/target/test-classes/ThymeleafAutoConfiguration.java
 MonitoringSys/target/test-classes/WebSecurityConfig.java
+<<<<<<< HEAD
+=======
+MonitoringSys/target/test-classes/dao/netcracker/testdao/selenium/WebTest.class
+>>>>>>> refUI
 MonitoringSys/target/test-classes/dao/netcracker/testdao/testDAO.class
 MonitoringSys/target/test-classes/other/SSHManager.class
 MonitoringSys/target/test-classes/other/TestDB.class
