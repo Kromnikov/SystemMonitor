@@ -1045,13 +1045,13 @@ public class MetricStorage implements IMetricStorage {
 
     //hostsRows
     @Transactional
-    public List<hostRow> getHostRow() throws SQLException {
-        List<hostRow> hostrows = new ArrayList<>();
+    public List<HostRow> getHostRow() throws SQLException {
+        List<HostRow> hostrows = new ArrayList<>();
         String sql = "(select count(*) as countServices,host,(select count(*)from \"METRIC_STATE\" where host_id = im.host) as countProblems ,(select count(*)from \"HOST_STATE\" where host = im.host and (\"end_datetime\" is null and \"start_datetime\" is not null)) as status from \"INSTANCE_METRIC\" as im group by host)";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
 
         for (SSHConfiguration host : this.hosts.getAll()) {
-            hostRow hostRow = new hostRow();
+            HostRow hostRow = new HostRow();
             hostRow.setId(host.getId());
             hostRow.setHostName(host.getName());
             hostRow.setLocation(host.getLocation());
