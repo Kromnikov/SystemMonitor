@@ -3,7 +3,6 @@ package net.core.db;
 import net.core.configurations.SSHConfiguration;
 import net.core.models.*;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Date;
@@ -11,8 +10,6 @@ import java.util.List;
 
 
 public interface IMetricStorage {
-
-    public void dump() throws IOException;
 
     //TODO: alarms
     public List<GenericAlarmsRow> getAlarms(String userName);
@@ -90,35 +87,35 @@ public interface IMetricStorage {
 
     public Date getLastDate(int hostId, int metricId);
 
-    public GraphPoints getAllValues(int host_id, int metricId);
+    public chartValuesO getAllValues(int host_id, int metricId);
 
 
     //hostsRows
-    public List<HostRow> getHostRow() throws SQLException;
+    public List<hostRow> getHostRow() throws SQLException;
     public List<HostEditRow> getHostEditRow() throws SQLException;
 
     //metricRows
-    public List<MetricRow> getMetricRow(int hostId) throws SQLException;
+    public List<metricRow> getMetricRow(int hostId) throws SQLException;
 
-    public GraphPoints getValuesLastDay(int host_id, int metricId, Date dateTime) throws ParseException;
+    public chartValuesO getValuesLastDay(int host_id, int metricId, Date dateTime) throws ParseException;
 
-    public GraphPoints getValuesDay(int host_id, int metricId, Date dateTime) throws ParseException;
+    public chartValuesO getValuesDay(int host_id, int metricId, Date dateTime) throws ParseException;
 
-    public GraphPoints getValuesTheeDays(int host_id, int metricId, Date dateTime);
+    public chartValues getValuesTheeDays(int host_id, int metricId, Date dateTime);
 
-    public GraphPoints getValuesMonth(int host_id, int metricId, Date dateTime) throws ParseException;
+    public chartValuesO getValuesMonth(int host_id, int metricId, Date dateTime) throws ParseException;
 
-    public GraphPoints getValuesSixMonth(int host_id, int metricId, Date dateTime);
+    public chartValues getValuesSixMonth(int host_id, int metricId, Date dateTime);
 
-    public GraphPoints getValuesYear(int host_id, int metricId, Date dateTime) throws ParseException;
+    public chartValuesO getValuesYear(int host_id, int metricId, Date dateTime) throws ParseException;
 
 
 
-    public GraphPoints getValuesLastHour(int host_id, int metricId, Date dateTime) throws ParseException;
+    public chartValuesO getValuesLastHour(int host_id, int metricId, Date dateTime) throws ParseException;
 
-    public GraphPoints getValuesTheeMinutes(int host_id, int metricId, Date dateTime) throws ParseException;
+    public chartValuesO getValuesTheeMinutes(int host_id, int metricId, Date dateTime) throws ParseException;
 
-    public GraphPoints getValuesOneMinutes(int host_id, int metricId, Date dateTime) throws ParseException;
+    public chartValuesO getValuesOneMinutes(int host_id, int metricId, Date dateTime) throws ParseException;
 
 
 

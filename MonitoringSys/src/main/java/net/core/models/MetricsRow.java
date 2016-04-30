@@ -4,7 +4,6 @@ import java.util.List;
 
 public class MetricsRow {
     int hostId;
-    String hostName;
     List<InstanceMetric> instanceMetrics;
     List<TemplateMetric> templateMetrics;
 
@@ -38,13 +37,5 @@ public class MetricsRow {
 
     public void setHostId(int hostId) {
         this.hostId = hostId;
-    }
-
-    public String getHostName() {
-        return hostName;
-    }
-
-    public void setHostName(String hostName) {
-        this.hostName = hostName;
     }
 }

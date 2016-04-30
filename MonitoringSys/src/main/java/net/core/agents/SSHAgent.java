@@ -39,6 +39,7 @@ public class SSHAgent {
             } catch (com.jcraft.jsch.JSchException e) {
                 System.out.println("err connection to host: "+this.configuration.getHost());
                 return false;
+//                System.out.println(e.getCause());
             }
         } catch (Exception e) {
             e.printStackTrace();
