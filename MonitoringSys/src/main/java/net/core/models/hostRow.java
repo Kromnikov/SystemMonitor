@@ -1,7 +1,6 @@
 package net.core.models;
 
 public class hostRow {
-
     int id;
     String hostName;
     int servicesCount;

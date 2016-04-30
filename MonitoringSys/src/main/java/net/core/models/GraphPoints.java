@@ -2,16 +2,17 @@ package net.core.models;
 
 import java.util.Map;
 
-public class chartValues {
+
+public class GraphPoints {
 
     private int count;
 
-    private Map<Long, Double> values;
+    private Map<Long, Object> values;
 
-    public chartValues() {
+    public GraphPoints() {
     }
 
-    public chartValues(int count, Map<Long, Double> values) {
+    public GraphPoints(int count, Map<Long, Object> values) {
         this.count = count;
         this.values = values;
     }
@@ -24,11 +25,11 @@ public class chartValues {
         this.count = count;
     }
 
-    public Map<Long, Double> getValues() {
+    public Map<Long, Object> getValues() {
         return values;
     }
 
-    public void setValues(Map<Long, Double> values) {
+    public void setValues(Map<Long, Object> values) {
         this.values = values;
     }
 }

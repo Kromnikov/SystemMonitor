@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.SQLException;
@@ -46,6 +47,19 @@ public class MetricStorage implements IMetricStorage {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
 
+
+    @Override
+    public void dump() throws IOException {
+
+        //        File f=new File("dump.sql");
+//        try (FileReader reader  = new FileReader(f))
+//        {
+//            char[] buffer = new char[(int)f.length()];
+//            reader.read(buffer);
+////            System.out.println(new String(buffer));
+//            jdbcTemplateObject.update(new String(buffer));
+//        }
+    }
 
     //TODO: alarms
     @Transactional
@@ -173,20 +187,32 @@ public class MetricStorage implements IMetricStorage {
     }
 
 
+
+
+
+
 //TODO: instMetric
 
     @Transactional
     public void addInstMetric(InstanceMetric instanceMetric) throws SQLException {
         String sql = "INSERT INTO \"INSTANCE_METRIC\"(host, templ_metric,min_value,max_value,title,query) VALUES (?,?,?,?,?,?)";
-        jdbcTemplateObject.update(sql,instanceMetric.getHostId(),instanceMetric.getTempMetrcId(),
-                instanceMetric.getMinValue(),instanceMetric.getMaxValue() , instanceMetric.getTitle() ,
-                instanceMetric.getCommand());
+        jdbcTemplateObject.update(sql,instanceMetric.getHostId(),instanceMetric.getTempMetrcId(),instanceMetric.getMinValue(),instanceMetric.getMaxValue() , instanceMetric.getTitle() , instanceMetric.getCommand());
     }
     @Transactional
     public void editInstMetric(int id,int hostId,int templMetricId,String title,String command,double minValue,double maxValue) throws SQLException {
         String sql = "UPDATE \"INSTANCE_METRIC\" SET min_value=?, host=?, templ_metric=?,max_value=?,title=?,query=? WHERE id=?";
         jdbcTemplateObject.update(sql,minValue,hostId,templMetricId,maxValue,title,command,id);
     }
+
+
+
+
+
+
+
+
+
+
     //sql
     //metric-state
     @Transactional //MAX
@@ -505,7 +531,7 @@ public class MetricStorage implements IMetricStorage {
         return (Date) jdbcTemplateObject.queryForMap(sql,metricId,hostId).get("MAX");
     }
 
-    private chartValues averaging(List<Map<String, Object>> rows) {
+    private GraphPoints averaging(List<Map<String, Object>> rows) {
         Map<Long, Double> map = new HashMap<>();
         long date = 0;
         double sumValues = 0, roundVar = 0;
@@ -545,11 +571,11 @@ public class MetricStorage implements IMetricStorage {
                 }
             }
         }
-        return new chartValues(rowSize, new TreeMap<Long, Double>(map));
+        return new GraphPoints(rowSize, new TreeMap<Long, Object>(map));
     }
 
     @Transactional
-    public chartValuesO getAllValues(int host_id, int metricId) {
+    public GraphPoints getAllValues(int host_id, int metricId) {
         long defTime= 10*1000;//10sek
         String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where metric = ? and host = ? order by date_time ";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql,metricId,host_id);
@@ -560,34 +586,34 @@ public class MetricStorage implements IMetricStorage {
             prevX = (long) (((java.sql.Timestamp) rows.get(0).get("date_time")).getTime());
             prevY = (double) rows.get(0).get("value");
             map.put(prevX, (double)prevY);
-                for (int i = 1; i < rows.size(); i++) {
-                    x = (long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
-                    y = (double) rows.get(i).get("value");
+            for (int i = 1; i < rows.size(); i++) {
+                x = (long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
+                y = (double) rows.get(i).get("value");
+                Dif = x - prevX;
+                while (Dif>defTime) {
+                    prevX += defTime;
+                    prevY = null;
                     Dif = x - prevX;
-                    while (Dif>defTime) {
-                        prevX += defTime;
-                        prevY = null;
-                        Dif = x - prevX;
-                        map.put(prevX, prevY);
-                    }
-                    map.put(x, y);
-                    prevX=x;
-                    prevY=y;
+                    map.put(prevX, prevY);
                 }
+                map.put(x, y);
+                prevX=x;
+                prevY=y;
+            }
         }
-        return new chartValuesO(rows.size(), new TreeMap<Long, Object>(map));
+        return new GraphPoints(rows.size(), new TreeMap<Long, Object>(map));
 //        return averaging(jdbcTemplateObject.queryForList(sql));
     }
 
     @Transactional
-    public chartValuesO getValuesLastDay(int host_id, int metricId, Date dateTime) throws ParseException {
+    public GraphPoints getValuesLastDay(int host_id, int metricId, Date dateTime) throws ParseException {
         Date nDate = (Date) dateTime.clone();
         nDate.setHours(dateTime.getHours() - 24);
-        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between ? and ? and metric = ? and host = ? order by date_time ";
+        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
 
 
 
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql,dateFormat.format(nDate),dateFormat.format(dateTime),metricId,host_id);
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         int rowSize = rows.size(), counter = 1;
         Map<Long, Object> map = new HashMap<>();
         if (rowSize > 0) {
@@ -596,19 +622,19 @@ public class MetricStorage implements IMetricStorage {
             map = Averaging.getValues(rows, nDate, "day");
         }
 
-        return new chartValuesO(rowSize, new TreeMap<Long, Object>(map));
+        return new GraphPoints(rowSize, new TreeMap<Long, Object>(map));
     }
 
     @Transactional
-    public chartValues getValuesSixMonth(int host_id, int metricId,  Date dateTime) {
+    public GraphPoints getValuesSixMonth(int host_id, int metricId,  Date dateTime) {
         Date nDate = (Date) dateTime.clone();
         nDate.setMonth(dateTime.getMonth() - 3);
         dateTime.setMonth(dateTime.getMonth() + 3);
-        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between ? and ? and metric = ? and host = ? order by date_time ";
+        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
 
 //        return averaging(jdbcTemplateObject.queryForList(sql));
 
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql,dateFormat.format(nDate),dateFormat.format(dateTime),metricId,host_id);
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         int rowSize = rows.size(), counter = 1;
         double values = (double) rows.get(0).get("value");
         Map<Long, Double> map = new HashMap<>();
@@ -633,20 +659,20 @@ public class MetricStorage implements IMetricStorage {
             map.put((long) nDate.getTime(), values / counter);
         }
 
-        return new chartValues(rowSize, new TreeMap<Long, Double>(map));
+        return new GraphPoints(rowSize, new TreeMap<Long, Object>(map));
     }
 
     @Transactional
-    public chartValuesO getValuesYear(int host_id, int metricId,  Date dateTime) throws ParseException {
+    public GraphPoints getValuesYear(int host_id, int metricId,  Date dateTime) throws ParseException {
         Date nDate = (Date) dateTime.clone();
         nDate.setMonth(dateTime.getMonth() - 6);
         dateTime.setMonth(dateTime.getMonth() + 6);
-        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between ? and ? and metric = ? and host = ? order by date_time ";
+        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
 
 //        return averaging(jdbcTemplateObject.queryForList(sql));
 
 
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql,dateFormat.format(nDate),dateFormat.format(dateTime),metricId,host_id);
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         int rowSize = rows.size(), counter = 1;
         double values = (double) rows.get(0).get("value");
 //        Map<Long, Double> map = new HashMap<>();
@@ -685,21 +711,21 @@ public class MetricStorage implements IMetricStorage {
         if (rowSize > 0) {
             map = Averaging.getValues(rows, nDate, "year");
         }
-        return new chartValuesO(rowSize, new TreeMap<Long, Object>(map));
+        return new GraphPoints(rowSize, new TreeMap<Long, Object>(map));
     }
 
     @Transactional
-    public chartValuesO getValuesMonth(int host_id, int metricId,  Date dateTime) throws ParseException {
+    public GraphPoints getValuesMonth(int host_id, int metricId,  Date dateTime) throws ParseException {
         Date nDate = (Date) dateTime.clone();
         nDate.setHours(dateTime.getHours() - 360);
         dateTime.setHours(dateTime.getHours() + 360);
-        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between ? and ? and metric = ? and host = ? order by date_time ";
+        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
 
 //        return averaging(jdbcTemplateObject.queryForList(sql));
 
 
 
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql,dateFormat.format(nDate),dateFormat.format(dateTime),metricId,host_id);
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         int rowSize = rows.size(), counter = 1;
 //        double values = (double) rows.get(0).get("value");
 //        Map<Long, Double> map = new HashMap<>();
@@ -732,18 +758,18 @@ public class MetricStorage implements IMetricStorage {
             map = Averaging.getValues(rows, nDate, "month");
         }
 
-        return new chartValuesO(rowSize, new TreeMap<Long, Object>(map));
+        return new GraphPoints(rowSize, new TreeMap<Long, Object>(map));
     }
 
     @Transactional
-    public chartValues getValuesTheeDays(int host_id, int metricId,  Date dateTime) {
+    public GraphPoints getValuesTheeDays(int host_id, int metricId,  Date dateTime) {
         Date nDate = (Date) dateTime.clone();
         nDate.setHours(dateTime.getHours() - 60);
         dateTime.setHours(dateTime.getHours() + 60);
-        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between ? and ? and metric = ? and host = ? order by date_time ";
+        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
 //        return averaging(jdbcTemplateObject.queryForList(sql));
 
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql,dateFormat.format(nDate),dateFormat.format(dateTime),metricId,host_id);
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         int rowSize = rows.size(), counter = 1;
         double values = (double) rows.get(0).get("value");
         Map<Long, Double> map = new HashMap<>();
@@ -767,17 +793,17 @@ public class MetricStorage implements IMetricStorage {
             map.put((long) nDate.getTime(), values / counter);
         }
 
-        return new chartValues(rowSize, new TreeMap<Long, Double>(map));
+        return new GraphPoints(rowSize, new TreeMap<Long, Object>(map));
     }
 
     @Transactional
-    public chartValuesO getValuesDay(int host_id, int metricId,  Date dateTime) throws ParseException {
+    public GraphPoints getValuesDay(int host_id, int metricId,  Date dateTime) throws ParseException {
         Date nDate = (Date) dateTime.clone();
         nDate.setHours(dateTime.getHours() - 24);
         dateTime.setHours(dateTime.getHours() + 24);
-        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between ? and ? and metric = ? and host = ? order by date_time ";
+        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
 
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql,dateFormat.format(nDate),dateFormat.format(dateTime),metricId,host_id);
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         int rowSize = rows.size(), counter = 1;
         Map<Long, Object> map = new HashMap<>();
         if (rowSize > 0) {
@@ -786,16 +812,16 @@ public class MetricStorage implements IMetricStorage {
             map = Averaging.getValues(rows, nDate, "day");
         }
 
-        return new chartValuesO(rowSize, new TreeMap<Long, Object>(map));
+        return new GraphPoints(rowSize, new TreeMap<Long, Object>(map));
     }
 
     @Transactional
-    public chartValuesO getValuesLastHour(int host_id, int metricId,  Date dateTime) throws ParseException {
+    public GraphPoints getValuesLastHour(int host_id, int metricId,  Date dateTime) throws ParseException {
         Date nDate = (Date) dateTime.clone();
         nDate.setMinutes(dateTime.getMinutes() - 30);
         dateTime.setMinutes(dateTime.getMinutes() + 30);
-        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between ? and ? and metric = ? and host = ? order by date_time ";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql,dateFormat.format(nDate),dateFormat.format(dateTime),metricId,host_id);
+        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
 
         nDate.setSeconds(0);
         nDate.setMinutes(0);
@@ -804,46 +830,44 @@ public class MetricStorage implements IMetricStorage {
         if (rows.size() > 0) {
             map = Averaging.getValues(rows, nDate, "hour");
         }
-        return new chartValuesO(rows.size(), new TreeMap<Long, Object>(map));
+        return new GraphPoints(rows.size(), new TreeMap<Long, Object>(map));
     }
 
     @Transactional
-    public chartValuesO getValuesTheeMinutes(int host_id, int metricId,  Date dateTime) throws ParseException {
+    public GraphPoints getValuesTheeMinutes(int host_id, int metricId,  Date dateTime) throws ParseException {
         long defTime= 10*1000;//10sek
         Date nDate = (Date) dateTime.clone();
         nDate.setMinutes(dateTime.getMinutes() - 1);
         dateTime.setMinutes(dateTime.getMinutes() + 1);
-        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between ? and ? and metric = ? and host = ? order by date_time ";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql,dateFormat.format(nDate),dateFormat.format(dateTime),metricId,host_id);
+        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
 
         Map<Long, Object> map = new HashMap<>();
         if (rows.size() > 0) {
             map = Averaging.getValues(rows, nDate, "minutes");
         }
-        return new chartValuesO(rows.size(), new TreeMap<Long, Object>(map));
+        return new GraphPoints(rows.size(), new TreeMap<Long, Object>(map));
     }
 
     @Transactional
-    public chartValuesO getValuesOneMinutes(int host_id, int metricId,  Date dateTime) throws ParseException {
+    public GraphPoints getValuesOneMinutes(int host_id, int metricId,  Date dateTime) throws ParseException {
         long defTime= 10*1000;//10sek
         Date nDate = (Date) dateTime.clone();
         nDate.setSeconds(dateTime.getSeconds() - 30);
         dateTime.setSeconds(dateTime.getSeconds() + 30);
-        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between ? and ? and metric = ? and host = ? order by date_time ";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql,dateFormat.format(nDate),dateFormat.format(dateTime),metricId,host_id);
+        String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
 
         Map<Long, Object> map = new HashMap<>();
         if (rows.size() > 0) {
             map = Averaging.getValues(rows, nDate, "minutes");
         }
-        return new chartValuesO(rows.size(), new TreeMap<Long, Object>(map));
+        return new GraphPoints(rows.size(), new TreeMap<Long, Object>(map));
     }
 
 
 
 
-
-    //metrics
     @Transactional
     public void addTemplateMetric(String title, String query) throws SQLException {
         String sql = "INSERT INTO \"TEMPLATE_METRICS\"(title, query) VALUES (?,?)";
@@ -878,9 +902,9 @@ public class MetricStorage implements IMetricStorage {
             templateMetric.setTitle((String) row.get("title"));
             templateMetric.setCommand((String) row.get("query"));
             if(row.get("min_value")!=null)
-            templateMetric.setMinValue((double) row.get("min_value"));
+                templateMetric.setMinValue((double) row.get("min_value"));
             if(row.get("max_value")!=null)
-            templateMetric.setMaxValue((double) row.get("max_value"));
+                templateMetric.setMaxValue((double) row.get("max_value"));
             metrics1.add(templateMetric);
         }
         return metrics1;
@@ -1092,7 +1116,7 @@ public class MetricStorage implements IMetricStorage {
             metricrow.setTitle((row.get("title").toString()));
             metricrow.setErrorsCount(Integer.parseInt(row.get("countProblems").toString()));
             if(row.get("value")!=null)
-            metricrow.setLastValue(Double.parseDouble(row.get("value").toString()));
+                metricrow.setLastValue(Double.parseDouble(row.get("value").toString()));
             metricrow.setDate(((java.sql.Timestamp) row.get("date")));
             metricrow.setStatus(row.get("status").toString());
             MetricRows.add(metricrow);
@@ -1123,14 +1147,14 @@ public class MetricStorage implements IMetricStorage {
         String sql = "select *,(select title from \"INSTANCE_METRIC\" where id = f.inst_metric_id) as title  from \"FAVORITES\" as f where f.user_name='"+name+"'";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
 
-            for (Map row : rows) {
-                Favorites favorite = new Favorites();
-                favorite.setId((int) row.get("id"));
-                favorite.setHostId(Integer.parseInt(row.get("host_id").toString()));
-                favorite.setMetricId(Integer.parseInt(row.get("inst_metric_id").toString()));
-                favorite.setTitle(row.get("title").toString());
-                favoriteses.add(favorite);
-            }
+        for (Map row : rows) {
+            Favorites favorite = new Favorites();
+            favorite.setId((int) row.get("id"));
+            favorite.setHostId(Integer.parseInt(row.get("host_id").toString()));
+            favorite.setMetricId(Integer.parseInt(row.get("inst_metric_id").toString()));
+            favorite.setTitle(row.get("title").toString());
+            favoriteses.add(favorite);
+        }
         return favoriteses;
     }
 
@@ -1266,7 +1290,7 @@ public class MetricStorage implements IMetricStorage {
     public void updateHost(int id,String host,String login, String password,int port, String name, String location) throws SQLException {
         String sql = "UPDATE sshconfigurationhibernate SET host=?,login=?," +
                 "password=?',port=?,name=?,location=? WHERE sshconfigurationhibernate_id=?";
-       jdbcTemplateObject.update(sql,host,login,password,port,name,location,id);
+        jdbcTemplateObject.update(sql,host,login,password,port,name,location,id);
     }
 
     @Override
@@ -1339,7 +1363,7 @@ public class MetricStorage implements IMetricStorage {
     public int metricsSuccesCount() throws SQLException {//TODO стоит делать или нет, хз
         String sql = "SELECT count(*)  FROM \"INSTANCE_METRIC\"";
 //        if (hostsSuccesCount() > 0) {
-            return Integer.parseInt(jdbcTemplateObject.queryForMap(sql).get("count").toString());
+        return Integer.parseInt(jdbcTemplateObject.queryForMap(sql).get("count").toString());
 //        }
 //        return 0;
     }

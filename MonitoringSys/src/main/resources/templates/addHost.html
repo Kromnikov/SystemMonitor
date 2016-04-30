@@ -27,7 +27,7 @@
             th:src="@{js/exporting.js}"></script>
     <script src="../static/js/dinamicChart.js"
             th:src="@{js/dinamicChart.js}"></script>
-    <link href="../../static/css/hosts-page.css"
+    <link href="../static/css/hosts-page.css"
           th:href="@{css/hosts-page.css}" rel="stylesheet" media="screen"/>
 
 
@@ -40,16 +40,15 @@
 
 
     <script th:inline="javascript">
-        loadChart3(1, 12, 'getCPU');
+        var username = [[${username}]];
+        hideShowHostListContent(username);
     </script>
 </head>
-
-
-<body onload="hideShowHostListContent()">
+<body>
 <nav class="navbar navbar-default navbar-static-top margin-left-15">
     <div class="container">
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="/logout">Logout</a></li>
+            <li><a href="/logout">LogOut</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right margin-top-12">
             <button class="btn dropdown-toggle fa fa-bell-o clear-background-color" type="button"
@@ -90,15 +89,20 @@
                 </a>
             </li>
 
-            <li data-toggle="collapse" data-target="#new" class="collapsed">
+            <li data-toggle="collapse" data-target="#new" class="collapsed ">
                 <a href="#"><i class="fa fa-cog fa-lg"></i> Admin panel <span class="arrow"></span></a>
             </li>
             <ul class="sub-menu collapse" id="new">
                 <a class="white-text" th:href="hostedit" ><li>Host Editor</li></a>
-                <a class="white-text" th:href="optionsInstance" ><li>Instance Metrics</li></a>
-                <a class="white-text" th:href="options" ><li>Templet Metrics</li></a>
-                <a class="white-text" th:href="editIntsMetrics" ><li>Services</li></a>
-                <a class="white-text" th:href="accaunts" ><li>Accaunts</li></a>
+                <!--<a class="white-text" th:href="optionsInstance">
+                    <li>Instance Metrics</li>
+                </a>-->
+                <a class="white-text" th:href="templMetrics" ><li>Template Metrics</li></a>
+                <!--<a class="white-text" th:href="optionsInstance" ><li>Instance Metrics</li></a>-->
+                <a class="white-text" th:href="accounts" ><li>Accounts</li></a>
+                <a class="white-text" th:href="alarms">
+                    <li>Alarms</li>
+                </a>
             </ul>
 
 
@@ -120,21 +124,18 @@
         </div>
 
         <div class="register-box-body">
-            <form action="#" th:action="@{/hosts}" method="post">
+            <form action="#" th:action="@{/templates/hosts}" method="post">
                 <div class="form-group has-feedback">
+
                     <input type="text" class="form-control" placeholder="Host name" name="hostName" required="required"/>
                     <span class=" fa fa-home form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <input type="text" class="form-control" placeholder="Host IP" name="hostIP" required="required"/>
-                    <span class=" fa fa-home form-control-feedback"></span>
-                </div>
-                <div class="form-group has-feedback">
-                    <input type="text" class="form-control" placeholder="Port" name="port" required="required"/>
+                    <input type="email" class="form-control" placeholder="Port" name="port" required="required"/>
                     <span class=" fa fa-code-fork  form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <input type="test" class="form-control" placeholder="Login" name="login" required="required" />
+                    <input type="password" class="form-control" placeholder="Login" name="login" required="required" />
                     <span class=" fa fa-puzzle-piece form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">

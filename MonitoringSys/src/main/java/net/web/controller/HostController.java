@@ -83,6 +83,12 @@ public class HostController {
     }
 
 
+    @RequestMapping(value = "/getHost", method = RequestMethod.GET)
+    @ResponseBody
+    public SSHConfiguration getHost(@RequestParam("id") int id) {
+        return hosts.get(id);
+    }
+
     @RequestMapping(value = "/dellHost", method = RequestMethod.GET)
     public String dellHost(@RequestParam("id") int id) {
         hosts.remove(hosts.get(id));
@@ -237,15 +243,8 @@ public class HostController {
     }
 
     @RequestMapping(value = "/hosts", params = {"saveHost"}, method = RequestMethod.POST)
-    public String saveHost(String hostName, String port, String login, String password, String hostIP, String location) throws SQLException {
-        SSHConfiguration host = new SSHConfiguration();
-        host.setHost(hostIP);
-        host.setName(hostName);
-        host.setLogin(login);
-        host.setPassword(password);
-        host.setLocation(location);
-        host.setPort(Integer.parseInt(port));
-        hosts.save(host);
+    public String saveHost(String hostName, String port, String login, String password) throws SQLException {
+        hosts.save(new SSHConfiguration(hostName, Integer.parseInt(port), login, password));
         return "redirect:/hosts";
     }
 
