@@ -5,6 +5,7 @@ import net.core.alarms.GenericAlarm;
 import net.core.alarms.dao.AlarmsLogDao;
 import net.core.alarms.dao.GenericAlarmDao;
 import net.core.configurations.SSHConfiguration;
+import net.core.db.IHomePageStorage;
 import net.core.db.IUsersStorage;
 import net.core.hibernate.services.HostService;
 import net.core.models.*;
@@ -29,23 +30,20 @@ import java.util.*;
 @Service("MetricStorage")
 public class StorageServices implements IStorageServices {
 
-    private JdbcTemplate jdbcTemplateObject;
-
     @Autowired
     private IUsersStorage usersStorage;
 
+    @Autowired
+    private IHomePageStorage homePageStorage;
 
+    private JdbcTemplate jdbcTemplateObject;
     @Autowired
     private AlarmsLogDao alarmsLogDao;
-
     @Autowired
     private HostService hosts;
-
     @Autowired
     private GenericAlarmDao genericAlarm;
-
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
     @Autowired
     public StorageServices(DataSource dataSource) {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
@@ -1095,6 +1093,68 @@ public class StorageServices implements IStorageServices {
         return problem;
     }
 
+
+
+    @Override
+    public List<SSHConfiguration> getHostsByLocation(String location) throws SQLException {
+        String sql = "SELECT * FROM \"sshconfigurationhibernate\" WHERE location LIKE\'%"+location+"%\'";
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+        List<SSHConfiguration> hosts= new ArrayList<>();
+        for (Map row : rows) {
+            SSHConfiguration host = new SSHConfiguration();
+            host.setId((int)row.get("sshconfigurationhibernate_id"));
+            host.setPort((int)row.get("port"));
+            host.setLogin((String)row.get("login"));
+            host.setPassword((String)row.get("password"));
+            host.setLocation((String)row.get("location"));
+            host.setName((String)row.get("name"));
+            host.setHost((String)row.get("host"));
+            hosts.add(host);
+        }
+        return hosts;
+    }
+
+
+    @Transactional
+    public void addStandartMetrics(int id) throws SQLException {
+        String sql = "INSERT INTO \"INSTANCE_METRIC\" (TEMPL_METRIC,HOST) VALUES (?,?);";
+        jdbcTemplateObject.update(sql,1,id);
+        String sql1 = "INSERT INTO \"INSTANCE_METRIC\" (TEMPL_METRIC,HOST) VALUES (?,?);";
+        jdbcTemplateObject.update(sql1,2,id);
+        String sql2 = "INSERT INTO \"INSTANCE_METRIC\" (TEMPL_METRIC,HOST) VALUES (?,?);";
+        jdbcTemplateObject.update(sql2,5,id);
+    }
+
+
+    @Transactional
+    public void delMetricFromHost(int host, int id) throws SQLException {
+        String sql = "delete from  \"INSTANCE_METRIC\" where id=? and host=?";
+        jdbcTemplateObject.update(sql,id,host);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //TODO: users
 
     @Transactional
@@ -1135,78 +1195,31 @@ public class StorageServices implements IStorageServices {
 
 
 
-    @Override
-    public List<SSHConfiguration> getHostsByLocation(String location) throws SQLException {
-        String sql = "SELECT * FROM \"sshconfigurationhibernate\" WHERE location LIKE\'%"+location+"%\'";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-        List<SSHConfiguration> hosts= new ArrayList<>();
-        for (Map row : rows) {
-            SSHConfiguration host = new SSHConfiguration();
-            host.setId((int)row.get("sshconfigurationhibernate_id"));
-            host.setPort((int)row.get("port"));
-            host.setLogin((String)row.get("login"));
-            host.setPassword((String)row.get("password"));
-            host.setLocation((String)row.get("location"));
-            host.setName((String)row.get("name"));
-            host.setHost((String)row.get("host"));
-            hosts.add(host);
-        }
-        return hosts;
-    }
-
-
-    @Transactional
-    public void addStandartMetrics(int id) throws SQLException {
-        String sql = "INSERT INTO \"INSTANCE_METRIC\" (TEMPL_METRIC,HOST) VALUES (?,?);";
-        jdbcTemplateObject.update(sql,1,id);
-        String sql1 = "INSERT INTO \"INSTANCE_METRIC\" (TEMPL_METRIC,HOST) VALUES (?,?);";
-        jdbcTemplateObject.update(sql1,2,id);
-        String sql2 = "INSERT INTO \"INSTANCE_METRIC\" (TEMPL_METRIC,HOST) VALUES (?,?);";
-        jdbcTemplateObject.update(sql2,5,id);
-    }
-
-
-    @Transactional
-    public void delMetricFromHost(int host, int id) throws SQLException {
-        String sql = "delete from  \"INSTANCE_METRIC\" where id=? and host=?";
-        jdbcTemplateObject.update(sql,id,host);
-    }
-
     //TODO Favorites
     @Transactional
     public void addToFavorites(int host, int metric,String user) throws SQLException {
-        String sql = "INSERT INTO \"FAVORITES\"(host_id,inst_metric_id,user_name) VALUES (?,?,?)";
-        jdbcTemplateObject.update(sql,host,metric,user);
+        homePageStorage.addToFavorites(host,metric,user);
     }
     @Transactional
     public void dellFromFavorites(int favoritesId) throws SQLException {
-        String sql = "DELETE FROM \"FAVORITES\" WHERE id = ?";
-        jdbcTemplateObject.update(sql,favoritesId);
+        homePageStorage.dellFromFavorites(favoritesId);
     }
 
     //TODO problems count home page
     @Transactional
     public int hostsProblemsCount() throws SQLException {
-        String sql = "SELECT count(*)  FROM \"HOST_STATE\"  where \"end_datetime\" is null";
-        return Integer.parseInt(jdbcTemplateObject.queryForMap(sql).get("count").toString());
+        return homePageStorage.hostsProblemsCount();
     }
     @Transactional
     public int hostsSuccesCount() throws SQLException {
-//        String sql = "SELECT count(*)  FROM \"INSTANCE_METRIC\"  where \"end_datetime\" is not null";
-//        return Integer.parseInt(jdbcTemplateObject.queryForMap(sql).get("count").toString());
-        return hosts.getAll().size();
+        return homePageStorage.hostsSuccesCount();
     }
     @Transactional
     public int metricsProblemCount() throws SQLException {
-        String sql = "SELECT count(*)  FROM \"METRIC_STATE\"  where \"end_datetime\" is null";
-        return Integer.parseInt(jdbcTemplateObject.queryForMap(sql).get("count").toString());
+        return homePageStorage.metricsProblemCount();
     }
     @Transactional
     public int metricsSuccesCount() throws SQLException {//TODO стоит делать или нет, хз
-        String sql = "SELECT count(*)  FROM \"INSTANCE_METRIC\"";
-//        if (hostsSuccesCount() > 0) {
-        return Integer.parseInt(jdbcTemplateObject.queryForMap(sql).get("count").toString());
-//        }
-//        return 0;
+        return homePageStorage.metricsSuccesCount();
     }
 }
