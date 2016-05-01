@@ -1,14 +1,11 @@
 package dao.netcracker.testdao;
 
-import net.core.MetricStorage;
+import net.core.StorageServices;
 import net.core.configurations.SSHConfiguration;
-import net.core.hibernate.dao.HostDao;
-import net.core.hibernate.dao.HostDaoImpl;
 import net.core.hibernate.services.HostServiceImpl;
 import net.web.config.DatabaseConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -65,14 +62,14 @@ public class testDAO {
     @Test
     public void addStandartMetricTest() throws Exception{
         final int id=1;
-        MetricStorage metricStorage = mock(MetricStorage.class);
-        metricStorage.addStandartMetrics(id);
+        StorageServices storageServices = mock(StorageServices.class);
+        storageServices.addStandartMetrics(id);
     }
 
     @Test
     public void addTempletMetric() throws Exception{
-        MetricStorage metricStorage = mock(MetricStorage.class);
-        metricStorage.addTemplateMetric("title","query");
+        StorageServices storageServices = mock(StorageServices.class);
+        storageServices.addTemplateMetric("title","query");
     }
 
 }

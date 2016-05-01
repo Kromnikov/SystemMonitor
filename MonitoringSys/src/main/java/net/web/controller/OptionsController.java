@@ -1,7 +1,7 @@
 package net.web.controller;
 
 import net.core.configurations.SSHConfiguration;
-import net.core.db.IMetricStorage;
+import net.core.IStorageServices;
 import net.core.hibernate.services.HostService;
 import net.core.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import java.util.List;
 @Controller
 public class OptionsController {
     @Autowired
-    private IMetricStorage metricStorage;
+    private IStorageServices metricStorage;
     @Autowired
     private HostService hosts;
 
@@ -137,6 +137,21 @@ public class OptionsController {
             modelAndView.addObject("host",hosts.get(hostId) );
         }
         return modelAndView;
+    }
+//    @RequestMapping(value= "/getInstMetric")
+//    @ResponseBody
+//    public InstanceMetric getInstMetric(@RequestParam(required = false , defaultValue = "-1") int instMetricId) throws SQLException {
+//        return metricStorage.getInstMetric(instMetricId);
+//    }
+    @RequestMapping(value= "/getInstTempHost")
+    @ResponseBody
+    public InstTemplHostRow getInstTempHost(@RequestParam(required = false , defaultValue = "-1") int instMetricId) throws SQLException {
+        InstTemplHostRow metrics = new InstTemplHostRow();
+        InstanceMetric instanceMetric = metricStorage.getInstMetric(instMetricId);
+        metrics.setHost(hosts.get(instanceMetric.getHostId()));
+        metrics.setInstanceMetrics(instanceMetric);
+        metrics.setTemplateMetrics(metricStorage.getTemplateMetric(instanceMetric.getTempMetrcId()));
+        return metrics;
     }
     @RequestMapping(value = "/getHostsTempl", method = RequestMethod.GET)
     @ResponseBody
@@ -377,5 +392,17 @@ public class OptionsController {
     public void saveHost(@RequestParam("host") String host,@RequestParam("name") String name,@RequestParam("port") int port,@RequestParam("login") String login,@RequestParam("password") String password,@RequestParam("location") String location,@RequestParam("id") int id) throws SQLException {
         saveHost(id,host,login,password,name,port,location);
     }
+    @RequestMapping(value = "/addHost", method = RequestMethod.GET)
+    public void addHost(@RequestParam("host") String host,@RequestParam("name") String name,@RequestParam("port") int port,@RequestParam("login") String login,@RequestParam("password") String password,@RequestParam("location") String location) throws SQLException {
+        SSHConfiguration sshConfiguration = new SSHConfiguration();
+        sshConfiguration.setName(name);
+        sshConfiguration.setHost(host);
+        sshConfiguration.setLocation(location);
+        sshConfiguration.setLogin(login);
+        sshConfiguration.setPassword(password);
+        sshConfiguration.setPort(port);
+        hosts.save(sshConfiguration);
+    }
+
 
 }

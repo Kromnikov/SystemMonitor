@@ -1,12 +1,10 @@
 package net.core.branches;
 
 import net.core.agents.SSHAgent;
-import net.core.alarms.AlarmsLog;
 import net.core.alarms.RouteAlarms;
-import net.core.alarms.dao.AlarmsLogDao;
 import net.core.alarms.dao.GenericAlarmDao;
 import net.core.configurations.SSHConfiguration;
-import net.core.db.IMetricStorage;
+import net.core.IStorageServices;
 import net.core.hibernate.services.HostService;
 import net.core.models.InstanceMetric;
 import org.apache.log4j.Logger;
@@ -27,7 +25,7 @@ public class ScheduledTask extends TimerTask {
 
     private final Logger logger = Logger.getLogger(ScheduledTask.class);
 
-    private IMetricStorage metricStorage;
+    private IStorageServices metricStorage;
 
     @Autowired
     private RouteAlarms routeAlarms;
@@ -40,7 +38,7 @@ public class ScheduledTask extends TimerTask {
     }
 
     @Autowired
-    public ScheduledTask(IMetricStorage metricStorage,HostService hosts,GenericAlarmDao genericAlarm) {
+    public ScheduledTask(IStorageServices metricStorage,HostService hosts,GenericAlarmDao genericAlarm) {
         this.genericAlarm = genericAlarm;
         this.hosts=hosts;
         this.metricStorage=metricStorage;

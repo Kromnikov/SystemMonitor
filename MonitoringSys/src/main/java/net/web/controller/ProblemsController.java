@@ -1,6 +1,6 @@
 package net.web.controller;
 
-import net.core.db.IMetricStorage;
+import net.core.IStorageServices;
 import net.core.hibernate.services.HostService;
 import net.core.models.HostsState;
 import net.core.models.MetricState;
@@ -25,7 +25,7 @@ import java.util.List;
 @Controller
 public class ProblemsController {
     @Autowired
-    private IMetricStorage metricStorage;
+    private IStorageServices metricStorage;
     @Autowired
     private HostService hosts;
 
