@@ -1,9 +1,7 @@
 package net.core.branches;
 
 import net.core.agents.SSHAgent;
-import net.core.alarms.AlarmsLog;
 import net.core.alarms.RouteAlarms;
-import net.core.alarms.dao.AlarmsLogDao;
 import net.core.alarms.dao.GenericAlarmDao;
 import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;

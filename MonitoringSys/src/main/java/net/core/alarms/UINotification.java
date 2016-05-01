@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "alarms")
-public class AlarmsLog {
+public class UINotification {
     @Id
     @Column(name = "id", updatable=false, nullable=false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,10 +22,10 @@ public class AlarmsLog {
     @Column(name = "viewed")
     private Boolean viewed;
 
-    public AlarmsLog() {
+    public UINotification() {
     }
 
-    public AlarmsLog(String message, String touser, String type, Boolean viewed) {
+    public UINotification(String message, String touser, String type, Boolean viewed) {
         this.message = message;
         this.touser = touser;
         this.type = type;

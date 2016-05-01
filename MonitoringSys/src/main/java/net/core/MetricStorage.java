@@ -2,7 +2,7 @@ package net.core;
 
 
 import net.core.alarms.GenericAlarm;
-import net.core.alarms.dao.AlarmsLogDao;
+import net.core.alarms.dao.UINotificationDao;
 import net.core.alarms.dao.GenericAlarmDao;
 import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;
@@ -31,7 +31,7 @@ public class MetricStorage implements IMetricStorage {
     private JdbcTemplate jdbcTemplateObject;
 
     @Autowired
-    private AlarmsLogDao alarmsLogDao;
+    private UINotificationDao UINotificationDao;
 
     @Autowired
     private HostService hosts;

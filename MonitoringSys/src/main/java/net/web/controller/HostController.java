@@ -1,7 +1,7 @@
 package net.web.controller;
 
-import net.core.alarms.AlarmsLog;
-import net.core.alarms.dao.AlarmsLogDao;
+import net.core.alarms.UINotification;
+import net.core.alarms.dao.UINotificationDao;
 import net.core.configurations.SSHConfiguration;
 import net.core.db.IMetricStorage;
 import net.core.hibernate.services.HostService;
@@ -29,7 +29,7 @@ public class HostController {
     @Autowired
     private HostService hosts;
     @Autowired
-    private AlarmsLogDao alarmsLogDao;
+    private UINotificationDao UINotificationDao;
 
 //    private static DateFormat dateFormat = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy");
 
@@ -100,7 +100,7 @@ public class HostController {
     @ResponseBody
     public List<AlarmsModel> getAlarms(@RequestParam("userName") String userName) {
         List<AlarmsModel> alarmsModels = new ArrayList<>();
-        for (AlarmsLog g : alarmsLogDao.getByUser(userName)) {
+        for (UINotification g : UINotificationDao.getByUser(userName)) {
             alarmsModels.add(new AlarmsModel(g.getType(), g.getMessage(), g.getId()));
         }
         return alarmsModels;
@@ -109,10 +109,10 @@ public class HostController {
     @RequestMapping(value = "/dellAlarm", method = RequestMethod.GET)
     @ResponseBody
     public List<AlarmsModel> dellAlarm(@RequestParam("id") int id, @RequestParam("userName") String userName) {
-        AlarmsLog alarmsLog = alarmsLogDao.get(id);
-        alarmsLogDao.remove(alarmsLog);
+        UINotification UINotification = UINotificationDao.get(id);
+        UINotificationDao.remove(UINotification);
         List<AlarmsModel> alarmsModels = new ArrayList<>();
-        for (AlarmsLog g : alarmsLogDao.getByUser(userName)) {
+        for (UINotification g : UINotificationDao.getByUser(userName)) {
             alarmsModels.add(new AlarmsModel(g.getType(), g.getMessage(), g.getId()));
         }
         return alarmsModels;

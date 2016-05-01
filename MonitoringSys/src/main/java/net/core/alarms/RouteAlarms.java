@@ -1,6 +1,6 @@
 package net.core.alarms;
 
-import net.core.alarms.dao.AlarmsLogDao;
+import net.core.alarms.dao.UINotificationDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ public class RouteAlarms {
 
 
     @Autowired
-    private AlarmsLogDao alarmsLogDao;
+    private UINotificationDao UINotificationDao;
 
     private String message;
 
@@ -49,12 +49,12 @@ public class RouteAlarms {
         if (genericAlarm.getToEmail() != null) {
             mailAgent.send(message, genericAlarm.getToEmail());
         }if (genericAlarm.getToUser() != null) {
-            AlarmsLog alarmsLog= new AlarmsLog();
-            alarmsLog.setMessage(this.message);
-            alarmsLog.setTouser(genericAlarm.getToUser());
-            alarmsLog.setType(type);
-            alarmsLog.setViewed(false);
-            alarmsLogDao.save(alarmsLog);
+            UINotification UINotification = new UINotification();
+            UINotification.setMessage(this.message);
+            UINotification.setTouser(genericAlarm.getToUser());
+            UINotification.setType(type);
+            UINotification.setViewed(false);
+            UINotificationDao.save(UINotification);
         }
     }
 }
