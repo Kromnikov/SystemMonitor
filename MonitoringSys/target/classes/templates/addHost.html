@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Spring Framework Guru</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+
+    <script src="../static/js/jquery-2.2.0.min.js"
+            th:src="@{js/jquery-2.2.0.min.js}"></script>
+    <script src="../static/js/bootstrap.min.js"
+            th:src="@{js/bootstrap.min.js}"></script>
+    <script src="../static/js/index.js"
+            th:src="@{js/index.js}"></script>
+
+    <link href="../static/css/bootstrap.css"
+          th:href="@{css/bootstrap.css}" rel="stylesheet" media="screen"/>
+
+    <link href="../static/css/AdminLTE.css"
+          th:href="@{css/AdminLTE.css}" rel="stylesheet" media="screen"/>
+
+    <link href="../static/css/index.css"
+          th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
+
+    <script src="../static/js/highstock.js"
+            th:src="@{js/highstock.js}"></script>
+    <script src="../static/js/exporting.js"
+            th:src="@{js/exporting.js}"></script>
+    <script src="../static/js/dinamicChart.js"
+            th:src="@{js/dinamicChart.js}"></script>
+    <link href="../static/css/hosts-page.css"
+          th:href="@{css/hosts-page.css}" rel="stylesheet" media="screen"/>
+
+
+    <!--external css-->
+    <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{css/font-awesome.css}"/>
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/style.css" rel="stylesheet" th:href="@{css/style.css}"/>
+    <link href="../static/css/style-responsive.css" rel="stylesheet" th:href="@{css/style-responsive.css}"/>
+
+
+    <script th:inline="javascript">
+        var username = [[${username}]];
+        hideShowHostListContent(username);
+    </script>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top margin-left-15">
+    <div class="container">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/logout">LogOut</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right margin-top-12">
+            <button class="btn dropdown-toggle fa fa-bell-o clear-background-color" type="button"
+                    data-toggle="dropdown">
+                <span id="dropdown-menu-length" class="label label-warning">0</span></button>
+            <ul id="dropdown-menu" class="dropdown-menu">
+
+            </ul>
+        </ul>
+    </div>
+</nav>
+
+<div class="nav-side-menu">
+    <div class="brand">System monitor</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+    <div class="menu-list">
+
+        <ul id="menu-content" class="menu-content collapse out">
+            <li>
+                <a href="/">
+                    <i class="fa fa-home fa-lg"></i> Home
+                </a>
+            </li>
+
+            <li data-toggle="collapse" data-target="#service" class="collapsed active">
+                <a href="#"><i class="fa fa-globe fa-lg"></i> Hosts <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu" id="service">
+                <a class="white-text" th:href="@{'addHostPage'}"><li class="active">Add host</li></a>
+                <a class="white-text" th:href="@{'hosts'}"><li>Hosts</li></a>
+            </ul>
+
+
+            <li>
+                <a th:href="@{'problems'}">
+                    <i class="fa fa-exclamation fa-lg"></i> Problems
+                </a>
+            </li>
+
+            <li data-toggle="collapse" data-target="#new" class="collapsed ">
+                <a href="#"><i class="fa fa-cog fa-lg"></i> Admin panel <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="new">
+                <a class="white-text" th:href="hostedit" ><li>Host Editor</li></a>
+                <!--<a class="white-text" th:href="optionsInstance">
+                    <li>Instance Metrics</li>
+                </a>-->
+                <a class="white-text" th:href="templMetrics" ><li>Template Metrics</li></a>
+                <!--<a class="white-text" th:href="optionsInstance" ><li>Instance Metrics</li></a>-->
+                <a class="white-text" th:href="accounts" ><li>Accounts</li></a>
+                <a class="white-text" th:href="alarms">
+                    <li>Alarms</li>
+                </a>
+            </ul>
+
+
+            <li>
+                <a href="#">
+                    <i class="fa fa-user fa-lg"></i> Profile
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+<div class="content">
+
+    <div class="register-box">
+        <div class="register-logo">
+            <a><b>Add</b> host</a>
+        </div>
+
+        <div class="register-box-body">
+            <form action="#" th:action="@{/templates/hosts}" method="post">
+                <div class="form-group has-feedback">
+
+                    <input type="text" class="form-control" placeholder="Host name" name="hostName" required="required"/>
+                    <span class=" fa fa-home form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="email" class="form-control" placeholder="Port" name="port" required="required"/>
+                    <span class=" fa fa-code-fork  form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="password" class="form-control" placeholder="Login" name="login" required="required" />
+                    <span class=" fa fa-puzzle-piece form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="password" class="form-control" placeholder="Password" name="password" required="required" />
+                    <span class=" fa fa-lock form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control" placeholder="Location" name="location"/>
+                    <span class=" fa fa-location-arrow form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat"  name="saveHost">Add</button>
+                    </div><!-- /.col -->
+                    <div class="col-xs-6">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat" name="returnHosts">Cancel</button>
+                    </div><!-- /.col -->
+                </div>
+            </form>
+
+        </div><!-- /.form-box -->
+    </div><!-- /.register-box -->
+
+</div>
+
+
+</body>
+
+</html>

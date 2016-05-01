@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Spring Framework Guru</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+
+    <script src="../static/js/jquery-2.2.0.min.js"
+            th:src="@{js/jquery-2.2.0.min.js}"></script>
+    <script src="../static/js/bootstrap.min.js"
+            th:src="@{js/bootstrap.min.js}"></script>
+    <script src="../static/js/index.js"
+            th:src="@{js/index.js}"></script>
+
+    <link href="../static/css/bootstrap.css"
+          th:href="@{css/bootstrap.css}" rel="stylesheet" media="screen"/>
+
+    <link href="../static/css/AdminLTE.css"
+          th:href="@{css/AdminLTE.css}" rel="stylesheet" media="screen"/>
+
+    <link href="../static/css/index.css"
+          th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
+
+    <script src="../static/js/highstock.js"
+            th:src="@{js/highstock.js}"></script>
+    <script src="../static/js/exporting.js"
+            th:src="@{js/exporting.js}"></script>
+    <script src="../static/js/dinamicChart.js"
+            th:src="@{js/dinamicChart.js}"></script>
+
+
+    <!--external css-->
+    <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{css/font-awesome.css}"/>
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/style.css" rel="stylesheet" th:href="@{css/style.css}"/>
+    <link href="../static/css/style-responsive.css" rel="stylesheet" th:href="@{css/style-responsive.css}"/>
+
+
+    <script th:inline="javascript">
+        var username = [[${username}]];
+        hideShowHostListContent(username);
+    </script>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top margin-left-15">
+    <div class="container">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/logout">LogOut</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right margin-top-12">
+            <button class="btn dropdown-toggle fa fa-bell-o clear-background-color" type="button"
+                    data-toggle="dropdown">
+                <span id="dropdown-menu-length" class="label label-warning">0</span></button>
+            <ul id="dropdown-menu" class="dropdown-menu">
+
+            </ul>
+        </ul>
+    </div>
+</nav>
+
+<div class="nav-side-menu">
+    <div class="brand">System monitor</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+    <div class="menu-list">
+
+        <ul id="menu-content" class="menu-content collapse out">
+            <li>
+                <a href="/">
+                    <i class="fa fa-home fa-lg"></i> Home
+                </a>
+            </li>
+
+            <li data-toggle="collapse" data-target="#service" class="collapsed">
+                <a href="#"><i class="fa fa-globe fa-lg"></i> Hosts <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="service">
+                <!--<a class="white-text" th:href="@{'addHostPage'}"><li>Add host</li></a>-->
+                <a class="white-text" th:href="hosts" ><li>Hosts</li></a>
+            </ul>
+
+
+            <li class="active">
+                <a href="#">
+                    <i class="fa fa-exclamation fa-lg"></i> Problems
+                </a>
+            </li>
+
+            <li data-toggle="collapse" data-target="#new" class="collapsed">
+                <a href="#"><i class="fa fa-cog fa-lg"></i> Admin panel <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="new">
+                <a class="white-text" th:href="hostedit" ><li>Host Editor</li></a>
+                <!--<a class="white-text" th:href="optionsInstance">
+                    <li>Instance Metrics</li>
+                </a>-->
+                <a class="white-text" th:href="templMetrics" ><li>Template Metrics</li></a>
+                <!--<a class="white-text" th:href="optionsInstance" ><li>Instance Metrics</li></a>-->
+                <a class="white-text" th:href="accounts" ><li>Accounts</li></a>
+                <a class="white-text" th:href="alarms">
+                    <li>Alarms</li>
+                </a>
+            </ul>
+
+
+            <li>
+                <a href="#">
+                    <i class="fa fa-user fa-lg"></i> Profile
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+
+<div class="content">
+
+    <div class="col-lg-10 margin-top-20">
+        <div class="content-panel ">
+            <h4  style="cursor:pointer;" ><i class="fa fa-angle-right"></i>
+                Hosts problems</h4>
+            <table class="table table-striped table-advance table-hover">
+                <thead>
+                <tr>
+                    <th class="hidden"><i class="fa fa-key"></i> id</th>
+                    <th class="hidden-phone"><i class="fa fa-home"></i> Host</th>
+                    <th><i class="fa fa-play"></i> Start</th>
+                    <th><i class=" fa fa-stop"></i> End</th>
+                    <th><i class=" fa fa-edit"></i> Status</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <div th:each="problem: ${getHostsProblems}">
+                    <tr>
+                        <td class="hidden" th:field="*{id}" th:text="${problem.id}">4</td>
+                        <td th:field="*{hostName}" th:text="${problem.hostName}" class="hidden-phone">192.168.0.1</td>
+                        <td th:field="*{start}" th:text="${problem.start}">17 Jun</td>
+                        <td th:field="*{end}" th:text="${problem.end}">18 Jun</td>
+                        <td>
+                            <span  th:class="${problem.end} ? 'label label-success label-mini' : 'label label-warning label-mini'"
+                                   th:text="${problem.end} ? 'OK' : 'ERROR'">LAL</span>
+                        </td>
+                        <td>
+                            <button class="btn btn-success btn-xs"><a class="fa fa-check white-text" th:href="@{problems/resolve/host(hostId=${problem.id})}"></a></button>
+                            <button class="btn btn-primary btn-xs"><a class="fa fa-search white-text"  th:href="@{/host(hostId=${problem.id})}"></a></button>
+                        </td>
+                    </tr>
+                </div>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+    <div class="col-lg-10 margin-top-20">
+        <div class="content-panel ">
+            <h4  style="cursor:pointer;" ><i class="fa fa-angle-right"></i>
+                Metrics problems</h4>
+            <table class="table table-striped table-advance table-hover">
+                <thead>
+                <tr>
+                    <th class="hidden"><i class="fa fa-key"></i> id</th>
+                    <th class="hidden-phone"><i class="fa fa-superscript"></i> Value</th>
+                    <th><i class="fa fa-play"></i> Start</th>
+                    <th><i class=" fa fa-stop"></i> End</th>
+                    <th><i class=" fa fa-lightbulb-o"></i> Inst metric</th>
+                    <th><i class=" fa fa-edit"></i> Status</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <div th:each="problem: ${getMetricProblems}">
+                    <tr>
+                        <td class="hidden" th:field="*{id}" th:text="${problem.id}">4</td>
+                        <td th:field="*{value}" th:text="${problem.value}" class="hidden-phone">128,9</td>
+                        <td th:field="*{start}" th:text="${problem.start}">17 Jun</td>
+                        <td th:field="*{end}" th:text="${problem.end}">18 Jun</td>
+                        <td th:field="*{instMetric}" th:text="${problem.instMetric}">CPU</td>
+                        <td>
+                            <span  th:class="${problem.end} ? 'label label-success label-mini' : 'label label-warning label-mini'"
+                                   th:text="${problem.end} ? 'OK' : 'ERROR'">LAL</span>
+                        </td>
+                        <td>
+                            <button class="btn btn-success btn-xs"><a class="fa fa-check white-text" th:href="@{problems/resolve/metric(resMetrId=${problem.id})}"></a></button>
+                            <button class="btn btn-primary btn-xs"><a class="fa fa-search white-text"  th:href="@{/problem/metric(problemId=${problem.id},startDate=${problem.start},endDate=${problem.end})}"></a></button>
+                        </td>
+                    </tr>
+                </div>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+</body>
+
+</html>
