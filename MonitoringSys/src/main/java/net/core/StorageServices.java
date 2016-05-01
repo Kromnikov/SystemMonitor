@@ -1133,11 +1133,6 @@ public class StorageServices implements IStorageServices {
 
 
 
-    @Transactional
-    public long getQuantityOfRow(int id) throws SQLException {
-        String sql = "select count(*) from \"VALUE_METRIC\" where metric =?";
-        return (long) jdbcTemplateObject.queryForMap(sql,id).get("count");
-    }
 
 
     @Override
