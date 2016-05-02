@@ -1,12 +1,9 @@
-package net.core.db;
+package net.core.db.interfaces;
 
 import net.core.models.User;
 
 import java.util.List;
 
-/**
- * Created by Kromnikov on 01.05.2016.
- */
 public interface IUsersStorage {
 
     public List<User> getAllUsers();

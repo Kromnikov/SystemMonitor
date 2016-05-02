@@ -1,6 +1,6 @@
 package dao.netcracker.testdao;
 
-import net.core.StorageServices;
+import net.core.RouteStorage;
 import net.core.configurations.SSHConfiguration;
 import net.core.hibernate.services.HostServiceImpl;
 import net.web.config.DatabaseConfig;
@@ -62,14 +62,14 @@ public class testDAO {
     @Test
     public void addStandartMetricTest() throws Exception{
         final int id=1;
-        StorageServices storageServices = mock(StorageServices.class);
-        storageServices.addStandartMetrics(id);
+        RouteStorage routeStorage = mock(RouteStorage.class);
+        routeStorage.addStandartMetrics(id);
     }
 
     @Test
     public void addTempletMetric() throws Exception{
-        StorageServices storageServices = mock(StorageServices.class);
-        storageServices.addTemplateMetric("title","query");
+        RouteStorage routeStorage = mock(RouteStorage.class);
+        routeStorage.addTemplateMetric("title","query");
     }
 
 }

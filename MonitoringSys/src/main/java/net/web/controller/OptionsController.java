@@ -1,7 +1,7 @@
 package net.web.controller;
 
 import net.core.configurations.SSHConfiguration;
-import net.core.IStorageServices;
+import net.core.IRouteStorage;
 import net.core.hibernate.services.HostService;
 import net.core.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import java.util.List;
 @Controller
 public class OptionsController {
     @Autowired
-    private IStorageServices metricStorage;
+    private IRouteStorage metricStorage;
     @Autowired
     private HostService hosts;
 

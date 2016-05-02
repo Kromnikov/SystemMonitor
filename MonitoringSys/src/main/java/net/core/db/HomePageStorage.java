@@ -3,6 +3,7 @@ package net.core.db;
 
 import net.core.alarms.dao.AlarmsLogDao;
 import net.core.alarms.dao.GenericAlarmDao;
+import net.core.db.interfaces.IHomePageStorage;
 import net.core.hibernate.services.HostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,7 +15,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 @Repository
-public class HomePageStorage implements IHomePageStorage{
+public class HomePageStorage implements IHomePageStorage {
     private JdbcTemplate jdbcTemplateObject;
     @Autowired
     private AlarmsLogDao alarmsLogDao;

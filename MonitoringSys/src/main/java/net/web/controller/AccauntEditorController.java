@@ -1,6 +1,6 @@
 package net.web.controller;
 
-import net.core.IStorageServices;
+import net.core.IRouteStorage;
 import net.core.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +20,7 @@ import java.util.List;
 @Controller
 public class AccauntEditorController {
     @Autowired
-    private IStorageServices metricStorage;
+    private IRouteStorage metricStorage;
     public void changeRole(int roleid,String username) throws SQLException {
         long count = metricStorage.getCountRoles();
         if (roleid<count)

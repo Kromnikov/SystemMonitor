@@ -1,4 +1,4 @@
-package net.core.db;
+package net.core.db.interfaces;
 
 
 public interface IHomePageStorage {

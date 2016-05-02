@@ -4,7 +4,7 @@ import net.core.agents.SSHAgent;
 import net.core.alarms.RouteAlarms;
 import net.core.alarms.dao.GenericAlarmDao;
 import net.core.configurations.SSHConfiguration;
-import net.core.IStorageServices;
+import net.core.IRouteStorage;
 import net.core.hibernate.services.HostService;
 import net.core.models.InstanceMetric;
 import org.apache.log4j.Logger;
@@ -25,7 +25,7 @@ public class ScheduledTask extends TimerTask {
 
     private final Logger logger = Logger.getLogger(ScheduledTask.class);
 
-    private IStorageServices metricStorage;
+    private IRouteStorage metricStorage;
 
     @Autowired
     private RouteAlarms routeAlarms;
@@ -38,7 +38,7 @@ public class ScheduledTask extends TimerTask {
     }
 
     @Autowired
-    public ScheduledTask(IStorageServices metricStorage,HostService hosts,GenericAlarmDao genericAlarm) {
+    public ScheduledTask(IRouteStorage metricStorage,HostService hosts,GenericAlarmDao genericAlarm) {
         this.genericAlarm = genericAlarm;
         this.hosts=hosts;
         this.metricStorage=metricStorage;

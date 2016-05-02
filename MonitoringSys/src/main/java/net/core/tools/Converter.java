@@ -1,6 +1,6 @@
 package net.core.tools;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.core.IStorageServices;
+import net.core.IRouteStorage;
 import net.core.models.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class Converter {
     @Autowired
-    private IStorageServices metricStorage;
+    private IRouteStorage metricStorage;
     private final static String baseFile = "value.json";
 
     public static void toJSON(List<Value> object) throws IOException {

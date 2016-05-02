@@ -1,7 +1,7 @@
 package net.web.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import net.core.IStorageServices;
+import net.core.IRouteStorage;
 import net.core.hibernate.services.HostService;
 import net.core.models.GraphPoints;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import java.util.Date;
 @Controller
 public class ChartController {
     @Autowired
-    private IStorageServices metricStorage;
+    private IRouteStorage metricStorage;
     @Autowired
     private HostService hosts;
 

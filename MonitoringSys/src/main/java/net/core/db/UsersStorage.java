@@ -2,6 +2,7 @@ package net.core.db;
 
 import net.core.alarms.dao.AlarmsLogDao;
 import net.core.alarms.dao.GenericAlarmDao;
+import net.core.db.interfaces.IUsersStorage;
 import net.core.hibernate.services.HostService;
 import net.core.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
