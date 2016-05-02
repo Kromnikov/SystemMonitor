@@ -5,6 +5,7 @@ import net.core.alarms.dao.AlarmsLogDao;
 import net.core.alarms.dao.GenericAlarmDao;
 import net.core.db.interfaces.IHomePageStorage;
 import net.core.hibernate.services.HostService;
+import net.core.models.Favorites;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -13,6 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.sql.DataSource;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Repository
 public class HomePageStorage implements IHomePageStorage {
@@ -49,8 +53,6 @@ public class HomePageStorage implements IHomePageStorage {
 
     @Transactional
     public int hostsSuccesCount()  {
-//        String sql = "SELECT count(*)  FROM \"INSTANCE_METRIC\"  where \"end_datetime\" is not null";
-//        return Integer.parseInt(jdbcTemplateObject.queryForMap(sql).get("count").toString());
         return hosts.getAll().size();
     }
     @Transactional
@@ -61,9 +63,23 @@ public class HomePageStorage implements IHomePageStorage {
     @Transactional
     public int metricsSuccesCount()  {//TODO стоит делать или нет, хз
         String sql = "SELECT count(*)  FROM \"INSTANCE_METRIC\"";
-//        if (hostsSuccesCount() > 0) {
         return Integer.parseInt(jdbcTemplateObject.queryForMap(sql).get("count").toString());
-//        }
-//        return 0;
+    }
+
+    @Transactional
+    public List<Favorites> getFavoritesRow(String name) {
+        List<Favorites> favoriteses = new ArrayList<>();
+        String sql = "select *,(select title from \"INSTANCE_METRIC\" where id = f.inst_metric_id) as title  from \"FAVORITES\" as f where f.user_name='"+name+"'";
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+
+        for (Map row : rows) {
+            Favorites favorite = new Favorites();
+            favorite.setId((int) row.get("id"));
+            favorite.setHostId(Integer.parseInt(row.get("host_id").toString()));
+            favorite.setMetricId(Integer.parseInt(row.get("inst_metric_id").toString()));
+            favorite.setTitle(row.get("title").toString());
+            favoriteses.add(favorite);
+        }
+        return favoriteses;
     }
 }

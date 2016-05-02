@@ -7,10 +7,10 @@ import net.core.alarms.dao.GenericAlarmDao;
 import net.core.configurations.SSHConfiguration;
 import net.core.db.interfaces.IChartStorage;
 import net.core.db.interfaces.IHomePageStorage;
+import net.core.db.interfaces.IMetricStateStorage;
 import net.core.db.interfaces.IUsersStorage;
 import net.core.hibernate.services.HostService;
 import net.core.models.*;
-import net.core.tools.Averaging;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -19,19 +19,22 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 @Repository
 @Service("MetricStorage")
 public class RouteStorage implements IRouteStorage {
 
 
+    @Autowired
+    private IMetricStateStorage metricStateStorage;
     @Autowired
     private IChartStorage chartStorage;
     @Autowired
@@ -55,6 +58,8 @@ public class RouteStorage implements IRouteStorage {
     }
 
 
+
+
     @Override
     public void dump() throws IOException {
 
@@ -67,6 +72,39 @@ public class RouteStorage implements IRouteStorage {
 //            jdbcTemplateObject.update(new String(buffer));
 //        }
     }
+    @Transactional
+    public void addStandartMetrics(int id) throws SQLException {
+        String sql = "INSERT INTO \"INSTANCE_METRIC\" (TEMPL_METRIC,HOST) VALUES (?,?);";
+        jdbcTemplateObject.update(sql,1,id);
+        String sql1 = "INSERT INTO \"INSTANCE_METRIC\" (TEMPL_METRIC,HOST) VALUES (?,?);";
+        jdbcTemplateObject.update(sql1,2,id);
+        String sql2 = "INSERT INTO \"INSTANCE_METRIC\" (TEMPL_METRIC,HOST) VALUES (?,?);";
+        jdbcTemplateObject.update(sql2,5,id);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //TODO: alarms
     @Transactional
@@ -214,89 +252,7 @@ public class RouteStorage implements IRouteStorage {
 
 
     //sql
-    //metric-state
-    @Transactional //MAX
-    public boolean isMetricHasProblem(long instMetric) {
-        String sql = "SELECT id, state, start_datetime, \"end_datetime\", inst_metric,host_id  FROM \"METRIC_STATE\" where  inst_metric =? and \"end_datetime\" is null ";
-        boolean state = false;
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql,instMetric);
-        if (rows.isEmpty()) {
-            return state;
-        } else {
-            return true;
-        }
-    }
 
-    @Transactional
-    public void setAllowableValueMetric(String endTime, int instMetric) {
-        String sql = "UPDATE \"METRIC_STATE\" SET \"end_datetime\" = (TIMESTAMP '" + endTime + "')  where  inst_metric =? and \"end_datetime\" is null";
-        jdbcTemplateObject.update(sql,instMetric);
-    }
-
-    @Transactional //MAX
-    public boolean overMaxValue(long instMetric) {
-        String sql = "SELECT id, state, start_datetime, \"end_datetime\", inst_metric,host_id  FROM \"METRIC_STATE\" where  inst_metric =? and \"end_datetime\" is null and state like '%превысило%'";
-        boolean state = true;
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql,instMetric);
-        if (rows.isEmpty()) {
-            return state;
-        } else {
-            return false;
-        }
-    }
-
-    @Transactional
-    public void setOverMaxValue(String startTime, InstanceMetric instanceMetric, int hostId, double valueMetric) {
-        String state = "'Значение " + valueMetric + " превысило пороговое значение " + instanceMetric.getMaxValue() + "'";
-        String sql = "INSERT INTO \"METRIC_STATE\"(start_datetime,state,inst_metric,resolved,host_id) " +
-                " VALUES ((TIMESTAMP '" + startTime + "'),?,?,?,?)";
-        jdbcTemplateObject.update(sql,state,instanceMetric.getId(),false,hostId);
-    }
-
-
-    @Transactional //MIN
-    public boolean lessMinValue(long instMetric) {
-        String sql = "SELECT id, state, start_datetime, \"end_datetime\", inst_metric  FROM \"METRIC_STATE\" where  inst_metric =? and \"end_datetime\" is null and state like '%ниже%'";
-        boolean state = true;
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql,instMetric);
-        if (rows.isEmpty()) {
-            return state;
-        } else {
-            return false;
-        }
-    }
-
-    @Transactional  //MIN
-    public void setLessMinValue(String startTime, InstanceMetric instanceMetric, int hostId, double valueMetric) {
-        String state = "'Значение " + valueMetric + " ниже порогового значения " + instanceMetric.getMinValue() + "'";
-        String sql = "INSERT INTO \"METRIC_STATE\"(start_datetime,state,inst_metric,resolved,host_id) " +
-                " VALUES ((TIMESTAMP '" + startTime + "'),?,?,?,?)";
-        jdbcTemplateObject.update(sql,state,instanceMetric.getId(),false,hostId);
-    }
-
-    @Transactional
-    public boolean correctlyMetric(long instMetric) {
-        String sql = "SELECT id, state, start_datetime, \"end_datetime\", inst_metric  FROM \"METRIC_STATE\" where state='unknow' and inst_metric =? and \"end_datetime\" is null";
-        boolean state = true;
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql,instMetric);
-        if (rows.isEmpty()) {
-            return state;
-        } else {
-            return false;
-        }
-    }
-
-    @Transactional
-    public void setCorrectlyMetric(String endTime, int instMetric) {
-        String sql = "UPDATE \"METRIC_STATE\" SET \"end_datetime\" = (TIMESTAMP '" + endTime + "')  where state='unknow' and  inst_metric =? and \"end_datetime\" is null";
-        jdbcTemplateObject.update(sql,instMetric);
-    }
-
-    @Transactional
-    public void setIncorrectlyMetric(String startTime, int instMetric) {
-        String sql = "INSERT INTO \"METRIC_STATE\"(start_datetime,state,inst_metric,resolved)  VALUES ((TIMESTAMP '" + startTime + "'),'unknow',?,?)";
-        jdbcTemplateObject.update(sql,instMetric,false);
-    }
 
 
 
@@ -354,7 +310,6 @@ public class RouteStorage implements IRouteStorage {
         }
         return metricStateList;
     }
-
     @Transactional
     public List<MetricState> getMetricProblems() throws SQLException, ParseException {
         List<MetricState> metricStateList = new ArrayList<>();
@@ -379,25 +334,21 @@ public class RouteStorage implements IRouteStorage {
         }
         return metricStateList;
     }
-
     @Transactional
     public void setResolvedMetric(int id) {
         String sql = "UPDATE \"METRIC_STATE\" set resolved = true WHERE id =? and \"end_datetime\" is not null";
         jdbcTemplateObject.update(sql,id);
     }
-
     @Transactional
     public void setResolvedMetric() {
         String sql = "UPDATE \"METRIC_STATE\" set resolved = true WHERE \"end_datetime\" is not null";
         jdbcTemplateObject.update(sql);
     }
-
     @Transactional
     public long getMetricNotResolvedLength() {
         String sql = "SELECT COUNT(*)  FROM \"METRIC_STATE\" where resolved = false";
         return (long) jdbcTemplateObject.queryForMap(sql).get("COUNT");
     }
-
     @Transactional
     public long getMetricNotResolvedLength(int hostId) throws SQLException {
         String sql = "SELECT COUNT(*)  FROM \"METRIC_STATE\" where resolved = false and host_id =?";
@@ -420,19 +371,16 @@ public class RouteStorage implements IRouteStorage {
         }
         return state;
     }
-
     @Transactional
     public void setNotAvailableHost(String startTime, int host, String hostName) {
         String sql = "INSERT INTO \"HOST_STATE\"(start_datetime,resolved,host,host_name)  VALUES ((TIMESTAMP '" + startTime + "'),?,?,?)";
         jdbcTemplateObject.update(sql,false,host,hostName);
     }
-
     @Transactional
     public void setAvailableHost(String endTime, int host) {
         String sql = "UPDATE \"HOST_STATE\" SET \"end_datetime\" = (TIMESTAMP '" + endTime + "')  where host =? and \"end_datetime\" is null";
         jdbcTemplateObject.update(sql,host);
     }
-
     @Transactional
     public List<HostsState> getHostsProblems() throws SQLException, ParseException {
         List<HostsState> hostsStateList = new ArrayList<>();
@@ -464,19 +412,16 @@ public class RouteStorage implements IRouteStorage {
         }
         return hostsStateList;
     }
-
     @Transactional
     public void setResolvedHost(int id) {
         String sql = "UPDATE \"HOST_STATE\" set resolved = true WHERE id =? and \"end_datetime\" is not null";
         jdbcTemplateObject.update(sql,id);
     }
-
     @Transactional
     public void setResolvedHost() {
         String sql = "UPDATE \"HOST_STATE\" set resolved = true WHERE \"end_datetime\" is not null";
         jdbcTemplateObject.update(sql);
     }
-
     @Transactional
     public long getHostNotResolvedLength() {
         String sql = "SELECT COUNT(*)  FROM \"HOST_STATE\" where resolved = false";
@@ -494,7 +439,6 @@ public class RouteStorage implements IRouteStorage {
         String sql = "INSERT INTO \"TEMPLATE_METRICS\"(title, query) VALUES (?,?)";
         jdbcTemplateObject.update(sql,title,query);
     }
-
     @Transactional
     public TemplateMetric getTemplateMetric(int id) throws SQLException {
         TemplateMetric templateMetric = new TemplateMetric();
@@ -511,7 +455,6 @@ public class RouteStorage implements IRouteStorage {
         }
         return templateMetric;
     }
-
     @Transactional
     public List<TemplateMetric> getTemplatMetrics() throws SQLException {
         List<TemplateMetric> metrics1 = new ArrayList<>();
@@ -530,20 +473,16 @@ public class RouteStorage implements IRouteStorage {
         }
         return metrics1;
     }
-
-
     @Transactional
     public void updateTemplMetric(int id,String title,String command,double minValue,double maxValue) throws SQLException {
         String sql = "UPDATE \"TEMPLATE_METRICS\" SET min_value=?,max_value=?,title=?,query=? WHERE id=?";
         jdbcTemplateObject.update(sql,minValue,maxValue,title,command,id);
     }
-
     @Transactional
     public void addTemplMetric(String title,String command,double minValue,double maxValue) throws SQLException {
         String sql = "INSERT INTO  \"TEMPLATE_METRICS\"( min_value, max_value,title, query) VALUES( ?,?,?,?)";
         jdbcTemplateObject.update(sql,minValue,maxValue,title,command);
     }
-
     @Transactional
     public void dellTemplMetric(int id) throws SQLException {
         String sql = "DELETE FROM \"TEMPLATE_METRICS\" where id=?";
@@ -558,7 +497,6 @@ public class RouteStorage implements IRouteStorage {
         String sql = "INSERT INTO \"INSTANCE_METRIC\"(host, templ_metric,min_value,max_value,title,query) VALUES (?,?,?,?,?,?)";
         jdbcTemplateObject.update(sql,host, metric,0,0, templateMetric.getTitle(), templateMetric.getCommand());
     }
-
     @Transactional
     public List<InstanceMetric> getInstMetrics(int hostId) throws SQLException {
         List<InstanceMetric> instanceMetrics = new ArrayList<>();
@@ -577,7 +515,6 @@ public class RouteStorage implements IRouteStorage {
         }
         return instanceMetrics;
     }
-
     @Transactional
     public InstanceMetric getInstMetric(int instMetricId) throws SQLException {
         InstanceMetric instanceMetric = new InstanceMetric();
@@ -594,6 +531,9 @@ public class RouteStorage implements IRouteStorage {
         }
         return instanceMetric;
     }
+
+
+
 
     //hostsRows
     @Transactional
@@ -663,23 +603,6 @@ public class RouteStorage implements IRouteStorage {
         }
         return MetricRows;
     }
-    //Favorites
-    @Transactional
-    public List<Favorites> getFavoritesRow(String name) throws SQLException {
-        List<Favorites> favoriteses = new ArrayList<>();
-        String sql = "select *,(select title from \"INSTANCE_METRIC\" where id = f.inst_metric_id) as title  from \"FAVORITES\" as f where f.user_name='"+name+"'";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-
-        for (Map row : rows) {
-            Favorites favorite = new Favorites();
-            favorite.setId((int) row.get("id"));
-            favorite.setHostId(Integer.parseInt(row.get("host_id").toString()));
-            favorite.setMetricId(Integer.parseInt(row.get("inst_metric_id").toString()));
-            favorite.setTitle(row.get("title").toString());
-            favoriteses.add(favorite);
-        }
-        return favoriteses;
-    }
 
     //problem
     @Transactional
@@ -697,7 +620,6 @@ public class RouteStorage implements IRouteStorage {
         }
         return problem;
     }
-
     @Override
     public List<SSHConfiguration> getHostsByLocation(String location) throws SQLException {
         String sql = "SELECT * FROM \"sshconfigurationhibernate\" WHERE location LIKE\'%"+location+"%\'";
@@ -716,17 +638,6 @@ public class RouteStorage implements IRouteStorage {
         }
         return hosts;
     }
-
-    @Transactional
-    public void addStandartMetrics(int id) throws SQLException {
-        String sql = "INSERT INTO \"INSTANCE_METRIC\" (TEMPL_METRIC,HOST) VALUES (?,?);";
-        jdbcTemplateObject.update(sql,1,id);
-        String sql1 = "INSERT INTO \"INSTANCE_METRIC\" (TEMPL_METRIC,HOST) VALUES (?,?);";
-        jdbcTemplateObject.update(sql1,2,id);
-        String sql2 = "INSERT INTO \"INSTANCE_METRIC\" (TEMPL_METRIC,HOST) VALUES (?,?);";
-        jdbcTemplateObject.update(sql2,5,id);
-    }
-
     @Transactional
     public void delMetricFromHost(int host, int id) throws SQLException {
         String sql = "delete from  \"INSTANCE_METRIC\" where id=? and host=?";
@@ -745,7 +656,71 @@ public class RouteStorage implements IRouteStorage {
 //TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready
 
 
-    //TODO:values
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //TODO: metric-state
+    @Transactional //MAX
+    public boolean isMetricHasProblem(long instMetricId) {
+        return metricStateStorage.isMetricHasProblem(instMetricId);
+    }
+    @Transactional
+    public void setAllowableValueMetric(String endTime, int instMetricId) {
+        metricStateStorage.setAllowableValueMetric(endTime, instMetricId);
+    }
+    @Transactional //MAX
+    public boolean overMaxValue(long instMetricId) {
+        return metricStateStorage.overMaxValue(instMetricId);
+    }
+    @Transactional
+    public void setOverMaxValue(String startTime, InstanceMetric instanceMetric, int hostId, double valueMetric) {
+        metricStateStorage.setOverMaxValue(startTime, instanceMetric, hostId, valueMetric);
+    }
+    @Transactional //MIN
+    public boolean lessMinValue(long instMetricId) {
+        return metricStateStorage.lessMinValue(instMetricId);
+    }
+    @Transactional  //MIN
+    public void setLessMinValue(String startTime, InstanceMetric instanceMetric, int hostId, double valueMetric) {
+        metricStateStorage.setLessMinValue(startTime, instanceMetric, hostId, valueMetric);
+    }
+    @Transactional
+    public boolean correctlyMetric(long instMetricId) {
+        return metricStateStorage.correctlyMetric(instMetricId);
+    }
+    @Transactional
+    public void setCorrectlyMetric(String endTime, int instMetricId) {
+        metricStateStorage.setCorrectlyMetric(endTime,instMetricId);
+    }
+    @Transactional
+    public void setIncorrectlyMetric(String startTime, int instMetricId) {
+        metricStateStorage.setIncorrectlyMetric(startTime, instMetricId);
+    }
+
+
+
+
+    //TODO:Charts values
     @Transactional
     public void addValue(int host, int metric, double value, String dateTime) throws SQLException {
         chartStorage.addValue(host,metric,value,dateTime);
@@ -851,6 +826,12 @@ public class RouteStorage implements IRouteStorage {
 
 //TODO:HomePage
     //TODO Favorites
+
+    //Favorites
+    @Transactional
+    public List<Favorites> getFavoritesRow(String name) throws SQLException {
+        return homePageStorage.getFavoritesRow(name);
+    }
     @Transactional
     public void addToFavorites(int host, int metric,String user) throws SQLException {
         homePageStorage.addToFavorites(host,metric,user);

@@ -1,6 +1,10 @@
 package net.core.db.interfaces;
 
 
+import net.core.models.Favorites;
+
+import java.util.List;
+
 public interface IHomePageStorage {
 
     public void addToFavorites(int host, int metric, String user);
@@ -14,4 +18,6 @@ public interface IHomePageStorage {
     public int metricsProblemCount();
 
     public int metricsSuccesCount();
+
+    public List<Favorites> getFavoritesRow(String name);
 }
