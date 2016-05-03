@@ -57,11 +57,11 @@ public interface IRouteStorage {
 
     public long getMetricNotResolvedLength(int hostId) throws SQLException;
 
-    public List<MetricState> getMetricProblems(int hostId) throws SQLException, ParseException;
+    public List<MetricProblem> getMetricProblems(int hostId) throws SQLException, ParseException;
 
-    public List<MetricState> getMetricProblems(int hostId,int instMetricId) throws SQLException, ParseException;
+    public List<MetricProblem> getMetricProblems(int hostId,int instMetricId) throws SQLException, ParseException;
 
-    public List<MetricState> getMetricProblems() throws SQLException, ParseException;
+    public List<MetricProblem> getMetricProblems() throws SQLException, ParseException;
 
     //host-state
     public boolean availableHost(long hostId);

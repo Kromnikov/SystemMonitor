@@ -3,7 +3,7 @@ package net.web.controller;
 import net.core.IRouteStorage;
 import net.core.hibernate.services.HostService;
 import net.core.models.HostsState;
-import net.core.models.MetricState;
+import net.core.models.MetricProblem;
 import net.core.models.Problem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -33,7 +33,7 @@ public class ProblemsController {
         return ((int) metricStorage.getMetricNotResolvedLength() + (int) metricStorage.getHostNotResolvedLength());
     }
 
-    public List<MetricState> getMetricProblems() throws SQLException, ParseException {
+    public List<MetricProblem> getMetricProblems() throws SQLException, ParseException {
         return metricStorage.getMetricProblems();
     }
 

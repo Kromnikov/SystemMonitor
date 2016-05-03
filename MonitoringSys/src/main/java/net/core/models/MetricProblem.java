@@ -2,7 +2,7 @@ package net.core.models;
 
 import java.util.Date;
 
-public class MetricState {
+public class MetricProblem {
 
     private int id;
 
@@ -20,10 +20,10 @@ public class MetricState {
 
     private boolean resolved;
 
-    public MetricState() {
+    public MetricProblem() {
     }
 
-    public MetricState(int id, double minValue, String value, double maxValue, Date start, Date end, String instMetric, boolean resolved) {
+    public MetricProblem(int id, double minValue, String value, double maxValue, Date start, Date end, String instMetric, boolean resolved) {
         this.id = id;
         this.minValue = minValue;
         this.value = value;

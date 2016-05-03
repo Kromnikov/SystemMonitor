@@ -49,16 +49,16 @@ public class HostController {
         return (int) metricStorage.getMetricNotResolvedLength(hostId);
     }
 
-    public List<MetricState> getMetricProblems(int hostId) throws SQLException, ParseException {
+    public List<MetricProblem> getMetricProblems(int hostId) throws SQLException, ParseException {
         return metricStorage.getMetricProblems(hostId);
     }
 
 
-    public List<MetricState> getMetricProblems(int hostId, int metricId) throws SQLException, ParseException {
+    public List<MetricProblem> getMetricProblems(int hostId, int metricId) throws SQLException, ParseException {
         return metricStorage.getMetricProblems(hostId, metricId);
     }
 
-    public List<MetricState> getMetricProblems() throws SQLException, ParseException {
+    public List<MetricProblem> getMetricProblems() throws SQLException, ParseException {
         return metricStorage.getMetricProblems();
     }
 
