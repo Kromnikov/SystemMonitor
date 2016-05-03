@@ -53,13 +53,13 @@ public class RouteStorage implements IRouteStorage {
     @Override
     public void dump() throws IOException {
 
-        //        File f=new File("dump.sql");
-//        try (FileReader reader  = new FileReader(f))
+        //        file f=new file("dump.sql");
+//        try (filereader reader  = new filereader(f))
 //        {
 //            char[] buffer = new char[(int)f.length()];
 //            reader.read(buffer);
-////            System.out.println(new String(buffer));
-//            jdbcTemplateObject.update(new String(buffer));
+////            system.out.println(new string(buffer));
+//            jdbctemplateobject.update(new string(buffer));
 //        }
     }
 
