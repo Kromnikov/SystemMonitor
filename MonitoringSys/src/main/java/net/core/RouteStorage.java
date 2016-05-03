@@ -1,10 +1,7 @@
 package net.core;
 
 
-import net.core.alarms.dao.AlarmsLogDao;
-import net.core.alarms.dao.GenericAlarmDao;
 import net.core.db.interfaces.*;
-import net.core.hibernate.services.HostService;
 import net.core.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,9 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -48,13 +43,6 @@ public class RouteStorage implements IRouteStorage {
     private IHomePageStorage homePageStorage;
 
     private JdbcTemplate jdbcTemplateObject;
-    @Autowired
-    private AlarmsLogDao alarmsLogDao;
-    @Autowired
-    private HostService hosts;
-    @Autowired
-    private GenericAlarmDao genericAlarm;
-    private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Autowired
     public RouteStorage(DataSource dataSource) {
