@@ -1,6 +1,5 @@
 package net.core;
 
-import net.core.configurations.SSHConfiguration;
 import net.core.models.*;
 
 import java.io.IOException;
@@ -190,7 +189,6 @@ public interface IRouteStorage {
 
 
 
-    public List<SSHConfiguration> getHostsByLocation(String location)throws SQLException;
 
     //TODO Favorites
     public void addToFavorites(int host, int metric,String user) throws SQLException;

@@ -85,4 +85,15 @@ public class InstanceStorage implements IInstanceStorage{
         String sql = "delete from  \"INSTANCE_METRIC\" where id=? and host=?";
         jdbcTemplateObject.update(sql,id,host);
     }
+
+    @Transactional
+    public void addInstMetric(InstanceMetric instanceMetric) {
+        String sql = "INSERT INTO \"INSTANCE_METRIC\"(host, templ_metric,min_value,max_value,title,query) VALUES (?,?,?,?,?,?)";
+        jdbcTemplateObject.update(sql,instanceMetric.getHostId(),instanceMetric.getTempMetrcId(),instanceMetric.getMinValue(),instanceMetric.getMaxValue() , instanceMetric.getTitle() , instanceMetric.getCommand());
+    }
+    @Transactional
+    public void editInstMetric(int id,int hostId,int templMetricId,String title,String command,double minValue,double maxValue)  {
+        String sql = "UPDATE \"INSTANCE_METRIC\" SET min_value=?, host=?, templ_metric=?,max_value=?,title=?,query=? WHERE id=?";
+        jdbcTemplateObject.update(sql,minValue,hostId,templMetricId,maxValue,title,command,id);
+    }
 }

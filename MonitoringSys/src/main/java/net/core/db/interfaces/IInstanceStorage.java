@@ -14,4 +14,8 @@ public interface IInstanceStorage {
     public InstanceMetric getInstMetric(int instMetricId);
 
     public void delMetricFromHost(int host, int id);
+
+    public void addInstMetric(InstanceMetric instanceMetric);
+
+    public void editInstMetric(int id, int hostId, int templMetricId, String title, String command, double minValue, double maxValue);
 }

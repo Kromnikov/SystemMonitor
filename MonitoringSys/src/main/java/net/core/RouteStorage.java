@@ -1,7 +1,6 @@
 package net.core;
 
 
-import net.core.alarms.GenericAlarm;
 import net.core.alarms.dao.AlarmsLogDao;
 import net.core.alarms.dao.GenericAlarmDao;
 import net.core.configurations.SSHConfiguration;
@@ -31,6 +30,8 @@ public class RouteStorage implements IRouteStorage {
 
 
     @Autowired
+    private IAlarmsStorage alarmsStorage;
+    @Autowired
     private IMetricProblemStorage metricProblemStorage;
     @Autowired
     private ITemplateStorage templateStorage;
@@ -46,8 +47,6 @@ public class RouteStorage implements IRouteStorage {
     private IUsersStorage usersStorage;
     @Autowired
     private IHomePageStorage homePageStorage;
-
-
 
     private JdbcTemplate jdbcTemplateObject;
     @Autowired
@@ -86,189 +85,6 @@ public class RouteStorage implements IRouteStorage {
         String sql2 = "INSERT INTO \"INSTANCE_METRIC\" (TEMPL_METRIC,HOST) VALUES (?,?);";
         jdbcTemplateObject.update(sql2,5,id);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //TODO: alarms
-    @Transactional
-    public List<GenericAlarmsRow> getAlarms(String userName) {
-        List<GenericAlarmsRow> genericAlarmsRowList = new ArrayList<>();
-        String sql = "";
-        List<Map<String, Object>> rows ;
-        for (GenericAlarm ga : genericAlarm.getByUser(userName)) {
-            GenericAlarmsRow genericAlarmsRow = new GenericAlarmsRow();
-            genericAlarmsRow.setType(ga.getType());
-            genericAlarmsRow.setMessage(ga.getMessage());
-            if(ga.getHostId()>-1) {
-                genericAlarmsRow.setHostId(ga.getHostId());
-                genericAlarmsRow.setHostName(hosts.get(genericAlarmsRow.getHostId()).getName());
-            }
-            genericAlarmsRow.setId(ga.getId());
-            {
-                if (ga.getServiceId() > -1);
-            }
-            genericAlarmsRow.setServiceId(ga.getServiceId());
-            genericAlarmsRow.setToEmail(ga.getToEmail());
-            genericAlarmsRow.setToUser(ga.getToUser());
-            genericAlarmsRow.setUser(ga.getUsername());
-
-
-            sql = "select title,host from \"INSTANCE_METRIC\" WHERE id=?";
-            rows= jdbcTemplateObject.queryForList(sql,genericAlarmsRow.getServiceId());
-            for (Map row : rows) {
-                genericAlarmsRow.setServiceTitle((String) row.get("title"));
-                genericAlarmsRow.setFromHost(hosts.get((int) row.get("host")).getName());
-            }
-
-
-            genericAlarmsRowList.add(genericAlarmsRow);
-        }
-        return genericAlarmsRowList;
-    }
-    @Transactional
-    public AlarmRow getAlarm(int id) throws SQLException {
-        String sql = "";
-        List<Map<String, Object>> rows;
-        GenericAlarm ga = genericAlarm.get(id);
-
-        SSHConfiguration host = new SSHConfiguration();
-        AlarmRow alarmRow = new AlarmRow();
-        alarmRow.setType(ga.getType());
-        alarmRow.setMessage(ga.getMessage());
-        if (ga.getHostId() > -1) {
-            alarmRow.setHostId(ga.getHostId());
-            host = hosts.get(alarmRow.getHostId());
-            alarmRow.setHostName(host.getName());
-        }
-        alarmRow.setId(ga.getId());
-        {
-            if (ga.getServiceId() > -1) ;
-        }
-        alarmRow.setServiceId(ga.getServiceId());
-        alarmRow.setToEmail(ga.getToEmail());
-        alarmRow.setToUser(ga.getToUser());
-        alarmRow.setUser(ga.getUsername());
-        sql = "select title,host from \"INSTANCE_METRIC\" WHERE id=?";
-        rows = jdbcTemplateObject.queryForList(sql,alarmRow.getServiceId());
-        for (Map row : rows) {
-            alarmRow.setServiceTitle((String) row.get("title"));
-            alarmRow.setFromHost(hosts.get((int) row.get("host")).getName());
-        }
-
-        alarmRow.setInstanceMetrics(getInstMetrics(host.getId()));
-        alarmRow.setHosts(hosts.getAll());
-
-
-        sql = "SELECT username FROM \"Users\"";
-        rows = jdbcTemplateObject.queryForList(sql);
-        List<String> stringList = new ArrayList<>();
-        for (Map row : rows) {
-            stringList.add((String)row.get("username"));
-        }
-        alarmRow.setAllUsers(stringList);
-
-        return alarmRow;
-    }
-    @Transactional
-    public AlarmRow getNewAlarm() throws SQLException {
-        String sql = "";
-        List<Map<String, Object>> rows;
-
-        SSHConfiguration host = new SSHConfiguration();
-        AlarmRow alarmRow = new AlarmRow();
-        sql = "select title,host from \"INSTANCE_METRIC\" WHERE id=?";
-        rows = jdbcTemplateObject.queryForList(sql,alarmRow.getServiceId());
-        for (Map row : rows) {
-            alarmRow.setServiceTitle((String) row.get("title"));
-            alarmRow.setFromHost(hosts.get((int) row.get("host")).getName());
-        }
-
-        alarmRow.setInstanceMetrics(getInstMetrics(host.getId()));
-        alarmRow.setHosts(hosts.getAll());
-
-
-        sql = "SELECT username FROM \"Users\"";
-        rows = jdbcTemplateObject.queryForList(sql);
-        List<String> stringList = new ArrayList<>();
-        for (Map row : rows) {
-            stringList.add((String)row.get("username"));
-        }
-        alarmRow.setAllUsers(stringList);
-
-        return alarmRow;
-    }
-
-    @Transactional
-    public void updateAlarm(int id, int serviseId, int hostId, String toEmail, String toUser) {
-        String sql = "UPDATE genericalarm SET serviceid=?, hostid=?, toemail=?, touser=? WHERE id=?";
-        jdbcTemplateObject.update(sql,serviseId,hostId,toEmail,toUser,id);
-    }
-    @Transactional
-    public void addAlarm(int serviseId, int hostId, String toEmail, String toUser,String user) {
-        String sql = "INSERT INTO genericalarm (serviceid, hostid, toemail, touser,  username)    VALUES (?,?,?,?,?)";
-        jdbcTemplateObject.update(sql,serviseId,hostId,toEmail,toUser,user);
-    }
-    @Transactional
-    public void dellAlarm(int id) {
-        String sql = "DELETE FROM genericalarm WHERE id=?";
-        jdbcTemplateObject.update(sql,id);
-    }
-
-
-
-
-
-
-//TODO: instMetric
-
-    @Transactional
-    public void addInstMetric(InstanceMetric instanceMetric) throws SQLException {
-        String sql = "INSERT INTO \"INSTANCE_METRIC\"(host, templ_metric,min_value,max_value,title,query) VALUES (?,?,?,?,?,?)";
-        jdbcTemplateObject.update(sql,instanceMetric.getHostId(),instanceMetric.getTempMetrcId(),instanceMetric.getMinValue(),instanceMetric.getMaxValue() , instanceMetric.getTitle() , instanceMetric.getCommand());
-    }
-    @Transactional
-    public void editInstMetric(int id,int hostId,int templMetricId,String title,String command,double minValue,double maxValue) throws SQLException {
-        String sql = "UPDATE \"INSTANCE_METRIC\" SET min_value=?, host=?, templ_metric=?,max_value=?,title=?,query=? WHERE id=?";
-        jdbcTemplateObject.update(sql,minValue,hostId,templMetricId,maxValue,title,command,id);
-    }
-
-
-
-    //sql
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     //hostsRows
@@ -339,7 +155,6 @@ public class RouteStorage implements IRouteStorage {
         }
         return MetricRows;
     }
-
     //problem
     @Transactional
     public Problem getProblem(int problemId) throws SQLException {
@@ -356,23 +171,40 @@ public class RouteStorage implements IRouteStorage {
         }
         return problem;
     }
-    @Override
-    public List<SSHConfiguration> getHostsByLocation(String location) throws SQLException {
-        String sql = "SELECT * FROM \"sshconfigurationhibernate\" WHERE location LIKE\'%"+location+"%\'";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-        List<SSHConfiguration> hosts= new ArrayList<>();
-        for (Map row : rows) {
-            SSHConfiguration host = new SSHConfiguration();
-            host.setId((int)row.get("sshconfigurationhibernate_id"));
-            host.setPort((int)row.get("port"));
-            host.setLogin((String)row.get("login"));
-            host.setPassword((String)row.get("password"));
-            host.setLocation((String)row.get("location"));
-            host.setName((String)row.get("name"));
-            host.setHost((String)row.get("host"));
-            hosts.add(host);
-        }
-        return hosts;
+
+//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready
+
+
+
+
+
+
+
+    //TODO: alarms
+    @Transactional
+    public List<GenericAlarmsRow> getAlarms(String userName) {
+        return alarmsStorage.getAlarms(userName);
+    }
+    @Transactional
+    public AlarmRow getAlarm(int id) throws SQLException {
+        return alarmsStorage.getAlarm(id);
+    }
+    @Transactional
+    public AlarmRow getNewAlarm() throws SQLException {
+        return alarmsStorage.getNewAlarm();
+    }
+
+    @Transactional
+    public void updateAlarm(int id, int serviseId, int hostId, String toEmail, String toUser) {
+        alarmsStorage.updateAlarm(id, serviseId, hostId, toEmail, toUser);
+    }
+    @Transactional
+    public void addAlarm(int serviseId, int hostId, String toEmail, String toUser,String user) {
+        alarmsStorage.addAlarm(serviseId, hostId, toEmail, toUser, user);
+    }
+    @Transactional
+    public void dellAlarm(int id) {
+        alarmsStorage.dellAlarm(id);
     }
 
 
@@ -384,10 +216,7 @@ public class RouteStorage implements IRouteStorage {
 
 
 
-
-//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready
-
-//TODO: metric problem storage
+    //TODO: metric problem storage
     @Transactional
     public List<MetricProblem> getMetricProblems(int hostId) throws SQLException, ParseException {
         return metricProblemStorage.getMetricProblems(hostId);
@@ -426,7 +255,7 @@ public class RouteStorage implements IRouteStorage {
 
 
 
-    //TODO: inst
+    //TODO: instMetric
     @Transactional
     public void addInstMetric(int host, int metricId) throws SQLException {
         instanceStorage.addInstMetric(host, metricId);
@@ -443,6 +272,16 @@ public class RouteStorage implements IRouteStorage {
     public void delMetricFromHost(int host, int id) throws SQLException {
         instanceStorage.delMetricFromHost(host, id);
     }
+
+    @Transactional
+    public void addInstMetric(InstanceMetric instanceMetric) throws SQLException {
+        instanceStorage.addInstMetric(instanceMetric);
+    }
+    @Transactional
+    public void editInstMetric(int id,int hostId,int templMetricId,String title,String command,double minValue,double maxValue) throws SQLException {
+        instanceStorage.editInstMetric(id, hostId, templMetricId, title, command, minValue, maxValue);
+    }
+
 
 
 
