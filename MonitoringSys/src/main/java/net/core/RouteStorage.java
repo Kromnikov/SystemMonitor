@@ -31,6 +31,8 @@ public class RouteStorage implements IRouteStorage {
 
 
     @Autowired
+    private IMetricProblemStorage metricProblemStorage;
+    @Autowired
     private ITemplateStorage templateStorage;
     @Autowired
     private IInstanceStorage instanceStorage;
@@ -259,107 +261,6 @@ public class RouteStorage implements IRouteStorage {
 
 
 
-    @Transactional
-    public List<MetricProblem> getMetricProblems(int hostId) throws SQLException, ParseException {
-        List<MetricProblem> metricProblemList = new ArrayList<>();
-        String sql = "SELECT id, state, start_datetime, end_datetime, inst_metric, resolved FROM \"METRIC_STATE\" where resolved = false and host_id=?";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql,hostId);
-        if (rows.isEmpty()) {
-            return metricProblemList;
-        } else {
-            int i = 0;
-            for (Map row : rows) {
-                MetricProblem metricProblemTmp = new MetricProblem();
-                metricProblemTmp.setId(Integer.parseInt(row.get("id").toString()));
-                metricProblemTmp.setValue((row.get("state").toString()));
-                metricProblemTmp.setStart(dateFormat.parse(row.get("start_datetime").toString()));
-                if (row.get("end_datetime") != null) {
-                    metricProblemTmp.setEnd(dateFormat.parse(row.get("end_datetime").toString()));
-                } else {
-                }
-                metricProblemTmp.setInstMetric(getInstMetric(Integer.parseInt(row.get("inst_metric").toString())).getTitle());
-                metricProblemTmp.setResolved(Boolean.parseBoolean(row.get("resolved").toString()));
-                i++;
-                metricProblemList.add(metricProblemTmp);
-            }
-//            metricsTableModel = new TableModel(header,data);
-        }
-        return metricProblemList;
-    }
-    @Transactional
-    public List<MetricProblem> getMetricProblems(int hostId,int metricId) throws SQLException, ParseException {
-        List<MetricProblem> metricProblemList = new ArrayList<>();
-        String sql = "SELECT id, state, start_datetime, end_datetime, inst_metric, resolved FROM \"METRIC_STATE\" where resolved = false and inst_metric=?";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql,metricId);
-        if (rows.isEmpty()) {
-            return metricProblemList;
-        } else {
-            int i = 0;
-            for (Map row : rows) {
-                MetricProblem metricProblemTmp = new MetricProblem();
-                metricProblemTmp.setId(Integer.parseInt(row.get("id").toString()));
-                metricProblemTmp.setValue((row.get("state").toString()));
-                metricProblemTmp.setStart(dateFormat.parse(row.get("start_datetime").toString()));
-                if (row.get("end_datetime") != null) {
-                    metricProblemTmp.setEnd(dateFormat.parse(row.get("end_datetime").toString()));
-                } else {
-                }
-                metricProblemTmp.setInstMetric(getInstMetric(Integer.parseInt(row.get("inst_metric").toString())).getTitle());
-                metricProblemTmp.setResolved(Boolean.parseBoolean(row.get("resolved").toString()));
-                i++;
-                metricProblemList.add(metricProblemTmp);
-            }
-//            metricsTableModel = new TableModel(header,data);
-        }
-        return metricProblemList;
-    }
-    @Transactional
-    public List<MetricProblem> getMetricProblems() throws SQLException, ParseException {
-        List<MetricProblem> metricProblemList = new ArrayList<>();
-        String sql = "SELECT id, state, start_datetime, end_datetime, inst_metric, resolved  FROM \"METRIC_STATE\" where resolved = false";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-        if (rows.isEmpty()) {
-            return metricProblemList;
-        } else {
-            for (Map row : rows) {
-                MetricProblem metricProblemTmp = new MetricProblem();
-                metricProblemTmp.setId(Integer.parseInt(row.get("id").toString()));
-                metricProblemTmp.setValue((row.get("state").toString()));
-                metricProblemTmp.setStart(dateFormat.parse(row.get("start_datetime").toString()));
-                if (row.get("end_datetime") != null) {
-                    metricProblemTmp.setEnd(dateFormat.parse(row.get("end_datetime").toString()));
-                } else {
-                }
-                metricProblemTmp.setInstMetric(getInstMetric(Integer.parseInt(row.get("inst_metric").toString())).getTitle());
-                metricProblemTmp.setResolved(Boolean.parseBoolean(row.get("resolved").toString()));
-                metricProblemList.add(metricProblemTmp);
-            }
-        }
-        return metricProblemList;
-    }
-    @Transactional
-    public void setResolvedMetric(int id) {
-        String sql = "UPDATE \"METRIC_STATE\" set resolved = true WHERE id =? and \"end_datetime\" is not null";
-        jdbcTemplateObject.update(sql,id);
-    }
-    @Transactional
-    public void setResolvedMetric() {
-        String sql = "UPDATE \"METRIC_STATE\" set resolved = true WHERE \"end_datetime\" is not null";
-        jdbcTemplateObject.update(sql);
-    }
-    @Transactional
-    public long getMetricNotResolvedLength() {
-        String sql = "SELECT COUNT(*)  FROM \"METRIC_STATE\" where resolved = false";
-        return (long) jdbcTemplateObject.queryForMap(sql).get("COUNT");
-    }
-    @Transactional
-    public long getMetricNotResolvedLength(int hostId) throws SQLException {
-        String sql = "SELECT COUNT(*)  FROM \"METRIC_STATE\" where resolved = false and host_id =?";
-        return (long) jdbcTemplateObject.queryForMap(sql,hostId).get("COUNT");
-    }
-
-
-
 
 
 
@@ -473,11 +374,7 @@ public class RouteStorage implements IRouteStorage {
         }
         return hosts;
     }
-    @Transactional
-    public void delMetricFromHost(int host, int id) throws SQLException {
-        String sql = "delete from  \"INSTANCE_METRIC\" where id=? and host=?";
-        jdbcTemplateObject.update(sql,id,host);
-    }
+
 
 
 
@@ -489,6 +386,45 @@ public class RouteStorage implements IRouteStorage {
 
 
 //TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready//TODO: Ready
+
+//TODO: metric problem storage
+    @Transactional
+    public List<MetricProblem> getMetricProblems(int hostId) throws SQLException, ParseException {
+        return metricProblemStorage.getMetricProblems(hostId);
+    }
+    @Transactional
+    public List<MetricProblem> getMetricProblems(int hostId,int metricId) throws SQLException, ParseException {
+        return metricProblemStorage.getMetricProblems(hostId, metricId);
+    }
+    @Transactional
+    public List<MetricProblem> getMetricProblems() throws SQLException, ParseException {
+        return metricProblemStorage.getMetricProblems();
+    }
+    @Transactional
+    public void setResolvedMetric(int id) {
+        metricProblemStorage.setResolvedMetric(id);
+    }
+    @Transactional
+    public void setResolvedMetric() {
+        metricProblemStorage.setResolvedMetric();
+    }
+    @Transactional
+    public long getMetricNotResolvedLength() {
+        return metricProblemStorage.getMetricNotResolvedLength();
+    }
+    @Transactional
+    public long getMetricNotResolvedLength(int hostId) throws SQLException {
+        return metricProblemStorage.getMetricNotResolvedLength(hostId);
+    }
+
+
+
+
+
+
+
+
+
 
     //TODO: inst
     @Transactional
@@ -502,6 +438,10 @@ public class RouteStorage implements IRouteStorage {
     @Transactional
     public InstanceMetric getInstMetric(int instMetricId) throws SQLException {
         return instanceStorage.getInstMetric(instMetricId);
+    }
+    @Transactional
+    public void delMetricFromHost(int host, int id) throws SQLException {
+        instanceStorage.delMetricFromHost(host, id);
     }
 
 

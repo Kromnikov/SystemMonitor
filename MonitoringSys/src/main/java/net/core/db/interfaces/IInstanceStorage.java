@@ -12,4 +12,6 @@ public interface IInstanceStorage {
     public List<InstanceMetric> getInstMetrics(int hostId);
 
     public InstanceMetric getInstMetric(int instMetricId);
+
+    public void delMetricFromHost(int host, int id);
 }

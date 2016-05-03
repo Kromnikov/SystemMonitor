@@ -79,4 +79,10 @@ public class InstanceStorage implements IInstanceStorage{
         }
         return instanceMetric;
     }
+
+    @Transactional
+    public void delMetricFromHost(int host, int id) {
+        String sql = "delete from  \"INSTANCE_METRIC\" where id=? and host=?";
+        jdbcTemplateObject.update(sql,id,host);
+    }
 }
