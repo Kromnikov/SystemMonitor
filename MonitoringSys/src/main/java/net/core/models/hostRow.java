@@ -1,6 +1,6 @@
 package net.core.models;
 
-public class hostRow {
+public class HostRow {
     int id;
     String hostName;
     int servicesCount;
@@ -8,12 +8,12 @@ public class hostRow {
     String status;
     String location;
 
-    public hostRow() {
+    public HostRow() {
 
     }
 
 
-    public hostRow(int id, String hostName, int servicesCount, int errorsCount, String status, String location) {
+    public HostRow(int id, String hostName, int servicesCount, int errorsCount, String status, String location) {
         this.id = id;
         this.hostName = hostName;
         this.servicesCount = servicesCount;

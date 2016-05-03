@@ -77,7 +77,7 @@ public interface IRouteStorage {
 
     public long getHostNotResolvedLength();
 
-    public Problem getProblem(int problemId) throws SQLException;
+    public ProblemRow getProblem(int problemId) throws SQLException;
 
     //values
     public void addValue(int host, int metric, double value, String dateTime) throws SQLException;
@@ -89,11 +89,11 @@ public interface IRouteStorage {
 
 
     //hostsRows
-    public List<hostRow> getHostRow() throws SQLException;
+    public List<HostRow> getHostRow() throws SQLException;
     public List<HostEditRow> getHostEditRow() throws SQLException;
 
     //metricRows
-    public List<metricRow> getMetricRow(int hostId) throws SQLException;
+    public List<MetricRow> getMetricRow(int hostId) throws SQLException;
 
     public GraphPoints getValuesLastDay(int host_id, int metricId, Date dateTime) throws ParseException;
 

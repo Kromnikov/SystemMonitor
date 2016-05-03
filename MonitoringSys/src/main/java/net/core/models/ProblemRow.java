@@ -2,7 +2,7 @@ package net.core.models;
 
 import java.util.Date;
 
-public class Problem {
+public class ProblemRow {
 
     private int id;
 
@@ -18,10 +18,10 @@ public class Problem {
 
     private Date endDate;
 
-    public Problem() {
+    public ProblemRow() {
     }
 
-    public Problem(int id, int instMetricId, String instMetric, int hostId, String hostName) {
+    public ProblemRow(int id, int instMetricId, String instMetric, int hostId, String hostName) {
         this.id = id;
         this.instMetricId = instMetricId;
         this.instMetric = instMetric;
