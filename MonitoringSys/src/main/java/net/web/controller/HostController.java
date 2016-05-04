@@ -1,11 +1,11 @@
 package net.web.controller;
 
-import net.core.alarms.AlarmsLog;
-import net.core.alarms.dao.AlarmsLogDao;
 import net.core.configurations.SSHConfiguration;
 import net.core.IRouteStorage;
 import net.core.hibernate.services.HostService;
 import net.core.models.*;
+import net.core.tools.Authorization;
+import net.core.tools.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,11 +25,11 @@ import java.util.*;
 public class HostController {
 
     @Autowired
+    private Authorization authentication;
+    @Autowired
     private IRouteStorage metricStorage;
     @Autowired
     private HostService hosts;
-    @Autowired
-    private AlarmsLogDao alarmsLogDao;
 
 //    private static DateFormat dateFormat = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy");
 
@@ -91,32 +91,13 @@ public class HostController {
 
     @RequestMapping(value = "/dellHost", method = RequestMethod.GET)
     public String dellHost(@RequestParam("id") int id) {
+        if (!authentication.accessAdmin()) {
+            throw new ResourceNotFoundException();
+        }
         hosts.remove(hosts.get(id));
         return "redirect:/hostedit";
     }
 
-    //TODO: alarms
-    @RequestMapping(value = "/getAlarms", method = RequestMethod.GET)
-    @ResponseBody
-    public List<AlarmsModel> getAlarms(@RequestParam("userName") String userName) {
-        List<AlarmsModel> alarmsModels = new ArrayList<>();
-        for (AlarmsLog g : alarmsLogDao.getByUser(userName)) {
-            alarmsModels.add(new AlarmsModel(g.getType(), g.getMessage(), g.getId()));
-        }
-        return alarmsModels;
-    }
-
-    @RequestMapping(value = "/dellAlarm", method = RequestMethod.GET)
-    @ResponseBody
-    public List<AlarmsModel> dellAlarm(@RequestParam("id") int id, @RequestParam("userName") String userName) {
-        AlarmsLog alarmsLog = alarmsLogDao.get(id);
-        alarmsLogDao.remove(alarmsLog);
-        List<AlarmsModel> alarmsModels = new ArrayList<>();
-        for (AlarmsLog g : alarmsLogDao.getByUser(userName)) {
-            alarmsModels.add(new AlarmsModel(g.getType(), g.getMessage(), g.getId()));
-        }
-        return alarmsModels;
-    }
 
 
     @RequestMapping(value = "/hosts")

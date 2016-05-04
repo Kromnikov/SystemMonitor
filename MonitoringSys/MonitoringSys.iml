@@ -194,5 +194,10 @@
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.13" level="project" />
     <orderEntry type="library" name="Maven: org.thymeleaf.extras:thymeleaf-extras-springsecurity4:2.1.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: com.github.mxab.thymeleaf.extras:thymeleaf-extras-data-attribute:1.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.velocity:velocity:1.5" level="project" />
+    <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.2" level="project" />
+    <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.1" level="project" />
+    <orderEntry type="library" name="Maven: oro:oro:2.0.8" level="project" />
   </component>
 </module>
