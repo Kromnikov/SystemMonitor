@@ -5,7 +5,6 @@ import net.core.db.interfaces.*;
 import net.core.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,9 +15,8 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
-@Repository
-@Service("MetricStorage")
-public class RouteStorage implements IRouteStorage {
+@Service
+public class StorageController implements IStorageController {
 
 
     @Autowired
@@ -45,7 +43,7 @@ public class RouteStorage implements IRouteStorage {
     private JdbcTemplate jdbcTemplateObject;
 
     @Autowired
-    public RouteStorage(DataSource dataSource) {
+    public StorageController(DataSource dataSource) {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
 

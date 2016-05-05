@@ -1,43 +1,41 @@
 package net.web.config;
 
-        import java.util.Collection;
-        import java.util.Collections;
-        import java.util.LinkedHashMap;
+import com.github.mxab.thymeleaf.extras.dataattribute.dialect.DataAttributeDialect;
+import nz.net.ultraq.thymeleaf.LayoutDialect;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
+import org.springframework.boot.autoconfigure.template.TemplateLocation;
+import org.springframework.boot.autoconfigure.thymeleaf.ThymeleafProperties;
+import org.springframework.boot.autoconfigure.web.ConditionalOnEnabledResourceChain;
+import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
+import org.springframework.util.MimeType;
+import org.springframework.web.servlet.resource.ResourceUrlEncodingFilter;
+import org.thymeleaf.dialect.IDialect;
+import org.thymeleaf.extras.conditionalcomments.dialect.ConditionalCommentsDialect;
+import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
+import org.thymeleaf.extras.tiles2.dialect.TilesDialect;
+import org.thymeleaf.spring4.SpringTemplateEngine;
+import org.thymeleaf.spring4.resourceresolver.SpringResourceResourceResolver;
+import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.ITemplateResolver;
+import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
+import org.thymeleaf.templateresolver.TemplateResolver;
 
-        import javax.annotation.PostConstruct;
-        import javax.servlet.Servlet;
-
-        import com.github.mxab.thymeleaf.extras.dataattribute.dialect.DataAttributeDialect;
-        import nz.net.ultraq.thymeleaf.LayoutDialect;
-        import org.apache.commons.logging.Log;
-        import org.apache.commons.logging.LogFactory;
-        import org.springframework.boot.autoconfigure.thymeleaf.ThymeleafProperties;
-        import org.thymeleaf.dialect.IDialect;
-        import org.thymeleaf.extras.conditionalcomments.dialect.ConditionalCommentsDialect;
-        import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
-        import org.thymeleaf.spring4.SpringTemplateEngine;
-        import org.thymeleaf.spring4.resourceresolver.SpringResourceResourceResolver;
-        import org.thymeleaf.spring4.view.ThymeleafViewResolver;
-        import org.thymeleaf.templateresolver.ITemplateResolver;
-        import org.thymeleaf.templateresolver.TemplateResolver;
-
-        import org.springframework.beans.factory.annotation.Autowired;
-        import org.springframework.boot.autoconfigure.AutoConfigureAfter;
-        import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-        import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-        import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-        import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-        import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
-        import org.springframework.boot.autoconfigure.template.TemplateLocation;
-        import org.springframework.boot.autoconfigure.web.ConditionalOnEnabledResourceChain;
-        import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration;
-        import org.springframework.boot.context.properties.EnableConfigurationProperties;
-        import org.springframework.context.ApplicationContext;
-        import org.springframework.context.annotation.Bean;
-        import org.springframework.context.annotation.Configuration;
-        import org.springframework.core.Ordered;
-        import org.springframework.util.MimeType;
-        import org.springframework.web.servlet.resource.ResourceUrlEncodingFilter;
+import javax.annotation.PostConstruct;
+import javax.servlet.Servlet;
+import java.util.*;
 
 /**
  * {@link EnableAutoConfiguration Auto-configuration} for Thymeleaf.
@@ -58,6 +56,36 @@ public class ThymeleafAutoConfiguration {
     @Configuration
     @ConditionalOnMissingBean(name = "defaultTemplateResolver")
     public static class DefaultTemplateResolverConfiguration {
+//        @Bean
+//        private SpringTemplateEngine templateEngine() {
+//            final SpringTemplateEngine engine = new SpringTemplateEngine();
+//            engine.setTemplateResolver(templateResolver());
+//            engine.setAdditionalDialects(dialects());
+//            return engine;
+//        }
+//
+//        private ServletContextTemplateResolver templateResolver() {
+//            final ServletContextTemplateResolver resolver = new ServletContextTemplateResolver();
+//            resolver.setPrefix("/WEB-INF/views/");
+//            resolver.setSuffix(".html");
+//            resolver.setTemplateMode("HTML5");
+//            return resolver;
+//        }
+//
+//        private Set<IDialect> dialects() {
+//            final Set<IDialect> set = new HashSet<IDialect>();
+//            set.add(new TilesDialect());
+//            return set;
+//        }
+
+//        @Bean
+//        public SpringTemplateEngine templateEngine() {
+//            SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+////            templateEngine.setTemplateResolver(templateResolver());
+//            templateEngine.addDialect(new TilesDialect());
+//            templateEngine.addDialect(new SpringSecurityDialect());
+//            return templateEngine;
+//        }
 
         @Autowired
         private ThymeleafProperties properties;

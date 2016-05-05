@@ -1,6 +1,6 @@
 package net.web.controller;
 
-import net.core.IRouteStorage;
+import net.core.IStorageController;
 import net.core.models.User;
 import net.core.tools.Authorization;
 import net.core.tools.ResourceNotFoundException;
@@ -18,7 +18,7 @@ public class AccauntEditorController {
     @Autowired
     private Authorization authentication;
     @Autowired
-    private IRouteStorage metricStorage;
+    private IStorageController metricStorage;
     public void changeRole(int roleid,String username) throws SQLException {
         long count = metricStorage.getCountRoles();
         if (roleid<count)

@@ -89,17 +89,17 @@
 
 
 
-            <h3 authorities="ADMIN">H3</h3>
-            <div th:if="${ #authorization.expression('isAuthenticated()') and #strings.contains(#authentication.principal.authorities,'ADMIN')}">
-                <a th:href="@{/somelink}">ADMIN LINK</a>
-            </div>
-            <div sec:authorize="hasAuthority('ADMIN')">
-                <span sec:authentication="name"></span>
-                <span sec:authentication="principal.authorities"></span>
-            </div>
+            <!--<h3 authorities="ADMIN">H3</h3>-->
+            <!--<div th:if="${ #authorization.expression('isAuthenticated()') and #strings.contains(#authentication.principal.authorities,'ADMIN')}">-->
+                <!--<a th:href="@{/somelink}">ADMIN LINK</a>-->
+            <!--</div>-->
+            <!--<div sec:authorize="hasAuthority('ADMIN')">-->
+                <!--<span sec:authentication="name"></span>-->
+                <!--<span sec:authentication="principal.authorities"></span>-->
+            <!--</div>-->
 
 
-
+<!--<div><sec:authentication property="principal.authorities"/></div>-->
 
 
 

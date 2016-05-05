@@ -1,6 +1,6 @@
 package net.web.controller;
 
-import net.core.IRouteStorage;
+import net.core.IStorageController;
 import net.core.alarms.AlarmsLog;
 import net.core.alarms.dao.AlarmsLogDao;
 import net.core.models.AlarmRow;
@@ -27,7 +27,7 @@ private Authorization authentication;
     @Autowired
     private AlarmsLogDao alarmsLogDao;
     @Autowired
-    private IRouteStorage metricStorage;
+    private IStorageController metricStorage;
 
     @ExceptionHandler(ResourceNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)

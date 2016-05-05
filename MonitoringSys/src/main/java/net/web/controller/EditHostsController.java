@@ -1,6 +1,6 @@
 package net.web.controller;
 
-import net.core.IRouteStorage;
+import net.core.IStorageController;
 import net.core.alarms.dao.AlarmsLogDao;
 import net.core.configurations.SSHConfiguration;
 import net.core.hibernate.services.HostService;
@@ -28,7 +28,7 @@ public class EditHostsController {
     @Autowired
     private AlarmsLogDao alarmsLogDao;
     @Autowired
-    private IRouteStorage metricStorage;
+    private IStorageController metricStorage;
     @Autowired
     private HostService hosts;
     public List<HostEditRow> getHostEditRow() throws SQLException {

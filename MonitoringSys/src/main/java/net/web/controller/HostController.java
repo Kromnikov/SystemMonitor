@@ -1,7 +1,7 @@
 package net.web.controller;
 
 import net.core.configurations.SSHConfiguration;
-import net.core.IRouteStorage;
+import net.core.IStorageController;
 import net.core.hibernate.services.HostService;
 import net.core.models.*;
 import net.core.tools.Authorization;
@@ -27,7 +27,7 @@ public class HostController {
     @Autowired
     private Authorization authentication;
     @Autowired
-    private IRouteStorage metricStorage;
+    private IStorageController metricStorage;
     @Autowired
     private HostService hosts;
 

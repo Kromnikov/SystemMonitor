@@ -1,4 +1,4 @@
-import net.core.IRouteStorage;
+import net.core.IStorageController;
 import net.core.models.HostsState;
 import net.web.Application;
 import org.junit.Assert;
@@ -18,10 +18,10 @@ import java.util.List;
          Application.class})
 @ActiveProfiles("dev")
 
-public class RouteStorageJUnitTest extends Assert{
+public class StorageControllerJUnitTest extends Assert{
 
     @Autowired
-    private IRouteStorage metricStorage;
+    private IStorageController metricStorage;
 
     @Test
     public void testTransferService() throws SQLException, ParseException {

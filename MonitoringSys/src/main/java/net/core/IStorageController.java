@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public interface IRouteStorage {
+public interface IStorageController {
 
     public void dump() throws IOException;
 

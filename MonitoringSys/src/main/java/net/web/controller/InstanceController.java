@@ -1,6 +1,6 @@
 package net.web.controller;
 
-import net.core.IRouteStorage;
+import net.core.IStorageController;
 import net.core.hibernate.services.HostService;
 import net.core.models.*;
 import net.core.tools.Authorization;
@@ -22,7 +22,7 @@ public class InstanceController {
     @Autowired
     private HostService hosts;
     @Autowired
-    private IRouteStorage metricStorage;
+    private IStorageController metricStorage;
     @Autowired
     private Authorization authentication;
 

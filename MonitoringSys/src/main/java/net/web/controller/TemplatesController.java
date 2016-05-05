@@ -1,6 +1,6 @@
 package net.web.controller;
 
-import net.core.IRouteStorage;
+import net.core.IStorageController;
 import net.core.models.TemplateMetric;
 import net.core.tools.Authorization;
 import net.core.tools.ResourceNotFoundException;
@@ -18,7 +18,7 @@ import java.sql.SQLException;
 public class TemplatesController {
 
     @Autowired
-    private IRouteStorage metricStorage;
+    private IStorageController metricStorage;
     @Autowired
     private Authorization authentication;
 

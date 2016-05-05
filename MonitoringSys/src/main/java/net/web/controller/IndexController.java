@@ -1,6 +1,6 @@
 package net.web.controller;
 
-import net.core.IRouteStorage;
+import net.core.IStorageController;
 import net.core.hibernate.services.HostService;
 import net.core.models.Favorites;
 import net.core.models.Value;
@@ -22,7 +22,7 @@ import java.util.List;
 public class IndexController {
 
     @Autowired
-    private IRouteStorage metricStorage;
+    private IStorageController metricStorage;
     @Autowired
     private HostService hosts;
 
