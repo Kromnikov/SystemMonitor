@@ -419,7 +419,7 @@ function loadPageWithoutModal() {
 
     $(document).ready(function () {
         $('.open_window').click(function (e) {
-            $.getJSON('/getTemplMetric?metricId=' + $(this).parent().parent().parent().attr('id'), function (templMetric) {
+            $.getJSON('/admin/getTemplMetric?metricId=' + $(this).parent().parent().parent().attr('id'), function (templMetric) {
                 //console.log(host.name+"-"+host.host);
                 $("input[name='id']").val(templMetric.id);
                 $("input[name='Title']").val(templMetric.title);
@@ -439,7 +439,7 @@ function modalTemplMetirc() {
 
         //dell
         $('.dellTemplMetric').click(function () {
-            $.getJSON('/dellTemplMetric?metricId=' + $(this).parent().parent().attr('id'), function (templMetric) {
+            $.getJSON('/admin/dellTemplMetric?metricId=' + $(this).parent().parent().attr('id'), function (templMetric) {
 
             });
         });
@@ -451,7 +451,7 @@ function modalTemplMetirc() {
             e.preventDefault();
         });
         $("#addTemplMetric").click(function () {
-            $.getJSON('/addTemplMetric?id=' + $("input[name='sid']").val()
+            $.getJSON('/admin/addTemplMetric?id=' + $("input[name='sid']").val()
                 + '&title=' + $("input[name='sTitle']").val()
                 + '&command=' + $("input[name='sCommand']").val()
                 + '&minValue=' + $("input[name='sMin Value']").val()
@@ -461,7 +461,7 @@ function modalTemplMetirc() {
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
 
             setTimeout(function () {
-                window.location.href = "/templMetrics";
+                window.location.href = "/admin/templMetrics";
             }, 200);
         });
 
@@ -469,7 +469,7 @@ function modalTemplMetirc() {
         //Edit
 
         $("#saveTemplMetric").click(function () {
-            $.getJSON('/saveTemplMetric?id=' + $("input[name='id']").val()
+            $.getJSON('/admin/saveTemplMetric?id=' + $("input[name='id']").val()
                 + '&title=' + $("input[name='Title']").val()
                 + '&command=' + $("input[name='Command']").val()
                 + '&minValue=' + $("input[name='Min Value']").val()
@@ -478,7 +478,7 @@ function modalTemplMetirc() {
                 });
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
             setTimeout(function () {
-                window.location.href = "/templMetrics";
+                window.location.href = "/admin/templMetrics";
             }, 200);
         });
 
