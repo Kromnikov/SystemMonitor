@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">-->
 <!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head lang="en">
     <title>Spring Framework Guru</title>
 
@@ -89,47 +90,12 @@
 
 
 
-            <!--<h3 authorities="ADMIN">H3</h3>-->
-            <!--<div th:if="${ #authorization.expression('isAuthenticated()') and #strings.contains(#authentication.principal.authorities,'ADMIN')}">-->
-                <!--<a th:href="@{/somelink}">ADMIN LINK</a>-->
-            <!--</div>-->
-            <!--<div sec:authorize="hasAuthority('ADMIN')">-->
-                <!--<span sec:authentication="name"></span>-->
-                <!--<span sec:authentication="principal.authorities"></span>-->
-            <!--</div>-->
 
 
-<!--<div><sec:authentication property="principal.authorities"/></div>-->
             <!--<div sec:authorize="hasRole('ROLE_ADMIN')">-->
-                <!--<li data-toggle="collapse" data-target="#new" class="collapsed">-->
-                    <!--<a href="#"><i class="fa fa-cog fa-lg"></i> <s>Admin panel</s> <span class="arrow"></span></a>-->
-                <!--</li>-->
-                <!--<ul class="sub-menu collapse" id="new">-->
-                    <!--<a class="white-text" th:href="@{~/admin/hostedit}" ><li>Host Editor</li></a>-->
-                    <!--<a class="white-text" th:href="@{~/admin/templMetrics}" ><li>Template Metrics</li></a>-->
-                    <!--<a class="white-text" th:href="@{~/admin/accounts}" ><li>Accounts</li></a>-->
-                    <!--<a class="white-text" th:href="@{~/admin/alarms}">-->
-                        <!--<li>Alarms</li>-->
-                    <!--</a>-->
-                <!--</ul>-->
-            <!--</div>-->
-
-            <!--<div sec:authorize="hasAuthority('USER')">-->
-                <!--USER-->
-            <!--</div>-->
-            <!--<div sec:authorize="hasAuthority('ADMIN')">-->
-                <!--ADMIN-->
-            <!--</div>-->
-            <!--<div sec:authorize="hasAuthority('ROLE_USER')">-->
-                <!--ROLE_USER-->
-            <!--</div>-->
-            <!--<div sec:authorize="hasAuthority('ROLE_ADMIN')">-->
-                <!--ROLE_ADMIN-->
-            <!--</div>-->
-
-
-            <div sec:authorize="hasRole('ROLE_ADMIN')">
-                <li data-toggle="collapse" data-target="#new" class="collapsed">
+            <div sec:authorize="hasRole('ADMIN')">
+            <!--<div sec:authentication="firstName">-->
+            <li data-toggle="collapse" data-target="#new" class="collapsed">
                     <a href="#"><i class="fa fa-cog fa-lg"></i> <s>Admin panel</s> <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="new">
@@ -141,6 +107,14 @@
                     </a>
                 </ul>
             </div>
+            <!--</div>-->
+
+
+
+
+
+
+
 
 
             <li>
@@ -154,6 +128,31 @@
 </div>
 
 <div class="content">
+
+    <!--<div class="col-lg-10 margin-top-20">-->
+    <!--1.<div sec:authentication="name"></div> &lt;!&ndash; works fine &ndash;&gt;-->
+    <!--2.<div sec:authentication="principal.authorities"></div> &lt;!&ndash; works fine &ndash;&gt;-->
+
+    <!--3.<div  sec:authorize="isAuthenticated()" >true</div> &lt;!&ndash; works fine &ndash;&gt;-->
+    <!--&lt;!&ndash;4.<span th:text="${#authorization.expression('isAuthenticated()')}"></span> &lt;!&ndash; works fine &ndash;&gt;&ndash;&gt;-->
+
+    <!--&lt;!&ndash;5.<div th:text="${#vars.role_admin}"></div> &lt;!&ndash;Works fine &ndash;&gt;&ndash;&gt;-->
+    <!--6.<div  sec:authorize="${hasRole('ADMIN')}" > IS ADMIN </div> &lt;!&ndash; Doesnt work &ndash;&gt;-->
+    <!--7.<div  sec:authorize="${hasRole(#vars.role_admin)}" > IS ADMIN </div> &lt;!&ndash; Doesnt work &ndash;&gt;-->
+    <!--&lt;!&ndash;8.<div th:text="${#authorization.expression('hasRole(''ADMIN'')')} "></div> &lt;!&ndash; Doesnt work &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;9.<div th:text="${#authorization.expression('hasRole(#vars.role_admin)')}"></div> &lt;!&ndash; Doesnt work &ndash;&gt;&ndash;&gt;-->
+
+
+        <!--10.<div sec:authorize="hasRole('ROLE_ADMIN')">-->
+            <!--This content is only shown to administrators.-->
+        <!--</div>-->
+        <!--11.<div sec:authorize="hasRole('ROLE_USER')">-->
+            <!--This content is only shown to users.-->
+        <!--</div>-->
+    <!--</div>-->
+
+
+
 
     <!--<div id="all" style="background-color: red">ALL</div>-->
 

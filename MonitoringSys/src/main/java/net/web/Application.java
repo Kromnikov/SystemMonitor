@@ -2,7 +2,6 @@ package net.web;
 
 
 import net.web.config.DatabaseConfig;
-import net.web.config.WebMvcConfig;
 import net.web.config.WebSecurityConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,7 +24,8 @@ public class Application extends SpringBootServletInitializer{
         SpringApplication.run(new Class<?>[]{
                 Application.class,
                 DatabaseConfig.class,
-                WebMvcConfig.class,
+//                WebMvcConfig.class,
+//                ThymeleafConfig.class,
                 WebSecurityConfig.class
         }, args);
     }

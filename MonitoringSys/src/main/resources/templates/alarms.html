@@ -113,15 +113,12 @@
         </ul>
     </div>
 </div>
-
-
 <div class="content">
-
 
     <div class="col-lg-10 margin-top-20">
         <div class="content-panel ">
             <h4>
-                Templetes Metrics <a class="cursor_pointer openAddAlamr">(Add Alarm)</a></h4>
+                Alarms <a class="cursor_pointer openAddAlamr">(Add Alarm)</a></h4>
             <table class="table table-striped table-advance table-hover">
                 <thead>
                 <tr>
@@ -168,6 +165,7 @@
             </div>
 
 
+            <div id="tooltip"></div>
             <div class="hostMetricAlarm">
                 <h4>Alarm of metric</h4>
                 <div class=" cursor_pointer has-feedback leftRow ">
@@ -198,7 +196,7 @@
 
 
                 <h4>Alarm of host</h4>
-            <div class=" cursor_pointer form-group has-feedback hostMetricAlarm">
+            <div class=" cursor_pointer form-group has-feedback hostMetricAlarm"  data-tooltip="Alarm of host">
                 <nav>
                     <ul class="ddmenu" id="tohost">
                         <li id="mainDdmenu" ><a href="#">tohost</a>
@@ -215,7 +213,7 @@
             </div>
 
             <h4 class="relative11">To user</h4>
-            <div class=" cursor_pointer form-group has-feedback hostMetricAlarm">
+            <div class=" cursor_pointer form-group has-feedback hostMetricAlarm"  data-tooltip="To user">
                 <nav>
                     <ul class="ddmenu" id="touser">
                         <li id="mainDdmenu" ><a href="#">touser</a>
@@ -260,6 +258,7 @@
 
         </div>
     </div>
+
 
 </div>
 </body>

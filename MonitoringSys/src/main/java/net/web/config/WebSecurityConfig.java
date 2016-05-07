@@ -1,24 +1,45 @@
 package net.web.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
+import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
+import org.thymeleaf.spring4.SpringTemplateEngine;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 import javax.sql.DataSource;
 
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@EnableWebMvcSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public DataSource dataSource;
 
 
+    @Bean
+    public SpringTemplateEngine templateEngine() {
+        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver());
+        templateEngine.addDialect(new SpringSecurityDialect());
+        return templateEngine;
+    }
+
+    //    @Bean
+    public ClassLoaderTemplateResolver templateResolver() {
+        ClassLoaderTemplateResolver resolver = new ClassLoaderTemplateResolver();
+        resolver.setPrefix("templates/");
+        resolver.setSuffix(".html");
+        resolver.setTemplateMode("HTML5");
+        resolver.setCacheable(false);
+        resolver.setCharacterEncoding("UTF-8");
+        resolver.setOrder(1);
+        return resolver;
+    }
 
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
@@ -30,23 +51,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                                 "\"Roles\" as r where u.username = ? ");
     }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-/*        /hostedit
-         http://localhost:8080/admin/lol
-        */
 
-//        http.authorizeRequests()
-//                .antMatchers("/admin/**"
-//
-//                ).access("hasRole('ROLE_ADMIN')")
-//                .and().formLogin()
-//                .loginPage("/login").failureUrl("/login?error")
-//                .usernameParameter("username")
-//                .passwordParameter("password")
-//                .and().logout().logoutSuccessUrl("/login?logout")
-//                .and()
-//                .exceptionHandling().accessDeniedPage("/403");
+        http.authorizeRequests()
+                .antMatchers("/admin/**"
+
+                ).access("hasRole('ROLE_ADMIN')")
+                .and().formLogin()
+                .loginPage("/login").failureUrl("/login?error")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .and().logout().logoutSuccessUrl("/login?logout")
+                .and()
+                .exceptionHandling().accessDeniedPage("/403");
 
 
 
@@ -54,9 +73,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
 //                .and().formLogin().defaultSuccessUrl("/", false);
 
-//        http.csrf().disable().authorizeRequests()
-//                .antMatchers("/options","/optionsInstance","/accaunts").access("hasRole('ROLE_ADMIN')")
-//                .and().formLogin().defaultSuccessUrl("/", false);
+        http.csrf().disable().authorizeRequests()
+                .antMatchers("/accaunts").access("hasRole('ROLE_ADMIN')")
+                .and().formLogin().defaultSuccessUrl("/", false);
         http.authorizeRequests().antMatchers( "/registration").permitAll()
                 .anyRequest().authenticated();
         http.formLogin().loginPage("/login").permitAll();

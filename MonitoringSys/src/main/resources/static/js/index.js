@@ -889,9 +889,36 @@ function start_checking() {
     }, 10000);
 }
 
+function data_tooltip() {
+
+    $(document).ready(function () {
+        $("[data-tooltip]").mousemove(function (eventObject) {
+
+            $data_tooltip = $(this).attr("data-tooltip");
+
+            $("#tooltip").text($data_tooltip)
+                .css({
+                    "top": eventObject.pageY + 15,
+                    "left": eventObject.pageX
+                })
+                .show();
+
+        }).mouseout(function () {
+
+            $("#tooltip").hide()
+                .text("")
+                .css({
+                    "top": 0,
+                    "left": 0
+                });
+        });
+    });
+}
+
 function setHostName(name) {
 
     $(document).ready(function () {
+        data_tooltip();
         username = name;
         checking();
         start_checking();

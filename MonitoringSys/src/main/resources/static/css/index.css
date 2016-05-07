@@ -1,3 +1,23 @@
+#tooltip {
+    z-index: 9999;
+    position: absolute;
+    display: none;
+    top:0px;
+    left:0px;
+    background-color: #000;
+    padding: 5px 10px 5px 10px;
+    color: white;
+    opacity: 0.6;
+    border-radius: 5px;
+}
+.description_overlay{
+    position: absolute;
+    color: #ffffff;
+    margin-left: -150px;
+
+    z-index: 99999;
+}
+
 .hostMetricAlarm {
     /*border: 1px solid #ccc;*/
     /*padding-top:20px;*/
@@ -10,7 +30,7 @@
 
 
 .leftRow {
-    width: 29%;!important;
+    width: 28%;!important;
     display: inline-block;!important;
 }
 .rightRow {

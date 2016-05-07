@@ -23,8 +23,6 @@
 
     <script src="../static/js/highstock.js"
             th:src="@{../js/highstock.js}"></script>
-    <!--<script src="../static/js/highcharts.js"-->
-    <!--th:src="@{js/highcharts.js}"></script>-->
     <script src="../static/js/exporting.js"
             th:src="@{../js/exporting.js}"></script>
     <script src="../static/js/homeCharts.js"
@@ -39,164 +37,106 @@
     <link href="../static/css/style-responsive.css" rel="stylesheet" th:href="@{../css/style-responsive.css}"/>
 
 </head>
-<body>
-<nav class="navbar navbar-default navbar-static-top margin-left-15">
-    <div class="container">
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="/logout">LogOut</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right margin-top-12">
-            <button class="btn dropdown-toggle fa fa-bell-o clear-background-color" type="button"
-                    data-toggle="dropdown">
-                <span id="dropdown-menu-length" class="label label-warning">0</span></button>
-            <ul id="dropdown-menu" class="dropdown-menu">
+<body style="background-color: rgba(0, 0, 0, 0.7);">
 
-            </ul>
-        </ul>
-    </div>
-</nav>
-
-<div class="nav-side-menu">
-    <div class="brand">System monitor</div>
-    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-
-    <div class="menu-list">
-
-        <ul id="menu-content" class="menu-content collapse out">
-            <li class="collapsed active">
-                <a href="/">
-                    <i class="fa fa-home fa-lg"></i> Home
-                </a>
-            </li>
-            <li data-toggle="collapse" data-target="#service" class="collapsed">
-                <a href="#"><i class="fa fa-globe fa-lg"></i> Hosts <span class="arrow"></span></a>
-            </li>
-            <ul class="sub-menu collapse" id="service">
-                <a class="white-text" th:href="hosts" ><li>Hosts</li></a>
-            </ul>
-
-            <li>
-                <a th:href="@{'problems'}">
-                    <i class="fa fa-exclamation fa-lg"></i> Problems
-                </a>
-            </li>
-
-            <div sec:authorize="hasAuthority('USER')">
-                USER
-            </div>
-            <div sec:authorize="hasAuthority('ADMIN')">
-                ADMIN
-            </div>
-            <div sec:authorize="hasAuthority('ROLE_USER')">
-                ROLE_USER
-            </div>
-            <div sec:authorize="hasAuthority('ROLE_ADMIN')">
-                ROLE_ADMIN
-            </div>
+<!-- Всплывающая подсказка, которая располагается справа от кнопки -->
+<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="Подсказка">
+    Кнопка с подсказкой
+</button>
 
 
-            <div sec:authorize="hasRole('ROLE_ADMIN')">
-                <li data-toggle="collapse" data-target="#new" class="collapsed">
-                    <a href="#"><i class="fa fa-cog fa-lg"></i> <s>Admin panel</s> <span class="arrow"></span></a>
-                </li>
-                <ul class="sub-menu collapse" id="new">
-                    <a class="white-text" th:href="@{~/admin/hostedit}" ><li>Host Editor</li></a>
-                    <a class="white-text" th:href="@{~/admin/templMetrics}" ><li>Template Metrics</li></a>
-                    <a class="white-text" th:href="@{~/admin/accounts}" ><li>Accounts</li></a>
-                    <a class="white-text" th:href="@{~/admin/alarms}">
-                        <li>Alarms</li>
-                    </a>
+<div class="overlay " title="окно"></div>
+<div style="width: 30%;margin-left: 35%;">
+    <div class="close_window_type close_window fa fa-times fa-lg"></div>
+    <div class="register-box-body">
+        <div class="form-group has-feedback ">
+
+            <input type="text" class="form-control" placeholder="id" name="id"
+                   required="required"/>
+            <span class=" fa fa-home form-control-feedback"></span>
+        </div>
+
+
+        <div class="hostMetricAlarm">
+            <h4 class="description_overlay">Alarm of metric</h4>
+            <div class=" cursor_pointer has-feedback leftRow ">
+                <ul class="ddmenu" id="hosts">
+                    <li id="mainDdmenu" ><a href="#">hosts</a></li>
                 </ul>
             </div>
+            <div class=" cursor_pointer has-feedback rightRow">
+                <ul class="ddmenu" id="metrics">
+                    <li id="mainDdmenu" ><a href="#">metrics</a> </li>
+                </ul>
+                <span class="cursor_pointer fa fa-caret-down  form-control-feedback"></span>
+            </div>
 
 
-            <li>
-                <a href="#">
-                    <i class="fa fa-user fa-lg"></i> Profile
-                </a>
-            </li>
 
-        </ul>
+
+            <h4 class="description_overlay">Alarm of host</h4>
+            <div class=" cursor_pointer form-group has-feedback hostMetricAlarm">
+                <nav>
+                    <ul class="ddmenu" id="tohost">
+                        <li id="mainDdmenu" ><a href="#">tohost</a>
+                            <ul>
+                                <li><a href="#">Миссия</a></li>
+                                <li><a href="#">Команда</a></li>
+                                <li><a href="#">История</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <span class="cursor_pointer fa fa-caret-down  form-control-feedback"></span>
+            </div>
+        </div>
+
+        <h4 class="description_overlay">To user</h4>
+        <div class=" cursor_pointer form-group has-feedback hostMetricAlarm">
+            <nav>
+                <ul class="ddmenu" id="touser">
+                    <li id="mainDdmenu" ><a href="#">touser</a>
+                        <ul>
+                            <li><a href="#">Миссия</a></li>
+                            <li><a href="#">Команда</a></li>
+                            <li><a href="#">История</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <span class="cursor_pointer fa fa-caret-down  form-control-feedback"></span>
+        </div>
+
+
+
+        <h4 class="description_overlay">To mail</h4>
+        <div class="form-group has-feedback">
+            <input type="text" class="form-control" placeholder="toEmail" name="toEmail"
+                   required="required"/>
+            <span class=" fa fa-chevron-right form-control-feedback"></span>
+        </div>
+
+
+
+
+        <div class="row">
+            <div class="col-xs-6 " id="saveAlarm">
+                <button type="submit" class="btn btn-primary btn-block btn-flat" name="saveAlarm">Save
+                </button>
+            </div>
+            <div class="col-xs-6 " id="addAlarm">
+                <button type="submit" class="btn btn-primary btn-block btn-flat" name="saveAlarm">Add
+                </button>
+            </div>
+            <div class="col-xs-6">
+                <button type="submit" class="close_window btn btn-primary btn-block btn-flat" name="returnHosts">
+                    Cancel
+                </button>
+            </div>
+        </div>
+
     </div>
 </div>
-
-<div class="content">
-
-    <!--<div id="all" style="background-color: red">ALL</div>-->
-
-    <div class="col-lg-10 margin-top-20">
-        <table style="width: 100%;">
-            <tr>
-                <td class="">
-                    <div class="red row-circle-5 margin5">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <h3 th:text="${hostsProblemsCount}">44</h3>
-                                <p>Отключеных хостов</p>
-                            </div>
-                            <div class="col-sm-6">
-                                <i class="icon2 fa fa-stop"></i>
-                            </div>
-                        </div>
-                        <div class="inner">
-                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                </td>
-                <td class="">
-                    <div class="green row-circle-5 margin5">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <h3 th:text="${hostsSuccesCount}">44</h3>
-                                <p>Всего хостов</p>
-                            </div>
-                            <div class="col-sm-6">
-                                <i class="icon2 fa fa-thumbs-up"></i>
-                            </div>
-                        </div>
-                        <div class="inner">
-                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="orange row-circle-5 margin5">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <h3 th:text="${metricsProblemCount}">44</h3>
-                                <p>Ошибок сервисов</p>
-                            </div>
-                            <div class="col-sm-6">
-                                <i class="icon2 fa fa-warning-1"></i>
-                            </div>
-                        </div>
-                        <div class="inner">
-                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="blue row-circle-5 ">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <h3 th:text="${metricsSuccesCount}">44</h3>
-                                <p>Всего сервисов</p>
-                            </div>
-                            <div class="col-sm-7">
-                                <i class="icon2 fa fa-navicon"></i>
-                            </div>
-                        </div>
-                        <div class="inner">
-                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div>
-
-</div>
-
 
 </body>
 
