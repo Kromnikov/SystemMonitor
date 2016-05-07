@@ -66,6 +66,35 @@ public class AlarmsStorage implements IAlarmsStorage {
         }
         return genericAlarmsRowList;
     }
+    @Transactional
+    public List<GenericAlarmsRow> getAlarms() {
+        List<GenericAlarmsRow> genericAlarmsRowList = new ArrayList<>();
+        for (GenericAlarm ga : genericAlarm.getAll()) {
+            GenericAlarmsRow genericAlarmsRow = new GenericAlarmsRow();
+            genericAlarmsRow.setType(ga.getType());
+            genericAlarmsRow.setMessage(ga.getMessage());
+            if(ga.getHostId()>-1) {
+                genericAlarmsRow.setHostId(ga.getHostId());
+                genericAlarmsRow.setHostName(hosts.get(genericAlarmsRow.getHostId()).getName());
+            }
+            genericAlarmsRow.setId(ga.getId());
+            {
+                if (ga.getServiceId() > -1);
+            }
+            genericAlarmsRow.setServiceId(ga.getServiceId());
+            genericAlarmsRow.setToEmail(ga.getToEmail());
+            genericAlarmsRow.setToUser(ga.getToUser());
+            genericAlarmsRow.setUser(ga.getUsername());
+
+            InstanceMetric instanceMetric = instanceStorage.getInstMetric(genericAlarmsRow.getServiceId());
+            genericAlarmsRow.setServiceTitle(instanceMetric.getTitle());
+            genericAlarmsRow.setFromHost(hosts.get(instanceMetric.getHostId()).getName());
+
+
+            genericAlarmsRowList.add(genericAlarmsRow);
+        }
+        return genericAlarmsRowList;
+    }
 
     @Transactional
     public AlarmRow getAlarm(int id)  {
@@ -126,41 +155,14 @@ public class AlarmsStorage implements IAlarmsStorage {
 
     @Transactional
     public AlarmRow getNewAlarm()  {
-//        String sql = "";
-//        List<Map<String, Object>> rows;
-
-        SSHConfiguration host = new SSHConfiguration();
         AlarmRow alarmRow = new AlarmRow();
-
-
-        InstanceMetric instanceMetric = instanceStorage.getInstMetric(alarmRow.getServiceId());
-        alarmRow.setServiceTitle(instanceMetric.getTitle());
-        alarmRow.setFromHost(hosts.get(instanceMetric.getHostId()).getName());
-//        sql = "select title,host from \"INSTANCE_METRIC\" WHERE id=?";
-//        rows = jdbcTemplateObject.queryForList(sql,alarmRow.getServiceId());
-//        for (Map row : rows) {
-//            alarmRow.setServiceTitle((String) row.get("title"));
-//            alarmRow.setFromHost(hosts.get((int) row.get("host")).getName());
-//        }
-
-//        alarmRow.setInstanceMetrics(getInstMetrics(host.getId()));
-        alarmRow.setInstanceMetrics(instanceStorage.getInstMetrics(host.getId()));
         alarmRow.setHosts(hosts.getAll());
-
-
         List<User> users = usersStorage.getAllUsers();
         List<String> stringList = new ArrayList<>();
         for (User user : users) {
             stringList.add(user.getUsername());
         }
-//        sql = "SELECT username FROM \"Users\"";
-//        rows = jdbcTemplateObject.queryForList(sql);
-//        List<String> stringList = new ArrayList<>();
-//        for (Map row : rows) {
-//            stringList.add((String)row.get("username"));
-//        }
         alarmRow.setAllUsers(stringList);
-
         return alarmRow;
     }
 
@@ -171,8 +173,15 @@ public class AlarmsStorage implements IAlarmsStorage {
     }
     @Transactional
     public void addAlarm(int serviseId, int hostId, String toEmail, String toUser,String user) {
-        String sql = "INSERT INTO genericalarm (serviceid, hostid, toemail, touser,  username)    VALUES (?,?,?,?,?)";
-        jdbcTemplateObject.update(sql,serviseId,hostId,toEmail,toUser,user);
+        GenericAlarm genericAlarm1 = new GenericAlarm();
+        genericAlarm1.setServiceId(serviseId);
+        genericAlarm1.setHostId(hostId);
+        genericAlarm1.setToEmail(toEmail);
+        genericAlarm1.setToUser(toUser);
+        genericAlarm1.setUsername(user);
+        genericAlarm.save(genericAlarm1);
+//        String sql = "INSERT INTO genericalarm (serviceid, hostid, toemail, touser,  username)    VALUES (?,?,?,?,?)";
+//        jdbcTemplateObject.update(sql, serviseId, hostId, toEmail, toUser, user);
     }
     @Transactional
     public void dellAlarm(int id) {

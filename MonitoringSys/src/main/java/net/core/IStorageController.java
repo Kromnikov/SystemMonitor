@@ -16,6 +16,8 @@ public interface IStorageController {
     //TODO: alarms
     public List<GenericAlarmsRow> getAlarms(String userName);
 
+    public List<GenericAlarmsRow> getAlarms();
+
     public AlarmRow getAlarm(int id) throws SQLException;
 
     public AlarmRow getNewAlarm() throws SQLException;

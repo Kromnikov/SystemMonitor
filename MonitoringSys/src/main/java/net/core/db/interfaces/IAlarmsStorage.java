@@ -10,6 +10,8 @@ public interface IAlarmsStorage {
 
     public List<GenericAlarmsRow> getAlarms(String userName);
 
+    public List<GenericAlarmsRow> getAlarms();
+
     public AlarmRow getAlarm(int id);
 
     public AlarmRow getNewAlarm();

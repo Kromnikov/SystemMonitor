@@ -100,6 +100,10 @@ public class StorageController implements IStorageController {
     public List<GenericAlarmsRow> getAlarms(String userName) {
         return alarmsStorage.getAlarms(userName);
     }
+    @Transactional
+    public List<GenericAlarmsRow> getAlarms() {
+        return alarmsStorage.getAlarms();
+    }
 
     @Transactional
     public AlarmRow getAlarm(int id) throws SQLException {

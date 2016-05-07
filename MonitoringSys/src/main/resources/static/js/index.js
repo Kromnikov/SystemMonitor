@@ -156,7 +156,7 @@ function addAlarmsModal() {
     $(document).ready(function () {
         //$('.popup.editAlarm, .overlay.editAlarm').css({'opacity': 1, 'visibility': 'visible'});
         $('.openAddAlamr').click(function () {
-            $.getJSON('/getNewAlarm', function (alarm) {
+            $.getJSON('/admin/getNewAlarm', function (alarm) {
                 $("#hosts").empty();
                 $("#hosts").append('<li id="hostsMenu"><a id="hostsValue" href="#"></a></li>');
                 a = $("#hostsMenu").append('<ul id="hostnonemenu"></ul>');
@@ -193,7 +193,7 @@ function addAlarmsModal() {
 
 
         $("#addAlarm").click(function () {
-            $.getJSON('/addAlarm?'
+            $.getJSON('/admin/addAlarm?'
                 + 'toEmail=' + $("input[name='toEmail']").val()
                 + '&toUser=' + $("#touservalue").html()
                 + '&metricId=' + $("#metricValue").attr('metricId')
@@ -212,7 +212,7 @@ function editAlarmsModal() {
     $(document).ready(function () {
 
         $('.dellAlarm').click(function () {
-            $.getJSON('/dellAlarms?id=' + $(this).attr('dellAlarm'), function (alarm) {
+            $.getJSON('/admin/dellAlarms?id=' + $(this).attr('dellAlarm'), function (alarm) {
                 setTimeout(function () {
                     window.location.href = "/alarms";
                 }, 200);
@@ -222,7 +222,7 @@ function editAlarmsModal() {
         $('body').on('click', '.hostselect', function () {
             var hostId = $(this).attr('hostid');
             $("#hostsValue").html($(this).attr('hostname'));
-            $.getJSON('/getInstanceMetrics?hostId=' + hostId, function (instanceMetrics) {
+            $.getJSON('/admin/getInstanceMetrics?hostId=' + hostId, function (instanceMetrics) {
                 $("#metrics").empty();
                 $("#metrics").append('<li id="metricsMenu"><a id="metricValue" href="#"></a></li>');
                 a = $("#metricsMenu").append('<ul id="metricsnonemenu"></ul>');
@@ -246,7 +246,7 @@ function editAlarmsModal() {
 
         //Edit
         $('.open_window').click(function (e) {
-            $.getJSON('/getAlarm?id=' + $(this).parent().parent().parent().attr('id'), function (alarm) {
+            $.getJSON('/admin/getAlarm?id=' + $(this).parent().parent().parent().attr('id'), function (alarm) {
                 $("input[name='id']").val(alarm.id);
                 $("input[name='toEmail']").val(alarm.toEmail);
                 $("#hosts").empty();
@@ -280,14 +280,14 @@ function editAlarmsModal() {
             });
         });
         $("#saveAlarm").click(function () {
-            $.getJSON('/saveAlarm?id=' + $("input[name='id']").val()
+            $.getJSON('/admin/saveAlarm?id=' + $("input[name='id']").val()
                 + '&toEmail=' + $("input[name='toEmail']").val()
                 + '&toUser=' + $("#touservalue").html()
                 + '&metricId=' + $("#metricValue").attr('metricId')
                 + '&hostId=' + $("#tohostValue").attr('hostId')
                 , function (host) {
                     setTimeout(function () {
-                        window.location.href = "/alarms";
+                        window.location.href = "/admin/alarms";
                     }, 200);
                 });
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
