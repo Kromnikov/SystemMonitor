@@ -3,42 +3,40 @@
 <head lang="en">
     <title>Spring Framework Guru</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <script src="../static/js/jquery-2.2.0.min.js"
-            th:src="@{js/jquery-2.2.0.min.js}"></script>
-    <script src="../static/js/bootstrap.min.js"
-            th:src="@{js/bootstrap.min.js}"></script>
-    <script src="../static/js/index.js"
-            th:src="@{js/index.js}"></script>
+    <script src="~/static/js/jquery-2.2.0.min.js"
+            th:src="@{'~/js/jquery-2.2.0.min.js'}"></script>
+    <script src="~/static/js/bootstrap.min.js"
+            th:src="@{'~/js/bootstrap.min.js'}"></script>
+    <script src="~/static/js/index.js"
+            th:src="@{'~/js/index.js'}"></script>
+    <link href="~/static/css/bootstrap.css"
+          th:href="@{'~/css/bootstrap.css'}" rel="stylesheet" media="screen"/>
+    <link href="~/static/css/AdminLTE.css"
+          th:href="@{'~/css/AdminLTE.css'}" rel="stylesheet" media="screen"/>
+    <link href="~/static/css/style1.css"
+          th:href="@{'~/css/style1.css'}" rel="stylesheet" media="screen"/>
+    <script src="~/static/js/highstock.js"
+            th:src="@{'~/js/highstock.js'}"></script>
+    <script src="~/static/js/exporting.js"
+            th:src="@{'~/js/exporting.js'}"></script>
+    <link href="~/static/css/font-awesome.css" rel="stylesheet"
+          th:href="@{'~/css/font-awesome.css'}"/>
 
-    <link href="../static/css/bootstrap.css"
-          th:href="@{css/bootstrap.css}" rel="stylesheet" media="screen"/>
+    <link href="~/static/css/style.css" rel="stylesheet"
+          th:href="@{'~/css/style.css'}"/>
+    <link href="~/static/css/style-responsive.css" rel="stylesheet"
+          th:href="@{'~/css/style-responsive.css'}"/>
 
-    <link href="../static/css/AdminLTE.css"
-          th:href="@{css/AdminLTE.css}" rel="stylesheet" media="screen"/>
-
-    <link href="../static/css/style1.css"
-          th:href="@{css/style1.css}" rel="stylesheet" media="screen"/>
-
-    <script src="../static/js/highstock.js"
-            th:src="@{js/highstock.js}"></script>
-    <script src="../static/js/exporting.js"
-            th:src="@{js/exporting.js}"></script>
-    <script src="../static/js/homeCharts.js"
-            th:src="@{js/homeCharts.js}"></script>
-
-
-    <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{css/font-awesome.css}"/>
-
-    <link href="../static/css/style.css" rel="stylesheet" th:href="@{css/style.css}"/>
-    <link href="../static/css/style-responsive.css" rel="stylesheet" th:href="@{css/style-responsive.css}"/>
+    <script src="~/static/js/homeCharts.js"
+            th:src="@{'~/js/homeCharts.js'}"></script>
 
 </head>
 <body>
 <div class="wrap">
 
     <div class="content">
-        <!--<img src="../static/img/error-img.png" title="error" />-->
-        <img th:src="@{img/error-img.png}"/>
+        <!--<img src="~/static/img/error-img.png" title="error" />-->
+        <img th:src="@{'~/img/error-img.png'}"/>
         <p><span><label>O</label>hh.....</span>You Requested the page that is no longer There.</p>
         <a href="/">Back To Home</a>
 

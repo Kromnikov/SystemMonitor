@@ -1,9 +1,9 @@
 package net.web.config;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
@@ -12,10 +12,13 @@ import javax.sql.DataSource;
 
 
 @Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebMvcSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public DataSource dataSource;
+
+
 
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
@@ -29,9 +32,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests()
-                .antMatchers("/options","/optionsInstance","/accaunts").access("hasRole('ROLE_ADMIN')")
-                .and().formLogin().defaultSuccessUrl("/", false);
+/*        /hostedit
+         http://localhost:8080/admin/lol
+        */
+
+//        http.authorizeRequests()
+//                .antMatchers("/admin/**"
+//
+//                ).access("hasRole('ROLE_ADMIN')")
+//                .and().formLogin()
+//                .loginPage("/login").failureUrl("/login?error")
+//                .usernameParameter("username")
+//                .passwordParameter("password")
+//                .and().logout().logoutSuccessUrl("/login?logout")
+//                .and()
+//                .exceptionHandling().accessDeniedPage("/403");
+
+
+
+//        http.csrf().disable().authorizeRequests()
+//                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+//                .and().formLogin().defaultSuccessUrl("/", false);
+
+//        http.csrf().disable().authorizeRequests()
+//                .antMatchers("/options","/optionsInstance","/accaunts").access("hasRole('ROLE_ADMIN')")
+//                .and().formLogin().defaultSuccessUrl("/", false);
         http.authorizeRequests().antMatchers( "/registration").permitAll()
                 .anyRequest().authenticated();
         http.formLogin().loginPage("/login").permitAll();
@@ -47,11 +72,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("anton").password("password").roles("USER")
                 .and()
                 .withUser("admin").password("admin").roles("ADMIN");
-    }
-    @Configuration
-    protected static class AuthenticationConfiguration extends
-            GlobalAuthenticationConfigurerAdapter {
-
     }
 }
 

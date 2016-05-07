@@ -21,6 +21,7 @@ import java.util.List;
 
 
 @Controller
+@RequestMapping(value = "/admin")
 public class AlarmsController {
     @Autowired
 private Authorization authentication;
@@ -63,9 +64,9 @@ private Authorization authentication;
 
     @RequestMapping(value="/alarms")
     public ModelAndView alarms() throws SQLException {
-        if (!authentication.accessAdmin()) {
+        /*if (!authentication.accessAdmin()) {
             throw new ResourceNotFoundException();
-        }
+        }*/
         ModelAndView modelAndView = new ModelAndView();
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         modelAndView.addObject("getAlarms", metricStorage.getAlarms(name));
@@ -76,49 +77,49 @@ private Authorization authentication;
     @RequestMapping(value = "/getAlarm", method = RequestMethod.GET)
     @ResponseBody
     public AlarmRow getAlarm(@RequestParam("id") int id) throws SQLException {
-        if (!authentication.accessAdmin()) {
+        /*if (!authentication.accessAdmin()) {
             throw new ResourceNotFoundException();
-        }
+        }*/
         return metricStorage.getAlarm(id);
     }
     @RequestMapping(value = "/getNewAlarm", method = RequestMethod.GET)
     @ResponseBody
     public AlarmRow getNewAlarm() throws SQLException {
-        if (!authentication.accessAdmin()) {
+        /*if (!authentication.accessAdmin()) {
             throw new ResourceNotFoundException();
-        }
+        }*/
         return metricStorage.getNewAlarm();
     }
     @RequestMapping(value = "/getInstanceMetrics", method = RequestMethod.GET)
     @ResponseBody
     public List<InstanceMetric> getInstanceMetrics(@RequestParam("hostId") int id) throws SQLException {
-        if (!authentication.accessAdmin()) {
+        /*if (!authentication.accessAdmin()) {
             throw new ResourceNotFoundException();
-        }
+        }*/
         return metricStorage.getInstMetrics(id);
     }
     @RequestMapping(value = "/saveAlarm", method = RequestMethod.GET)
     @ResponseBody
     public void saveAlarm(@RequestParam("id") int id,@RequestParam("toEmail") String toEmail,@RequestParam("toUser") String toUser,@RequestParam("metricId") int metricId,@RequestParam("hostId") int hostId) throws SQLException {
-        if (!authentication.accessAdmin()) {
+        /*if (!authentication.accessAdmin()) {
             throw new ResourceNotFoundException();
-        }
+        }*/
         metricStorage.updateAlarm(id,metricId,hostId,toEmail,toUser);
     }
     @RequestMapping(value = "/addAlarm", method = RequestMethod.GET)
     @ResponseBody
     public void addAlarm(@RequestParam("toEmail") String toEmail,@RequestParam("toUser") String toUser,@RequestParam("metricId") int metricId,@RequestParam("hostId") int hostId,@RequestParam("user") String user) throws SQLException {
-        if (!authentication.accessAdmin()) {
+        /*if (!authentication.accessAdmin()) {
             throw new ResourceNotFoundException();
-        }
+        }*/
         metricStorage.addAlarm(metricId, hostId, toEmail, toUser, user);
     }
     @RequestMapping(value = "/dellAlarms", method = RequestMethod.GET)
     @ResponseBody
     public void dellAlarm(@RequestParam("id") int id) throws SQLException {
-        if (!authentication.accessAdmin()) {
+        /*if (!authentication.accessAdmin()) {
             throw new ResourceNotFoundException();
-        }
+        }*/
         metricStorage.dellAlarm(id);
     }
 }

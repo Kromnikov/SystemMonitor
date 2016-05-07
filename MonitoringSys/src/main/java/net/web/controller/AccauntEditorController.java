@@ -13,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 import java.sql.SQLException;
 import java.util.List;
 
+
+@RequestMapping(value = "/admin")
 @Controller
 public class AccauntEditorController {
     @Autowired
@@ -35,9 +37,9 @@ public class AccauntEditorController {
     }
     @RequestMapping(value = "/accounts")
     public ModelAndView accauntsView() {
-        if (!authentication.accessAdmin()) {
+        /*if (!authentication.accessAdmin()) {
             throw new ResourceNotFoundException();
-        }
+        }*/
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("getAllUsers", metricStorage.getAllUsers());
         modelAndView.setViewName("accaunts");
@@ -46,38 +48,38 @@ public class AccauntEditorController {
     @RequestMapping(value = "/getRoles", method = RequestMethod.GET)
     @ResponseBody
     public List<String> getRoles() throws SQLException {
-        if (!authentication.accessAdmin()) {
+        /*if (!authentication.accessAdmin()) {
             throw new ResourceNotFoundException();
-        }
+        }*/
         return metricStorage.getRoles();
     }
     @RequestMapping(value = "/getAccounts", method = RequestMethod.GET)
     @ResponseBody
     public User getAccounts(@RequestParam("username") String username) throws SQLException {
-        if (!authentication.accessAdmin()) {
+        /*if (!authentication.accessAdmin()) {
             throw new ResourceNotFoundException();
-        }
+        }*/
         return metricStorage.getUsers(username);
     }
     @RequestMapping(value = "/saveAccount", method = RequestMethod.GET)
     public void saveAccount(@RequestParam("id") int id,@RequestParam("username") String username,@RequestParam("password") String password,@RequestParam("role") String role) throws SQLException {
-        if (!authentication.accessAdmin()) {
+        /*if (!authentication.accessAdmin()) {
             throw new ResourceNotFoundException();
-        }
+        }*/
         metricStorage.updateUser(id,username,password,role);
     }
     @RequestMapping(value = "/addAccount", method = RequestMethod.GET)
     public void addAccount(@RequestParam("username") String username,@RequestParam("password") String password,@RequestParam("role") String role) throws SQLException {
-        if (!authentication.accessAdmin()) {
+        /*if (!authentication.accessAdmin()) {
             throw new ResourceNotFoundException();
-        }
+        }*/
         metricStorage.addUser(username,password,role);
     }
     @RequestMapping(value = "/dellAccount", method = RequestMethod.GET)
     public String dellHost(@RequestParam("username") String username) throws SQLException {
-        if (!authentication.accessAdmin()) {
+        /*if (!authentication.accessAdmin()) {
             throw new ResourceNotFoundException();
-        }
+        }*/
         metricStorage.dellUser(username);
         return "redirect:/accounts";
     }

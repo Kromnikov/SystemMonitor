@@ -42,11 +42,14 @@ public class EditHostsController {
         return modelAndView;
     }
     //TODO: Редактор хостов
+//    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
+//    @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value="/hostedit", method = RequestMethod.GET)
     public ModelAndView hostEditPage() throws SQLException, ParseException {
-        if (!authentication.accessAdmin()) {
-            throw new ResourceNotFoundException();
-        }
+//        if (!authentication.accessAdmin()) {
+//            throw new ResourceNotFoundException();
+//        }
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("getHosts", getHostEditRow());
         modelAndView.setViewName("hostEditor");
@@ -57,9 +60,9 @@ public class EditHostsController {
     }
     public void saveHost(int hostid,String ip,String login,String password,String name,int port, String location) throws SQLException {
         //metricStorage.updateHost(hostid,ip,login,password,port,name,location);
-        if (!authentication.accessAdmin()) {
+        /*if (!authentication.accessAdmin()) {
             throw new ResourceNotFoundException();
-        }
+        }*/
         SSHConfiguration host = new SSHConfiguration();
         host.setId(hostid);
         host.setName(name);
@@ -73,23 +76,23 @@ public class EditHostsController {
     @RequestMapping(value = "/gethost", method = RequestMethod.GET)
     @ResponseBody
     public SSHConfiguration gethost(@RequestParam("hostid") int hostid) {
-        if (!authentication.accessAdmin()) {
+        /*if (!authentication.accessAdmin()) {
             throw new ResourceNotFoundException();
-        }
+        }*/
         return hosts.get(hostid);
     }
     @RequestMapping(value = "/saveHost", method = RequestMethod.GET)
     public void saveHost(@RequestParam("host") String host,@RequestParam("name") String name,@RequestParam("port") int port,@RequestParam("login") String login,@RequestParam("password") String password,@RequestParam("location") String location,@RequestParam("id") int id) throws SQLException {
-        if (!authentication.accessAdmin()) {
+        /*if (!authentication.accessAdmin()) {
             throw new ResourceNotFoundException();
-        }
+        }*/
         saveHost(id,host,login,password,name,port,location);
     }
     @RequestMapping(value = "/addHost", method = RequestMethod.GET)
     public void addHost(@RequestParam("host") String host,@RequestParam("name") String name,@RequestParam("port") int port,@RequestParam("login") String login,@RequestParam("password") String password,@RequestParam("location") String location) throws SQLException {
-        if (!authentication.accessAdmin()) {
+        /*if (!authentication.accessAdmin()) {
             throw new ResourceNotFoundException();
-        }
+        }*/
         SSHConfiguration sshConfiguration = new SSHConfiguration();
         sshConfiguration.setName(name);
         sshConfiguration.setHost(host);

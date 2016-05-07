@@ -32,9 +32,9 @@ public class TemplatesController {
     //TODO: Контроллер для Templat метрик
     @RequestMapping(value="/templMetrics")
     public ModelAndView templMetrics(@RequestParam(required = false , defaultValue = "-1") int id) throws SQLException {
-        if (!authentication.accessAdmin()) {
+        /*if (!authentication.accessAdmin()) {
             throw new ResourceNotFoundException();
-        }
+        }*/
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("getTemplatMetrics",metricStorage.getTemplatMetrics());
         if(id>0)
@@ -47,35 +47,35 @@ public class TemplatesController {
     @RequestMapping(value = "/getTemplMetric", method = RequestMethod.GET)
     @ResponseBody
     public TemplateMetric getTemplMetric(@RequestParam("metricId") int metricId) throws SQLException {
-        if (!authentication.accessAdmin()) {
+        /*if (!authentication.accessAdmin()) {
             throw new ResourceNotFoundException();
-        }
+        }*/
         return metricStorage.getTemplateMetric(metricId);
     }
 
     @RequestMapping(value = "/saveTemplMetric", method = RequestMethod.GET)
     public void saveTemplMetric(@RequestParam("id") int id,@RequestParam("title") String title,@RequestParam("command") String command,@RequestParam("minValue") double minValue,@RequestParam("maxValue") double maxValue) throws SQLException {
 
-        if (!authentication.accessAdmin()) {
+        /*if (!authentication.accessAdmin()) {
             throw new ResourceNotFoundException();
-        }
+        }*/
         metricStorage.updateTemplMetric(id, title, command, minValue, maxValue);
     }
 
     @RequestMapping(value = "/addTemplMetric", method = RequestMethod.GET)
     public void addTemplMetric(@RequestParam("title") String title,@RequestParam("command") String command,@RequestParam("minValue") double minValue,@RequestParam("maxValue") double maxValue) throws SQLException {
 
-        if (!authentication.accessAdmin()) {
+        /*if (!authentication.accessAdmin()) {
             throw new ResourceNotFoundException();
-        }
+        }*/
         metricStorage.addTemplMetric(title, command, minValue, maxValue);
     }
     @RequestMapping(value = "/dellTemplMetric", method = RequestMethod.GET)
     public void dellTemplMetric(@RequestParam("metricId") int id) throws SQLException {
 
-        if (!authentication.accessAdmin()) {
+        /*if (!authentication.accessAdmin()) {
             throw new ResourceNotFoundException();
-        }
+        }*/
         metricStorage.dellTemplMetric(id);
     }
 

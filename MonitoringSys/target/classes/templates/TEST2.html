@@ -6,42 +6,38 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script src="../static/js/jquery-2.2.0.min.js"
-            th:src="@{'~/js/jquery-2.2.0.min.js'}"></script>
+            th:src="@{../js/jquery-2.2.0.min.js}"></script>
     <script src="../static/js/bootstrap.min.js"
-            th:src="@{'~/js/bootstrap.min.js'}"></script>
+            th:src="@{../js/bootstrap.min.js}"></script>
     <script src="../static/js/index.js"
-            th:src="@{'~/js/index.js'}"></script>
+            th:src="@{../js/index.js}"></script>
 
     <link href="../static/css/bootstrap.css"
-          th:href="@{'~/css/bootstrap.css'}" rel="stylesheet" media="screen"/>
+          th:href="@{../css/bootstrap.css}" rel="stylesheet" media="screen"/>
 
     <link href="../static/css/AdminLTE.css"
-          th:href="@{'~/css/AdminLTE.css'}" rel="stylesheet" media="screen"/>
+          th:href="@{../css/AdminLTE.css}" rel="stylesheet" media="screen"/>
 
     <link href="../static/css/index.css"
-          th:href="@{'~/css/index.css'}" rel="stylesheet" media="screen"/>
+          th:href="@{../css/index.css}" rel="stylesheet" media="screen"/>
 
     <script src="../static/js/highstock.js"
-            th:src="@{'~/js/highstock.js'}"></script>
+            th:src="@{../js/highstock.js}"></script>
     <!--<script src="../static/js/highcharts.js"-->
-            <!--th:src="@{js/highcharts.js}"></script>-->
+    <!--th:src="@{js/highcharts.js}"></script>-->
     <script src="../static/js/exporting.js"
-            th:src="@{'~/js/exporting.js'}"></script>
+            th:src="@{../js/exporting.js}"></script>
     <script src="../static/js/homeCharts.js"
-            th:src="@{'~/js/homeCharts.js'}"></script>
+            th:src="@{../js/homeCharts.js}"></script>
 
 
     <!--external css-->
-    <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{'~/css/font-awesome.css'}"/>
+    <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{../css/font-awesome.css}"/>
 
     <!-- Custom styles for this template -->
-    <link href="../static/css/style.css" rel="stylesheet" th:href="@{'~/css/style.css'}"/>
-    <link href="../static/css/style-responsive.css" rel="stylesheet" th:href="@{'~/css/style-responsive.css'}"/>
+    <link href="../static/css/style.css" rel="stylesheet" th:href="@{../css/style.css}"/>
+    <link href="../static/css/style-responsive.css" rel="stylesheet" th:href="@{../css/style-responsive.css}"/>
 
-    <script th:inline="javascript">
-        var username = [[${username}]];
-        hideShowHostListContent(username);
-    </script>
 </head>
 <body>
 <nav class="navbar navbar-default navbar-static-top margin-left-15">
@@ -85,47 +81,18 @@
                 </a>
             </li>
 
-
-
-
-
-            <!--<h3 authorities="ADMIN">H3</h3>-->
-            <!--<div th:if="${ #authorization.expression('isAuthenticated()') and #strings.contains(#authentication.principal.authorities,'ADMIN')}">-->
-                <!--<a th:href="@{/somelink}">ADMIN LINK</a>-->
-            <!--</div>-->
-            <!--<div sec:authorize="hasAuthority('ADMIN')">-->
-                <!--<span sec:authentication="name"></span>-->
-                <!--<span sec:authentication="principal.authorities"></span>-->
-            <!--</div>-->
-
-
-<!--<div><sec:authentication property="principal.authorities"/></div>-->
-            <!--<div sec:authorize="hasRole('ROLE_ADMIN')">-->
-                <!--<li data-toggle="collapse" data-target="#new" class="collapsed">-->
-                    <!--<a href="#"><i class="fa fa-cog fa-lg"></i> <s>Admin panel</s> <span class="arrow"></span></a>-->
-                <!--</li>-->
-                <!--<ul class="sub-menu collapse" id="new">-->
-                    <!--<a class="white-text" th:href="hostedit" ><li>Host Editor</li></a>-->
-                    <!--<a class="white-text" th:href="templMetrics" ><li>Template Metrics</li></a>-->
-                    <!--<a class="white-text" th:href="accounts" ><li>Accounts</li></a>-->
-                    <!--<a class="white-text" th:href="alarms">-->
-                        <!--<li>Alarms</li>-->
-                    <!--</a>-->
-                <!--</ul>-->
-            <!--</div>-->
-
-            <!--<div sec:authorize="hasAuthority('USER')">-->
-                <!--USER-->
-            <!--</div>-->
-            <!--<div sec:authorize="hasAuthority('ADMIN')">-->
-                <!--ADMIN-->
-            <!--</div>-->
-            <!--<div sec:authorize="hasAuthority('ROLE_USER')">-->
-                <!--ROLE_USER-->
-            <!--</div>-->
-            <!--<div sec:authorize="hasAuthority('ROLE_ADMIN')">-->
-                <!--ROLE_ADMIN-->
-            <!--</div>-->
+            <div sec:authorize="hasAuthority('USER')">
+                USER
+            </div>
+            <div sec:authorize="hasAuthority('ADMIN')">
+                ADMIN
+            </div>
+            <div sec:authorize="hasAuthority('ROLE_USER')">
+                ROLE_USER
+            </div>
+            <div sec:authorize="hasAuthority('ROLE_ADMIN')">
+                ROLE_ADMIN
+            </div>
 
 
             <div sec:authorize="hasRole('ROLE_ADMIN')">
@@ -226,21 +193,6 @@
                 </td>
             </tr>
         </table>
-    </div>
-
-    <div th:each="favorites: ${favoritesList}">
-        <script th:inline="javascript">
-            var username = [[${username}]];
-            var hostId = [[${favorites.hostId}]];
-            var instMetricId = [[${favorites.metricId}]];
-            var favoritesId = [[${favorites.id}]];
-            var title = [[${favorites.title}]];
-            loadChart3(hostId, instMetricId, title,favoritesId,username);
-        </script>
-        <div th:id="${favorites.metricId}" class="col-lg-10 margin-top-40 charts" zoomCount="0">
-            <div class="content-panel">
-            </div>
-        </div>
     </div>
 
 </div>
