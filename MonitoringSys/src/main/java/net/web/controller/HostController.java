@@ -89,15 +89,6 @@ public class HostController {
         return hosts.get(id);
     }
 
-    @RequestMapping(value = "/dellHost", method = RequestMethod.GET)
-    public String dellHost(@RequestParam("id") int id) {
-        /*if (!authentication.accessAdmin()) {
-            throw new ResourceNotFoundException();
-        }*/
-        hosts.remove(hosts.get(id));
-        return "redirect:/hostedit";
-    }
-
 
 
     @RequestMapping(value = "/hosts")

@@ -91,7 +91,7 @@
                 <a href="#"><i class="fa fa-cog fa-lg"></i> <s>Admin panel</s> <span class="arrow"></span></a>
             </li>
             <ul class="sub-menu " id="new">
-                <a class="white-text " th:href="hostedit">
+                <a class="white-text " th:href="@{~/admin/hostedit}">
                     <li>Host Editor</li>
                 </a>
                 <!--<a class="white-text" th:href="optionsInstance">
@@ -103,7 +103,7 @@
                 <!--<a class="white-text" th:href="editIntsMetrics">
                     <li>Services</li>
                 </a>-->
-                <a class="white-text" th:href="accounts">
+                <a class="white-text" th:href="@{~/admin/accounts}">
                     <li class="active">Accounts</li>
                 </a>
                 <a class="white-text" th:href="alarms">
@@ -152,7 +152,7 @@
                             <button class="btn btn-success btn-xs"><a
                                     class="fa fa-wrench fa-lg white-text open_window"></a>
                             </button>
-                            <button class="btn btn-danger btn-xs dellHost"><a  th:href="@{/dellAccount(username=${user.username})}"
+                            <button class="btn btn-danger btn-xs dellHost"><a  th:href="@{/admin/dellAccount(username=${user.username})}"
                                                                                class="fa fa-times fa-lg white-text"></a>
                             </button>
                         </td>

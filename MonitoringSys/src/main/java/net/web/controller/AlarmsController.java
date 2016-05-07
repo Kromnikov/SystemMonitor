@@ -21,7 +21,6 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping(value = "/admin")
 public class AlarmsController {
     @Autowired
 private Authorization authentication;

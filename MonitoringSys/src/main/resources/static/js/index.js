@@ -322,7 +322,7 @@ function modalAccounts() {
 
     $(document).ready(function () {
         $('.openAddAccount').click(function (e) {
-            $.getJSON('/getRoles', function (roles) {
+            $.getJSON('/admin/getRoles', function (roles) {
                 $("#newAccount").empty();
                 $("#newAccount").append('<li id="newAccountmainDdmenu"><a id="newAccountRoleValue" href="#"></a></li>');
 
@@ -336,7 +336,7 @@ function modalAccounts() {
             });
         });
         $("#addAccount").click(function () {
-            $.getJSON('/addAccount?'
+            $.getJSON('/admin/addAccount?'
                 + '&username=' + $("input[name='NEWUsername']").val()
                 + '&password=' + $("input[name='NEWPassword']").val()
                 + '&role=' + $("#newAccountRoleValue").html()
@@ -344,7 +344,7 @@ function modalAccounts() {
                 });
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
             setTimeout(function () {
-                window.location.href = "/accounts";
+                window.location.href = "/admin/accounts";
             }, 200);
         });
 
@@ -360,7 +360,7 @@ function modalAccounts() {
         });
 
         $('.open_window').click(function (e) {
-            $.getJSON('/getAccounts?username=' + $(this).parent().parent().parent().attr('id'), function (user) {
+            $.getJSON('/admin/getAccounts?username=' + $(this).parent().parent().parent().attr('id'), function (user) {
                 console.log(user.username);
                 $("input[name='id']").val(user.id);
                 $("input[name='Username']").val(user.username);
@@ -380,7 +380,7 @@ function modalAccounts() {
             });
         });
         $("#saveAccount").click(function () {
-            $.getJSON('/saveAccount?id=' + $("input[name='id']").val()
+            $.getJSON('/admin/saveAccount?id=' + $("input[name='id']").val()
                 + '&username=' + $("input[name='Username']").val()
                 + '&password=' + $("input[name='Password']").val()
                 + '&role=' + $("#roleValue").html()
@@ -388,7 +388,7 @@ function modalAccounts() {
                 });
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
             setTimeout(function () {
-                window.location.href = "/accounts";
+                window.location.href = "/admin/accounts";
             }, 200);
         });
 
@@ -742,7 +742,7 @@ function modalEditHost() {
                 e.preventDefault();
         });
         $("#addHost").click(function () {
-            $.getJSON('/addHost?'
+            $.getJSON('/admin/addHost?'
                 + 'name=' + $("input[name='NEWname']").val()
                 + '&host=' + $("input[name='NEWhost']").val()
                 + '&port=' + $("input[name='NEWport']").val()
@@ -753,7 +753,7 @@ function modalEditHost() {
                 });
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
             setTimeout(function () {
-                window.location.href = "/hostedit";
+                window.location.href = "/admin/hostedit";
             }, 200);
         });
 
@@ -761,7 +761,7 @@ function modalEditHost() {
 
 
         $('.open_window').click(function (e) {
-            $.getJSON('/gethost?hostid=' + $(this).parent().parent().parent().attr('id'), function (host) {
+            $.getJSON('/admin/gethost?hostid=' + $(this).parent().parent().parent().attr('id'), function (host) {
                 //console.log(host.name+"-"+host.host);
                 $("input[name='id']").val(host.id);
                 $("input[name='name']").val(host.name);
@@ -776,7 +776,7 @@ function modalEditHost() {
             });
         });
         $("#saveHost").click(function () {
-            $.getJSON('/saveHost?id=' + $("input[name='id']").val()
+            $.getJSON('/admin/saveHost?id=' + $("input[name='id']").val()
                 + '&name=' + $("input[name='name']").val()
                 + '&host=' + $("input[name='host']").val()
                 + '&port=' + $("input[name='port']").val()
@@ -787,7 +787,7 @@ function modalEditHost() {
                 });
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
             setTimeout(function () {
-                window.location.href = "/hostedit";
+                window.location.href = "/admin/hostedit";
             }, 200);
         });
 
@@ -796,7 +796,7 @@ function modalEditHost() {
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
             $('.popup1.editInst, .overlay1.editInst').css({'opacity': 0, 'visibility': 'hidden'});
             setTimeout(function () {
-                window.location.href = "/hostedit";
+                window.location.href = "/admin/hostedit";
             }, 200);
         });
     });
