@@ -207,7 +207,7 @@ public class ChartStorage implements IChartStorage{
         String sql = "SELECT value,date_time FROM \"VALUE_METRIC\" where date_time between '" + dateFormat.format(nDate) + "' and '" + dateFormat.format(dateTime) + "' and metric = " + metricId + " and host = " + host_id + " order by date_time ";
 
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-        int rowSize = rows.size(), counter = 1;
+        int rowSize = rows.size();
         Map<Long, Object> map = new HashMap<>();
         if (rowSize > 0) {
             nDate.setSeconds(0);
@@ -238,7 +238,6 @@ public class ChartStorage implements IChartStorage{
 
     @Transactional
     public GraphPoints getValuesTheeMinutes(int host_id, int metricId,  Date dateTime) throws ParseException {
-        long defTime= 10*1000;//10sek
         Date nDate = (Date) dateTime.clone();
         nDate.setMinutes(dateTime.getMinutes() - 1);
         dateTime.setMinutes(dateTime.getMinutes() + 1);
@@ -254,7 +253,6 @@ public class ChartStorage implements IChartStorage{
 
     @Transactional
     public GraphPoints getValuesOneMinutes(int host_id, int metricId,  Date dateTime) throws ParseException {
-        long defTime= 10*1000;//10sek
         Date nDate = (Date) dateTime.clone();
         nDate.setSeconds(dateTime.getSeconds() - 30);
         dateTime.setSeconds(dateTime.getSeconds() + 30);
@@ -268,50 +266,3 @@ public class ChartStorage implements IChartStorage{
         return new GraphPoints(rows.size(), new TreeMap<Long, Object>(map));
     }
 }
-
-
-
-
-
-//    private GraphPoints averaging(List<Map<String, Object>> rows) {
-//        Map<Long, Double> map = new HashMap<>();
-//        long date = 0;
-//        double sumValues = 0, roundVar = 0;
-//        int COUNT_POINTS = 20, countValues = 0, countPoint = 0, i = 1, rowSize = rows.size(), merger = (int) Math.floor(rowSize / (COUNT_POINTS));
-//        if (rowSize > 0) {
-//            if (rowSize <= COUNT_POINTS) {
-//                for (i = 0; i < rowSize; i++) {
-//                    map.put((long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime()), (double) rows.get(i).get("value"));
-//                }
-//            } else {
-//                map.put((long) (((java.sql.Timestamp) rows.get(0).get("date_time")).getTime()), (double) rows.get(0).get("value"));
-//                while (countPoint != COUNT_POINTS) {
-//                    while (merger != countValues) {
-//                        if (i < rowSize) {
-//                            sumValues += (double) rows.get(i).get("value");
-//                            date = (long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
-//                            countValues++;
-//                            i++;
-//                        }
-//                    }
-//                    roundVar = new BigDecimal(sumValues / merger).setScale(3, RoundingMode.UP).doubleValue();
-//                    map.put(date, roundVar);
-//                    sumValues = 0;
-//                    countValues = 0;
-//                    countPoint++;
-//
-//                }
-//                if (i != rowSize) {
-//                    while (i != rowSize) {
-//                        sumValues += (double) rows.get(i).get("value");
-//                        date = (long) (((java.sql.Timestamp) rows.get(i).get("date_time")).getTime());
-//                        countValues++;
-//                        i++;
-//                    }
-//                    roundVar = new BigDecimal(sumValues / countValues).setScale(3, RoundingMode.UP).doubleValue();
-//                    map.put(date, roundVar);
-//                }
-//            }
-//        }
-//        return new GraphPoints(rowSize, new TreeMap<Long, Object>(map));
-//    }

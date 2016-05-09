@@ -69,12 +69,10 @@ public class Averaging {
                         }
                     }
                     if (minutesCount > 0) {
-//                    System.out.println(new Date(pStartTime)+"-"+(new BigDecimal(sumValues / countPoint).setScale(3, RoundingMode.UP).doubleValue()));
                         map.put(pStartTime, new BigDecimal(sumValues / minutesCount).setScale(3, RoundingMode.UP).doubleValue());
                         minutesCount = 0;
                         sumValues = 0;
                     } else {
-//                    System.out.println(new Date(pStartTime)+"-null");
                         map.put(pStartTime, null);
                     }
                     pStartTime = startTime;
@@ -209,8 +207,6 @@ public class Averaging {
                                         if (startTime < prevX) {
                                             startTime += defTime;
                                         } else {
-//                                            System.out.println("startTime= " + (new Date(startTime)));
-//                                            System.out.println("prevX= " + (new Date(prevX)));
                                             sumValues += (double) prevY;
                                             minutesCount++;
                                             prevY = (double) rows.get(counter).get("value");
