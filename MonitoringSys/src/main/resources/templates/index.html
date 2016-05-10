@@ -60,7 +60,6 @@
         </ul>
     </div>
 </nav>
-
 <div class="nav-side-menu">
     <div class="brand">System monitor</div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
@@ -73,13 +72,20 @@
                     <i class="fa fa-home fa-lg"></i> Home
                 </a>
             </li>
-            <li data-toggle="collapse" data-target="#service" class="collapsed">
-                <a href="#"><i class="fa fa-globe fa-lg"></i> Hosts <span class="arrow"></span></a>
-            </li>
-            <ul class="sub-menu collapse" id="service">
-                <a class="white-text" th:href="hosts" ><li>Hosts</li></a>
-            </ul>
+            <!--<li data-toggle="collapse" data-target="#service" class="collapsed">-->
+                <!--<a href="#"><i class="fa fa-globe fa-lg"></i> Hosts <span class="arrow"></span></a>-->
+            <!--</li>-->
+            <!--<ul class="sub-menu collapse" id="service">-->
+                <!--<a class="white-text" th:href="hosts" ><li>Hosts</li></a>-->
+            <!--</ul>-->
 
+<!-- fa-linux  -->
+
+            <li>
+                <a th:href="@{'hosts'}">
+                    <i class="fa fa-linux fa-lg"></i> Hosts
+                </a>
+            </li>
             <li>
                 <a th:href="@{'problems'}">
                     <i class="fa fa-exclamation fa-lg"></i> Problems

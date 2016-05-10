@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head lang="en">
     <title>Spring Framework Guru</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -80,13 +80,12 @@
                     <i class="fa fa-home fa-lg"></i> Home
                 </a>
             </li>
-            <li data-toggle="collapse" data-target="#service" class="collapsed">
-                <a href="#"><i class="fa fa-globe fa-lg"></i> Hosts <span class="arrow"></span></a>
+
+            <li>
+                <a th:href="@{'hosts'}">
+                    <i class="fa fa-linux fa-lg"></i> Hosts
+                </a>
             </li>
-            <ul class="sub-menu collapse" id="service">
-                <a class="white-text" th:href="@{'addHostPage'}"><li>Add host</li></a>
-                <a class="white-text" th:href="hosts" ><li>Hosts</li></a>
-            </ul>
 
             <li>
                 <a th:href="@{'problems'}">
@@ -94,6 +93,7 @@
                 </a>
             </li>
 
+            <div sec:authorize="hasRole('ROLE_ADMIN')">
             <li data-toggle="collapse" data-target="#new" class="collapsed">
                 <a href="#"><i class="fa fa-cog fa-lg"></i> <s>Admin panel</s> <span class="arrow"></span></a>
             </li>
@@ -109,6 +109,7 @@
                     <li>Alarms</li>
                 </a>
             </ul>
+    </div>
 
 
             <li>
