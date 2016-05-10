@@ -2,7 +2,7 @@ package net.web;
 
 
 import net.web.config.DatabaseConfig;
-import net.web.config.ThymeleafAutoConfiguration;
+import net.web.config.WebSecurityConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
@@ -21,7 +21,13 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class Application extends SpringBootServletInitializer{
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(new Class<?>[]{Application.class, DatabaseConfig.class,ThymeleafAutoConfiguration.class}, args);
+        SpringApplication.run(new Class<?>[]{
+                Application.class,
+                DatabaseConfig.class,
+//                WebMvcConfig.class,
+//                ThymeleafConfig.class,
+                WebSecurityConfig.class
+        }, args);
     }
 
 }

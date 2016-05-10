@@ -36,7 +36,7 @@ function editInstMetric(InstanceMetric,host) {
         $("input[name='id']").val(InstanceMetric.id);
 
 
-        $.getJSON('/getHostsTempl', function (hostTempl) {
+        $.getJSON('/admin/getHostsTempl', function (hostTempl) {
             $("#tohost").empty();
             $("#tohost").append('<li id="tohostMenu"><a required="required" id="tohostValue" href="#"  hostId="' + host.id + '">'+host.name+'</a></li>');
             a = $("#tohostMenu").append('<ul id="tohostnonemenu"></ul>');
@@ -54,32 +54,32 @@ function editInstMetric(InstanceMetric,host) {
         });
 
 
-        $("#editInstMetric").click(function () {
-            if ($("#templMetricValue").attr('metricId') != null) {
-                $.getJSON('/editInstMetric?'
-                    + 'id=' + $("input[name='id']").val()
-                    + '&templId=' + $("#templMetricValue").attr('metricId')
-                    + '&hostId=' + $("#tohostValue").attr('hostId')
-                    + '&title=' + $("input[name='Title']").val()
-                    + '&command=' + $("input[name='query']").val()
-                    + '&minValue=' + $("input[name='minValue']").val()
-                    + '&maxValue=' + $("input[name='maxValue']").val()
-                    , function (host) {
-                        window.location.href = "/alarms";
-                    });
-            } else {
-                $.getJSON('/editInstMetric?'
-                    + 'id=' + $("input[name='id']").val()
-                    + '&hostId=' + $("#tohostValue").attr('hostId')
-                    + '&title=' + $("input[name='Title']").val()
-                    + '&command=' + $("input[name='query']").val()
-                    + '&minValue=' + $("input[name='minValue']").val()
-                    + '&maxValue=' + $("input[name='maxValue']").val()
-                    , function (host) {
-                        window.location.href = "/alarms";
-                    });
-            }
-        });
+        //$("#editInstMetric").click(function () {
+        //    if ($("#templMetricValue").attr('metricId') != null) {
+        //        $.getJSON('/admin/editInstMetric?'
+        //            + 'id=' + $("input[name='id']").val()
+        //            + '&templId=' + $("#templMetricValue").attr('metricId')
+        //            + '&hostId=' + $("#tohostValue").attr('hostId')
+        //            + '&title=' + $("input[name='Title']").val()
+        //            + '&command=' + $("input[name='query']").val()
+        //            + '&minValue=' + $("input[name='minValue']").val()
+        //            + '&maxValue=' + $("input[name='maxValue']").val()
+        //            , function (host) {
+        //                window.location.href = "/alarms";
+        //            });
+        //    } else {
+        //        $.getJSON('/admin/editInstMetric?'
+        //            + 'id=' + $("input[name='id']").val()
+        //            + '&hostId=' + $("#tohostValue").attr('hostId')
+        //            + '&title=' + $("input[name='Title']").val()
+        //            + '&command=' + $("input[name='query']").val()
+        //            + '&minValue=' + $("input[name='minValue']").val()
+        //            + '&maxValue=' + $("input[name='maxValue']").val()
+        //            , function (host) {
+        //                window.location.href = "/alarms";
+        //            });
+        //    }
+        //});
 
 
     });
@@ -87,7 +87,7 @@ function editInstMetric(InstanceMetric,host) {
 }
 function addInstMetric(host) {
     $(document).ready(function () {
-        $.getJSON('/getHostsTempl', function (hostTempl) {
+        $.getJSON('/admin/getHostsTempl', function (hostTempl) {
             $("#tohost").empty();
             $("#tohost").append('<li id="tohostMenu"><a required="required" id="tohostValue" href="#"  hostId="' + host.id + '">'+host.name+'</a></li>');
             a = $("#tohostMenu").append('<ul id="tohostnonemenu"></ul>');
@@ -110,7 +110,7 @@ function addInstMetric(host) {
 
         $("#addInstMetric").click(function () {
             if ($("#templMetricValue").attr('metricId') != null) {
-                $.getJSON('/saveNewInstMetric?'
+                $.getJSON('/admin/saveNewInstMetric?'
                     + 'templId=' + $("#templMetricValue").attr('metricId')
                     + '&hostId=' + $("#tohostValue").attr('hostId')
                     + '&title=' + $("input[name='Title']").val()
@@ -121,7 +121,7 @@ function addInstMetric(host) {
                         window.location.href = "/alarms";
                     });
             } else {
-                $.getJSON('/saveNewInstMetric?'
+                $.getJSON('/admin/saveNewInstMetric?'
                     + 'hostId=' + $("#tohostValue").attr('hostId')
                     + '&title=' + $("input[name='Title']").val()
                     + '&command=' + $("input[name='query']").val()
@@ -154,8 +154,9 @@ function dropDownMenuAlarms() {
 }
 function addAlarmsModal() {
     $(document).ready(function () {
+        //$('.popup.editAlarm, .overlay.editAlarm').css({'opacity': 1, 'visibility': 'visible'});
         $('.openAddAlamr').click(function () {
-            $.getJSON('/getNewAlarm', function (alarm) {
+            $.getJSON('/admin/getNewAlarm', function (alarm) {
                 $("#hosts").empty();
                 $("#hosts").append('<li id="hostsMenu"><a id="hostsValue" href="#"></a></li>');
                 a = $("#hostsMenu").append('<ul id="hostnonemenu"></ul>');
@@ -192,14 +193,16 @@ function addAlarmsModal() {
 
 
         $("#addAlarm").click(function () {
-            $.getJSON('/addAlarm?'
+            $.getJSON('/admin/addAlarm?'
                 + 'toEmail=' + $("input[name='toEmail']").val()
                 + '&toUser=' + $("#touservalue").html()
                 + '&metricId=' + $("#metricValue").attr('metricId')
                 + '&hostId=' + $("#tohostValue").attr('hostId')
                 + '&user=' + username
                 , function (host) {
-                    window.location.href = "/alarms";
+                    setTimeout(function () {
+                        window.location.href = "/alarms";
+                    }, 200);
                 });
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
         });
@@ -209,15 +212,17 @@ function editAlarmsModal() {
     $(document).ready(function () {
 
         $('.dellAlarm').click(function () {
-            $.getJSON('/dellAlarms?id=' + $(this).attr('dellAlarm'), function (alarm) {
-                window.location.href = "/alarms";
+            $.getJSON('/admin/dellAlarms?id=' + $(this).attr('dellAlarm'), function (alarm) {
+                setTimeout(function () {
+                    window.location.href = "/alarms";
+                }, 200);
             });
         });
 
         $('body').on('click', '.hostselect', function () {
             var hostId = $(this).attr('hostid');
             $("#hostsValue").html($(this).attr('hostname'));
-            $.getJSON('/getInstanceMetrics?hostId=' + hostId, function (instanceMetrics) {
+            $.getJSON('/admin/getInstanceMetrics?hostId=' + hostId, function (instanceMetrics) {
                 $("#metrics").empty();
                 $("#metrics").append('<li id="metricsMenu"><a id="metricValue" href="#"></a></li>');
                 a = $("#metricsMenu").append('<ul id="metricsnonemenu"></ul>');
@@ -241,7 +246,7 @@ function editAlarmsModal() {
 
         //Edit
         $('.open_window').click(function (e) {
-            $.getJSON('/getAlarm?id=' + $(this).parent().parent().parent().attr('id'), function (alarm) {
+            $.getJSON('/admin/getAlarm?id=' + $(this).parent().parent().parent().attr('id'), function (alarm) {
                 $("input[name='id']").val(alarm.id);
                 $("input[name='toEmail']").val(alarm.toEmail);
                 $("#hosts").empty();
@@ -275,13 +280,15 @@ function editAlarmsModal() {
             });
         });
         $("#saveAlarm").click(function () {
-            $.getJSON('/saveAlarm?id=' + $("input[name='id']").val()
+            $.getJSON('/admin/saveAlarm?id=' + $("input[name='id']").val()
                 + '&toEmail=' + $("input[name='toEmail']").val()
                 + '&toUser=' + $("#touservalue").html()
                 + '&metricId=' + $("#metricValue").attr('metricId')
                 + '&hostId=' + $("#tohostValue").attr('hostId')
                 , function (host) {
-                    window.location.href = "/alarms";
+                    setTimeout(function () {
+                        window.location.href = "/admin/alarms";
+                    }, 200);
                 });
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
         });
@@ -289,7 +296,7 @@ function editAlarmsModal() {
 
         $('.close_window').click(function () {
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
-            window.location.href = "/alarms";
+           // window.location.href = "/alarms";
         });
 
     });
@@ -300,11 +307,7 @@ function editAlarmsModal() {
 
 function dropDownMenuAccounts() {
     $(document).ready(function () {
-        //$('a').on('click', function(e){
-        //    e.preventDefault();
-        //});
-
-        $('#ddmenu').hover(function () {
+        $('.ddmenu').hover(function () {
             clearTimeout($.data(this, 'timer'));
             $('ul', this).stop(true, true).slideDown(200);
         }, function () {
@@ -318,25 +321,56 @@ function dropDownMenuAccounts() {
 function modalAccounts() {
 
     $(document).ready(function () {
-        //$('.popup.accounts, .overlay.accounts').css({'opacity': 1, 'visibility': 'visible'});
+        $('.openAddAccount').click(function (e) {
+            $.getJSON('/admin/getRoles', function (roles) {
+                $("#newAccount").empty();
+                $("#newAccount").append('<li id="newAccountmainDdmenu"><a id="newAccountRoleValue" href="#"></a></li>');
+
+                $("#newAccountmainDdmenu").append('<ul id="newAccountnoneMenu"></ul>');
+                $.each(roles, function (key, values) {
+                    $("#newAccountnoneMenu").append('<li class="roleselect" role="' + values + '"><a href="#">' + values + '</a></li>');
+                });
+
+                $('.popup.addAccounts, .overlay.addAccounts').css({'opacity': 1, 'visibility': 'visible'});
+                e.preventDefault();
+            });
+        });
+        $("#addAccount").click(function () {
+            $.getJSON('/admin/addAccount?'
+                + '&username=' + $("input[name='NEWUsername']").val()
+                + '&password=' + $("input[name='NEWPassword']").val()
+                + '&role=' + $("#newAccountRoleValue").html()
+                , function (host) {
+                });
+            $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
+            setTimeout(function () {
+                window.location.href = "/admin/accounts";
+            }, 200);
+        });
+
+
         var a;
         $('body').on('click', '.roleselect', function () {
             var role = $(this).attr('role');
             $("#roleValue").html(role);
+            $("#newAccountRoleValue").html(role);
+            //$("#roleValue1").html(role);
+            //console.log("roleValue -->  "+$("#roleValue").html());
+            //console.log("roleValue1 -->  "+$("#roleValue1").html());
         });
 
         $('.open_window').click(function (e) {
-            $.getJSON('/getAccounts?username=' + $(this).parent().parent().parent().attr('id'), function (user) {
+            $.getJSON('/admin/getAccounts?username=' + $(this).parent().parent().parent().attr('id'), function (user) {
                 console.log(user.username);
                 $("input[name='id']").val(user.id);
                 $("input[name='Username']").val(user.username);
                 $("input[name='Password']").val(user.password);
                 //$("input[name='Role']").val(user.role);
 
-                $("#ddmenu").empty();
-                $("#ddmenu").append('<li id="mainDdmenu"><a id="roleValue" href="#">' + user.role + '</a></li>');
+                $(".ddmenu").empty();
+                $(".ddmenu").append('<li class="mainDdmenu"><a id="roleValue" href="#">' + user.role + '</a></li>');
 
-                a = $("#mainDdmenu").append('<ul id="noneMenu"></ul>');
+                $(".mainDdmenu").append('<ul id="noneMenu"></ul>');
                 $.each(user.allRoles, function (key, values) {
                     $("#noneMenu").append('<li class="roleselect" role="' + values + '"><a href="#">' + values + '</a></li>');
                 });
@@ -346,20 +380,22 @@ function modalAccounts() {
             });
         });
         $("#saveAccount").click(function () {
-            $.getJSON('/saveAccount?id=' + $("input[name='id']").val()
+            $.getJSON('/admin/saveAccount?id=' + $("input[name='id']").val()
                 + '&username=' + $("input[name='Username']").val()
                 + '&password=' + $("input[name='Password']").val()
                 + '&role=' + $("#roleValue").html()
                 , function (host) {
                 });
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
-            window.location.href = "/accounts";
+            setTimeout(function () {
+                window.location.href = "/admin/accounts";
+            }, 200);
         });
 
 
         $('.close_window').click(function () {
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
-            window.location.href = "/accounts";
+           // window.location.href = "/accounts";
         });
 
     });
@@ -383,7 +419,7 @@ function loadPageWithoutModal() {
 
     $(document).ready(function () {
         $('.open_window').click(function (e) {
-            $.getJSON('/getTemplMetric?metricId=' + $(this).parent().parent().parent().attr('id'), function (templMetric) {
+            $.getJSON('/admin/getTemplMetric?metricId=' + $(this).parent().parent().parent().attr('id'), function (templMetric) {
                 //console.log(host.name+"-"+host.host);
                 $("input[name='id']").val(templMetric.id);
                 $("input[name='Title']").val(templMetric.title);
@@ -403,7 +439,7 @@ function modalTemplMetirc() {
 
         //dell
         $('.dellTemplMetric').click(function () {
-            $.getJSON('/dellTemplMetric?metricId=' + $(this).parent().parent().attr('id'), function (templMetric) {
+            $.getJSON('/admin/dellTemplMetric?metricId=' + $(this).parent().parent().attr('id'), function (templMetric) {
 
             });
         });
@@ -415,7 +451,7 @@ function modalTemplMetirc() {
             e.preventDefault();
         });
         $("#addTemplMetric").click(function () {
-            $.getJSON('/addTemplMetric?id=' + $("input[name='sid']").val()
+            $.getJSON('/admin/addTemplMetric?id=' + $("input[name='sid']").val()
                 + '&title=' + $("input[name='sTitle']").val()
                 + '&command=' + $("input[name='sCommand']").val()
                 + '&minValue=' + $("input[name='sMin Value']").val()
@@ -423,14 +459,17 @@ function modalTemplMetirc() {
                 , function (host) {
                 });
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
-            window.location.href = "/templMetrics";
+
+            setTimeout(function () {
+                window.location.href = "/admin/templMetrics";
+            }, 200);
         });
 
 
         //Edit
 
         $("#saveTemplMetric").click(function () {
-            $.getJSON('/saveTemplMetric?id=' + $("input[name='id']").val()
+            $.getJSON('/admin/saveTemplMetric?id=' + $("input[name='id']").val()
                 + '&title=' + $("input[name='Title']").val()
                 + '&command=' + $("input[name='Command']").val()
                 + '&minValue=' + $("input[name='Min Value']").val()
@@ -438,13 +477,15 @@ function modalTemplMetirc() {
                 , function (host) {
                 });
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
-            window.location.href = "/templMetrics";
+            setTimeout(function () {
+                window.location.href = "/admin/templMetrics";
+            }, 200);
         });
 
 
         $('.close_window').click(function () {
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
-            window.location.href = "/templMetrics";
+           // window.location.href = "/templMetrics";
         });
 
     });
@@ -455,25 +496,198 @@ function modalTemplMetirc() {
 
 //$("#tohostValue").html($(this).attr('hostname'));
 //$("#tohostValue").attr('hostId', $(this).attr('hostid'));
+function clearModal() {
+    $("input[name='Title']").val('');
+    $("input[name='query']").val('');
+    $("input[name='minValue']").val('');
+    $("input[name='maxValue']").val('');
+
+}
+function closeModal(hostId) {
+
+    $("#InstanceMetric").empty();
+
+    $.getJSON('/admin/getMetricsRow?hostid=' + hostId, function (metrics) {
+        $.each(metrics.instanceMetrics, function (key, values) {
+            $("#InstanceMetric").append('<tr><td class="cursor_pointer editInstMetric"  hostId="' + metrics.hostId + '" instMetricId="' + values.id + '" >' + values.title + '</td><td><instance hostId="' + metrics.hostId + '" instMetricId="' + values.id + '" class="fa fa-times fa-lg hovercolorredtext hovercursor"></instance></td></tr>');
+        });
+    });
+
+
+    $('.popup1.editInst, .overlay1.editInst').animate({opacity: "0"}, 100);
+    $('.popup.services').animate({left: "50%"}, 500);
+}
+function modalInst() {
+    $(document).ready(function () {
+        $('.close_window1').click(function () {
+            $('.popup1.editInst, .overlay1.editInst').animate({opacity: "0"}, 100);
+            $('.popup.services').animate({left: "50%"}, 500);
+        });
+        $('#cancel').click(function () {
+            $('.popup1.editInst, .overlay1.editInst').animate({opacity: "0"}, 100);
+            $('.popup.services').animate({left: "50%"}, 500);
+        });
+
+        $('body').on('click', '#addInsetMetricPage', function () {
+            clearModal();
+            $.getJSON('/getHost?id=' + $(this).attr('hostId'), function (host) {
+                $.getJSON('/admin/getHostsTempl', function (hostTempl) {
+                    $("#tohost").empty();
+                    $("#tohost").append('<li id="tohostMenu"><a required="required" id="tohostValue" href="#"  hostId="' + host.id + '">' + host.name + '</a></li>');
+                    a = $("#tohostMenu").append('<ul id="tohostnonemenu"></ul>');
+                    $.each(hostTempl.hosts, function (key, values) {
+                        $("#tohostnonemenu").append('<li class="tohostselect" hostname="' + values.name + '" hostId="' + values.id + '"><a href="#">' + values.name + '</a></li>');
+                    });
+
+                    $("#templMetric").empty();
+                    $("#templMetric").append('<li id="templMetricMenu"><a id="templMetricValue" href="#"></a></li>');
+                    a = $("#templMetricMenu").append('<ul id="templMetricnonemenu"></ul>');
+                    $.each(hostTempl.templateMetrics, function (key, values) {
+                        $("#templMetricnonemenu").append('<li class="templMetricselect" metricTitle="' + values.title + '" metricQuery="' + values.command + '" metricId="' + values.id + '"><a href="#">' + values.title + '</a></li>');
+                    });
+                });
+            });
+            $("#addInstMetric").removeClass('hidden');
+            $("AddInstTitle").removeClass('hidden');
+            $("#editInstMetric").addClass('hidden');
+            $("#EditInstTitle").addClass('hidden');
+
+
+
+            $('.popup.services').animate({left: "-4%"}, 500);
+            $('.popup1.editInst, .overlay1.editInst').css({'visibility': 'visible'});
+            $('.popup1.editInst, .overlay1.editInst').animate({opacity: "1"}, 500);
+        });
+
+        $("#addInstMetric").click(function () {
+            if ($("#templMetricValue").attr('metricId') != null) {
+                $.getJSON('/admin/saveNewInstMetric?'
+                    + 'templId=' + $("#templMetricValue").attr('metricId')
+                    + '&hostId=' + $("#tohostValue").attr('hostId')
+                    + '&title=' + $("input[name='Title']").val()
+                    + '&command=' + $("input[name='query']").val()
+                    + '&minValue=' + $("input[name='minValue']").val()
+                    + '&maxValue=' + $("input[name='maxValue']").val()
+                    , function (host) {
+                        //window.location.href = "/alarms";
+                    });
+                setTimeout(function () {
+                    closeModal($("#tohostValue").attr('hostId'));
+                    clearModal();
+                }, 300);
+            } else {
+                $.getJSON('/admin/saveNewInstMetric?'
+                    + 'hostId=' + $("#tohostValue").attr('hostId')
+                    + '&title=' + $("input[name='Title']").val()
+                    + '&command=' + $("input[name='query']").val()
+                    + '&minValue=' + $("input[name='minValue']").val()
+                    + '&maxValue=' + $("input[name='maxValue']").val()
+                    , function (host) {
+                        //window.location.href = "/alarms";
+                    });
+                setTimeout(function () {
+                    closeModal($("#tohostValue").attr('hostId'));
+                    clearModal();
+                }, 300);
+            }
+        });
+
+        $('body').on('click', '.editInstMetric', function () {
+            $.getJSON('/admin/getInstTempHost?instMetricId=' + $(this).attr('instMetricId'), function (row) {
+
+                    $("#addInstMetric").addClass('hidden');
+                    $("#addInstMetric").addClass('hidden');
+                    $("#AddInstTitle").addClass('hidden');
+                    $("#editInstMetric").removeClass('hidden');
+                    $("#EditInstTitle").removeClass('hidden');
+
+                    $("input[name='Title']").val(row.instanceMetrics.title);
+                    $("input[name='query']").val(row.instanceMetrics.command);
+                    $("input[name='minValue']").val(row.instanceMetrics.minValue);
+                    $("input[name='maxValue']").val(row.instanceMetrics.maxValue);
+                    $("input[name='id']").val(row.instanceMetrics.id);
+
+
+                    $.getJSON('/admin/getHostsTempl', function (hostTempl) {
+                        $("#tohost").empty();
+                        $("#tohost").append('<li id="tohostMenu"><a required="required" id="tohostValue" href="#"  hostId="' + row.host.id + '">' + row.host.name + '</a></li>');
+                        a = $("#tohostMenu").append('<ul id="tohostnonemenu"></ul>');
+                        $.each(hostTempl.hosts, function (key, values) {
+                            $("#tohostnonemenu").append('<li class="tohostselect" hostname="' + values.name + '" hostId="' + values.id + '"><a href="#">' + values.name + '</a></li>');
+                        });
+
+                        $("#templMetric").empty();
+                        $("#templMetric").append('<li id="templMetricMenu"><a id="templMetricValue" href="#" metricId="'+row.templateMetrics.id+'">' + row.templateMetrics.title + '</a></li>');
+                        a = $("#templMetricMenu").append('<ul id="templMetricnonemenu"></ul>');
+                        $.each(hostTempl.templateMetrics, function (key, values) {
+                            $("#templMetricnonemenu").append('<li class="templMetricselect" metricTitle="' + values.title + '" metricQuery="' + values.command + '" metricId="' + values.id + '"><a href="#">' + values.title + '</a></li>');
+                        });
+                    });
+
+                });
+
+            $('.popup.services').animate({left: "-4%"}, 500);
+            $('.popup1.editInst, .overlay1.editInst').css({'visibility': 'visible'});
+            $('.popup1.editInst, .overlay1.editInst').animate({opacity: "1"}, 500);
+        });
+
+        $("#editInstMetric").click(function () {
+            if ($("#templMetricValue").attr('metricId') != null) {
+                $.getJSON('/admin/editInstMetric?'
+                    + 'id=' + $("input[name='id']").val()
+                    + '&templId=' + $("#templMetricValue").attr('metricId')
+                    + '&hostId=' + $("#tohostValue").attr('hostId')
+                    + '&title=' + $("input[name='Title']").val()
+                    + '&command=' + $("input[name='query']").val()
+                    + '&minValue=' + $("input[name='minValue']").val()
+                    + '&maxValue=' + $("input[name='maxValue']").val()
+                    , function (host) {
+
+                    });
+                setTimeout(function () {
+                    closeModal($("#tohostValue").attr('hostId'));
+                    clearModal();
+                }, 300);
+            } else {
+                $.getJSON('/admin/editInstMetric?'
+                    + 'id=' + $("input[name='id']").val()
+                    + '&hostId=' + $("#tohostValue").attr('hostId')
+                    + '&title=' + $("input[name='Title']").val()
+                    + '&command=' + $("input[name='query']").val()
+                    + '&minValue=' + $("input[name='minValue']").val()
+                    + '&maxValue=' + $("input[name='maxValue']").val()
+                    , function (host) {
+
+                    });
+                setTimeout(function () {
+                    closeModal($("#tohostValue").attr('hostId'));
+                    clearModal();
+                }, 300);
+            }
+        });
+    });
+}
 function modalEditHostMetrics() {
     $(document).ready(function () {
-        $('body').on('click', '.editInstMetric', function () {
-            window.location.href = "/instMetric?instMetricId=" + $(this).attr('instMetricId');
-        });
+        //$('body').on('click', '.editInstMetric', function () {
+        //    window.location.href = "/instMetric?instMetricId=" + $(this).attr('instMetricId');
+        //});
         $('body').on('click', '.editTemplMetric', function () {
             window.location.href = "/templMetrics?id=" + $(this).attr('templMetricId');
         });
 
+        //$('body').on('click', '#addInsetMetricPage', function () {
+        //    window.location.href = "/instMetric?hostId=" + $(this).attr('hostId');
+        //});
+
         $('.open_inst_metrics').click(function (e) {
             $('#addInsetMetricPage').attr("hostId",$(this).parent().parent().parent().attr('id'));
 
-            $('body').on('click', '#addInsetMetricPage', function () {
-                window.location.href = "/instMetric?hostId=" + $(this).attr('hostId');
-            });
+
 
             $("#InstanceMetric").empty();
             $("#TemplateMetric").empty();
-            $.getJSON('/getMetricsRow?hostid=' + $(this).parent().parent().parent().attr('id'), function (metrics) {
+            $.getJSON('/admin/getMetricsRow?hostid=' + $(this).parent().parent().parent().attr('id'), function (metrics) {
                 $.each(metrics.instanceMetrics, function (key, values) {
                     $("#InstanceMetric").append('<tr><td class="cursor_pointer editInstMetric"  hostId="' + metrics.hostId + '" instMetricId="' + values.id + '" >' + values.title + '</td><td><instance hostId="' + metrics.hostId + '" instMetricId="' + values.id + '" class="fa fa-times fa-lg hovercolorredtext hovercursor"></instance></td></tr>');
                 });
@@ -482,19 +696,16 @@ function modalEditHostMetrics() {
                 });
             });
             $('.popup.services, .overlay.services').css({'opacity': 1, 'visibility': 'visible'});
+            $('.popup.services').css({'left': '50%'});
             $('.popup.services').css({'width': '700px'});
 
 
             $('body').on('click', 'template', function () {
                 console.log($(this).attr('templMetricId'));
                 $("#InstanceMetric").empty();
-                $("#TemplateMetric").empty();
-                $.getJSON('/moveToInstMetric?hostid=' + $(this).attr('hostId') + '&templMetricid=' + $(this).attr('templMetricid'), function (metrics) {
+                $.getJSON('/admin/moveToInstMetric?hostid=' + $(this).attr('hostId') + '&templMetricid=' + $(this).attr('templMetricid'), function (metrics) {
                     $.each(metrics.instanceMetrics, function (key, values) {
                         $("#InstanceMetric").append('<tr><td  class="cursor_pointer editInstMetric"  hostId="' + metrics.hostId + '" instMetricId="' + values.id + '">' + values.title + '</td><td><instance hostId="' + metrics.hostId + '" instMetricId="' + values.id + '" class="fa fa-times fa-lg hovercolorredtext hovercursor"></instance></td></tr>');
-                    });
-                    $.each(metrics.templateMetrics, function (key, values) {
-                        $("#TemplateMetric").append('<tr><td  class="cursor_pointer editTemplMetric" hostId="' + metrics.hostId + '" templMetricId="' + values.id + '">' + values.title + '</td><td><template hostId="' + metrics.hostId + '" templMetricId="' + values.id + '" class="fa fa-plus fa-lg hovercolorgreentext hovercursor"></template></td></tr>');
                     });
                 });
             });
@@ -503,13 +714,9 @@ function modalEditHostMetrics() {
             $('body').on('click', 'instance', function () {
                 console.log($(this).attr('instMetricId'));
                 $("#InstanceMetric").empty();
-                $("#TemplateMetric").empty();
-                $.getJSON('/moveFromInstMetric?hostid=' + $(this).attr('hostId') + '&instMetricid=' + $(this).attr('instMetricId'), function (metrics) {
+                $.getJSON('/admin/moveFromInstMetric?hostid=' + $(this).attr('hostId') + '&instMetricid=' + $(this).attr('instMetricId'), function (metrics) {
                     $.each(metrics.instanceMetrics, function (key, values) {
                         $("#InstanceMetric").append('<tr><td  class="cursor_pointer editInstMetric"  hostId="' + metrics.hostId + '" instMetricId="' + values.id + '">' + values.title + '</td><td><instance hostId="' + metrics.hostId + '" instMetricId="' + values.id + '" class="fa fa-times fa-lg hovercolorredtext hovercursor"></instance></td></tr>');
-                    });
-                    $.each(metrics.templateMetrics, function (key, values) {
-                        $("#TemplateMetric").append('<tr><td  class="cursor_pointer editTemplMetric" hostId="' + metrics.hostId + '" templMetricId="' + values.id + '">' + values.title + '</td><td><template hostId="' + metrics.hostId + '" templMetricId="' + values.id + '" class="fa fa-plus fa-lg hovercolorgreentext hovercursor"></template></td></tr>');
                     });
                 });
             });
@@ -521,8 +728,32 @@ function modalEditHostMetrics() {
 function modalEditHost() {
 
     $(document).ready(function () {
+        $('.openAddHost').click(function (e) {
+            $('.popup.services').css({'left': '50%'});
+                $('.popup.addhost, .overlay.addhost').css({'opacity': 1, 'visibility': 'visible'});
+                e.preventDefault();
+        });
+        $("#addHost").click(function () {
+            $.getJSON('/admin/addHost?'
+                + 'name=' + $("input[name='NEWname']").val()
+                + '&host=' + $("input[name='NEWhost']").val()
+                + '&port=' + $("input[name='NEWport']").val()
+                + '&login=' + $("input[name='NEWlogin']").val()
+                + '&password=' + $("input[name='NEWpassword']").val()
+                + '&location=' + $("input[name='NEWlocation']").val()
+                , function (host) {
+                });
+            $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
+            setTimeout(function () {
+                window.location.href = "/admin/hostedit";
+            }, 200);
+        });
+
+
+
+
         $('.open_window').click(function (e) {
-            $.getJSON('/gethost?hostid=' + $(this).parent().parent().parent().attr('id'), function (host) {
+            $.getJSON('/admin/gethost?hostid=' + $(this).parent().parent().parent().attr('id'), function (host) {
                 //console.log(host.name+"-"+host.host);
                 $("input[name='id']").val(host.id);
                 $("input[name='name']").val(host.name);
@@ -537,7 +768,7 @@ function modalEditHost() {
             });
         });
         $("#saveHost").click(function () {
-            $.getJSON('/saveHost?id=' + $("input[name='id']").val()
+            $.getJSON('/admin/saveHost?id=' + $("input[name='id']").val()
                 + '&name=' + $("input[name='name']").val()
                 + '&host=' + $("input[name='host']").val()
                 + '&port=' + $("input[name='port']").val()
@@ -547,20 +778,60 @@ function modalEditHost() {
                 , function (host) {
                 });
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
-            window.location.href = "/hostedit";
+            setTimeout(function () {
+                window.location.href = "/admin/hostedit";
+            }, 200);
         });
 
         //$('.popup .close_window, .overlay').click(function (){
         $('.close_window').click(function () {
             $('.popup, .overlay').css({'opacity': 0, 'visibility': 'hidden'});
-            window.location.href = "/hostedit";
+            $('.popup1.editInst, .overlay1.editInst').css({'opacity': 0, 'visibility': 'hidden'});
+            setTimeout(function () {
+                window.location.href = "/admin/hostedit";
+            }, 200);
         });
-        //    $('.open_window').click(function (e) {
-        //        $('.popup, .overlay').css({'opacity': 1, 'visibility': 'visible'});
-        //        e.preventDefault();
-        //    });
     });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function dellAlarm(id) {
@@ -618,9 +889,36 @@ function start_checking() {
     }, 10000);
 }
 
+function data_tooltip() {
+
+    $(document).ready(function () {
+        $("[data-tooltip]").mousemove(function (eventObject) {
+
+            $data_tooltip = $(this).attr("data-tooltip");
+
+            $("#tooltip").text($data_tooltip)
+                .css({
+                    "top": eventObject.pageY + 15,
+                    "left": eventObject.pageX
+                })
+                .show();
+
+        }).mouseout(function () {
+
+            $("#tooltip").hide()
+                .text("")
+                .css({
+                    "top": 0,
+                    "left": 0
+                });
+        });
+    });
+}
+
 function setHostName(name) {
 
     $(document).ready(function () {
+        data_tooltip();
         username = name;
         checking();
         start_checking();

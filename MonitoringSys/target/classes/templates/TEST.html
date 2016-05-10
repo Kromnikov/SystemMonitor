@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">-->
+<head lang="en">
+    <title>Spring Framework Guru</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="../static/js/jquery-2.2.0.min.js"
+            th:src="@{../js/jquery-2.2.0.min.js}"></script>
+    <script src="../static/js/bootstrap.min.js"
+            th:src="@{../js/bootstrap.min.js}"></script>
+    <script src="../static/js/index.js"
+            th:src="@{../js/index.js}"></script>
+
+    <link href="../static/css/bootstrap.css"
+          th:href="@{../css/bootstrap.css}" rel="stylesheet" media="screen"/>
+
+    <link href="../static/css/AdminLTE.css"
+          th:href="@{../css/AdminLTE.css}" rel="stylesheet" media="screen"/>
+
+    <link href="../static/css/index.css"
+          th:href="@{../css/index.css}" rel="stylesheet" media="screen"/>
+
+    <script src="../static/js/highstock.js"
+            th:src="@{../js/highstock.js}"></script>
+    <script src="../static/js/exporting.js"
+            th:src="@{../js/exporting.js}"></script>
+    <script src="../static/js/homeCharts.js"
+            th:src="@{../js/homeCharts.js}"></script>
+
+
+    <!--external css-->
+    <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{../css/font-awesome.css}"/>
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/style.css" rel="stylesheet" th:href="@{../css/style.css}"/>
+    <link href="../static/css/style-responsive.css" rel="stylesheet" th:href="@{../css/style-responsive.css}"/>
+
+</head>
+<body style="background-color: rgba(0, 0, 0, 0.7);">
+
+<!-- Всплывающая подсказка, которая располагается справа от кнопки -->
+<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="Подсказка">
+    Кнопка с подсказкой
+</button>
+
+
+<div class="overlay " title="окно"></div>
+<div style="width: 30%;margin-left: 35%;">
+    <div class="close_window_type close_window fa fa-times fa-lg"></div>
+    <div class="register-box-body">
+        <div class="form-group has-feedback ">
+
+            <input type="text" class="form-control" placeholder="id" name="id"
+                   required="required"/>
+            <span class=" fa fa-home form-control-feedback"></span>
+        </div>
+
+
+        <div class="hostMetricAlarm">
+            <h4 class="description_overlay">Alarm of metric</h4>
+            <div class=" cursor_pointer has-feedback leftRow ">
+                <ul class="ddmenu" id="hosts">
+                    <li id="mainDdmenu" ><a href="#">hosts</a></li>
+                </ul>
+            </div>
+            <div class=" cursor_pointer has-feedback rightRow">
+                <ul class="ddmenu" id="metrics">
+                    <li id="mainDdmenu" ><a href="#">metrics</a> </li>
+                </ul>
+                <span class="cursor_pointer fa fa-caret-down  form-control-feedback"></span>
+            </div>
+
+
+
+
+            <h4 class="description_overlay">Alarm of host</h4>
+            <div class=" cursor_pointer form-group has-feedback hostMetricAlarm">
+                <nav>
+                    <ul class="ddmenu" id="tohost">
+                        <li id="mainDdmenu" ><a href="#">tohost</a>
+                            <ul>
+                                <li><a href="#">Миссия</a></li>
+                                <li><a href="#">Команда</a></li>
+                                <li><a href="#">История</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <span class="cursor_pointer fa fa-caret-down  form-control-feedback"></span>
+            </div>
+        </div>
+
+        <h4 class="description_overlay">To user</h4>
+        <div class=" cursor_pointer form-group has-feedback hostMetricAlarm">
+            <nav>
+                <ul class="ddmenu" id="touser">
+                    <li id="mainDdmenu" ><a href="#">touser</a>
+                        <ul>
+                            <li><a href="#">Миссия</a></li>
+                            <li><a href="#">Команда</a></li>
+                            <li><a href="#">История</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <span class="cursor_pointer fa fa-caret-down  form-control-feedback"></span>
+        </div>
+
+
+
+        <h4 class="description_overlay">To mail</h4>
+        <div class="form-group has-feedback">
+            <input type="text" class="form-control" placeholder="toEmail" name="toEmail"
+                   required="required"/>
+            <span class=" fa fa-chevron-right form-control-feedback"></span>
+        </div>
+
+
+
+
+        <div class="row">
+            <div class="col-xs-6 " id="saveAlarm">
+                <button type="submit" class="btn btn-primary btn-block btn-flat" name="saveAlarm">Save
+                </button>
+            </div>
+            <div class="col-xs-6 " id="addAlarm">
+                <button type="submit" class="btn btn-primary btn-block btn-flat" name="saveAlarm">Add
+                </button>
+            </div>
+            <div class="col-xs-6">
+                <button type="submit" class="close_window btn btn-primary btn-block btn-flat" name="returnHosts">
+                    Cancel
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+
+</html>

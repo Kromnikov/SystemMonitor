@@ -1,40 +1,43 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head lang="en">
     <title>Spring Framework Guru</title>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script src="../static/js/jquery-2.2.0.min.js"
-            th:src="@{js/jquery-2.2.0.min.js}"></script>
+            th:src="@{'~/js/jquery-2.2.0.min.js'}"></script>
     <script src="../static/js/bootstrap.min.js"
-            th:src="@{js/bootstrap.min.js}"></script>
+            th:src="@{'~/js/bootstrap.min.js'}"></script>
     <script src="../static/js/index.js"
-            th:src="@{js/index.js}"></script>
+            th:src="@{'~/js/index.js'}"></script>
 
     <link href="../static/css/bootstrap.css"
-          th:href="@{css/bootstrap.css}" rel="stylesheet" media="screen"/>
+          th:href="@{'~/css/bootstrap.css'}" rel="stylesheet" media="screen"/>
 
     <link href="../static/css/AdminLTE.css"
-          th:href="@{css/AdminLTE.css}" rel="stylesheet" media="screen"/>
+          th:href="@{'~/css/AdminLTE.css'}" rel="stylesheet" media="screen"/>
 
     <link href="../static/css/index.css"
-          th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
+          th:href="@{'~/css/index.css'}" rel="stylesheet" media="screen"/>
 
     <script src="../static/js/highstock.js"
-            th:src="@{js/highstock.js}"></script>
+            th:src="@{'~/js/highstock.js'}"></script>
     <!--<script src="../static/js/highcharts.js"-->
             <!--th:src="@{js/highcharts.js}"></script>-->
     <script src="../static/js/exporting.js"
-            th:src="@{js/exporting.js}"></script>
+            th:src="@{'~/js/exporting.js'}"></script>
     <script src="../static/js/homeCharts.js"
-            th:src="@{js/homeCharts.js}"></script>
+            th:src="@{'~/js/homeCharts.js'}"></script>
 
 
     <!--external css-->
-    <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{css/font-awesome.css}"/>
+    <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{'~/css/font-awesome.css'}"/>
 
     <!-- Custom styles for this template -->
-    <link href="../static/css/style.css" rel="stylesheet" th:href="@{css/style.css}"/>
-    <link href="../static/css/style-responsive.css" rel="stylesheet" th:href="@{css/style-responsive.css}"/>
+    <link href="../static/css/style.css" rel="stylesheet" th:href="@{'~/css/style.css'}"/>
+    <link href="../static/css/style-responsive.css" rel="stylesheet" th:href="@{'~/css/style-responsive.css'}"/>
 
     <script th:inline="javascript">
         var username = [[${username}]];
@@ -74,7 +77,6 @@
                 <a href="#"><i class="fa fa-globe fa-lg"></i> Hosts <span class="arrow"></span></a>
             </li>
             <ul class="sub-menu collapse" id="service">
-                <a class="white-text" th:href="@{'addHostPage'}"><li>Add host</li></a>
                 <a class="white-text" th:href="hosts" ><li>Hosts</li></a>
             </ul>
 
@@ -84,21 +86,35 @@
                 </a>
             </li>
 
+
+
+
+
+
+
+            <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <!--<div sec:authorize="hasRole('ADMIN')">-->
+            <!--<div sec:authentication="firstName">-->
             <li data-toggle="collapse" data-target="#new" class="collapsed">
-                <a href="#"><i class="fa fa-cog fa-lg"></i> <s>Admin panel</s> <span class="arrow"></span></a>
-            </li>
-            <ul class="sub-menu collapse" id="new">
-                <a class="white-text" th:href="hostedit" ><li>Host Editor</li></a>
-                <!--<a class="white-text" th:href="optionsInstance">
-                    <li>Instance Metrics</li>
-                </a>-->
-                <a class="white-text" th:href="templMetrics" ><li>Template Metrics</li></a>
-                <!--<a class="white-text" th:href="optionsInstance" ><li>Instance Metrics</li></a>-->
-                <a class="white-text" th:href="accounts" ><li>Accounts</li></a>
-                <a class="white-text" th:href="alarms">
-                    <li>Alarms</li>
-                </a>
-            </ul>
+                    <a href="#"><i class="fa fa-cog fa-lg"></i> <s>Admin panel</s> <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="new">
+                    <a class="white-text" th:href="@{~/admin/hostedit}" ><li>Host Editor</li></a>
+                    <a class="white-text" th:href="@{~/admin/templMetrics}" ><li>Template Metrics</li></a>
+                    <a class="white-text" th:href="@{~/admin/accounts}" ><li>Accounts</li></a>
+                    <a class="white-text" th:href="@{~/admin/alarms}">
+                        <li>Alarms</li>
+                    </a>
+                </ul>
+            </div>
+            <!--</div>-->
+
+
+
+
+
+
+
 
 
             <li>
@@ -112,6 +128,40 @@
 </div>
 
 <div class="content">
+
+    <!--<div class="col-lg-10 margin-top-20">-->
+    <!--1.<div sec:authentication="name"></div> &lt;!&ndash; works fine &ndash;&gt;-->
+    <!--2.<div sec:authentication="principal.authorities"></div> &lt;!&ndash; works fine &ndash;&gt;-->
+
+    <!--3.<div  sec:authorize="isAuthenticated()" >true</div> &lt;!&ndash; works fine &ndash;&gt;-->
+    <!--&lt;!&ndash;4.<span th:text="${#authorization.expression('isAuthenticated()')}"></span> &lt;!&ndash; works fine &ndash;&gt;&ndash;&gt;-->
+
+    <!--&lt;!&ndash;5.<div th:text="${#vars.role_admin}"></div> &lt;!&ndash;Works fine &ndash;&gt;&ndash;&gt;-->
+    <!--6.<div  sec:authorize="${hasRole('ADMIN')}" > IS ADMIN </div> &lt;!&ndash; Doesnt work &ndash;&gt;-->
+    <!--7.<div  sec:authorize="${hasRole(#vars.role_admin)}" > IS ADMIN </div> &lt;!&ndash; Doesnt work &ndash;&gt;-->
+    <!--&lt;!&ndash;8.<div th:text="${#authorization.expression('hasRole(''ADMIN'')')} "></div> &lt;!&ndash; Doesnt work &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;9.<div th:text="${#authorization.expression('hasRole(#vars.role_admin)')}"></div> &lt;!&ndash; Doesnt work &ndash;&gt;&ndash;&gt;-->
+
+
+        <!--<div style="color:red">10.<div sec:authorize="hasRole('ROLE_ADMIN')">-->
+            <!--This content is only shown to administrators.-->
+        <!--</div>-->
+        <!--11.<div sec:authorize="hasRole('ROLE_USER')">-->
+            <!--This content is only shown to users.-->
+        <!--</div></div>-->
+        <!--<div style="color:red">-->
+            <!--12.<div sec:authorize="hasRole('ADMIN')">-->
+            <!--This content is only shown to administrators.-->
+        <!--</div>-->
+        <!--13.<div sec:authorize="hasRole('[USER]')">-->
+            <!--This content is only shown to users.-->
+        <!--</div></div>-->
+
+        <!--&lt;!&ndash;<div th:if="${hostId} != ${host.id}">&ndash;&gt;-->
+    <!--</div>-->
+
+
+
 
     <!--<div id="all" style="background-color: red">ALL</div>-->
 

@@ -1,11 +1,11 @@
 package net.web.controller;
 
-import net.core.alarms.AlarmsLog;
-import net.core.alarms.dao.AlarmsLogDao;
 import net.core.configurations.SSHConfiguration;
-import net.core.db.IMetricStorage;
+import net.core.IStorageController;
 import net.core.hibernate.services.HostService;
 import net.core.models.*;
+import net.core.tools.Authorization;
+import net.core.tools.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,11 +25,11 @@ import java.util.*;
 public class HostController {
 
     @Autowired
-    private IMetricStorage metricStorage;
+    private Authorization authentication;
+    @Autowired
+    private IStorageController metricStorage;
     @Autowired
     private HostService hosts;
-    @Autowired
-    private AlarmsLogDao alarmsLogDao;
 
 //    private static DateFormat dateFormat = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy");
 
@@ -49,16 +49,16 @@ public class HostController {
         return (int) metricStorage.getMetricNotResolvedLength(hostId);
     }
 
-    public List<MetricState> getMetricProblems(int hostId) throws SQLException, ParseException {
+    public List<MetricProblem> getMetricProblems(int hostId) throws SQLException, ParseException {
         return metricStorage.getMetricProblems(hostId);
     }
 
 
-    public List<MetricState> getMetricProblems(int hostId, int metricId) throws SQLException, ParseException {
+    public List<MetricProblem> getMetricProblems(int hostId, int metricId) throws SQLException, ParseException {
         return metricStorage.getMetricProblems(hostId, metricId);
     }
 
-    public List<MetricState> getMetricProblems() throws SQLException, ParseException {
+    public List<MetricProblem> getMetricProblems() throws SQLException, ParseException {
         return metricStorage.getMetricProblems();
     }
 
@@ -83,28 +83,12 @@ public class HostController {
     }
 
 
-    //TODO: alarms
-    @RequestMapping(value = "/getAlarms", method = RequestMethod.GET)
+    @RequestMapping(value = "/getHost", method = RequestMethod.GET)
     @ResponseBody
-    public List<AlarmsModel> getAlarms(@RequestParam("userName") String userName) {
-        List<AlarmsModel> alarmsModels = new ArrayList<>();
-        for (AlarmsLog g : alarmsLogDao.getByUser(userName)) {
-            alarmsModels.add(new AlarmsModel(g.getType(), g.getMessage(), g.getId()));
-        }
-        return alarmsModels;
+    public SSHConfiguration getHost(@RequestParam("id") int id) {
+        return hosts.get(id);
     }
 
-    @RequestMapping(value = "/dellAlarm", method = RequestMethod.GET)
-    @ResponseBody
-    public List<AlarmsModel> dellAlarm(@RequestParam("id") int id, @RequestParam("userName") String userName) {
-        AlarmsLog alarmsLog = alarmsLogDao.get(id);
-        alarmsLogDao.remove(alarmsLog);
-        List<AlarmsModel> alarmsModels = new ArrayList<>();
-        for (AlarmsLog g : alarmsLogDao.getByUser(userName)) {
-            alarmsModels.add(new AlarmsModel(g.getType(), g.getMessage(), g.getId()));
-        }
-        return alarmsModels;
-    }
 
 
     @RequestMapping(value = "/hosts")

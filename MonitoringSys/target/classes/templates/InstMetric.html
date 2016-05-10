@@ -3,42 +3,39 @@
 <head lang="en">
     <title>Spring Framework Guru</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
-
     <script src="../static/js/jquery-2.2.0.min.js"
-            th:src="@{js/jquery-2.2.0.min.js}"></script>
+            th:src="@{'~/js/jquery-2.2.0.min.js'}"></script>
     <script src="../static/js/bootstrap.min.js"
-            th:src="@{js/bootstrap.min.js}"></script>
+            th:src="@{'~/js/bootstrap.min.js'}"></script>
     <script src="../static/js/index.js"
-            th:src="@{js/index.js}"></script>
-
+            th:src="@{'~/js/index.js'}"></script>
     <link href="../static/css/bootstrap.css"
-          th:href="@{css/bootstrap.css}" rel="stylesheet" media="screen"/>
+          th:href="@{'~/css/bootstrap.css'}" rel="stylesheet" media="screen"/>
 
     <link href="../static/css/AdminLTE.css"
-          th:href="@{css/AdminLTE.css}" rel="stylesheet" media="screen"/>
+          th:href="@{'~/css/AdminLTE.css'}" rel="stylesheet" media="screen"/>
 
     <link href="../static/css/index.css"
-          th:href="@{css/index.css}" rel="stylesheet" media="screen"/>
+          th:href="@{'~/css/index.css'}" rel="stylesheet" media="screen"/>
 
     <script src="../static/js/highstock.js"
-            th:src="@{js/highstock.js}"></script>
+            th:src="@{'~/js/highstock.js'}"></script>
     <script src="../static/js/exporting.js"
-            th:src="@{js/exporting.js}"></script>
-    <script src="../static/js/dinamicChart.js"
-            th:src="@{js/dinamicChart.js}"></script>
-    <link href="../static/css/hosts-page.css"
-          th:href="@{css/hosts-page.css}" rel="stylesheet" media="screen"/>
-
-
+            th:src="@{'~/js/exporting.js'}"></script>
+    <link href="../static/css/bootstrap.css"
+          th:href="@{'~/css/bootstrap.css'}" rel="stylesheet" media="screen"/>
+    <link href="../static/css/AdminLTE.css"
+          th:href="@{'~/css/AdminLTE.css'}" rel="stylesheet" media="screen"/>
+    <link href="../static/css/index.css"
+          th:href="@{'~/css/index.css'}" rel="stylesheet" media="screen"/>
     <!--external css-->
-    <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{css/font-awesome.css}"/>
-
+    <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{'~/css/font-awesome.css'}"/>
     <!-- Custom styles for this template -->
-    <link href="../static/css/style.css" rel="stylesheet" th:href="@{css/style.css}"/>
-    <link href="../static/css/style-responsive.css" rel="stylesheet" th:href="@{css/style-responsive.css}"/>
+    <link href="../static/css/style.css" rel="stylesheet" th:href="@{'~/css/style.css'}"/>
+    <link href="../static/css/style-responsive.css" rel="stylesheet" th:href="@{'~/css/style-responsive.css'}"/>
 
-
+    <script src="../static/js/dinamicChart.js"
+            th:src="@{'~/js/dinamicChart.js'}"></script>
     <script th:inline="javascript">
         var InstanceMetric = [[${InstanceMetric}]];
         var host = [[${host}]];
@@ -101,14 +98,14 @@
                 <a href="#"><i class="fa fa-cog fa-lg"></i> <s>Admin panel</s> <span class="arrow"></span></a>
             </li>
             <ul class="sub-menu collapse" id="new">
-                <a class="white-text" th:href="hostedit" ><li>Host Editor</li></a>
+                <a class="white-text" th:href="@{~/admin/hostedit}" ><li>Host Editor</li></a>
                 <!--<a class="white-text" th:href="optionsInstance">
                     <li>Instance Metrics</li>
                 </a>-->
-                <a class="white-text" th:href="templMetrics" ><li>Template Metrics</li></a>
+                <a class="white-text" th:href="@{~/admin/templMetrics}" ><li>Template Metrics</li></a>
                 <!--<a class="white-text" th:href="optionsInstance" ><li>Instance Metrics</li></a>-->
-                <a class="white-text" th:href="accounts" ><li>Accounts</li></a>
-                <a class="white-text" th:href="alarms">
+                <a class="white-text" th:href="@{~/admin/accounts}" ><li>Accounts</li></a>
+                <a class="white-text" th:href="@{~/admin/alarms}">
                     <li>Alarms</li>
                 </a>
             </ul>

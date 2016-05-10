@@ -1,10 +1,10 @@
 package net.web.controller;
 
-import net.core.db.IMetricStorage;
+import net.core.IStorageController;
 import net.core.hibernate.services.HostService;
 import net.core.models.HostsState;
-import net.core.models.MetricState;
-import net.core.models.Problem;
+import net.core.models.MetricProblem;
+import net.core.models.ProblemRow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,7 +25,7 @@ import java.util.List;
 @Controller
 public class ProblemsController {
     @Autowired
-    private IMetricStorage metricStorage;
+    private IStorageController metricStorage;
     @Autowired
     private HostService hosts;
 
@@ -33,7 +33,7 @@ public class ProblemsController {
         return ((int) metricStorage.getMetricNotResolvedLength() + (int) metricStorage.getHostNotResolvedLength());
     }
 
-    public List<MetricState> getMetricProblems() throws SQLException, ParseException {
+    public List<MetricProblem> getMetricProblems() throws SQLException, ParseException {
         return metricStorage.getMetricProblems();
     }
 
@@ -97,8 +97,8 @@ public class ProblemsController {
 
     @RequestMapping(value = "/problem/metric", method = RequestMethod.GET)
     public String redirectToMetric(@RequestParam("problemId") int problemId,@RequestParam(required=false,defaultValue = "0") String startDate,@RequestParam(required=false,defaultValue = "0") String endDate) throws SQLException {
-        Problem problem = metricStorage.getProblem(problemId);
-        return "redirect:/host?hostId=" + problem.getHostId() + "&instMetrics=show&instMetricId=" + problem.getInstMetricId() + "&title=" + problem.getInstMetric()+"&startDate="+startDate+"&endDate="+endDate;
+        ProblemRow problemRow = metricStorage.getProblem(problemId);
+        return "redirect:/host?hostId=" + problemRow.getHostId() + "&instMetrics=show&instMetricId=" + problemRow.getInstMetricId() + "&title=" + problemRow.getInstMetric()+"&startDate="+startDate+"&endDate="+endDate;
     }
 
 }
