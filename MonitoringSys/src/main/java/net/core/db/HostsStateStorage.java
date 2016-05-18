@@ -23,11 +23,7 @@ import java.util.Map;
 public class HostsStateStorage implements IHostsStateStorage{
     private JdbcTemplate jdbcTemplateObject;
     @Autowired
-    private AlarmsLogDao alarmsLogDao;
-    @Autowired
     private HostService hosts;
-    @Autowired
-    private GenericAlarmDao genericAlarm;
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     @Autowired
     public HostsStateStorage(DataSource dataSource) {
@@ -35,18 +31,9 @@ public class HostsStateStorage implements IHostsStateStorage{
     }
 
     @Transactional
-    public boolean availableHost(long hostId) {//Нужен запрос на вывод состояния хоста
-        String sql = "SELECT id, resolved, start_datetime, \"end_datetime\", host  FROM \"HOST_STATE\" where host = ? and \"end_datetime\" is null";
-        boolean state = true;
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql,hostId);
-        if (rows.isEmpty()) {
-            return true;
-        } else {
-            for (Map row : rows) {
-                state = (boolean) row.get("resolved");
-            }
-        }
-        return state;
+    public boolean availableHost(long hostId) {//TODO: Нужен запрос на вывод состояния хоста
+        String sql = "SELECT COUNT(*)>0 FROM \"HOST_STATE\" where host = ? and \"end_datetime\" is null";
+        return !jdbcTemplateObject.queryForObject(sql, Boolean.class, hostId);
     }
     @Transactional
     public void setNotAvailableHost(String startTime, int host, String hostName) {
@@ -61,26 +48,20 @@ public class HostsStateStorage implements IHostsStateStorage{
     @Transactional
     public List<HostsState> getHostsProblems() throws ParseException {
         List<HostsState> hostsStateList = new ArrayList<>();
-        String sql = "SELECT id, resolved, start_datetime, end_datetime, host,host_name  FROM \"HOST_STATE\" where resolved = false";
+        String sql = "SELECT *  FROM \"HOST_STATE\" where resolved = false";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-        if (rows.isEmpty()) {
-            return hostsStateList;
-        } else {
-            int i = 0;
-            for (Map row : rows) {
-                HostsState hostStateTmp = new HostsState();
-                hostStateTmp.setId(Integer.parseInt(row.get("id").toString()));
-                hostStateTmp.setStart(dateFormat.parse(row.get("start_datetime").toString()));
-                if (row.get("end_datetime") != null) {
-                    hostStateTmp.setEnd(dateFormat.parse(row.get("end_datetime").toString()));
-                }
-                hostStateTmp.setResolved(Boolean.parseBoolean(row.get("resolved").toString()));
-                hostStateTmp.setHostId(Integer.parseInt(row.get("host").toString()));
-
-                hostStateTmp.setHostName(hosts.get(hostStateTmp.getHostId()).getName());
-                i++;
-                hostsStateList.add(hostStateTmp);
+        for (Map row : rows) {
+            HostsState hostStateTmp = new HostsState();
+            hostStateTmp.setId(Integer.parseInt(row.get("id").toString()));
+            hostStateTmp.setStart(dateFormat.parse(row.get("start_datetime").toString()));
+            if (row.get("end_datetime") != null) {
+                hostStateTmp.setEnd(dateFormat.parse(row.get("end_datetime").toString()));
             }
+            hostStateTmp.setResolved(Boolean.parseBoolean(row.get("resolved").toString()));
+            hostStateTmp.setHostId(Integer.parseInt(row.get("host").toString()));
+
+            hostStateTmp.setHostName(hosts.get(hostStateTmp.getHostId()).getName());
+            hostsStateList.add(hostStateTmp);
         }
         return hostsStateList;
     }
@@ -97,7 +78,7 @@ public class HostsStateStorage implements IHostsStateStorage{
     @Transactional
     public long getHostNotResolvedLength() {
         String sql = "SELECT COUNT(*)  FROM \"HOST_STATE\" where resolved = false";
-        return (long) jdbcTemplateObject.queryForMap(sql).get("COUNT");
+        return jdbcTemplateObject.queryForObject(sql, Long.class);
     }
 
 }

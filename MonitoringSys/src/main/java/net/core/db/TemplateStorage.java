@@ -34,7 +34,6 @@ public class TemplateStorage implements ITemplateStorage{
 
     @Transactional
     public TemplateMetric getTemplateMetric(int id) {
-//        TemplateMetric templateMetric = new TemplateMetric();
         String sql = "select * FROM \"TEMPLATE_METRICS\" where id =?";
         Map<String, Object> row = jdbcTemplateObject.queryForMap(sql, id);
         TemplateMetric templateMetric = getTemplate(row);

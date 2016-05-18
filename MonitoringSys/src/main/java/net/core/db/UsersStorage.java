@@ -22,7 +22,7 @@ public class UsersStorage implements IUsersStorage {
     @Transactional
     public List<User> getAllUsers() {
         List<User> usersList = new ArrayList<>();
-        String sql = "SELECT u.username , u.password, r.role,r.id FROM \"Users\" as u, \"Roles\" as r where u.username=r.username";
+        String sql = "SELECT * FROM \"Users\" as u, \"Roles\" as r where u.username=r.username";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
 
         for (Map row : rows) {
@@ -50,7 +50,7 @@ public class UsersStorage implements IUsersStorage {
 
     @Transactional
     public User getUsers(String userName) {
-        String sql = "SELECT u.username , u.password, r.role,r.id FROM \"Users\" as u join \"Roles\" as r on r.username=u.username where u.username = '"+userName+"'";
+        String sql = "SELECT * FROM \"Users\" as u join \"Roles\" as r on r.username=u.username where u.username = '"+userName+"'";
         Map<String, Object> row = jdbcTemplateObject.queryForMap(sql);
         User user = new User();
             user.setUsername((String)row.get("username"));
@@ -116,7 +116,6 @@ public class UsersStorage implements IUsersStorage {
     public long getCountRoles() {
         String sql = "select count(*) from \"Roles\" ";
         return jdbcTemplateObject.queryForObject(sql, Long.class);
-//        return (long)jdbcTemplateObject.queryForMap(sql).get("count");
     }
 
     @Transactional
