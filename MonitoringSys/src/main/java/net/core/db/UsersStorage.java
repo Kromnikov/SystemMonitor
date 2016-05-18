@@ -13,20 +13,12 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.sql.DataSource;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Repository
 public class UsersStorage implements IUsersStorage {
     private JdbcTemplate jdbcTemplateObject;
-    @Autowired
-    private AlarmsLogDao alarmsLogDao;
-    @Autowired
-    private HostService hosts;
-    @Autowired
-    private GenericAlarmDao genericAlarm;
-    private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     @Autowired
     public UsersStorage(DataSource dataSource) {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
@@ -52,16 +44,44 @@ public class UsersStorage implements IUsersStorage {
         return usersList;
     }
 
+//    @Transactional
+//    private List<String> getRoles1() {
+//        String sql = "SELECT distinct r.role FROM \"Roles\" as r ";
+//        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+//        List<String> stringList = new ArrayList<>();
+////        for (Map row : rows) {
+////            stringList.add((String)row.get("role"));
+////        }
+////
+////        return stringList;
+//
+////        List<String> a = (List<String>)rows.stream().map(Map::get,"role").collect(Collectors.toList());
+////        ArrayList a = rows.stream().filter(x -> x.get("role") != null).collect(Collectors.toCollection(ArrayList::new));
+////        List<String> b = (List<String>)a.stream().collect(Collectors.toList());
+//
+//
+////        List<Map> a = rows.stream().collect(Collectors.toList());
+////        List<String> b = new ArrayList<>();
+////                a.stream().forEach((String value) -> b.add(value));
+////
+////        List<String> c = a
+//
+//
+//        rows.stream()
+//                .forEach(x->stringList.add((String)x.get("role")));
+//        return  stringList;
+//
+////        return new ArrayList<>();//TODO: RETURN!
+//    }
+
+
     @Transactional
     public List<String> getRoles() {
         String sql = "SELECT distinct r.role FROM \"Roles\" as r ";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         List<String> stringList = new ArrayList<>();
-        for (Map row : rows) {
-            stringList.add((String)row.get("role"));
-        }
-
-        return stringList;
+        rows.stream().forEach(x->stringList.add((String)x.get("role")));
+        return  stringList;
     }
 
     @Transactional
@@ -75,18 +95,8 @@ public class UsersStorage implements IUsersStorage {
             user.setRole((String)row.get("role"));
             user.setRoleid((int)row.get("id"));
         }
-        user.setAllRoles(allRoles());
+        user.setAllRoles(getRoles());
         return user;
-    }
-    @Transactional
-    private List<String> allRoles() {
-        String sql = "SELECT distinct r.role FROM \"Roles\" as r ";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-        List<String> stringList = new ArrayList<>();
-        for (Map row : rows) {
-            stringList.add((String)row.get("role"));
-        }
-        return stringList;
     }
 
     @Transactional

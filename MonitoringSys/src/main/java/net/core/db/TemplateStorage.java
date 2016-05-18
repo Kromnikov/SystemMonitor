@@ -40,40 +40,27 @@ public class TemplateStorage implements ITemplateStorage{
 
     @Transactional
     public TemplateMetric getTemplateMetric(int id) {
-        TemplateMetric templateMetric = new TemplateMetric();
+//        TemplateMetric templateMetric = new TemplateMetric();
         String sql = "select * FROM \"TEMPLATE_METRICS\" where id =?";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql,id);
-        for (Map row : rows) {
-//            templateMetric.setId((int) row.get("id"));
-//            templateMetric.setTitle((String) row.get("title"));
-//            templateMetric.setCommand((String) row.get("query"));
-//            if(row.get("min_value")!=null)
-//                templateMetric.setMinValue((double) row.get("min_value"));
-//            if(row.get("max_value")!=null)
-//                templateMetric.setMaxValue((double) row.get("max_value"));
-            templateMetric = getTemplate(row);
-        }
+        Map<String, Object> row = jdbcTemplateObject.queryForMap(sql, id);
+        TemplateMetric templateMetric = getTemplate(row);
+//        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql,id);
+//        for (Map row : rows) {
+//            templateMetric = getTemplate(row);
+//        }
         return templateMetric;
     }
 
     @Transactional
     public List<TemplateMetric> getTemplatMetrics()  {
-        List<TemplateMetric> metrics1 = new ArrayList<>();
+        List<TemplateMetric> templateMetrics = new ArrayList<>();
         String sql = "SELECT * FROM \"TEMPLATE_METRICS\"";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-        for (Map row : rows) {
-//            TemplateMetric templateMetric = new TemplateMetric();
-//            templateMetric.setId((int) row.get("id"));
-//            templateMetric.setTitle((String) row.get("title"));
-//            templateMetric.setCommand((String) row.get("query"));
-//            if(row.get("min_value")!=null)
-//                templateMetric.setMinValue((double) row.get("min_value"));
-//            if(row.get("max_value")!=null)
-//                templateMetric.setMaxValue((double) row.get("max_value"));
-//            metrics1.add(templateMetric);
-            metrics1.add(getTemplate(row));
-        }
-        return metrics1;
+        rows.stream().forEach(row -> templateMetrics.add(getTemplate(row)));
+//        for (Map row : rows) {
+//            templateMetrics.add(getTemplate(row));
+//        }
+        return templateMetrics;
     }
 
     private TemplateMetric getTemplate(Map row) {
