@@ -26,13 +26,6 @@ public class InstanceStorage implements IInstanceStorage{
 
     private JdbcTemplate jdbcTemplateObject;
     @Autowired
-    private AlarmsLogDao alarmsLogDao;
-    @Autowired
-    private HostService hosts;
-    @Autowired
-    private GenericAlarmDao genericAlarm;
-    private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    @Autowired
     public InstanceStorage(DataSource dataSource) {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
@@ -47,7 +40,7 @@ public class InstanceStorage implements IInstanceStorage{
     @Transactional
     public List<InstanceMetric> getInstMetrics(int hostId)  {
         List<InstanceMetric> instanceMetrics = new ArrayList<>();
-        String sql = "SELECT id, templ_metric, title, query, min_value, max_value, host  FROM \"INSTANCE_METRIC\" where host =?";
+        String sql = "SELECT *  FROM \"INSTANCE_METRIC\" where host =?";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql,hostId);
         for (Map row : rows) {
             InstanceMetric instanceMetric = new InstanceMetric();
@@ -66,9 +59,9 @@ public class InstanceStorage implements IInstanceStorage{
     @Transactional
     public InstanceMetric getInstMetric(int instMetricId)  {
         InstanceMetric instanceMetric = new InstanceMetric();
-        String sql = "SELECT id, templ_metric, title, query, min_value, max_value, host  FROM \"INSTANCE_METRIC\" where id =?";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql,instMetricId);
-        for (Map row : rows) {
+        String sql = "SELECT *  FROM \"INSTANCE_METRIC\" where id =?";
+        Map<String, Object> row = jdbcTemplateObject.queryForMap(sql,instMetricId);
+
             instanceMetric.setId((int) row.get("id"));
             instanceMetric.setHostId((int) row.get("host"));
             instanceMetric.setTempMetrcId((int) row.get("templ_metric"));
@@ -76,7 +69,7 @@ public class InstanceStorage implements IInstanceStorage{
             instanceMetric.setMaxValue((double) row.get("max_value"));
             instanceMetric.setCommand((String) row.get("query"));
             instanceMetric.setTitle((String) row.get("title"));
-        }
+
         return instanceMetric;
     }
 

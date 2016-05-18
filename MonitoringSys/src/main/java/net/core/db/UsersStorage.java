@@ -41,22 +41,24 @@ public class UsersStorage implements IUsersStorage {
         String sql = "SELECT distinct r.role FROM \"Roles\" as r ";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         List<String> stringList = new ArrayList<>();
-        rows.stream().forEach(x->stringList.add((String)x.get("role")));
+        rows
+                .stream()
+                .forEach(x -> stringList.add((String) x.get("role")));
+
         return  stringList;
     }
 
     @Transactional
     public User getUsers(String userName) {
         String sql = "SELECT u.username , u.password, r.role,r.id FROM \"Users\" as u join \"Roles\" as r on r.username=u.username where u.username = '"+userName+"'";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+        Map<String, Object> row = jdbcTemplateObject.queryForMap(sql);
         User user = new User();
-        for (Map row : rows) {
             user.setUsername((String)row.get("username"));
-            user.setPassword((String)row.get("password"));
+            user.setPassword((String) row.get("password"));
             user.setRole((String)row.get("role"));
             user.setRoleid((int)row.get("id"));
-        }
-        user.setAllRoles(getRoles());
+            user.setAllRoles(getRoles());
+
         return user;
     }
 
@@ -113,7 +115,8 @@ public class UsersStorage implements IUsersStorage {
     @Transactional
     public long getCountRoles() {
         String sql = "select count(*) from \"Roles\" ";
-        return (long)jdbcTemplateObject.queryForMap(sql).get("count");
+        return jdbcTemplateObject.queryForObject(sql, Long.class);
+//        return (long)jdbcTemplateObject.queryForMap(sql).get("count");
     }
 
     @Transactional
