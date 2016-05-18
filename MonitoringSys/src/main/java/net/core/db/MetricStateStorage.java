@@ -26,9 +26,6 @@ public class MetricStateStorage implements IMetricStateStorage{
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
 
-
-
-
     @Transactional //MAX
     public boolean isMetricHasProblem(long instMetric) {
         String sql = "SELECT COUNT(*)>0 FROM \"METRIC_STATE\" where  inst_metric =? and \"end_datetime\" is null ";

@@ -24,13 +24,9 @@ public class MetricProblemStorage implements IMetricProblemStorage {
 
     @Autowired
     private IInstanceStorage instanceStorage;
+    
     private JdbcTemplate jdbcTemplateObject;
-    @Autowired
-    private AlarmsLogDao alarmsLogDao;
-    @Autowired
-    private HostService hosts;
-    @Autowired
-    private GenericAlarmDao genericAlarm;
+    
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Autowired
@@ -38,14 +34,17 @@ public class MetricProblemStorage implements IMetricProblemStorage {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
 
-    private MetricProblem getMetricProblem(Map row) throws ParseException {
+    private MetricProblem getMetricProblem(Map row) {
         MetricProblem metricProblemTmp = new MetricProblem();
         metricProblemTmp.setId(Integer.parseInt(row.get("id").toString()));
         metricProblemTmp.setValue((row.get("state").toString()));
-        metricProblemTmp.setStart(dateFormat.parse(row.get("start_datetime").toString()));
+        try {
+            metricProblemTmp.setStart(dateFormat.parse(row.get("start_datetime").toString()));
         if (row.get("end_datetime") != null) {
             metricProblemTmp.setEnd(dateFormat.parse(row.get("end_datetime").toString()));
-        } else {
+        }
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
         metricProblemTmp.setInstMetric(instanceStorage.getInstMetric(Integer.parseInt(row.get("inst_metric").toString())).getTitle());
         metricProblemTmp.setResolved(Boolean.parseBoolean(row.get("resolved").toString()));
@@ -56,57 +55,30 @@ public class MetricProblemStorage implements IMetricProblemStorage {
     @Transactional
     public List<MetricProblem> getMetricProblems(int hostId) throws ParseException {
         List<MetricProblem> metricProblemList = new ArrayList<>();
-        String sql = "SELECT id, state, start_datetime, end_datetime, inst_metric, resolved FROM \"METRIC_STATE\" where resolved = false and host_id=?";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql, hostId);
-        if (rows.isEmpty()) {
-            return metricProblemList;
-        } else {
-            for (Map row : rows) {
-//                MetricProblem metricProblemTmp = new MetricProblem();
-//                metricProblemTmp.setId(Integer.parseInt(row.get("id").toString()));
-//                metricProblemTmp.setValue((row.get("state").toString()));
-//                metricProblemTmp.setStart(dateFormat.parse(row.get("start_datetime").toString()));
-//                if (row.get("end_datetime") != null) {
-//                    metricProblemTmp.setEnd(dateFormat.parse(row.get("end_datetime").toString()));
-//                } else {
-//                }
-////                metricProblemTmp.setInstMetric(   getInstMetric(Integer.parseInt(row.get("inst_metric").toString())).getTitle());
-//                metricProblemTmp.setInstMetric(instanceStorage.getInstMetric(Integer.parseInt(row.get("inst_metric").toString())).getTitle());
-//                metricProblemTmp.setResolved(Boolean.parseBoolean(row.get("resolved").toString()));
-//                i++;
-                metricProblemList.add(getMetricProblem(row));
-            }
-        }
+        String sql = "SELECT * FROM \"METRIC_STATE\" where resolved = false and host_id=?";
+        jdbcTemplateObject.queryForList(sql, hostId)
+                .stream()
+                .forEach(item->metricProblemList.add(getMetricProblem(item)));
         return metricProblemList;
     }
 
     @Transactional
     public List<MetricProblem> getMetricProblems(int hostId, int metricId) throws ParseException {
         List<MetricProblem> metricProblemList = new ArrayList<>();
-        String sql = "SELECT id, state, start_datetime, end_datetime, inst_metric, resolved FROM \"METRIC_STATE\" where resolved = false and inst_metric=?";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql, metricId);
-        if (rows.isEmpty()) {
-            return metricProblemList;
-        } else {
-            for (Map row : rows) {
-                metricProblemList.add(getMetricProblem(row));
-            }
-        }
+        String sql = "SELECT * FROM \"METRIC_STATE\" where resolved = false and inst_metric=?";
+        jdbcTemplateObject.queryForList(sql, metricId)
+                .stream()
+                .forEach(item->metricProblemList.add(getMetricProblem(item)));
         return metricProblemList;
     }
 
     @Transactional
     public List<MetricProblem> getMetricProblems() throws ParseException {
         List<MetricProblem> metricProblemList = new ArrayList<>();
-        String sql = "SELECT id, state, start_datetime, end_datetime, inst_metric, resolved  FROM \"METRIC_STATE\" where resolved = false";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-        if (rows.isEmpty()) {
-            return metricProblemList;
-        } else {
-            for (Map row : rows) {
-                metricProblemList.add(getMetricProblem(row));
-            }
-        }
+        String sql = "SELECT *  FROM \"METRIC_STATE\" where resolved = false";
+        jdbcTemplateObject.queryForList(sql)
+                .stream()
+                .forEach(item->metricProblemList.add(getMetricProblem(item)));
         return metricProblemList;
     }
 
