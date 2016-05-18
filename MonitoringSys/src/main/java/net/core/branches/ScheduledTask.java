@@ -49,14 +49,6 @@ public class ScheduledTask extends TimerTask {
     public void run() {
         System.out.println("ScheduledTask");
 
-//        routeAlarms.sendMessage(genericAlarm.getByMetric(12), "Метрика lol");
-
-//        routeAlarms.sendMessage(genericAlarm.getByHost(1));
-//        System.out.println(alarmsLogDao.get(1).getMessage());
-//        for (AlarmsLog g : alarmsLogDao.getByUser("anton")) {
-//            System.out.println(g.getMessage());
-//        }
-
         try {
             for (SSHConfiguration host : hosts.getAll()) {
                 SSHAgent sshAgent = new SSHAgent(host);
