@@ -31,7 +31,7 @@ public class HostsStateStorage implements IHostsStateStorage{
     }
 
     @Transactional
-    public boolean availableHost(long hostId) {//TODO: Нужен запрос на вывод состояния хоста
+    public boolean availableHost(long hostId) {
         String sql = "SELECT COUNT(*)>0 FROM \"HOST_STATE\" where host = ? and \"end_datetime\" is null";
         return !jdbcTemplateObject.queryForObject(sql, Boolean.class, hostId);
     }
