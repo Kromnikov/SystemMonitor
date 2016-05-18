@@ -19,14 +19,8 @@ import java.util.Map;
 
 @Repository
 public class TemplateStorage implements ITemplateStorage{
+
     private JdbcTemplate jdbcTemplateObject;
-    @Autowired
-    private AlarmsLogDao alarmsLogDao;
-    @Autowired
-    private HostService hosts;
-    @Autowired
-    private GenericAlarmDao genericAlarm;
-    private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     @Autowired
     public TemplateStorage(DataSource dataSource) {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
@@ -44,10 +38,6 @@ public class TemplateStorage implements ITemplateStorage{
         String sql = "select * FROM \"TEMPLATE_METRICS\" where id =?";
         Map<String, Object> row = jdbcTemplateObject.queryForMap(sql, id);
         TemplateMetric templateMetric = getTemplate(row);
-//        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql,id);
-//        for (Map row : rows) {
-//            templateMetric = getTemplate(row);
-//        }
         return templateMetric;
     }
 
@@ -57,9 +47,6 @@ public class TemplateStorage implements ITemplateStorage{
         String sql = "SELECT * FROM \"TEMPLATE_METRICS\"";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
         rows.stream().forEach(row -> templateMetrics.add(getTemplate(row)));
-//        for (Map row : rows) {
-//            templateMetrics.add(getTemplate(row));
-//        }
         return templateMetrics;
     }
 

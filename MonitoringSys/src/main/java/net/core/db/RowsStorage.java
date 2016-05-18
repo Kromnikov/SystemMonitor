@@ -22,16 +22,9 @@ import java.util.Map;
 
 @Repository
 public class RowsStorage implements IRowsStorage {
-    @Autowired
-    private IUsersStorage usersStorage;
-    @Autowired
-    private IInstanceStorage instanceStorage;
-
     private JdbcTemplate jdbcTemplateObject;
     @Autowired
     private HostService hosts;
-    @Autowired
-    private GenericAlarmDao genericAlarm;
     @Autowired
     public RowsStorage(DataSource dataSource) {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
@@ -91,8 +84,8 @@ public class RowsStorage implements IRowsStorage {
     @Transactional
     public List<MetricRow> getMetricRow(int hostId)  {
         List<MetricRow> MetricRows = new ArrayList<>();
-        String sql = "select id,title ,(select value from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as value ,(select date_time from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as date ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id ) as countProblems ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id and (\"end_datetime\" is null and \"start_datetime\" is not null)) as status  from \"INSTANCE_METRIC\" as im where host = " + hostId;
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
+        String sql = "select id,title ,(select value from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as value ,(select date_time from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as date ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id ) as countProblems ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id and (\"end_datetime\" is null and \"start_datetime\" is not null)) as status  from \"INSTANCE_METRIC\" as im where host = ?";
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql,hostId);
         for (Map row : rows) {
             MetricRow metricrow = new MetricRow();
             metricrow.setId(Integer.parseInt(row.get("id").toString()));
@@ -110,16 +103,13 @@ public class RowsStorage implements IRowsStorage {
     @Transactional
     public ProblemRow getProblem(int problemId)  {
         ProblemRow problemRow = new ProblemRow();
-//        getInstMetric(problemId);
-        String sql = "SELECT i.title , a.host_id, a.inst_metric,a.start_datetime,a.end_datetime FROM \"METRIC_STATE\" as a , \"INSTANCE_METRIC\" as i where a.id = " + problemId + " and i.id = a.inst_metric";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-        for (Map row : rows) {
+        String sql = "SELECT i.title , a.host_id, a.inst_metric,a.start_datetime,a.end_datetime FROM \"METRIC_STATE\" as a , \"INSTANCE_METRIC\" as i where a.id = ? and i.id = a.inst_metric";
+        Map<String, Object> row = jdbcTemplateObject.queryForMap(sql,problemId);
             problemRow.setHostId((int) row.get("host_id"));
             problemRow.setInstMetricId((int) row.get("inst_metric"));
             problemRow.setInstMetric((String) row.get("title"));
-            problemRow.setStartDate(((java.sql.Timestamp) rows.get(0).get("start_datetime")));
-            problemRow.setEndDate(((java.sql.Timestamp) rows.get(0).get("end_datetime")));
-        }
+            problemRow.setStartDate(((java.sql.Timestamp) row.get("start_datetime")));
+            problemRow.setEndDate(((java.sql.Timestamp) row.get("end_datetime")));
         return problemRow;
     }
 }

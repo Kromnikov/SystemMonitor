@@ -1,9 +1,6 @@
 package net.core.db;
 
-import net.core.alarms.dao.AlarmsLogDao;
-import net.core.alarms.dao.GenericAlarmDao;
 import net.core.db.interfaces.IUsersStorage;
-import net.core.hibernate.services.HostService;
 import net.core.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,10 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Repository
 public class UsersStorage implements IUsersStorage {
@@ -23,8 +17,6 @@ public class UsersStorage implements IUsersStorage {
     public UsersStorage(DataSource dataSource) {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
-
-
 
 
     @Transactional
@@ -43,37 +35,6 @@ public class UsersStorage implements IUsersStorage {
         }
         return usersList;
     }
-
-//    @Transactional
-//    private List<String> getRoles1() {
-//        String sql = "SELECT distinct r.role FROM \"Roles\" as r ";
-//        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-//        List<String> stringList = new ArrayList<>();
-////        for (Map row : rows) {
-////            stringList.add((String)row.get("role"));
-////        }
-////
-////        return stringList;
-//
-////        List<String> a = (List<String>)rows.stream().map(Map::get,"role").collect(Collectors.toList());
-////        ArrayList a = rows.stream().filter(x -> x.get("role") != null).collect(Collectors.toCollection(ArrayList::new));
-////        List<String> b = (List<String>)a.stream().collect(Collectors.toList());
-//
-//
-////        List<Map> a = rows.stream().collect(Collectors.toList());
-////        List<String> b = new ArrayList<>();
-////                a.stream().forEach((String value) -> b.add(value));
-////
-////        List<String> c = a
-//
-//
-//        rows.stream()
-//                .forEach(x->stringList.add((String)x.get("role")));
-//        return  stringList;
-//
-////        return new ArrayList<>();//TODO: RETURN!
-//    }
-
 
     @Transactional
     public List<String> getRoles() {
