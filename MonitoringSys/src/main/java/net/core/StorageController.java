@@ -328,10 +328,6 @@ public class StorageController implements IStorageController {
         return chartStorage.getLastDate(hostId, metricId);
     }
 
-    @Transactional
-    public GraphPoints getAllValues(int host_id, int metricId) {
-        return chartStorage.getAllValues(host_id, metricId);
-    }
 
     @Transactional
     public GraphPoints getValuesLastDay(int host_id, int metricId, Date dateTime) throws ParseException {
@@ -339,7 +335,7 @@ public class StorageController implements IStorageController {
     }
 
     @Transactional
-    public GraphPoints getValuesSixMonth(int host_id, int metricId, Date dateTime) {
+    public GraphPoints getValuesSixMonth(int host_id, int metricId, Date dateTime) throws ParseException {
         return chartStorage.getValuesSixMonth(host_id, metricId, dateTime);
     }
 
@@ -354,7 +350,7 @@ public class StorageController implements IStorageController {
     }
 
     @Transactional
-    public GraphPoints getValuesTheeDays(int host_id, int metricId, Date dateTime) {
+    public GraphPoints getValuesTheeDays(int host_id, int metricId, Date dateTime) throws ParseException {
         return chartStorage.getValuesTheeDays(host_id, metricId, dateTime);
     }
 

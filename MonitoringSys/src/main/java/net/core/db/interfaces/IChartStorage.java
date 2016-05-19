@@ -11,17 +11,16 @@ public interface IChartStorage {
 
     public Date getLastDate(int hostId, int metricId);
 
-    public GraphPoints getAllValues(int host_id, int metricId);
 
     public GraphPoints getValuesLastDay(int host_id, int metricId, Date dateTime) throws ParseException;
 
-    public GraphPoints getValuesSixMonth(int host_id, int metricId, Date dateTime);
+    public GraphPoints getValuesSixMonth(int host_id, int metricId, Date dateTime) throws ParseException;
 
     public GraphPoints getValuesYear(int host_id, int metricId, Date dateTime) throws ParseException;
 
     public GraphPoints getValuesMonth(int host_id, int metricId, Date dateTime) throws ParseException;
 
-    public GraphPoints getValuesTheeDays(int host_id, int metricId, Date dateTime);
+    public GraphPoints getValuesTheeDays(int host_id, int metricId, Date dateTime) throws ParseException;
 
     public GraphPoints getValuesDay(int host_id, int metricId, Date dateTime) throws ParseException;
 

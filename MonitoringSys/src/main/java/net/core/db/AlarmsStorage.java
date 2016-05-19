@@ -98,8 +98,6 @@ public class AlarmsStorage implements IAlarmsStorage {
 
     @Transactional
     public AlarmRow getAlarm(int id)  {
-//        String sql = "";
-//        List<Map<String, Object>> rows;
         GenericAlarm ga = genericAlarm.get(id);
 
         SSHConfiguration host = new SSHConfiguration();
@@ -120,18 +118,10 @@ public class AlarmsStorage implements IAlarmsStorage {
         alarmRow.setToUser(ga.getToUser());
         alarmRow.setUser(ga.getUsername());
 
-
-//        sql = "select title,host from \"INSTANCE_METRIC\" WHERE id=?";
-//        rows = jdbcTemplateObject.queryForList(sql,alarmRow.getServiceId());
-//        for (Map row : rows) {
-//            alarmRow.setServiceTitle((String) row.get("title"));
-//            alarmRow.setFromHost(hosts.get((int) row.get("host")).getName());
-//        }
         InstanceMetric instanceMetric = instanceStorage.getInstMetric(alarmRow.getServiceId());
         alarmRow.setServiceTitle(instanceMetric.getTitle());
         alarmRow.setFromHost(hosts.get(instanceMetric.getHostId()).getName());
 
-//        alarmRow.setInstanceMetrics(getInstMetrics(host.getId()));
         alarmRow.setInstanceMetrics(instanceStorage.getInstMetrics(host.getId()));
         alarmRow.setHosts(hosts.getAll());
 
@@ -142,12 +132,6 @@ public class AlarmsStorage implements IAlarmsStorage {
             stringList.add(user.getUsername());
         }
 
-//        sql = "SELECT username FROM \"Users\"";
-//        rows = jdbcTemplateObject.queryForList(sql);
-//        List<String> stringList = new ArrayList<>();
-//        for (Map row : rows) {
-//            stringList.add((String)row.get("username"));
-//        }
         alarmRow.setAllUsers(stringList);
 
         return alarmRow;
@@ -180,8 +164,6 @@ public class AlarmsStorage implements IAlarmsStorage {
         genericAlarm1.setToUser(toUser);
         genericAlarm1.setUsername(user);
         genericAlarm.save(genericAlarm1);
-//        String sql = "INSERT INTO genericalarm (serviceid, hostid, toemail, touser,  username)    VALUES (?,?,?,?,?)";
-//        jdbcTemplateObject.update(sql, serviseId, hostId, toEmail, toUser, user);
     }
     @Transactional
     public void dellAlarm(int id) {

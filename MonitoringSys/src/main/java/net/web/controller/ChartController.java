@@ -26,11 +26,6 @@ public class ChartController {
 
     //TODO ajax charts
 
-    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
-    @ResponseBody
-    public GraphPoints getAll(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId) throws JsonProcessingException {
-        return metricStorage.getAllValues(hostId,instMetricId);
-    }
 
     @RequestMapping(value = "/getValuesYear", method = RequestMethod.GET)
     @ResponseBody
@@ -49,7 +44,7 @@ public class ChartController {
 
     @RequestMapping(value = "/getValuesSixMonth", method = RequestMethod.GET)
     @ResponseBody
-    public GraphPoints getValuesSixMonth(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException {
+    public GraphPoints getValuesSixMonth(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException, ParseException {
         GraphPoints values = null;
         if (date == 0) {
             values = metricStorage.getValuesSixMonth(hostId, instMetricId,  metricStorage.getLastDate(hostId, instMetricId));
@@ -79,7 +74,7 @@ public class ChartController {
 
     @RequestMapping(value = "/getValuesTheeDays", method = RequestMethod.GET)
     @ResponseBody
-    public GraphPoints getValuesTheeDays(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException {
+    public GraphPoints getValuesTheeDays(@RequestParam("hostId") int hostId, @RequestParam("instMetricId") int instMetricId, @RequestParam(required = false, defaultValue = "0") long date, @RequestParam(required = false, defaultValue = "0") long endDate) throws JsonProcessingException, ParseException {
         GraphPoints values = null;
         if (date == 0) {
             values = metricStorage.getValuesTheeDays(hostId, instMetricId,  metricStorage.getLastDate(hostId, instMetricId));

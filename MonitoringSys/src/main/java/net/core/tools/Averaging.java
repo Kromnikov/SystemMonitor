@@ -14,6 +14,7 @@ public class Averaging {
 
     static public Map<Long, Object> getValues(List<Map<String, Object>> rows,Date nDate,String rout) throws ParseException {
         Map<Long, Object> map = new HashMap<>();
+        if(rows.size()>0){
         int minutesCount=0,hourCounts=0,monthCount=0,yearCount=0,counter=1;
         double sumValues=0,sumValues1=0;
         long x=0,prevX=0,Dif=0,defTime= 10*1000
@@ -143,8 +144,6 @@ public class Averaging {
                                     if (startTime < prevX) {
                                         startTime += defTime;
                                     } else {
-//                                        System.out.println("startTime= " + (new Date(startTime)));
-//                                        System.out.println("prevX= " + (new Date(prevX)));
                                         sumValues += (double) prevY;
                                         minutesCount++;
                                         prevY = (double) rows.get(counter).get("value");
@@ -254,6 +253,7 @@ public class Averaging {
                     pStartTime = startTime;
                 }
             }
+        }
         }
 
         return map;
