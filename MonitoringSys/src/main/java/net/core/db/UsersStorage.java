@@ -9,10 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Repository
 public class UsersStorage implements IUsersStorage {
     private JdbcTemplate jdbcTemplateObject;
+
     @Autowired
     public UsersStorage(DataSource dataSource) {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
@@ -27,7 +29,7 @@ public class UsersStorage implements IUsersStorage {
 
         for (Map row : rows) {
             User user = new User();
-            user.setUsername((String)row.get("username"));
+            user.setUsername((String) row.get("username"));
             user.setPassword((String) row.get("password"));
             user.setRole((String) row.get("role"));
             user.setRoleid((int) row.get("id"));
@@ -40,76 +42,77 @@ public class UsersStorage implements IUsersStorage {
     public List<String> getRoles() {
         String sql = "SELECT distinct r.role FROM \"Roles\" as r ";
         List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-        List<String> stringList = new ArrayList<>();
-        rows
-                .stream()
-                .forEach(x -> stringList.add((String) x.get("role")));
-
-        return  stringList;
+        return rows.stream().map(item -> (String) item.get("role")).collect(Collectors.toList());
     }
 
     @Transactional
     public User getUsers(String userName) {
-        String sql = "SELECT * FROM \"Users\" as u join \"Roles\" as r on r.username=u.username where u.username = '"+userName+"'";
-        Map<String, Object> row = jdbcTemplateObject.queryForMap(sql);
+        String sql = "SELECT * FROM \"Users\" as u join \"Roles\" as r on r.username=u.username where u.username = ?";
+        Map<String, Object> row = jdbcTemplateObject.queryForMap(sql,userName);
         User user = new User();
-            user.setUsername((String)row.get("username"));
-            user.setPassword((String) row.get("password"));
-            user.setRole((String)row.get("role"));
-            user.setRoleid((int)row.get("id"));
-            user.setAllRoles(getRoles());
+        user.setUsername((String) row.get("username"));
+        user.setPassword((String) row.get("password"));
+        user.setRole((String) row.get("role"));
+        user.setRoleid((int) row.get("id"));
+        user.setAllRoles(getRoles());
 
         return user;
     }
 
     @Transactional
-    public void updateUser(String username,String password,String role)  {
-        updateRole(username,role);
-        updateUser(username,password);
+    public void updateUser(String username, String password, String role) {
+        updateRole(username, role);
+        updateUser(username, password);
     }
+
     @Transactional
-    private void updateRole(String username,String role) {
-        String sql ="UPDATE \"Roles\"   SET role='"+role+"', username='"+username+"' WHERE username='"+username+"'";
-        jdbcTemplateObject.update(sql);
+    private void updateRole(String username, String role) {
+        String sql = "UPDATE \"Roles\"   SET role=?, username=? WHERE username=?";
+        jdbcTemplateObject.update(sql,role,username,username);
     }
+
     @Transactional
-    private void updateUser(String username,String password) {
-        String  sql ="UPDATE \"Users\" SET username='"+username+"', password='"+password+"' WHERE username='"+username+"'";
-        jdbcTemplateObject.update(sql);
+    private void updateUser(String username, String password) {
+        String sql = "UPDATE \"Users\" SET username=?, password=? WHERE username=?";
+        jdbcTemplateObject.update(sql,username,password,username);
     }
 
 
     @Transactional
-    public void addUser(String username,String password,String role)  {
-        insertUser(username,password);
-        insertRole(username,role);
+    public void addUser(String username, String password, String role) {
+        insertUser(username, password);
+        insertRole(username, role);
     }
+
     @Transactional
-    private void insertRole(String username,String role) {
-        String  sql ="INSERT INTO \"Roles\" (role, username)   VALUES (?,?)";
-        jdbcTemplateObject.update(sql,role,username);
+    private void insertRole(String username, String role) {
+        String sql = "INSERT INTO \"Roles\" (role, username)   VALUES (?,?)";
+        jdbcTemplateObject.update(sql, role, username);
     }
+
     @Transactional
-    private void insertUser(String username,String password) {
-        String sql ="INSERT INTO  \"Users\" (username, password, enabled) VALUES (?,?,?)";
-        jdbcTemplateObject.update(sql,username,password,true);
+    private void insertUser(String username, String password) {
+        String sql = "INSERT INTO  \"Users\" (username, password, enabled) VALUES (?,?,?)";
+        jdbcTemplateObject.update(sql, username, password, true);
     }
 
 
     @Transactional
-    public void dellUser(String username)  {
+    public void dellUser(String username) {
         dellRole(username);
         dellUsers(username);
     }
+
     @Transactional
     private void dellRole(String username) {
-        String sql ="DELETE FROM \"Roles\" where username=?";
-        jdbcTemplateObject.update(sql,username);
+        String sql = "DELETE FROM \"Roles\" where username=?";
+        jdbcTemplateObject.update(sql, username);
     }
+
     @Transactional
     private void dellUsers(String username) {
-        String sql ="DELETE FROM \"Users\" where username=?";
-        jdbcTemplateObject.update(sql,username);
+        String sql = "DELETE FROM \"Users\" where username=?";
+        jdbcTemplateObject.update(sql, username);
     }
 
     @Transactional
@@ -119,8 +122,8 @@ public class UsersStorage implements IUsersStorage {
     }
 
     @Transactional
-    public void setNewUserRole(String username,int roleid) {
-        String sql ="UPDATE \"Users\" set  roleid=? WHERE username=?";
-        jdbcTemplateObject.update(sql,roleid,username);
+    public void setNewUserRole(String username, int roleid) {
+        String sql = "UPDATE \"Users\" set  roleid=? WHERE username=?";
+        jdbcTemplateObject.update(sql, roleid, username);
     }
 }

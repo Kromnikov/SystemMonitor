@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class AlarmsStorage implements IAlarmsStorage {
@@ -44,14 +45,11 @@ public class AlarmsStorage implements IAlarmsStorage {
             GenericAlarmsRow genericAlarmsRow = new GenericAlarmsRow();
             genericAlarmsRow.setType(ga.getType());
             genericAlarmsRow.setMessage(ga.getMessage());
-            if(ga.getHostId()>-1) {
+            if(ga.getHostId()>Integer.MIN_VALUE) {
                 genericAlarmsRow.setHostId(ga.getHostId());
                 genericAlarmsRow.setHostName(hosts.get(genericAlarmsRow.getHostId()).getName());
             }
             genericAlarmsRow.setId(ga.getId());
-            {
-                if (ga.getServiceId() > -1);
-            }
             genericAlarmsRow.setServiceId(ga.getServiceId());
             genericAlarmsRow.setToEmail(ga.getToEmail());
             genericAlarmsRow.setToUser(ga.getToUser());
@@ -73,14 +71,11 @@ public class AlarmsStorage implements IAlarmsStorage {
             GenericAlarmsRow genericAlarmsRow = new GenericAlarmsRow();
             genericAlarmsRow.setType(ga.getType());
             genericAlarmsRow.setMessage(ga.getMessage());
-            if(ga.getHostId()>-1) {
+            if(ga.getHostId()>Integer.MIN_VALUE) {
                 genericAlarmsRow.setHostId(ga.getHostId());
                 genericAlarmsRow.setHostName(hosts.get(genericAlarmsRow.getHostId()).getName());
             }
             genericAlarmsRow.setId(ga.getId());
-            {
-                if (ga.getServiceId() > -1);
-            }
             genericAlarmsRow.setServiceId(ga.getServiceId());
             genericAlarmsRow.setToEmail(ga.getToEmail());
             genericAlarmsRow.setToUser(ga.getToUser());
@@ -104,15 +99,13 @@ public class AlarmsStorage implements IAlarmsStorage {
         AlarmRow alarmRow = new AlarmRow();
         alarmRow.setType(ga.getType());
         alarmRow.setMessage(ga.getMessage());
-        if (ga.getHostId() > -1) {
-            alarmRow.setHostId(ga.getHostId());
-            host = hosts.get(alarmRow.getHostId());
+        if (ga.getHostId() > Integer.MIN_VALUE) {
+            host = hosts.get(ga.getHostId());
+            alarmRow.setHostId(host.getId());
             alarmRow.setHostName(host.getName());
+            alarmRow.setInstanceMetrics(instanceStorage.getInstMetrics(host.getId()));
         }
         alarmRow.setId(ga.getId());
-        {
-            if (ga.getServiceId() > -1) ;
-        }
         alarmRow.setServiceId(ga.getServiceId());
         alarmRow.setToEmail(ga.getToEmail());
         alarmRow.setToUser(ga.getToUser());
@@ -121,32 +114,19 @@ public class AlarmsStorage implements IAlarmsStorage {
         InstanceMetric instanceMetric = instanceStorage.getInstMetric(alarmRow.getServiceId());
         alarmRow.setServiceTitle(instanceMetric.getTitle());
         alarmRow.setFromHost(hosts.get(instanceMetric.getHostId()).getName());
-
-        alarmRow.setInstanceMetrics(instanceStorage.getInstMetrics(host.getId()));
         alarmRow.setHosts(hosts.getAll());
 
-
-        List<User> users = usersStorage.getAllUsers();
-        List<String> stringList = new ArrayList<>();
-        for (User user : users) {
-            stringList.add(user.getUsername());
-        }
-
-        alarmRow.setAllUsers(stringList);
+        alarmRow.setAllUsers(getAllUsers());
 
         return alarmRow;
     }
+
 
     @Transactional
     public AlarmRow getNewAlarm()  {
         AlarmRow alarmRow = new AlarmRow();
         alarmRow.setHosts(hosts.getAll());
-        List<User> users = usersStorage.getAllUsers();
-        List<String> stringList = new ArrayList<>();
-        for (User user : users) {
-            stringList.add(user.getUsername());
-        }
-        alarmRow.setAllUsers(stringList);
+        alarmRow.setAllUsers(getAllUsers());
         return alarmRow;
     }
 
@@ -167,8 +147,13 @@ public class AlarmsStorage implements IAlarmsStorage {
     }
     @Transactional
     public void dellAlarm(int id) {
-        String sql = "DELETE FROM genericalarm WHERE id=?";
-        jdbcTemplateObject.update(sql,id);
+//        String sql = "DELETE FROM genericalarm WHERE id=?";
+//        jdbcTemplateObject.update(sql,id);
+        genericAlarm.remove(genericAlarm.get(id));
     }
 
+
+    private List<String> getAllUsers() {
+        return usersStorage.getAllUsers().stream().map(item -> item.getUsername()).collect(Collectors.toList());
+    }
 }
