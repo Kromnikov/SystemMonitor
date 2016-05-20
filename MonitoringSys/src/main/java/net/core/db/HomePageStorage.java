@@ -10,9 +10,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Repository
 public class HomePageStorage implements IHomePageStorage {
@@ -57,20 +57,21 @@ public class HomePageStorage implements IHomePageStorage {
         return jdbcTemplateObject.queryForObject(sql, Integer.class);
     }
 
+    private Favorites mapToFavorites(Map row) {
+        Favorites favorite = new Favorites();
+        favorite.setId((int) row.get("id"));
+        favorite.setHostId(Integer.parseInt(row.get("host_id").toString()));
+        favorite.setMetricId(Integer.parseInt(row.get("inst_metric_id").toString()));
+        favorite.setTitle(row.get("title").toString());
+        return favorite;
+    }
+
     @Transactional
     public List<Favorites> getFavoritesRow(String name) {
-        List<Favorites> favoriteses = new ArrayList<>();
         String sql = "select *,(select title from \"INSTANCE_METRIC\" where id = f.inst_metric_id) as title  from \"FAVORITES\" as f where f.user_name='"+name+"'";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-
-        for (Map row : rows) {
-            Favorites favorite = new Favorites();
-            favorite.setId((int) row.get("id"));
-            favorite.setHostId(Integer.parseInt(row.get("host_id").toString()));
-            favorite.setMetricId(Integer.parseInt(row.get("inst_metric_id").toString()));
-            favorite.setTitle(row.get("title").toString());
-            favoriteses.add(favorite);
-        }
-        return favoriteses;
+        return jdbcTemplateObject.queryForList(sql)
+                .stream()
+                .map(item-> mapToFavorites(item))
+                .collect(Collectors.toList());
     }
 }

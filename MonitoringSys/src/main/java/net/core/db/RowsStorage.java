@@ -1,10 +1,7 @@
 package net.core.db;
 
-import net.core.alarms.dao.GenericAlarmDao;
 import net.core.configurations.SSHConfiguration;
-import net.core.db.interfaces.IInstanceStorage;
 import net.core.db.interfaces.IRowsStorage;
-import net.core.db.interfaces.IUsersStorage;
 import net.core.hibernate.services.HostService;
 import net.core.models.HostEditRow;
 import net.core.models.HostRow;
@@ -25,6 +22,7 @@ public class RowsStorage implements IRowsStorage {
     private JdbcTemplate jdbcTemplateObject;
     @Autowired
     private HostService hosts;
+
     @Autowired
     public RowsStorage(DataSource dataSource) {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
@@ -43,7 +41,7 @@ public class RowsStorage implements IRowsStorage {
             hostRow.setHostName(host.getName());
             hostRow.setLocation(host.getLocation());
             for (Map row : rows) {
-                if(host.getId()==(int) row.get("host")) {
+                if (host.getId() == (int) row.get("host")) {
                     hostRow.setServicesCount(Integer.parseInt(row.get("countServices").toString()));
                     hostRow.setErrorsCount(Integer.parseInt(row.get("countProblems").toString()));
                     hostRow.setStatus(row.get("status").toString());
@@ -70,7 +68,7 @@ public class RowsStorage implements IRowsStorage {
             hostRow.setPassword(host.getPassword());
             hostRow.setLocation(host.getLocation());
             for (Map row : rows) {
-                if(host.getId()==(int) row.get("host")) {
+                if (host.getId() == (int) row.get("host")) {
                     hostRow.setServicesCount(Integer.parseInt(row.get("countServices").toString()));
                     hostRow.setErrorsCount(Integer.parseInt(row.get("countProblems").toString()));
                     hostRow.setStatus(row.get("status").toString());
@@ -82,16 +80,16 @@ public class RowsStorage implements IRowsStorage {
     }
 
     @Transactional
-    public List<MetricRow> getMetricRow(int hostId)  {
+    public List<MetricRow> getMetricRow(int hostId) {
         List<MetricRow> MetricRows = new ArrayList<>();
         String sql = "select id,title ,(select value from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as value ,(select date_time from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as date ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id ) as countProblems ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id and (\"end_datetime\" is null and \"start_datetime\" is not null)) as status  from \"INSTANCE_METRIC\" as im where host = ?";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql,hostId);
+        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql, hostId);
         for (Map row : rows) {
             MetricRow metricrow = new MetricRow();
             metricrow.setId(Integer.parseInt(row.get("id").toString()));
             metricrow.setTitle((row.get("title").toString()));
             metricrow.setErrorsCount(Integer.parseInt(row.get("countProblems").toString()));
-            if(row.get("value")!=null)
+            if (row.get("value") != null)
                 metricrow.setLastValue(Double.parseDouble(row.get("value").toString()));
             metricrow.setDate(((java.sql.Timestamp) row.get("date")));
             metricrow.setStatus(row.get("status").toString());
@@ -101,15 +99,15 @@ public class RowsStorage implements IRowsStorage {
     }
 
     @Transactional
-    public ProblemRow getProblem(int problemId)  {
+    public ProblemRow getProblem(int problemId) {
         ProblemRow problemRow = new ProblemRow();
         String sql = "SELECT i.title , a.host_id, a.inst_metric,a.start_datetime,a.end_datetime FROM \"METRIC_STATE\" as a , \"INSTANCE_METRIC\" as i where a.id = ? and i.id = a.inst_metric";
-        Map<String, Object> row = jdbcTemplateObject.queryForMap(sql,problemId);
-            problemRow.setHostId((int) row.get("host_id"));
-            problemRow.setInstMetricId((int) row.get("inst_metric"));
-            problemRow.setInstMetric((String) row.get("title"));
-            problemRow.setStartDate(((java.sql.Timestamp) row.get("start_datetime")));
-            problemRow.setEndDate(((java.sql.Timestamp) row.get("end_datetime")));
+        Map<String, Object> row = jdbcTemplateObject.queryForMap(sql, problemId);
+        problemRow.setHostId((int) row.get("host_id"));
+        problemRow.setInstMetricId((int) row.get("inst_metric"));
+        problemRow.setInstMetric((String) row.get("title"));
+        problemRow.setStartDate(((java.sql.Timestamp) row.get("start_datetime")));
+        problemRow.setEndDate(((java.sql.Timestamp) row.get("end_datetime")));
         return problemRow;
     }
 }

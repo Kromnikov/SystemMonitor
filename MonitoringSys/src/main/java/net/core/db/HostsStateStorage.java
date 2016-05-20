@@ -1,8 +1,6 @@
 package net.core.db;
 
 
-import net.core.alarms.dao.AlarmsLogDao;
-import net.core.alarms.dao.GenericAlarmDao;
 import net.core.db.interfaces.IHostsStateStorage;
 import net.core.hibernate.services.HostService;
 import net.core.models.HostsState;
@@ -15,9 +13,9 @@ import javax.sql.DataSource;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Repository
 public class HostsStateStorage implements IHostsStateStorage{
@@ -45,25 +43,32 @@ public class HostsStateStorage implements IHostsStateStorage{
         String sql = "UPDATE \"HOST_STATE\" SET \"end_datetime\" = (TIMESTAMP '" + endTime + "')  where host =? and \"end_datetime\" is null";
         jdbcTemplateObject.update(sql,host);
     }
+
+    private HostsState mapInHostState(Map row) {
+        HostsState hostState = new HostsState();
+        hostState.setId(Integer.parseInt(row.get("id").toString()));
+        try {
+            hostState.setStart(dateFormat.parse(row.get("start_datetime").toString()));
+        if (row.get("end_datetime") != null) {
+            hostState.setEnd(dateFormat.parse(row.get("end_datetime").toString()));
+        }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        hostState.setResolved(Boolean.parseBoolean(row.get("resolved").toString()));
+        hostState.setHostId(Integer.parseInt(row.get("host").toString()));
+
+        hostState.setHostName(hosts.get(hostState.getHostId()).getName());
+        return hostState;
+    }
+
     @Transactional
     public List<HostsState> getHostsProblems() throws ParseException {
-        List<HostsState> hostsStateList = new ArrayList<>();
         String sql = "SELECT *  FROM \"HOST_STATE\" where resolved = false";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-        for (Map row : rows) {
-            HostsState hostStateTmp = new HostsState();
-            hostStateTmp.setId(Integer.parseInt(row.get("id").toString()));
-            hostStateTmp.setStart(dateFormat.parse(row.get("start_datetime").toString()));
-            if (row.get("end_datetime") != null) {
-                hostStateTmp.setEnd(dateFormat.parse(row.get("end_datetime").toString()));
-            }
-            hostStateTmp.setResolved(Boolean.parseBoolean(row.get("resolved").toString()));
-            hostStateTmp.setHostId(Integer.parseInt(row.get("host").toString()));
-
-            hostStateTmp.setHostName(hosts.get(hostStateTmp.getHostId()).getName());
-            hostsStateList.add(hostStateTmp);
-        }
-        return hostsStateList;
+        return jdbcTemplateObject.queryForList(sql)
+                .stream()
+                .map(item-> mapInHostState(item))
+                .collect(Collectors.toList());
     }
     @Transactional
     public void setResolvedHost(int id) {

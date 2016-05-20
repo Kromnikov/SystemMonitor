@@ -1,9 +1,6 @@
 package net.core.db;
 
-import net.core.alarms.dao.AlarmsLogDao;
-import net.core.alarms.dao.GenericAlarmDao;
 import net.core.db.interfaces.ITemplateStorage;
-import net.core.hibernate.services.HostService;
 import net.core.models.TemplateMetric;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,11 +8,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Repository
 public class TemplateStorage implements ITemplateStorage{
@@ -35,21 +30,19 @@ public class TemplateStorage implements ITemplateStorage{
     @Transactional
     public TemplateMetric getTemplateMetric(int id) {
         String sql = "select * FROM \"TEMPLATE_METRICS\" where id =?";
-        Map<String, Object> row = jdbcTemplateObject.queryForMap(sql, id);
-        TemplateMetric templateMetric = getTemplate(row);
-        return templateMetric;
+        return mapToTempl(jdbcTemplateObject.queryForMap(sql, id));
     }
 
     @Transactional
     public List<TemplateMetric> getTemplatMetrics()  {
-        List<TemplateMetric> templateMetrics = new ArrayList<>();
         String sql = "SELECT * FROM \"TEMPLATE_METRICS\"";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-        rows.stream().forEach(row -> templateMetrics.add(getTemplate(row)));
-        return templateMetrics;
+        return jdbcTemplateObject.queryForList(sql)
+                .stream()
+                .map(item-> mapToTempl(item))
+                .collect(Collectors.toList());
     }
 
-    private TemplateMetric getTemplate(Map row) {
+    private TemplateMetric mapToTempl(Map row) {
         TemplateMetric templateMetric = new TemplateMetric();
         templateMetric.setId((int) row.get("id"));
         templateMetric.setTitle((String) row.get("title"));

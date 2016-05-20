@@ -33,25 +33,6 @@ public class InstanceController {
         return metricStorage.getInstMetrics(hostId);
     }
 
-//    //TODO: Контроллер для Instance метрик
-//    @RequestMapping(value = "/instMetric")
-//    public ModelAndView addInstMetricPage(@RequestParam(required = false, defaultValue = "-1") int instMetricId, @RequestParam(required = false, defaultValue = "-1") int hostId) throws SQLException {
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("InstMetric");
-//        modelAndView.addObject("username", SecurityContextHolder.getContext().getAuthentication().getName());
-//        if (instMetricId > 0) {
-//            InstanceMetric instanceMetric = metricStorage.getInstMetric(instMetricId);
-//            TemplateMetric templateMetric = metricStorage.getTemplateMetric(instanceMetric.getTempMetrcId());
-//            modelAndView.addObject("InstanceMetric", instanceMetric);
-//            modelAndView.addObject("templateMetric", templateMetric);
-//            modelAndView.addObject("host", hosts.get(instanceMetric.getHostId()));
-//        }
-//        if (hostId > 0) {
-//            modelAndView.addObject("host", hosts.get(hostId));
-//        }
-//        return modelAndView;
-//    }
-
     @RequestMapping(value = "/getInstTempHost")
     @ResponseBody
     public InstTemplHostRow getInstTempHost(@RequestParam(required = false, defaultValue = "-1") int instMetricId) throws SQLException {

@@ -10,7 +10,6 @@ import net.core.hibernate.services.HostService;
 import net.core.models.AlarmRow;
 import net.core.models.GenericAlarmsRow;
 import net.core.models.InstanceMetric;
-import net.core.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

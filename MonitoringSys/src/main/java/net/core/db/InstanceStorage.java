@@ -1,10 +1,7 @@
 package net.core.db;
 
-import net.core.alarms.dao.AlarmsLogDao;
-import net.core.alarms.dao.GenericAlarmDao;
 import net.core.db.interfaces.IInstanceStorage;
 import net.core.db.interfaces.ITemplateStorage;
-import net.core.hibernate.services.HostService;
 import net.core.models.InstanceMetric;
 import net.core.models.TemplateMetric;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +10,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Repository
 public class InstanceStorage implements IInstanceStorage{
@@ -37,40 +32,32 @@ public class InstanceStorage implements IInstanceStorage{
         jdbcTemplateObject.update(sql, host, metricId, 0, 0, templateMetric.getTitle(), templateMetric.getCommand());
     }
 
+    private InstanceMetric mapToInst(Map row) {
+        InstanceMetric instanceMetric = new InstanceMetric();
+        instanceMetric.setId((int) row.get("id"));
+//        instanceMetric.setHostId(hostId);
+        instanceMetric.setHostId((int) row.get("host"));
+        instanceMetric.setTempMetrcId((int) row.get("templ_metric"));
+        instanceMetric.setMinValue((double) row.get("min_value"));
+        instanceMetric.setMaxValue((double) row.get("max_value"));
+        instanceMetric.setCommand((String) row.get("query"));
+        instanceMetric.setTitle((String) row.get("title"));
+        return instanceMetric;
+    }
+
     @Transactional
     public List<InstanceMetric> getInstMetrics(int hostId)  {
-        List<InstanceMetric> instanceMetrics = new ArrayList<>();
         String sql = "SELECT *  FROM \"INSTANCE_METRIC\" where host =?";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql,hostId);
-        for (Map row : rows) {
-            InstanceMetric instanceMetric = new InstanceMetric();
-            instanceMetric.setId((int) row.get("id"));
-            instanceMetric.setHostId(hostId);
-            instanceMetric.setTempMetrcId((int) row.get("templ_metric"));
-            instanceMetric.setMinValue((double) row.get("min_value"));
-            instanceMetric.setMaxValue((double) row.get("max_value"));
-            instanceMetric.setCommand((String) row.get("query"));
-            instanceMetric.setTitle((String) row.get("title"));
-            instanceMetrics.add(instanceMetric);
-        }
-        return instanceMetrics;
+        return jdbcTemplateObject.queryForList(sql,hostId)
+                .stream()
+                .map(item->mapToInst(item))
+                .collect(Collectors.toList());
     }
 
     @Transactional
     public InstanceMetric getInstMetric(int instMetricId)  {
-        InstanceMetric instanceMetric = new InstanceMetric();
         String sql = "SELECT *  FROM \"INSTANCE_METRIC\" where id =?";
-        Map<String, Object> row = jdbcTemplateObject.queryForMap(sql,instMetricId);
-
-            instanceMetric.setId((int) row.get("id"));
-            instanceMetric.setHostId((int) row.get("host"));
-            instanceMetric.setTempMetrcId((int) row.get("templ_metric"));
-            instanceMetric.setMinValue((double) row.get("min_value"));
-            instanceMetric.setMaxValue((double) row.get("max_value"));
-            instanceMetric.setCommand((String) row.get("query"));
-            instanceMetric.setTitle((String) row.get("title"));
-
-        return instanceMetric;
+        return mapToInst(jdbcTemplateObject.queryForMap(sql,instMetricId));
     }
 
     @Transactional

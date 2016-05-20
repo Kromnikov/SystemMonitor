@@ -1,10 +1,7 @@
 package net.core.db;
 
-import net.core.alarms.dao.AlarmsLogDao;
-import net.core.alarms.dao.GenericAlarmDao;
 import net.core.db.interfaces.IInstanceStorage;
 import net.core.db.interfaces.IMetricProblemStorage;
-import net.core.hibernate.services.HostService;
 import net.core.models.MetricProblem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,9 +12,9 @@ import javax.sql.DataSource;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Repository
 public class MetricProblemStorage implements IMetricProblemStorage {
@@ -54,32 +51,29 @@ public class MetricProblemStorage implements IMetricProblemStorage {
 
     @Transactional
     public List<MetricProblem> getMetricProblems(int hostId) throws ParseException {
-        List<MetricProblem> metricProblemList = new ArrayList<>();
         String sql = "SELECT * FROM \"METRIC_STATE\" where resolved = false and host_id=?";
-        jdbcTemplateObject.queryForList(sql, hostId)
+        return jdbcTemplateObject.queryForList(sql)
                 .stream()
-                .forEach(item->metricProblemList.add(getMetricProblem(item)));
-        return metricProblemList;
+                .map(item -> getMetricProblem(item))
+                .collect(Collectors.toList());
     }
 
     @Transactional
     public List<MetricProblem> getMetricProblems(int hostId, int metricId) throws ParseException {
-        List<MetricProblem> metricProblemList = new ArrayList<>();
         String sql = "SELECT * FROM \"METRIC_STATE\" where resolved = false and inst_metric=?";
-        jdbcTemplateObject.queryForList(sql, metricId)
+        return jdbcTemplateObject.queryForList(sql)
                 .stream()
-                .forEach(item->metricProblemList.add(getMetricProblem(item)));
-        return metricProblemList;
+                .map(item -> getMetricProblem(item))
+                .collect(Collectors.toList());
     }
 
     @Transactional
     public List<MetricProblem> getMetricProblems() throws ParseException {
-        List<MetricProblem> metricProblemList = new ArrayList<>();
         String sql = "SELECT *  FROM \"METRIC_STATE\" where resolved = false";
-        jdbcTemplateObject.queryForList(sql)
+        return jdbcTemplateObject.queryForList(sql)
                 .stream()
-                .forEach(item->metricProblemList.add(getMetricProblem(item)));
-        return metricProblemList;
+                .map(item -> getMetricProblem(item))
+                .collect(Collectors.toList());
     }
 
     @Transactional
@@ -97,12 +91,12 @@ public class MetricProblemStorage implements IMetricProblemStorage {
     @Transactional
     public long getMetricNotResolvedLength() {
         String sql = "SELECT COUNT(*)  FROM \"METRIC_STATE\" where resolved = false";
-        return (long) jdbcTemplateObject.queryForMap(sql).get("COUNT");
+        return jdbcTemplateObject.queryForObject(sql,Long.class);
     }
 
     @Transactional
     public long getMetricNotResolvedLength(int hostId) {
         String sql = "SELECT COUNT(*)  FROM \"METRIC_STATE\" where resolved = false and host_id =?";
-        return (long) jdbcTemplateObject.queryForMap(sql, hostId).get("COUNT");
+        return jdbcTemplateObject.queryForObject(sql,Long.class,hostId);
     }
 }

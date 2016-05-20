@@ -20,43 +20,38 @@ public class UsersStorage implements IUsersStorage {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
 
-
-    @Transactional
-    public List<User> getAllUsers() {
-        List<User> usersList = new ArrayList<>();
-        String sql = "SELECT * FROM \"Users\" as u, \"Roles\" as r where u.username=r.username";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-
-        for (Map row : rows) {
-            User user = new User();
-            user.setUsername((String) row.get("username"));
-            user.setPassword((String) row.get("password"));
-            user.setRole((String) row.get("role"));
-            user.setRoleid((int) row.get("id"));
-            usersList.add(user);
-        }
-        return usersList;
-    }
-
-    @Transactional
-    public List<String> getRoles() {
-        String sql = "SELECT distinct r.role FROM \"Roles\" as r ";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql);
-        return rows.stream().map(item -> (String) item.get("role")).collect(Collectors.toList());
-    }
-
-    @Transactional
-    public User getUsers(String userName) {
-        String sql = "SELECT * FROM \"Users\" as u join \"Roles\" as r on r.username=u.username where u.username = ?";
-        Map<String, Object> row = jdbcTemplateObject.queryForMap(sql,userName);
+    private User mapToUser(Map row) {
         User user = new User();
         user.setUsername((String) row.get("username"));
         user.setPassword((String) row.get("password"));
         user.setRole((String) row.get("role"));
         user.setRoleid((int) row.get("id"));
         user.setAllRoles(getRoles());
-
         return user;
+    }
+
+    @Transactional
+    public List<User> getAllUsers() {
+        String sql = "SELECT * FROM \"Users\" as u, \"Roles\" as r where u.username=r.username";
+        return jdbcTemplateObject.queryForList(sql)
+                .stream()
+                .map(item -> mapToUser(item))
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public List<String> getRoles() {
+        String sql = "SELECT distinct r.role FROM \"Roles\" as r ";
+        return jdbcTemplateObject.queryForList(sql)
+                .stream()
+                .map(item -> (String) item.get("role"))
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public User getUsers(String userName) {
+        String sql = "SELECT * FROM \"Users\" as u join \"Roles\" as r on r.username=u.username where u.username = ?";
+        return mapToUser(jdbcTemplateObject.queryForMap(sql, userName));
     }
 
     @Transactional

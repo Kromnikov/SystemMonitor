@@ -354,14 +354,11 @@ function modalAccounts() {
             var role = $(this).attr('role');
             $("#roleValue").html(role);
             $("#newAccountRoleValue").html(role);
-            //$("#roleValue1").html(role);
-            //console.log("roleValue -->  "+$("#roleValue").html());
-            //console.log("roleValue1 -->  "+$("#roleValue1").html());
         });
 
         $('.open_window').click(function (e) {
             $.getJSON('/admin/getAccounts?username=' + $(this).parent().parent().parent().attr('id'), function (user) {
-                console.log(user.username);
+                console.log("edit "+user.username);
                 $("input[name='id']").val(user.id);
                 $("input[name='Username']").val(user.username);
                 $("input[name='Password']").val(user.password);
