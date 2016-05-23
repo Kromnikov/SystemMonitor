@@ -16,6 +16,7 @@ import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Repository
 public class RowsStorage implements IRowsStorage {
@@ -27,7 +28,6 @@ public class RowsStorage implements IRowsStorage {
     public RowsStorage(DataSource dataSource) {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
-
 
     @Transactional
     public List<HostRow> getHostRow() {
@@ -81,28 +81,37 @@ public class RowsStorage implements IRowsStorage {
 
     @Transactional
     public List<MetricRow> getMetricRow(int hostId) {
-        List<MetricRow> MetricRows = new ArrayList<>();
         String sql = "select id,title ,(select value from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as value ,(select date_time from \"VALUE_METRIC\" where metric = im.id ORDER BY id DESC limit 1) as date ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id ) as countProblems ,(select count(*)from \"METRIC_STATE\" where inst_metric = im.id and (\"end_datetime\" is null and \"start_datetime\" is not null)) as status  from \"INSTANCE_METRIC\" as im where host = ?";
-        List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql, hostId);
-        for (Map row : rows) {
-            MetricRow metricrow = new MetricRow();
-            metricrow.setId(Integer.parseInt(row.get("id").toString()));
-            metricrow.setTitle((row.get("title").toString()));
-            metricrow.setErrorsCount(Integer.parseInt(row.get("countProblems").toString()));
-            if (row.get("value") != null)
-                metricrow.setLastValue(Double.parseDouble(row.get("value").toString()));
-            metricrow.setDate(((java.sql.Timestamp) row.get("date")));
-            metricrow.setStatus(row.get("status").toString());
-            MetricRows.add(metricrow);
-        }
-        return MetricRows;
+        return jdbcTemplateObject.queryForList(sql, hostId)
+                .stream()
+                .map(item -> mapToMetricRow(item))
+                .collect(Collectors.toList());
     }
+
 
     @Transactional
     public ProblemRow getProblem(int problemId) {
-        ProblemRow problemRow = new ProblemRow();
         String sql = "SELECT i.title , a.host_id, a.inst_metric,a.start_datetime,a.end_datetime FROM \"METRIC_STATE\" as a , \"INSTANCE_METRIC\" as i where a.id = ? and i.id = a.inst_metric";
-        Map<String, Object> row = jdbcTemplateObject.queryForMap(sql, problemId);
+        return mapToProblemRow(jdbcTemplateObject.queryForMap(sql, problemId));
+    }
+
+
+
+    private MetricRow mapToMetricRow(Map row) {
+        MetricRow metricrow = new MetricRow();
+        metricrow.setId(Integer.parseInt(row.get("id").toString()));
+        metricrow.setTitle((row.get("title").toString()));
+        metricrow.setErrorsCount(Integer.parseInt(row.get("countProblems").toString()));
+        if (row.get("value") != null)
+            metricrow.setLastValue(Double.parseDouble(row.get("value").toString()));
+        metricrow.setDate(((java.sql.Timestamp) row.get("date")));
+        metricrow.setStatus(row.get("status").toString());
+        return metricrow;
+    }
+
+
+    private ProblemRow mapToProblemRow(Map row) {
+        ProblemRow problemRow = new ProblemRow();
         problemRow.setHostId((int) row.get("host_id"));
         problemRow.setInstMetricId((int) row.get("inst_metric"));
         problemRow.setInstMetric((String) row.get("title"));

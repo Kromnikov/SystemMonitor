@@ -55,9 +55,14 @@ public class InstanceStorage implements IInstanceStorage{
     }
 
     @Transactional
-    public InstanceMetric getInstMetric(int instMetricId)  {
+    public InstanceMetric getInstMetric(int instMetricId)  {//TODO: надо что-то придумать, например каскадное удаление забыли
         String sql = "SELECT *  FROM \"INSTANCE_METRIC\" where id =?";
-        return mapToInst(jdbcTemplateObject.queryForMap(sql,instMetricId));
+        try {
+            return mapToInst(jdbcTemplateObject.queryForMap(sql, instMetricId));
+        } catch (org.springframework.dao.EmptyResultDataAccessException e) {
+
+        }
+        return new InstanceMetric();
     }
 
     @Transactional

@@ -98,11 +98,11 @@ public class StorageController implements IStorageController {
     //TODO: alarmsStorage
     @Transactional
     public List<GenericAlarmsRow> getAlarms(String userName) {
-        return alarmsStorage.getAlarms(userName);
+        return alarmsStorage.getGenericAlarmsRow(userName);
     }
     @Transactional
     public List<GenericAlarmsRow> getAlarms() {
-        return alarmsStorage.getAlarms();
+        return alarmsStorage.getGenericAlarmsRow();
     }
 
     @Transactional

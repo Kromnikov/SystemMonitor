@@ -30,7 +30,7 @@ private Authorization authentication;
     public ModelAndView alarms() throws SQLException {
         ModelAndView modelAndView = new ModelAndView();
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
-//        modelAndView.addObject("getAlarms", metricStorage.getAlarms(name));
+//        modelAndView.addObject("getGenericAlarmsRow", metricStorage.getGenericAlarmsRow(name));
         modelAndView.addObject("getAlarms", metricStorage.getAlarms());
         modelAndView.setViewName("alarms");
         modelAndView.addObject("username", name);

@@ -52,7 +52,7 @@ public class MetricProblemStorage implements IMetricProblemStorage {
     @Transactional
     public List<MetricProblem> getMetricProblems(int hostId) throws ParseException {
         String sql = "SELECT * FROM \"METRIC_STATE\" where resolved = false and host_id=?";
-        return jdbcTemplateObject.queryForList(sql)
+        return jdbcTemplateObject.queryForList(sql,hostId)
                 .stream()
                 .map(item -> getMetricProblem(item))
                 .collect(Collectors.toList());
@@ -61,7 +61,7 @@ public class MetricProblemStorage implements IMetricProblemStorage {
     @Transactional
     public List<MetricProblem> getMetricProblems(int hostId, int metricId) throws ParseException {
         String sql = "SELECT * FROM \"METRIC_STATE\" where resolved = false and inst_metric=?";
-        return jdbcTemplateObject.queryForList(sql)
+        return jdbcTemplateObject.queryForList(sql,metricId)
                 .stream()
                 .map(item -> getMetricProblem(item))
                 .collect(Collectors.toList());

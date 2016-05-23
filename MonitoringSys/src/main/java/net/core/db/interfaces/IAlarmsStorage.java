@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface IAlarmsStorage {
 
-    public List<GenericAlarmsRow> getAlarms(String userName);
+    public List<GenericAlarmsRow> getGenericAlarmsRow(String userName);
 
-    public List<GenericAlarmsRow> getAlarms();
+    public List<GenericAlarmsRow> getGenericAlarmsRow();
 
     public AlarmRow getAlarm(int id);
 

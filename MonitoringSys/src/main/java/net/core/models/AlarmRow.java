@@ -31,6 +31,11 @@ public class AlarmRow {
     public AlarmRow() {
     }
 
+    public AlarmRow(List<String> allUsers,List<SSHConfiguration> hosts) {
+        this.allUsers = allUsers;
+        this.hosts = hosts;
+    }
+
     public List<String> getAllUsers() {
         return allUsers;
     }

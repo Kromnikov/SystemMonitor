@@ -42,6 +42,13 @@ public class GenericAlarm {
         this.toUser = toUser;
         this.message= message;
     }
+    public GenericAlarm(int serviceId, int hostId, String toEmail, String toUser,String username) {
+        this.serviceId = serviceId;
+        this.hostId = hostId;
+        this.toEmail = toEmail;
+        this.toUser = toUser;
+        this.username= username;
+    }
 
     public int getId() {
         return id;
