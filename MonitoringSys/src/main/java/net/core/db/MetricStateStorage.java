@@ -26,7 +26,6 @@ public class MetricStateStorage implements IMetricStateStorage{
     }
     @Transactional
     public void setAllowableValueMetric(String endTime, int instMetric) {
-//        String sql = "UPDATE \"METRIC_STATE\" SET \"end_datetime\" = (TIMESTAMP '" + endTime + "')  where  inst_metric =? and \"end_datetime\" is null";
         String sql = "UPDATE \"METRIC_STATE\" SET \"end_datetime\" = (?::timestamp)  where  inst_metric =? and \"end_datetime\" is null";
         jdbcTemplateObject.update(sql,endTime,instMetric);
     }
@@ -57,8 +56,6 @@ public class MetricStateStorage implements IMetricStateStorage{
 
     @Transactional
     public void setOverMaxValue(String startTime, InstanceMetric instanceMetric, int hostId, double valueMetric) {
-//        String sql = "INSERT INTO \"METRIC_STATE\"(start_datetime,state,inst_metric,resolved,host_id) " +
-//                " VALUES ((TIMESTAMP '" + startTime + "'),?,?,?,?)";
         String sql = "INSERT INTO \"METRIC_STATE\"(start_datetime,state,inst_metric,resolved,host_id) " +
                 " VALUES ((?::timestamp),?,?,?,?)";
         jdbcTemplateObject.update(sql,startTime, getStringOverMax(valueMetric, instanceMetric.getMaxValue()),instanceMetric.getId(),false,hostId);
@@ -71,8 +68,6 @@ public class MetricStateStorage implements IMetricStateStorage{
     }
     @Transactional  //MIN
     public void setLessMinValue(String startTime, InstanceMetric instanceMetric, int hostId, double valueMetric) {
-//        String sql = "INSERT INTO \"METRIC_STATE\"(start_datetime,state,inst_metric,resolved,host_id) " +
-//                " VALUES ((TIMESTAMP '" + startTime + "'),?,?,?,?)";
         String sql = "INSERT INTO \"METRIC_STATE\"(start_datetime,state,inst_metric,resolved,host_id) " +
                 " VALUES ((?::timestamp),?,?,?,?)";
         jdbcTemplateObject.update(sql,startTime,getStringLessMin(valueMetric,instanceMetric.getMinValue()),instanceMetric.getId(),false,hostId);
@@ -84,13 +79,11 @@ public class MetricStateStorage implements IMetricStateStorage{
     }
     @Transactional
     public void setCorrectlyMetric(String endTime, int instMetric) {
-//        String sql = "UPDATE \"METRIC_STATE\" SET \"end_datetime\" = (TIMESTAMP '" + endTime + "')  where state='unknow' and  inst_metric =? and \"end_datetime\" is null";
         String sql = "UPDATE \"METRIC_STATE\" SET \"end_datetime\" = (?::timestamp)  where state='unknow' and  inst_metric =? and \"end_datetime\" is null";
         jdbcTemplateObject.update(sql,endTime,instMetric);
     }
     @Transactional
     public void setIncorrectlyMetric(String startTime, int instMetric) {
-//        String sql = "INSERT INTO \"METRIC_STATE\"(start_datetime,state,inst_metric,resolved)  VALUES ((TIMESTAMP '" + startTime + "'),'unknow',?,?)";
         String sql = "INSERT INTO \"METRIC_STATE\"(start_datetime,state,inst_metric,resolved)  VALUES ((?::timestamp),'unknow',?,?)";
         jdbcTemplateObject.update(sql,startTime,instMetric,false);
     }
